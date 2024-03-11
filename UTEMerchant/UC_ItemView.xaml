@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="UTEMerchant.UC_ItemView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+              xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:local="clr-namespace:UTEMerchant"
+             mc:Ignorable="d" 
+            d:DesignHeight="420" d:DesignWidth="240">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/UTEMerchant;component/Resource_Control.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <hc:Card MaxWidth="240" BorderThickness="0,0,0,0" Effect="{DynamicResource EffectShadow2}" Margin="8,0,8,0" Height="420" VerticalAlignment="Center" Background="White" BorderBrush="#FF736161">
+            <!--Card Content section-->
+            <Border CornerRadius="4,4,0,0" Width="160" Height="160">
+                <!--<TextBlock   TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Text="test" Foreground="{x:Null}"/>-->
+                <Image Source="/Img/iPhone-14-Pro-Max-9907.jpg"/>
+            </Border>
+            <!--Card Footer part-->
+            <hc:Card.Footer >
+                <StackPanel Margin="5,0,0,0" Height="114">
+                    <!--Card First-level content-->
+                    <TextBlock x:Name="txblItemName" TextWrapping="WrapWithOverflow" 
+                                   Style="{DynamicResource TextBlockLargeBold}"
+                                   TextTrimming="CharacterEllipsis" 
+                                   Text="Iphone 14 Pro Max"
+                                   HorizontalAlignment="Left" FontFamily="Segoe UI Black"   
+                                    
+                                    />
+                    <!--Card Secondary content-->
+                    <TextBlock TextWrapping="WrapWithOverflow" 
+                                   Style="{DynamicResource TextBlockDefault}" 
+                                   TextTrimming="CharacterEllipsis" 
+                                   Text=" $10000"
+                                   HorizontalAlignment="Left" FontSize="20" FontFamily="Rockwell" FontWeight="Bold"  Foreground="#FFEA4444" Height="26" Width="81" Margin="0,20,0,0"                                 
+                                   
+                        />
+                    <Button 
+                        HorizontalAlignment="Right"
+                        Margin="0,-28,7,50" 
+                        RenderTransformOrigin="1.525,0.952" 
+                        Height="26" VerticalAlignment="Center" 
+                        VerticalContentAlignment="Center" 
+                        Padding="5,5,5,5" BorderThickness="1,1,1,1" 
+                        FontFamily="Rockwell" FontWeight="Bold"
+                        Content="  Add to cart"
+                        
+                     >
+
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="7" Background="Red" Width="75">
+                                    <ContentPresenter VerticalAlignment="Center" />
+
+                                </Border>
+
+                            </ControlTemplate>
+                        </Button.Template>
+
+                    </Button>
+
+
+                </StackPanel>
+            </hc:Card.Footer>
+        </hc:Card>
+    </Grid>
+</UserControl>

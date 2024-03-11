@@ -1,0 +1,223 @@
+﻿<UserControl 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:local="clr-namespace:UTEMerchant"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:controlzex="urn:controlzex"
+             x:Class="UTEMerchant.UC_ItemDetail"
+             xmlns:validation="clr-namespace:UTEMerchant"                
+             mc:Ignorable="d"
+             d:DesignHeight="700" d:DesignWidth="331">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/UTEMerchant;component/Resource_Control.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <hc:Card MaxWidth="300
+                 " BorderThickness="0,0,0,0" Effect="{DynamicResource EffectShadow2}" Margin="8,0,8,0" Height="700" VerticalAlignment="Center" Background="White" BorderBrush="#FF736161">
+            <!--Card Content section-->
+            <Border CornerRadius="4,4,0,0" Height="198">
+                <!--<TextBlock   TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Text="test" Foreground="{x:Null}"/>-->
+                <Image Source="/Img/iPhone-14-Pro-Max-9907.jpg"/>
+            </Border>
+            <!--Card Footer part-->
+            <hc:Card.Footer >
+                <Grid Margin="5,0,0,0" Height="452">
+                    <Grid.RowDefinitions>
+                        <!-- Row for txblItemName 0 -->
+                        <RowDefinition MinHeight="55" MaxHeight="70" />
+                        <!-- Row for Quantity 1 -->
+                        <RowDefinition Height="18" MaxHeight="64"/>
+                        <!-- Row for Sold 2 -->
+                        <RowDefinition Height="28" MinHeight="28"/>
+                        <!-- Row for Type 3 -->
+                        <RowDefinition Height="Auto" MinHeight="29"/>
+                        <!-- Row for Ships From 4 -->
+                        <RowDefinition Height="Auto" MinHeight="29" />
+                        <!-- Row for Description 5 -->
+                        <RowDefinition Height="Auto" MinHeight="208" />
+                        <!-- Row for Price and Add to cart 6 -->
+                        <RowDefinition Height="Auto" MinHeight="365" />
+
+                    </Grid.RowDefinitions>
+
+                    <!--Item name-->
+                    <TextBlock x:Name="txblItemName"
+                    TextWrapping="Wrap"
+                    Style="{DynamicResource TextBlockLargeBold}"
+                    TextTrimming="None"
+                    Text="Iphone 14 Pro Max 512GB"
+                    HorizontalAlignment="Stretch"
+                    FontFamily="Segoe UI Black"
+                    MaxHeight="95" VerticalAlignment="Stretch" FontSize="18" Margin="0,0,0,17" Grid.RowSpan="2" Padding="0,0,0,58" Panel.ZIndex="-2" />
+
+                    <!-- Label for Quantity -->
+                    <Label
+                         x:Name="lblQuantity"
+                         Content="Quantity: "
+                         HorizontalAlignment="Left"
+                         FontWeight="SemiBold"
+                         VerticalContentAlignment="Top"
+                         HorizontalContentAlignment="Left"
+                         Padding="0,0,0,0"
+                         Grid.Row="1" 
+                         Width="51" 
+                         BorderThickness="0,0,0,0" 
+                         OverridesDefaultStyle="True" IsHitTestVisible="False" Height="20"/>
+
+                    <!--Value for Quantity-->
+                    <TextBlock
+                         x:Name="txblQuantityValue"
+                         Text="100"
+                         Grid.Row="1"
+                         HorizontalAlignment="Left" RenderTransformOrigin="0.799,0.479"
+                         VerticalAlignment="Center" Margin="79,0,0,0"
+                         FontWeight="SemiBold" Height="20" Width="30"       
+                     />
+                    <!-- Label for Sold -->
+                    <Label 
+                         x:Name="lblSold"
+                         Content="Sold: "
+                         HorizontalAlignment="Left"
+                         FontWeight="SemiBold"
+                         VerticalContentAlignment="Top"
+                         HorizontalContentAlignment="Left"
+                         Padding="0,0,0,0"
+                         Grid.Row="2" 
+                         Width="51" 
+                         BorderThickness="0,0,0,0" 
+                         OverridesDefaultStyle="True" Height="28"/>
+                    <!--Value for Sold-->
+                    <TextBlock
+                        x:Name="txblSoldValue"
+                        Text="15"
+                        Grid.Row="2"
+                         HorizontalAlignment="Left" RenderTransformOrigin="0.799,0.479"
+                         VerticalAlignment="Center" Margin="79,0,0,0"
+                         FontWeight="SemiBold" Height="20" Width="30"                 
+                     />
+                    <!--label for Type-->
+                    <Label
+                        x:Name="lblType"   
+                        Content="Type: "
+                        HorizontalAlignment="Left"
+                        FontWeight="SemiBold"
+                        VerticalContentAlignment="Top"
+                        HorizontalContentAlignment="Left"
+                        Padding="0,0,0,0"
+                        Grid.Row="3" 
+                        Width="51" 
+                        BorderThickness="0,0,0,0" 
+                        OverridesDefaultStyle="True" Height="28"/>
+                    <!--Value for Type-->
+                    <TextBlock
+                         x:Name="txblTypeValue"
+                         Text="Smart phone"
+                         Grid.Row="3" RenderTransformOrigin="0.799,0.479"
+                         VerticalAlignment="Top"
+                         FontWeight="SemiBold" Height="16" Margin="79,0,0,0" TextWrapping="WrapWithOverflow"                     
+                     />
+                    <!--label for ShipFrom-->
+                    <Label
+                        x:Name="lblShipsFrom"   
+                        Content="Ships From: "
+                        HorizontalAlignment="Left"
+                        FontWeight="SemiBold"
+                        VerticalContentAlignment="Top"
+                        HorizontalContentAlignment="Left"
+                        Padding="0,0,0,0"
+                        Grid.Row="4" 
+                        Width="74" 
+                        BorderThickness="0,0,0,0" 
+                        OverridesDefaultStyle="True" Height="28"/>
+                    <!--Value for ShipFrom-->
+                    <TextBlock
+                         x:Name="txblShipFrom"
+                         Text="Ho Chi Minh"
+                         Grid.Row="4" RenderTransformOrigin="0.799,0.479"
+                         VerticalAlignment="Top"
+                         FontWeight="SemiBold" Height="16" Margin="79,0,0,0" TextWrapping="WrapWithOverflow"                     
+                     />
+                    <!--Grid for Description-->
+                    <Grid Grid.Row="5" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <!-- Row for label Description -->
+                            <RowDefinition Height="Auto"/>
+                            <!--  Row for RichTextBox Description -->
+                        </Grid.RowDefinitions>
+
+                        <!--Label for Description-->
+                        <Label
+                            x:Name="lblDescription"
+                            Content="Description:" 
+                            HorizontalAlignment="Left" 
+                            BorderThickness="0,0,0,0"
+                            Width="91" 
+                            HorizontalContentAlignment="Left"
+                            Padding="3,5,10,5" 
+                            FontWeight="SemiBold" 
+                            VerticalAlignment="Stretch"/>
+                        <!--Value for Description-->
+                        <RichTextBox 
+                            x:Name="rtbDescription"
+                            Grid.Row="1" 
+                            Height="180"
+                            IsReadOnly="True" 
+                            Focusable="False" 
+                            Margin="0,0,5,0" VerticalAlignment="Top"/>
+                    </Grid>
+
+                    <!-- Item Price -->
+                    <TextBlock 
+                        x:Name="txblItemPrice"
+                        TextWrapping="WrapWithOverflow"
+                        Style="{DynamicResource TextBlockDefault}"
+                        Text=" $10000"
+                        HorizontalAlignment="Left"
+                        FontSize="20"
+                        FontFamily="Rockwell"
+                        FontWeight="Bold"
+                        Foreground="#FFEA4444"
+                        Grid.Row="6" Height="36" Width="109" TextTrimming="CharacterEllipsis" Padding="0,5,0,0" Margin="0,0,0,300" VerticalAlignment="Bottom" />
+
+                    <!-- Button Add to Cart -->
+                    <Button Content="Add to Cart"
+                        Padding="5,5,5,5"
+                        BorderThickness="1,1,1,1"
+                        FontFamily="Rockwell"
+                        FontWeight="Bold"
+                        RenderTransformOrigin="0.5,3.679"
+                        Grid.Row="6"
+                        HorizontalAlignment="Left"
+                        HorizontalContentAlignment="Center"
+                        Margin="212,0,0,300" Height="36" 
+                        Width="78"                       
+                        ScrollViewer.CanContentScroll="True" 
+                        VerticalContentAlignment="Bottom"
+                        Focusable="False" VerticalAlignment="Bottom">
+                        <!--Style for Add to cart button-->
+                        <Button.FocusVisualStyle>
+                            <Style/>
+                        </Button.FocusVisualStyle>
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border CornerRadius="7" Background="Red" Width="75">
+                                    <ContentPresenter VerticalAlignment="Center" Margin="4,0,3,0"  HorizontalAlignment="Center" />
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Grid>
+
+            </hc:Card.Footer>
+
+        </hc:Card>
+    </Grid>
+</UserControl>
