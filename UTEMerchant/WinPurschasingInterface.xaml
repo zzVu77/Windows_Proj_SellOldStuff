@@ -438,7 +438,8 @@
                            Margin="50,0,50,50">
                     <StackPanel x:Name="spItems"
                                 Orientation="Horizontal">
-                        
+                
+
                     </StackPanel>
                 </DockPanel>
             </DockPanel>
