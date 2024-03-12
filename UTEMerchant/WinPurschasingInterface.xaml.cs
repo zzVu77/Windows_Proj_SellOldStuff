@@ -58,5 +58,16 @@ namespace UTEMerchant
             }
             else btnPrice.Background = Brushes.Transparent;
         }
+
+        //public int RowCount
+        //{
+        //    get
+        //    {
+        //        // Calculate the number of rows based on the number of items and columns
+        //        int itemCount = ugItems.Children.Count;
+        //        int columns = ugItems.Columns;
+        //        return (itemCount + columns - 1) / columns;
+        //    }
+        //}
     }
 }

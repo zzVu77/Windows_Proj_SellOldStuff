@@ -5,7 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UTEMerchant"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1000" Width="1500">
+        Title="MainWindow"
+        Height="800"
+        Width="1500"
+        MinHeight="500"
+        MinWidth="1000">
     <Window.Resources>
         <!--Button template-->
         
@@ -308,8 +312,8 @@
             <!--The main interface-->
             <DockPanel x:Name="dpMainInterface">
                 <!--Account section-->
-                <DockPanel x:Name="dpAccount" DockPanel.Dock="Top" HorizontalAlignment="Right" Height="{Binding ElementName=dpLogo, Path=ActualHeight}" Width="224">
-                    <Grid x:Name="grdAccount" Margin="0,20,30,50">
+                <DockPanel x:Name="dpAccount" DockPanel.Dock="Top" HorizontalAlignment="Right" Height="{Binding ElementName=dpLogo, Path=ActualHeight}" Width="260">
+                    <Grid x:Name="grdAccount" Margin="0,20,50,50">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition x:Name="cShoppingCart" Width="*"/>
                             <ColumnDefinition x:Name="cLikedItems" Width="*"/>
@@ -330,7 +334,9 @@
                 </DockPanel>
                 <!--Selected item's detailed information section-->
                 <DockPanel x:Name="dpSelectedItemDetailedInformation"
-                           DockPanel.Dock="Right"/>
+                           DockPanel.Dock="Right">
+                    <local:UC_ItemDetail/>
+                </DockPanel>
                 <!--Search bar section-->
                 <DockPanel x:Name="dpSeachBar" 
                            DockPanel.Dock="Top"
@@ -356,7 +362,6 @@
                                      FontFamily="{StaticResource NuWorld4}"
                                      VerticalContentAlignment="Center"
                                      FontSize="{Binding ElementName=imgSearchIcon, Path=ActualHeight}"
-                                     Text="{Binding Text, RelativeSource={RelativeSource AncestorType={x:Type TextBox}}}"
                                      FocusVisualStyle="{x:Null}"
                                      Template="{StaticResource NoGlowingBorder}"/>
                             <Image Source="{StaticResource XIcon}"
@@ -404,7 +409,7 @@
                                 Content="Relevance"
                                 FontFamily="{StaticResource NuWorld4}"
                                 FontSize="{Binding ElementName=lblSort, Path=FontSize}"
-                                Template="{StaticResource RoundedButtonTemplate}"
+                                Template="{StaticResource RoundedButtonTemplate}" Click="btnRelevance_Click"
                                 >                            
                         </Button>
                         <Button x:Name="btnPopular"
@@ -425,7 +430,7 @@
                                 BorderBrush="#FFC5BBBB"
                                 BorderThickness="1"
                                 Background="Transparent"
-                                Content="Popular"
+                                Content="Price"
                                 FontFamily="{StaticResource NuWorld4}"
                                 FontSize="{Binding ElementName=lblSort, Path=FontSize}"
                                 Template="{StaticResource RoundedButtonTemplate}"
@@ -434,12 +439,34 @@
                     </Grid>
                 </DockPanel>
                 <!--Items list section-->
-                <DockPanel x:Name="dpItemsList"
-                           Margin="50,0,50,50">
-                    <StackPanel x:Name="spItems"
-                                Orientation="Horizontal">
-                        
-                    </StackPanel>
+                <DockPanel x:Name="dpItemsList" Margin="50,0,50,50">
+                    <ScrollViewer x:Name="svItemsList" VerticalScrollBarVisibility="Hidden">
+                        <WrapPanel x:Name="wpItemsList" Width="Auto" Margin="0,0,20,0">
+                            <WrapPanel.Resources>
+                                <Style TargetType="local:UC_ItemView">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="local:UC_ItemView">
+                                                <Border Margin="0,0,0,100" BorderBrush="Transparent" Height="{Binding Height, RelativeSource={RelativeSource AncestorType={x:Type local:UC_ItemView}}}">
+                                                    <ContentPresenter/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </WrapPanel.Resources>
+                            <local:UC_ItemView/>
+                            <local:UC_ItemView/>
+                            <local:UC_ItemView/>
+                            <local:UC_ItemView/>
+                            <local:UC_ItemView/>
+                            <local:UC_ItemView/>
+                            <local:UC_ItemView/>
+                            <local:UC_ItemView/>
+
+
+                        </WrapPanel>
+                    </ScrollViewer>
                 </DockPanel>
             </DockPanel>
         </DockPanel>
