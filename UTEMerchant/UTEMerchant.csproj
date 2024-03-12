@@ -71,6 +71,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="WinLogin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WinPurschasingInterface.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -78,6 +82,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WinLogin.xaml.cs">
+      <DependentUpon>WinLogin.xaml</DependentUpon>
     </Compile>
     <Compile Include="WinPurschasingInterface.xaml.cs">
       <DependentUpon>WinPurschasingInterface.xaml</DependentUpon>
@@ -146,6 +153,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Img\iPhone-14-Pro-Max-9907.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\loginIMG.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\UserName.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\Password.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
