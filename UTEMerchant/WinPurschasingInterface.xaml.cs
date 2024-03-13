@@ -59,6 +59,16 @@ namespace UTEMerchant
             else btnPrice.Background = Brushes.Transparent;
         }
 
+        private void svItemsList_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var Item = e.OriginalSource as FrameworkElement;
+            UC_ItemDetail uC_ItemDetail = new UC_ItemDetail();
+            if (Item != null && dpSelectedItemDetailedInformation.Children.Count != 1)
+            {
+                dpSelectedItemDetailedInformation.Children.Add(uC_ItemDetail);
+            }
+        }
+
         //public int RowCount
         //{
         //    get

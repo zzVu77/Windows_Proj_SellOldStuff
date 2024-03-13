@@ -166,12 +166,13 @@
                             VerticalAlignment="Stretch"/>
                         <!--Value for Description-->
                         <RichTextBox 
-                            x:Name="rtbDescription"
+                            x:Name="rtbDescription"                            
                             Grid.Row="1" 
                             Height="180"
                             IsReadOnly="True" 
                             Focusable="False" 
-                            Margin="0,0,5,0" VerticalAlignment="Top"/>
+                            Margin="0,0,5,0" VerticalAlignment="Top">
+                        </RichTextBox>
                     </Grid>
 
                     <!-- Item Price -->
