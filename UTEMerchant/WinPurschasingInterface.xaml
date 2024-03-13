@@ -9,7 +9,9 @@
         Height="800"
         Width="1500"
         MinHeight="500"
-        MinWidth="1000">
+        MinWidth="1000"
+        WindowState="Maximized"
+        >
     <Window.Resources>
         <!--Button template-->
         
@@ -447,7 +449,7 @@
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate TargetType="local:UC_ItemView">
-                                                <Border Margin="0,0,0,100" BorderBrush="Transparent" Height="{Binding Height, RelativeSource={RelativeSource AncestorType={x:Type local:UC_ItemView}}}">
+                                                <Border Margin="0,0,0,25" BorderBrush="Transparent" Height="{Binding Height, RelativeSource={RelativeSource AncestorType={x:Type local:UC_ItemView}}}">
                                                     <ContentPresenter/>
                                                 </Border>
                                             </ControlTemplate>

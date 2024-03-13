@@ -6,7 +6,7 @@
               xmlns:hc="https://handyorg.github.io/handycontrol"
              xmlns:local="clr-namespace:UTEMerchant"
              mc:Ignorable="d" 
-            d:DesignHeight="420" d:DesignWidth="240">
+            d:DesignHeight="307" d:DesignWidth="240">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -15,7 +15,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <hc:Card MaxWidth="240" BorderThickness="0,0,0,0" Effect="{DynamicResource EffectShadow2}" Margin="8,0,8,0" Height="420" VerticalAlignment="Center" Background="White" BorderBrush="#FF736161">
+        <hc:Card MaxWidth="240" BorderThickness="0,0,0,0" Effect="{DynamicResource EffectShadow2}" Margin="8,0,8,0" Height="307" VerticalAlignment="Center" Background="White" BorderBrush="#FF736161">
             <!--Card Content section-->
             <Border CornerRadius="4,4,0,0" Width="160" Height="160">
                 <!--<TextBlock   TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Text="test" Foreground="{x:Null}"/>-->
