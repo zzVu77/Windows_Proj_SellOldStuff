@@ -5,13 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UTEMerchant"
         xmlns:hc="https://handyorg.github.io/handycontrol" x:Class="UTEMerchant.WinLogin"
-        mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" AllowsTransparency="True" WindowStyle="None"
         Title="WinLogin" Height="450" Width="800">
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+
+        <Image Source="Img/icons8-close-50.png" Grid.Column="1" Panel.ZIndex="1" MouseUp="Image_MouseUp" Style="{StaticResource Close}" />
+        <Border CornerRadius="10 0 0 10">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0, 0" EndPoint="1,1">
+                    <GradientStop Color="White" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+
+                </LinearGradientBrush>
+            </Border.Background>
+            
+        </Border>
         <Image HorizontalAlignment="Left" Height="477" VerticalAlignment="Center" Width="397" Source="Img/loginIMG.jpg"/>
 
         <Border Background="White" CornerRadius="0 10 10 0" Grid.ColumnSpan="2" Margin="397,0,3,0">
@@ -25,40 +38,42 @@
                     </Canvas>
                 </Grid>
                 <TextBlock Text="User login" FontSize="23" FontWeight="Bold" TextAlignment="Center" Foreground="#3AB19B" Margin="0,120,0,20"/>
+                <Image Source="Img/UserName.png" Height="20" Margin="30,0,0,-25" HorizontalAlignment="Left"/>
                 <Border BorderThickness="1"  BorderBrush="#acb0af" CornerRadius="5" Height="22" Margin="0 0 0 10" Width="281" >
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Image Source="Img/UserName.png" Height="20" Margin="10 0 0 0"/>
+                        
                         <TextBlock x:Name="textUserName" Text="User Name" FontSize="14" Grid.Column="1" Panel.ZIndex="1" Margin="10 0 0 0" Foreground="Black" MouseDown="textUserName_MouseDown"/>
                         <TextBox x:Name="txtUserName" TextChanged="txtUserName_TextChanged" FontSize="14"  Grid.Column="1"  Margin="10 0 0 0" 
                                  Foreground="#878787" BorderBrush="Transparent"  BorderThickness="1"/>
 
                     </Grid>
                 </Border>
+                <Image Source="Img/Password.png" Height="20" Margin="30,0,0,-20" HorizontalAlignment="Left"/>
                 <Border BorderThickness="1"  BorderBrush="#acb0af" CornerRadius="5" Height="22" Margin="0 0 0 0" Width="281" >
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Image Source="Img/Password.png" Height="20" Margin="10 0 0 0"/>
+                        
                         <TextBlock x:Name="textPassword" Text="Password" FontSize="14" Grid.Column="1" Panel.ZIndex="1" Margin="10 0 0 0" Foreground="Black" MouseDown="textPassword_MouseDown"/>
-                        <TextBox x:Name="txtPassword" TextChanged="txtPassword_TextChanged"  FontSize="14"  Grid.Column="1"  Margin="10 0 0 0" 
+                        <PasswordBox x:Name="txtPassword" MouseDown="txtPassword_MouseDown"  FontSize="14"  Grid.Column="1"  Margin="10 0 0 0" 
                             Foreground="#878787" BorderBrush="Transparent" BorderThickness="1"/>
                     </Grid>
                 </Border>
                 <Button Content="Sign Up" Click="Button_Click" Style="{StaticResource button}"/>
-                <Border BorderThickness="1"  BorderBrush="Transparent" CornerRadius="5" Height="62" Margin="0 0 0 0" Width="280" >
+                <Border BorderThickness="1"  BorderBrush="Transparent" CornerRadius="5" Height="32" Margin="0 0 0 0" Width="280" >
                     <Grid Margin="-50,-1,-32,-55">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock x:Name="textForgot" Text="Forgot password" FontSize="14" MouseDown="textForgot_MouseDown" HorizontalAlignment="Left" Margin="50 10 0 0" Foreground="Red" FontWeight="Bold" />
-                        <TextBlock x:Name="textRegister" Grid.Column="1" Text="Register" HorizontalAlignment="Left" FontSize="14" MouseDown="textRegister_MouseDown" Margin="110,10,0,0" Foreground="#3AB19B" FontWeight="Bold" />
+                        <TextBlock x:Name="textForgot" Text="Forgot password" FontSize="14" MouseDown="textForgot_MouseDown" HorizontalAlignment="Left" Margin="50 10 0 0" Foreground="Red" FontWeight="Bold" Style="{StaticResource textBlockTransform}"/>
+                        <TextBlock x:Name="textRegister" Grid.Column="1" Text="Register" HorizontalAlignment="Left" FontSize="14" MouseDown="textRegister_MouseDown" Margin="110,10,0,0" Foreground="#3AB19B" FontWeight="Bold" Style="{StaticResource textBlockTransform}" />
                     </Grid>
                 </Border>
 

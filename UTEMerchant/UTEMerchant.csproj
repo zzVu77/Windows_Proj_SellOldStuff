@@ -163,5 +163,8 @@
   <ItemGroup>
     <Resource Include="Img\Password.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\icons8-close-50.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

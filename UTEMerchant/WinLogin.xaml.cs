@@ -36,31 +36,21 @@ namespace UTEMerchant
             }
         }
 
-        private void txtPassword_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtPassword.Text) && txtPassword.Text.Length > 0)
-            {
-                textPassword.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                textPassword.Visibility = Visibility.Visible;
-            }
-        }
-
         private void textUserName_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            textUserName.Text=string.Empty;
             txtUserName.Focus();
         }
 
         private void textPassword_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            txtUserName.Focus();
+            textPassword.Text = string.Empty;
+            txtPassword.Focus();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtPassword.Text) && !string.IsNullOrEmpty(txtUserName.Text))
+            if (!string.IsNullOrEmpty(txtPassword.Password) && !string.IsNullOrEmpty(txtUserName.Text))
             {
                 MessageBox.Show("successfully signed up!!!!!");
             }
@@ -75,6 +65,23 @@ namespace UTEMerchant
         private void textRegister_MouseDown(object sender, MouseButtonEventArgs e)
         {
 
+        }
+
+        private void txtPassword_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtPassword.Password) && txtPassword.Password.Length > 0)
+            {
+                textPassword.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                textPassword.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void Image_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }
