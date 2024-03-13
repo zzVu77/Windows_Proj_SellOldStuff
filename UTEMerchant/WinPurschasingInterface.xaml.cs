@@ -58,5 +58,13 @@ namespace UTEMerchant
             }
             else btnPrice.Background = Brushes.Transparent;
         }
+
+        private void btnSellerMode_Click(object sender, RoutedEventArgs e)
+        {
+            WinSellerInterface winSellerInterface = new WinSellerInterface();
+            this.Hide();
+            winSellerInterface.ShowDialog();
+            this.Show();
+        }
     }
 }
