@@ -27,15 +27,15 @@ namespace UTEMerchant
             Item item2 = new Item(02, "Iphone", "Iphone 11 Pro Max 512GB", 500, "E:\\HCM_UTE\\Semester_4\\Windows Programming\\FinalProj\\Window_Proj_UTEMerchant\\UTEMerchant\\Img\\iPhone-14-Pro-Max-9907.jpg",2);
             productGrid.Items.Add(item2);
              Item item3 = new Item(03, "Iphone", "Iphone 11 Pro Max 512GB", 500, "E:\\HCM_UTE\\Semester_4\\Windows Programming\\FinalProj\\Window_Proj_UTEMerchant\\UTEMerchant\\Img\\iPhone-14-Pro-Max-9907.jpg",2);
-            productGrid.Items.Add(item2);
+            productGrid.Items.Add(item3);
              Item item4 = new Item(04, "Iphone", "Iphone 11 Pro Max 512GB", 500, "E:\\HCM_UTE\\Semester_4\\Windows Programming\\FinalProj\\Window_Proj_UTEMerchant\\UTEMerchant\\Img\\iPhone-14-Pro-Max-9907.jpg",2);
-            productGrid.Items.Add(item2);
+            productGrid.Items.Add(item4);
              Item item5 = new Item(05, "Iphone", "Iphone 11 Pro Max 512GB", 500, "E:\\HCM_UTE\\Semester_4\\Windows Programming\\FinalProj\\Window_Proj_UTEMerchant\\UTEMerchant\\Img\\iPhone-14-Pro-Max-9907.jpg",2);
-            productGrid.Items.Add(item2);
-             Item item6 = new Item(06, "Iphone", "Iphone 11 Pro Max 512GB", 500, "E:\\HCM_UTE\\Semester_4\\Windows Programming\\FinalProj\\Window_Proj_UTEMerchant\\UTEMerchant\\Img\\iPhone-14-Pro-Max-9907.jpg",2);
-            productGrid.Items.Add(item2);
+            productGrid.Items.Add(item5);
+             Item item6 = new Item(06, "Iphone", "Iphone 11 Pro Max 512GB  dsadasdas asdasd adasdasd asdadasd adasdasdasdasdadaas adas asasdasdas asd ádasdsd", 500, "E:\\HCM_UTE\\Semester_4\\Windows Programming\\FinalProj\\Window_Proj_UTEMerchant\\UTEMerchant\\Img\\iPhone-14-Pro-Max-9907.jpg",2);
+            productGrid.Items.Add(item6);
              Item item7 = new Item(07, "Iphone", "Iphone 11 Pro Max 512GB", 500, "E:\\HCM_UTE\\Semester_4\\Windows Programming\\FinalProj\\Window_Proj_UTEMerchant\\UTEMerchant\\Img\\iPhone-14-Pro-Max-9907.jpg",2);
-            productGrid.Items.Add(item2);
+            productGrid.Items.Add(item7);
 
         }
 

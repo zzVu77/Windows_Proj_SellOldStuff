@@ -7,7 +7,9 @@
         xmlns:local="clr-namespace:UTEMerchant"
         mc:Ignorable="d"
         Height="720" Width="1080" WindowStartupLocation="CenterScreen" AllowsTransparency="True"
-        Background="Transparent" WindowStyle="None">
+        Background="Transparent" WindowStyle="None"
+        WindowState="Maximized"
+        >
 
 
     <Window.Resources>
@@ -233,16 +235,9 @@
 
                 <!--Members Data Grid-->
                 <DataGrid RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" x:Name="productGrid" Style="{DynamicResource DataGridStyle1}">
-                    <DataGrid.Columns>
-                        <DataGridCheckBoxColumn Header="C" CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
-                            <DataGridCheckBoxColumn.HeaderTemplate>
-                                <DataTemplate>
-                                    <CheckBox Style="{StaticResource CheckBoxStyle1}"/>
-                                </DataTemplate>
-                            </DataGridCheckBoxColumn.HeaderTemplate>
-                        </DataGridCheckBoxColumn>
-                        <DataGridTextColumn Header="ID" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding Number}"/>
-                        <DataGridTemplateColumn Header="Member" IsReadOnly="True" Width="*">
+                    <DataGrid.Columns>                        
+                        <DataGridTextColumn Header="ID" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding Id}"/>
+                        <DataGridTemplateColumn Header="Name" IsReadOnly="True" Width="*" MaxWidth="100" >
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
@@ -256,18 +251,20 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                         <!--<DataGridTextColumn Header="Position" Binding="{Binding Position}" IsReadOnly="True" Width="*"/>-->
-                        <DataGridTemplateColumn Header="Image" Width="*">
+                        <DataGridTemplateColumn  Header="Image" Width="*" MaxWidth="90">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Image Source="{Binding Image}" Width="50" Height="50"/>
+                                    <Image Source="{Binding Image}" Width="50" Height="50" HorizontalAlignment="Left" />
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
 
-                        <DataGridTextColumn Header="Price" Binding="{Binding Price}" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Description" Binding="{Binding Description}" IsReadOnly="True" Width="*"/>
-                        <DataGridTemplateColumn Header="Actions" IsReadOnly="True" Width="auto">
+                        <DataGridTextColumn Header="Old Price" Binding="{Binding Price}" IsReadOnly="True" Width="*" MaxWidth="95"/>
+                        <DataGridTextColumn Header="Price" Binding="{Binding Quantity}" IsReadOnly="True" Width="*" MaxWidth="95"/>
+                        <DataGridTextColumn Header="Posted Date" Binding="{Binding Name}"  IsReadOnly="True" Width="*" MaxWidth="150"/>
+                        <DataGridTextColumn Header="Status" Binding="{Binding Price}"   IsReadOnly="True" Width="*" MaxWidth="80" />
+                        <DataGridTextColumn Header="Description" Binding="{Binding Description}" IsReadOnly="True" Width="*"  MaxWidth="500" />
+                        <DataGridTemplateColumn Header="Actions" IsReadOnly="True" Width="auto" MaxWidth="80">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
