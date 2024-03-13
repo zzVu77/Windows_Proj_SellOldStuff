@@ -321,6 +321,7 @@
             <Setter Property="FontSize" Value="13" />
             <Setter Property="GridLinesVisibility" Value="None" />
             <Setter Property="ColumnWidth" Value="Auto" />
+            <Setter Property="HorizontalScrollBarVisibility" Value="Auto"/>
 
             <Setter Property="Template">
                 <Setter.Value>

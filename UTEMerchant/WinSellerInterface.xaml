@@ -6,7 +6,7 @@
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:local="clr-namespace:UTEMerchant"
         mc:Ignorable="d"
-        Height="720" Width="1080" WindowStartupLocation="CenterScreen" AllowsTransparency="True"
+        Height="720" Width="1386" WindowStartupLocation="CenterScreen" AllowsTransparency="True"
         Background="Transparent" WindowStyle="None"
         WindowState="Maximized"
         >
@@ -236,8 +236,8 @@
                 <!--Members Data Grid-->
                 <DataGrid RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" x:Name="productGrid" Style="{DynamicResource DataGridStyle1}">
                     <DataGrid.Columns>                        
-                        <DataGridTextColumn Header="ID" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding Id}"/>
-                        <DataGridTemplateColumn Header="Name" IsReadOnly="True" Width="*" MaxWidth="100" >
+                        <DataGridTextColumn Header="ID" IsReadOnly="True"  Width="*" Binding="{Binding Id}" MaxWidth="50"/>
+                        <DataGridTemplateColumn Header="Name" IsReadOnly="True" Width="*"  >
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
@@ -251,20 +251,21 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                         <!--<DataGridTextColumn Header="Position" Binding="{Binding Position}" IsReadOnly="True" Width="*"/>-->
-                        <DataGridTemplateColumn  Header="Image" Width="*" MaxWidth="90">
+                        <DataGridTemplateColumn  Header="Image" Width="*"  >
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Image Source="{Binding Image}" Width="50" Height="50" HorizontalAlignment="Left" />
+                                    <Image Source="{Binding ImagePath}" Width="50" Height="50" HorizontalAlignment="Left" />
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
 
-                        <DataGridTextColumn Header="Old Price" Binding="{Binding Price}" IsReadOnly="True" Width="*" MaxWidth="95"/>
-                        <DataGridTextColumn Header="Price" Binding="{Binding Quantity}" IsReadOnly="True" Width="*" MaxWidth="95"/>
-                        <DataGridTextColumn Header="Posted Date" Binding="{Binding Name}"  IsReadOnly="True" Width="*" MaxWidth="150"/>
-                        <DataGridTextColumn Header="Status" Binding="{Binding Price}"   IsReadOnly="True" Width="*" MaxWidth="80" />
-                        <DataGridTextColumn Header="Description" Binding="{Binding Description}" IsReadOnly="True" Width="*"  MaxWidth="500" />
-                        <DataGridTemplateColumn Header="Actions" IsReadOnly="True" Width="auto" MaxWidth="80">
+                        <DataGridTextColumn Header="Original Price" Binding="{Binding OriginalPrice}" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Header="Price" Binding="{Binding Price}" IsReadOnly="True" Width="*" />
+                        <DataGridTextColumn Header="Type" Binding="{Binding Type}" IsReadOnly="True" Width="*" />
+                        <DataGridTextColumn Header="Posted Date" Binding="{Binding PostedDate}"  IsReadOnly="True" Width="*" />
+                        <DataGridTextColumn Header="Status" Binding="{Binding Status}"   IsReadOnly="True" Width="*"  />
+                        <DataGridTextColumn Header="Description" Binding="{Binding Description}" IsReadOnly="True" Width="*"  />
+                        <DataGridTemplateColumn Header="Actions" IsReadOnly="True" Width="auto" >
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">

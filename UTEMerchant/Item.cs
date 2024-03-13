@@ -13,25 +13,36 @@ namespace UTEMerchant
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public decimal OriginalPrice { get; set; }
         public decimal Price { get; set; }
         public string ImagePath { get; set; }
-        public int Quantity { get; set; }
-        public Item(int id, string name, string description, decimal price, string imagePath, int quantity)
+        public DateTime PostedDate { get; set; }
+        public string Status { get; set; }
+        public string Type { get; set; }
+
+        public Item(int id, string name, string description, decimal originalPrice, decimal price, string imagePath, DateTime postedDate, string status,string type)
         {
             Id = id;
             Name = name;
             Description = description;
+            OriginalPrice = originalPrice;
             Price = price;
             ImagePath = imagePath;
-            Quantity = quantity;
+            PostedDate = postedDate;
+            Status = status;
+            Type = type;
         }
+
         public ImageSource Image
         {
             get
             {
+                
                 // Chuyển đổi đường dẫn thành ImageSource (BitmapImage)
                 return new BitmapImage(new Uri(this.ImagePath));
             }
+            
+            
         }
     }
 }
