@@ -14,8 +14,13 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
+<<<<<<< HEAD
     <Grid>
         <hc:Card MaxWidth="240" BorderThickness="0,0,0,0" Effect="{DynamicResource EffectShadow2}" Margin="8,0,8,0" Height="307" VerticalAlignment="Center" Background="White" BorderBrush="#FF736161">
+=======
+    <Grid x:Name="grdUC" >
+        <hc:Card  MaxWidth="240" BorderThickness="0,0,0,0" Effect="{DynamicResource EffectShadow2}" Margin="8,0,8,0"  Height="307" VerticalAlignment="Center" Background="White" BorderBrush="#FF736161">
+>>>>>>> b4f20d364bc6a08692890aea5f8f8223cd6da5e7
             <!--Card Content section-->
             <Border CornerRadius="4,4,0,0" Width="160" Height="160">
                 <!--<TextBlock   TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Text="test" Foreground="{x:Null}"/>-->

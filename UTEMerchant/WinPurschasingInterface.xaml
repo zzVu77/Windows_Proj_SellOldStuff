@@ -10,8 +10,12 @@
         Width="1500"
         MinHeight="500"
         MinWidth="1000"
+<<<<<<< HEAD
         WindowState="Maximized"
         >
+=======
+        WindowState="Maximized">
+>>>>>>> b4f20d364bc6a08692890aea5f8f8223cd6da5e7
     <Window.Resources>
         <!--Button template-->
         
@@ -337,7 +341,6 @@
                 <!--Selected item's detailed information section-->
                 <DockPanel x:Name="dpSelectedItemDetailedInformation"
                            DockPanel.Dock="Right">
-                    <local:UC_ItemDetail/>
                 </DockPanel>
                 <!--Search bar section-->
                 <DockPanel x:Name="dpSeachBar" 
@@ -442,14 +445,18 @@
                 </DockPanel>
                 <!--Items list section-->
                 <DockPanel x:Name="dpItemsList" Margin="50,0,50,50">
-                    <ScrollViewer x:Name="svItemsList" VerticalScrollBarVisibility="Hidden">
+                    <ScrollViewer x:Name="svItemsList" VerticalScrollBarVisibility="Hidden" PreviewMouseDown="svItemsList_PreviewMouseDown">
                         <WrapPanel x:Name="wpItemsList" Width="Auto" Margin="0,0,20,0">
                             <WrapPanel.Resources>
                                 <Style TargetType="local:UC_ItemView">
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate TargetType="local:UC_ItemView">
+<<<<<<< HEAD
                                                 <Border Margin="0,0,0,25" BorderBrush="Transparent" Height="{Binding Height, RelativeSource={RelativeSource AncestorType={x:Type local:UC_ItemView}}}">
+=======
+                                                <Border Margin="0,0,0,50" BorderBrush="Transparent" Height="{Binding Height, RelativeSource={RelativeSource AncestorType={x:Type local:UC_ItemView}}}">
+>>>>>>> b4f20d364bc6a08692890aea5f8f8223cd6da5e7
                                                     <ContentPresenter/>
                                                 </Border>
                                             </ControlTemplate>
