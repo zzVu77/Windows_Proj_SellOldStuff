@@ -463,8 +463,6 @@
                             <local:UC_ItemView/>
                             <local:UC_ItemView/>
                             <local:UC_ItemView/>
-
-
                         </WrapPanel>
                     </ScrollViewer>
                 </DockPanel>
