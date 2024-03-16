@@ -175,7 +175,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WinPurschasingInterface.xaml">
+    <Page Include="WinPurchasingInterface.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -183,8 +183,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="WinPurschasingInterface.xaml.cs">
-      <DependentUpon>WinPurschasingInterface.xaml</DependentUpon>
+    <Compile Include="WinPurchasingInterface.xaml.cs">
+      <DependentUpon>WinPurchasingInterface.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Resource_Control.xaml">
