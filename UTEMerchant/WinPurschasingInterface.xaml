@@ -5,19 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UTEMerchant"
         mc:Ignorable="d"
-        Title="MainWindow"
+        Title="Purchasing Interface"
         Height="800"
         Width="1500"
         MinHeight="500"
-        MinWidth="1000"
-
-    
+        MinWidth="1000"   
 
         WindowState="Maximized">
 
     <Window.Resources>
+
         <!--Button template-->
-        
+
         <ControlTemplate x:Key="RoundedButtonTemplate" TargetType="Button">
             <Border x:Name="Border" Background="{TemplateBinding Background}"
                 BorderBrush="{TemplateBinding BorderBrush}"
@@ -51,9 +50,9 @@
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
-        
+
         <!--Radio button template-->
-        
+
         <ControlTemplate x:Key="FullyCoveredRadioButtonTemplate" TargetType="{x:Type RadioButton}">
             <Grid HorizontalAlignment="Left">
                 <Grid.ColumnDefinitions>
@@ -79,50 +78,54 @@
                     <Setter TargetName="Border" Property="Background" Value="Black"/>
                 </Trigger>
             </ControlTemplate.Triggers>
-        </ControlTemplate>        
+        </ControlTemplate>
     </Window.Resources>
     <Grid>
-        
+        <Border>
+
+        </Border>
+
         <!--Dockpanel to contain everything-->
+
         <DockPanel x:Name="dpPurchasingInterface" 
                    LastChildFill="True">
+
             <!--Left side bar-->
+
             <DockPanel x:Name="dpLeftSideBar"
                        DockPanel.Dock="Left"
                        Width="186" 
                        LastChildFill="True" 
-                       Background="#EAAC8B">
+                       Background="#E56B6F">
+
                 <!--Logo section-->
+
                 <DockPanel x:Name="dpLogo" 
                            DockPanel.Dock="Top"
                            Height="Auto">
-                    <Button x:Name="btnSellerMode"
-                            Margin="20"
-                            Grid.Row="1"
-                            Content="Seller Mode"
-                            FontSize="20" Click="btnSellerMode_Click">
+                    <Image x:Name="imgLogo"
+                           Height="100"/>
 
-                    </Button>
                 </DockPanel>
+
                 <!--Filter section-->
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <DockPanel Name="dpFilter"
-                               Grid.Row="0"
-                           LastChildFill="True">
-                        <Grid x:Name="grdFilterOptions">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Name="rCategory" Height="Auto"/>
-                                <RowDefinition Name="rStoreLocation" Height="Auto"/>
-                                <RowDefinition Name="rPrice" Height="*"/>
-                            </Grid.RowDefinitions>
-                            <DockPanel x:Name="dpCategories" 
+
+                <DockPanel Name="dpFilter"
+                           LastChildFill="True"
+                           DockPanel.Dock="Top">
+                    <Grid x:Name="grdFilterOptions">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Name="rCategory" Height="Auto"/>
+                            <RowDefinition Name="rStoreLocation" Height="Auto"/>
+                            <RowDefinition Name="rPrice" Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <!--Categoriy Options-->
+
+                        <DockPanel x:Name="dpCategories" 
                                    Grid.Row="0" 
                                    LastChildFill="True">
-                                <Label x:Name="lblCategories" 
+                            <Label x:Name="lblCategories" 
                                    Content="Categories" 
                                    DockPanel.Dock="Top"
                                    Margin="10,20,0,0" 
@@ -131,58 +134,59 @@
                                    FontWeight="Bold" 
                                    FontStretch="UltraExpanded" 
                                    FontFamily="{StaticResource SpaceGroteskBold}"/>
-                                <ScrollViewer x:Name="svCategoryOptions" 
+                            <ScrollViewer x:Name="svCategoryOptions" 
                                           VerticalAlignment="Stretch"
                                           VerticalScrollBarVisibility="Hidden">
-                                    <StackPanel x:Name="spCategoryOptions"
+                                <StackPanel x:Name="spCategoryOptions"
                                             Width="156">
-                                        <StackPanel.Resources>
-                                            <Style TargetType="{x:Type RadioButton}" BasedOn="{StaticResource {x:Type RadioButton}}">
-                                                <Setter Property="Template" Value="{StaticResource FullyCoveredRadioButtonTemplate}"/>
-                                                <Setter Property="Height" Value="18"/>
-                                                <Setter Property="Margin" Value="8"/>
-                                                <Setter Property="FontFamily" Value="{StaticResource NuWorld4}"/>
-                                                <Setter Property="FontSize" Value="17"/>
-                                            </Style>
-                                        </StackPanel.Resources>
-                                        <RadioButton Content="DDDDDD"/>
-                                        <RadioButton Content="Option 2" />
-                                        <Button x:Name="btnCategoriesLoadMore"
+                                    <StackPanel.Resources>
+                                        <Style TargetType="{x:Type RadioButton}" BasedOn="{StaticResource {x:Type RadioButton}}">
+                                            <Setter Property="Template" Value="{StaticResource FullyCoveredRadioButtonTemplate}"/>
+                                            <Setter Property="Height" Value="18"/>
+                                            <Setter Property="Margin" Value="8"/>
+                                            <Setter Property="FontSize" Value="17"/>
+                                        </Style>
+                                    </StackPanel.Resources>
+                                    <RadioButton Content="DDDDDD"/>
+                                    <RadioButton Content="Option 2" />
+                                    <Button x:Name="btnCategoriesLoadMore"
                                             Template="{DynamicResource LinkLabelTemplate}"
                                             Height="26" 
-                                            Width="99"
+                                            Width="Auto"
                                             Content="Load more   >"
                                             FontSize="18"
-                                            FontFamily="{StaticResource NuWorld4}"
                                             HorizontalContentAlignment="Left" 
                                             VerticalContentAlignment="Center"
                                             HorizontalAlignment="Left">
-                                            <Button.Style>
-                                                <Style TargetType="Button">
-                                                    <Setter Property="Foreground" Value="#6D597A"/>
-                                                    <Style.Triggers>
-                                                        <Trigger Property="IsMouseOver" Value="True">
-                                                            <Setter Property="Foreground" Value="Black"/>
+                                        <Button.Style>
+                                            <Style TargetType="Button">
+                                                <Setter Property="Foreground" Value="#6D597A"/>
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Foreground" Value="Black"/>
 
-                                                        </Trigger>
-                                                        <EventTrigger RoutedEvent="Button.Click">
-                                                            <BeginStoryboard>
-                                                                <Storyboard>
-                                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                                                                 From="1.0" To="0.0" Duration="0:0:0.5"/>
-                                                                </Storyboard>
-                                                            </BeginStoryboard>
-                                                        </EventTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </Button.Style>
-                                        </Button>
-                                    </StackPanel>
-                                </ScrollViewer>
-                            </DockPanel>
-                            <DockPanel x:Name="dpStoreLocations" 
+                                                    </Trigger>
+                                                    <EventTrigger RoutedEvent="Button.Click">
+                                                        <BeginStoryboard>
+                                                            <Storyboard>
+                                                                <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                             From="1.0" To="0.0" Duration="0:0:0.5"/>
+                                                            </Storyboard>
+                                                        </BeginStoryboard>
+                                                    </EventTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </DockPanel>
+
+                        <!--Store Locations Options-->
+
+                        <DockPanel x:Name="dpStoreLocations" 
                                    Grid.Row="1">
-                                <Label x:Name="lblStoreLocations" 
+                            <Label x:Name="lblStoreLocations" 
                                    Content="Store Loactions"
                                    DockPanel.Dock="Top"
                                    Margin="10,20,0,0" 
@@ -191,56 +195,57 @@
                                    FontWeight="Bold"
                                    FontStretch="UltraExpanded"
                                    FontFamily="{StaticResource SpaceGroteskBold}"/>
-                                <ScrollViewer x:Name="svLocationsOptions"
+                            <ScrollViewer x:Name="svLocationsOptions"
                                           VerticalAlignment="Stretch"
                                           VerticalScrollBarVisibility="Hidden">
-                                    <StackPanel x:Name="spLocationOptions"
+                                <StackPanel x:Name="spLocationOptions"
                                             Width="156">
-                                        <StackPanel.Resources>
-                                            <Style TargetType="{x:Type RadioButton}" BasedOn="{StaticResource {x:Type RadioButton}}">
-                                                <Setter Property="Template" Value="{StaticResource FullyCoveredRadioButtonTemplate}"/>
-                                                <Setter Property="Height" Value="18"/>
-                                                <Setter Property="Margin" Value="8"/>
-                                                <Setter Property="FontFamily" Value="{StaticResource NuWorld4}"/>
-                                                <Setter Property="FontSize" Value="17"/>
-                                            </Style>
-                                        </StackPanel.Resources>
-                                        <RadioButton Content="DDDDDD" />
-                                        <RadioButton Content="Option 2" />
-                                        <Button x:Name="btnLocationsLoadMore"
+                                    <StackPanel.Resources>
+                                        <Style TargetType="{x:Type RadioButton}" BasedOn="{StaticResource {x:Type RadioButton}}">
+                                            <Setter Property="Template" Value="{StaticResource FullyCoveredRadioButtonTemplate}"/>
+                                            <Setter Property="Height" Value="18"/>
+                                            <Setter Property="Margin" Value="8"/>
+                                            <Setter Property="FontSize" Value="17"/>
+                                        </Style>
+                                    </StackPanel.Resources>
+                                    <RadioButton Content="DDDDDD" />
+                                    <RadioButton Content="Option 2" />
+                                    <Button x:Name="btnLocationsLoadMore"
                                             Template="{DynamicResource LinkLabelTemplate}"
-                                            Height="26" Width="99" Content="Load more   >" 
+                                            Height="26" Width="Auto" Content="Load more   >" 
                                             FontSize="18"
-                                            FontFamily="{StaticResource NuWorld4}"
                                             HorizontalContentAlignment="Left"
                                             VerticalContentAlignment="Center"
                                             HorizontalAlignment="Left">
-                                            <Button.Style>
-                                                <Style TargetType="Button">
-                                                    <Setter Property="Foreground" Value="#6D597A"/>
-                                                    <Style.Triggers>
-                                                        <Trigger Property="IsMouseOver" Value="True">
-                                                            <Setter Property="Foreground" Value="Black"/>
-                                                        </Trigger>
-                                                        <EventTrigger RoutedEvent="Button.Click">
-                                                            <BeginStoryboard>
-                                                                <Storyboard>
-                                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                                                         From="1.0" To="0.0" Duration="0:0:0.5"/>
-                                                                </Storyboard>
-                                                            </BeginStoryboard>
-                                                        </EventTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </Button.Style>
-                                        </Button>
-                                    </StackPanel>
-                                </ScrollViewer>
-                            </DockPanel>
-                            <DockPanel x:Name="dpPriceRange"
+                                        <Button.Style>
+                                            <Style TargetType="Button">
+                                                <Setter Property="Foreground" Value="#6D597A"/>
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Foreground" Value="Black"/>
+                                                    </Trigger>
+                                                    <EventTrigger RoutedEvent="Button.Click">
+                                                        <BeginStoryboard>
+                                                            <Storyboard>
+                                                                <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                     From="1.0" To="0.0" Duration="0:0:0.5"/>
+                                                            </Storyboard>
+                                                        </BeginStoryboard>
+                                                    </EventTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </DockPanel>
+
+                        <!--Price Range-->
+
+                        <DockPanel x:Name="dpPriceRange"
                                    Grid.Row="2"
                                    LastChildFill="False">
-                                <Label x:Name="lblPrice"
+                            <Label x:Name="lblPrice"
                                    Content="Price"
                                    DockPanel.Dock="Top" 
                                    Margin="10,20,0,0" 
@@ -248,116 +253,150 @@
                                    FontSize="20" FontWeight="Bold"
                                    FontStretch="UltraExpanded"
                                    FontFamily="{StaticResource SpaceGroteskBold}"/>
-                                <ScrollViewer x:Name="svPriceOptions"
+                            <ScrollViewer x:Name="svPriceOptions"
                                           VerticalAlignment="Stretch"
                                           VerticalScrollBarVisibility="Hidden" 
                                           DockPanel.Dock="Top">
-                                    <StackPanel x:Name="spPriceOptions" 
+                                <StackPanel x:Name="spPriceOptions" 
                                             Width="156">
-                                        <StackPanel.Resources>
-                                            <Style TargetType="{x:Type RadioButton}" BasedOn="{StaticResource {x:Type RadioButton}}">
-                                                <Setter Property="Template" Value="{StaticResource FullyCoveredRadioButtonTemplate}"/>
-                                                <Setter Property="Height" Value="18"/>
-                                                <Setter Property="Margin" Value="8"/>
-                                                <Setter Property="FontFamily" Value="{StaticResource NuWorld4}"/>
-                                                <Setter Property="FontSize" Value="17"/>
-                                            </Style>
-                                        </StackPanel.Resources>
-                                        <RadioButton Content="DDDDDD"/>
-                                        <RadioButton Content="Option 2" />
-                                    </StackPanel>
-                                </ScrollViewer>
-                                <Grid x:Name="grdRangeMinMax"
+                                    <StackPanel.Resources>
+                                        <Style TargetType="{x:Type RadioButton}" BasedOn="{StaticResource {x:Type RadioButton}}">
+                                            <Setter Property="Template" Value="{StaticResource FullyCoveredRadioButtonTemplate}"/>
+                                            <Setter Property="Height" Value="18"/>
+                                            <Setter Property="Margin" Value="8"/>
+                                            <Setter Property="FontSize" Value="17"/>
+                                        </Style>
+                                    </StackPanel.Resources>
+                                    <RadioButton Content="DDDDDD"/>
+                                    <RadioButton Content="Option 2" />
+                                </StackPanel>
+                            </ScrollViewer>
+                            <Grid x:Name="grdRangeMinMax"
                                   DockPanel.Dock="Top"
                                   Height="Auto" 
                                   Width="130" 
                                   Margin="0,10,0,0">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition x:Name="cMin" Width="2*"/>
-                                        <ColumnDefinition x:Name="cDash"/>
-                                        <ColumnDefinition x:Name="cMax" Width="2*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition x:Name="rRange" Height="Auto"/>
-                                    </Grid.RowDefinitions>
-                                    <StackPanel x:Name="spMin" Grid.Column="0">
-                                        <Label x:Name="lblMin"
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition x:Name="cMin" Width="2*"/>
+                                    <ColumnDefinition x:Name="cDash"/>
+                                    <ColumnDefinition x:Name="cMax" Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition x:Name="rRange" Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <StackPanel x:Name="spMin" Grid.Column="0">
+                                    <Label x:Name="lblMin"
                                            Content="Min" 
                                            VerticalContentAlignment="Center"
                                            HorizontalAlignment="Center"
                                            HorizontalContentAlignment="Center"
                                            Margin="10" 
-                                           FontFamily="{StaticResource NuWorld4}"
                                            FontSize="17" 
                                            Width="42"/>
-                                        <TextBox x:Name="txtMin"
+                                    <TextBox x:Name="txtMin"
                                              Grid.Column="0" 
                                              Height="27"
                                              Background="Transparent"
                                              BorderBrush="Black"></TextBox>
-                                    </StackPanel>
-                                    <DockPanel x:Name="dpDash" 
+                                </StackPanel>
+                                <DockPanel x:Name="dpDash" 
                                            Grid.Column="1"
                                            LastChildFill="False">
-                                        <Image x:Name="imgDash" 
+                                    <Image x:Name="imgDash" 
                                            DockPanel.Dock="Bottom" 
                                            Height="{Binding ElementName=txtMin, Path=ActualHeight}" 
                                            Source="{StaticResource DashIcon}"/>
-                                    </DockPanel>
-                                    <StackPanel x:Name="spMax" Grid.Column="2">
-                                        <Label x:Name="lblMax" 
+                                </DockPanel>
+                                <StackPanel x:Name="spMax" Grid.Column="2">
+                                    <Label x:Name="lblMax" 
                                            Content="Max"
                                            VerticalContentAlignment="Center"
                                            HorizontalAlignment="Center"
                                            HorizontalContentAlignment="Center"
                                            Margin="10"
-                                           FontFamily="{StaticResource NuWorld4}" 
                                            FontSize="17" 
                                            Width="42"/>
-                                        <TextBox x:Name="txtMax" 
+                                    <TextBox x:Name="txtMax" 
                                              Grid.Column="0" 
                                              Height="{Binding ElementName=txtMin, Path=ActualHeight}"
                                              Background="Transparent" 
                                              BorderBrush="Black"></TextBox>
-                                    </StackPanel>
-                                </Grid>
-                            </DockPanel>
-                        </Grid>
-                    </DockPanel>
-                    
-                </Grid>
-                
-                
+                                </StackPanel>
+                            </Grid>
+                        </DockPanel>
+                    </Grid>
+                </DockPanel>
+                <Button x:Name="btnSellerMode" 
+                        Content="Seller"
+                        Height="50"
+                        Width="130"
+                        Foreground="Black"
+                        FontSize="20"               
+                        FontWeight="DemiBold"
+                        Background="#EAAC8B" Click="btnSellerMode_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <!-- Ensure the Border element can use TemplateBinding for properties like Background and Content -->
+                            <Border x:Name="brdBtn"
+                                    CornerRadius="10"
+                                    Background="{TemplateBinding Background}">
+                                <ContentPresenter Content="{TemplateBinding Content}"
+                                                  ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                  VerticalAlignment="Center" 
+                                                  HorizontalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="Button.IsDefaulted" Value="True">
+                                    <Setter Property="BorderBrush" TargetName="brdBtn" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" TargetName="brdBtn" Value="#DFF0D8"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter Property="Background" TargetName="brdBtn" Value="#DFF0D8"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
             </DockPanel>
-            
+
             <!--The main interface-->
+
             <DockPanel x:Name="dpMainInterface">
+
                 <!--Account section-->
-                <DockPanel x:Name="dpAccount" DockPanel.Dock="Top" HorizontalAlignment="Right" Height="{Binding ElementName=dpLogo, Path=ActualHeight}" Width="260">
+
+                <DockPanel x:Name="dpAccount" DockPanel.Dock="Top" HorizontalAlignment="Right" Height="{Binding ElementName=dpLogo, Path=ActualHeight}" Width="200">
                     <Grid x:Name="grdAccount" Margin="0,20,50,50">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition x:Name="cShoppingCart" Width="*"/>
-                            <ColumnDefinition x:Name="cLikedItems" Width="*"/>
+                            <!--<ColumnDefinition x:Name="cLikedItems" Width="*"/>-->
                             <ColumnDefinition x:Name="cAvatar" Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Image x:Name="imgShoppingCart"
                                Grid.Column="0"
                                Source="{StaticResource ShoppingCartIcon}"/>
-                        <Image x:Name="imgHeart"
+                        <!--<Image x:Name="imgHeart"
                                Grid.Column="1" 
-                               Source="{StaticResource HeartIcon}"/>
+                               Source="{StaticResource HeartIcon}"/>-->
                         <Ellipse x:Name="eAvatar"
                                  Width="{Binding ElementName=eAvatar,Path=ActualHeight}"
-                                 Grid.Column="2
-                                 " Stroke="Green">
+                                 Grid.Column="1"
+                                 Stroke="Green">
                         </Ellipse>
                     </Grid>
                 </DockPanel>
+
                 <!--Selected item's detailed information section-->
+
                 <DockPanel x:Name="dpSelectedItemDetailedInformation"
                            DockPanel.Dock="Right">
                 </DockPanel>
+
                 <!--Search bar section-->
+
                 <DockPanel x:Name="dpSeachBar" 
                            DockPanel.Dock="Top"
                            Height="Auto"
@@ -379,7 +418,6 @@
                                      Margin="20,0,20,0"
                                      Background="Transparent"
                                      BorderBrush="Transparent"
-                                     FontFamily="{StaticResource NuWorld4}"
                                      VerticalContentAlignment="Center"
                                      FontSize="{Binding ElementName=imgSearchIcon, Path=ActualHeight}"
                                      FocusVisualStyle="{x:Null}"
@@ -393,7 +431,9 @@
                         </Grid>
                     </Border>
                 </DockPanel>
+
                 <!--Sorting section-->
+
                 <DockPanel x:Name="dpSort"
                            DockPanel.Dock="Top"
                            Height="Auto"
@@ -410,16 +450,22 @@
                         <Grid.RowDefinitions>
                             <RowDefinition x:Name="rSort"/>
                         </Grid.RowDefinitions>
+
+                        <!--Sort Label-->
+
                         <Label x:Name="lblSort"
                                Content="Sort"
                                HorizontalAlignment="Left"
                                VerticalContentAlignment="Center"
                                HorizontalContentAlignment="Center"
-                               FontSize="{Binding ElementName=imgSearchIcon,Path=ActualHeight}"
-                               FontFamily="{StaticResource NuWorld4}"
+                               FontSize="25"
+                               FontWeight="DemiBold"
                                Grid.Column="0"
-                               Margin="0,10,0,10">                            
+                               Margin="0,10,0,10">
                         </Label>
+
+                        <!--Relevance Button-->
+
                         <Button x:Name="btnRelevance"
                                 Grid.Column="1"
                                 Margin="10"
@@ -427,11 +473,13 @@
                                 BorderThickness="1"
                                 Background="Transparent"
                                 Content="Relevance"
-                                FontFamily="{StaticResource NuWorld4}"
                                 FontSize="{Binding ElementName=lblSort, Path=FontSize}"
-                                Template="{StaticResource RoundedButtonTemplate}" Click="btnRelevance_Click"
-                                >                            
+                                FontWeight="DemiBold"                                
+                                Template="{StaticResource RoundedButtonTemplate}" Click="btnRelevance_Click">
                         </Button>
+
+                        <!--Popular Button-->
+
                         <Button x:Name="btnPopular"
                                 Grid.Column="2"
                                 Margin="{Binding ElementName=btnRelevance, Path=Margin}"
@@ -439,11 +487,14 @@
                                 BorderThickness="1"
                                 Background="Transparent"
                                 Content="Popular"
-                                FontFamily="{StaticResource NuWorld4}"
                                 FontSize="{Binding ElementName=lblSort, Path=FontSize}"
+                                FontWeight="DemiBold"
                                 Template="{StaticResource RoundedButtonTemplate}"
                                 Click="btnPopular_Click">
                         </Button>
+
+                        <!--Price Button-->
+
                         <Button x:Name="btnPrice"
                                 Grid.Column="3"
                                 Margin="{Binding ElementName=btnRelevance, Path=Margin}"
@@ -451,8 +502,8 @@
                                 BorderThickness="1"
                                 Background="Transparent"
                                 Content="Price"
-                                FontFamily="{StaticResource NuWorld4}"
                                 FontSize="{Binding ElementName=lblSort, Path=FontSize}"
+                                FontWeight="DemiBold"
                                 Template="{StaticResource RoundedButtonTemplate}"
                                 Click="btnPrice_Click">
                         </Button>
