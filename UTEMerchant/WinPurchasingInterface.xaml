@@ -327,23 +327,28 @@
                     </Grid>
                 </DockPanel>
                 <Button x:Name="btnSellerMode" 
-                        Content="Seller"
-                        Height="50"
-                        Width="130"
-                        Foreground="Black"
-                        FontSize="20"               
-                        FontWeight="DemiBold"
-                        Background="#EAAC8B" Click="btnSellerMode_Click">
+        Content="Seller"
+        Height="50"
+        Width="130"
+        Foreground="Black"
+        FontSize="20"               
+        FontWeight="DemiBold"
+        Click="btnSellerMode_Click">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <!-- Ensure the Border element can use TemplateBinding for properties like Background and Content -->
                             <Border x:Name="brdBtn"
-                                    CornerRadius="10"
-                                    Background="{TemplateBinding Background}">
+                    CornerRadius="10">
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="1,1" EndPoint="1,0">
+                                        <GradientStop Offset="0" Color="#E88C7D"/>
+                                        <GradientStop Offset="1" Color="#EAAC8B"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
                                 <ContentPresenter Content="{TemplateBinding Content}"
-                                                  ContentTemplate="{TemplateBinding ContentTemplate}"
-                                                  VerticalAlignment="Center" 
-                                                  HorizontalAlignment="Center"/>
+                                  ContentTemplate="{TemplateBinding ContentTemplate}"
+                                  VerticalAlignment="Center" 
+                                  HorizontalAlignment="Center"/>
                             </Border>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="Button.IsDefaulted" Value="True">
@@ -359,6 +364,7 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
+
 
             </DockPanel>
 
