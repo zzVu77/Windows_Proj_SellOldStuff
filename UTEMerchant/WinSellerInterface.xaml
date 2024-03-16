@@ -14,6 +14,239 @@
 
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
+
+        <!--Menu SubMenu Item Style-->
+
+        <Style x:Key="SubMenu_MenuItem" TargetType="{x:Type MenuItem}">
+            <Setter Property="Background" Value="{Binding Background, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"/>
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Height" Value="50" />
+            <Setter Property="Width" Value="Auto" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type MenuItem}">
+                        <Border x:Name="border"
+                        Background="{Binding Background, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
+                        BorderBrush="Transparent"
+                        BorderThickness="0"
+                        Height="Auto"
+                        Width="Auto">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="4*" />
+                                </Grid.ColumnDefinitions>
+
+                                <!--Icon-->
+
+                                <ContentPresenter x:Name="Icon"
+                                          ContentSource="Icon"
+                                          HorizontalAlignment="Left"
+                                          Height="Auto"
+                                          Width="Auto"
+                                          Margin="30,15,0,15"
+                                          VerticalAlignment="Center"/>
+
+                                <!--Menu Text-->
+
+                                <ContentPresenter ContentSource="Header"
+                                                  Grid.Column="2"
+                                                  TextBlock.Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
+                                                  TextBlock.FontWeight="{Binding FontWeight, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
+                                                  TextBlock.FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
+                                                  HorizontalAlignment="Left"
+                                                  RecognizesAccessKey="True"
+                                                  Margin="3,0,0,0"
+                                                  VerticalAlignment="Center"/>
+
+                                <!--Popup-->
+
+                                <Popup x:Name="PART_Popup"
+                               AllowsTransparency="true"
+                               Focusable="false"
+                               HorizontalOffset="-2"
+                               IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}"
+                               Placement="Right"
+                               PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}"
+                               VerticalOffset="0">
+                                    <Border x:Name="SubMenuBorder"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent">
+                                        <ScrollViewer x:Name="SubMenuScrollViewer"
+                                              Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
+                                            <Grid RenderOptions.ClearTypeHint="Enabled">
+                                                <Canvas HorizontalAlignment="Left"
+                                                VerticalAlignment="Top"/>
+                                                <ItemsPresenter x:Name="ItemsPresenter"
+                                                        KeyboardNavigation.DirectionalNavigation="Cycle"
+                                                        Grid.IsSharedSizeScope="true"
+                                                        KeyboardNavigation.TabNavigation="Cycle"/>
+                                            </Grid>
+                                        </ScrollViewer>
+                                    </Border>
+                                </Popup>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsHighlighted" Value="True">
+                                <Setter Property="Background" TargetName="border" Value="#404D5B" />
+                                <Setter Property="BorderBrush" TargetName="border" Value="#404D5B" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" TargetName="border">
+                                    <Setter.Value>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FF964F4F" Offset="0"/>
+                                            <GradientStop Color="#7FB93D3D" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--Menu Style-->
+
+        <Style x:Key="Menu_Style" TargetType="{x:Type MenuItem}">
+            <Setter Property="Background" Value="{Binding Background, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"/>
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Height" Value="50" />
+            <Setter Property="Width" Value="Auto" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type MenuItem}">
+                        <Border x:Name="border"
+                                Background="{Binding Background, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
+                                BorderBrush="Transparent"
+                                BorderThickness="0"
+                                Height="Auto"
+                                Width="Auto">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="4*" />
+
+                                </Grid.ColumnDefinitions>
+
+                                <!--Icon-->
+
+                                <ContentPresenter x:Name="Icon"
+                                          ContentSource="Icon"
+                                          HorizontalAlignment="Left"
+                                          Height="Auto"
+                                          Width="Auto"
+                                          Margin="30,15,0,15"
+                                          VerticalAlignment="Center" />
+
+                                <!--Menu Text-->
+
+                                <ContentPresenter ContentSource="Header"
+                                          Grid.Column="1"
+                                          TextBlock.Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
+                                          TextBlock.FontWeight="{Binding FontWeight, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
+                                          TextBlock.FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
+                                          HorizontalAlignment="Left"
+                                          RecognizesAccessKey="True"
+                                          Margin="3,0,0,0"
+                                          VerticalAlignment="Center" />
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsHighlighted" Value="True">
+                                <Setter Property="Background" TargetName="border" Value="#404D5B" />
+                                <Setter Property="BorderBrush" TargetName="border" Value="#404D5B" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" TargetName="border">
+                                    <Setter.Value>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FF964F4F" Offset="0"/>
+                                            <GradientStop Color="#7FB93D3D" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--Menu Item Style-->
+
+        <Style x:Key="Menu_Item" TargetType="{x:Type MenuItem}">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Height" Value="50" />
+            <Setter Property="Width" Value="Auto" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type MenuItem}">
+                        <Border x:Name="border"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="Transparent"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        Height="Auto"
+                        Width="Auto">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="4*" />
+                                </Grid.ColumnDefinitions>
+
+                                <!--Icon-->
+                                <ContentPresenter x:Name="Icon"
+                                          ContentSource="Icon"
+                                          HorizontalAlignment="Left"
+                                          Height="Auto"
+                                          Width="Auto"
+                                          Margin="30,15,0,15"
+                                          VerticalAlignment="Center" />
+
+                                <!--Menu Text-->
+                                <ContentPresenter ContentSource="Header"
+                                          Grid.Column="1"
+                                          TextBlock.Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
+                                          TextBlock.FontWeight="{Binding FontWeight, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
+                                          TextBlock.FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
+                                          HorizontalAlignment="Left"
+                                          RecognizesAccessKey="True"
+                                          Margin="3,0,0,0"
+                                          VerticalAlignment="Center" />
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Icon" Value="{x:Null}">
+                                <Setter Property="Visibility" TargetName="Icon" Value="Visible" />
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Visibility" TargetName="Icon" Value="Visible" />
+                            </Trigger>
+                            <Trigger Property="IsHighlighted" Value="True">
+                                <Setter Property="Background" TargetName="border" Value="#404D5B" />
+                                <Setter Property="BorderBrush" TargetName="border" Value="#404D5B" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" TargetName="border">
+                                    <Setter.Value>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FF964F4F" Offset="0"/>
+                                            <GradientStop Color="#7FB93D3D" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
     <!--<Grid >        
             <DataGrid   
@@ -91,7 +324,7 @@
                     <Icon:PackIconMaterial Kind="Menu" Width="15" Height="15" />
                 </Button>
 
-                <Border Grid.Row="1" Background="#E56B6F" CornerRadius="0 50 0 30">
+                <Border x:Name="brdMenu" Grid.Row="1" Background="#E56B6F" CornerRadius="0 50 0 30">
                     <DockPanel>
                         <!--Menu Logo-->
                         <Border Width="80" Height="80" Padding="3" Background="White" CornerRadius="100" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="20 -30 0 0">
@@ -110,49 +343,80 @@
                         <Separator  Margin="25" Background="black" DockPanel.Dock="Top" Height="1" />
 
                         <!--Menu Buttons-->
-                        <StackPanel DockPanel.Dock="Top" >
-                            <Button Style="{StaticResource menuButton}">
-                                <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial Kind="HomeVariant" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Profile"/>
-                                </StackPanel>
-                            </Button>
+                        <Menu x:Name="mnu" 
+                              DockPanel.Dock="Top"
+                              Background="Transparent">
+                            <Menu.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <VirtualizingStackPanel Orientation="Vertical"/>
+                                </ItemsPanelTemplate>
+                            </Menu.ItemsPanel>
+                            <MenuItem x:Name="mnuitProfile"
+                                      Header="Profile"
+                                      FontWeight="SemiBold"
+                                      Style="{StaticResource Menu_Style}" 
+                                      Click="MenuItem_Click">
+                                <MenuItem.Icon>
+                                    <Image Source="{Icon:ModernImage Brush=Black, Kind=PeopleProfile}" 
+                                           Stretch="Uniform"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem x:Name="mnuitPurchased"
+                                      Header="Purchased"     
+                                      FontWeight="SemiBold"
+                                      Style="{StaticResource Menu_Style}" 
+                                      Click="MenuItem_Click">
+                                <MenuItem.Icon>
+                                    <Image Source="{Icon:ModernImage Brush=Black, Kind=Shopping}"
+                                           Stretch="Uniform" Width="24"/>
+                                </MenuItem.Icon>
 
-                            <Button Style="{StaticResource menuButton}">
-                                <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial Kind="CalendarClock" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Buyer"/>
-                                </StackPanel>
-                            </Button>
+                            </MenuItem>
+                            <MenuItem x:Name="mnuitStock"
+                                      Header="Stock"    
+                                      FontWeight="SemiBold"
+                                      Style="{StaticResource Menu_Style}" 
+                                      Click="MenuItem_Click">
+                                <MenuItem.Icon>
+                                    <Image Source="{Icon:ModernImage Brush=Black, Kind=Store}" 
+                                           Stretch="Uniform"/>
+                                </MenuItem.Icon>
 
-                            <Button Style="{StaticResource menuButton}" Foreground="White">
-                                <Button.Background>
-                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                        <GradientStop Color="#FF964F4F" Offset="0"/>
-                                        <GradientStop Color="#7FB93D3D" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </Button.Background>
-                                <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial Kind="AccountMultipleOutline" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Seller"/>
-                                </StackPanel>
-                            </Button>
+                            </MenuItem>
+                            <MenuItem x:Name="mnuitOrder"
+                                      Header="Order"    
+                                      FontWeight="SemiBold"
+                                      Style="{StaticResource Menu_Style}" 
+                                      Click="MenuItem_Click">
+                                <MenuItem.Icon>
+                                    <Image Source="{Icon:MaterialDesignImage Brush=Black, Kind=LocalShipping}" 
+                                           Stretch="Uniform"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem x:Name="mnuitSettings"
+                                      Header="Settings"  
+                                      FontWeight="SemiBold"
+                                      Style="{StaticResource SubMenu_MenuItem}"
+                                      Background="{Binding ElementName=brdMenu, Path=Background}">
+                                <MenuItem.Icon>
+                                    <Image Source="{Icon:MaterialDesignImage Brush=Black, Kind=Settings}" 
+                                           Stretch="Uniform"/>
+                                </MenuItem.Icon>
+                                <MenuItem x:Name="mnuitDeleteAccount"
+                                          Header="Delete Account"
+                                          FontWeight="SemiBold"
+                                          Style="{StaticResource Menu_Item}"
+                                          Background="{Binding ElementName=mnuitSettings, Path=Background}"
+                                          Width="{Binding ElementName=mnuitSettings,Path=ActualWidth}"
+                                          Click="MenuItem_Click">
+                                    <MenuItem.Icon>
+                                        <Image Source="{Icon:MaterialDesignImage Brush=Black, Kind=Delete}" 
+                                               Stretch="Uniform"/>
+                                    </MenuItem.Icon>
 
-                            <Button Style="{StaticResource menuButton}">
-                                <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial Kind="CashMultiple" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Order"/>
-                                </StackPanel>
-                            </Button>
-
-                            <Button Style="{StaticResource menuButton}">
-                                <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial Kind="ForumOutline" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Setting"/>
-                                </StackPanel>
-                            </Button>
-
-                        </StackPanel>
+                                </MenuItem>
+                            </MenuItem>
+                        </Menu>
 
                         <Button Style="{StaticResource menuButton}" VerticalAlignment="Bottom" DockPanel.Dock="Bottom" Margin="15 0 15 20">
                             <StackPanel Orientation="Horizontal">
@@ -235,7 +499,7 @@
 
                 <!--Members Data Grid-->
                 <DataGrid RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" x:Name="productGrid" Style="{DynamicResource DataGridStyle1}">
-                    <DataGrid.Columns>                        
+                    <DataGrid.Columns>
                         <DataGridTextColumn Header="ID" IsReadOnly="True"  Width="*" Binding="{Binding Id}" MaxWidth="50"/>
                         <DataGridTemplateColumn Header="Name" IsReadOnly="True" Width="*"  >
                             <DataGridTemplateColumn.CellTemplate>

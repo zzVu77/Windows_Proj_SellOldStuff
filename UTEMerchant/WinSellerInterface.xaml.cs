@@ -75,6 +75,11 @@ namespace UTEMerchant
                 this.DragMove();
             }
         }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
 
