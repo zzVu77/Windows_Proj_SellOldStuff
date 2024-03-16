@@ -69,6 +69,14 @@ namespace UTEMerchant
             }
         }
 
+        private void btnSellerMode_Click(object sender, RoutedEventArgs e)
+        {
+            WinSellerInterface winSellerInterface = new WinSellerInterface();
+            Hide();
+            winSellerInterface.ShowDialog();
+            Show();
+        }
+
         //public int RowCount
         //{
         //    get
