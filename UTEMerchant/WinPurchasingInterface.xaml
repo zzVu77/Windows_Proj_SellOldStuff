@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:local="clr-namespace:UTEMerchant"
         mc:Ignorable="d"
         Title="Purchasing Interface"
@@ -25,6 +26,7 @@
                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Border>
         </ControlTemplate>
+
 
         <ControlTemplate x:Key="LinkLabelTemplate" TargetType="{x:Type Button}">
             <Border x:Name="Border"
@@ -294,7 +296,8 @@
                                            HorizontalAlignment="Center"
                                            HorizontalContentAlignment="Center"
                                            Margin="10" 
-                                           FontSize="17" 
+                                           FontSize="17"
+                                           FontFamily="Calibri"
                                            Width="42"/>
                                     <TextBox x:Name="txtMin"
                                              Grid.Column="0" 
@@ -317,6 +320,7 @@
                                            HorizontalAlignment="Center"
                                            HorizontalContentAlignment="Center"
                                            Margin="10"
+                                           FontFamily="Calibri"
                                            FontSize="17" 
                                            Width="42"/>
                                     <TextBox x:Name="txtMax" 
@@ -330,7 +334,6 @@
                     </Grid>
                 </DockPanel>
                 <Button x:Name="btnSellerMode" 
-                        Content="Seller"
                         Height="50"
                         Width="130"
                         Foreground="Black"
@@ -341,7 +344,7 @@
                         <ControlTemplate TargetType="Button">
                             <!-- Ensure the Border element can use TemplateBinding for properties like Background and Content -->
                             <Border x:Name="brdBtn"
-                    CornerRadius="10">
+                                    CornerRadius="10">
                                 <Border.Background>
                                     <LinearGradientBrush StartPoint="1,1" EndPoint="1,0">
                                         <GradientStop Offset="0" Color="#E88C7D"/>
@@ -349,9 +352,9 @@
                                     </LinearGradientBrush>
                                 </Border.Background>
                                 <ContentPresenter Content="{TemplateBinding Content}"
-                                  ContentTemplate="{TemplateBinding ContentTemplate}"
-                                  VerticalAlignment="Center" 
-                                  HorizontalAlignment="Center"/>
+                                                  ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                  VerticalAlignment="Center" 
+                                                  HorizontalAlignment="Center"/>
                             </Border>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="Button.IsDefaulted" Value="True">
@@ -366,9 +369,23 @@
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Button.Template>
+                    <Button.Content>
+                        <Grid Width="{Binding ElementName=btnSellerMode,Path=ActualWidth}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+                            <Icon:PackIconRemixIcon Grid.Column="0"
+                                                    Kind="ExchangeFill" 
+                                                    VerticalAlignment="Center"
+                                                    HorizontalAlignment="Center"
+                                                    Height="23"
+                                                    Width="23"/>
+                            <TextBlock Grid.Column="1"
+                                Text="Seller"/>
+                        </Grid>
+                    </Button.Content>
                 </Button>
-
-
             </DockPanel>
 
             <!--The main interface-->
