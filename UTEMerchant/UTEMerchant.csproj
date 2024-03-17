@@ -162,6 +162,9 @@
     </ApplicationDefinition>
     <Compile Include="Item.cs" />
     <Compile Include="TextToVisibilityConverter.cs" />
+    <Compile Include="UC_Purchasing.xaml.cs">
+      <DependentUpon>UC_Purchasing.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UC_ItemDetail.xaml.cs">
       <DependentUpon>UC_ItemDetail.xaml</DependentUpon>
     </Compile>
@@ -171,6 +174,10 @@
     <Compile Include="WinSellerInterface.xaml.cs">
       <DependentUpon>WinSellerInterface.xaml</DependentUpon>
     </Compile>
+    <Page Include="UC_Purchasing.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UC_ItemDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
