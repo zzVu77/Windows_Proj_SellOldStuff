@@ -154,6 +154,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Wpf.Ui, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WPF-UI.3.0.1\lib\net472\Wpf.Ui.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -168,10 +171,17 @@
     <Compile Include="UC_ItemView.xaml.cs">
       <DependentUpon>UC_ItemView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WinNewItem.xaml.cs">
+      <DependentUpon>WinNewItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WinSellerInterface.xaml.cs">
       <DependentUpon>WinSellerInterface.xaml</DependentUpon>
     </Compile>
     <Page Include="UC_ItemDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinNewItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -257,8 +267,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\Assets\" />
-    <Folder Include="Resources\Styles\" />
-    <Folder Include="Resources\Themes\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

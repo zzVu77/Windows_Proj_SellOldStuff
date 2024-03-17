@@ -24,5 +24,10 @@ namespace UTEMerchant
         {
             InitializeComponent();
         }
+
+        private void rtbDescription_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
