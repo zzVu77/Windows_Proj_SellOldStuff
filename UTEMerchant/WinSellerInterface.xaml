@@ -253,64 +253,8 @@
                 </Setter.Value>
             </Setter>
         </Style>
-    </Window.Resources>
-    <!--<Grid >        
-            <DataGrid   
-                        Style="{DynamicResource DataGridStyle1}" 
-                        ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
-                        RowStyle="{DynamicResource DataGridRowStyle1}" 
-                        x:Name="productGrid" 
-                        AutoGenerateColumns="False" 
-                        IsReadOnly="True"
-                        SelectionMode="Single" Width="1500"
-                        HorizontalContentAlignment="Center"  
-                        d:IsHidden="False" >
-
-                <DataGrid.Columns >
-                    <DataGridTemplateColumn Header="ID" IsReadOnly="True" Width="*">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                   
-                                        <TextBlock Text="{Binding Id}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black" Margin="0 0 0 1"/>
-                                   
-                                </StackPanel>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-
-                    <DataGridTextColumn Header="Name" IsReadOnly="True" Width="*" Binding="{Binding Name}"/>
-
-                    <DataGridTemplateColumn Header="Image Path">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Image Source="{Binding Image}" Width="50" Height="50"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-
-                    <DataGridTextColumn Header="Price" IsReadOnly="True" Width="*" Binding="{Binding Price}"/>
-                    <DataGridTextColumn Header="Quantity" IsReadOnly="True" Width="*" Binding="{Binding Quantity}" />
-                    <DataGridTextColumn Header="Description" IsReadOnly="True" Width="*" Binding="{Binding Description}"/>
-
-                    <DataGridTemplateColumn Header="Action" IsReadOnly="True" Width="*">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Button Style="{StaticResource gridEditButton}">
-                                        <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
-                                    </Button>
-
-                                    <Button Style="{StaticResource gridRemoveButton}">
-                                        <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
-                                    </Button>
-                                </StackPanel>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>                  
-                </DataGrid.Columns>
-            </DataGrid>
-        </Grid>-->
+    </Window.Resources>  
+    
     <Border CornerRadius="30" Background="#EFF2F7" MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -435,9 +379,12 @@
                 </Border>
 
             </Grid>
+            <Grid Grid.Column="1">
+                <local:UC_SellerUI></local:UC_SellerUI>
+            </Grid>
 
             <!--Main Section-->
-            <Grid Grid.Column="1" Margin="30 20 20 20">
+            <!--<Grid Grid.Column="1" Margin="30 20 20 20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
@@ -448,7 +395,7 @@
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
-                <!--Search Textbox-->
+                --><!--Search Textbox--><!--
                 <Grid Width="300" HorizontalAlignment="Left">
                     <TextBlock Margin="20 0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False"
                            Panel.ZIndex="1" Text="Search here ..."
@@ -459,7 +406,7 @@
                     <Icon:PackIconMaterial Kind="Magnify" Width="15" Height="15" VerticalAlignment="Center" Margin="0 0 15 0" Foreground="#B0B9C6" HorizontalAlignment="Right" />
                 </Grid>
 
-                <!--Top Buttons-->
+                --><!--Top Buttons--><!--
                 <Button Style="{StaticResource topButton}" Margin="0 0 20 0" Background="#dcdcdc">
                     <Icon:PackIconMaterial Kind="Cog"/>
                 </Button>
@@ -468,10 +415,10 @@
                     <Icon:PackIconMaterial Kind="Bell"/>
                 </Button>
 
-                <!--Page Title-->
+                --><!--Page Title--><!--
                 <TextBlock Text="Items" Grid.Row="1" FontSize="32" FontWeight="SemiBold" Margin="0 20 0 0" Foreground="#121518" HorizontalAlignment="Left"/>
 
-                <!--Add Button-->
+                --><!--Add Button--><!--
                 <Button Style="{StaticResource addButton}">
                     <StackPanel Orientation="Horizontal">
                         <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Margin="0 1 8 0" Width="11" Height="11"/>
@@ -479,10 +426,10 @@
                     </StackPanel>
                 </Button>
 
-                <!--Seprator-->
+                --><!--Seprator--><!--
                 <Separator Height="1" Grid.Row="3" Background="#DAE2EA" Margin="0 -1 0 10"/>
 
-                <!--Tab buttons-->
+                --><!--Tab buttons-->
                 <!--<StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0 10 0 0">
                     <Button Style="{StaticResource tabButton}" Content="Club staff" BorderBrush="#784FF2"/>
                     <Button Style="{StaticResource tabButton}" Content="Players"/>
@@ -490,11 +437,11 @@
                 </StackPanel>-->
 
                 <!--Counter Title-->
-                <!--<TextBlock Text="68 Club Staff" Grid.Row="4" FontSize="18" FontWeight="SemiBold" Foreground="#121518" HorizontalAlignment="Left" VerticalAlignment="Center"/>-->
+                <!--<TextBlock Text="68 Club Staff" Grid.Row="4" FontSize="18" FontWeight="SemiBold" Foreground="#121518" HorizontalAlignment="Left" VerticalAlignment="Center"/>--><!--
 
                 <TextBlock Text="Filter by" Grid.Row="4" FontSize="13" FontWeight="SemiBold" Margin="0 0 215 0" Foreground="#121518" HorizontalAlignment="Right" VerticalAlignment="Center"/>
 
-                <!--Filter Textbox-->
+                --><!--Filter Textbox--><!--
                 <Grid Width="200" HorizontalAlignment="Right" Grid.Row="4">
                     <TextBlock Margin="15 0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False"
                            Panel.ZIndex="1" Text="Search in Members ..."
@@ -503,7 +450,7 @@
                     <TextBox Name="textBoxFilter" Style="{StaticResource filterTextBox}"/>
                 </Grid>
 
-                <!--Members Data Grid-->
+                --><!--Members Data Grid--><!--
                 <DataGrid RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" x:Name="productGrid" Style="{DynamicResource DataGridStyle1}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID" IsReadOnly="True"  Width="*" Binding="{Binding Id}" MaxWidth="50"/>
@@ -511,16 +458,16 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <!--<Border Width="25" Height="25" CornerRadius="50" Margin="0 0 10 0" Background="{Binding BgColor}">
+                                        --><!--<Border Width="25" Height="25" CornerRadius="50" Margin="0 0 10 0" Background="{Binding BgColor}">
                                             <TextBlock Text="{Binding Character}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Margin="0 0 0 1"/>
-                                        </Border>-->
+                                        </Border>--><!--
 
                                         <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <!--<DataGridTextColumn Header="Position" Binding="{Binding Position}" IsReadOnly="True" Width="*"/>-->
+                        --><!--<DataGridTextColumn Header="Position" Binding="{Binding Position}" IsReadOnly="True" Width="*"/>--><!--
                         <DataGridTemplateColumn  Header="Image" Width="*"  >
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
@@ -552,7 +499,7 @@
                     </DataGrid.Columns>
                 </DataGrid>
 
-                <!--Pagingation Section-->
+                --><!--Pagingation Section--><!--
                 <Border Grid.Row="6" HorizontalAlignment="Right" BorderBrush="#DEE4EC" BorderThickness="1" CornerRadius="5" Padding="5" Background="#ffffff" Margin="0 10 10 10">
                     <StackPanel Orientation="Horizontal">
                         <Button Style="{StaticResource pagingButton}">
@@ -577,7 +524,7 @@
                     </StackPanel>
                 </Border>
 
-            </Grid>
+            </Grid>-->
 
         </Grid>
     </Border>
