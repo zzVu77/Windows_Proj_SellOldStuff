@@ -3,11 +3,11 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:UTEMerchant"
-              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              StartupUri="WinPurchasingInterface.xaml"
-    xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
-                
+             xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">                
     <Application.Resources>
+        <!--Converter-->
         <local:TextToVisibilityConverter x:Key="TextToVisibilityConverter"/>
         <!--Images-->
         <ImageSource x:Key="DashIcon">/UTEMerchant;component/Resources/Icons/Dash Icon.png</ImageSource>
