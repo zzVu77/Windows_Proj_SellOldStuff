@@ -81,6 +81,15 @@ namespace UTEMerchant
             }
         }
 
+        private void imgFilter_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (dpRightSideBar.Visibility == Visibility.Collapsed)
+            {
+                dpRightSideBar.Visibility = Visibility.Visible;
+            }
+            else dpRightSideBar.Visibility = Visibility.Collapsed;
+        }
+
         //private void svItemsList_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         //{
         //    var clickedElement = e.OriginalSource as FrameworkElement;
