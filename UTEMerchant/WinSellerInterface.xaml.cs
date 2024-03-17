@@ -85,6 +85,18 @@ namespace UTEMerchant
         {
 
         }
+
+        private void mnuitPurchase_Click(object sender, RoutedEventArgs e)
+        {
+            uc_SellerUI.Visibility = Visibility.Collapsed;
+            uc_PurchasingUI.Visibility = Visibility.Visible;
+        }
+
+        private void mnuitStock_Click(object sender, RoutedEventArgs e)
+        {
+            uc_PurchasingUI.Visibility = Visibility.Collapsed;
+            uc_SellerUI.Visibility = Visibility.Visible;
+        }
     }
 }
 

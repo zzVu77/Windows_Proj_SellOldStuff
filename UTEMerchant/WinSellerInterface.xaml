@@ -311,11 +311,11 @@
                                            Stretch="Uniform"/>
                                 </MenuItem.Icon>
                             </MenuItem>
-                            <MenuItem x:Name="mnuitPurchased"
-                                      Header="Purchased"     
+                            <MenuItem x:Name="mnuitPurchase"
+                                      Header="Purchase"     
                                       FontWeight="SemiBold"
-                                      Style="{StaticResource Menu_Style}" 
-                                      Click="MenuItem_Click">
+                                      Style="{StaticResource Menu_Style}"
+                                      Click="mnuitPurchase_Click">
                                 <MenuItem.Icon>
                                     <Image Source="{Icon:ModernImage Brush=Black, Kind=Shopping}"
                                            Stretch="Uniform" Width="24"/>
@@ -325,8 +325,8 @@
                             <MenuItem x:Name="mnuitStock"
                                       Header="Stock"    
                                       FontWeight="SemiBold"
-                                      Style="{StaticResource Menu_Style}" 
-                                      Click="MenuItem_Click">
+                                      Style="{StaticResource Menu_Style}" Click="mnuitStock_Click" 
+                                      >
                                 <MenuItem.Icon>
                                     <Image Source="{Icon:ModernImage Brush=Black, Kind=Store}" 
                                            Stretch="Uniform"/>
@@ -379,8 +379,9 @@
                 </Border>
 
             </Grid>
-            <Grid Grid.Column="1">
-                <local:UC_SellerUI></local:UC_SellerUI>
+            <Grid x:Name="grdSelectedMenuItem" Grid.Column="1">
+                <local:UC_SellerUI x:Name="uc_SellerUI" Visibility="Collapsed"/>
+                <local:UC_PurchasingUI x:Name="uc_PurchasingUI" Visibility="Collapsed"/>
             </Grid>
 
             <!--Main Section-->
