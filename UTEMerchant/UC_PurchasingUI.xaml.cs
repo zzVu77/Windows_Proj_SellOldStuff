@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace UTEMerchant
 {
     /// <summary>
-    /// Interaction logic for UCPurchased.xaml
+    /// Interaction logic for UC_PurchasingUI.xaml
     /// </summary>
-    public partial class UCPurchased : UserControl
+    public partial class UC_PurchasingUI : UserControl
     {
-        public UCPurchased()
+        public UC_PurchasingUI()
         {
             InitializeComponent();
         }
