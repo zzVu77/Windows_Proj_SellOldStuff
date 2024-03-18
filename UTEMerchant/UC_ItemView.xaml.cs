@@ -20,9 +20,19 @@ namespace UTEMerchant
     /// </summary>
     public partial class UC_ItemView : UserControl
     {
+        public event EventHandler ItemClicked;
+
+
         public UC_ItemView()
         {
             InitializeComponent();
+            this.MouseUp += UC_ItemView_MouseUp;
+
+        }
+
+        private void UC_ItemView_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            ItemClicked?.Invoke(this, EventArgs.Empty);
         }
     }
 }
