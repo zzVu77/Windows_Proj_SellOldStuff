@@ -71,7 +71,9 @@ namespace UTEMerchant
                 else if (dpSelectedItemDetailedInformation.Children.Count == 1 && dpSelectedItemDetailedInformation.Children[0] != detail)
                 {
                     // Will have error because there is current no properties in UC_ItemDetail to recognize each other
-                    dpSelectedItemDetailedInformation.Children[0] = detail;
+                    dpSelectedItemDetailedInformation.Children.Clear();
+                    dpSelectedItemDetailedInformation.Children.Add(detail);
+
                 }
                 // If there exist one UC_ItemDetai but the same as the recently clicked one the the existing one will be removed
                 else if (dpSelectedItemDetailedInformation.Children.Count == 1 && dpSelectedItemDetailedInformation.Children[0] == detail)

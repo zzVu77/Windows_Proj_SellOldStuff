@@ -381,7 +381,7 @@
             </Grid>
             <Grid x:Name="grdSelectedMenuItem" Grid.Column="1">
                 <local:UC_SellerUI x:Name="uc_SellerUI" Background="Transparent" Visibility="Collapsed" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                <local:UC_PurchasingUI x:Name="uc_PurchasingUI" Background="Transparent" Visibility="Collapsed" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                <local:UC_PurchasingUI x:Name="uc_PurchasingUI" Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
             </Grid>
 
             <!--Main Section-->
