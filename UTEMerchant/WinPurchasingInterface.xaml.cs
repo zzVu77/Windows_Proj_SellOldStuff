@@ -77,6 +77,14 @@ namespace UTEMerchant
             Show();
         }
 
+
+        private void tbSeller_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.Hide();
+            var seller = new WinSellerInterface();
+            seller.ShowDialog();
+        }
+
         //public int RowCount
         //{
         //    get

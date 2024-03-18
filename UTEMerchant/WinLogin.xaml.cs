@@ -52,7 +52,11 @@ namespace UTEMerchant
         {
             if (!string.IsNullOrEmpty(txtPassword.Password) && !string.IsNullOrEmpty(txtUserName.Text))
             {
+                this.Hide();
+                var purchasing = new Purchasing_Interface();
                 MessageBox.Show("successfully signed up!!!!!");
+                purchasing.Show();
+                
             }
 
         }

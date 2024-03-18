@@ -381,8 +381,8 @@
                                                     HorizontalAlignment="Center"
                                                     Height="23"
                                                     Width="23"/>
-                            <TextBlock Grid.Column="1"
-                                Text="Seller"/>
+                            <TextBlock
+                                Text="Seller" x:Name="tbSeller" MouseDown="tbSeller_MouseDown" Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="87"/>
                         </Grid>
                     </Button.Content>
                 </Button>

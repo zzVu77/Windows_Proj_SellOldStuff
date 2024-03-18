@@ -22,7 +22,9 @@ namespace UTEMerchant
         public WinSellerInterface()
         {
             InitializeComponent();
-            Item item1 = new Item(01, "Iphone 14 Pro Maxsdsdasdas", "RAM 8GB ROM 256GB", 1000, 600, "/Img/iPhone-14-Pro-Max-9907.jpg", new DateTime(2023, 11, 20), "95%", "Smart Phone");
+            var test = new Item_DAO();
+            test.Load();
+            var item1 = test.items[0];
             //productGrid.Items.Add(item1);
             //productGrid.Items.Add(item1);
             //productGrid.Items.Add(item1);

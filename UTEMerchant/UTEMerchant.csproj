@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -164,7 +164,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DB_Connection.cs" />
     <Compile Include="Item.cs" />
+    <Compile Include="Item_DAO.cs" />
     <Compile Include="TextToVisibilityConverter.cs" />
     <Compile Include="UC_PurchasingUI.xaml.cs">
       <DependentUpon>UC_PurchasingUI.xaml</DependentUpon>
@@ -178,6 +180,8 @@
     <Compile Include="UC_SellerUI.xaml.cs">
       <DependentUpon>UC_SellerUI.xaml</DependentUpon>
     </Compile>
+    <Compile Include="User.cs" />
+    <Compile Include="user_DAO.cs" />
     <Compile Include="WinNewItem.xaml.cs">
       <DependentUpon>WinNewItem.xaml</DependentUpon>
     </Compile>
@@ -298,6 +302,8 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Img\icons8-close-50.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="Resources\Assets\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

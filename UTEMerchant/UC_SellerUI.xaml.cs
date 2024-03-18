@@ -23,28 +23,18 @@ namespace UTEMerchant
         public UC_SellerUI()
         {
             InitializeComponent();
-            Item item1 = new Item(01, "Iphone 14 Pro Maxsdsdasdas", "RAM 8GB ROM 256GB", 1000, 600, "/Img/iPhone-14-Pro-Max-9907.jpg", new DateTime(2023, 11, 20), "95%", "Smart Phone");
-            productGrid.Items.Add(item1);
-            productGrid.Items.Add(item1);
-            productGrid.Items.Add(item1);
-            productGrid.Items.Add(item1);
-            productGrid.Items.Add(item1);
-            productGrid.Items.Add(item1);
-            productGrid.Items.Add(item1);
-            productGrid.Items.Add(item1);
-            productGrid.Items.Add(item1);
-            productGrid.Items.Add(item1);
-            productGrid.Items.Add(item1);
-            productGrid.Items.Add(item1);
-            productGrid.Items.Add(item1);
-            productGrid.Items.Add(item1);
-            productGrid.Items.Add(item1);
-            productGrid.Items.Add(item1);
-            productGrid.Items.Add(item1);
-            productGrid.Items.Add(item1);
-            productGrid.Items.Add(item1);
-            productGrid.Items.Add(item1);
-            productGrid.Items.Add(item1);
+
+            var test =new Item_DAO();
+            test.Load();
+            foreach  (Item a in test.items)
+            {
+                productGrid.Items.Add(a);
+                productGrid.Items.Add(a);
+                productGrid.Items.Add(a);
+                productGrid.Items.Add(a);
+                productGrid.Items.Add(a);
+            }    
+            
         }
 
         private void productGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
