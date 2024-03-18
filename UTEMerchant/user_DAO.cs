@@ -10,7 +10,7 @@ namespace UTEMerchant
     internal class user_DAO
     {
         SqlConnection conn = new
-       SqlConnection(@"Data Source=(localdb)\mssqllocaldb;Initial Catalog=DB_Merchant;Integrated Security=True");
+       SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\db_ute_merchant.mdf;Integrated Security=True");
 
         List<User> Users = new List<User>();
         public void Load()
