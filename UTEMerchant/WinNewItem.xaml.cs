@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,7 @@ namespace UTEMerchant
     /// </summary>
     public partial class WinNewItem : Window
     {
+        private string image_path;
         public WinNewItem()
         {
             InitializeComponent();
@@ -38,6 +40,7 @@ namespace UTEMerchant
             if (openFileDialog.ShowDialog() == true)
             {
                 string selectedFilePath = openFileDialog.FileName;
+                image_path = selectedFilePath;
                 // Xử lý đường dẫn đã chọn ở đây
             }
         }
@@ -46,7 +49,31 @@ namespace UTEMerchant
         {
 
         }
-      
+
+        private void Button_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+            ComboBoxItem typeItem = (ComboBoxItem)cbType.SelectedItem;
+
+            new Item_DAO().add(new Item(Int32.Parse(txtID.Text.ToString()), txtName.Text.ToString(), rtbDescription.ToString(),
+                float.Parse(txtOriginalPrice.Text.ToString()), float.Parse(txtPrice.Text.ToString()),
+                image_path, DateTime.Parse(txtBoughtDate.Text.ToString()), txtStatus.Text.ToString(), typeItem.Content.ToString(), 1));
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            ComboBoxItem typeItem = (ComboBoxItem)cbType.SelectedItem;
+
+            new Item_DAO().add(new Item(Int32.Parse(txtID.Text.ToString()), txtName.Text.ToString(), rtbDescription.ToString(),
+                float.Parse(txtOriginalPrice.Text.ToString()), float.Parse(txtPrice.Text.ToString()),
+                image_path, DateTime.Parse(txtBoughtDate.Text.ToString()), txtStatus.Text.ToString(), typeItem.Content.ToString(), 1));
+        }
+
+        /*private void Image_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            this.Close();
+        }*/
+
         //private void ToggleButton_Click(object sender, RoutedEventArgs e)
         //{
         //    var toggleButton = sender as ToggleButton;

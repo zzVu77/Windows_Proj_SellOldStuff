@@ -26,14 +26,15 @@ namespace UTEMerchant
         List<Item> items = new List<Item>();
         public Purchasing_Interface()
         {
+           
+            /*InitializeComponent();
+            wpItemsList.Children.Clear();
             Item_dao.Load();
             items = Item_dao.items;
-            InitializeComponent();
-            wpItemsList.Children.Clear();
             foreach (Item item in items)
             {
                 wpItemsList.Children.Add(new UC_ItemView(item));
-            }    
+            }    */
         }
         
 
@@ -71,11 +72,14 @@ namespace UTEMerchant
 
         private void svItemsList_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            var Item = e.OriginalSource as FrameworkElement;
-            UC_ItemDetail uC_ItemDetail = new UC_ItemDetail();
-            if (Item != null && dpSelectedItemDetailedInformation.Children.Count != 1)
+            foreach (Item item in items)
             {
-                dpSelectedItemDetailedInformation.Children.Add(uC_ItemDetail);
+                var Item = e.OriginalSource as FrameworkElement;
+                UC_ItemDetail uC_ItemDetail = new UC_ItemDetail(item);
+                if (Item != null && dpSelectedItemDetailedInformation.Children.Count != 1)
+                {
+                    dpSelectedItemDetailedInformation.Children.Add(uC_ItemDetail);
+                }
             }
         }
 

@@ -65,7 +65,7 @@
                             Foreground="#878787" BorderBrush="Transparent" BorderThickness="1"/>
                     </Grid>
                 </Border>
-                <Button Content="Sign Up" Click="Button_Click" Style="{StaticResource button}"/>
+                <Button Content="Sign in" Click="Button_Click" Style="{StaticResource button}"/>
                 <Border BorderThickness="1"  BorderBrush="Transparent" CornerRadius="5" Height="32" Margin="0 0 0 0" Width="280" >
                     <Grid Margin="-50,-1,-32,-55">
                         <Grid.ColumnDefinitions>

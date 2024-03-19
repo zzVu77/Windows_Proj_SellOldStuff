@@ -29,10 +29,6 @@ namespace UTEMerchant
             foreach  (Item a in test.items)
             {
                 productGrid.Items.Add(a);
-                productGrid.Items.Add(a);
-                productGrid.Items.Add(a);
-                productGrid.Items.Add(a);
-                productGrid.Items.Add(a);
             }    
             
         }
@@ -40,6 +36,18 @@ namespace UTEMerchant
         private void productGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            new WinNewItem().ShowDialog();
+            productGrid.Items.Clear();
+            var test = new Item_DAO();
+            test.Load();
+            foreach (Item a in test.items)
+            {
+                productGrid.Items.Add(a);
+            }
         }
     }
 }

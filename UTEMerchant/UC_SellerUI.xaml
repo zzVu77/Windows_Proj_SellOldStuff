@@ -49,7 +49,7 @@
             <Button Style="{StaticResource addButton}">
                 <StackPanel Orientation="Horizontal">
                     <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Margin="0 1 8 0" Width="11" Height="11"/>
-                    <TextBlock Text="Add New Item"/>
+                    <TextBlock Text="Add New Item" MouseDown="TextBlock_MouseDown"/>
                 </StackPanel>
             </Button>
 

@@ -22,15 +22,17 @@ namespace UTEMerchant
     {
         public event EventHandler ItemClicked;
 
-        private Item info;
+        public Item info;
+        
         public UC_ItemView()
         {
             InitializeComponent();
             this.MouseUp += UC_ItemView_MouseUp;
-
+            
         }
         public UC_ItemView(Item item)
         {
+            
             info = item;
             InitializeComponent();
             this.MouseUp += UC_ItemView_MouseUp;
@@ -42,5 +44,7 @@ namespace UTEMerchant
         {
             ItemClicked?.Invoke(this, EventArgs.Empty);
         }
+       
     }
 }
+

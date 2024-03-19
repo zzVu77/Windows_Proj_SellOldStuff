@@ -7,6 +7,7 @@
              xmlns:local="clr-namespace:UTEMerchant"
              mc:Ignorable="d"
              d:DesignHeight="800" d:DesignWidth="1400">
+
     <UserControl.Resources>
 
         <!--Button template-->
@@ -75,9 +76,9 @@
             </ControlTemplate.Triggers>
         </ControlTemplate>
     </UserControl.Resources>
-    
+
     <Grid>
-        
+
         <!--Contain everything-->
 
         <Grid x:Name="grdPurchasingInterface">
@@ -86,7 +87,7 @@
                 <ColumnDefinition x:Name="cMainInteraction" Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            
+
             <!--The main interface-->
 
             <Grid x:Name="grdMainInterface"
@@ -107,8 +108,8 @@
                     </Grid.ColumnDefinitions>
 
                     <DockPanel x:Name="grdSearch"
-                          Grid.Column="0">                        
-                        
+                          Grid.Column="0">
+
                         <!--Search bar section-->
 
                         <DockPanel x:Name="dpSeachBar" 
@@ -159,7 +160,7 @@
                                 <ColumnDefinition x:Name="cPopularSort" Width="*"/>
                                 <ColumnDefinition x:Name="cPriceSort" Width="*"/>
                                 <ColumnDefinition x:Name="cEmptyRight" Width="*"/>
-                            </Grid.ColumnDefinitions>                            
+                            </Grid.ColumnDefinitions>
 
                             <!--Sort Label-->
 
@@ -221,6 +222,10 @@
                                     Template="{StaticResource RoundedButtonTemplate}"
                                     Click="btnPrice_Click">
                             </Button>
+                            <Button x:Name="btnRefresh"
+                                    Content="Refresh"
+                                    Click="btnRefresh_Click" Grid.Column="4" Margin="269,3,-102,-3"/>
+
                         </Grid>
 
                     </DockPanel>
@@ -271,6 +276,7 @@
                             <!--PreviewMouseDown="svItemsList_PreviewMouseDown"-->
                             <WrapPanel x:Name="wpItemsList"
                                        Width="{Binding ElementName=dpItemsList,Path=ActualWidth}"
+                                       MouseLeftButtonDown="wpItemsList_MouseLeftButtonDown"
                                        Margin="0,0,20,0">
                                 <WrapPanel.Resources>
                                     <Style TargetType="local:UC_ItemView">
@@ -297,6 +303,7 @@
                                 <local:UC_ItemView ItemClicked="UC_ItemView_ItemClicked" />
                                 <local:UC_ItemView ItemClicked="UC_ItemView_ItemClicked" />
                                 <local:UC_ItemView ItemClicked="UC_ItemView_ItemClicked" />
+
 
                             </WrapPanel>
                         </ScrollViewer>

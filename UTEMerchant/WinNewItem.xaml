@@ -27,7 +27,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="200"/>
                     <ColumnDefinition Width="200"/>
-                </Grid.ColumnDefinitions>               
+                </Grid.ColumnDefinitions>
 
                 <Border 
                     Grid.Column="0" 
@@ -130,7 +130,7 @@
 
                     <Grid Grid.Row="1" HorizontalAlignment="Right">
 
-                        <ComboBox Tag="Type" Style="{StaticResource ComboBoxStyle1}" Margin="-0.3,-3,30,17" Width="102" SelectionChanged="ComboBox_SelectionChanged"  
+                        <ComboBox x:Name="cbType" Tag="Type" Style="{StaticResource ComboBoxStyle1}" Margin="-0.3,-3,30,17" Width="102" SelectionChanged="ComboBox_SelectionChanged"  
                          >
                             <ComboBoxItem Content="Hello"/>
                             <ComboBoxItem Content="Xin chao"/>
@@ -140,6 +140,7 @@
                             <ComboBoxItem Content="Hello"/>
                             <ComboBoxItem Content="Hello"/>
                             <ComboBoxItem Content="Hello"/>
+                            <hc:DatePicker/>
 
 
                         </ComboBox>
@@ -148,7 +149,7 @@
                     <Grid Grid.Row="2" HorizontalAlignment="Left" Margin="165,0,24,0" >
 
                         <TextBox 
-                            x:Name="txtCondition"                       
+                            x:Name="txtBoughtDate"                       
                             Foreground="Black" 
                             FontFamily="Segoe UI " 
                             FontWeight="SemiBold"  
@@ -157,12 +158,12 @@
                             HorizontalAlignment="Left" 
                             BorderThickness="0.5" 
                             Margin="32,0,0,36"
-                            Tag="Condition" Width="175"/>
+                            Tag="txtBoughtDate" Width="175"/>
                     </Grid>
                     <Grid Grid.Row="2" HorizontalAlignment="Left" Margin="6,0,24,0" >
 
                         <TextBox 
-                            x:Name="txtPackage"                       
+                            x:Name="txtStatus"                       
                             Foreground="Black" 
                             FontFamily="Segoe UI " 
                             FontWeight="SemiBold"  
@@ -170,7 +171,7 @@
                             Height="30" VerticalAlignment="Top" 
                             BorderThickness="0.5" 
                             Margin="0,5,0,0"
-                            Tag="Package" Width="175"/>
+                            Tag="Status" Width="175"/>
                     </Grid>
                     <Grid Grid.Row="3" >
                         <Grid.RowDefinitions>
@@ -209,8 +210,17 @@
 
 
             </Grid>
-        </Border>
 
+        </Border>
+        <Button  
+            Style="{StaticResource addButton}" 
+            VerticalAlignment="Bottom" 
+            HorizontalAlignment="Left" 
+            Margin="616,0,0,10" Height="18" Width="74"
+            Content="Add new item"
+            FontSize="10"
+            Click="Button_Click_1"
+            />
 
     </Grid>
 </Window>

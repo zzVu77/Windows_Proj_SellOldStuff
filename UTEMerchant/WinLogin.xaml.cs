@@ -53,9 +53,10 @@ namespace UTEMerchant
             if (!string.IsNullOrEmpty(txtPassword.Password) && !string.IsNullOrEmpty(txtUserName.Text))
             {
                 this.Hide();
-                var purchasing = new Purchasing_Interface();
+                var purchasing = new WinSellerInterface();
                 MessageBox.Show("successfully signed up!!!!!");
-                purchasing.Show();
+                purchasing.ShowDialog();
+                this.Show();
                 
             }
 

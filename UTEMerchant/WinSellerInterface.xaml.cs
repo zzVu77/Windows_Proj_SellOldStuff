@@ -22,30 +22,8 @@ namespace UTEMerchant
         public WinSellerInterface()
         {
             InitializeComponent();
-            var test = new Item_DAO();
-            test.Load();
-            var item1 = test.items[0];
-            //productGrid.Items.Add(item1);
-            //productGrid.Items.Add(item1);
-            //productGrid.Items.Add(item1);
-            //productGrid.Items.Add(item1);
-            //productGrid.Items.Add(item1);
-            //productGrid.Items.Add(item1);
-            //productGrid.Items.Add(item1);
-            //productGrid.Items.Add(item1);
-            //productGrid.Items.Add(item1);
-            //productGrid.Items.Add(item1);
-            //productGrid.Items.Add(item1);
-            //productGrid.Items.Add(item1);
-            //productGrid.Items.Add(item1);
-            //productGrid.Items.Add(item1);
-            //productGrid.Items.Add(item1);
-            //productGrid.Items.Add(item1);
-            //productGrid.Items.Add(item1);
-            //productGrid.Items.Add(item1);
-            //productGrid.Items.Add(item1);
-            //productGrid.Items.Add(item1);
-            //productGrid.Items.Add(item1);
+            
+            
         }
 
         private bool IsMaximize = false;
@@ -98,6 +76,12 @@ namespace UTEMerchant
         {
             uc_PurchasingUI.Visibility = Visibility.Collapsed;
             uc_SellerUI.Visibility = Visibility.Visible;
+        }
+
+        private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+            this.Close();
         }
     }
 }

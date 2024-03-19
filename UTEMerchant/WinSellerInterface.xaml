@@ -370,9 +370,9 @@
                         </Menu>
 
                         <Button Style="{StaticResource menuButton}" VerticalAlignment="Bottom" DockPanel.Dock="Bottom" Margin="15 0 15 20">
-                            <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal" MouseUp="TextBlock_MouseDown">
                                 <Icon:PackIconMaterial Kind="Logout" Style="{StaticResource menuButtonIcon}"/>
-                                <TextBlock Text="Logout"/>
+                                <TextBlock Text="Logout" MouseDown="TextBlock_MouseDown"/>
                             </StackPanel>
                         </Button>
 
