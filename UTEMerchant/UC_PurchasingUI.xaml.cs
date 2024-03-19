@@ -166,8 +166,9 @@ namespace UTEMerchant
         private void btnRefresh_Click(object sender, RoutedEventArgs e)
         {
             this.wpItemsList.Children.Clear();
-            Item_dao.Load();
-            List<Item> itemsRefreshh = Item_dao.items;
+            Item_DAO dAO = new Item_DAO();
+            dAO.Load();
+            List<Item> itemsRefreshh = dAO.items;
             foreach (Item item in itemsRefreshh)
             {
                 UC_ItemView uc_item = new UC_ItemView(item);

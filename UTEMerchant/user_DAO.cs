@@ -17,7 +17,7 @@ namespace UTEMerchant
         {
 
 
-            using (SqlCommand command = new SqlCommand("select * from [dbo].[User]", conn))
+            using (SqlCommand command = new SqlCommand("SELECT * FROM [dbo].[User]", conn))
             {
                 conn.Open();
                 using (SqlDataReader reader = command.ExecuteReader())

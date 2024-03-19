@@ -21,7 +21,7 @@ namespace UTEMerchant
         {
 
             items.Clear();
-            using (SqlCommand command = new SqlCommand("select * from [dbo].[Item]", conn))
+            using (SqlCommand command = new SqlCommand("SELECT * FROM [dbo].[Item]", conn))
             {
                 conn.Open();
                 using (SqlDataReader reader = command.ExecuteReader())
@@ -46,7 +46,7 @@ namespace UTEMerchant
         {
             try
             {
-               
+
                 conn.Open();
 
                 string sqlStr = "INSERT INTO [dbo].[Item] (Item_Id, name, price, original_price, type, bought_date, description, status, image_path, Id_user) " +
@@ -64,27 +64,31 @@ namespace UTEMerchant
                 cmd.Parameters.AddWithValue("@ImagePath", item.ImagePath);
                 cmd.Parameters.AddWithValue("@UserId", item.user_id);
 
+
                 if (cmd.ExecuteNonQuery() > 0)
                 {
                     //MessageBox.Show("Thêm thành công");
                 }
-               
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi: " + ex.Message);
             }
-            conn.Close();
+            finally
+            {
+                conn.Close();
+            }
         }
         public void remove(Item item)
         {
             try
-
             {
+                conn.Open();
                 string sqlStr = "DELETE FROM [dbo].[Item] WHERE Item_Id = @ItemId";
                 SqlCommand cmd = new SqlCommand(sqlStr, conn);
                 cmd.Parameters.AddWithValue("@ItemId", item.Id);
-
+                cmd.ExecuteNonQuery();
             }
             catch(Exception ex) {
                 //MessageBox.Show("that bai" + ex);

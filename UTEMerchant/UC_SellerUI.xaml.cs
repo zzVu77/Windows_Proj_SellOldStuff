@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -55,7 +56,7 @@ namespace UTEMerchant
         }
 
 
-        private void btnDelete_MouseDown(object sender, MouseButtonEventArgs e)
+        /*private void btnDelete_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (productGrid.SelectedItem != null)
             {
@@ -63,7 +64,8 @@ namespace UTEMerchant
                 if (clickedRow != null)
                 {
                     int rowIndex = productGrid.ItemContainerGenerator.IndexFromContainer(clickedRow);
-                    new Item_DAO().remove(items[rowIndex]);
+                    Item_DAO dAO = new Item_DAO();
+                    dAO.remove(items[rowIndex]);
 
                     if (productGrid.ItemsSource is IList data)
                     {
@@ -78,7 +80,7 @@ namespace UTEMerchant
         {
             
         }
-
+*/
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
 
@@ -88,13 +90,12 @@ namespace UTEMerchant
         {
             DataGridRow clickedRow = (DataGridRow)productGrid.ItemContainerGenerator.ContainerFromItem(productGrid.SelectedItem);
             int rowIndex = productGrid.ItemContainerGenerator.IndexFromContainer(clickedRow);
-            new Item_DAO().remove(items[rowIndex]);
-
-            if (productGrid.ItemsSource is IList data)
-            {
-                data.RemoveAt(rowIndex);
-            }
-            productGrid.Items.Refresh();
+            Item_DAO dAO = new Item_DAO();
+            dAO.remove(items[rowIndex]);
+        
+            
+            productGrid.Items.RemoveAt(rowIndex);
+            productGrid.Items.Refresh();    
         }
     }
 }
