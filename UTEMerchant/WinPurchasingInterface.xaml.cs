@@ -22,10 +22,20 @@ namespace UTEMerchant
     /// </summary>
     public partial class Purchasing_Interface : Window
     {
+        private Item_DAO Item_dao = new Item_DAO();
+        List<Item> items = new List<Item>();
         public Purchasing_Interface()
         {
+            Item_dao.Load();
+            items = Item_dao.items;
             InitializeComponent();
+            wpItemsList.Children.Clear();
+            foreach (Item item in items)
+            {
+                wpItemsList.Children.Add(new UC_ItemView(item));
+            }    
         }
+        
 
         private void XIcon_MouseDown(object sender, MouseButtonEventArgs e)
         {

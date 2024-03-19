@@ -30,7 +30,7 @@
                     <TextBlock x:Name="txblItemName" TextWrapping="WrapWithOverflow" 
                                    Style="{DynamicResource TextBlockLargeBold}"
                                    TextTrimming="CharacterEllipsis" 
-                                   Text="Iphone 14 Pro Max"
+                                   Text=""
                                    HorizontalAlignment="Left" FontFamily="Segoe UI Black"   
                                     
                                     />

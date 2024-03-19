@@ -10,7 +10,7 @@ using System.Xml;
 
 namespace UTEMerchant
 {
-    internal class Item_DAO
+    public class Item_DAO
     {
         SqlConnection conn = new
        SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\db_ute_merchant.mdf;Integrated Security=True");
