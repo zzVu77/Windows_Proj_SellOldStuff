@@ -88,10 +88,12 @@ namespace UTEMerchant
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
+            Item_DAO dao = new Item_DAO();
+            dao.Load();
+            items= dao.items;
             DataGridRow clickedRow = (DataGridRow)productGrid.ItemContainerGenerator.ContainerFromItem(productGrid.SelectedItem);
             int rowIndex = productGrid.ItemContainerGenerator.IndexFromContainer(clickedRow);
-            Item_DAO dAO = new Item_DAO();
-            dAO.remove(items[rowIndex]);
+            dao.remove(items[rowIndex]);
         
             
             productGrid.Items.RemoveAt(rowIndex);

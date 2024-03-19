@@ -24,7 +24,7 @@ namespace UTEMerchant
         {
             this.User = user;
             InitializeComponent();
-            
+            txbName.Text = user.Name;
         }
 
         private bool IsMaximize = false;

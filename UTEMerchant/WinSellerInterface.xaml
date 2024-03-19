@@ -287,7 +287,7 @@
                         </Border>
 
                         <!--Menu Titles-->
-                        <TextBlock Text="Nguyen Vu" Foreground="White" FontSize="22" FontWeight="SemiBold" DockPanel.Dock="Top" Margin="5 25 0 10" TextAlignment="Center"/>
+                        <TextBlock x:Name="txbName" Text="Nguyen Vu" Foreground="White" FontSize="22" FontWeight="SemiBold" DockPanel.Dock="Top" Margin="5 25 0 10" TextAlignment="Center"/>
                         <!--<TextBlock Text="Members, France" Foreground="#D0BFFF" FontSize="14" FontWeight="SemiBold" DockPanel.Dock="Top" TextAlignment="Center"/>-->
 
                         <!--Menu Seprator-->
