@@ -85,9 +85,9 @@ namespace UTEMerchant
 
         private void btnSellerMode_Click(object sender, RoutedEventArgs e)
         {
-            WinSellerInterface winSellerInterface = new WinSellerInterface();
+            //WinSellerInterface winSellerInterface = new WinSellerInterface();
             Hide();
-            winSellerInterface.ShowDialog();
+            //winSellerInterface.ShowDialog();
             Show();
         }
 
@@ -95,8 +95,8 @@ namespace UTEMerchant
         private void tbSeller_MouseDown(object sender, MouseButtonEventArgs e)
         {
             this.Hide();
-            var seller = new WinSellerInterface();
-            seller.ShowDialog();
+            //var seller = new WinSellerInterface();
+            //seller.ShowDialog();
         }
 
         //public int RowCount

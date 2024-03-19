@@ -19,9 +19,13 @@ namespace UTEMerchant
     /// </summary>
     public partial class WinLogin : Window
     {
+        List<User> users = new List<User>();
         public WinLogin()
         {
             InitializeComponent();
+            user_DAO a = new user_DAO();
+            a.Load();
+            users=a.Users;
         }
 
         private void txtUserName_TextChanged(object sender, TextChangedEventArgs e)
@@ -50,14 +54,20 @@ namespace UTEMerchant
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtPassword.Password) && !string.IsNullOrEmpty(txtUserName.Text))
+            foreach (User user in users)
             {
-                this.Hide();
-                var purchasing = new WinSellerInterface();
-                MessageBox.Show("successfully signed up!!!!!");
-                purchasing.ShowDialog();
-                this.Show();
-                
+                if (user.Password == txtPassword.Password && user.User_name== txtUserName.Text)
+                {
+                    this.Hide();
+                    var purchasing = new WinSellerInterface(user);
+                    MessageBox.Show("successfully signed in!!!!!");
+                    purchasing.ShowDialog();
+                    this.Show();
+                }
+                else
+                {
+                    MessageBox.Show("user name or password is incorrect !!!!!");
+                }    
             }
 
         }

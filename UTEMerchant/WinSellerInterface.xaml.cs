@@ -19,10 +19,11 @@ namespace UTEMerchant
     /// </summary>
     public partial class WinSellerInterface : Window
     {
-        public WinSellerInterface()
+        private User User { get; set; }
+        public WinSellerInterface(User user)
         {
+            this.User = user;
             InitializeComponent();
-            
             
         }
 
