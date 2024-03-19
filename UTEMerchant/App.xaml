@@ -8,8 +8,7 @@
               xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
              xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">                
     <Application.Resources>
-        
-
+        <local:RectConverter x:Key="RectConverter"/>
         <local:TextToVisibilityConverter x:Key="TextToVisibilityConverter"/>
         <!--#region Gradient Color-->
         <LinearGradientBrush x:Key="cs_Background" StartPoint="0,0" EndPoint="0,5">
