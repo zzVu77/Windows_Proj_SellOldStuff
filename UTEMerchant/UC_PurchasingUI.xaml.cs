@@ -167,8 +167,8 @@ namespace UTEMerchant
         {
             this.wpItemsList.Children.Clear();
             Item_dao.Load();
-            items = Item_dao.items;
-            foreach (Item item in items)
+            List<Item> itemsRefreshh = Item_dao.items;
+            foreach (Item item in itemsRefreshh)
             {
                 UC_ItemView uc_item = new UC_ItemView(item);
                 uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;

@@ -24,6 +24,7 @@ namespace UTEMerchant
             using (SqlCommand command = new SqlCommand("select * from [dbo].[Item]", conn))
             {
                 conn.Open();
+                items.Clear();
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
