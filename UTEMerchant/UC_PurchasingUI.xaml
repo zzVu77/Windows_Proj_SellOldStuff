@@ -264,6 +264,7 @@
 
                     <DockPanel x:Name="dpSelectedItemDetailedInformation"
                                DockPanel.Dock="Right">
+                        
                     </DockPanel>
 
                     <!--Items list section-->
