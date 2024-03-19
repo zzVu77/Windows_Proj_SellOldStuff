@@ -19,12 +19,11 @@ namespace UTEMerchant
         public List<Item> items = new List<Item>();
         public void Load()
         {
-           
 
+            items.Clear();
             using (SqlCommand command = new SqlCommand("select * from [dbo].[Item]", conn))
             {
                 conn.Open();
-                items.Clear();
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
@@ -82,21 +81,16 @@ namespace UTEMerchant
             try
 
             {
-                string sqlStr = string.Format("DELETE FROM [dbo].[Item] WHERE Item_Id = '{0}'", item.Id);
-                conn.Open();
-
+                string sqlStr = "DELETE FROM [dbo].[Item] WHERE Item_Id = @ItemId";
                 SqlCommand cmd = new SqlCommand(sqlStr, conn);
+                cmd.Parameters.AddWithValue("@ItemId", item.Id);
 
-                if (cmd.ExecuteNonQuery() > 0)
-
-                    MessageBox.Show("thanh cong");
             }
             catch(Exception ex) {
-                MessageBox.Show("that bai" + ex);
+                //MessageBox.Show("that bai" + ex);
             }
             finally
             {
-
                 conn.Close();
             }
         }

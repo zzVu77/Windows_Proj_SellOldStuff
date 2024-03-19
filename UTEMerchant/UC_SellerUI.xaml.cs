@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Wpf.Ui.Controls;
 
 namespace UTEMerchant
 {
@@ -20,13 +22,15 @@ namespace UTEMerchant
     /// </summary>
     public partial class UC_SellerUI : UserControl
     {
+        List<Item> items;
         public UC_SellerUI()
         {
             InitializeComponent();
 
             var test =new Item_DAO();
             test.Load();
-            foreach  (Item a in test.items)
+            items = test.items;
+            foreach  (Item a in items)
             {
                 productGrid.Items.Add(a);
             }    
@@ -48,6 +52,49 @@ namespace UTEMerchant
             {
                 productGrid.Items.Add(a);
             }
+        }
+
+
+        private void btnDelete_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (productGrid.SelectedItem != null)
+            {
+                DataGridRow clickedRow = (DataGridRow)productGrid.ItemContainerGenerator.ContainerFromItem(productGrid.SelectedItem);
+                if (clickedRow != null)
+                {
+                    int rowIndex = productGrid.ItemContainerGenerator.IndexFromContainer(clickedRow);
+                    new Item_DAO().remove(items[rowIndex]);
+
+                    if (productGrid.ItemsSource is IList data)
+                    {
+                        data.RemoveAt(rowIndex);
+                    }
+                }
+            }
+
+        }
+
+        private void btnUpdate_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            
+        }
+
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            DataGridRow clickedRow = (DataGridRow)productGrid.ItemContainerGenerator.ContainerFromItem(productGrid.SelectedItem);
+            int rowIndex = productGrid.ItemContainerGenerator.IndexFromContainer(clickedRow);
+            new Item_DAO().remove(items[rowIndex]);
+
+            if (productGrid.ItemsSource is IList data)
+            {
+                data.RemoveAt(rowIndex);
+            }
+            productGrid.Items.Refresh();
         }
     }
 }

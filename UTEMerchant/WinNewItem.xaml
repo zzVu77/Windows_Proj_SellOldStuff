@@ -140,7 +140,7 @@
                             <ComboBoxItem Content="Hello"/>
                             <ComboBoxItem Content="Hello"/>
                             <ComboBoxItem Content="Hello"/>
-                            <hc:DatePicker/>
+                            
 
 
                         </ComboBox>
@@ -192,7 +192,8 @@
                             Foreground="black"
                             x:Name="rtbDescription"
                             Background="Transparent"
-                            Grid.Row="1" 
+                            Grid.Row="1"
+                            
                             Height="140"
                             BorderThickness="2"
                             BorderBrush="DarkGray" 
