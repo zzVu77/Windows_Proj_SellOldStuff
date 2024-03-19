@@ -40,21 +40,38 @@
                     VerticalAlignment="Top" Margin="-5,0,0,0"
                     CornerRadius="7"
                     >
-                    <Image Source="/Img/iPhone-14-Pro-Max-9907.jpg" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Uniform" Margin="7,0,7,0"/>
+                    <Image x:Name="imgItem"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Uniform" Margin="7,0,7,0"/>
                 </Border>
 
                 <Button 
+                    Height="40"
+                    Width="100"
                     Style="{StaticResource addButton}" 
                     VerticalAlignment="Bottom" 
                     HorizontalAlignment="Left" 
-                    Margin="10,10,10,110" 
+                    Margin="50,12,10,131" 
                     Click="Button_Click" 
                     HorizontalContentAlignment="Center">
                     <StackPanel Orientation="Horizontal">
-                        <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Margin="0 1 8 0" Width="11" Height="11"/>
-                        <TextBlock Text="Add Item Image"/>
+                        <Icon:PackIconMaterial Kind="Upload" VerticalAlignment="Center" Margin="0 1 8 0" Width="11" Height="11"/>
+                        <TextBlock Text="Upload" FontWeight="Light" FontFamily="Segoe UI"/>
                     </StackPanel>
                 </Button>
+                <Button  
+                    
+                    Background="Black" 
+                    Style="{StaticResource addButton}" 
+                    VerticalAlignment="Bottom" 
+                    HorizontalAlignment="Center" 
+                    Height="50"
+                    Width="150"
+                    Content="DONE"
+                    FontSize="20"
+                    FontFamily="Segoe UI"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Click="Button_Click_1" Margin="0,20,4,5"
+            />
 
 
                 <Grid x:Name="gridShortDetails" Grid.Column="1" Margin="0,0,-175,0" Width="400">
@@ -213,15 +230,7 @@
             </Grid>
 
         </Border>
-        <Button  
-            Style="{StaticResource addButton}" 
-            VerticalAlignment="Bottom" 
-            HorizontalAlignment="Left" 
-            Margin="616,0,0,10" Height="18" Width="74"
-            Content="Add new item"
-            FontSize="10"
-            Click="Button_Click_1"
-            />
+        
 
     </Grid>
 </Window>

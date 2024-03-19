@@ -41,6 +41,11 @@ namespace UTEMerchant
             {
                 string selectedFilePath = openFileDialog.FileName;
                 image_path = selectedFilePath;
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(image_path);
+                bitmap.EndInit();
+                imgItem.Source = bitmap;
                 // Xử lý đường dẫn đã chọn ở đây
             }
         }
