@@ -64,10 +64,10 @@ namespace UTEMerchant
                 cmd.Parameters.AddWithValue("@ImagePath", item.ImagePath);
                 cmd.Parameters.AddWithValue("@UserId", item.user_id);
 
-                if (cmd.ExecuteNonQuery() > 0)
-                {
-                    //MessageBox.Show("Thêm thành công");
-                }
+                //if (cmd.ExecuteNonQuery() > 0)
+                //{
+                //    //MessageBox.Show("Thêm thành công");
+                //}
                
             }
             catch (Exception ex)

@@ -71,7 +71,7 @@
                     FontFamily="Segoe UI"
                     FontWeight="Bold"
                     Foreground="White"
-                    Click="Button_Click_1" Margin="0,20,4,0"
+                    Click="Button_Click_1" Margin="0,20,4,5"
             />
 
 
