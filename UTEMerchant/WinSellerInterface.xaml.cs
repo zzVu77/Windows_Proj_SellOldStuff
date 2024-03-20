@@ -26,6 +26,10 @@ namespace UTEMerchant
             InitializeComponent();
             txbName.Text = user.Name;
         }
+        public WinSellerInterface()
+        {  
+            InitializeComponent();
+        }
 
         private bool IsMaximize = false;
         private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

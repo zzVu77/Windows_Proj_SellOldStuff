@@ -23,6 +23,7 @@ namespace UTEMerchant
     public partial class WinNewItem : Window
     {
         private string image_path;
+        
         public WinNewItem()
         {
             InitializeComponent();
@@ -66,14 +67,29 @@ namespace UTEMerchant
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            ComboBoxItem typeItem = (ComboBoxItem)cbType.SelectedItem;
-            Item_DAO dao = new Item_DAO();
-            dao.add(new Item(Int32.Parse(txtID.Text.ToString()), txtName.Text.ToString(),rtbDescription.Document.ToString(),
-                float.Parse(txtOriginalPrice.Text.ToString()), float.Parse(txtPrice.Text.ToString()),
-                image_path, DateTime.Parse(txtBoughtDate.Text.ToString()), txtStatus.Text.ToString(), typeItem.Content.ToString(), 1));
-        }
+        { 
+            if (new CheckValid().IsNumeric(txtID.Text.ToString()) && new CheckValid().IsDateFormatValid(txtBoughtDate.Text.ToString()) 
+                && new CheckValid().IsDateValid(txtBoughtDate.Text.ToString()) && !string.IsNullOrEmpty(txtID.Text.ToString()) && 
+                !string.IsNullOrEmpty(txtBoughtDate.Text.ToString()))
+            {
+                ComboBoxItem typeItem = (ComboBoxItem)cbType.SelectedItem;
+                Item_DAO dao = new Item_DAO();
+                dao.add(new Item(Int32.Parse(txtID.Text.ToString()), txtName.Text.ToString(), rtbDescription.Document.ToString(),
+                    float.Parse(txtOriginalPrice.Text.ToString()), float.Parse(txtPrice.Text.ToString()),
+                    image_path, DateTime.Parse(txtBoughtDate.Text.ToString()), txtStatus.Text.ToString(), typeItem.Content.ToString(), 1));
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Invalid information !!!");
+                if (!(new CheckValid().IsNumeric(txtID.Text.ToString())) || string.IsNullOrEmpty(txtID.Text.ToString()))
+                    txtID.Background = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                if (!new CheckValid().IsDateFormatValid(txtBoughtDate.Text.ToString())
+                || !new CheckValid().IsDateValid(txtBoughtDate.Text.ToString()) || string.IsNullOrEmpty(txtBoughtDate.Text.ToString()))
+                    txtBoughtDate.Background = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+               
 
+            }
+        }
         /*private void Image_MouseUp(object sender, MouseButtonEventArgs e)
         {
             this.Close();
@@ -91,5 +107,6 @@ namespace UTEMerchant
         //        }
         //    }
         //}
+
     }
 }

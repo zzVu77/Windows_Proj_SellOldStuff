@@ -164,6 +164,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CheckValid.cs" />
     <Compile Include="DB_Connection.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Item_DAO.cs" />

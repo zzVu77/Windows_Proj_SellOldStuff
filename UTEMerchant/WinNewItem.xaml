@@ -149,10 +149,10 @@
 
                         <ComboBox x:Name="cbType" Tag="Type" Style="{StaticResource ComboBoxStyle1}" Margin="-0.3,-3,30,17" Width="102" SelectionChanged="ComboBox_SelectionChanged"  
                          >
-                            <ComboBoxItem Content="Hello"/>
-                            <ComboBoxItem Content="Xin chao"/>
-                            <ComboBoxItem Content="Hello"/>
-                            <ComboBoxItem Content="Hello"/>
+                            <ComboBoxItem Content="laptop"/>
+                            <ComboBoxItem Content="mobile phone"/>
+                            <ComboBoxItem Content="television"/>
+                            <ComboBoxItem Content="clothes"/>
                             <ComboBoxItem Content="Hello"/>
                             <ComboBoxItem Content="Hello"/>
                             <ComboBoxItem Content="Hello"/>
@@ -175,7 +175,7 @@
                             HorizontalAlignment="Left" 
                             BorderThickness="0.5" 
                             Margin="32,0,0,36"
-                            Tag="txtBoughtDate" Width="175"/>
+                            Tag="Bought Date" Width="175"/>
                     </Grid>
                     <Grid Grid.Row="2" HorizontalAlignment="Left" Margin="6,0,24,0" >
 
