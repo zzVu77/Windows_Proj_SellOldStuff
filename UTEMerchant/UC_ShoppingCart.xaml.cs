@@ -20,6 +20,9 @@ namespace UTEMerchant
     /// </summary>
     public partial class UC_ShoppingCart : UserControl
     {
+        public List<UC_ShoppingCartItemView> listUC_ShoppingCartItemViews = new List<UC_ShoppingCartItemView>();
+
+
         public UC_ShoppingCart()
         {
             InitializeComponent();
@@ -29,5 +32,6 @@ namespace UTEMerchant
         {
 
         }
+        
     }
 }

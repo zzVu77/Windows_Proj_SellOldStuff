@@ -30,21 +30,21 @@ namespace UTEMerchant
             this.MouseUp += UC_ItemView_MouseUp;
             
         }
-        public UC_ItemView(Item item)
-        {
-            
+        public UC_ItemView(Item item) : this()
+        {            
             info = item;
-            InitializeComponent();
-            this.MouseUp += UC_ItemView_MouseUp;
-            txblItemName.Text = info.Name;
-
         }
 
         private void UC_ItemView_MouseUp(object sender, MouseButtonEventArgs e)
+        {            
+            ItemClicked?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void btnAddToCart_Click(object sender, RoutedEventArgs e)
         {
             ItemClicked?.Invoke(this, EventArgs.Empty);
         }
-       
     }
+
 }
 

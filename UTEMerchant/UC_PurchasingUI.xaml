@@ -243,7 +243,8 @@
                         <Image x:Name="imgShoppingCart"
                                Margin="10,10,10,30"
                                Grid.Column="2"
-                               Source="{Icon:FeatherIconsImage Brush=Black, Kind=ShoppingCart}"/>
+                               Source="{Icon:FeatherIconsImage Brush=Black, Kind=ShoppingCart}"
+                               MouseDown="imgShoppingCart_MouseDown"/>
                         <Image x:Name="imgFilter"                               
                                Margin="10,10,10,30"
                                Source="{Icon:FeatherIconsImage Brush=Black, Kind=Filter}" 
@@ -263,7 +264,8 @@
                     <!--Selected item's detailed information section-->
 
                     <DockPanel x:Name="dpSelectedItemDetailedInformation"
-                               DockPanel.Dock="Right">
+                               DockPanel.Dock="Right" Width="500">
+                        <local:UC_ShoppingCart x:Name="uc_ShoppingCart"/>
                     </DockPanel>
 
                     <!--Items list section-->
@@ -293,16 +295,7 @@
                                         </Setter>
                                     </Style>
                                 </WrapPanel.Resources>
-                                <local:UC_ItemView ItemClicked="UC_ItemView_ItemClicked" />
-                                <local:UC_ItemView ItemClicked="UC_ItemView_ItemClicked" />
-                                <local:UC_ItemView ItemClicked="UC_ItemView_ItemClicked" />
-                                <local:UC_ItemView ItemClicked="UC_ItemView_ItemClicked" />
-                                <local:UC_ItemView ItemClicked="UC_ItemView_ItemClicked" />
-                                <local:UC_ItemView ItemClicked="UC_ItemView_ItemClicked" />
-                                <local:UC_ItemView ItemClicked="UC_ItemView_ItemClicked" />
-                                <local:UC_ItemView ItemClicked="UC_ItemView_ItemClicked" />
-                                <local:UC_ItemView ItemClicked="UC_ItemView_ItemClicked" />
-                                <local:UC_ItemView ItemClicked="UC_ItemView_ItemClicked" />
+                                
 
 
                             </WrapPanel>

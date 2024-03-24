@@ -20,15 +20,15 @@
                     <ControlTemplate TargetType="Button">
                         <Grid x:Name="grdCircleButton">
                             <Ellipse x:Name="ellCircle" 
-                                     StrokeThickness="5"
-                                     Stroke="#B56576"
-                                     Fill="Transparent"
-                                     Height="40"
-                                     Width="{Binding ElementName=ellCircle,Path=ActualHeight}">
+                             StrokeThickness="5"
+                             Stroke="#B56576"
+                             Fill="Transparent"
+                             Height="40"
+                             Width="{Binding ElementName=ellCircle,Path=ActualHeight}">
                             </Ellipse>
                             <Image x:Name="imgArrowLeftIcon"
-                                   Source="{Icon:FeatherIconsImage Brush=#B56576, Kind=ArrowLeft}"
-                                   Height="20"/>
+                           Source="{Icon:FeatherIconsImage Brush=#B56576, Kind=ArrowLeft}"
+                           Height="20"/>
                         </Grid>
                     </ControlTemplate>
                 </Button.Template>
@@ -56,20 +56,16 @@
                            TextAlignment="Center"/>
             </Grid>
             <ScrollViewer x:Name="svItems"
-                          Grid.Row="1">
-                <StackPanel x:Name="spItems"
-                            Orientation="Vertical">
-                    <local:UC_ShoppingCartItemView/>
-                    <local:UC_ShoppingCartItemView/>
-                    <local:UC_ShoppingCartItemView/>
-                    <local:UC_ShoppingCartItemView/>
-                    <local:UC_ShoppingCartItemView/>
+                          Grid.Row="1"
+                          VerticalScrollBarVisibility="Hidden">
+                <StackPanel x:Name="spItems">
 
 
 
                 </StackPanel>
             </ScrollViewer>
-            
+
+
         </Grid>
     </Grid>
 </UserControl>

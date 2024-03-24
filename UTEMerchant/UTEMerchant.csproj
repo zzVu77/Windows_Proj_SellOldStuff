@@ -170,6 +170,9 @@
     <Compile Include="Item_DAO.cs" />
     <Compile Include="RectConverter.cs" />
     <Compile Include="TextToVisibilityConverter.cs" />
+    <Compile Include="UC_ShoppingCart.xaml.cs">
+      <DependentUpon>UC_ShoppingCart.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UC_PurchasingUI.xaml.cs">
       <DependentUpon>UC_PurchasingUI.xaml</DependentUpon>
     </Compile>
@@ -182,9 +185,6 @@
     <Compile Include="UC_SellerUI.xaml.cs">
       <DependentUpon>UC_SellerUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UC_ShoppingCart.xaml.cs">
-      <DependentUpon>UC_ShoppingCart.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UC_ShoppingCartItemView.xaml.cs">
       <DependentUpon>UC_ShoppingCartItemView.xaml</DependentUpon>
     </Compile>
@@ -196,6 +196,10 @@
     <Compile Include="WinSellerInterface.xaml.cs">
       <DependentUpon>WinSellerInterface.xaml</DependentUpon>
     </Compile>
+    <Page Include="UC_ShoppingCart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UC_PurchasingUI.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -207,10 +211,6 @@
     <Page Include="UC_SellerUI.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UC_ShoppingCart.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="UC_ShoppingCartItemView.xaml">
       <Generator>MSBuild:Compile</Generator>

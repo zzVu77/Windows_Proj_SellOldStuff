@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UTEMerchant", "UTEMerchant.csproj", "{FF8450CA-F11F-47A9-81A9-B822653C3EC7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FF8450CA-F11F-47A9-81A9-B822653C3EC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF8450CA-F11F-47A9-81A9-B822653C3EC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF8450CA-F11F-47A9-81A9-B822653C3EC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF8450CA-F11F-47A9-81A9-B822653C3EC7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {94FC9ACE-9D40-4BB9-AFA2-43D6948E69E6}
+	EndGlobalSection
+EndGlobal
