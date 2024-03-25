@@ -40,6 +40,27 @@
         <FontFamily x:Key="NuWorldTight4">/UTEMerchant;component/Resources/Fonts/Nu World/NuworldTight4.ttf#Nu World Tight</FontFamily>
         <FontFamily x:Key="SpaceGroteskBold">/UTEMerchant;component/Resources/Fonts/Space Grotesk/static/SpaceGrotesk-Bold.ttf#Space Grotesk</FontFamily>
 
+        <Style x:Key="textHint" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Grid.Column" Value="1" />
+            <Setter Property="Panel.ZIndex" Value="1" />
+            <Setter Property="Margin" Value="10 0 0 0" />
+            <Setter Property="Foreground" Value="DimGray" />
+            
+        </Style>
+
+
+        <Style x:Key="textBox" TargetType="Control">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Grid.Column" Value="1" />
+            <Setter Property="Margin" Value="10 0 0 0" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontFamily" Value="Segoe UI" />
+            <Setter Property="FontWeight" Value="DemiBold" />
+            <Setter Property="BorderBrush" Value="Black" />
+            <Setter Property="BorderThickness" Value="0" />
+        </Style>
+        
         <!-- Style for top button -->
         <Style x:Key="topButton" TargetType="Button">
             <Setter Property="Background" Value="Transparent" />
@@ -853,8 +874,7 @@
         <!--Resource Dictionary for HandyControl Package-->
         <ResourceDictionary x:Key="handy">
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>
+     
                 <ui:ThemesDictionary Theme="Dark" />
                 <ui:ControlsDictionary />                
             </ResourceDictionary.MergedDictionaries>          
@@ -864,12 +884,12 @@
             <Setter Property="Width" Value="200"/>
             <Setter Property="Margin" Value="0 20 0 0"/>
             <Setter Property="Background" Value="#3AB19B"/>
-            <Setter Property="Foreground" Value="#FDFEFE"/>
+            <Setter Property="Foreground" Value="Black"/>
             <Setter Property="FocusVisualStyle"  Value="{x:Null}"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" CornerRadius="25" BorderThickness="1" BorderBrush="#49b7A3" Padding="15">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="25" BorderThickness="2" BorderBrush="#fec959" Padding="15">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                               
                         </Border>
