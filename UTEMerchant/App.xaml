@@ -3,11 +3,13 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:UTEMerchant"
-             StartupUri="WinLogin.xaml"
+             StartupUri="WinSellerInterface.xaml"
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
               xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
              xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">                
     <Application.Resources>
+        <!--Converters-->
+        <local:DefaultTextConverter x:Key="DefaultTextConverter"/>
         <local:RectConverter x:Key="RectConverter"/>
         <local:TextToVisibilityConverter x:Key="TextToVisibilityConverter"/>
         <!--#region Gradient Color-->
@@ -30,7 +32,10 @@
 
 
         <!--Images-->
+        <ImageSource x:Key="Bartering">/UTEMerchant;component/Img/Bartering.png</ImageSource>
         <ImageSource x:Key="DashIcon">/UTEMerchant;component/Resources/Icons/Dash Icon.png</ImageSource>
+
+        <!--Icon-->
         <ImageSource x:Key="HeartIcon">/UTEMerchant;component/Resources/Icons/Heart Icon.ico</ImageSource>
         <ImageSource x:Key="ShoppingCartIcon">/UTEMerchant;component/Resources/Icons/Shopping Cart Icon.ico</ImageSource>
         <ImageSource x:Key="SearchIcon">/UTEMerchant;component/Resources/Icons/Search Icon.ico</ImageSource>
