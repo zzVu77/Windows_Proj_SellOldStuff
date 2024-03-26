@@ -352,6 +352,8 @@
       <DependentUpon>db_ute_merchant.mdf</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Img\Registration 1.png" />
+    <Resource Include="Img\Registration 2.png" />
     <Resource Include="Img\TrustedSeller.png" />
     <Resource Include="Img\TradexcellentLogo.png" />
     <Resource Include="Img\UTELogo.png" />
