@@ -29,6 +29,8 @@ namespace UTEMerchant
         public WinSellerInterface()
         {  
             InitializeComponent();
+            uc_StartSelling.btnStartSelling.Click += OnStartTradingButtonClicked;
+            uc_SellerRegistration.btnDone.Click += OnDoneRegistrationClicked;
         }
 
         private bool IsMaximize = false;
@@ -88,15 +90,13 @@ namespace UTEMerchant
             // If the user haven't registered to be seller
             else if (1 < 2)
             {
-                UC_StartSelling ucStartSelling = new UC_StartSelling();
-                ucStartSelling.btnStartSelling.Click += OnStartTradingButtonClicked;
-                grdSelectedMenuItem.Children.Add(ucStartSelling);
+                uc_PurchasingUI.Visibility = Visibility.Collapsed;
+                uc_StartSelling.Visibility = Visibility.Visible;
             }
             // If the user have registered to be a seller but registration hasn't been approved
             else if (1 == 2)
             {
-                UC_RegistrationComplete uc_RegistrationComplete = new UC_RegistrationComplete();
-                grdSelectedMenuItem.Children.Add(uc_RegistrationComplete);
+                uc_RegistrationComplete.Visibility = Visibility.Visible;
             }
 
         }
@@ -106,20 +106,8 @@ namespace UTEMerchant
         {
             if (sender is Button)
             {
-                foreach (var uc in grdSelectedMenuItem.Children) 
-                {
-                    if (uc is UC_StartSelling trading)
-                    {
-                        // Dispose the object
-                        grdSelectedMenuItem.Children.Remove(trading);
-                        trading.Visibility = Visibility.Collapsed;
-
-                        UC_SellerRegistration ucSellerRegistration = new UC_SellerRegistration();
-                        ucSellerRegistration.btnDone.Click += OnDoneRegistrationClicked;
-                        grdSelectedMenuItem.Children.Add(ucSellerRegistration);
-                        break;
-                    }
-                }
+                uc_StartSelling.Visibility = Visibility.Collapsed;
+                uc_SellerRegistration.Visibility = Visibility.Visible;
             }
         }
 
@@ -128,18 +116,8 @@ namespace UTEMerchant
         {
             if (sender is Button)
             {
-                foreach (var uc in grdSelectedMenuItem.Children)
-                {
-                    if (uc is UC_SellerRegistration registration)
-                    {
-                        grdSelectedMenuItem.Children.Remove(registration);
-                        registration.Visibility = Visibility.Collapsed;
-
-                        UC_RegistrationComplete uc_RegistrationComplete = new UC_RegistrationComplete();
-                        grdSelectedMenuItem.Children.Add(uc_RegistrationComplete);
-                        break;
-                    }
-                }
+                uc_SellerRegistration.Visibility = Visibility.Collapsed;
+                uc_RegistrationComplete.Visibility = Visibility.Visible;
             }
         }
 

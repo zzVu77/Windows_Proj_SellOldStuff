@@ -389,8 +389,12 @@
                 <local:UC_PurchasingUI x:Name="uc_PurchasingUI"
                                        Visibility="Collapsed"
                                        Background="Transparent"/>
-                <local:UC_StartSelling x:Name="uc_StartTrading"
+                <local:UC_StartSelling x:Name="uc_StartSelling"
                                        Visibility="Collapsed"/>
+                <local:UC_RegistrationComplete x:Name="uc_RegistrationComplete"
+                                               Visibility="Collapsed"/>
+                <local:UC_SellerRegistration x:Name="uc_SellerRegistration"
+                                             Visibility="Collapsed"/>
             </Grid>
 
             <!--Main Section-->
