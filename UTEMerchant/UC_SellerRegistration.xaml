@@ -1,0 +1,439 @@
+﻿<UserControl x:Class="UTEMerchant.UC_SellerRegistration"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UTEMerchant"
+             xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="670" d:DesignWidth="800">
+    <UserControl.Resources>
+        <!--TextBoxStyle-->
+        <Style x:Key="DefaultTextBoxStyle" TargetType="TextBox">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Grid>
+                            <Border x:Name="border" 
+                                    Background="{TemplateBinding Background}" 
+                                    BorderBrush="{TemplateBinding BorderBrush}" 
+                                    BorderThickness="{TemplateBinding BorderThickness}" 
+                                    CornerRadius="15"/>
+                            <TextBlock x:Name="defaultText" 
+                                       Text="{Binding RelativeSource={RelativeSource TemplatedParent}, 
+                                                      Path=Tag,
+                                                      Converter={StaticResource DefaultTextConverter}}" 
+                                       Foreground="LightGray"
+                                       FontStyle="Italic"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Margin="10,0,0,0"
+                                       Visibility="Collapsed"/>
+                            <ScrollViewer x:Name="PART_ContentHost" 
+                                          HorizontalAlignment="Stretch" 
+                                          VerticalAlignment="Center"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsFocused" Value="False"/>
+                                    <Condition Property="Text" Value=""/>
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="defaultText" Property="Visibility" Value="Visible"/>
+                            </MultiTrigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter TargetName="defaultText" Property="Visibility" Value="Collapsed"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="Foreground" Value="Black"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!--ComboBoxToggleButton Style-->
+        <Style x:Key="ComboBoxToggleButtonStyle" TargetType="ToggleButton">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Grid>
+                            <Border x:Name="border" 
+                                    Background="{TemplateBinding Background}" 
+                                    BorderBrush="{TemplateBinding BorderBrush}" 
+                                    BorderThickness="{TemplateBinding BorderThickness}" 
+                                    CornerRadius="15">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <ContentPresenter HorizontalAlignment="Left" 
+                                                      Margin="3,0,0,0"
+                                                      VerticalAlignment="Center" 
+                                                      Content="{TemplateBinding Content}"/>
+                                    <Path x:Name="Arrow" 
+                                          Grid.Column="1" 
+                                          Data="M0,0 L0,4 L6,10 L12,4 L12,0 L6,6 z"
+                                          Fill="Black"
+                                          VerticalAlignment="Center"
+                                          Margin="0,0,10,0"/>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="Arrow" Property="Data" Value="M0,12 L0,8 L6,2 L12,8 L12,12 L6,6 z"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--ComboBox Style-->
+        <Style x:Key="DefaultComboBoxStyle" TargetType="ComboBox">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+                            <Border x:Name="border" 
+                                    Background="{TemplateBinding Background}" 
+                                    BorderBrush="{TemplateBinding BorderBrush}" 
+                                    BorderThickness="{TemplateBinding BorderThickness}" 
+                                    CornerRadius="15"/>
+                            <TextBlock x:Name="defaultText" 
+                                       Text="{Binding RelativeSource={RelativeSource TemplatedParent}, 
+                                                      Path=Tag,
+                                                      Converter={StaticResource DefaultTextConverter}}" 
+                                       Foreground="LightGray"
+                                       FontStyle="Italic"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Margin="10,0,0,0"
+                                       Visibility="Collapsed"/>
+                            <ToggleButton x:Name="toggleButton" 
+                                          ClickMode="Press" 
+                                          Focusable="False" 
+                                          Style="{StaticResource ComboBoxToggleButtonStyle}"
+                                          Background="Transparent" 
+                                          IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"/>
+                            <ContentPresenter x:Name="contentPresenter" 
+                                              ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" 
+                                              Content="{TemplateBinding SelectionBoxItem}" 
+                                              ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" 
+                                              HorizontalAlignment="Left" 
+                                              Margin="10,3,23,3" 
+                                              VerticalAlignment="Center"/>
+                            <Popup x:Name="popup" 
+                                   AllowsTransparency="True" 
+                                   IsOpen="{TemplateBinding IsDropDownOpen}" 
+                                   Placement="Bottom" 
+                                   Focusable="False"
+                                   PopupAnimation="Slide">
+                                <Grid x:Name="DropDown" 
+                                      SnapsToDevicePixels="True" 
+                                      MinWidth="{TemplateBinding ActualWidth}" 
+                                      MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                            <ScrollViewer SnapsToDevicePixels="True">
+                                        <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained" />
+                                    </ScrollViewer>
+                                </Grid>
+                            </Popup>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsFocused" Value="False"/>
+                                    <Condition Property="Text" Value=""/>
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="defaultText" Property="Visibility" Value="Visible"/>
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsFocused" Value="True"/>
+                                    <Condition Property="Text" Value=""/>
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="defaultText" Property="Visibility" Value="Visible"/>
+                            </MultiTrigger>
+                            
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="Foreground" Value="Black"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!--CheckBox Style-->
+        <Style x:Key="FancyCheckBoxStyle" TargetType="CheckBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Border x:Name="border" 
+                                    Grid.ColumnSpan="2"
+                                    Background="{TemplateBinding Background}" 
+                                    BorderBrush="{TemplateBinding BorderBrush}" 
+                                    BorderThickness="{TemplateBinding BorderThickness}" 
+                                    CornerRadius="15"/>
+                            <Border x:Name="CircleBorder" 
+                                    Grid.Column="0"
+                                    Width="20"
+                                    Height="20"
+                                    BorderThickness="2"
+                                    BorderBrush="Gray" 
+                                    CornerRadius="10"
+                                    Background="White"
+                                    Margin="10,0">
+                                <Image x:Name="imgCheckMark"
+                                       Source="{Icon:CooliconsImage Kind=Check, Brush=Green}"
+                                       Visibility="Collapsed"
+                                       Margin="3"></Image>
+                            </Border>
+                            <ContentPresenter Grid.Column="1" 
+                                              HorizontalAlignment="Left"
+                                              VerticalAlignment="Center"
+                                              Margin="0,0,10,0"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="imgCheckMark" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="CircleBorder" Property="Background" Value="#FFD0D0D0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+    </UserControl.Resources>
+    <Grid><AccessText></AccessText>
+        <Grid x:Name="grdRegistration"
+              Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition x:Name="rLogoImage" Height="4*"/>
+                <RowDefinition x:Name="rLogoName" Height="Auto"/>
+                <RowDefinition x:Name="rRegistrationTitle" Height="1.5*"/>
+                <RowDefinition x:Name="rShopName" Height="*"/>
+                <RowDefinition x:Name="rShopAddressLabel" Height="*"/>
+                <RowDefinition x:Name="rShopAddress" Height="*"/>
+                <RowDefinition x:Name="rPickupAddressLabel" Height="*"/>
+                <RowDefinition x:Name="rPickupAddress" Height="*"/>
+                <RowDefinition x:Name="rEmpty1" Height="0.5*"/>
+                <RowDefinition x:Name="rContactNumber" Height="*"/>
+                <RowDefinition x:Name="rEmpty2" Height="0.5*"/>
+                <RowDefinition x:Name="rEmail" Height="*"/>
+                <RowDefinition x:Name="rEmpty3" Height="0.5*"/>
+                <RowDefinition x:Name="rShippingChannel" Height="*"/>
+                <RowDefinition x:Name="rBusinessTypeLabel" Height="*"/>
+                <RowDefinition x:Name="rBusinessType" Height="*"/>
+                <RowDefinition x:Name="rEmpty4" Height="0.5*"/>
+                <RowDefinition x:Name="rDoneButton" Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!--Logo-->
+            <Image Grid.Row="0"
+                   x:Name="imgLogo"
+                   Source="Img/TradexcellentLogo.png"
+                   Stretch="Uniform"/>
+
+
+            <Image x:Name="imgTrustedSeller"
+                   Grid.Row="0"
+                   HorizontalAlignment="Right"
+                   Source="Img/TrustedSeller.png"/>
+
+            <!--Logo Name-->
+            <Label x:Name="tbRegistrationTitle"
+                   Content="Registration"
+                   FontFamily="Space Grotesk Medium"
+                   FontWeight="DemiBold"
+                   FontSize="30"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   HorizontalContentAlignment="Center"
+                   VerticalContentAlignment="Center"
+                   Grid.Row="2"/>
+
+            <!--Shop Name-->
+            <TextBox x:Name="txtShopName"
+                     Grid.Row="3"
+                     Style="{StaticResource DefaultTextBoxStyle}"
+                     Tag="Shop name"
+                     BorderBrush="Gray"
+                     BorderThickness="3"/>
+
+            <!--Shop Address-->
+            <Label x:Name="lblShopAddress"
+                   Grid.Row="4"
+                   Content="Shop address"
+                   VerticalContentAlignment="Center"/>
+
+            <UniformGrid x:Name="unigrdShopAddress"
+                         Grid.Row="5"
+                         Columns="3">
+                <ComboBox x:Name="cbCity"
+                          Style="{StaticResource DefaultComboBoxStyle}"
+                          Background="White"
+                          BorderBrush="Gray"
+                          BorderThickness="3"
+                          Tag="City"
+                          Margin="0,0,20,0"/>
+                <ComboBox x:Name="cbDistrict"
+                          Style="{StaticResource DefaultComboBoxStyle}"
+                          Background="White"
+                          BorderBrush="Gray"
+                          BorderThickness="3"
+                          Tag="District"
+                          Width="{Binding ElementName=cbCity, Path=ActualWidth}"
+                          HorizontalAlignment="Center"/>
+                <ComboBox x:Name="cbWard"
+                          Style="{StaticResource DefaultComboBoxStyle}"
+                          Background="White"
+                          BorderBrush="Gray"
+                          BorderThickness="3"
+                          Tag="Ward"
+                          Margin="20,0,0,0"/>
+            </UniformGrid>
+
+            <!--Pickup Address-->
+            <Label x:Name="lblPickupAddress"
+                   Grid.Row="6"
+                   Content="Pickup address"
+                   VerticalContentAlignment="Center"/>
+
+            <UniformGrid x:Name="unigrdPickupAddress"
+                         Grid.Row="7"
+                         Columns="3">
+                <ComboBox x:Name="cbPickupCity"
+                          Style="{StaticResource DefaultComboBoxStyle}"
+                          Background="White"
+                          BorderBrush="Gray"
+                          BorderThickness="3"
+                          Tag="City"
+                          Margin="0,0,20,0"/>
+                <ComboBox x:Name="cbPickupDistrict"
+                          Style="{StaticResource DefaultComboBoxStyle}"
+                          Background="White"
+                          BorderBrush="Gray"
+                          BorderThickness="3"
+                          Tag="District"
+                          Width="{Binding ElementName=cbPickupCity, Path=ActualWidth}"
+                          HorizontalAlignment="Center"/>
+                <ComboBox x:Name="cbPickupWard"
+                          Style="{StaticResource DefaultComboBoxStyle}"
+                          Background="White"
+                          BorderBrush="Gray"
+                          BorderThickness="3"
+                          Tag="Ward"
+                          Margin="20,0,0,0"/>
+            </UniformGrid>
+
+            <!--Contact Number-->
+            <TextBox x:Name="txtContactNumber"
+                     Grid.Row="9"
+                     Style="{StaticResource DefaultTextBoxStyle}"
+                     Tag="Contact number"
+                     BorderBrush="Gray"
+                     BorderThickness="3"/>
+
+            <!--Email-->
+            <TextBox x:Name="txtEmail"
+                     Grid.Row="11"
+                     Style="{StaticResource DefaultTextBoxStyle}"
+                     Tag="Email"
+                     BorderBrush="Gray"
+                     BorderThickness="3"/>
+
+            <!--Shipping Channel-->
+            <ComboBox x:Name="cbShippingChannel"
+                      Grid.Row="13"
+                      Style="{StaticResource DefaultComboBoxStyle}"
+                      Background="White"
+                      BorderBrush="Gray"
+                      BorderThickness="3"
+                      Tag="Shipping channel"/>
+
+            <!--Business Type-->
+            <Label x:Name="lblBusinessType"
+                   Grid.Row="14"
+                   Content="Business type"
+                   VerticalContentAlignment="Center"/>
+
+            <UniformGrid x:Name="unigrdBusinessType"
+                         Grid.Row="15"
+                         Columns="3">
+                <CheckBox x:Name="chkIndividual"
+                          Style="{StaticResource FancyCheckBoxStyle}"
+                          Content="Individual"
+                          Background="White"
+                          BorderBrush="Gray"
+                          BorderThickness="3"
+                          Margin="0,0,20,0"/>
+                <CheckBox x:Name="chkHouseholdBusiness"
+                          Style="{StaticResource FancyCheckBoxStyle}"
+                          Content="Household business"
+                          Background="White"
+                          BorderBrush="Gray"
+                          BorderThickness="3"
+                          Margin="20,0,20,0"
+                          HorizontalAlignment="Center"/>
+                <CheckBox x:Name="chkEnterprise"
+                          Style="{StaticResource FancyCheckBoxStyle}"
+                          Content="Enterprise"
+                          Background="White"
+                          BorderBrush="Gray"
+                          BorderThickness="3"
+                          Margin="20,0,0,0"
+                          HorizontalAlignment="Right"/>
+            </UniformGrid>
+            <Button x:Name="btnDone"
+                    Grid.Row="17"
+                    HorizontalAlignment="Center"
+                    FontSize="12"
+                    Content="Done">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Border" CornerRadius="20" 
+                                Background="LightGreen" 
+                                BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                              VerticalAlignment="Center"
+                                              Margin="30,0"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="LimeGreen"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="DarkGreen"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </Grid>
+    </Grid>
+</UserControl>
