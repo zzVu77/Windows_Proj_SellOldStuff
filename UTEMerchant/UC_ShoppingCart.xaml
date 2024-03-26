@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:local="clr-namespace:UTEMerchant"
-             mc:Ignorable="d" Width="600" Height="1000">
-    <Grid Background="#E56B6F">
+             mc:Ignorable="d" Width="300" Height="1000">
+    <Border Background="#E56B6F" CornerRadius="30">
         <Grid x:Name="grdShoppingCart">
             <Grid.RowDefinitions>
                 <RowDefinition x:Name="rBackButton" Height="Auto"/>
@@ -67,5 +67,5 @@
 
 
         </Grid>
-    </Grid>
+    </Border>
 </UserControl>

@@ -76,6 +76,7 @@ namespace UTEMerchant
         {
             if (dpRightSideBar.Visibility == Visibility.Collapsed)
             {
+                if (uc_ShoppingCart.Visibility == Visibility.Visible) uc_ShoppingCart.Visibility = Visibility.Collapsed;
                 dpRightSideBar.Visibility = Visibility.Visible;
             }
             else dpRightSideBar.Visibility = Visibility.Collapsed;
@@ -152,7 +153,13 @@ namespace UTEMerchant
 
         private void imgShoppingCart_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            
+            if (uc_ShoppingCart.Visibility == Visibility.Collapsed )
+            {
+                if(dpRightSideBar.Visibility == Visibility.Visible) dpRightSideBar.Visibility = Visibility.Collapsed;
+                uc_ShoppingCart.Visibility = Visibility.Visible;
+               
+            }
+            else uc_ShoppingCart.Visibility = Visibility.Collapsed;
         }
         //private void svItemsList_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         //{

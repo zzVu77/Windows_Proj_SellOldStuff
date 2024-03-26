@@ -159,8 +159,8 @@
                              Data="F1 M 0,0 L 2.667,2.66665 L 5.3334,0 L 5.3334,-1.78168 L 2.6667,0.88501 L0,-1.78168 L0,0 Z" 
                              Fill="{StaticResource cs_Clouds}" 
                              Stretch="Fill"
-                             Height="15"
-                             Width="20"
+                             Height="10"
+                             Width="12"
                              HorizontalAlignment="Right"                             
                              VerticalAlignment="Center"
                              Margin="0 5 10 5"
@@ -216,7 +216,7 @@
                                         Margin="0 5 5 5 "
                                        Foreground="{StaticResource cs_WaterMark}"
                                        Visibility="Collapsed"
-                                       Padding="9 0 0 0 "
+                                       Padding="8 0 0 0 "
                                        Content="{TemplateBinding Tag}"
                                        FontFamily="Roboto"
                                        FontSize="12"
@@ -227,6 +227,7 @@
                                      VerticalAlignment="Center"
                                      Focusable="True"
                                      Visibility="Hidden"
+                                     
                                      />
                             <Popup x:Name="Popup"
                                    Placement="Bottom"

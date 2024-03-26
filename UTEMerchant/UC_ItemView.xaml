@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+               xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
               xmlns:hc="https://handyorg.github.io/handycontrol"
              xmlns:local="clr-namespace:UTEMerchant"
              mc:Ignorable="d" 
@@ -16,30 +17,47 @@
     </UserControl.Resources>
 
     <Grid x:Name="grdUC" >
-        <hc:Card  MaxWidth="240" BorderThickness="0,0,0,0" Effect="{DynamicResource EffectShadow2}" Margin="8,0,8,0"  Height="307" VerticalAlignment="Center" Background="White" BorderBrush="#FF736161">
+        <hc:Card  MaxWidth="240" 
+                  BorderThickness="0,0,0,0"
+                  Effect="{DynamicResource EffectShadow2}" 
+                  Margin="8,0,8,0"  Height="307" 
+                  VerticalAlignment="Center" 
+                  Background="White" 
+BorderBrush="#FF736161">
 
             <!--Card Content section-->
             <Border CornerRadius="4,4,0,0" Width="160" Height="160">
                 <!--<TextBlock   TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Text="test" Foreground="{x:Null}"/>-->
-                <Image Source="/Img/iPhone-14-Pro-Max-9907.jpg"/>
+                <Image x:Name="imgItemPic"/>
             </Border>
             <!--Card Footer part-->
             <hc:Card.Footer >
-                <StackPanel Margin="5,0,0,0" Height="114">
+                <StackPanel Margin="5,0,0,0" Height="125">
                     <!--Card First-level content-->
-                    <TextBlock x:Name="txblItemName" TextWrapping="WrapWithOverflow" 
+                    <TextBlock x:Name="txblItemName" TextWrapping="NoWrap" 
                                    Style="{DynamicResource TextBlockLargeBold}"
+                                   FontSize="18"
                                    TextTrimming="CharacterEllipsis" 
-                                   Text=""
-                                   HorizontalAlignment="Left" FontFamily="Segoe UI Black"   
-                                    
+                                   Text="Iphone 13 Pro Max"
+                                   HorizontalAlignment="Stretch"
+                                   FontFamily="Segoe UI Black"   
+                                   VerticalAlignment="Top" Padding="10,0,10,0"
+                                                                       
                                     />
                     <!--Card Secondary content-->
                     <TextBlock TextWrapping="WrapWithOverflow" 
-                                   Style="{DynamicResource TextBlockDefault}" 
-                                   TextTrimming="CharacterEllipsis" 
-                                   Text=" $10000"
-                                   HorizontalAlignment="Left" FontSize="20" FontFamily="Rockwell" FontWeight="Bold"  Foreground="#FFEA4444" Height="26" Width="81" Margin="0,20,0,0"                                 
+                               Style="{DynamicResource TextBlockDefault}" 
+                               TextTrimming="CharacterEllipsis" 
+                               Text=" $10000"
+                               HorizontalAlignment="Left" 
+                               FontSize="20" 
+                               FontFamily="Rockwell" 
+                               FontWeight="Bold"  
+                               Foreground="#FF3131" 
+                               Height="26" 
+                               Width="81"
+                               Margin="0,20,0,0"  
+                               x:Name="txblPrice"
                                    
                         />
                     <Button x:Name="btnAddToCart"
@@ -49,19 +67,19 @@
                         Height="26" VerticalAlignment="Center" 
                         VerticalContentAlignment="Center" 
                         Padding="5,5,5,5" BorderThickness="1,1,1,1" 
-                        FontFamily="Rockwell" FontWeight="Bold"
-                        Content="  Add to cart" 
-                            Click="btnAddToCart_Click">
+                        FontFamily="Rockwell" FontWeight="Bold"                      
+                        Click="btnAddToCart_Click">
 
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
-                                <Border CornerRadius="7" Background="Red" Width="75">
+                                <Border CornerRadius="7" Background="#FF3131" Width="75">
                                     <ContentPresenter VerticalAlignment="Center" />
 
                                 </Border>
 
                             </ControlTemplate>
                         </Button.Template>
+                        <Icon:PackIconMaterial Kind="CartPlus" HorizontalAlignment="Stretch" Foreground="White" />
 
                     </Button>
 

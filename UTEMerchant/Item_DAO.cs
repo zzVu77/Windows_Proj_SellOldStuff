@@ -14,7 +14,7 @@ namespace UTEMerchant
     public class Item_DAO
     {
         SqlConnection conn = new
-       SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\db_ute_merchant.mdf;Integrated Security=True");
+       SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\FPTSHOP\Desktop\Window_Proj_UTEMerchant\UTEMerchant\db_ute_merchant.mdf;Integrated Security=True");
 
         public List<Item> items = new List<Item>();
         public void Load()

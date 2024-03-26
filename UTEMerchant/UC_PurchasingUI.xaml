@@ -264,8 +264,10 @@
                     <!--Selected item's detailed information section-->
 
                     <DockPanel x:Name="dpSelectedItemDetailedInformation"
-                               DockPanel.Dock="Right" Width="500">
-                        <local:UC_ShoppingCart x:Name="uc_ShoppingCart"/>
+                               DockPanel.Dock="Right" Width="300"
+                               HorizontalAlignment="Right">
+                        <local:UC_ShoppingCart x:Name="uc_ShoppingCart" Visibility="Collapsed" HorizontalAlignment="Right"/>
+                        
                     </DockPanel>
 
                     <!--Items list section-->
@@ -277,7 +279,7 @@
                                       VerticalScrollBarVisibility="Hidden">
                             <!--PreviewMouseDown="svItemsList_PreviewMouseDown"-->
                             <WrapPanel x:Name="wpItemsList"
-                                       Width="{Binding ElementName=dpItemsList,Path=ActualWidth}"
+                                       Width="800"
                                        MouseLeftButtonDown="wpItemsList_MouseLeftButtonDown"
                                        Margin="0,0,20,0">
                                 <WrapPanel.Resources>
@@ -285,9 +287,9 @@
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate TargetType="local:UC_ItemView">
-
-                                                    <Border Margin="0,5,0,25" BorderBrush="Transparent" Height="{Binding Height, RelativeSource={RelativeSource AncestorType={x:Type local:UC_ItemView}}}">
-
+                                                    <Border Margin="0,5,0,25" 
+                                                            BorderBrush="Transparent" 
+                                                            Height="{Binding Height, RelativeSource={RelativeSource AncestorType={x:Type local:UC_ItemView}}}">
                                                         <ContentPresenter/>
                                                     </Border>
                                                 </ControlTemplate>
@@ -295,9 +297,6 @@
                                         </Setter>
                                     </Style>
                                 </WrapPanel.Resources>
-                                
-
-
                             </WrapPanel>
                         </ScrollViewer>
                     </DockPanel>
@@ -311,13 +310,14 @@
             </Grid>
 
             <!--Right side bar-->
-
+            
+                
             <DockPanel x:Name="dpRightSideBar"
-                       Grid.Column="1"
-                       LastChildFill="True" 
+                       Grid.Column="1"                 
                        Background="#E56B6F"
-                       Visibility="Collapsed">
-
+                       LastChildFill="True" 
+                       Visibility="Collapsed"
+                       >             
                 <Grid x:Name="grdFilterOptions">
                     <Grid.RowDefinitions>
                         <RowDefinition Name="rCategory" Height="Auto"/>
@@ -536,6 +536,9 @@ HorizontalAlignment="Left">
                     </DockPanel>
                 </Grid>
             </DockPanel>
+            
+                
+           
         </Grid>
 
 
