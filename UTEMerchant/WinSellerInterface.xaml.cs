@@ -75,7 +75,15 @@ namespace UTEMerchant
 
         private void mnuitPurchase_Click(object sender, RoutedEventArgs e)
         {
-            uc_SellerUI.Visibility = Visibility.Collapsed;
+            grdSellerUI.Visibility = Visibility.Collapsed;
+            foreach (var item in grdSellerUI.Children)
+            {
+                if (item is UserControl)
+                {
+                    UserControl uc = item as UserControl;
+                    uc.Visibility = Visibility.Collapsed;
+                }
+            }
             uc_PurchasingUI.Visibility = Visibility.Visible;
         }
 
@@ -91,6 +99,7 @@ namespace UTEMerchant
             else if (1 < 2)
             {
                 uc_PurchasingUI.Visibility = Visibility.Collapsed;
+                grdSellerUI.Visibility = Visibility.Visible;
                 uc_StartSelling.Visibility = Visibility.Visible;
             }
             // If the user have registered to be a seller but registration hasn't been approved

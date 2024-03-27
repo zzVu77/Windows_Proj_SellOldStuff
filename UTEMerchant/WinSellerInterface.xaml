@@ -63,25 +63,25 @@
                                 <!--Popup-->
 
                                 <Popup x:Name="PART_Popup"
-                               AllowsTransparency="true"
-                               Focusable="false"
-                               HorizontalOffset="-2"
-                               IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}"
-                               Placement="Right"
-                               PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}"
-                               VerticalOffset="0">
+                                       AllowsTransparency="true"
+                                       Focusable="false"
+                                       HorizontalOffset="-2"
+                                       IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}"
+                                       Placement="Right"
+                                       PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}"
+                                       VerticalOffset="0">
                                     <Border x:Name="SubMenuBorder"
-                                    Background="Transparent"
-                                    BorderBrush="Transparent">
+                                            Background="Transparent"
+                                            BorderBrush="Transparent">
                                         <ScrollViewer x:Name="SubMenuScrollViewer"
-                                              Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
+                                                      Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
                                             <Grid RenderOptions.ClearTypeHint="Enabled">
                                                 <Canvas HorizontalAlignment="Left"
-                                                VerticalAlignment="Top"/>
+                                                        VerticalAlignment="Top"/>
                                                 <ItemsPresenter x:Name="ItemsPresenter"
-                                                        KeyboardNavigation.DirectionalNavigation="Cycle"
-                                                        Grid.IsSharedSizeScope="true"
-                                                        KeyboardNavigation.TabNavigation="Cycle"/>
+                                                                KeyboardNavigation.DirectionalNavigation="Cycle"
+                                                                Grid.IsSharedSizeScope="true"
+                                                                KeyboardNavigation.TabNavigation="Cycle"/>
                                             </Grid>
                                         </ScrollViewer>
                                     </Border>
@@ -142,24 +142,24 @@
                                 <!--Icon-->
 
                                 <ContentPresenter x:Name="Icon"
-                                          ContentSource="Icon"
-                                          HorizontalAlignment="Left"
-                                          Height="Auto"
-                                          Width="Auto"
-                                          Margin="30,15,0,15"
-                                          VerticalAlignment="Center" />
+                                                  ContentSource="Icon"
+                                                  HorizontalAlignment="Left"
+                                                  Height="Auto"
+                                                  Width="Auto"
+                                                  Margin="30,15,0,15"
+                                                  VerticalAlignment="Center" />
 
                                 <!--Menu Text-->
 
                                 <ContentPresenter ContentSource="Header"
-                                          Grid.Column="1"
-                                          TextBlock.Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
-                                          TextBlock.FontWeight="{Binding FontWeight, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
-                                          TextBlock.FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
-                                          HorizontalAlignment="Left"
-                                          RecognizesAccessKey="True"
-                                          Margin="3,0,0,0"
-                                          VerticalAlignment="Center" />
+                                                  Grid.Column="1"
+                                                  TextBlock.Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
+                                                  TextBlock.FontWeight="{Binding FontWeight, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
+                                                  TextBlock.FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
+                                                  HorizontalAlignment="Left"
+                                                  RecognizesAccessKey="True"
+                                                  Margin="3,0,0,0"
+                                                  VerticalAlignment="Center" />
                             </Grid>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -195,11 +195,11 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type MenuItem}">
                         <Border x:Name="border"
-                        Background="{TemplateBinding Background}"
-                        BorderBrush="Transparent"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        Height="Auto"
-                        Width="Auto">
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="Transparent"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Height="Auto"
+                                Width="Auto">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="2*" />
@@ -208,23 +208,23 @@
 
                                 <!--Icon-->
                                 <ContentPresenter x:Name="Icon"
-                                          ContentSource="Icon"
-                                          HorizontalAlignment="Left"
-                                          Height="Auto"
-                                          Width="Auto"
-                                          Margin="30,15,0,15"
-                                          VerticalAlignment="Center" />
+                                                  ContentSource="Icon"
+                                                  HorizontalAlignment="Left"
+                                                  Height="Auto"
+                                                  Width="Auto"
+                                                  Margin="30,15,0,15"
+                                                  VerticalAlignment="Center" />
 
                                 <!--Menu Text-->
                                 <ContentPresenter ContentSource="Header"
-                                          Grid.Column="1"
-                                          TextBlock.Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
-                                          TextBlock.FontWeight="{Binding FontWeight, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
-                                          TextBlock.FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
-                                          HorizontalAlignment="Left"
-                                          RecognizesAccessKey="True"
-                                          Margin="3,0,0,0"
-                                          VerticalAlignment="Center" />
+                                                  Grid.Column="1"
+                                                  TextBlock.Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
+                                                  TextBlock.FontWeight="{Binding FontWeight, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
+                                                  TextBlock.FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
+                                                  HorizontalAlignment="Left"
+                                                  RecognizesAccessKey="True"
+                                                  Margin="3,0,0,0"
+                                                  VerticalAlignment="Center" />
                             </Grid>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -380,21 +380,24 @@
                 </Border>
 
             </Grid>
+
             <Grid x:Name="grdSelectedMenuItem" Grid.Column="1">
-                <local:UC_SellerUI x:Name="uc_SellerUI"
-                                   Background="Transparent"
-                                   Visibility="Collapsed"
-                                   HorizontalAlignment="Stretch"
-                                   VerticalAlignment="Stretch"/>
                 <local:UC_PurchasingUI x:Name="uc_PurchasingUI"
                                        Visibility="Collapsed"
                                        Background="Transparent"/>
-                <local:UC_StartSelling x:Name="uc_StartSelling"
-                                       Visibility="Collapsed"/>
-                <local:UC_RegistrationComplete x:Name="uc_RegistrationComplete"
-                                               Visibility="Collapsed"/>
-                <local:UC_SellerRegistration x:Name="uc_SellerRegistration"
-                                             Visibility="Collapsed"/>
+                <Grid x:Name="grdSellerUI" Visibility="Collapsed">
+                    <local:UC_StartSelling x:Name="uc_StartSelling"
+                                           Visibility="Collapsed"/>
+                    <local:UC_RegistrationComplete x:Name="uc_RegistrationComplete"
+                                                   Visibility="Collapsed"/>
+                    <local:UC_SellerRegistration x:Name="uc_SellerRegistration"
+                                                 Visibility="Collapsed"/>
+                    <local:UC_SellerUI x:Name="uc_SellerUI"
+                                       Background="Transparent"
+                                       Visibility="Collapsed"
+                                       HorizontalAlignment="Stretch"
+                                       VerticalAlignment="Stretch"/>
+                </Grid>
             </Grid>
 
             <!--Main Section-->
