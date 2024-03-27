@@ -338,7 +338,9 @@
                                   BorderBrush="Gray"
                                   BorderThickness="3"
                                   Tag="City"
-                                  Margin="0,0,20,0"/>
+                                  Margin="0,0,20,0">
+                            <ComboBoxItem Content="HCM"></ComboBoxItem>
+                        </ComboBox>
                         <ComboBox x:Name="cbPickupDistrict"
                                   Style="{StaticResource DefaultComboBoxStyle}"
                                   Background="White"
