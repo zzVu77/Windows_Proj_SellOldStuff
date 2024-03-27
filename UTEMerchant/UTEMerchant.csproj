@@ -141,7 +141,9 @@
       <HintPath>..\packages\MahApps.Metro.IconPacks.4.11.0\lib\net47\MahApps.Metro.IconPacks.Zondicons.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework.Aero2" />
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />

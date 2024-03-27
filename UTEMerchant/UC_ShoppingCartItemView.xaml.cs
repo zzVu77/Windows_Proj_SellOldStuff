@@ -35,7 +35,9 @@ namespace UTEMerchant
             tbShopName.Text = user_DAO.Users.Where(u => u.Id_user == item.user_id).FirstOrDefault().Name_shop;
             tbItemName.Text = item.Name;
             tbItemPrice.Text = $"{item.Price.ToString()}$";
-            
+            var resourceUri = new Uri(shoppingCartItem.ImagePath, UriKind.RelativeOrAbsolute);
+            imgItem.Source = new BitmapImage(resourceUri);
+
         }
 
         private void tbShopName_MouseDown(object sender, MouseButtonEventArgs e)

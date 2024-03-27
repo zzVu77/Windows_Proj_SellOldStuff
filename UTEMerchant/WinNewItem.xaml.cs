@@ -77,6 +77,7 @@ namespace UTEMerchant
                 dao.add(new Item(Int32.Parse(txtID.Text.ToString()), txtName.Text.ToString(), rtbDescription.Document.ToString(),
                     float.Parse(txtOriginalPrice.Text.ToString()), float.Parse(txtPrice.Text.ToString()),
                     image_path, DateTime.Parse(txtBoughtDate.Text.ToString()), txtStatus.Text.ToString(), typeItem.Content.ToString(), 1));
+                this.Close();
             }
             else
             {

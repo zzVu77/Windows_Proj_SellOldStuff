@@ -39,7 +39,7 @@ namespace UTEMerchant
         private void SetDefaultText()
         {
             txblItemName.Text= info.Name;
-            txbOriginalPrice.Text = info.OriginalPrice.ToString();
+            txbOriginalPrice.Text = info.OriginalPrice.ToString()+" $";
             txblBoughtDate.Text = info.Bought_date.ToString();
 
             foreach (User user in users) 
@@ -50,9 +50,11 @@ namespace UTEMerchant
                     break;
                 }
             }
-            txblItemPrice.Text = info.Price.ToString();
+            txblItemPrice.Text = info.Price.ToString()+" $";
             txblTypeValue.Text = info.Type.ToString();
             txblStatus.Text = info.Status.ToString();
+            var resourceUri = new Uri(info.ImagePath, UriKind.RelativeOrAbsolute);
+            imgItemPic.Source = new BitmapImage(resourceUri);
             // Tạo một FlowDocument
             FlowDocument flowDoc = new FlowDocument();
             // Thêm một Paragraph chứa văn bản mặc định vào FlowDocument

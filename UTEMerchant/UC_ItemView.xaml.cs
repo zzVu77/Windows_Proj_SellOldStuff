@@ -33,6 +33,7 @@ namespace UTEMerchant
         public UC_ItemView(Item item) : this()
         {            
             info = item;
+            SetDefaultValue();
         }
 
         private void UC_ItemView_MouseUp(object sender, MouseButtonEventArgs e)
@@ -43,6 +44,15 @@ namespace UTEMerchant
         private void btnAddToCart_Click(object sender, RoutedEventArgs e)
         {
             ItemClicked?.Invoke(this, EventArgs.Empty);
+        }
+
+        public void SetDefaultValue()
+        {
+            txblItemName.Text = info.Name;
+            txblPrice.Text = info.Price.ToString()+" $";
+            var resourceUri = new Uri(info.ImagePath, UriKind.RelativeOrAbsolute);
+            imgItemPic.Source = new BitmapImage(resourceUri);
+
         }
     }
 

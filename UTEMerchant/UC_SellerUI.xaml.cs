@@ -43,17 +43,17 @@ namespace UTEMerchant
 
         }
 
-        private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            new WinNewItem().ShowDialog();
-            productGrid.Items.Clear();
-            var test = new Item_DAO();
-            test.Load();
-            foreach (Item a in test.items)
-            {
-                productGrid.Items.Add(a);
-            }
-        }
+        //private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
+        //{
+        //    new WinNewItem().ShowDialog();
+        //    productGrid.Items.Clear();
+        //    var test = new Item_DAO();
+        //    test.Load();
+        //    foreach (Item a in test.items)
+        //    {
+        //        productGrid.Items.Add(a);
+        //    }
+        //}
 
 
         /*private void btnDelete_MouseDown(object sender, MouseButtonEventArgs e)
@@ -98,6 +98,20 @@ namespace UTEMerchant
             
             productGrid.Items.RemoveAt(rowIndex);
             productGrid.Items.Refresh();    
+        }
+
+        
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            new WinNewItem().ShowDialog();
+            productGrid.Items.Clear();
+            var test = new Item_DAO();
+            test.Load();
+            foreach (Item a in test.items)
+            {
+                productGrid.Items.Add(a);
+            }
         }
     }
 }

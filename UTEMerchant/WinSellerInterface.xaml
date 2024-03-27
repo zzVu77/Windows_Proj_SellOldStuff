@@ -275,7 +275,7 @@
                     <Icon:PackIconMaterial Kind="Menu" Width="15" Height="15" />
                 </Button>
 
-                <Border x:Name="brdMenu" Grid.Row="1" Background="#E56B6F" CornerRadius="0 50 0 30">
+                <Border x:Name="brdMenu" Grid.Row="1" Background="#E56B6F" CornerRadius="0 50 0 30" Margin="0,62,0,0">
                     <DockPanel>
                         <!--Menu Logo-->
                         <Border Width="80" Height="80" Padding="3" Background="White" CornerRadius="100" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="20 -30 0 0">

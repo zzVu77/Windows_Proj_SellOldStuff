@@ -28,11 +28,11 @@ namespace UTEMerchant
             users=a.Users;
         }
 
-        private void txtUserName_TextChanged(object sender, TextChangedEventArgs e)
+        private void txtUserName_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
-            if (string.IsNullOrEmpty(txtUserName.Text) && txtUserName.Text.Length > 0) 
+            if (!string.IsNullOrEmpty(txtUserName.Text) && txtUserName.Text.Length > 0)
             {
-                textUserName.Visibility = Visibility.Collapsed;
+                textUserName.Visibility = Visibility.Collapsed;                
             }
             else
             {
@@ -42,13 +42,12 @@ namespace UTEMerchant
 
         private void textUserName_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            textUserName.Text=string.Empty;
             txtUserName.Focus();
         }
 
         private void textPassword_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            textPassword.Text = string.Empty;
+            
             txtPassword.Focus();
         }
 
@@ -56,18 +55,17 @@ namespace UTEMerchant
         {
             foreach (User user in users)
             {
-                if (user.Password == txtPassword.Password && user.User_name== txtUserName.Text)
+                if (user.Password == txtPassword.Password && user.User_name == txtUserName.Text)
                 {
                     this.Hide();
                     var purchasing = new WinSellerInterface(user);
-                    MessageBox.Show("successfully signed in!!!!!");
                     purchasing.ShowDialog();
                     this.Show();
                 }
                 else
                 {
                     MessageBox.Show("user name or password is incorrect !!!!!");
-                }    
+                }
             }
 
         }
@@ -82,9 +80,15 @@ namespace UTEMerchant
 
         }
 
-        private void txtPassword_MouseDown(object sender, MouseButtonEventArgs e)
+
+        private void Image_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            if (string.IsNullOrEmpty(txtPassword.Password) && txtPassword.Password.Length > 0)
+            Application.Current.Shutdown();
+        }
+
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtPassword.Password) && txtPassword.Password.Length > 0)
             {
                 textPassword.Visibility = Visibility.Collapsed;
             }
@@ -94,9 +98,6 @@ namespace UTEMerchant
             }
         }
 
-        private void Image_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
+      
     }
 }

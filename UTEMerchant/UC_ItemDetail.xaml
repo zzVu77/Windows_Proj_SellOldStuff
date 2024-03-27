@@ -24,7 +24,7 @@
             <!--Card Content section-->
             <Border CornerRadius="4,4,0,0" Height="198">
                 <!--<TextBlock   TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Text="test" Foreground="{x:Null}"/>-->
-                <Image Source="/Img/iPhone-14-Pro-Max-9907.jpg"/>
+                <Image x:Name="imgItemPic" Source="/Img/iPhone-14-Pro-Max-9907.jpg"/>
             </Border>
             <!--Card Footer part-->
             <hc:Card.Footer >
