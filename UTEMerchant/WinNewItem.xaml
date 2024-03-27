@@ -9,7 +9,9 @@
      xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         x:Class="UTEMerchant.WinNewItem"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="WinNewItem" Height="450" Width="700
+        
     "
     >
     <Window.Resources>
