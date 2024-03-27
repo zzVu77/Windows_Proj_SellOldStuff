@@ -17,7 +17,7 @@
     </UserControl.Resources>
 
     <Grid x:Name="grdUC" >
-        <hc:Card  MaxWidth="240" 
+        <hc:Card  Width="200" 
                   BorderThickness="0,0,0,0"
                   Effect="{DynamicResource EffectShadow2}" 
                   Margin="8,0,8,0"  Height="307" 

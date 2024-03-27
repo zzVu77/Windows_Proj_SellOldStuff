@@ -266,7 +266,9 @@
                     <DockPanel x:Name="dpSelectedItemDetailedInformation"
                                DockPanel.Dock="Right" Width="300"
                                HorizontalAlignment="Right">
-                        <local:UC_ShoppingCart x:Name="uc_ShoppingCart" Visibility="Collapsed" HorizontalAlignment="Right"/>
+                        <local:UC_ShoppingCart x:Name="uc_ShoppingCart" 
+                                               Visibility="Collapsed" 
+                                               HorizontalAlignment="Right"/>
                         
                     </DockPanel>
 
