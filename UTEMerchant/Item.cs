@@ -19,10 +19,14 @@ namespace UTEMerchant
         public DateTime Bought_date { get; set; }
         public string Status { get; set; }
         public string Type { get; set; }
-        
+
         public int user_id { get; set; }
 
-        public Item(int id, string name, string description, float originalPrice, float price, string imagePath, DateTime bought_date, string status,string type, int user_id)
+        public Item()
+        {
+
+        }
+        public Item(int id, string name, string description, float originalPrice, float price, string imagePath, DateTime bought_date, string status, string type, int user_id)
         {
             Id = id;
             Name = name;
@@ -40,12 +44,12 @@ namespace UTEMerchant
         {
             get
             {
-                
+
                 // Chuyển đổi đường dẫn thành ImageSource (BitmapImage)
                 return new BitmapImage(new Uri(this.ImagePath));
             }
-            
-            
+
+
         }
     }
 }

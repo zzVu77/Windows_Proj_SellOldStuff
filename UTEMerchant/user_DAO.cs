@@ -9,33 +9,37 @@ namespace UTEMerchant
 {
     public class user_DAO
     {
-        SqlConnection conn = new
-       SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\db_ute_merchant.mdf;Integrated Security=True");
-
-        public List<User> Users = new List<User>();
-        public void Load()
+        private DB_Connection db = new DB_Connection();
+        List<User> Users = new List<User>();
+        public List<User> Load()
         {
-
-
-            using (SqlCommand command = new SqlCommand("SELECT * FROM [dbo].[User]", conn))
+            Users.Clear();
+            using (SqlConnection conn = new SqlConnection(db.connectionString))
             {
-                conn.Open();
-                using (SqlDataReader reader = command.ExecuteReader())
+
+                using (SqlCommand command = new SqlCommand("SELECT * FROM [dbo].[User]", conn))
                 {
-                    while (reader.Read())
+                    conn.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        bool isseller= reader["seller"].ToString() == "True";
-                        Users.Add(new User(
-                            Int32.Parse(reader["Id_user"].ToString()), reader["User_name"].ToString(), reader["Password"].ToString(),
-                            reader["name"].ToString(), reader["address"].ToString(), reader["phone"].ToString(), reader["email"].ToString(),
-                            isseller, reader["name_shop"].ToString(), reader["store_address"].ToString()
+                        while (reader.Read())
+                        {
+                            bool isseller = reader["seller"].ToString() == "True";
+                            Users.Add(new User(
+                                Int32.Parse(reader["Id_user"].ToString()), reader["User_name"].ToString(), reader["Password"].ToString(),
+                                reader["name"].ToString(), reader["address"].ToString(), reader["phone"].ToString(), reader["email"].ToString(),
+                                isseller, reader["name_shop"].ToString(), reader["store_address"].ToString()
                                 )
                             );
+                        }
                     }
-                }
-            }
-            conn.Close();
 
+                }
+
+                conn.Close();
+            }
+
+            return Users;
         }
     }
 }

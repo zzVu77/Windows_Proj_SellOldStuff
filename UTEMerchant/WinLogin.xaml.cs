@@ -20,12 +20,13 @@ namespace UTEMerchant
     public partial class WinLogin : Window
     {
         List<User> users = new List<User>();
+        user_DAO dao = new user_DAO();
         public WinLogin()
         {
             InitializeComponent();
             user_DAO a = new user_DAO();
-            a.Load();
-            users=a.Users;
+
+            users= dao.Load();
         }
 
         private void txtUserName_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)

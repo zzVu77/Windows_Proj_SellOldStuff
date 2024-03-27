@@ -8,12 +8,24 @@ using System.Threading.Tasks;
 
 namespace UTEMerchant
 {
-    internal class DB_Connection
+    public class DB_Connection
     {
-        SqlConnection conn = new
-       SqlConnection(@"Data Source=(localdb)\mssqllocaldb;Initial Catalog=DB_Merchant;Integrated Security=True");
+        public string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\db_ute_merchant.mdf;Integrated Security=True";
 
-        
-        
+        public DB_Connection() { } // Removed empty constructor
+
+        public void ExecuteNonQuery(string sql, params SqlParameter[] parameters)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddRange(parameters);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
     }
 }

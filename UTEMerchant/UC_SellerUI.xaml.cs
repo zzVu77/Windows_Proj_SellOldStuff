@@ -24,13 +24,13 @@ namespace UTEMerchant
     public partial class UC_SellerUI : UserControl
     {
         List<Item> items;
+        Item_DAO dao = new Item_DAO();
         public UC_SellerUI()
         {
             InitializeComponent();
 
-            var test =new Item_DAO();
-            test.Load();
-            items = test.items;
+       
+            items = dao.Load();
             foreach  (Item a in items)
             {
                 productGrid.Items.Add(a);
@@ -88,12 +88,11 @@ namespace UTEMerchant
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            Item_DAO dao = new Item_DAO();
-            dao.Load();
-            items= dao.items;
+            
+            items= dao.Load();
             DataGridRow clickedRow = (DataGridRow)productGrid.ItemContainerGenerator.ContainerFromItem(productGrid.SelectedItem);
             int rowIndex = productGrid.ItemContainerGenerator.IndexFromContainer(clickedRow);
-            dao.remove(items[rowIndex]);
+            dao.RemoveItem(items[rowIndex]);
         
             
             productGrid.Items.RemoveAt(rowIndex);
@@ -106,9 +105,8 @@ namespace UTEMerchant
         {
             new WinNewItem().ShowDialog();
             productGrid.Items.Clear();
-            var test = new Item_DAO();
-            test.Load();
-            foreach (Item a in test.items)
+            
+            foreach (Item a in dao.Load())
             {
                 productGrid.Items.Add(a);
             }

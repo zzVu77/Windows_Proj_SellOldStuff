@@ -21,7 +21,8 @@ namespace UTEMerchant
     public partial class UC_ShoppingCartItemView : UserControl
     {
         private Item shoppingCartItem;
-
+        user_DAO user_DAO = new user_DAO();
+        List<User> users = new List<User>();
         public UC_ShoppingCartItemView()
         {
             InitializeComponent();
@@ -29,10 +30,10 @@ namespace UTEMerchant
 
         public UC_ShoppingCartItemView(Item item) : this() 
         {
-            user_DAO user_DAO = new user_DAO();
-            user_DAO.Load();
+            users = user_DAO.Load();
+
             shoppingCartItem = item;
-            tbShopName.Text = user_DAO.Users.Where(u => u.Id_user == item.user_id).FirstOrDefault().Name_shop;
+            tbShopName.Text = users.Where(u => u.Id_user == item.user_id).FirstOrDefault().Name_shop;
             tbItemName.Text = item.Name;
             tbItemPrice.Text = $"{item.Price.ToString()}$";
             var resourceUri = new Uri(shoppingCartItem.ImagePath, UriKind.RelativeOrAbsolute);

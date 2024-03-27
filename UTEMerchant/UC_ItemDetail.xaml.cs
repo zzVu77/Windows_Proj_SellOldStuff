@@ -22,6 +22,7 @@ namespace UTEMerchant
     {
         Item info;
         List<User> users = new List<User>();
+        user_DAO user_dao = new user_DAO();
         public UC_ItemDetail()
         {
             InitializeComponent();
@@ -31,8 +32,7 @@ namespace UTEMerchant
         {
             info = item;
             var user_dao= new user_DAO();
-            user_dao.Load();
-            users = user_dao.Users;
+            users = user_dao.Load();
             InitializeComponent();
             SetDefaultText();
         }

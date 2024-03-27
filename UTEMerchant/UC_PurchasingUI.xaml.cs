@@ -28,8 +28,7 @@ namespace UTEMerchant
         {
             InitializeComponent();
             wpItemsList.Children.Clear();
-            Item_dao.Load();
-            items = Item_dao.items;
+            items = Item_dao.Load();
             foreach (Item item in items)
             {
                 UC_ItemView uc_item = new UC_ItemView(item);
@@ -127,8 +126,8 @@ namespace UTEMerchant
         {
             InitializeComponent();
             wpItemsList.Children.Clear();
-            Item_dao.Load();
-            items = Item_dao.items;
+          
+            items = Item_dao.Load();
             foreach (Item item in items)
             {
                 UC_ItemView uc_item = new UC_ItemView(item);
@@ -140,10 +139,8 @@ namespace UTEMerchant
         private void btnRefresh_Click(object sender, RoutedEventArgs e)
         {
             this.wpItemsList.Children.Clear();
-            Item_DAO dAO = new Item_DAO();
-            dAO.Load();
-            List<Item> itemsRefreshh = dAO.items;
-            foreach (Item item in itemsRefreshh)
+            
+            foreach (Item item in new Item_DAO().Load())
             {
                 UC_ItemView uc_item = new UC_ItemView(item);
                 uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;

@@ -23,7 +23,7 @@ namespace UTEMerchant
     public partial class WinNewItem : Window
     {
         private string image_path;
-        
+        Item_DAO dao = new Item_DAO();
         public WinNewItem()
         {
             InitializeComponent();
@@ -60,8 +60,8 @@ namespace UTEMerchant
         {
 
             ComboBoxItem typeItem = (ComboBoxItem)cbType.SelectedItem;
-            Item_DAO dao = new Item_DAO();
-            dao.add(new Item(Int32.Parse(txtID.Text.ToString()), txtName.Text.ToString(), rtbDescription.ToString(),
+           
+            dao.AddItem(new Item(Int32.Parse(txtID.Text.ToString()), txtName.Text.ToString(), rtbDescription.ToString(),
                 float.Parse(txtOriginalPrice.Text.ToString()), float.Parse(txtPrice.Text.ToString()),
                 image_path, DateTime.Parse(txtBoughtDate.Text.ToString()), txtStatus.Text.ToString(), typeItem.Content.ToString(), 1));
         }
@@ -74,7 +74,7 @@ namespace UTEMerchant
             {
                 ComboBoxItem typeItem = (ComboBoxItem)cbType.SelectedItem;
                 Item_DAO dao = new Item_DAO();
-                dao.add(new Item(Int32.Parse(txtID.Text.ToString()), txtName.Text.ToString(), rtbDescription.Document.ToString(),
+                dao.AddItem(new Item(Int32.Parse(txtID.Text.ToString()), txtName.Text.ToString(), rtbDescription.Document.ToString(),
                     float.Parse(txtOriginalPrice.Text.ToString()), float.Parse(txtPrice.Text.ToString()),
                     image_path, DateTime.Parse(txtBoughtDate.Text.ToString()), txtStatus.Text.ToString(), typeItem.Content.ToString(), 1));
                 this.Close();
