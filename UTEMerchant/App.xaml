@@ -1020,46 +1020,58 @@
                     <ControlTemplate TargetType="ComboBox">
                         <Grid>
                             <Border x:Name="border" 
-                            Background="{TemplateBinding Background}" 
-                            BorderBrush="{TemplateBinding BorderBrush}" 
-                            BorderThickness="{TemplateBinding BorderThickness}" 
-                            CornerRadius="15"/>
+                                    Background="{TemplateBinding Background}" 
+                                    BorderBrush="{TemplateBinding BorderBrush}" 
+                                    BorderThickness="{TemplateBinding BorderThickness}" 
+                                    CornerRadius="15"/>
                             <TextBlock x:Name="defaultText" 
-                               Text="{Binding RelativeSource={RelativeSource TemplatedParent}, 
-                                              Path=Tag,
-                                              Converter={StaticResource DefaultTextConverter}}" 
-                               Foreground="LightGray"
-                               FontStyle="Italic"
-                               VerticalAlignment="Center"
-                               HorizontalAlignment="Left"
-                               Margin="10,0,0,0"
-                               Visibility="Collapsed"/>
+                                       Text="{Binding RelativeSource={RelativeSource TemplatedParent}, 
+                                                      Path=Tag,
+                                                      Converter={StaticResource DefaultTextConverter}}" 
+                                       Foreground="LightGray"
+                                       FontStyle="Italic"
+                                       FontSize="{TemplateBinding FontSize}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Margin="10,0,0,0"
+                                       Visibility="Collapsed"/>
                             <ToggleButton x:Name="toggleButton" 
-                                  ClickMode="Press" 
-                                  Focusable="False" 
-                                  Style="{StaticResource ComboBoxToggleButtonStyle}"
-                                  Background="Transparent" 
-                                  IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                          ClickMode="Press" 
+                                          Focusable="False" 
+                                          Style="{StaticResource ComboBoxToggleButtonStyle}"
+                                          Background="Transparent" 
+                                          IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"/>
                             <ContentPresenter x:Name="contentPresenter" 
-                                      ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" 
-                                      Content="{TemplateBinding SelectionBoxItem}" 
-                                      ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" 
-                                      HorizontalAlignment="Left" 
-                                      Margin="10,3,23,3" 
-                                      VerticalAlignment="Center"/>
-                            <Popup x:Name="popup" 
-                           AllowsTransparency="True" 
-                           IsOpen="{TemplateBinding IsDropDownOpen}" 
-                           Placement="Bottom" 
-                           Focusable="False"
-                           PopupAnimation="Slide">
-                                <Grid x:Name="DropDown" 
-                              SnapsToDevicePixels="True" 
-                              MinWidth="{TemplateBinding ActualWidth}" 
-                              MaxHeight="{TemplateBinding MaxDropDownHeight}">
-                                    <ScrollViewer SnapsToDevicePixels="True">
-                                        <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained" />
-                                    </ScrollViewer>
+                                              ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" 
+                                              Content="{TemplateBinding SelectionBoxItem}" 
+                                              ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" 
+                                              HorizontalAlignment="Left" 
+                                              Margin="10,3,23,3" 
+                                              VerticalAlignment="Center"/>
+                            <Popup x:Name="Popup"
+                                   Placement="Bottom"
+                                   IsOpen="{TemplateBinding IsDropDownOpen}"
+                                   AllowsTransparency="True"
+                                   Focusable="False"                                    
+                                   PopupAnimation="Slide">
+
+                                <Grid x:Name="DropDown"
+                                      SnapsToDevicePixels="True"
+                                      MinWidth="{TemplateBinding ActualWidth}"
+                                      MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                    <Border x:Name="DropDownBorder"
+                                            BorderThickness="0.5"
+                                            CornerRadius="7"
+                                            BorderBrush="DarkGray"
+                                            Background="White"/>
+                                    <ScrollViewer Margin="4 6 4 6"
+                                                  SnapsToDevicePixels="True"
+                                                  OverridesDefaultStyle="True"
+                                                  Foreground="Red"
+                                                  FontSize="{TemplateBinding FontSize}"
+                                                  VerticalScrollBarVisibility="Auto"/>
+                                    <StackPanel IsItemsHost="True"
+                                                KeyboardNavigation.DirectionalNavigation="Contained"/>
                                 </Grid>
                             </Popup>
                         </Grid>
