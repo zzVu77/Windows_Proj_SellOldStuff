@@ -5,11 +5,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:local="clr-namespace:UTEMerchant"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d"
              d:DesignHeight="800" d:DesignWidth="1400">
 
     <UserControl.Resources>
 
+        <!--Blur effect-->
+
+        <BlurEffect x:Key="BlurEffect" Radius="5"/>
+        <BlurEffect x:Key="NoBlurEffect" Radius="0"/>
+        
         <!--Button template-->
 
         <ControlTemplate x:Key="RoundedButtonTemplate" TargetType="Button">
@@ -75,6 +81,8 @@
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
+
+
     </UserControl.Resources>
 
     <Grid>
@@ -87,8 +95,8 @@
                 <ColumnDefinition x:Name="cMainInteraction" Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-
             <!--The main interface-->
+
 
             <Grid x:Name="grdMainInterface"
                   Grid.Column="0">
@@ -244,11 +252,32 @@
                                Margin="10,10,10,30"
                                Grid.Column="2"
                                Source="{Icon:FeatherIconsImage Brush=Black, Kind=ShoppingCart}"
-                               MouseDown="imgShoppingCart_MouseDown"/>
-                        <Image x:Name="imgFilter"                               
+                               MouseDown="imgShoppingCart_MouseDown">
+                            <Image.Triggers>
+                                <EventTrigger SourceName="imgShoppingCart"
+                                              RoutedEvent="MouseDown">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="grdShoppingCart"
+                                                             Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                                                             From="0" To="-400" Duration="0:0:0.3"/>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="grdPurchasingInterface"
+                                                                           Storyboard.TargetProperty="Effect">
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.0" Value="{StaticResource BlurEffect}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Image.Triggers>
+                        </Image>
+
+                        <Image Grid.Column="0"
+                               x:Name="imgFilter"                               
                                Margin="10,10,10,30"
                                Source="{Icon:FeatherIconsImage Brush=Black, Kind=Filter}" 
-                               Stretch="Uniform" MouseDown="imgFilter_MouseDown"/>
+                               Stretch="Uniform" MouseDown="imgFilter_MouseDown">
+                            
+                        </Image>
                     </Grid>
 
 
@@ -263,10 +292,9 @@
 
                     <!--Selected item's detailed information section-->
 
-                    <DockPanel x:Name="dpSelectedItemDetailedInformation"
-                               DockPanel.Dock="Right" Width="500">
-                        <local:UC_ShoppingCart x:Name="uc_ShoppingCart"/>
-                    </DockPanel>
+                    <Grid x:Name="grdSelectedItemDetailedInformation"
+                               DockPanel.Dock="Right">
+                    </Grid>
 
                     <!--Items list section-->
 
@@ -295,7 +323,7 @@
                                         </Setter>
                                     </Style>
                                 </WrapPanel.Resources>
-                                
+
 
 
                             </WrapPanel>
@@ -310,13 +338,13 @@
 
             </Grid>
 
-            <!--Right side bar-->
+            <!--Right sidebar-->
 
             <DockPanel x:Name="dpRightSideBar"
                        Grid.Column="1"
                        LastChildFill="True" 
                        Background="#E56B6F"
-                       Visibility="Collapsed">
+                       Visibility="Visible">
 
                 <Grid x:Name="grdFilterOptions">
                     <Grid.RowDefinitions>
@@ -538,6 +566,65 @@ HorizontalAlignment="Left">
             </DockPanel>
         </Grid>
 
+        <!--Shopping cart-->
 
+        <Grid x:Name="grdShoppingCart"
+              Width="400"
+              HorizontalAlignment="Right"
+              Margin="0,0,-400,0">
+            <Border x:Name="brdShoppingCart"
+                    Background="#E56B6F"
+                    CornerRadius="30">
+                <Grid x:Name="grdInnerShoppingCart">
+                    <Grid.RowDefinitions>
+                        <RowDefinition x:Name="rBackButton" Height="60"/>
+                        <RowDefinition x:Name="rUCShoppingCart" Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0"
+                            x:Name="btnBack"
+                            HorizontalAlignment="Left"
+                            Margin="20,10,0,10" Click="btnBack_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Grid x:Name="grdCircleButton">
+                                    <Ellipse x:Name="ellCircle" 
+                                             StrokeThickness="5"
+                                             Stroke="#B56576"
+                                             Fill="Transparent"
+                                             Height="40"
+                                             Width="{Binding ElementName=ellCircle,Path=ActualHeight}">
+                                    </Ellipse>
+                                    <Image x:Name="imgArrowLeftIcon"
+                                           Source="{Icon:FeatherIconsImage Brush=#B56576, Kind=ArrowLeft}"
+                                           Height="20"
+                                           Stretch="Uniform"/>
+                                </Grid>
+                            </ControlTemplate>
+                        </Button.Template>
+                        <Button.Triggers>
+                            <EventTrigger SourceName="btnBack" RoutedEvent="Button.Click">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="grdShoppingCart"
+                                                         Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                                                         From="-400" To="0" Duration="0:0:0.3"/>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="grdPurchasingInterface"
+                                                                       Storyboard.TargetProperty="Effect">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.0" Value="{StaticResource NoBlurEffect}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <local:UC_ShoppingCart x:Name="uc_ShoppingCart"
+                                           Grid.Row="1">
+                    </local:UC_ShoppingCart>
+                </Grid>
+            </Border>
+            <Grid.RenderTransform>
+                <TranslateTransform X="0"/>
+            </Grid.RenderTransform>
+        </Grid>
     </Grid>
 </UserControl>

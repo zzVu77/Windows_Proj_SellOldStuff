@@ -10,6 +10,8 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Effects;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -88,7 +90,6 @@ namespace UTEMerchant
             if (sender is UC_ItemView clickedItemView)
             {
                 UC_ShoppingCartItemView uc_ShoppingCartItemView = new UC_ShoppingCartItemView(clickedItemView.info);
-                uc_ShoppingCart.spItems.Children.Add(uc_ShoppingCartItemView);
             }
         }
 
@@ -98,21 +99,21 @@ namespace UTEMerchant
             {                
                 UC_ItemDetail itemDetail = new UC_ItemDetail(clickedItem.info);
                 // If the panel is empty, a new UC_ItemDetail is will be added
-                if (dpSelectedItemDetailedInformation.Children.Count == 0)
+                if (grdSelectedItemDetailedInformation.Children.Count == 0)
                 {
-                    dpSelectedItemDetailedInformation.Children.Add(itemDetail);
+                    grdSelectedItemDetailedInformation.Children.Add(itemDetail);
                 }
                 // If there exist one UC_ItemDetail but not the same as the recently clicked one, then the old one will be replaced by the new one
-                else if (dpSelectedItemDetailedInformation.Children.Count == 1 && dpSelectedItemDetailedInformation.Children[0] != itemDetail)
+                else if (grdSelectedItemDetailedInformation.Children.Count == 1 && grdSelectedItemDetailedInformation.Children[0] != itemDetail)
                 {
-                    dpSelectedItemDetailedInformation.Children.Clear();
-                    dpSelectedItemDetailedInformation.Children.Add(itemDetail);
+                    grdSelectedItemDetailedInformation.Children.Clear();
+                    grdSelectedItemDetailedInformation.Children.Add(itemDetail);
 
                 }
                 // If there exist one UC_ItemDetail but the same as the recently clicked one, then the existing one will be removed
-                else if (dpSelectedItemDetailedInformation.Children.Count == 1 && dpSelectedItemDetailedInformation.Children[0] == itemDetail)
+                else if (grdSelectedItemDetailedInformation.Children.Count == 1 && grdSelectedItemDetailedInformation.Children[0] == itemDetail)
                 {
-                    dpSelectedItemDetailedInformation.Children.Remove(itemDetail);
+                    grdSelectedItemDetailedInformation.Children.Remove(itemDetail);
                 }
             }
         }
@@ -152,19 +153,11 @@ namespace UTEMerchant
 
         private void imgShoppingCart_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            
         }
-        //private void svItemsList_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        //{
-        //    var clickedElement = e.OriginalSource as FrameworkElement;
 
-        //    // Find the UC_ItemView parent
-        //    var clickedItem = clickedElement.FindAncestor<UC_ItemView>();
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
 
-        //    if (clickedItem != null)
-        //    {
-        //        // Do something with clickedItem
-        //    }
-        //}
+        }
     }
 }
