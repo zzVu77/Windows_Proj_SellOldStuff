@@ -7,70 +7,34 @@
              xmlns:local="clr-namespace:UTEMerchant"
              mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="600">
     <Grid>
-        <Border x:Name="brdShoppingCart" 
-                CornerRadius="30"
-                Background="#E56B6F">
-            <Grid x:Name="grdShoppingCart">
-                <Grid.RowDefinitions>
-                    <RowDefinition x:Name="rBackButton" Height="60"/>
-                    <RowDefinition x:Name="rItemsList" Height="*"/>
-                </Grid.RowDefinitions>
-                <Button Grid.Row="0"
-                        x:Name="btnBack"
-                        HorizontalAlignment="Left"
-                        Margin="20,10,0,10"
-                        Click="btnBack_Click">
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Grid x:Name="grdCircleButton">
-                                <Ellipse x:Name="ellCircle" 
-                                         StrokeThickness="5"
-                                         Stroke="#B56576"
-                                         Fill="Transparent"
-                                         Height="40"
-                                         Width="{Binding ElementName=ellCircle,Path=ActualHeight}">
-                                </Ellipse>
-                                <Image x:Name="imgArrowLeftIcon"
-                                       Source="{Icon:FeatherIconsImage Brush=#B56576, Kind=ArrowLeft}"
-                                       Height="20"
-                                       Stretch="Uniform"/>
-                            </Grid>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
-                <Grid x:Name="grdEmptyShoppingCart"
-                      Grid.Row="1"
-                      Visibility="Visible"
-                      VerticalAlignment="Center"
-                      Margin="15,0">
+        <Grid x:Name="grdEmptyShoppingCart"
+              Visibility="Visible"
+              VerticalAlignment="Top"
+              Margin="15">
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition x:Name="rShoppingIcon" Height="*"/>
-                        <RowDefinition x:Name="rText" Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Image x:Name="imgShoppingCart"
-                           Grid.Row="0"
-                           Source="{Icon:FeatherIconsImage Brush=LightGray, Kind=ShoppingCart}"
-                           Stretch="Uniform"
-                           Margin="0,0,0,0"/>
-                    <TextBlock x:Name="tbNoticeEmpty"
-                               Text="You don't have any items in your shopping cart. Let's go shopping!"
-                               VerticalAlignment="Top"
-                               HorizontalAlignment="Center"
-                               Foreground="LightGray"
-                               FontSize="30" Grid.Row="1"
-                               TextWrapping="Wrap"
-                               TextAlignment="Center"
-                               Margin="0,30"/>
-                </Grid>
-                <ScrollViewer x:Name="svItems"
-                              Grid.Row="1"
-                              VerticalScrollBarVisibility="Hidden">
-                    <StackPanel x:Name="spItems">
-                    </StackPanel>
-                </ScrollViewer>
-            </Grid>
-        </Border>
-        
+            <Grid.RowDefinitions>
+                <RowDefinition x:Name="rShoppingIcon" Height="*"/>
+                <RowDefinition x:Name="rText" Height="*"/>
+            </Grid.RowDefinitions>
+            <Image x:Name="imgShoppingCart"
+                   Grid.Row="0"
+                   Source="{Icon:FeatherIconsImage Brush=LightGray, Kind=ShoppingCart}"
+                   Stretch="Uniform"
+                   Margin="80,0"/>
+            <TextBlock x:Name="tbNoticeEmpty"
+                       Text="You don't have any items in your shopping cart. Let's go shopping!"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Center"
+                       Foreground="LightGray"
+                       FontSize="20" Grid.Row="1"
+                       TextWrapping="Wrap"
+                       TextAlignment="Center"
+                       Margin="0,30"/>
+        </Grid>
+        <ScrollViewer x:Name="svItems"
+                      VerticalScrollBarVisibility="Hidden">
+            <StackPanel x:Name="spItems">
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>
