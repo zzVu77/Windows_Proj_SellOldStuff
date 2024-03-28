@@ -93,6 +93,7 @@ namespace UTEMerchant
             if (1 > 2)
             {
                 uc_PurchasingUI.Visibility = Visibility.Collapsed;
+                grdSellerUI.Visibility = Visibility.Visible;
                 uc_SellerUI.Visibility = Visibility.Visible;
             }
             // If the user haven't registered to be seller
