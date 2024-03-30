@@ -1149,7 +1149,7 @@
 
         <!--DatePickerTextBox Style-->
 
-        <Style x:Key="DatePickerTextBoxStyle" TargetType="DatePickerTextBox">
+        <Style x:Key="DefaultTextDatePickerTextBoxStyle" TargetType="DatePickerTextBox">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="DatePickerTextBox">
@@ -1251,7 +1251,7 @@
                                                    Background="Transparent"
                                                    BorderThickness="0"
                                                    IsReadOnly="True"
-                                                   Style="{StaticResource DatePickerTextBoxStyle}">
+                                                   Style="{StaticResource DefaultTextDatePickerTextBoxStyle}">
                                 </DatePickerTextBox>
                                 <Grid x:Name="PART_CalendarIcon"
                                       Grid.Column="1"
