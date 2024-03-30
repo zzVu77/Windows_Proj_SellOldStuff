@@ -166,7 +166,6 @@
     </ApplicationDefinition>
     <Compile Include="CheckValid.cs" />
     <Compile Include="DB_Connection.cs" />
-    <Compile Include="DefaultTextConverter.cs" />
     <Compile Include="InverseBooleanConverter.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Item_DAO.cs" />
