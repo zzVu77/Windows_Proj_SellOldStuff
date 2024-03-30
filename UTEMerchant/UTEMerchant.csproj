@@ -167,9 +167,10 @@
     <Compile Include="CheckValid.cs" />
     <Compile Include="DB_Connection.cs" />
     <Compile Include="DefaultTextConverter.cs" />
+    <Compile Include="InverseBooleanConverter.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Item_DAO.cs" />
-    <Compile Include="RectConverter.cs" />
+    <Compile Include="StringNullOrEmptyToVisibilityConverter.cs" />
     <Compile Include="TextToVisibilityConverter.cs" />
     <Compile Include="UC_RegistrationComplete.xaml.cs">
       <DependentUpon>UC_RegistrationComplete.xaml</DependentUpon>
