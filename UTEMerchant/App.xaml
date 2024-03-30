@@ -6,11 +6,13 @@
              StartupUri="WinSellerInterface.xaml"
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
               xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-             xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">                
+             xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib">                
     <Application.Resources>
         <!--Converters-->
+        <local:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
         <local:DefaultTextConverter x:Key="DefaultTextConverter"/>
-        <local:RectConverter x:Key="RectConverter"/>
+        <local:StringNullOrEmptyToVisibilityConverter x:Key="StringNullOrEmptyToVisibilityConverter"/>
         <local:TextToVisibilityConverter x:Key="TextToVisibilityConverter"/>
         <!--#region Gradient Color-->
         <LinearGradientBrush x:Key="cs_Background" StartPoint="0,0" EndPoint="0,5">
@@ -218,28 +220,25 @@
                                    AllowsTransparency="True"
                                    Focusable="False"                                    
                                    PopupAnimation="Slide">
-                                
+
                                 <Grid x:Name="DropDown"
-                                  SnapsToDevicePixels="True"
-                                  MinWidth="{TemplateBinding ActualWidth}"
-                                  MaxHeight="{TemplateBinding MaxDropDownHeight}"
-                                  
-                                  >
+                                      SnapsToDevicePixels="True"
+                                      MinWidth="{TemplateBinding ActualWidth}"
+                                      MaxHeight="{TemplateBinding MaxDropDownHeight}">
                                     <Border x:Name="DropDownBorder"
-                                        BorderThickness="0.5"
-                                        CornerRadius="7"
-                                        BorderBrush="DarkGray"
-                                        Background="White"/>
+                                            BorderThickness="0.5"
+                                            CornerRadius="7"
+                                            BorderBrush="DarkGray"
+                                            Background="White"/>
                                     <ScrollViewer Margin="4 6 4 6"
-                                              SnapsToDevicePixels="True"
-                                              OverridesDefaultStyle="True"
-                                              Foreground="Red"
-                                              FontFamily="Segoe UI"
-                                              FontSize="12"  
-                                              VerticalScrollBarVisibility="Auto"
-                                              />
+                                                  SnapsToDevicePixels="True"
+                                                  OverridesDefaultStyle="True"
+                                                  Foreground="Red"
+                                                  FontFamily="Segoe UI"
+                                                  FontSize="12"  
+                                                  VerticalScrollBarVisibility="Auto"/>
                                     <StackPanel IsItemsHost="True"
-                                            KeyboardNavigation.DirectionalNavigation="Contained" >
+                                                KeyboardNavigation.DirectionalNavigation="Contained">
 
                                     </StackPanel>
                                 </Grid>
@@ -931,20 +930,19 @@
                     <ControlTemplate TargetType="TextBox">
                         <Grid>
                             <Border x:Name="border" 
-                            Background="{TemplateBinding Background}" 
-                            BorderBrush="{TemplateBinding BorderBrush}" 
-                            BorderThickness="{TemplateBinding BorderThickness}" 
-                            CornerRadius="15"/>
+                                    Background="{TemplateBinding Background}" 
+                                    BorderBrush="{TemplateBinding BorderBrush}" 
+                                    BorderThickness="{TemplateBinding BorderThickness}" 
+                                    CornerRadius="15"/>
                             <TextBlock x:Name="defaultText" 
-                               Text="{Binding RelativeSource={RelativeSource TemplatedParent}, 
-                                              Path=Tag,
-                                              Converter={StaticResource DefaultTextConverter}}" 
-                               Foreground="LightGray"
-                               FontStyle="Italic"
-                               VerticalAlignment="Center"
-                               HorizontalAlignment="Left"
-                               Margin="10,0,0,0"
-                               Visibility="Collapsed"/>
+                                       Text="{Binding RelativeSource={RelativeSource TemplatedParent}, 
+                                                      Path=Tag}" 
+                                       Foreground="LightGray"
+                                       FontStyle="Italic"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Margin="10,0,0,0"
+                                       Visibility="{TemplateBinding Text, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}"/>
                             <ScrollViewer x:Name="PART_ContentHost" 
                                   HorizontalAlignment="Stretch" 
                                   VerticalAlignment="Center"/>
@@ -1026,15 +1024,14 @@
                                     CornerRadius="15"/>
                             <TextBlock x:Name="defaultText" 
                                        Text="{Binding RelativeSource={RelativeSource TemplatedParent}, 
-                                                      Path=Tag,
-                                                      Converter={StaticResource DefaultTextConverter}}" 
+                                                      Path=Tag}" 
                                        Foreground="LightGray"
                                        FontStyle="Italic"
                                        FontSize="{TemplateBinding FontSize}"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Left"
                                        Margin="10,0,0,0"
-                                       Visibility="Collapsed"/>
+                                       Visibility="{TemplateBinding Text, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}"/>
                             <ToggleButton x:Name="toggleButton" 
                                           ClickMode="Press" 
                                           Focusable="False" 
@@ -1113,29 +1110,29 @@
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <Border x:Name="border" 
-                            Grid.ColumnSpan="2"
-                            Background="{TemplateBinding Background}" 
-                            BorderBrush="{TemplateBinding BorderBrush}" 
-                            BorderThickness="{TemplateBinding BorderThickness}" 
-                            CornerRadius="15"/>
+                                    Grid.ColumnSpan="2"
+                                    Background="{TemplateBinding Background}" 
+                                    BorderBrush="{TemplateBinding BorderBrush}" 
+                                    BorderThickness="{TemplateBinding BorderThickness}" 
+                                    CornerRadius="15"/>
                             <Border x:Name="CircleBorder" 
-                            Grid.Column="0"
-                            Width="20"
-                            Height="20"
-                            BorderThickness="2"
-                            BorderBrush="Gray" 
-                            CornerRadius="10"
-                            Background="White"
-                            Margin="10,0">
+                                    Grid.Column="0"
+                                    Width="20"
+                                    Height="20"
+                                    BorderThickness="2"
+                                    BorderBrush="Gray" 
+                                    CornerRadius="10"
+                                    Background="White"
+                                    Margin="10,0">
                                 <Image x:Name="imgCheckMark"
-                               Source="{Icon:CooliconsImage Kind=Check, Brush=Green}"
-                               Visibility="Collapsed"
-                               Margin="3"></Image>
+                                       Source="{Icon:CooliconsImage Kind=Check, Brush=Green}"
+                                       Visibility="Collapsed"
+                                       Margin="3"></Image>
                             </Border>
                             <ContentPresenter Grid.Column="1" 
-                                      HorizontalAlignment="Left"
-                                      VerticalAlignment="Center"
-                                      Margin="0,0,10,0"/>
+                                              HorizontalAlignment="Left"
+                                              VerticalAlignment="Center"
+                                              Margin="0,0,10,0"/>
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsChecked" Value="True">
@@ -1149,6 +1146,233 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <!--DatePickerTextBox Style-->
+
+        <Style x:Key="DatePickerTextBoxStyle" TargetType="DatePickerTextBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="DatePickerTextBox">
+                        <Grid>
+                            <TextBlock x:Name="PART_DefaultText"
+                                       Text="{TemplateBinding Tag}"
+                                       Foreground="LightGray"
+                                       FontStyle="Italic"
+                                       FontSize="{TemplateBinding FontSize}"
+                                       Visibility="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}">
+
+                            </TextBlock>
+                            <TextBox x:Name="PART_TextBox"
+                                     Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Text}"
+                                     HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                     VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                     VerticalAlignment="Center"
+                                     HorizontalAlignment="Center"
+                                     Background="Transparent"
+                                     BorderThickness="0"
+                                     Foreground="{TemplateBinding Foreground}"
+                                     FontSize="{TemplateBinding FontSize}"
+                                     IsReadOnly="{TemplateBinding IsReadOnly}">
+                            </TextBox>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="CalendarStyle" TargetType="Calendar">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Calendar">
+                        <Border BorderBrush="Black" BorderThickness="0.5">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Button x:Name="PART_PreviousButton" 
+                                        Grid.Row="0" 
+                                        Content="&lt;" 
+                                        HorizontalAlignment="Left" 
+                                        VerticalAlignment="Top" 
+                                        FontSize="{TemplateBinding FontSize}" 
+                                        BorderThickness="0" 
+                                        Background="Transparent"/>
+                                <Button x:Name="PART_NextButton" 
+                                        Grid.Row="0" 
+                                        Content="&gt;" 
+                                        HorizontalAlignment="Right" 
+                                        VerticalAlignment="Top" 
+                                        FontSize="{TemplateBinding FontSize}" 
+                                        BorderThickness="0" 
+                                        Background="Transparent"/>
+                                <CalendarItem x:Name="PART_CalendarItem" 
+                                              Grid.Row="1" 
+                                              Background="{TemplateBinding Background}" 
+                                              BorderBrush="{TemplateBinding BorderBrush}" 
+                                              BorderThickness="{TemplateBinding BorderThickness}" 
+                                              FontSize="{TemplateBinding FontSize}" 
+                                              Style="{TemplateBinding CalendarItemStyle}"/>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--DatePicker Style-->
+
+        <Style x:Key="DatePickerStyle" TargetType="DatePicker">
+            <Setter Property="IsTodayHighlighted" Value="True"/>
+            <Setter Property="SelectedDateFormat" Value="Short"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="DatePicker">
+                        <Border Name="Border"
+                                CornerRadius="15"
+                                Width="{TemplateBinding Width}"
+                                Height="{TemplateBinding Height}"
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                Background="{TemplateBinding Background}">
+                            <Grid Margin="10,5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <DatePickerTextBox x:Name="PART_TextBox"
+                                                   Grid.Column="0"
+                                                   Tag="{TemplateBinding Tag}"
+                                                   Text="{Binding Path=SelectedDate, StringFormat={}{0:dd/MM/yyyy}, RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}"
+                                                   Focusable="{TemplateBinding Focusable}"
+                                                   HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                   VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                   FontSize="{TemplateBinding FontSize}"
+                                                   Background="Transparent"
+                                                   BorderThickness="0"
+                                                   IsReadOnly="True"
+                                                   Style="{StaticResource DatePickerTextBoxStyle}">
+                                </DatePickerTextBox>
+                                <Grid x:Name="PART_CalendarIcon"
+                                      Grid.Column="1"
+                                      Height="{TemplateBinding FontSize}"
+                                      Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="3*"/>
+                                    </Grid.RowDefinitions>
+                                    <Border Grid.Row="0"
+                                            BorderBrush="Black"
+                                            BorderThickness="0.5,0.5,0.5,0">
+                                        <Rectangle>
+                                            <Rectangle.Fill>
+                                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                                    <GradientStop Color="#FF4084BD" Offset="0"/>
+                                                    <GradientStop Color="#FF90BFE6" Offset="1"/>
+                                                </LinearGradientBrush>
+                                            </Rectangle.Fill>
+                                        </Rectangle>
+                                    </Border>
+                                    <Ellipse Grid.Row="0"
+                                             Height="2"
+                                             Width="2" Fill="White"
+                                             />
+                                    <Border Grid.Row="1"
+                                            BorderBrush="Black"
+                                            BorderThickness="0.5">
+                                        <Rectangle>
+                                            <Rectangle.Fill>
+                                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                                    <GradientStop Color="White" Offset="0"/>
+                                                    <GradientStop Color="#FFE5E5E5" Offset="0.5"/>
+                                                    <!-- Light-Gray White -->
+                                                    <GradientStop Color="#FFD3D3D3" Offset="1"/>
+                                                    <!-- Grayish White -->
+                                                </LinearGradientBrush>
+                                            </Rectangle.Fill>
+                                        </Rectangle>
+                                    </Border>
+                                    <Grid Grid.Row="1">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Row="0"
+                                                   Grid.Column="1"
+                                                   Grid.ColumnSpan="2"
+                                                   Grid.RowSpan="3"
+                                                   Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat=dd}"
+                                                   FontSize="9"
+                                                   FontWeight="Bold"
+                                                   Margin="0,1,0,0"/>
+                                    </Grid>
+                                    <Button x:Name="PART_ClickOpen"
+                                            Grid.Row="0"
+                                            Grid.RowSpan="2"
+                                            Opacity="0.3"
+                                            BorderThickness="0">
+                                        <Button.Style>
+                                            <Style TargetType="Button">
+                                                <Setter Property="Background" Value="Transparent"/>
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Background" Value="LightBlue"/>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                        <Button.Triggers>
+                                            <EventTrigger RoutedEvent="Button.Click">
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_Popup" Storyboard.TargetProperty="IsOpen">
+                                                            <DiscreteBooleanKeyFrame KeyTime="0:0:0" Value="True"/>
+                                                        </BooleanAnimationUsingKeyFrames>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger>
+                                        </Button.Triggers>
+                                    </Button>
+                                    <Popup Grid.Row="0" 
+                                           Grid.ColumnSpan="2"
+                                           x:Name="PART_Popup" 
+                                           AllowsTransparency="True" 
+                                           Placement="Bottom" 
+                                           PlacementTarget="{Binding ElementName=PART_TextBox}" 
+                                           StaysOpen="False">
+                                        <Calendar SelectedDate="{Binding SelectedDate, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" 
+                                                  DisplayDate="{Binding DisplayDate, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                                  DisplayDateStart="{Binding DisplayDateStart, RelativeSource={RelativeSource TemplatedParent}}" 
+                                                  DisplayDateEnd="{Binding DisplayDateEnd, RelativeSource={RelativeSource TemplatedParent}}" 
+                                                  FirstDayOfWeek="{Binding FirstDayOfWeek, RelativeSource={RelativeSource TemplatedParent}}" 
+                                                  IsTodayHighlighted="{Binding IsTodayHighlighted, RelativeSource={RelativeSource TemplatedParent}}" 
+                                                  SelectionMode="SingleDate" 
+                                                  VerticalAlignment="Center" 
+                                                  HorizontalAlignment="Center" 
+                                                  FontSize="{TemplateBinding FontSize}" 
+                                                  BorderThickness="0" 
+                                                  Background="White" 
+                                                  BorderBrush="Black"
+                                                  Style="{StaticResource CalendarStyle}"/>
+                                    </Popup>
+                                </Grid>
+
+                            </Grid>
+                        </Border>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+
     </Application.Resources>
 </Application>
 
