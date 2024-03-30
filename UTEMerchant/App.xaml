@@ -975,10 +975,7 @@
                     <ControlTemplate TargetType="ToggleButton">
                         <Grid>
                             <Border x:Name="border" 
-                                    Background="{TemplateBinding Background}" 
-                                    BorderBrush="{TemplateBinding BorderBrush}" 
-                                    BorderThickness="{TemplateBinding BorderThickness}" 
-                                    CornerRadius="15">
+                                    Background="{TemplateBinding Background}">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
@@ -986,15 +983,13 @@
                                     </Grid.ColumnDefinitions>
                                     <ContentPresenter Grid.Column="0" 
                                                       HorizontalAlignment="Left" 
-                                                      Margin="3,0,0,0"
                                                       VerticalAlignment="Center" 
                                                       Content="{TemplateBinding Content}"/>
                                     <Path x:Name="Arrow" 
                                           Grid.Column="1" 
                                           Data="M0,0 L0,4 L6,10 L12,4 L12,0 L6,6 z"
                                           Fill="Black"
-                                          VerticalAlignment="Center"
-                                          Margin="0,0,10,0"/>
+                                          VerticalAlignment="Center"/>
                                 </Grid>
                             </Border>
                         </Grid>
@@ -1017,12 +1012,19 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="ComboBox">
                         <Grid>
-                            <Border x:Name="border" 
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="5*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    x:Name="border" 
                                     Background="{TemplateBinding Background}" 
                                     BorderBrush="{TemplateBinding BorderBrush}" 
                                     BorderThickness="{TemplateBinding BorderThickness}" 
                                     CornerRadius="15"/>
-                            <TextBlock x:Name="defaultText" 
+                            <TextBlock Grid.Column="0"
+                                       x:Name="defaultText" 
                                        Text="{Binding RelativeSource={RelativeSource TemplatedParent}, 
                                                       Path=Tag}" 
                                        Foreground="LightGray"
@@ -1032,20 +1034,25 @@
                                        HorizontalAlignment="Left"
                                        Margin="10,0,0,0"
                                        Visibility="{TemplateBinding Text, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}"/>
-                            <ToggleButton x:Name="toggleButton" 
+                            <ToggleButton Grid.Column="0"
+                                          Grid.ColumnSpan="2"
+                                          x:Name="toggleButton" 
                                           ClickMode="Press" 
                                           Focusable="False" 
                                           Style="{StaticResource ComboBoxToggleButtonStyle}"
                                           Background="Transparent" 
-                                          IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"/>
-                            <ContentPresenter x:Name="contentPresenter" 
+                                          IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                          Margin="10,0"/>
+                            <ContentPresenter Grid.Column="0" x:Name="contentPresenter" 
                                               ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" 
                                               Content="{TemplateBinding SelectionBoxItem}" 
                                               ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" 
                                               HorizontalAlignment="Left" 
-                                              Margin="10,3,23,3" 
+                                              Margin="10,0,0,0" 
                                               VerticalAlignment="Center"/>
-                            <Popup x:Name="Popup"
+                            <Popup Grid.Column="0"
+                                   Grid.ColumnSpan="2"
+                                   x:Name="Popup"
                                    Placement="Bottom"
                                    IsOpen="{TemplateBinding IsDropDownOpen}"
                                    AllowsTransparency="True"
