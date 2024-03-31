@@ -93,6 +93,10 @@ namespace UTEMerchant
             if (1 > 2)
             {
                 uc_PurchasingUI.Visibility = Visibility.Collapsed;
+                uc_SellerRegistration.Visibility = Visibility.Collapsed;
+                uc_RegistrationComplete.Visibility = Visibility.Collapsed;
+                uc_StartSelling.Visibility = Visibility.Collapsed;
+
                 grdSellerUI.Visibility = Visibility.Visible;
                 uc_SellerUI.Visibility = Visibility.Visible;
             }
@@ -100,12 +104,22 @@ namespace UTEMerchant
             else if (1 < 2)
             {
                 uc_PurchasingUI.Visibility = Visibility.Collapsed;
+                uc_SellerRegistration.Visibility = Visibility.Collapsed;
+                uc_RegistrationComplete.Visibility = Visibility.Collapsed;
+                uc_StartSelling.Visibility = Visibility.Collapsed;
+
                 grdSellerUI.Visibility = Visibility.Visible;
                 uc_StartSelling.Visibility = Visibility.Visible;
             }
             // If the user have registered to be a seller but registration hasn't been approved
             else if (1 == 2)
             {
+                uc_PurchasingUI.Visibility = Visibility.Collapsed;
+                uc_SellerRegistration.Visibility = Visibility.Collapsed;
+                uc_RegistrationComplete.Visibility = Visibility.Collapsed;
+                uc_StartSelling.Visibility = Visibility.Collapsed;
+
+                grdSellerUI.Visibility = Visibility.Visible;
                 uc_RegistrationComplete.Visibility = Visibility.Visible;
             }
 
