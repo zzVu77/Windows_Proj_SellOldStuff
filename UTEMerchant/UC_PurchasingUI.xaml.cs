@@ -154,14 +154,14 @@ namespace UTEMerchant
             }
         }
 
-        private void imgShoppingCart_MouseDown(object sender, MouseButtonEventArgs e)
+        public void imgShoppingCart_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            grdPurchasingInterface.IsEnabled = false;
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-
+            grdPurchasingInterface.IsEnabled = true;
         }
     }
 }
