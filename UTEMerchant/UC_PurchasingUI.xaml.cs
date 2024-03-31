@@ -36,6 +36,7 @@ namespace UTEMerchant
             {
                 UC_ItemView uc_item = new UC_ItemView(item);
                 uc_item.ItemClicked += OnItemButtonAddToCartClicked;
+                uc_ShoppingCart.CheckCart();
                 uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
                 wpItemsList.Children.Add(uc_item);
             }
@@ -90,6 +91,8 @@ namespace UTEMerchant
             if (sender is UC_ItemView clickedItemView)
             {
                 UC_ShoppingCartItemView uc_ShoppingCartItemView = new UC_ShoppingCartItemView(clickedItemView.info);
+                uc_ShoppingCart.spItems.Children.Add(uc_ShoppingCartItemView);
+                uc_ShoppingCart.CheckCart();
             }
         }
 
@@ -153,6 +156,7 @@ namespace UTEMerchant
 
         private void imgShoppingCart_MouseDown(object sender, MouseButtonEventArgs e)
         {
+
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
