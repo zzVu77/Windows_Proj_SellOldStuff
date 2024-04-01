@@ -50,8 +50,8 @@ namespace UTEMerchant
         {
             txblItemName.Text = info.Name;
             txblPrice.Text = info.Price.ToString()+" $";
-            var resourceUri = new Uri(info.ImagePath, UriKind.RelativeOrAbsolute);
-            imgItemPic.Source = new BitmapImage(resourceUri);
+            //var resourceUri = new Uri(info.ImagePath, UriKind.RelativeOrAbsolute);
+            //imgItemPic.Source = new BitmapImage(resourceUri);
 
         }
     }
