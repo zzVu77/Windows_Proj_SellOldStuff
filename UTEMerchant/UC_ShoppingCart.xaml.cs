@@ -32,6 +32,20 @@ namespace UTEMerchant
         {
 
         }
+
+        public void CheckCart()
+        {
+            if (spItems.Children.Count == 0)
+            {
+                svItems.Visibility = Visibility.Collapsed;
+                grdEmptyShoppingCart.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                grdEmptyShoppingCart.Visibility = Visibility.Collapsed;
+                svItems.Visibility = Visibility.Visible;
+            }
+        }
         
     }
 }

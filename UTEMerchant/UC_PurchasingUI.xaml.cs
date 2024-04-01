@@ -10,6 +10,8 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Effects;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -33,6 +35,7 @@ namespace UTEMerchant
             {
                 UC_ItemView uc_item = new UC_ItemView(item);
                 uc_item.ItemClicked += OnItemButtonAddToCartClicked;
+                uc_ShoppingCart.CheckCart();
                 uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
                 wpItemsList.Children.Add(uc_item);
             }
@@ -75,7 +78,6 @@ namespace UTEMerchant
         {
             if (dpRightSideBar.Visibility == Visibility.Collapsed)
             {
-                if (uc_ShoppingCart.Visibility == Visibility.Visible) uc_ShoppingCart.Visibility = Visibility.Collapsed;
                 dpRightSideBar.Visibility = Visibility.Visible;
             }
             else dpRightSideBar.Visibility = Visibility.Collapsed;
@@ -89,6 +91,7 @@ namespace UTEMerchant
             {
                 UC_ShoppingCartItemView uc_ShoppingCartItemView = new UC_ShoppingCartItemView(clickedItemView.info);
                 uc_ShoppingCart.spItems.Children.Add(uc_ShoppingCartItemView);
+                uc_ShoppingCart.CheckCart();
             }
         }
 
@@ -110,9 +113,9 @@ namespace UTEMerchant
 
                 }
                 // If there exist one UC_ItemDetail but the same as the recently clicked one, then the existing one will be removed
-                else if (dpSelectedItemDetailedInformation.Children.Count == 1 && dpSelectedItemDetailedInformation.Children[0] == itemDetail)
+                else if (grdSelectedItemDetailedInformation.Children.Count == 1 && grdSelectedItemDetailedInformation.Children[0] == itemDetail)
                 {
-                    dpSelectedItemDetailedInformation.Children.Remove(itemDetail);
+                    grdSelectedItemDetailedInformation.Children.Remove(itemDetail);
                 }
             }
         }
@@ -148,27 +151,14 @@ namespace UTEMerchant
             }
         }
 
-        private void imgShoppingCart_MouseDown(object sender, MouseButtonEventArgs e)
+        public void imgShoppingCart_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (uc_ShoppingCart.Visibility == Visibility.Collapsed )
-            {
-                if(dpRightSideBar.Visibility == Visibility.Visible) dpRightSideBar.Visibility = Visibility.Collapsed;
-                uc_ShoppingCart.Visibility = Visibility.Visible;
-               
-            }
-            else uc_ShoppingCart.Visibility = Visibility.Collapsed;
+            grdPurchasingInterface.IsEnabled = false;
         }
-        //private void svItemsList_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        //{
-        //    var clickedElement = e.OriginalSource as FrameworkElement;
 
-        //    // Find the UC_ItemView parent
-        //    var clickedItem = clickedElement.FindAncestor<UC_ItemView>();
-
-        //    if (clickedItem != null)
-        //    {
-        //        // Do something with clickedItem
-        //    }
-        //}
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            grdPurchasingInterface.IsEnabled = true;
+        }
     }
 }
