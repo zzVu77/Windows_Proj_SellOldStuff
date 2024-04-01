@@ -29,6 +29,8 @@ namespace UTEMerchant
         public WinSellerInterface()
         {  
             InitializeComponent();
+            uc_StartSelling.btnStartSelling.Click += OnStartTradingButtonClicked;
+            uc_SellerRegistration.btnDone.Click += OnDoneRegistrationClicked;
         }
 
         private bool IsMaximize = false;
@@ -73,14 +75,74 @@ namespace UTEMerchant
 
         private void mnuitPurchase_Click(object sender, RoutedEventArgs e)
         {
-            uc_SellerUI.Visibility = Visibility.Collapsed;
+            grdSellerUI.Visibility = Visibility.Collapsed;
+            foreach (var item in grdSellerUI.Children)
+            {
+                if (item is UserControl)
+                {
+                    UserControl uc = item as UserControl;
+                    uc.Visibility = Visibility.Collapsed;
+                }
+            }
             uc_PurchasingUI.Visibility = Visibility.Visible;
         }
 
         private void mnuitStock_Click(object sender, RoutedEventArgs e)
         {
-            uc_PurchasingUI.Visibility = Visibility.Collapsed;
-            uc_SellerUI.Visibility = Visibility.Visible;
+            // If the user is registered as a seller
+            if (1 > 2)
+            {
+                uc_PurchasingUI.Visibility = Visibility.Collapsed;
+                uc_SellerRegistration.Visibility = Visibility.Collapsed;
+                uc_RegistrationComplete.Visibility = Visibility.Collapsed;
+                uc_StartSelling.Visibility = Visibility.Collapsed;
+
+                grdSellerUI.Visibility = Visibility.Visible;
+                uc_SellerUI.Visibility = Visibility.Visible;
+            }
+            // If the user haven't registered to be seller
+            else if (1 < 2)
+            {
+                uc_PurchasingUI.Visibility = Visibility.Collapsed;
+                uc_SellerRegistration.Visibility = Visibility.Collapsed;
+                uc_RegistrationComplete.Visibility = Visibility.Collapsed;
+                uc_StartSelling.Visibility = Visibility.Collapsed;
+
+                grdSellerUI.Visibility = Visibility.Visible;
+                uc_StartSelling.Visibility = Visibility.Visible;
+            }
+            // If the user have registered to be a seller but registration hasn't been approved
+            else if (1 == 2)
+            {
+                uc_PurchasingUI.Visibility = Visibility.Collapsed;
+                uc_SellerRegistration.Visibility = Visibility.Collapsed;
+                uc_RegistrationComplete.Visibility = Visibility.Collapsed;
+                uc_StartSelling.Visibility = Visibility.Collapsed;
+
+                grdSellerUI.Visibility = Visibility.Visible;
+                uc_RegistrationComplete.Visibility = Visibility.Visible;
+            }
+
+        }
+
+        // This method is called when the user clicks the Start Trading button in the Start Selling UC
+        private void OnStartTradingButtonClicked(object sender, EventArgs e)
+        {
+            if (sender is Button)
+            {
+                uc_StartSelling.Visibility = Visibility.Collapsed;
+                uc_SellerRegistration.Visibility = Visibility.Visible;
+            }
+        }
+
+        // This method is called when the user clicks the Done button in the Seller Registration UC
+        private void OnDoneRegistrationClicked(object sender, EventArgs e)
+        {
+            if (sender is Button)
+            {
+                uc_SellerRegistration.Visibility = Visibility.Collapsed;
+                uc_RegistrationComplete.Visibility = Visibility.Visible;
+            }
         }
 
         private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)

@@ -5,67 +5,36 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:local="clr-namespace:UTEMerchant"
-             mc:Ignorable="d" Width="300" Height="1000">
-    <Border Background="#E56B6F" CornerRadius="30">
-        <Grid x:Name="grdShoppingCart">
+             mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="600">
+    <Grid>
+        <Grid x:Name="grdEmptyShoppingCart"
+              Visibility="Visible"
+              VerticalAlignment="Top"
+              Margin="15">
+
             <Grid.RowDefinitions>
-                <RowDefinition x:Name="rBackButton" Height="Auto"/>
-                <RowDefinition x:Name="rItemsList" Height="*"/>
+                <RowDefinition x:Name="rShoppingIcon" Height="*"/>
+                <RowDefinition x:Name="rText" Height="*"/>
             </Grid.RowDefinitions>
-            <Button x:Name="btnBack"
-                    HorizontalAlignment="Left"
-                    Margin="20,10,0,10"
-                    Click="btnBack_Click">
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Grid x:Name="grdCircleButton">
-                            <Ellipse x:Name="ellCircle" 
-                             StrokeThickness="5"
-                             Stroke="#B56576"
-                             Fill="Transparent"
-                             Height="40"
-                             Width="{Binding ElementName=ellCircle,Path=ActualHeight}">
-                            </Ellipse>
-                            <Image x:Name="imgArrowLeftIcon"
-                           Source="{Icon:FeatherIconsImage Brush=#B56576, Kind=ArrowLeft}"
-                           Height="20"/>
-                        </Grid>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-            <Grid x:Name="grdEmptyShoppingCart"
-                  Grid.Row="1"
-                  Visibility="Collapsed">
-
-                <Grid.RowDefinitions>
-                    <RowDefinition x:Name="rShoppingIcon" Height="Auto"/>
-                    <RowDefinition x:Name="rText" Height="*"/>
-                </Grid.RowDefinitions>
-                <Image x:Name="imgShoppingCart"
-                       Grid.Row="0"
-                       Source="{Icon:FeatherIconsImage Brush=LightGray, Kind=ShoppingCart}"
-                       Stretch="UniformToFill"
-                       Margin="100"/>
-                <TextBlock x:Name="tbNoticeEmpty"
-                           Text="You don't have any items in your shopping cart. Let's go shopping!"
-                           VerticalAlignment="Top"
-                           HorizontalAlignment="Center"
-                           Foreground="LightGray"
-                           FontSize="30" Grid.Row="1"
-                           TextWrapping="Wrap"
-                           TextAlignment="Center"/>
-            </Grid>
-            <ScrollViewer x:Name="svItems"
-                          Grid.Row="1"
-                          VerticalScrollBarVisibility="Hidden">
-                <StackPanel x:Name="spItems">
-
-
-
-                </StackPanel>
-            </ScrollViewer>
-
-
+            <Image x:Name="imgShoppingCart"
+                   Grid.Row="0"
+                   Source="{Icon:FeatherIconsImage Brush=LightGray, Kind=ShoppingCart}"
+                   Stretch="Uniform"
+                   Margin="80,0"/>
+            <TextBlock x:Name="tbNoticeEmpty"
+                       Text="You don't have any items in your shopping cart. Let's go shopping!"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Center"
+                       Foreground="LightGray"
+                       FontSize="20" Grid.Row="1"
+                       TextWrapping="Wrap"
+                       TextAlignment="Center"
+                       Margin="0,30"/>
         </Grid>
-    </Border>
+        <ScrollViewer x:Name="svItems"
+                      VerticalScrollBarVisibility="Hidden">
+            <StackPanel x:Name="spItems">
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
 </UserControl>
