@@ -113,9 +113,9 @@ namespace UTEMerchant
 
                 }
                 // If there exist one UC_ItemDetail but the same as the recently clicked one, then the existing one will be removed
-                else if (grdSelectedItemDetailedInformation.Children.Count == 1 && grdSelectedItemDetailedInformation.Children[0] == itemDetail)
+                else if (dpSelectedItemDetailedInformation.Children.Count == 1 && dpSelectedItemDetailedInformation.Children[0] == itemDetail)
                 {
-                    grdSelectedItemDetailedInformation.Children.Remove(itemDetail);
+                    dpSelectedItemDetailedInformation.Children.Remove(itemDetail);
                 }
             }
         }
