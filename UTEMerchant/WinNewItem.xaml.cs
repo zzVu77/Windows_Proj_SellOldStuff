@@ -61,9 +61,9 @@ namespace UTEMerchant
 
             ComboBoxItem typeItem = (ComboBoxItem)cbType.SelectedItem;
            
-            dao.AddItem(new Item(Int32.Parse(txtID.Text.ToString()), txtName.Text.ToString(), rtbDescription.ToString(),
+            dao.AddItem(new Item(Int32.Parse(txtID.Text.ToString()), txtName.Text.ToString(), rtbConditonDescription.ToString(),
                 float.Parse(txtOriginalPrice.Text.ToString()), float.Parse(txtPrice.Text.ToString()),
-                image_path, DateTime.Parse(txtBoughtDate.Text.ToString()), txtStatus.Text.ToString(), typeItem.Content.ToString(), 1));
+                image_path, DateTime.Parse(txtBoughtDate.Text.ToString()), txtCondition.Text.ToString(), typeItem.Content.ToString(), 1));
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -74,9 +74,9 @@ namespace UTEMerchant
             {
                 ComboBoxItem typeItem = (ComboBoxItem)cbType.SelectedItem;
                 Item_DAO dao = new Item_DAO();
-                dao.AddItem(new Item(Int32.Parse(txtID.Text.ToString()), txtName.Text.ToString(), rtbDescription.Document.ToString(),
+                dao.AddItem(new Item(Int32.Parse(txtID.Text.ToString()), txtName.Text.ToString(), rtbConditonDescription.Document.ToString(),
                     float.Parse(txtOriginalPrice.Text.ToString()), float.Parse(txtPrice.Text.ToString()),
-                    image_path, DateTime.Parse(txtBoughtDate.Text.ToString()), txtStatus.Text.ToString(), typeItem.Content.ToString(), 1));
+                    image_path, DateTime.Parse(txtBoughtDate.Text.ToString()), txtBoughtDate.Text.ToString(), typeItem.Content.ToString(), 1));
                 this.Close();
             }
             else

@@ -10,7 +10,7 @@
         x:Class="UTEMerchant.WinNewItem"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="WinNewItem" Height="450" Width="700
+        Title="WinNewItem" Height="550" Width="700
         
     "
     >
@@ -18,13 +18,14 @@
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
     </Window.Resources>
 
-    <Grid>
+    <Grid >
         <Border 
                 CornerRadius="30" 
                 BorderThickness="3">
 
             <Grid x:Name="gridTotalLayout" 
-                  Height="380"
+                  Height="600"
+                  VerticalAlignment="Top"
                   Background="Transparent"
                   Width="600">
 
@@ -51,7 +52,7 @@
                         Style="{StaticResource addButton}" 
                         VerticalAlignment="Bottom" 
                         HorizontalAlignment="Left" 
-                        Margin="50,12,10,131" 
+                        Margin="50,0,10,335" 
                         Click="Button_Click" 
                         HorizontalContentAlignment="Center">
                     <StackPanel Orientation="Horizontal">
@@ -71,17 +72,19 @@
                         FontFamily="Segoe UI"
                         FontWeight="Bold"
                         Foreground="White"
-                        Click="Button_Click_1" Margin="0,20,4,5"/>
+                        Click="Button_Click_1" Margin="0,20,4,246"/>
 
 
                 <Grid x:Name="grdShortDetails"
                       Grid.Column="1"
                       Margin="20,0,0,0">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="55" />
+                        <RowDefinition Height="55"/>
+                        <RowDefinition Height="55"/>
                         <RowDefinition Height="auto"/>
+                        <RowDefinition Height="Auto"/>
+                        
 
                     </Grid.RowDefinitions>
 
@@ -161,25 +164,27 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBox Grid.Column="0" 
+                        <DatePicker Grid.Column="0" 
                                  x:Name="txtBoughtDate"
                                  Foreground="Black" 
                                  FontFamily="Segoe UI " 
+                                 VerticalContentAlignment="Center"
+                                 HorizontalContentAlignment="Left"
                                  FontWeight="SemiBold"  
-                                 Style="{StaticResource DefaultTextBoxStyle}" 
+                                 Style="{StaticResource DatePickerStyle}" 
                                  Height="40"
                                  BorderThickness="3"
                                  Tag="Bought Date"
                                  Margin="0,0,10,0"/>
                         <TextBox Grid.Column="1"
-                                 x:Name="txtStatus"                       
+                                 x:Name="txtCondition"                       
                                  Foreground="Black" 
                                  FontFamily="Segoe UI " 
                                  FontWeight="SemiBold"  
                                  Style="{StaticResource DefaultTextBoxStyle}"  
                                  Height="{Binding ElementName=txtBoughtDate, Path=ActualHeight}"
                                  BorderThickness="3"
-                                 Tag="Status"
+                                 Tag="Condition"
                                  Margin="10,0,0,0"/>
                     </Grid>
                     <Grid Grid.Row="3" >
@@ -188,14 +193,14 @@
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
                         <Label Grid.Row="0"
-                               x:Name="lblDescription"
-                               Content="Description"
+                               x:Name="lblConditionDescription"
+                               Content="Condition description"
                                VerticalAlignment="Top"
                                HorizontalAlignment="Left"
                                FontFamily="Segoe UI"
                                FontWeight="Bold"
                                Foreground="DarkGray"/>
-                        <RichTextBox x:Name="rtbDescription"
+                        <RichTextBox x:Name="rtbConditonDescription"
                                      VerticalAlignment="Center"
                                      Foreground="black"
                                      Background="Transparent"
@@ -206,6 +211,33 @@
                                      Focusable="True"
                                      FontFamily="Segoe UI"/>
                     </Grid>
+                    <Grid Grid.Row="4" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0"
+                               x:Name="lblDetailDescription"
+                               Content="Detail description"
+                               VerticalAlignment="Top"
+                               HorizontalAlignment="Left"
+                               FontFamily="Segoe UI"
+                               FontWeight="Bold"
+                               Foreground="DarkGray"/>
+                        <RichTextBox x:Name="rtbDetailDescription"
+                                     VerticalAlignment="Center"
+                                     Foreground="black"
+                                     Background="Transparent"
+                                     Grid.Row="1"
+                                     Height="140"
+                                     BorderThickness="2"
+                                     BorderBrush="DarkGray" 
+                                     Focusable="True"
+                                     FontFamily="Segoe UI"/>
+                    </Grid>
+
+
+
                 </Grid>
             </Grid>
         </Border>
