@@ -24,5 +24,10 @@ namespace UTEMerchant
         {
             InitializeComponent();
         }
+
+        private void btnRefresh_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

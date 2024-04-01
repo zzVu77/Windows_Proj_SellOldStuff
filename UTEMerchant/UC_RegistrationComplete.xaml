@@ -27,17 +27,32 @@
                        FontFamily="Space Grotesk Medium"
                        HorizontalAlignment="Center"
                        Margin="0,0,0,20"/>
-            <TextBlock Text="Please wait while we examine and approve"
-                       FontSize="30"
-                       FontWeight="Bold"
-                       FontFamily="Space Grotesk Medium"
-                       HorizontalAlignment="Center"
-                       Margin="0,0,0,20"/>
-            <TextBlock Text="We will respond back to you within 72 hours"
-                       FontSize="30"
-                       FontWeight="Bold"
-                       FontFamily="Space Grotesk Medium"
-                       HorizontalAlignment="Center"/>
+            <Button x:Name="btnRefresh"
+                    FontSize="12"
+                    Content="Refresh" Height="44"
+                    HorizontalAlignment="Center" Click="btnRefresh_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="Border" CornerRadius="20" 
+                                Background="LightGreen" 
+                                BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                VerticalAlignment="Center"
+                                Margin="50,0"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="LimeGreen"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="DarkGreen"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
         </StackPanel>
     </Grid>
 </UserControl>
