@@ -82,15 +82,15 @@ namespace UTEMerchant
                 )
             {
                 ComboBoxItem typeItem = (ComboBoxItem)cbType.SelectedItem;
-                string text = new TextRange(rtbConditonDescription.Document.ContentStart, rtbConditonDescription.Document.ContentEnd).Text;
+                string text = new TextRange(rtbDetailDescription.Document.ContentStart, rtbDetailDescription.Document.ContentEnd).Text;
                 Item_DAO dao = new Item_DAO();
                 dao.AddItem(new Item(Int32.Parse(txtID.Text.ToString()),
                                     txtName.Text.ToString(), text,
                                     float.Parse(txtOriginalPrice.Text.ToString()), 
                                     float.Parse(txtPrice.Text.ToString()), 
                                     image_path, 
-                                    DateTime.Parse(txtBoughtDate.Text.ToString()), 
-                                    txtBoughtDate.Text.ToString(), 
+                                    txtBoughtDate.SelectedDate.Value, 
+                                    txtCondition.Text.ToString(), 
                                     typeItem.Content.ToString(), 1)
                             );
                 this.Close();

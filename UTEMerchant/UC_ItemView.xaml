@@ -85,10 +85,9 @@ BorderBrush="#FF736161">
                                Width="71"
                                x:Name="txblOldPrice"
                                Grid.Row="2" Margin="0,0.5,0,0"                                    
-                        /> 
+                        />
                     <TextBlock TextWrapping="WrapWithOverflow" 
-                               Style="{DynamicResource TextBlockDefault}" 
-                               TextTrimming="CharacterEllipsis" 
+                               Style="{DynamicResource TextBlockDefault}"                               
                                Text="90%"
                                HorizontalAlignment="Left"
                                TextAlignment="Left"
@@ -98,9 +97,8 @@ BorderBrush="#FF736161">
                                FontWeight="Bold"  
                                Foreground="#ffac00"   
                                Height="21" 
-                               Width="71"
-                               x:Name="txblCondition"
-                               Grid.Row="1"                                    
+                               Width="166"
+                               x:Name="txblCondition" Margin="0,31,0,0" Grid.RowSpan="2"                                    
                         />
                     <Button x:Name="btnAddToCart"
                         

@@ -100,24 +100,28 @@ namespace UTEMerchant
         {
             if (sender is UC_ItemView clickedItem)
             {                
-                UC_ItemDetail itemDetail = new UC_ItemDetail(clickedItem.info);
-                // If the panel is empty, a new UC_ItemDetail is will be added
-                if (grdSelectedItemDetailedInformation.Children.Count == 0)
-                {
-                    grdSelectedItemDetailedInformation.Children.Add(itemDetail);
-                }
-                // If there exist one UC_ItemDetail but not the same as the recently clicked one, then the old one will be replaced by the new one
-                else if (grdSelectedItemDetailedInformation.Children.Count == 1 && grdSelectedItemDetailedInformation.Children[0] != itemDetail)
-                {
-                    grdSelectedItemDetailedInformation.Children.Clear();
-                    grdSelectedItemDetailedInformation.Children.Add(itemDetail);
+                //UC_ItemDetail itemDetail = new UC_ItemDetail(clickedItem.info);
+                //// If the panel is empty, a new UC_ItemDetail is will be added
+                //if (grdSelectedItemDetailedInformation.Children.Count == 0)
+                //{
+                //    grdSelectedItemDetailedInformation.Children.Add(itemDetail);
+                //}
+                //// If there exist one UC_ItemDetail but not the same as the recently clicked one, then the old one will be replaced by the new one
+                //else if (grdSelectedItemDetailedInformation.Children.Count == 1 && grdSelectedItemDetailedInformation.Children[0] != itemDetail)
+                //{
+                //    grdSelectedItemDetailedInformation.Children.Clear();
+                //    grdSelectedItemDetailedInformation.Children.Add(itemDetail);
 
-                }
-                // If there exist one UC_ItemDetail but the same as the recently clicked one, then the existing one will be removed
-                else if (grdSelectedItemDetailedInformation.Children.Count == 1 && grdSelectedItemDetailedInformation.Children[0] == itemDetail)
-                {
-                    grdSelectedItemDetailedInformation.Children.Remove(itemDetail);
-                }
+                //}
+                //// If there exist one UC_ItemDetail but the same as the recently clicked one, then the existing one will be removed
+                //else if (grdSelectedItemDetailedInformation.Children.Count == 1 && grdSelectedItemDetailedInformation.Children[0] == itemDetail)
+                //{
+                //    grdSelectedItemDetailedInformation.Children.Remove(itemDetail);
+                //}
+
+
+                WinDeltailItem winDeltailItem = new WinDeltailItem(clickedItem.info);
+                winDeltailItem.ShowDialog();
             }
         }
 

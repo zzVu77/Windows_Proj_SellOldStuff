@@ -3,7 +3,7 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:UTEMerchant"
-             StartupUri="WinDeltailItem.xaml"
+             StartupUri="WinLogin.xaml"
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
               xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
              xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
@@ -374,7 +374,7 @@
 
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#7B5CD6" />
+                    <Setter Property="Background" Value="Red" />
                     <Setter Property="Foreground" Value="#ffffff" />
                 </Trigger>
             </Style.Triggers>
