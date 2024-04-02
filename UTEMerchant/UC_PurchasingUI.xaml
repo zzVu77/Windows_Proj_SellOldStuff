@@ -177,7 +177,7 @@
                                    HorizontalAlignment="Left"
                                    VerticalContentAlignment="Center"
                                    HorizontalContentAlignment="Center"
-                                   FontFamily="Calibri"
+                                   FontFamily="Segoe UI"
                                    FontSize="22"
                                    Grid.Column="0"
                                    Margin="50,0,20,0">
@@ -193,7 +193,7 @@
                                     BorderThickness="1"
                                     Background="Transparent"
                                     Content="Relevance"
-                                    FontFamily="Calibri"
+                                    FontFamily="Segoe UI"
                                     FontSize="{Binding ElementName=lblSort, Path=FontSize}"
                                     FontWeight="Medium"                                
                                     Template="{StaticResource RoundedButtonTemplate}" Click="btnRelevance_Click">
@@ -209,7 +209,7 @@
                                     BorderThickness="1"
                                     Background="Transparent"
                                     Content="Popular"
-                                    FontFamily="Calibri"
+                                    FontFamily="Segoe UI"
                                     FontSize="{Binding ElementName=lblSort, Path=FontSize}"
                                     Template="{StaticResource RoundedButtonTemplate}"
                                     Click="btnPopular_Click">
@@ -226,7 +226,7 @@
                                     Background="Transparent"
                                     Content="Price"
                                     FontSize="{Binding ElementName=lblSort, Path=FontSize}"
-                                    FontFamily="Calibri"
+                                    FontFamily="Segoe UI"
                                     Template="{StaticResource RoundedButtonTemplate}"
                                     Click="btnPrice_Click">
                             </Button>
@@ -367,7 +367,7 @@
                                FontSize="20" 
                                FontWeight="Bold" 
                                FontStretch="UltraExpanded" 
-                               FontFamily="{StaticResource SpaceGroteskBold}"/>
+                               FontFamily="Segoe UI"/>
                         <ScrollViewer x:Name="svCategoryOptions" 
                                       VerticalAlignment="Stretch"
                                       VerticalScrollBarVisibility="Hidden">
@@ -382,8 +382,8 @@
                                         <Setter Property="FontFamily" Value="Calibri"/>
                                     </Style>
                                 </StackPanel.Resources>
-                                <RadioButton Content="DDDDDD"/>
-                                <RadioButton Content="Option 2" />
+                                <RadioButton Content="DDDDDD" FontFamily="Segoe UI"/>
+                                <RadioButton Content="Option 2" FontFamily="Segoe UI" />
                                 <!--<Button x:Name="btnCategoriesLoadMore"
 Template="{DynamicResource LinkLabelTemplate}"
 Height="26" 
@@ -429,7 +429,7 @@ HorizontalAlignment="Left">
                                FontSize="20"
                                FontWeight="Bold"
                                FontStretch="UltraExpanded"
-                               FontFamily="{StaticResource SpaceGroteskBold}"/>
+                              FontFamily="Segoe UI"/>
                         <ScrollViewer x:Name="svLocationsOptions"
                                       VerticalAlignment="Stretch"
                                       VerticalScrollBarVisibility="Hidden">
@@ -444,8 +444,8 @@ HorizontalAlignment="Left">
                                         <Setter Property="FontFamily" Value="Calibri"/>
                                     </Style>
                                 </StackPanel.Resources>
-                                <RadioButton Content="DDDDDD"/>
-                                <RadioButton Content="Option 2"/>
+                                <RadioButton Content="DDDDDD" FontFamily="Segoe UI"/>
+                                <RadioButton Content="Option 2" FontFamily="Segoe UI"/>
                                 <!--<Button x:Name="btnLocationsLoadMore"
 Template="{DynamicResource LinkLabelTemplate}"
 Height="26" Width="Auto" Content="Load more   >" 
@@ -488,7 +488,7 @@ HorizontalAlignment="Left">
                                HorizontalAlignment="Left"
                                FontSize="20" FontWeight="Bold"
                                FontStretch="UltraExpanded"
-                               FontFamily="{StaticResource SpaceGroteskBold}"/>
+                               FontFamily="Segoe UI"/>
                         <ScrollViewer x:Name="svPriceOptions"
                                       VerticalAlignment="Stretch"
                                       VerticalScrollBarVisibility="Hidden" 
@@ -504,8 +504,8 @@ HorizontalAlignment="Left">
                                         <Setter Property="FontFamily" Value="Calibri"/>
                                     </Style>
                                 </StackPanel.Resources>
-                                <RadioButton Content="DDDDDD"/>
-                                <RadioButton Content="Option 2" />
+                                <RadioButton Content="DDDDDD" FontFamily="Segoe UI"/>
+                                <RadioButton Content="Option 2" FontFamily="Segoe UI"/>
                             </StackPanel>
                         </ScrollViewer>
                         <Grid x:Name="grdRangeMinMax"
@@ -529,7 +529,7 @@ HorizontalAlignment="Left">
                                        HorizontalContentAlignment="Center"
                                        Margin="10" 
                                        FontSize="17"
-                                       FontFamily="Calibri"
+                                    FontFamily="Segoe UI"
                                        Width="42"/>
                                 <TextBox x:Name="txtMin"
                                          Grid.Column="0" 
@@ -552,7 +552,7 @@ HorizontalAlignment="Left">
                                        HorizontalAlignment="Center"
                                        HorizontalContentAlignment="Center"
                                        Margin="10"
-                                       FontFamily="Calibri"
+                                       FontFamily="Segoe UI"
                                        FontSize="17" 
                                        Width="42"/>
                                 <TextBox x:Name="txtMax" 
