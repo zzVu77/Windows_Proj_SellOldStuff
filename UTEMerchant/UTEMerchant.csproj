@@ -202,6 +202,9 @@
     </Compile>
     <Compile Include="User.cs" />
     <Compile Include="user_DAO.cs" />
+    <Compile Include="WinDeltailItem.xaml.cs">
+      <DependentUpon>WinDeltailItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WinNewItem.xaml.cs">
       <DependentUpon>WinNewItem.xaml</DependentUpon>
     </Compile>
@@ -237,6 +240,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UC_SellerRegistration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinDeltailItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

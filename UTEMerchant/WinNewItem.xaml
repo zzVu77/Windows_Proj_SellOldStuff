@@ -49,12 +49,11 @@
                 <Button Grid.Column="0"
                         Height="40"
                         Width="100"
-                        Style="{StaticResource addButton}" 
-                        VerticalAlignment="Bottom" 
-                        HorizontalAlignment="Left" 
-                        Margin="50,0,10,335" 
+                        Style="{StaticResource addButton}"                        
+                        VerticalAlignment="Top" 
+                        HorizontalAlignment="Left"                        
                         Click="Button_Click" 
-                        HorizontalContentAlignment="Center">
+                        HorizontalContentAlignment="Center" Margin="45,233,0,0">
                     <StackPanel Orientation="Horizontal">
                         <Icon:PackIconMaterial Kind="Upload" VerticalAlignment="Center" Margin="0 1 8 0" Width="11" Height="11"/>
                         <TextBlock Text="Upload" FontWeight="Light" FontFamily="Segoe UI"/>
@@ -84,7 +83,7 @@
                         <RowDefinition Height="55"/>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="Auto"/>
-                        
+
 
                     </Grid.RowDefinitions>
 
