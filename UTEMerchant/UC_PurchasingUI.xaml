@@ -81,8 +81,6 @@
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
-
-
     </UserControl.Resources>
 
     <Grid>
@@ -95,8 +93,8 @@
                 <ColumnDefinition x:Name="cMainInteraction" Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <!--The main interface-->
 
+            <!--The main interface-->
 
             <Grid x:Name="grdMainInterface"
                   Grid.Column="0">
@@ -292,9 +290,11 @@
 
                     <!--Selected item's detailed information section-->
 
-                    <Grid x:Name="grdSelectedItemDetailedInformation"
-                               DockPanel.Dock="Right">
-                    </Grid>
+                    <DockPanel x:Name="dpSelectedItemDetailedInformation"
+                               DockPanel.Dock="Right" Width="300"
+                               HorizontalAlignment="Right">
+                        
+                    </DockPanel>
 
                     <!--Items list section-->
 
@@ -305,7 +305,7 @@
                                       VerticalScrollBarVisibility="Hidden">
                             <!--PreviewMouseDown="svItemsList_PreviewMouseDown"-->
                             <WrapPanel x:Name="wpItemsList"
-                                       Width="800"
+                                       Width="{Binding ElementName=dpItemsList,Path=ActualWidth}"
                                        MouseLeftButtonDown="wpItemsList_MouseLeftButtonDown"
                                        Margin="0,0,20,0">
                                 <WrapPanel.Resources>
@@ -323,9 +323,6 @@
                                         </Setter>
                                     </Style>
                                 </WrapPanel.Resources>
-
-
-
                             </WrapPanel>
                         </ScrollViewer>
                     </DockPanel>
@@ -344,9 +341,8 @@
                        Grid.Column="1"                 
                        Background="#E56B6F"
                        LastChildFill="True" 
-                       
-                       Visibility="Visible">
-
+                       Visibility="Collapsed"
+                       >             
                 <Grid x:Name="grdFilterOptions">
                     <Grid.RowDefinitions>
                         <RowDefinition Name="rCategory" Height="Auto"/>
@@ -565,9 +561,6 @@ HorizontalAlignment="Left">
                     </DockPanel>
                 </Grid>
             </DockPanel>
-            
-                
-           
         </Grid>
 
         <!--Shopping cart-->

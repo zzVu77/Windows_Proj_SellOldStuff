@@ -78,7 +78,6 @@ namespace UTEMerchant
         {
             if (dpRightSideBar.Visibility == Visibility.Collapsed)
             {
-                if (uc_ShoppingCart.Visibility == Visibility.Visible) uc_ShoppingCart.Visibility = Visibility.Collapsed;
                 dpRightSideBar.Visibility = Visibility.Visible;
             }
             else dpRightSideBar.Visibility = Visibility.Collapsed;
@@ -102,21 +101,21 @@ namespace UTEMerchant
             {                
                 UC_ItemDetail itemDetail = new UC_ItemDetail(clickedItem.info);
                 // If the panel is empty, a new UC_ItemDetail is will be added
-                if (grdSelectedItemDetailedInformation.Children.Count == 0)
+                if (dpSelectedItemDetailedInformation.Children.Count == 0)
                 {
-                    grdSelectedItemDetailedInformation.Children.Add(itemDetail);
+                    dpSelectedItemDetailedInformation.Children.Add(itemDetail);
                 }
                 // If there exist one UC_ItemDetail but not the same as the recently clicked one, then the old one will be replaced by the new one
-                else if (grdSelectedItemDetailedInformation.Children.Count == 1 && grdSelectedItemDetailedInformation.Children[0] != itemDetail)
+                else if (dpSelectedItemDetailedInformation.Children.Count == 1 && dpSelectedItemDetailedInformation.Children[0] != itemDetail)
                 {
-                    grdSelectedItemDetailedInformation.Children.Clear();
-                    grdSelectedItemDetailedInformation.Children.Add(itemDetail);
+                    dpSelectedItemDetailedInformation.Children.Clear();
+                    dpSelectedItemDetailedInformation.Children.Add(itemDetail);
 
                 }
                 // If there exist one UC_ItemDetail but the same as the recently clicked one, then the existing one will be removed
-                else if (grdSelectedItemDetailedInformation.Children.Count == 1 && grdSelectedItemDetailedInformation.Children[0] == itemDetail)
+                else if (dpSelectedItemDetailedInformation.Children.Count == 1 && dpSelectedItemDetailedInformation.Children[0] == itemDetail)
                 {
-                    grdSelectedItemDetailedInformation.Children.Remove(itemDetail);
+                    dpSelectedItemDetailedInformation.Children.Remove(itemDetail);
                 }
             }
         }
