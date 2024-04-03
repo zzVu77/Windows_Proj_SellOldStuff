@@ -109,7 +109,7 @@
                     <DataGridTextColumn Header="Original Price" Binding="{Binding OriginalPrice}" IsReadOnly="True" Width="*"/>
                     <DataGridTextColumn Header="Price" Binding="{Binding Price}" IsReadOnly="True" Width="*" />
                     <DataGridTextColumn Header="Type" Binding="{Binding Type}" IsReadOnly="True" Width="*" />
-                    <DataGridTextColumn Header="Posted Date" Binding="{Binding PostedDate}"  IsReadOnly="True" Width="*" />
+                    <DataGridTextColumn Header="Posted Date" Binding="{Binding Bought_date}"  IsReadOnly="True" Width="*" />
                     <DataGridTextColumn Header="Status" Binding="{Binding Status}"   IsReadOnly="True" Width="*"  />
                     <DataGridTextColumn Header="Description" Binding="{Binding Description}" IsReadOnly="True" Width="*"  />
                     <DataGridTemplateColumn Header="Actions" IsReadOnly="True" Width="auto" >

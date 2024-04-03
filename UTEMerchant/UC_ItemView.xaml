@@ -32,16 +32,24 @@ BorderBrush="#FF736161">
             </Border>
             <!--Card Footer part-->
             <hc:Card.Footer >
-                <StackPanel Margin="5,0,0,0" Height="125">
+                <Grid Margin="5,0,0,0" Height="125">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
                     <!--Card First-level content-->
                     <TextBlock x:Name="txblItemName" TextWrapping="NoWrap" 
-                                   Style="{DynamicResource TextBlockLargeBold}"
-                                   FontSize="18"
-                                   TextTrimming="CharacterEllipsis" 
-                                   Text="Iphone 13 Pro Max"
-                                   HorizontalAlignment="Stretch"
-                                   FontFamily="Segoe UI Black"   
-                                   VerticalAlignment="Top" Padding="10,0,10,0"
+                               Style="{DynamicResource TextBlockLargeBold}"
+                               FontSize="18"
+                               TextTrimming="CharacterEllipsis" 
+                               Text="Iphone 13 Pro Max"
+                               FontWeight="ExtraBold"
+                               HorizontalAlignment="Left"
+                               FontFamily="Segoe UI Black"   
+                               VerticalAlignment="Top" 
+                               Grid.Row="0"
                                                                        
                                     />
                     <!--Card Secondary content-->
@@ -49,30 +57,82 @@ BorderBrush="#FF736161">
                                Style="{DynamicResource TextBlockDefault}" 
                                TextTrimming="CharacterEllipsis" 
                                Text=" $10000"
-                               HorizontalAlignment="Left" 
+                               HorizontalAlignment="Right" 
+                               VerticalAlignment="Top"
+                               TextAlignment="Right"
                                FontSize="20" 
                                FontFamily="Rockwell" 
                                FontWeight="Bold"  
                                Foreground="#FF3131" 
                                Height="26" 
-                               Width="81"
-                               Margin="0,20,0,0"  
+                               Width="84"                               
                                x:Name="txblPrice"
+                               Grid.Row="1" Margin="0,31,0,0" Grid.RowSpan="2"
                                    
                         />
+                    <TextBlock TextWrapping="WrapWithOverflow" 
+                               Style="{DynamicResource TextBlockDefault}" 
+                               TextTrimming="CharacterEllipsis" 
+                               Text=" $2000"
+                               HorizontalAlignment="Left"
+                               TextAlignment="Left"
+                               VerticalAlignment="Top"
+                               FontSize="18" 
+                               FontFamily="Rockwell" 
+                               FontWeight="Bold"  
+                               Foreground="DarkGray"   
+                               TextDecorations="Strikethrough"
+                               Height="21" 
+                               Width="71"
+                               x:Name="txblOldPrice"
+                               Grid.Row="2" Margin="0,0.5,0,0"                                    
+                        />
+                    <TextBox TextWrapping="WrapWithOverflow"                              
+                             BorderThickness="0"
+                             HorizontalContentAlignment="Right"
+                             Text="90%"
+                             HorizontalAlignment="Right"
+                             TextAlignment="Right"
+                             VerticalAlignment="Top"
+                             FontSize="20" 
+                             IsReadOnly="True"
+                             FontFamily="Rockwell" 
+                             FontWeight="Bold"  
+                             Foreground="#ffac00"   
+                             Height="21" 
+                             Width="84"
+                             x:Name="txblCondition" Margin="0,31,0,0" Grid.RowSpan="2"                                    
+                        />
+                    <Label                                                
+                        FontSize="15"             
+                        x:Name="lblCondition"
+                        Content="Condition: "
+                        HorizontalAlignment="Left"
+                        FontWeight="Bold"
+                        VerticalAlignment="Top"
+                        VerticalContentAlignment="Top"
+                        HorizontalContentAlignment="Left"
+                        Padding="0,0,0,0"
+                        Grid.Row="1" 
+                        Width="106" 
+                        BorderThickness="0,0,0,0"                          
+                        IsHitTestVisible="False" Height="20" Margin="0,2,0,0"/>
+
                     <Button x:Name="btnAddToCart"
-                        HorizontalAlignment="Right"
-                        Margin="0,-28,7,50" 
+                        
+                        HorizontalAlignment="Stretch"                     
                         RenderTransformOrigin="1.525,0.952" 
                         Height="26" VerticalAlignment="Center" 
                         VerticalContentAlignment="Center" 
                         Padding="5,5,5,5" BorderThickness="1,1,1,1" 
-                        FontFamily="Rockwell" FontWeight="Bold"                      
+                        FontFamily="Rockwell" FontWeight="Bold"
+                        Grid.Row="3"
+                        
                         Click="btnAddToCart_Click">
 
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
-                                <Border CornerRadius="7" Background="#FF3131" Width="75">
+                                <Border CornerRadius="7" Background="#FF3131" Width="175">
                                     <ContentPresenter VerticalAlignment="Center" />
 
                                 </Border>
@@ -84,7 +144,8 @@ BorderBrush="#FF736161">
                     </Button>
 
 
-                </StackPanel>
+
+                </Grid>
             </hc:Card.Footer>
         </hc:Card>
     </Grid>

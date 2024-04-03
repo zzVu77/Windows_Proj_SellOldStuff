@@ -98,25 +98,27 @@ namespace UTEMerchant
         private void wpItemsList_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (sender is UC_ItemView clickedItem)
-            {                
-                UC_ItemDetail itemDetail = new UC_ItemDetail(clickedItem.info);
-                // If the panel is empty, a new UC_ItemDetail is will be added
-                if (dpSelectedItemDetailedInformation.Children.Count == 0)
-                {
-                    dpSelectedItemDetailedInformation.Children.Add(itemDetail);
-                }
-                // If there exist one UC_ItemDetail but not the same as the recently clicked one, then the old one will be replaced by the new one
-                else if (dpSelectedItemDetailedInformation.Children.Count == 1 && dpSelectedItemDetailedInformation.Children[0] != itemDetail)
-                {
-                    dpSelectedItemDetailedInformation.Children.Clear();
-                    dpSelectedItemDetailedInformation.Children.Add(itemDetail);
+            {
+                WinDeltailItem winDeltailItem = new WinDeltailItem(clickedItem.info);
+                winDeltailItem.ShowDialog();
+                //UC_ItemDetail itemDetail = new UC_ItemDetail(clickedItem.info);
+                // // If the panel is empty, a new UC_ItemDetail is will be added
+                // if (dpSelectedItemDetailedInformation.Children.Count == 0)
+                // {
+                //     dpSelectedItemDetailedInformation.Children.Add(itemDetail);
+                // }
+                // // If there exist one UC_ItemDetail but not the same as the recently clicked one, then the old one will be replaced by the new one
+                // else if (dpSelectedItemDetailedInformation.Children.Count == 1 && dpSelectedItemDetailedInformation.Children[0] != itemDetail)
+                // {
+                //     dpSelectedItemDetailedInformation.Children.Clear();
+                //     dpSelectedItemDetailedInformation.Children.Add(itemDetail);
 
-                }
-                // If there exist one UC_ItemDetail but the same as the recently clicked one, then the existing one will be removed
-                else if (dpSelectedItemDetailedInformation.Children.Count == 1 && dpSelectedItemDetailedInformation.Children[0] == itemDetail)
-                {
-                    dpSelectedItemDetailedInformation.Children.Remove(itemDetail);
-                }
+                // }
+                // // If there exist one UC_ItemDetail but the same as the recently clicked one, then the existing one will be removed
+                // else if (dpSelectedItemDetailedInformation.Children.Count == 1 && dpSelectedItemDetailedInformation.Children[0] == itemDetail)
+                // {
+                //     dpSelectedItemDetailedInformation.Children.Remove(itemDetail);
+                // }
             }
         }
 

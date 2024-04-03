@@ -1,0 +1,404 @@
+﻿<Window x:Class="UTEMerchant.WinDeltailItem"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"            
+        xmlns:hc="https://handyorg.github.io/handycontrol"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"    
+        xmlns:local="clr-namespace:UTEMerchant"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        
+        Title="Item Details" Height="800" Width="1200">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="614*"/>
+            <ColumnDefinition Width="389*"/>
+            <ColumnDefinition Width="197*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="253*"/>
+            <RowDefinition Height="139*"/>
+
+        </Grid.RowDefinitions>
+        <!--Item Image-->
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="581*"/>
+                <RowDefinition Height="103*"/>
+            </Grid.RowDefinitions>
+            <Border
+                Width="533" 
+                Height="468" 
+                HorizontalAlignment="Center" 
+                BorderThickness="0"
+                BorderBrush="Black"
+                VerticalAlignment="Top"
+                CornerRadius="7" Grid.RowSpan="2">
+                <Image x:Name="imgItem" Source="/Img/iPhone-14-Pro-Max-9907.jpg"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Uniform" Margin="7,0,7,0"/>
+            </Border>
+
+
+
+        </Grid>
+
+        <!-- Label for Detail Description  -->
+        <Label
+            Grid.Row="1"
+            Grid.Column="0"
+            FontSize="15"
+            x:Name="lblDetailDescription"
+            Content="Detail description"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Center"
+            FontFamily="Segoe UI"            
+            FontWeight="SemiBold"
+            Foreground="Black" 
+            Height="35" 
+            Width="140"
+            RenderTransformOrigin="0.512,1.047"
+             />
+
+        <!--Value for Detail Description-->
+        <RichTextBox 
+            x:Name="rtbDetailDescription"    
+            Grid.Row="1"  
+            HorizontalAlignment="Center"
+            Foreground="black"
+            Background="Transparent"                       
+            IsReadOnly="True"
+            BorderThickness="1"
+            BorderBrush="LightGray" 
+            Focusable="False"
+            FontFamily="Segoe UI" Width="450" Margin="0,35,0,65" Padding="5,5,0,5">
+            <RichTextBox.Resources>
+                <Style TargetType="{x:Type Border }">
+                    <Setter Property="CornerRadius" Value="15"/>
+                </Style>
+            </RichTextBox.Resources>
+        </RichTextBox>
+
+        <!--Grid for Detail Information-->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="164"/>
+                <RowDefinition Height="57"/>
+            </Grid.RowDefinitions>
+            <!--Item name-->
+            <TextBlock
+                Grid.Row="0"
+                VerticalAlignment="Top"
+                x:Name="txblItemName"
+                TextWrapping="Wrap"             
+                TextTrimming="None"
+                Text="Iphone 14 Pro Max 512GB"
+                FontFamily="Segoe UI Black"
+                MaxHeight="95" 
+                FontSize="18" Padding="0,0,0,50" Panel.ZIndex="-2" Height="35" Margin="0,15,0,0" />
+
+            <!-- Label for Original Price -->
+            <Label               
+                FontSize="15"             
+                x:Name="lblOriginalPrice"
+                Content="Original price: "
+                HorizontalAlignment="Left"
+                FontWeight="SemiBold"
+                VerticalAlignment="Center"
+                VerticalContentAlignment="Top"
+                HorizontalContentAlignment="Left"
+                Padding="0,0,0,0"
+                Grid.Row="1" 
+                Width="106" 
+                BorderThickness="0,0,0,0"                          
+                IsHitTestVisible="False" Height="20"/>
+
+            <!--Value for Original Price-->
+            <TextBox           
+                IsReadOnly="True"
+                VerticalAlignment="Center"                     
+                Foreground="Black"
+                TextDecorations="Strikethrough"
+                BorderThickness="0"
+                FontSize="15"
+                x:Name="txbOriginalPrice"
+                Text="100000 $"
+                HorizontalAlignment="Left"
+                HorizontalContentAlignment="Left"
+                VerticalContentAlignment="Top"
+                RenderTransformOrigin="0.799,0.479"                  
+                FontWeight="SemiBold"
+                Height="28" Width="110" 
+                Padding="5,5,5,5"                
+                Grid.Row="1" Margin="170,0,0,0"                        
+              />
+
+
+            <!-- Label for Type  -->
+            <Label               
+                FontSize="15"             
+                x:Name="lblType"
+                Content="Type: "
+                HorizontalAlignment="Left"
+                FontWeight="SemiBold"
+                VerticalAlignment="Center"
+                VerticalContentAlignment="Top"
+                HorizontalContentAlignment="Left"
+                Padding="0,0,0,0"
+                Grid.Row="2" 
+                Width="106" 
+                BorderThickness="0,0,0,0"                          
+                IsHitTestVisible="False" Height="20"/>
+
+            <!--Value for Type -->
+            <TextBox       
+                IsReadOnly="True"
+                VerticalAlignment="Top"                     
+                Foreground="Black"              
+                BorderThickness="0"
+                FontSize="15"
+                x:Name="txbType"
+                Text="Mobile Phone"
+                HorizontalAlignment="Right"
+                HorizontalContentAlignment="Left"
+                VerticalContentAlignment="Top"
+                RenderTransformOrigin="0.799,0.479"                  
+                FontWeight="SemiBold" Height="28" Width="219" Padding="5,5,5,5"                
+                Grid.Row="2"                         
+              />
+
+            <!-- Label for Condition  -->
+            <Label               
+                FontSize="15"             
+                x:Name="lblCondition"
+                Content="Condition: "
+                HorizontalAlignment="Left"
+                FontWeight="SemiBold"
+                VerticalAlignment="Center"
+                VerticalContentAlignment="Top"
+                HorizontalContentAlignment="Left"
+                Padding="0,0,0,0"
+                Grid.Row="3" 
+                Width="106" 
+                BorderThickness="0,0,0,0"                          
+                IsHitTestVisible="False" Height="20"/>
+
+            <!--Value for Condition-->
+            <TextBox       
+                IsReadOnly="True"
+                VerticalAlignment="Top"                     
+                Foreground="Black"              
+                BorderThickness="0"
+                FontSize="15"
+                x:Name="txbConditon"
+                Text="95%"
+                HorizontalAlignment="Right"
+                HorizontalContentAlignment="Left"
+                VerticalContentAlignment="Top"
+                RenderTransformOrigin="0.799,0.479"                  
+                FontWeight="SemiBold" Height="28" Width="219" Padding="5,5,5,5"                
+                Grid.Row="3" Margin="0,2,0,0"                         
+                
+              />
+
+            <!-- Label for BoughtDate  -->
+            <Label               
+                FontSize="15"             
+                x:Name="lblBoughtDate"
+                Content="Bought Date: "
+                HorizontalAlignment="Left"
+                FontWeight="SemiBold"
+                VerticalAlignment="Center"
+                VerticalContentAlignment="Top"
+                HorizontalContentAlignment="Left"
+                Padding="0,0,0,0"
+                Grid.Row="4" 
+                Width="106" 
+                BorderThickness="0,0,0,0"                          
+                IsHitTestVisible="False" Height="20"/>
+
+            <!--Value for BoughtDate-->
+            <TextBox    
+                IsReadOnly="True"
+                 VerticalAlignment="Top"                     
+                Foreground="Black"              
+                BorderThickness="0"
+                FontSize="15"
+                x:Name="txbBughtDate"
+                Text="22/11/2023"
+                HorizontalAlignment="Right"
+                HorizontalContentAlignment="Left"
+                VerticalContentAlignment="Top"
+                RenderTransformOrigin="0.799,0.479"                  
+                FontWeight="SemiBold" Height="28" Width="219" Padding="5,5,5,5"                
+                Grid.Row="4" Margin="0,2,0,0"                        
+              />
+
+            <!-- Label for Condition Description  -->
+            <Label Grid.Row="5"
+                   x:Name="lblConditionDescription"
+                   Content="Condition description"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Left"
+                   FontFamily="Segoe UI"
+                   FontWeight="SemiBold"
+                   FontSize="15"                   
+                   Foreground="Black" Padding="0,5,5,5" Height="30" Width="152"/>
+
+            <!--Value for Condition Description-->
+            <RichTextBox x:Name="rtbConditonDescription"                                     
+                         Foreground="black"
+                         IsReadOnly="True"
+                         Background="Transparent"
+                         HorizontalAlignment="Center"
+                         Grid.Row="5"
+                         Width="369"                                    
+                         BorderThickness="0.8"
+                         BorderBrush="DarkGray" 
+                         Focusable="False"
+                         FontFamily="Segoe UI" Height="110" VerticalAlignment="Top" Margin="0,35,0,0"   >
+                <RichTextBox.Resources>
+                    <Style TargetType="{x:Type Border }">
+                        <Setter Property="CornerRadius" Value="12"/>
+                    </Style>
+                </RichTextBox.Resources>
+            </RichTextBox>
+            <TextBox 
+                    BorderThickness="0"
+                    x:Name="txtItemPrice"
+                    TextWrapping="WrapWithOverflow"
+                    HorizontalContentAlignment="Left"
+                    VerticalContentAlignment="Top"
+                    Text=" 700 $"
+                    HorizontalAlignment="Left"                   
+                    FontSize="30"                   
+                    FontWeight="Bold"
+                    Foreground="red"
+                    Grid.Row="6" 
+                    IsReadOnly="True" 
+                    Width="100"                 
+                    Padding="0,3,0,0" Margin="0,0,0,7"  />
+
+            <Grid Grid.Row="6" Margin="0,10,0,-95" >
+
+                <Button Grid.Column="0"
+                        Grid.Row="6"
+                        Height="40"
+                        Width="150"
+                        Style="{StaticResource addButton}" 
+                        VerticalAlignment="Bottom" 
+                        HorizontalAlignment="Left"                                         
+                        HorizontalContentAlignment="Center" Margin="0,20,0,45">
+                    <StackPanel Orientation="Horizontal">
+                        <Icon:PackIconMaterial Kind="TruckDelivery" VerticalAlignment="Center" Margin="0 1 8 0" Width="17" Height="21"/>
+                        <TextBlock Text="Buy Now" FontWeight="Bold" FontFamily="Segoe UI" FontSize="15"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Grid.Column="0"
+                        HorizontalAlignment="Right"
+                        Height="40"
+                        Width="150"
+                        Style="{StaticResource addButton}" 
+                        VerticalAlignment="Bottom"                                         
+                        HorizontalContentAlignment="Center" Margin="0,20,7,45" >
+                    <StackPanel Orientation="Horizontal">
+                        <Icon:PackIconMaterial Kind="HeartPlus" VerticalAlignment="Center" Margin="0 1 8 0" Width="17" Height="21"/>
+                        <TextBlock Text="Add To WishList" FontWeight="Bold" FontFamily="Segoe UI" FontSize="15"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+
+
+        </Grid>
+
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="91"/>
+                <RowDefinition Height="38"/>
+                <RowDefinition/>
+                <RowDefinition Height="0*"/>
+                <RowDefinition Height="383.579"/>
+            </Grid.RowDefinitions>
+
+            <!--Seller Avartar-->
+            <Border
+                Width="72" 
+                Height="68" 
+                Padding="3" 
+                Background="Black" 
+                CornerRadius="100" 
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+                <Ellipse>
+                    <Ellipse.Fill>
+                        <ImageBrush x:Name="imgSellerAvartar" ImageSource="/Img/kimetsu.jpg"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+            </Border>
+
+            <!--Seller Name-->
+            <TextBox           
+                IsReadOnly="True"
+                VerticalAlignment="Center"                     
+                Foreground="Black"              
+                BorderThickness="0"
+                FontSize="20"
+                x:Name="txbSellerName"
+                Text="Vu Nguyen"
+                HorizontalAlignment="Center"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Top"
+                RenderTransformOrigin="0.799,0.479"                  
+                FontWeight="Medium" Height="42" Width="208" Padding="5,5,5,5" Grid.Row="1"                     
+              />
+            <!--Seller Contact-->
+            <TextBox           
+                VerticalAlignment="Top"                     
+                Foreground="Black"              
+                BorderThickness="0"
+                FontSize="18"
+                x:Name="txbSellerContact"
+                Text="0327521953"
+                HorizontalAlignment="Center"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Top"
+                RenderTransformOrigin="0.799,0.479"                  
+                FontWeight="Medium"
+                Height="32" Width="148" 
+                Padding="1,1,1,1" 
+                Grid.Row="2" Margin="0,1,0,0" Grid.RowSpan="3"                     
+              />
+            <!--Seller Address-->
+            <TextBox          
+                IsReadOnly="True"
+                VerticalAlignment="Top"                     
+                Foreground="Black"              
+                BorderThickness="0"
+                FontSize="12"
+                x:Name="txbSellerAddress"
+                Text="63/49, duong so 10, Tang Nhon Phu B, Thu Duc"
+                TextWrapping="WrapWithOverflow"
+                HorizontalAlignment="Center"
+                HorizontalContentAlignment="Left"
+                VerticalContentAlignment="Top"
+                RenderTransformOrigin="0.799,0.479"                  
+                FontWeight="SemiBold"
+                Height="264" Width="177" 
+                Padding="15,5,5,5" 
+                Grid.Row="4" Margin="0,38,0,0"                     
+              />
+
+
+
+        </Grid>
+    </Grid>
+</Window>
