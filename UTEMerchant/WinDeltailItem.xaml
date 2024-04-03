@@ -258,9 +258,9 @@
                          Foreground="black"
                          IsReadOnly="True"
                          Background="Transparent"
-                         HorizontalAlignment="Left"
+                         HorizontalAlignment="Center"
                          Grid.Row="5"
-                         Width="379"                                    
+                         Width="369"                                    
                          BorderThickness="0.8"
                          BorderBrush="DarkGray" 
                          Focusable="False"
@@ -311,8 +311,8 @@
                         VerticalAlignment="Bottom"                                         
                         HorizontalContentAlignment="Center" Margin="0,20,7,45" >
                     <StackPanel Orientation="Horizontal">
-                        <Icon:PackIconMaterial Kind="Cart" VerticalAlignment="Center" Margin="0 1 8 0" Width="17" Height="21"/>
-                        <TextBlock Text="Add To Cart" FontWeight="Bold" FontFamily="Segoe UI" FontSize="15"/>
+                        <Icon:PackIconMaterial Kind="HeartPlus" VerticalAlignment="Center" Margin="0 1 8 0" Width="17" Height="21"/>
+                        <TextBlock Text="Add To WishList" FontWeight="Bold" FontFamily="Segoe UI" FontSize="15"/>
                     </StackPanel>
                 </Button>
             </Grid>
