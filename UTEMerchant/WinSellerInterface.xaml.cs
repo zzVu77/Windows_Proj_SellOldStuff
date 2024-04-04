@@ -29,7 +29,8 @@ namespace UTEMerchant
         {
             InitializeComponent();
             uc_StartSelling.btnStartSelling.Click += OnStartTradingButtonClicked;
-            uc_SellerRegistration.btnDone.Click += OnDoneRegistrationClicked;
+            uc_SellerRegistration.btnDone.Click += OnDoneRegistrationButtonClicked;
+            uc_RegistrationComplete.btnRefresh.Click += OnRefreshButtonClicked;
         }
 
         private bool IsMaximize = false;
@@ -100,7 +101,7 @@ namespace UTEMerchant
                 grdSellerUI.Visibility = Visibility.Visible;
                 uc_SellerUI.Visibility = Visibility.Visible;
             }
-            // If the user haven't registered to be seller
+            // If the user haven't registered to be a seller
             else if (1 < 2)
             {
                 uc_SellerUI.Visibility = Visibility.Collapsed;
@@ -125,7 +126,7 @@ namespace UTEMerchant
         }
 
         // This method is called when the user clicks the Done button in the Seller Registration UC
-        private void OnDoneRegistrationClicked(object sender, EventArgs e)
+        private void OnDoneRegistrationButtonClicked(object sender, EventArgs e)
         {
             if (sender is Button)
             {
@@ -134,7 +135,8 @@ namespace UTEMerchant
             }
         }
 
-        private void OnRefreshListButtonClicked(object sender, EventArgs e)
+        // This method is called when the user clicks the Refresh List button in the Registration Complete UC
+        private void OnRefreshButtonClicked(object sender, EventArgs e)
         {
             if (sender is Button)
             {
