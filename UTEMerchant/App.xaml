@@ -10,6 +10,7 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib">                
     <Application.Resources>
         <!--Converters-->
+        <local:PercentageConverter x:Key="PercentageConverter"/>
         <local:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
         <local:StringNullOrEmptyToVisibilityConverter x:Key="StringNullOrEmptyToVisibilityConverter"/>
         <local:TextToVisibilityConverter x:Key="TextToVisibilityConverter"/>
@@ -1273,8 +1274,8 @@
                                                    Tag="{TemplateBinding Tag}"
                                                    Text="{Binding Path=SelectedDate, StringFormat={}{0:dd/MM/yyyy}, RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}"
                                                    Focusable="{TemplateBinding Focusable}"
-                                                   HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                   VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                                    FontSize="{TemplateBinding FontSize}"
                                                    Background="Transparent"
                                                    BorderThickness="0"
@@ -1283,7 +1284,7 @@
                                 </DatePickerTextBox>
                                 <Grid x:Name="PART_CalendarIcon"
                                       Grid.Column="1"
-                                      Height="{TemplateBinding FontSize}"
+                                      Height="{TemplateBinding FontSize, Converter={StaticResource PercentageConverter}, ConverterParameter=200}"
                                       Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="*"/>
@@ -1313,9 +1314,7 @@
                                                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                                                     <GradientStop Color="White" Offset="0"/>
                                                     <GradientStop Color="#FFE5E5E5" Offset="0.5"/>
-                                                    <!-- Light-Gray White -->
                                                     <GradientStop Color="#FFD3D3D3" Offset="1"/>
-                                                    <!-- Grayish White -->
                                                 </LinearGradientBrush>
                                             </Rectangle.Fill>
                                         </Rectangle>
@@ -1336,8 +1335,11 @@
                                                    Grid.Column="1"
                                                    Grid.ColumnSpan="2"
                                                    Grid.RowSpan="3"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   TextAlignment="Center"
                                                    Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat=dd}"
-                                                   FontSize="9"
+                                                   FontSize="{TemplateBinding FontSize, Converter={StaticResource PercentageConverter}, ConverterParameter=80}"
                                                    FontWeight="Bold"
                                                    Margin="0,1,0,0"/>
                                     </Grid>
