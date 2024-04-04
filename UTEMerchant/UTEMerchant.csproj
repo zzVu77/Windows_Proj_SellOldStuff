@@ -171,6 +171,7 @@
     <Compile Include="InverseBooleanConverter.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Item_DAO.cs" />
+    <Compile Include="PercentageConverter.cs" />
     <Compile Include="StringNullOrEmptyToVisibilityConverter.cs" />
     <Compile Include="TextToVisibilityConverter.cs" />
     <Compile Include="UC_RegistrationComplete.xaml.cs">
@@ -207,6 +208,9 @@
     </Compile>
     <Compile Include="WinDeltailItem.xaml.cs">
       <DependentUpon>WinDeltailItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Window1.xaml.cs">
+      <DependentUpon>Window1.xaml</DependentUpon>
     </Compile>
     <Compile Include="WinNewItem.xaml.cs">
       <DependentUpon>WinNewItem.xaml</DependentUpon>
@@ -251,6 +255,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WinDeltailItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Window1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
