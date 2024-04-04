@@ -209,9 +209,6 @@
     <Compile Include="WinDeltailItem.xaml.cs">
       <DependentUpon>WinDeltailItem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Window1.xaml.cs">
-      <DependentUpon>Window1.xaml</DependentUpon>
-    </Compile>
     <Compile Include="WinNewItem.xaml.cs">
       <DependentUpon>WinNewItem.xaml</DependentUpon>
     </Compile>
