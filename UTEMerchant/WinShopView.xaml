@@ -1,0 +1,430 @@
+﻿<Window x:Class="UTEMerchant.WinShopView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UTEMerchant"
+        mc:Ignorable="d"
+        Title="WinShopView" Height="692" Width="1440">
+    <Window.Resources>
+        <Style x:Key="UnderlineStyle" TargetType="RadioButton">
+            <Setter Property="Focusable" Value="True"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Grid>
+                            <TextBlock x:Name="tb"
+                                       Text="{TemplateBinding Content}"
+                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                       FontWeight="{TemplateBinding FontWeight}"
+                                       FontSize="{TemplateBinding FontSize}"
+                                       Foreground="{TemplateBinding Foreground}"/>
+                            <Border x:Name="brd"
+                                    Visibility="Hidden"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="0,0,0,2"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="brd" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="brd" Property="BorderBrush" Value="Black"/>
+                                <Setter TargetName="tb" Property="Foreground" Value="Black"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="brd" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="brd" Property="BorderBrush" Value="Black"/>
+                                <Setter TargetName="tb" Property="Foreground" Value="Black"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="8*"/>
+        </Grid.RowDefinitions>
+        <Border x:Name="brdGeneralInfo"
+                Grid.Row="0"
+                CornerRadius="15"
+                Background="#E56B6F"
+                Margin="30,20">
+            <Grid x:Name="grdGeneralInfo">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="6*"/>
+                </Grid.ColumnDefinitions>
+                <Border x:Name="brdGeneralInfoIcon"
+                        Grid.Column="0"
+                        Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}"
+                        Margin="5">
+                    <Ellipse x:Name="elGeneralInfoIcon"
+                             StrokeThickness="1">
+                        <Ellipse.Fill>
+                            <ImageBrush x:Name="imgbrAvatar" ImageSource="Img/iPhone-14-Pro-Max-9907.jpg"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                </Border>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock x:Name="txtShopName"
+                               Grid.Row="0"
+                               Text="Shop name"
+                               FontSize="30"
+                               FontWeight="Bold"
+                               Foreground="White"
+                               VerticalAlignment="Center"/>
+                    <Grid Grid.Row="1" x:Name="grdShopDetailSummary">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="3*"/>
+
+
+                        </Grid.ColumnDefinitions>
+                        <StackPanel x:Name="spPositiveFeedback"
+                                    Grid.Column="0"
+                                    Orientation="Horizontal">
+                            <TextBlock x:Name="txtPercentagePosotiveFeedback"
+                                       Text="100% "
+                                       FontSize="15"
+                                       FontWeight="Bold"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"/>
+                            <TextBlock x:Name="txtPositiveFeedback"
+                                       Text="positive feedback"
+                                       FontSize="15"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel x:Name="spNegativeFeedback"
+                                    Grid.Column="1"
+                                    Orientation="Horizontal">
+                            <TextBlock x:Name="txtPostsNumber"
+                                       Text="100 "
+                                       FontSize="15"
+                                       FontWeight="Bold"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"/>
+                            <TextBlock x:Name="txtPost"
+                                       Text="posts"
+                                       FontSize="15"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Border>
+        <Grid Grid.Row="1"
+              x:Name="dpTools"
+              Margin="30,0"
+              MaxHeight="50">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0"
+                        x:Name="spShopInfoOptions"
+                        Orientation="Horizontal"
+                        DockPanel.Dock="Left">
+                <Button x:Name="btnCategories"
+                        Content="Categories"
+                        Background="Transparent" Click="btnCategories_Click">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border x:Name="Border"
+                                                Background="{TemplateBinding Background}"
+                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                CornerRadius="15">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="4*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Border Grid.Column="0"
+                                                        Height="{Binding ElementName=tb, Path=FontSize}"
+                                                        VerticalAlignment="Center"
+                                                        Margin="20,0,10,0">
+                                                    <Image Source="{icon:MaterialLightImage Kind=Menu, Brush=Black}"
+                                                           Stretch="UniformToFill"/>
+                                                </Border>
+                                                <TextBlock x:Name="tb"
+                                                           Grid.Column="1"
+                                                           Text="{TemplateBinding Content}"
+                                                           Foreground="Black"
+                                                           FontSize="15"
+                                                           VerticalAlignment="Center"
+                                                           TextAlignment="Center"
+                                                           Margin="0,0,20,0"/>
+                                            </Grid>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <!-- Add Triggers as needed -->
+                                            <Trigger Property="IsPressed" Value="True">
+                                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource OptionMark.Pressed.Background}"/>
+                                            </Trigger>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource OptionMark.MouseOver.Background}"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
+                    
+                </Button>
+                <RadioButton x:Name="btnShop"
+                             Content="Shop"
+                             FontSize="15"
+                             Background="Transparent"
+                             VerticalContentAlignment="Center"
+                             Foreground="Gray"
+                             Style="{StaticResource UnderlineStyle}"
+                             Margin="20,0" Checked="btnShop_Checked"/>
+                <RadioButton x:Name="btnAbout"
+                             Content="About"
+                             FontSize="15"
+                             Background="Transparent"
+                             VerticalContentAlignment="Center"
+                             Foreground="Gray"
+                             Style="{StaticResource UnderlineStyle}"
+                             Margin="20,0" Checked="btnAbout_Checked"/>
+                <RadioButton x:Name="btnFeedback"
+                             Content="Feedback"
+                             FontSize="15"
+                             Background="Transparent"
+                             VerticalContentAlignment="Center"
+                             Foreground="Gray"
+                             Style="{StaticResource UnderlineStyle}"
+                             Margin="20,0" Checked="btnFeedback_Checked"/>
+            </StackPanel>
+            <Border Grid.Column="2"
+                    BorderBrush="LightGray"
+                    Background="White"
+                    BorderThickness="3"
+                    CornerRadius="20">
+                <Grid x:Name="grdSearchBarSections">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition x:Name="cSearchIcon" Width="Auto"/>
+                        <ColumnDefinition x:Name="cTextBox" Width="*"/>
+                        <ColumnDefinition x:Name="cXIcon" Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0"
+                           x:Name="imgSearchIcon" Margin="30,0,0,0"
+                           Height="{Binding ElementName=txtSearchBox, Path=FontSize}"
+                           Source="{icon:FeatherIconsImage Kind=Search, Brush=Black}" 
+                           Stretch="UniformToFill"
+                           VerticalAlignment="Center"/>
+                    <TextBox x:Name="txtSearchBox"
+                             Grid.Column="1"
+                             Margin="20,0,20,0"
+                             Background="Transparent"
+                             BorderBrush="Transparent"
+                             Tag="Search all items"
+                             FontSize="15"
+                             FocusVisualStyle="{x:Null}"
+                             Style="{StaticResource DefaultTextBoxStyle}"/>
+                    <Image x:Name="XIcon"
+                           Source="{icon:FeatherIconsImage Kind=X, Brush=Black}"
+                           Stretch="UniformToFill"
+                           VerticalAlignment="Center"
+                           Grid.Column="2"
+                           Margin="0,15,30,15"
+                           Height="{Binding ElementName=txtSearchBox, Path=FontSize}"
+                           Visibility="{Binding Text, ElementName=txtSearchBox, Converter={StaticResource TextToVisibilityConverter}}"
+                           MouseDown="XIcon_MouseDown"/>
+                </Grid>
+            </Border>
+        </Grid>
+        
+        <Grid x:Name="grdSelectedOption"
+              Grid.Row="2"
+              Margin="30,20">
+            <DockPanel x:Name="dpShopOption">
+                <Grid x:Name="grdCategories"
+                      DockPanel.Dock="Left"
+                      Width="0"
+                      MaxWidth="200">
+                    <ScrollViewer x:Name="svCategories"
+                                  VerticalScrollBarVisibility="Hidden"
+                                  HorizontalAlignment="Right"
+                                  MinWidth="100">
+                        <StackPanel x:Name="spCategories"
+                                    Orientation="Vertical">
+                            <StackPanel.Resources>
+                                <Style TargetType="RadioButton">
+                                    <Setter Property="FontSize" Value="15"/>
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="BorderBrush" Value="Transparent"/>
+                                    <Setter Property="BorderThickness" Value="0"/>
+                                    <Setter Property="Foreground" Value="DimGray"/>
+                                    <Setter Property="Margin" Value="0,5"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="RadioButton">
+                                                <Grid>
+                                                    <TextBlock x:Name="TextBlock"
+                                                               Text="{TemplateBinding Content}"
+                                                               FontSize="{TemplateBinding FontSize}"
+                                                               Foreground="{TemplateBinding Foreground}"
+                                                               MouseDown="TextBlock_MouseDown"/>
+                                                </Grid>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter TargetName="TextBlock" Property="TextDecorations" Value="Underline"/>
+                                                        <Setter TargetName="TextBlock" Property="Cursor" Value="Hand"></Setter>
+                                                    </Trigger>
+                                                    <Trigger Property="IsChecked" Value="True">
+                                                        <Setter TargetName="TextBlock" Property="Foreground" Value="Black"></Setter>
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </StackPanel.Resources>
+                            <Label x:Name="lblCategories"
+                                   Content="Categories"
+                                   FontSize="15"
+                                   FontWeight="Bold"/>
+                            <RadioButton x:Name="rbAll"
+                                         Content="All"
+                                         IsChecked="True"/>
+                            <RadioButton Content="Dildo"/>
+                            <RadioButton Content="Vibrator"/>
+                            <RadioButton Content="Condom"/>
+                            <RadioButton Content="Lubricant"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+                
+                <ScrollViewer x:Name="svShopItems"
+                              VerticalScrollBarVisibility="Hidden"
+                              DockPanel.Dock="Right">
+                    <WrapPanel x:Name="wpItems"
+                               Width="{Binding ElementName=dpItemsList,Path=ActualWidth}"
+                               MouseLeftButtonDown="wpShopItems_MouseLeftButtonDown">
+                        <WrapPanel.Resources>
+                            <Style TargetType="local:UC_ItemView">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="local:UC_ItemView">
+                                            <Border Margin="0,5,0,25" 
+                                                    BorderBrush="Transparent" 
+                                                    Height="{Binding Height, RelativeSource={RelativeSource AncestorType={x:Type local:UC_ItemView}}}">
+                                                <ContentPresenter/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </WrapPanel.Resources>
+                    </WrapPanel>
+                </ScrollViewer>
+                
+            </DockPanel>
+            <DockPanel x:Name="dpAboutOption"
+                       Visibility="Collapsed">
+                <StackPanel x:Name="spAboutUs">
+                    <Label x:Name="lblAboutUsTitle"
+                               Content="About us"
+                               FontSize="30"
+                               FontWeight="Bold"
+                               Foreground="Black"
+                               VerticalAlignment="Center"/>
+                    <TextBlock x:Name="txtAboutUsContent"
+                               FontSize="15"
+                               TextWrapping="Wrap"
+                               Foreground="Black"/>
+
+                    <TextBlock x:Name="tbEmpty">
+                        <LineBreak/>
+                        <LineBreak/>
+                    </TextBlock>
+                    <Grid x:Name="grdOtherInfo">
+                        
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+
+                        </Grid.RowDefinitions>
+
+                        <StackPanel x:Name="spLocation"
+                                    Grid.Row="0"
+                                    Orientation="Horizontal">
+                            <Label x:Name="lblLocation"
+                                   Content="Location: "
+                                   FontSize="15"
+                                   Foreground="Gray"/>
+                            <TextBlock x:Name="txtLocation"
+                                       Text="Hanoi"
+                                   VerticalAlignment="Center"
+                                   FontSize="15"
+                                   Foreground="Black"/>
+                        </StackPanel>
+                        <StackPanel x:Name="spJoinedSince"
+                                    Grid.Row="1"
+                                    Orientation="Horizontal">
+                            <Label x:Name="lblJoinedSince"
+                                   Content="Joined since: "
+                                   FontSize="15"
+                                   Foreground="Gray"/>
+                            <TextBlock x:Name="txtJoinedSince"
+                                       Text="2021"
+                                   VerticalAlignment="Center"
+                                   FontSize="15"
+                                   Foreground="Black"/>
+                        </StackPanel>
+
+                        <StackPanel x:Name="spContactInfo"
+                                    Grid.Row="2"
+                                    Orientation="Horizontal">
+                            <Label x:Name="lblPhone"
+                                   Content="Phone: "
+                                   FontSize="15"
+                                   Foreground="Gray"/>
+                            <TextBlock x:Name="txtPhone"
+                                   Text="0123456789"
+                                   VerticalAlignment="Center"
+                                   FontSize="15"
+                                   Foreground="Black"/>
+                        </StackPanel>
+                        <StackPanel x:Name="spEmailInfo"
+                                    Grid.Row="3"
+                                    Orientation="Horizontal">
+                            <Label x:Name="lblEmail"
+                                   Content="Email: "
+                                   FontSize="15"
+                                   Foreground="Gray"/>
+                            <TextBlock x:Name="txtEmail"
+                                   Text="alo"
+                                   VerticalAlignment="Center"
+                                   FontSize="15"
+                                   Foreground="Black"/>
+
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </DockPanel>
+        </Grid>
+        
+
+    </Grid>
+</Window>
