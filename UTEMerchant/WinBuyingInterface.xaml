@@ -33,16 +33,15 @@
                 </Grid.ColumnDefinitions>
 
                 <!--Item Image-->
-                <Border
-                
+                <Border                
                 Grid.Column="0"
-                Width="233" 
-                Height="231" 
+                Width="214" 
+                Height="219" 
                 HorizontalAlignment="Center" 
                 BorderThickness="0"
                 BorderBrush="Black"
                 VerticalAlignment="Center"
-                CornerRadius="7" Margin="0,0,5,0">
+                CornerRadius="7">
                     <Image x:Name="imgOrderItem" Source="/Img/iPhone-14-Pro-Max-9907.jpg" Stretch="Uniform" Margin="-9,15,0,18"/>
                 </Border>
 
@@ -79,54 +78,52 @@
                          Height="28" Width="100" 
                          Padding="5,1,1,1"                   
                          Grid.Row="1"                   
-                    />
+                        />
+
                         <TextBlock                        
-                         VerticalAlignment="Top"                     
-                         Foreground="Red"                               
-                         FontSize="25"
-                         FontWeight="SemiBold"
+                            VerticalAlignment="Top"                     
+                            Foreground="Red"                               
+                            FontSize="25"
+                            FontWeight="SemiBold"
                             FontFamily="Segoe UI "
-                         x:Name="txblOrderPrice"
-                         Text="100$"
-                         HorizontalAlignment="Left"                            
-                         RenderTransformOrigin="0.799,0.479"                                  
-                         Height="30" Width="95" 
-                         Padding="1,1,1,1"                
-                         Grid.Row="1"                       
-                 />
+                            x:Name="txblOrderPrice"
+                            Text="100$"
+                            HorizontalAlignment="Left"                            
+                            RenderTransformOrigin="0.799,0.479"                                  
+                            Height="30" Width="95" 
+                            Padding="1,1,1,1"                
+                            Grid.Row="1"                       
+                        />
                     </StackPanel>
 
                     <!-- Label for Condition  -->
                     <Label               
-                FontSize="18"             
-                x:Name="lblCondition"
-                Content="Condition: "
-                HorizontalAlignment="Left"
-                FontWeight="SemiBold"
-                VerticalAlignment="Top"
-                VerticalContentAlignment="Top"
-                HorizontalContentAlignment="Left"
-                Padding="0,0,0,0"
-                Grid.Row="2" 
-                Width="106" 
-                BorderThickness="0,0,0,0"                          
-                IsHitTestVisible="False" Height="20"/>
+                        FontSize="18"             
+                        x:Name="lblCondition"
+                        Content="Condition: "
+                        HorizontalAlignment="Left"
+                        FontWeight="SemiBold"
+                        VerticalAlignment="Top"
+                        VerticalContentAlignment="Top"
+                        HorizontalContentAlignment="Left"
+                        Padding="0,0,0,0"
+                        Grid.Row="2" 
+                        Width="106" 
+                        BorderThickness="0,0,0,0"                          
+                        IsHitTestVisible="False" Height="20"/>
+
                     <!--Value for Condition-->
                     <TextBlock                                                         
-                    VerticalAlignment="Top"                     
-                    Foreground="#ffac00"                         
-                    FontSize="18"
-                    x:Name="txblConditon"                    
-                    Text="95%"
-                    HorizontalAlignment="Left"
-                    RenderTransformOrigin="0.799,0.479"                  
-                    FontWeight="Black" Height="28" Width="70" Padding="2,1,1,1"                
-                    Grid.Row="2" Margin="96,0,0,0"                  
-                
-              />
-
-
-
+                        VerticalAlignment="Top"                     
+                        Foreground="#ffac00"                         
+                        FontSize="18"
+                        x:Name="txblConditon"                    
+                        Text="95%"
+                        HorizontalAlignment="Left"
+                        RenderTransformOrigin="0.799,0.479"                  
+                        FontWeight="Black" Height="21" Width="70" Padding="2,1,1,1"                
+                        Grid.Row="2" Margin="96,0,0,0"                               
+                    />
                 </Grid>
 
             </Grid>
@@ -280,7 +277,7 @@
 
             <Grid Grid.Row="1" Width="700" Height="100" VerticalAlignment="Bottom" HorizontalAlignment="Center"  >
                 <StackPanel Background="White">
-                    <DockPanel>
+                    <DockPanel Height="37">
                         <Label
                             Foreground="Black"
                             FontSize="30"     
@@ -312,6 +309,7 @@
                             Padding="1,1,1,1"                
                             Grid.Row="1" />
                     </DockPanel>
+                    
                     <Button Grid.Column="0"
                             Grid.Row="6"
                             Height="40"

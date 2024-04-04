@@ -19,7 +19,8 @@ namespace UTEMerchant
     /// </summary>
     public partial class WinDeltailItem : Window
     {
-        Item info;
+        
+        public Item info;
         List<User> users = new List<User>();
         user_DAO user_dao = new user_DAO();
         public WinDeltailItem()
@@ -58,6 +59,14 @@ namespace UTEMerchant
         private void Image_MouseUp(object sender, MouseButtonEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void btnBuyNow_Click(object sender, RoutedEventArgs e)
+        {
+            WinBuyingInterface winBuyingInterface = new WinBuyingInterface(this.info);
+            this.Hide();
+            winBuyingInterface.ShowDialog();
+            this.ShowDialog();
         }
     }
 }
