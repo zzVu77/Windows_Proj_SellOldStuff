@@ -290,19 +290,13 @@
 
                     <!--Selected item's detailed information section-->
 
-                    <DockPanel x:Name="dpSelectedItemDetailedInformation"
-                               DockPanel.Dock="Right" Width="300"
-                               HorizontalAlignment="Right">
-                        
-                    </DockPanel>
-
                     <!--Items list section-->
 
                     <DockPanel x:Name="dpItemsList"
                                Margin="50,0,50,50"
                                DockPanel.Dock="Top">
                         <ScrollViewer x:Name="svItemsList" 
-                                      VerticalScrollBarVisibility="Hidden">
+                                      VerticalScrollBarVisibility="Hidden" Width="1350">
                             <!--PreviewMouseDown="svItemsList_PreviewMouseDown"-->
                             <WrapPanel x:Name="wpItemsList"
                                        Width="{Binding ElementName=dpItemsList,Path=ActualWidth}"
