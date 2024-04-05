@@ -14,7 +14,7 @@
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
     </Window.Resources>
-    <Grid>
+    <Grid Background="#f4f6f8" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="614*"/>
             <ColumnDefinition Width="389*"/>
@@ -122,18 +122,14 @@
                 IsHitTestVisible="False" Height="20"/>
 
             <!--Value for Original Price-->
-            <TextBox           
-                IsReadOnly="True"
+            <TextBlock           
                 VerticalAlignment="Center"                     
                 Foreground="Black"
                 TextDecorations="Strikethrough"
-                BorderThickness="0"
                 FontSize="15"
                 x:Name="txbOriginalPrice"
                 Text="100000 $"
                 HorizontalAlignment="Left"
-                HorizontalContentAlignment="Left"
-                VerticalContentAlignment="Top"
                 RenderTransformOrigin="0.799,0.479"                  
                 FontWeight="SemiBold"
                 Height="28" Width="110" 
@@ -159,17 +155,13 @@
                 IsHitTestVisible="False" Height="20"/>
 
             <!--Value for Type -->
-            <TextBox       
-                IsReadOnly="True"
+            <TextBlock       
                 VerticalAlignment="Top"                     
                 Foreground="Black"              
-                BorderThickness="0"
                 FontSize="15"
                 x:Name="txbType"
                 Text="Mobile Phone"
                 HorizontalAlignment="Right"
-                HorizontalContentAlignment="Left"
-                VerticalContentAlignment="Top"
                 RenderTransformOrigin="0.799,0.479"                  
                 FontWeight="SemiBold" Height="28" Width="219" Padding="5,5,5,5"                
                 Grid.Row="2"                         
@@ -192,17 +184,13 @@
                 IsHitTestVisible="False" Height="20"/>
 
             <!--Value for Condition-->
-            <TextBox       
-                IsReadOnly="True"
+            <TextBlock                     
                 VerticalAlignment="Top"                     
                 Foreground="Black"              
-                BorderThickness="0"
                 FontSize="15"
                 x:Name="txbConditon"
                 Text="95%"
-                HorizontalAlignment="Right"
-                HorizontalContentAlignment="Left"
-                VerticalContentAlignment="Top"
+                HorizontalAlignment="Right"                              
                 RenderTransformOrigin="0.799,0.479"                  
                 FontWeight="SemiBold" Height="28" Width="219" Padding="5,5,5,5"                
                 Grid.Row="3" Margin="0,2,0,0"                         
@@ -226,17 +214,13 @@
                 IsHitTestVisible="False" Height="20"/>
 
             <!--Value for BoughtDate-->
-            <TextBox    
-                IsReadOnly="True"
-                 VerticalAlignment="Top"                     
-                Foreground="Black"              
-                BorderThickness="0"
+            <TextBlock  
+                VerticalAlignment="Top"                     
+                Foreground="Black"                           
                 FontSize="15"
                 x:Name="txbBughtDate"
                 Text="22/11/2023"
-                HorizontalAlignment="Right"
-                HorizontalContentAlignment="Left"
-                VerticalContentAlignment="Top"
+                HorizontalAlignment="Right"                              
                 RenderTransformOrigin="0.799,0.479"                  
                 FontWeight="SemiBold" Height="28" Width="219" Padding="5,5,5,5"                
                 Grid.Row="4" Margin="0,2,0,0"                        
@@ -271,45 +255,45 @@
                     </Style>
                 </RichTextBox.Resources>
             </RichTextBox>
-            <TextBox 
-                    BorderThickness="0"
+            <TextBlock 
+               
                     x:Name="txtItemPrice"
-                    TextWrapping="WrapWithOverflow"
-                    HorizontalContentAlignment="Left"
-                    VerticalContentAlignment="Top"
+                    TextWrapping="WrapWithOverflow"                  
                     Text=" 700 $"
                     HorizontalAlignment="Left"                   
                     FontSize="30"                   
                     FontWeight="Bold"
                     Foreground="red"
-                    Grid.Row="6" 
-                    IsReadOnly="True" 
+                    Grid.Row="6"                    
                     Width="100"                 
                     Padding="0,3,0,0" Margin="0,0,0,7"  />
 
             <Grid Grid.Row="6" Margin="0,10,0,-95" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="11*"/>
+                    <ColumnDefinition Width="378*"/>
+                </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="0"
-                        Grid.Row="6"
+                <Button x:Name="btnBuyNow"
+                        Grid.Column="0"
                         Height="40"
                         Width="150"
                         Style="{StaticResource addButton}" 
                         VerticalAlignment="Bottom" 
                         HorizontalAlignment="Left"                                         
-                        HorizontalContentAlignment="Center" Margin="0,20,0,45">
+                        HorizontalContentAlignment="Center" Margin="0,0,0,45" Click="btnBuyNow_Click" Grid.ColumnSpan="2" >
                     <StackPanel Orientation="Horizontal">
                         <Icon:PackIconMaterial Kind="TruckDelivery" VerticalAlignment="Center" Margin="0 1 8 0" Width="17" Height="21"/>
                         <TextBlock Text="Buy Now" FontWeight="Bold" FontFamily="Segoe UI" FontSize="15"/>
                     </StackPanel>
                 </Button>
 
-                <Button Grid.Column="0"
-                        HorizontalAlignment="Right"
+                <Button Grid.Column="1"
                         Height="40"
                         Width="150"
                         Style="{StaticResource addButton}" 
                         VerticalAlignment="Bottom"                                         
-                        HorizontalContentAlignment="Center" Margin="0,20,7,45" >
+                        HorizontalContentAlignment="Center" Margin="0,0,7,45" >
                     <StackPanel Orientation="Horizontal">
                         <Icon:PackIconMaterial Kind="HeartPlus" VerticalAlignment="Center" Margin="0 1 8 0" Width="17" Height="21"/>
                         <TextBlock Text="Add To WishList" FontWeight="Bold" FontFamily="Segoe UI" FontSize="15"/>
@@ -346,31 +330,24 @@
             </Border>
 
             <!--Seller Name-->
-            <TextBox           
-                IsReadOnly="True"
+            <TextBlock           
                 VerticalAlignment="Center"                     
                 Foreground="Black"              
-                BorderThickness="0"
                 FontSize="20"
                 x:Name="txbSellerName"
                 Text="Vu Nguyen"
                 HorizontalAlignment="Center"
-                HorizontalContentAlignment="Center"
-                VerticalContentAlignment="Top"
                 RenderTransformOrigin="0.799,0.479"                  
                 FontWeight="Medium" Height="42" Width="208" Padding="5,5,5,5" Grid.Row="1"                     
               />
             <!--Seller Contact-->
-            <TextBox           
+            <TextBlock           
                 VerticalAlignment="Top"                     
                 Foreground="Black"              
-                BorderThickness="0"
                 FontSize="18"
                 x:Name="txbSellerContact"
                 Text="0327521953"
                 HorizontalAlignment="Center"
-                HorizontalContentAlignment="Center"
-                VerticalContentAlignment="Top"
                 RenderTransformOrigin="0.799,0.479"                  
                 FontWeight="Medium"
                 Height="32" Width="148" 
@@ -378,18 +355,14 @@
                 Grid.Row="2" Margin="0,1,0,0" Grid.RowSpan="3"                     
               />
             <!--Seller Address-->
-            <TextBox          
-                IsReadOnly="True"
+            <TextBlock                      
                 VerticalAlignment="Top"                     
-                Foreground="Black"              
-                BorderThickness="0"
+                Foreground="Black"                              
                 FontSize="12"
                 x:Name="txbSellerAddress"
                 Text="63/49, duong so 10, Tang Nhon Phu B, Thu Duc"
                 TextWrapping="WrapWithOverflow"
-                HorizontalAlignment="Center"
-                HorizontalContentAlignment="Left"
-                VerticalContentAlignment="Top"
+                HorizontalAlignment="Center"               
                 RenderTransformOrigin="0.799,0.479"                  
                 FontWeight="SemiBold"
                 Height="264" Width="177" 
