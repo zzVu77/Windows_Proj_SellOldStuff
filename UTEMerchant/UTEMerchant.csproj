@@ -171,6 +171,8 @@
     <Compile Include="InverseBooleanConverter.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Item_DAO.cs" />
+    <Compile Include="Seller.cs" />
+    <Compile Include="Seller_DAO.cs" />
     <Compile Include="UC_StarRating.xaml.cs">
       <DependentUpon>UC_StarRating.xaml</DependentUpon>
     </Compile>

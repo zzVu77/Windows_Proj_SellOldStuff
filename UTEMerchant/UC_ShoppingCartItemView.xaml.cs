@@ -33,10 +33,10 @@ namespace UTEMerchant
             users = user_DAO.Load();
 
             shoppingCartItem = item;
-            tbShopName.Text = users.Where(u => u.Id_user == item.user_id).FirstOrDefault().Name_shop;
+            tbShopName.Text ="huy"; //users.Where(u => u.Id_user == item.SellerID).FirstOrDefault().Name_shop;
             tbItemName.Text = item.Name;
             tbItemPrice.Text = $"{item.Price.ToString()}$";
-            var resourceUri = new Uri(shoppingCartItem.ImagePath, UriKind.RelativeOrAbsolute);
+            var resourceUri = new Uri(shoppingCartItem.Image_Path, UriKind.RelativeOrAbsolute);
             imgItem.Source = new BitmapImage(resourceUri);
 
         }

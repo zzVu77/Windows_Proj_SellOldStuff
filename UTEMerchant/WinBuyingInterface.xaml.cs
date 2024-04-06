@@ -38,11 +38,11 @@ namespace UTEMerchant
         private void SetDefault()
         {
             txblOrderItemName.Text = info.Name;
-            txblOrderOriginalPrice.Text = info.OriginalPrice.ToString()+"$";
+            txblOrderOriginalPrice.Text = info.Original_Price.ToString()+"$";
             txblOrderPrice.Text = info.Price.ToString() + "$";
-            txblConditon.Text = info.Status.ToString()+"%";
+            txblConditon.Text = info.Condition.ToString()+"%";
             txblTotalValue.Text = info.Price.ToString() + "$";
-            var resourceUri = new Uri(info.ImagePath, UriKind.RelativeOrAbsolute);
+            var resourceUri = new Uri(info.Image_Path, UriKind.RelativeOrAbsolute);
             imgOrderItem.Source = new BitmapImage(resourceUri);
 
         }
