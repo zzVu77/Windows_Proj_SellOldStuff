@@ -26,7 +26,6 @@
                              Background="Transparent"
                              Width="500"
                              Style="{StaticResource UnderlineStyle}"
-                             IsChecked="True"
                              GroupName="DeliveryStatus" Checked="rbPending_Checked"/>
                     <RadioButton x:Name="rbDelivering"
                              Content="Delivering"

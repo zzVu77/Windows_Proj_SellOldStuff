@@ -23,15 +23,15 @@ namespace UTEMerchant
         public UC_DeliveryUI()
         {
             InitializeComponent();
+            rbPending.IsChecked = true;
         }
 
         private void rbPending_Checked(object sender, RoutedEventArgs e)
         {
-            grdDeliveredStatus.Visibility = Visibility.Collapsed;
-            grdDeliveringStatus.Visibility = Visibility.Collapsed;
+            this.grdDeliveredStatus.Visibility = Visibility.Collapsed;
+            this.grdDeliveringStatus.Visibility = Visibility.Collapsed;
             //grdPendingStatus.Visibility = Visibility.Visible;
             //grdCancelledStatus.Visibility = Visibility.Collapsed;
-
         }
 
         private void rbDelivering_Checked(object sender, RoutedEventArgs e)
