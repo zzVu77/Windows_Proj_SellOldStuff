@@ -398,6 +398,7 @@
                                        HorizontalAlignment="Stretch"
                                        VerticalAlignment="Stretch"/>-->
                 </Grid>
+                <local:UC_Delivery x:Name="uc_Stock" Visibility="Visible"/>
             </Grid>
 
             <!--Main Section-->

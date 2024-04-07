@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace UTEMerchant
 {
     /// <summary>
-    /// Interaction logic for UC_Delivery.xaml
+    /// Interaction logic for UC_DeliveryUI.xaml
     /// </summary>
-    public partial class UC_Delivery : UserControl
+    public partial class UC_DeliveryUI : UserControl
     {
-        public UC_Delivery()
+        public UC_DeliveryUI()
         {
             InitializeComponent();
         }
