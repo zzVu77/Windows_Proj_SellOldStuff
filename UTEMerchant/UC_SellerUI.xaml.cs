@@ -27,15 +27,13 @@ namespace UTEMerchant
         Item_DAO dao = new Item_DAO();
         public UC_SellerUI()
         {
-            InitializeComponent();
-
-       
+            InitializeComponent();       
             items = dao.Load();
-            foreach  (Item a in items)
+            foreach (Item a in items)
             {
                 productGrid.Items.Add(a);
-            }    
-            
+            }
+
         }
 
         private void productGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)

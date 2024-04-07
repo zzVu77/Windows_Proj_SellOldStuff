@@ -83,7 +83,7 @@
             <!--Members Data Grid-->
             <DataGrid RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" x:Name="productGrid" Style="{DynamicResource DataGridStyle1}" SelectionChanged="productGrid_SelectionChanged">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" IsReadOnly="True"  Width="*" Binding="{Binding Id}" MaxWidth="50"/>
+                    <DataGridTextColumn Header="ID" IsReadOnly="True"  Width="*" Binding="{Binding Item_Id}" MaxWidth="50"/>
                     <DataGridTemplateColumn Header="Name" IsReadOnly="True" Width="*"  >
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -101,17 +101,19 @@
                     <DataGridTemplateColumn  Header="Image" Width="*"  >
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Image Source="{Binding ImagePath}" Width="50" Height="50" HorizontalAlignment="Left" />
+                                <Image Source="{Binding Image_Path}" Width="50" Height="50" HorizontalAlignment="Left" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTextColumn Header="Original Price" Binding="{Binding OriginalPrice}" IsReadOnly="True" Width="*"/>
+                    <DataGridTextColumn Header="Original Price" Binding="{Binding Original_Price}" IsReadOnly="True" Width="*"/>
                     <DataGridTextColumn Header="Price" Binding="{Binding Price}" IsReadOnly="True" Width="*" />
                     <DataGridTextColumn Header="Type" Binding="{Binding Type}" IsReadOnly="True" Width="*" />
+                    <DataGridTextColumn Header="Status" Binding="{Binding Sale_Status}"   IsReadOnly="True" Width="*"  />
                     <DataGridTextColumn Header="Posted Date" Binding="{Binding Bought_date}"  IsReadOnly="True" Width="*" />
-                    <DataGridTextColumn Header="Status" Binding="{Binding Status}"   IsReadOnly="True" Width="*"  />
-                    <DataGridTextColumn Header="Description" Binding="{Binding Description}" IsReadOnly="True" Width="*"  />
+                    <DataGridTextColumn Header="Condition" Binding="{Binding Condition}"  IsReadOnly="True" Width="*" />
+                    <DataGridTextColumn Header="Condition Desc" Binding="{Binding Condition_Description}" IsReadOnly="True" Width="*"  />
+                    <DataGridTextColumn Header="Detail Desc" Binding="{Binding Detail_description}" IsReadOnly="True" Width="*"  />
                     <DataGridTemplateColumn Header="Actions" IsReadOnly="True" Width="auto" >
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
