@@ -24,5 +24,41 @@ namespace UTEMerchant
         {
             InitializeComponent();
         }
+
+        private void rbPending_Checked(object sender, RoutedEventArgs e)
+        {
+            svDeliveredStatusChecking.Visibility = Visibility.Collapsed;
+            svDeliveringStatusChecking.Visibility = Visibility.Collapsed;
+            //svCancelledStatusChecking.Visibility = Visibility.Collapsed;
+
+            //svPendingStatusChecking.Visibility = Visibility.Visible;
+        }
+
+        private void rbDelivering_Checked(object sender, RoutedEventArgs e)
+        {
+            //svPendingStatusChecking.Visibility = Visibility.Collapsed;
+            svDeliveredStatusChecking.Visibility = Visibility.Collapsed;
+            //svCancelledStatusChecking.Visibility = Visibility.Collapsed;
+
+            svDeliveringStatusChecking.Visibility = Visibility.Visible;
+        }
+
+        private void rbDelivered_Checked(object sender, RoutedEventArgs e)
+        {
+            //svPendingStatusChecking.Visibility = Visibility.Collapsed;
+            svDeliveringStatusChecking.Visibility = Visibility.Collapsed;
+            //svCancelledStatusChecking.Visibility = Visibility.Collapsed;
+
+            svDeliveredStatusChecking.Visibility = Visibility.Visible;
+        }
+
+        private void rbCancelled_Checked(object sender, RoutedEventArgs e)
+        {
+            //svPendingStatusChecking.Visibility = Visibility.Collapsed;
+            svDeliveringStatusChecking.Visibility = Visibility.Collapsed;
+            svDeliveredStatusChecking.Visibility = Visibility.Collapsed;
+
+            //svCancelledStatusChecking.Visibility = Visibility.Visible;
+        }
     }
 }
