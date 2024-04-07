@@ -23,6 +23,7 @@ namespace UTEMerchant
         public Item info;
         List<User> users = new List<User>();
         user_DAO user_dao = new user_DAO();
+        List<Address> addresses;
         public WinBuyingInterface()
         {
             InitializeComponent();
@@ -45,6 +46,34 @@ namespace UTEMerchant
             var resourceUri = new Uri(info.Image_Path, UriKind.RelativeOrAbsolute);
             imgOrderItem.Source = new BitmapImage(resourceUri);
 
+            addresses = new DB_Connection().LoadData<Address>("Address");
+            var distinctCities = addresses.Select(a => a.City).Distinct().ToList();
+            
+            cbPickupCity.Items.Clear();
+            foreach (var city in distinctCities)
+            {
+                cbPickupCity.Items.Add(city);
+
+            }
+        }
+
+        private void cbPickupCity_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cbPickupCity.SelectedItem != null)
+            {
+                string selectedCity = cbPickupCity.SelectedItem.ToString();
+
+                // Filter districts based on selected city
+                var filteredDistricts = addresses.Where(a => a.City == selectedCity)
+                                                .Select(a => a.District)
+                                                .Distinct().ToList()
+                                                ;
+
+                // Update district ComboBox
+                cbPickupDistrict.Items.Clear();
+                cbPickupDistrict.ItemsSource = filteredDistricts;
+                cbPickupDistrict.SelectedIndex = -1; 
+            }
         }
     }
 }

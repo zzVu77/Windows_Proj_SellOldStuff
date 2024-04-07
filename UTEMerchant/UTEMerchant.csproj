@@ -166,6 +166,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Address.cs" />
     <Compile Include="CheckValid.cs" />
     <Compile Include="DB_Connection.cs" />
     <Compile Include="InverseBooleanConverter.cs" />
