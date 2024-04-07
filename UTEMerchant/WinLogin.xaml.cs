@@ -63,11 +63,8 @@ namespace UTEMerchant
                     purchasing.ShowDialog();
                     this.Show();
                 }
-                else
-                {
-                    MessageBox.Show("user name or password is incorrect !!!!!");
-                }
             }
+            //MessageBox.Show("user name or password is incorrect !!!!!");
 
         }
 

@@ -12,28 +12,28 @@ namespace UTEMerchant
         public string Name { get; set; }
         public string User_name { get; set; }
         public string Password { get; set; }
-        public string Address { get; set; }
+        public string City { get; set; }
+        public string District { get; set; }
+        public string Ward { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
 
-        public bool IsSeller { get; set; }
-        public string Name_shop { get; set; }
-        public string Store_address { get; set; }
+       
 
         public User() { }
         public User(int id, string user_name, string password, string name,
-            string address, string phone, string email, bool isSeller, string name_shop, string store_address)
+            string city,string district, string ward, string phone, string email)
         {
             Id_user = id;
             Name = name;
             User_name = user_name;
             Password = password;
-            Address = address;
+            City = city;
+            District = district;
+            Ward = ward;
             Email = email;
             Phone = phone;
-            IsSeller = isSeller;
-            Name_shop = name_shop;
-            Store_address = store_address;
+
         }
 
     }

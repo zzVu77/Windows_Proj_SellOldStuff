@@ -39,12 +39,12 @@ namespace UTEMerchant
         private void SetDefaultText()
         {
             txblItemName.Text= info.Name;
-            txbOriginalPrice.Text = info.OriginalPrice.ToString()+" $";
+            txbOriginalPrice.Text = info.Original_Price.ToString()+" $";
             txblBoughtDate.Text = info.Bought_date.ToString();
 
             foreach (User user in users) 
             {
-                if (user.Id_user == info.user_id)
+                if (user.Id_user == info.SellerID)
                 {
                     txblContactValue.Text = user.Phone;
                     break;
@@ -52,13 +52,13 @@ namespace UTEMerchant
             }
             txblItemPrice.Text = info.Price.ToString()+" $";
             txblTypeValue.Text = info.Type.ToString();
-            txblStatus.Text = info.Status.ToString();
-            var resourceUri = new Uri(info.ImagePath, UriKind.RelativeOrAbsolute);
+            txblStatus.Text = info.Condition.ToString();
+            var resourceUri = new Uri(info.Image_Path, UriKind.RelativeOrAbsolute);
             imgItemPic.Source = new BitmapImage(resourceUri);
             // Tạo một FlowDocument
             FlowDocument flowDoc = new FlowDocument();
             // Thêm một Paragraph chứa văn bản mặc định vào FlowDocument
-            Paragraph paragraph = new Paragraph(new Run(info.Description));
+            Paragraph paragraph = new Paragraph(new Run(info.Condition_Description));
             flowDoc.Blocks.Add(paragraph);
             // Gán FlowDocument cho RichTextBox
             rtbDescription.Document = flowDoc;

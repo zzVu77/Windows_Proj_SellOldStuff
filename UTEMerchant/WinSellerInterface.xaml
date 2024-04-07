@@ -386,7 +386,7 @@
                                        Visibility="Collapsed"
                                        Background="Transparent"/>
                 <Grid x:Name="grdSellerUI" Visibility="Collapsed">
-                    <local:UC_StartSelling x:Name="uc_StartSelling"
+                    <!--<local:UC_StartSelling x:Name="uc_StartSelling"
                                            Visibility="Collapsed"/>
                     <local:UC_RegistrationComplete x:Name="uc_RegistrationComplete"
                                                    Visibility="Collapsed"/>
@@ -396,7 +396,7 @@
                                        Background="Transparent"
                                        Visibility="Collapsed"
                                        HorizontalAlignment="Stretch"
-                                       VerticalAlignment="Stretch"/>
+                                       VerticalAlignment="Stretch"/>-->
                 </Grid>
             </Grid>
 

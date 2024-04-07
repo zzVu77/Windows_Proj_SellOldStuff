@@ -40,17 +40,17 @@ namespace UTEMerchant
         private void SetDefaultValue()
         {
             txblItemName.Text = info.Name;
-            txbOriginalPrice.Text = info.OriginalPrice.ToString()+" $";
+            txbOriginalPrice.Text = info.Original_Price.ToString()+" $";
             txbBughtDate.Text=info.Bought_date.ToShortDateString();
             txbType.Text = info.Type.ToString();
-            txbConditon.Text = info.Status.ToString()+" %";
+            txbConditon.Text = info.Condition.ToString()+" %";
             txtItemPrice.Text = info.Price.ToString() + " $";
-            var resourceUri = new Uri(info.ImagePath, UriKind.RelativeOrAbsolute);
+            var resourceUri = new Uri(info.Image_Path, UriKind.RelativeOrAbsolute);
             imgItem.Source = new BitmapImage(resourceUri);
             // Tạo một FlowDocument
             FlowDocument flowDoc = new FlowDocument();
             // Thêm một Paragraph chứa văn bản mặc định vào FlowDocument
-            Paragraph paragraph = new Paragraph(new Run(info.Description));
+            Paragraph paragraph = new Paragraph(new Run(info.Condition_Description));
             flowDoc.Blocks.Add(paragraph);
             // Gán FlowDocument cho RichTextBox
             rtbDetailDescription.Document = flowDoc;

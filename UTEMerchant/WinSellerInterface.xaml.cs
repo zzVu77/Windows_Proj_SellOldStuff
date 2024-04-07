@@ -20,14 +20,57 @@ namespace UTEMerchant
     public partial class WinSellerInterface : Window
     {
         private User User { get; set; }
+        private Seller Seller { get; set; }
+        UC_StartSelling uc_StartSelling;
+        UC_RegistrationComplete uc_RegistrationComplete;
+        UC_SellerRegistration uc_SellerRegistration;
+        UC_SellerUI uc_SellerUI;
         public WinSellerInterface(User user) : this()
         {
             this.User = user;
             txbName.Text = user.Name;
+            List<Seller> sellers = new List<Seller>();
+            sellers = new Seller_DAO().Load();
+            foreach (Seller seller in sellers)
+            {
+                if (seller.Id_user == this.User.Id_user)
+                {
+                    this.Seller = seller;
+                }    
+            }
+            this.uc_SellerUI = new UC_SellerUI(Seller.SellerID);
+            grdSellerUI.Children.Add(uc_SellerUI);
+            uc_SellerUI.Visibility = Visibility.Collapsed;
+
+            uc_SellerUI.HorizontalAlignment = HorizontalAlignment.Stretch;
+            uc_SellerUI.VerticalAlignment = VerticalAlignment.Stretch;
+            uc_SellerUI.Background = Brushes.Transparent;
         }
         public WinSellerInterface()
         {
             InitializeComponent();
+            
+            
+            
+            this.uc_StartSelling = new UC_StartSelling();
+            this.uc_RegistrationComplete = new UC_RegistrationComplete();
+            this.uc_SellerRegistration = new UC_SellerRegistration();
+            
+          
+            grdSellerUI.Children.Add(uc_StartSelling);
+            grdSellerUI.Children.Add(uc_RegistrationComplete);
+            grdSellerUI.Children.Add(uc_SellerRegistration);
+            
+
+            uc_StartSelling.Visibility=Visibility.Collapsed;
+            uc_RegistrationComplete.Visibility=Visibility.Collapsed;
+            uc_SellerRegistration.Visibility=Visibility.Collapsed;
+           
+
+
+
+
+
             uc_StartSelling.btnStartSelling.Click += OnStartTradingButtonClicked;
             uc_SellerRegistration.btnDone.Click += OnDoneRegistrationButtonClicked;
             uc_RegistrationComplete.btnRefresh.Click += OnRefreshButtonClicked;
@@ -90,8 +133,8 @@ namespace UTEMerchant
         private void mnuitStock_Click(object sender, RoutedEventArgs e)
         {
             // If the user is registered as a seller
-            if (1 > 2)
-            {
+            if (3 > 2)
+            {                
                 uc_SellerUI.Visibility = Visibility.Collapsed;
                 uc_PurchasingUI.Visibility = Visibility.Collapsed;
                 uc_SellerRegistration.Visibility = Visibility.Collapsed;
@@ -102,7 +145,7 @@ namespace UTEMerchant
                 uc_SellerUI.Visibility = Visibility.Visible;
             }
             // If the user haven't registered to be a seller
-            else if (1 < 2)
+            else if (1 > 2)
             {
                 uc_SellerUI.Visibility = Visibility.Collapsed;
                 uc_PurchasingUI.Visibility = Visibility.Collapsed;
