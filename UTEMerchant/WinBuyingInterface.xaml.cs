@@ -70,8 +70,13 @@ namespace UTEMerchant
                                                 ;
 
                 // Update district ComboBox
-                cbPickupDistrict.Items.Clear();
-                cbPickupDistrict.ItemsSource = filteredDistricts;
+                if(cbPickupCity.Items != null)
+                    cbPickupDistrict.Items.Clear();
+                foreach (var district in filteredDistricts)
+                {
+                    cbPickupDistrict.Items.Add(district);
+
+                }
                 cbPickupDistrict.SelectedIndex = -1; 
             }
         }
