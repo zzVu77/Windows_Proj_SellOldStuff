@@ -14,7 +14,9 @@ namespace UTEMerchant
         public string ShopName { get; set; }
         public string City { get; set; }
         public string District { get; set; }
-        public string Ward {  get; set; }
+        public string Ward { get; set; }
+
+        public float Average_rating { get; set; }
 
     }
 }
