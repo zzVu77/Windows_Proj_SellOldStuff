@@ -24,9 +24,14 @@ namespace UTEMerchant
     {
         private string image_path;
         Item_DAO dao = new Item_DAO();
+        private int IdSeller;
         public WinNewItem()
         {
             InitializeComponent();
+        }
+        public WinNewItem(int idSeller): this()
+        {
+            IdSeller = idSeller;
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -90,7 +95,7 @@ namespace UTEMerchant
                    float.Parse(txtOriginalPrice.Text.ToString()), typeItem.Content.ToString(), 
                    DateTime.Parse(txtBoughtDate.Text.ToString()),
                    text_Condition, Int32.Parse(txtCondition.Text.ToString())
-                   ,image_path,false,text_detail,1
+                   ,image_path,false,text_detail, IdSeller
                                 )
                             );
                 this.Close();

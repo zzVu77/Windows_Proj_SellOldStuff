@@ -25,6 +25,7 @@ namespace UTEMerchant
     {
         List<Item> items;
         Item_DAO dao = new Item_DAO();
+        private int IdSeller;
         public UC_SellerUI()
         {
             InitializeComponent();       
@@ -34,10 +35,10 @@ namespace UTEMerchant
         public UC_SellerUI(int idSeller) :this()
         {
             items = dao.Load();
-            
+            IdSeller = idSeller;
             foreach (Item a in items)
             {
-                if(idSeller == a.SellerID)
+                if(IdSeller == a.SellerID)
                     productGrid.Items.Add(a);
             }
 
@@ -107,12 +108,13 @@ namespace UTEMerchant
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            new WinNewItem().ShowDialog();
+            new WinNewItem(IdSeller).ShowDialog();
             productGrid.Items.Clear();
             
             foreach (Item a in dao.Load())
             {
-                productGrid.Items.Add(a);
+                if (IdSeller == a.SellerID)
+                    productGrid.Items.Add(a);
             }
         }
     }

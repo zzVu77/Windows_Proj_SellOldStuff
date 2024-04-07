@@ -28,7 +28,9 @@ namespace UTEMerchant
         {
 
         }
-        public Item(int id, string name, float price, float originalPrice, string type, DateTime bought_date, string condition_description, int condition, string imagePath, bool sale_status , string detail_description, int sellerId)
+        public Item(int id, string name, float price, float originalPrice, string type, DateTime bought_date, 
+            string condition_description, int condition, string imagePath, bool sale_status ,
+            string detail_description, int sellerId)
         {
             Item_Id = id;
             Name = name;
