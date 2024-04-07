@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UTEMerchant
 {
-    internal class Seller
+    public class Seller
     {
         public int SellerID { get; set; }
         public int Id_user { get; set; }
