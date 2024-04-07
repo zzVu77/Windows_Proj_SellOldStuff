@@ -25,7 +25,7 @@ namespace UTEMerchant
         private bool IsCategoriesButtonClicked = false;
 
         // Properties
-        private User user;
+        private Seller seller;
         private List<Item> items;
 
         public WinShopView()
@@ -38,9 +38,9 @@ namespace UTEMerchant
 
         }
 
-        public WinShopView(User user, List<Item> items) : this()
+        public WinShopView(Seller seller, List<Item> items) : this()
         {
-            this.user = user;
+            this.seller = seller;
             this.items = items;
         }
 
