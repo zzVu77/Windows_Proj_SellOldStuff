@@ -4,59 +4,57 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UTEMerchant"
-             mc:Ignorable="d" d:DesignWidth="2000" d:DesignHeight="736.032">
-    <UserControl.Resources>
-    </UserControl.Resources>
-
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="8*"/>
         </Grid.RowDefinitions>
         <ScrollViewer x:Name="svDeliveryStatus"
-                      VerticalScrollBarVisibility="Disabled"
-                      HorizontalScrollBarVisibility="Hidden">
+                  VerticalScrollBarVisibility="Disabled"
+                  HorizontalScrollBarVisibility="Hidden">
             <WrapPanel x:Name="wpDeliveryStatus">
                 <StackPanel x:Name="spDeliveryStatus" 
-                            Orientation="Horizontal"
-                            Height="{Binding ElementName=wpDeliveryStatus, Path=ActualHeight}">
+                        Orientation="Horizontal"
+                        Height="{Binding ElementName=wpDeliveryStatus, Path=ActualHeight}">
                     <RadioButton x:Name="rbPending"
-                                 Content="Pending"
-                                 VerticalContentAlignment="Center"
-                                 HorizontalContentAlignment="Center"
-                                 FontSize="15"
-                                 Background="Transparent"
-                                 Width="500"
-                                 Style="{StaticResource UnderlineStyle}"
-                                 IsChecked="True"
-                                 GroupName="DeliveryStatus" Checked="rbPending_Checked"/>
+                             Content="Pending"
+                             VerticalContentAlignment="Center"
+                             HorizontalContentAlignment="Center"
+                             FontSize="15"
+                             Background="Transparent"
+                             Width="500"
+                             Style="{StaticResource UnderlineStyle}"
+                             IsChecked="True"
+                             GroupName="DeliveryStatus" Checked="rbPending_Checked"/>
                     <RadioButton x:Name="rbDelivering"
-                                 Content="Delivering"
-                                 VerticalContentAlignment="Center"
-                                 HorizontalContentAlignment="Center"
-                                 FontSize="15"
-                                 Background="Transparent"
-                                 Width="500"
-                                 Style="{StaticResource UnderlineStyle}"
-                                 GroupName="DeliveryStatus" Checked="rbDelivering_Checked"/>
+                             Content="Delivering"
+                             VerticalContentAlignment="Center"
+                             HorizontalContentAlignment="Center"
+                             FontSize="15"
+                             Background="Transparent"
+                             Width="500"
+                             Style="{StaticResource UnderlineStyle}"
+                             GroupName="DeliveryStatus" Checked="rbDelivering_Checked"/>
                     <RadioButton x:Name="rbDelivered"
-                                 Content="Delivered"
-                                 VerticalContentAlignment="Center"
-                                 HorizontalContentAlignment="Center"
-                                 FontSize="15"
-                                 Background="Transparent"
-                                 Width="500"
-                                 Style="{StaticResource UnderlineStyle}"
-                                 GroupName="DeliveryStatus" Checked="rbDelivered_Checked"/>
+                             Content="Delivered"
+                             VerticalContentAlignment="Center"
+                             HorizontalContentAlignment="Center"
+                             FontSize="15"
+                             Background="Transparent"
+                             Width="500"
+                             Style="{StaticResource UnderlineStyle}"
+                             GroupName="DeliveryStatus" Checked="rbDelivered_Checked"/>
                     <RadioButton x:Name="rbCancelled"
-                                 Content="Cancelled"
-                                 VerticalContentAlignment="Center"
-                                 HorizontalContentAlignment="Center"
-                                 FontSize="15"
-                                 Background="Transparent"
-                                 Width="500"
-                                 Style="{StaticResource UnderlineStyle}"
-                                 GroupName="DeliveryStatus" Checked="rbCancelled_Checked"/>
+                             Content="Cancelled"
+                             VerticalContentAlignment="Center"
+                             HorizontalContentAlignment="Center"
+                             FontSize="15"
+                             Background="Transparent"
+                             Width="500"
+                             Style="{StaticResource UnderlineStyle}"
+                             GroupName="DeliveryStatus" Checked="rbCancelled_Checked"/>
                 </StackPanel>
             </WrapPanel>
             <!--EventTrigger MouseEnter and MouserLeave setting visibility of HorizontalScrollBarVisibility-->
@@ -65,7 +63,7 @@
                     <BeginStoryboard>
                         <Storyboard>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="svDeliveryStatus"
-                                                           Storyboard.TargetProperty="HorizontalScrollBarVisibility">
+                                                       Storyboard.TargetProperty="HorizontalScrollBarVisibility">
                                 <DiscreteObjectKeyFrame KeyTime="0:0:0">
                                     <DiscreteObjectKeyFrame.Value>
                                         <ScrollBarVisibility>Auto</ScrollBarVisibility>
@@ -79,7 +77,7 @@
                     <BeginStoryboard>
                         <Storyboard>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="svDeliveryStatus"
-                                                           Storyboard.TargetProperty="HorizontalScrollBarVisibility">
+                                                       Storyboard.TargetProperty="HorizontalScrollBarVisibility">
                                 <DiscreteObjectKeyFrame KeyTime="0:0:0">
                                     <DiscreteObjectKeyFrame.Value>
                                         <ScrollBarVisibility>Hidden</ScrollBarVisibility>
@@ -92,32 +90,39 @@
             </ScrollViewer.Triggers>
         </ScrollViewer>
         <Grid Grid.Row="1" 
-              x:Name="grdSelectedStatusChecking">
+          x:Name="grdSelectedStatusChecking">
             <!--Show Delivering Status-->
-            <ScrollViewer x:Name="svDeliveringStatusChecking"
-                          VerticalScrollBarVisibility="Auto"
-                          HorizontalScrollBarVisibility="Hidden"
-                          Visibility="Collapsed">
-                <WrapPanel x:Name="wpDeliveringStatusChecking">
-                    <StackPanel x:Name="spDeliveringStatusChecking"
-                                Orientation="Vertical"
-                                Width="{Binding ElementName=wpDeliveringStatusChecking, Path=ActualWidth}">
-                    </StackPanel>
-                </WrapPanel>
-            </ScrollViewer>
+            <Grid x:Name="grdDeliveringStatus">
+
+                <ScrollViewer x:Name="svDeliveringStatus"
+                              VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Hidden"
+                              Visibility="Collapsed">
+                    <WrapPanel x:Name="wpDeliveringStatus">
+                        <StackPanel x:Name="spDeliveringStatus"
+                                    Orientation="Vertical"
+                                    Width="{Binding ElementName=wpDeliveringStatusChecking, Path=ActualWidth}">
+
+                        </StackPanel>
+                    </WrapPanel>
+                </ScrollViewer>
+            </Grid>
 
             <!--Show Delivered Status-->
-            <ScrollViewer x:Name="svDeliveredStatusChecking"
-                          VerticalScrollBarVisibility="Auto"
-                          HorizontalScrollBarVisibility="Hidden"
-                          Visibility="Collapsed">
-                <WrapPanel x:Name="wpDeliveredStatusChecking">
-                    <StackPanel x:Name="spDeliveredStatusChecking"
-                                Orientation="Vertical"
-                                Width="{Binding ElementName=wpDeliveredStatusChecking, Path=ActualWidth}">
-                    </StackPanel>
-                </WrapPanel>
-            </ScrollViewer>
+            <Grid x:Name="grdDeliveredStatus">
+
+                <ScrollViewer x:Name="svDeliveredStatus"
+                              VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Hidden"
+                              Visibility="Collapsed">
+                    <WrapPanel x:Name="wpDeliveredStatus">
+                        <StackPanel x:Name="spDeliveredStatus"
+                                    Orientation="Vertical"
+                                    Width="{Binding ElementName=wpDeliveredStatusChecking, Path=ActualWidth}">
+                        </StackPanel>
+                    </WrapPanel>
+                </ScrollViewer>
+            </Grid> 
         </Grid>
     </Grid>
 </UserControl>

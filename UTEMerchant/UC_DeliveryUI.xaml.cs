@@ -27,38 +27,35 @@ namespace UTEMerchant
 
         private void rbPending_Checked(object sender, RoutedEventArgs e)
         {
-            svDeliveredStatusChecking.Visibility = Visibility.Collapsed;
-            svDeliveringStatusChecking.Visibility = Visibility.Collapsed;
-            //svCancelledStatusChecking.Visibility = Visibility.Collapsed;
+            grdDeliveredStatus.Visibility = Visibility.Collapsed;
+            grdDeliveringStatus.Visibility = Visibility.Collapsed;
+            //grdPendingStatus.Visibility = Visibility.Visible;
+            //grdCancelledStatus.Visibility = Visibility.Collapsed;
 
-            //svPendingStatusChecking.Visibility = Visibility.Visible;
         }
 
         private void rbDelivering_Checked(object sender, RoutedEventArgs e)
         {
-            //svPendingStatusChecking.Visibility = Visibility.Collapsed;
-            svDeliveredStatusChecking.Visibility = Visibility.Collapsed;
-            //svCancelledStatusChecking.Visibility = Visibility.Collapsed;
-
-            svDeliveringStatusChecking.Visibility = Visibility.Visible;
+            grdDeliveredStatus.Visibility = Visibility.Collapsed;
+            //grdPendingStatus.Visibility = Visibility.Collapsed;
+            grdDeliveringStatus.Visibility = Visibility.Visible;
+            //grdCancelledStatus.Visibility = Visibility.Collapsed;
         }
 
         private void rbDelivered_Checked(object sender, RoutedEventArgs e)
         {
-            //svPendingStatusChecking.Visibility = Visibility.Collapsed;
-            svDeliveringStatusChecking.Visibility = Visibility.Collapsed;
-            //svCancelledStatusChecking.Visibility = Visibility.Collapsed;
-
-            svDeliveredStatusChecking.Visibility = Visibility.Visible;
+            //grdPendingStatus.Visibility = Visibility.Collapsed;
+            grdDeliveringStatus.Visibility = Visibility.Collapsed;
+            grdDeliveredStatus.Visibility = Visibility.Visible;
+            //grdCancelledStatus.Visibility = Visibility.Collapsed;
         }
 
         private void rbCancelled_Checked(object sender, RoutedEventArgs e)
         {
-            //svPendingStatusChecking.Visibility = Visibility.Collapsed;
-            svDeliveringStatusChecking.Visibility = Visibility.Collapsed;
-            svDeliveredStatusChecking.Visibility = Visibility.Collapsed;
-
-            //svCancelledStatusChecking.Visibility = Visibility.Visible;
+            grdDeliveredStatus.Visibility = Visibility.Collapsed;
+            grdDeliveringStatus.Visibility = Visibility.Collapsed;
+            //grdPendingStatus.Visibility = Visibility.Collapsed;
+            //grdCancelledStatus.Visibility = Visibility.Visible;
         }
     }
 }
