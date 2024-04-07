@@ -24,11 +24,10 @@ namespace UTEMerchant
         // Flag to check if the categories button is clicked
         private bool IsCategoriesButtonClicked = false;
 
-        // User and Item
+        // Properties
         private User user;
         private List<Item> items;
 
-        private string AboutUsContent;
         public WinShopView()
         {
             InitializeComponent();
@@ -37,6 +36,12 @@ namespace UTEMerchant
                 txtAboutUsContent.Text = "UTEMerchant is a platform for UTE students to buy and sell items.\nIt is a project for the subject of Software Engineering.\nThe project is developed by a group of students from the University of Technology and Education.";
             };
 
+        }
+
+        public WinShopView(User user, List<Item> items) : this()
+        {
+            this.user = user;
+            this.items = items;
         }
 
         private void wpShopItems_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
