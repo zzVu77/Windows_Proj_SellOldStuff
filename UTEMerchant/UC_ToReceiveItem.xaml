@@ -6,8 +6,8 @@
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:local="clr-namespace:UTEMerchant"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="White" >
+             d:DesignHeight="410" d:DesignWidth="800">
+    <Grid Background="White" Margin="0,0,0,110" >
         <Grid.RowDefinitions>
             <RowDefinition Height="59*"/>
             <RowDefinition Height="168*"/>
