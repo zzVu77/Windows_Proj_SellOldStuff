@@ -337,8 +337,7 @@
                             <MenuItem x:Name="mnuitOrder"
                                       Header="Order"    
                                       FontWeight="SemiBold"
-                                      Style="{StaticResource Menu_Style}" 
-                                      Click="MenuItem_Click">
+                                      Style="{StaticResource Menu_Style}" Click="mnuitOrder_Click" >
                                 <MenuItem.Icon>
                                     <Image Source="{Icon:MaterialDesignImage Brush=Black, Kind=LocalShipping}" 
                                            Stretch="Uniform"/>
@@ -398,7 +397,7 @@
                                        HorizontalAlignment="Stretch"
                                        VerticalAlignment="Stretch"/>-->
                 </Grid>
-                <local:UC_Delivery x:Name="uc_Stock" Visibility="Visible"/>
+                <local:UC_DeliveryUI x:Name="uc_Delivery" Visibility="Visible"/>
             </Grid>
 
             <!--Main Section-->
