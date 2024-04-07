@@ -21,7 +21,12 @@ namespace UTEMerchant
     /// </summary>
     public partial class WinShopView : Window
     {
+        // Flag to check if the categories button is clicked
         private bool IsCategoriesButtonClicked = false;
+
+        // User and Item
+        private User user;
+        private List<Item> items;
 
         private string AboutUsContent;
         public WinShopView()
