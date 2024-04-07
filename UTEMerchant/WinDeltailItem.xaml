@@ -320,8 +320,8 @@
                 Padding="3" 
                 Background="Black" 
                 CornerRadius="100" 
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center">
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center" Margin="1,0,5,0">
                 <Ellipse>
                     <Ellipse.Fill>
                         <ImageBrush x:Name="imgSellerAvartar" ImageSource="/Img/kimetsu.jpg"/>
@@ -335,13 +335,13 @@
                 Foreground="Black"              
                 FontSize="20"
                 x:Name="txbSellerName"
-                Text="Vu Nguyen"
-                HorizontalAlignment="Center"
-                RenderTransformOrigin="0.799,0.479"                  
-                FontWeight="Medium" Height="42" Width="208" Padding="5,5,5,5" Grid.Row="1"                     
+                Text="Vu Nguyen"  
+                TextAlignment="Right"                
+                FontWeight="Medium" Height="42" Padding="0,5,0,5" Grid.Row="1" Margin="0,0,5,0"                     
               />
             <!--Seller Contact-->
-            <TextBlock           
+            <TextBlock       
+                TextAlignment="Right"
                 VerticalAlignment="Top"                     
                 Foreground="Black"              
                 FontSize="18"
@@ -350,12 +350,13 @@
                 HorizontalAlignment="Center"
                 RenderTransformOrigin="0.799,0.479"                  
                 FontWeight="Medium"
-                Height="32" Width="148" 
+                Height="32" Width="198" 
                 Padding="1,1,1,1" 
-                Grid.Row="2" Margin="0,1,0,0" Grid.RowSpan="3"                     
+                Grid.Row="2" Margin="0,1,5,0" Grid.RowSpan="3"                     
               />
             <!--Seller Address-->
-            <TextBlock                      
+            <TextBlock     
+                TextAlignment="Right"
                 VerticalAlignment="Top"                     
                 Foreground="Black"                              
                 FontSize="12"
@@ -365,9 +366,9 @@
                 HorizontalAlignment="Center"               
                 RenderTransformOrigin="0.799,0.479"                  
                 FontWeight="SemiBold"
-                Height="264" Width="177" 
+                Height="264" Width="197" 
                 Padding="15,5,5,5" 
-                Grid.Row="4" Margin="0,38,0,0"                     
+                Grid.Row="4" Margin="0,38,5,0"                     
               />
 
 
