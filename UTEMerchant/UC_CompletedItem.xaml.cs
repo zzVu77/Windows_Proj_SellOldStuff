@@ -27,6 +27,7 @@ namespace UTEMerchant
         public UC_CompletedItem() 
         {
             InitializeComponent();
+            this.Width = 1300;
         }
 
 

@@ -57,5 +57,10 @@ namespace UTEMerchant
             //grdPendingStatus.Visibility = Visibility.Collapsed;
             //grdCancelledStatus.Visibility = Visibility.Visible;
         }
+
+        private void svDeliveryStatus_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
+        {
+
+        }
     }
 }

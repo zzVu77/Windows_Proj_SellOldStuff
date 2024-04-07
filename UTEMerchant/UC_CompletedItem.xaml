@@ -6,13 +6,13 @@
              xmlns:local="clr-namespace:UTEMerchant"
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d" 
-             d:DesignHeight="410" d:DesignWidth="800">
-    <Grid Background="White" >
+             d:DesignHeight="250" d:DesignWidth="1300">
+    <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="65*"/>
             <RowDefinition Height="185*"/>
-            <RowDefinition Height="86*"/>
-            <RowDefinition Height="74*"/>
+            <RowDefinition Height="79*"/>
+            <RowDefinition Height="81*"/>
         </Grid.RowDefinitions>
         <Border Grid.Row="0"
                 BorderBrush="LightGray"
@@ -40,9 +40,10 @@
                 Text="Successful delivery"
                 VerticalAlignment="Center"
                 FontSize="20"
+                Padding="0 20 0 20"
                 FontFamily="Segoe UI"
                 Foreground="#6baa9a"
-                FontWeight="ExtraBold" Margin="8,0,0,0"
+                FontWeight="ExtraBold" Margin="10 0 0 0"
                 
                 />
         </Border>
@@ -165,7 +166,7 @@
                             RenderTransformOrigin="0.799,0.479"                                  
                             Width="180" 
                             Padding="1,1,1,1"                
-                            Grid.Row="1" Margin="0,0,25,0" />
+                            Grid.Row="1" Margin="0,0,5,0" />
                     </DockPanel>
 
                 </StackPanel>
@@ -176,10 +177,11 @@
         <Grid Grid.Row="3">
             <Button x:Name="btnToReceiveReceived"
                             Grid.Column="0"
-                            Height="65"
-                            Width="250"                            
+                            Height="55"
+                            Width="180"                            
                             Style="{StaticResource addButton}" 
-                            VerticalAlignment="Center" Margin="0,0,25,0"                                         
+                            VerticalAlignment="Bottom"  HorizontalAlignment="Right"
+                            Margin="0,15,5,0"
                             >
                 <StackPanel Orientation="Horizontal">
                     <Icon:PackIconMaterial Kind="ThumbsUpDown" VerticalAlignment="Center" Margin="0 1 8 0" Width="46" Height="35" Foreground="White"/>

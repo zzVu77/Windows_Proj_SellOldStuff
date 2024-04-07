@@ -28,6 +28,7 @@ namespace UTEMerchant
         public UC_ToReceiveItem()
         {
             InitializeComponent();
+            this.Width = 1300;
         }
 
         public UC_ToReceiveItem(Item item, User user) : this()

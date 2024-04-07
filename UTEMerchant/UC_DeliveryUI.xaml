@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UTEMerchant"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="1300">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -24,7 +24,7 @@
                              HorizontalContentAlignment="Center"
                              FontSize="15"
                              Background="Transparent"
-                             Width="500"
+                             Width="325"
                              Style="{StaticResource UnderlineStyle}"
                              GroupName="DeliveryStatus" Checked="rbPending_Checked"/>
                     <RadioButton x:Name="rbDelivering"
@@ -33,7 +33,7 @@
                              HorizontalContentAlignment="Center"
                              FontSize="15"
                              Background="Transparent"
-                             Width="500"
+                             Width="325"
                              Style="{StaticResource UnderlineStyle}"
                              GroupName="DeliveryStatus" Checked="rbDelivering_Checked"/>
                     <RadioButton x:Name="rbDelivered"
@@ -42,7 +42,7 @@
                              HorizontalContentAlignment="Center"
                              FontSize="15"
                              Background="Transparent"
-                             Width="500"
+                             Width="325"
                              Style="{StaticResource UnderlineStyle}"
                              GroupName="DeliveryStatus" Checked="rbDelivered_Checked"/>
                     <RadioButton x:Name="rbCancelled"
@@ -51,7 +51,7 @@
                              HorizontalContentAlignment="Center"
                              FontSize="15"
                              Background="Transparent"
-                             Width="500"
+                             Width="325"
                              Style="{StaticResource UnderlineStyle}"
                              GroupName="DeliveryStatus" Checked="rbCancelled_Checked"/>
                 </StackPanel>
@@ -96,12 +96,14 @@
                 <ScrollViewer x:Name="svDeliveringStatus"
                               VerticalScrollBarVisibility="Auto"
                               HorizontalScrollBarVisibility="Hidden"
-                              Visibility="Collapsed">
+                              Visibility="Visible">
                     <WrapPanel x:Name="wpDeliveringStatus">
                         <StackPanel x:Name="spDeliveringStatus"
                                     Orientation="Vertical"
                                     Width="{Binding ElementName=wpDeliveringStatusChecking, Path=ActualWidth}">
-
+                            <local:UC_ToReceiveItem/>
+                            <local:UC_ToReceiveItem/>
+                            <local:UC_ToReceiveItem/>
                         </StackPanel>
                     </WrapPanel>
                 </ScrollViewer>
@@ -113,11 +115,16 @@
                 <ScrollViewer x:Name="svDeliveredStatus"
                               VerticalScrollBarVisibility="Auto"
                               HorizontalScrollBarVisibility="Hidden"
-                              Visibility="Collapsed">
+                              Visibility="Visible">
                     <WrapPanel x:Name="wpDeliveredStatus">
                         <StackPanel x:Name="spDeliveredStatus"
                                     Orientation="Vertical"
                                     Width="{Binding ElementName=wpDeliveredStatusChecking, Path=ActualWidth}">
+                            <local:UC_CompletedItem />
+                            <local:UC_CompletedItem />
+                            <local:UC_CompletedItem />
+                            <local:UC_CompletedItem  />
+                            
                         </StackPanel>
                     </WrapPanel>
                 </ScrollViewer>
