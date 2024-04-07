@@ -68,5 +68,18 @@ namespace UTEMerchant
             winBuyingInterface.ShowDialog();
             this.ShowDialog();
         }
+
+        private void Ellipse_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            WinShopView winShopView = new WinShopView();
+            winShopView.ShowDialog();
+            this.Show();
+            this.BringIntoView();
+        }
+
+        private void txbSellerName_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Ellipse_MouseLeftButtonDown(sender, e);
+        }
     }
 }

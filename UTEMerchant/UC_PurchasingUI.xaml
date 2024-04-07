@@ -192,8 +192,7 @@
                                     Background="Transparent"
                                     Content="Relevance"
                                     FontFamily="Segoe UI"
-                                    FontSize="{Binding ElementName=lblSort, Path=FontSize}"
-                                    FontWeight="Medium"                                
+                                    FontSize="{Binding ElementName=lblSort, Path=FontSize}"                                                                    
                                     Template="{StaticResource RoundedButtonTemplate}" Click="btnRelevance_Click">
                             </Button>
 

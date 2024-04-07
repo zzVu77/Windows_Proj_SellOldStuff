@@ -305,8 +305,7 @@
                             <MenuItem x:Name="mnuitProfile"
                                       Header="Profile"
                                       FontWeight="SemiBold"
-                                      Style="{StaticResource Menu_Style}" 
-                                      Click="MenuItem_Click">
+                                      Style="{StaticResource Menu_Style}" >
                                 <MenuItem.Icon>
                                     <Image Source="{Icon:ModernImage Brush=Black, Kind=PeopleProfile}" 
                                            Stretch="Uniform"/>
@@ -337,8 +336,7 @@
                             <MenuItem x:Name="mnuitOrder"
                                       Header="Order"    
                                       FontWeight="SemiBold"
-                                      Style="{StaticResource Menu_Style}" 
-                                      Click="MenuItem_Click">
+                                      Style="{StaticResource Menu_Style}" Click="mnuitOrder_Click" >
                                 <MenuItem.Icon>
                                     <Image Source="{Icon:MaterialDesignImage Brush=Black, Kind=LocalShipping}" 
                                            Stretch="Uniform"/>
@@ -358,8 +356,7 @@
                                           FontWeight="SemiBold"
                                           Style="{StaticResource Menu_Item}"
                                           Background="{Binding ElementName=mnuitSettings, Path=Background}"
-                                          Width="{Binding ElementName=mnuitSettings,Path=ActualWidth}"
-                                          Click="MenuItem_Click">
+                                          Width="{Binding ElementName=mnuitSettings,Path=ActualWidth}">
                                     <MenuItem.Icon>
                                         <Image Source="{Icon:MaterialDesignImage Brush=Black, Kind=Delete}" 
                                                Stretch="Uniform"/>
@@ -398,6 +395,7 @@
                                        HorizontalAlignment="Stretch"
                                        VerticalAlignment="Stretch"/>-->
                 </Grid>
+                <local:UC_DeliveryUI x:Name="uc_Delivery" Height="735" Visibility="Visible" VerticalAlignment="Bottom" Margin="0 20 0 15"/>
             </Grid>
 
             <!--Main Section-->

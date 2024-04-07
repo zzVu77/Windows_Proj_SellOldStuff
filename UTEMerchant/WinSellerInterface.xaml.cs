@@ -106,11 +106,6 @@ namespace UTEMerchant
             }
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void UC_SellerUI_Loaded(object sender, RoutedEventArgs e)
         {
 
@@ -119,43 +114,39 @@ namespace UTEMerchant
         private void mnuitPurchase_Click(object sender, RoutedEventArgs e)
         {
             grdSellerUI.Visibility = Visibility.Collapsed;
-            foreach (var item in grdSellerUI.Children)
-            {
-                if (item is UserControl)
-                {
-                    UserControl uc = item as UserControl;
-                    uc.Visibility = Visibility.Collapsed;
-                }
-            }
+            uc_Delivery.Visibility = Visibility.Collapsed;
             uc_PurchasingUI.Visibility = Visibility.Visible;
         }
 
         private void mnuitStock_Click(object sender, RoutedEventArgs e)
         {
+            uc_SellerUI.Visibility = Visibility.Collapsed;
+            uc_Delivery.Visibility = Visibility.Collapsed;
+            uc_PurchasingUI.Visibility = Visibility.Collapsed;
+            uc_SellerRegistration.Visibility = Visibility.Collapsed;
+            uc_RegistrationComplete.Visibility = Visibility.Collapsed;
+            uc_StartSelling.Visibility = Visibility.Collapsed;
+
             // If the user is registered as a seller
             if (3 > 2)
             {                
-                uc_SellerUI.Visibility = Visibility.Collapsed;
-                uc_PurchasingUI.Visibility = Visibility.Collapsed;
-                uc_SellerRegistration.Visibility = Visibility.Collapsed;
-                uc_RegistrationComplete.Visibility = Visibility.Collapsed;
-                uc_StartSelling.Visibility = Visibility.Collapsed;
-
                 grdSellerUI.Visibility = Visibility.Visible;
                 uc_SellerUI.Visibility = Visibility.Visible;
             }
             // If the user haven't registered to be a seller
             else if (1 > 2)
             {
-                uc_SellerUI.Visibility = Visibility.Collapsed;
-                uc_PurchasingUI.Visibility = Visibility.Collapsed;
-                uc_SellerRegistration.Visibility = Visibility.Collapsed;
-                uc_RegistrationComplete.Visibility = Visibility.Collapsed;
-                uc_StartSelling.Visibility = Visibility.Collapsed;
-
                 grdSellerUI.Visibility = Visibility.Visible;
                 uc_StartSelling.Visibility = Visibility.Visible;
             }
+        }
+
+
+        private void mnuitOrder_Click(object sender, RoutedEventArgs e)
+        {
+            grdSellerUI.Visibility = Visibility.Collapsed;
+            uc_PurchasingUI.Visibility = Visibility.Collapsed;
+            uc_Delivery.Visibility = Visibility.Visible;
         }
 
         // This method is called when the user clicks the Start Trading button in the Start Selling UC
@@ -193,6 +184,7 @@ namespace UTEMerchant
 
             this.Close();
         }
+
     }
 }
 
