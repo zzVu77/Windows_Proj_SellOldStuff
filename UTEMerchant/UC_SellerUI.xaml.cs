@@ -28,14 +28,20 @@ namespace UTEMerchant
         public UC_SellerUI()
         {
             InitializeComponent();       
+            
+
+        }
+        public UC_SellerUI(int idSeller) :this()
+        {
             items = dao.Load();
+            
             foreach (Item a in items)
             {
-                productGrid.Items.Add(a);
+                if(idSeller == a.SellerID)
+                    productGrid.Items.Add(a);
             }
 
         }
-
         private void productGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 

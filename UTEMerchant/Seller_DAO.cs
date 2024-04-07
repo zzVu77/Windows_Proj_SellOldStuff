@@ -8,5 +8,11 @@ namespace UTEMerchant
 {
     internal class Seller_DAO
     {
+        private DB_Connection db = new DB_Connection();
+        List<Seller> Users = new List<Seller>();
+        public List<Seller> Load()
+        {
+            return db.LoadData<Seller>("Seller");
+        }
     }
 }

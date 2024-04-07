@@ -8,5 +8,13 @@ namespace UTEMerchant
 {
     internal class Seller
     {
+        public int SellerID { get; set; }
+        public int Id_user { get; set; }
+
+        public string ShopName { get; set; }
+        public string City { get; set; }
+        public string District { get; set; }
+        public string Ward {  get; set; }
+
     }
 }
