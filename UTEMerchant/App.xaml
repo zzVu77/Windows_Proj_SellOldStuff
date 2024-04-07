@@ -3,7 +3,7 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:UTEMerchant"
-             StartupUri="WinLogin.xaml"
+             StartupUri="UC_Delivery.xaml"
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
               xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
              xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
@@ -1400,7 +1400,42 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+        </Style>
 
+        <Style x:Key="UnderlineStyle" TargetType="RadioButton">
+            <Setter Property="Focusable" Value="True"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Grid>
+                            <TextBlock x:Name="tb"
+                                       Text="{TemplateBinding Content}"
+                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                       FontWeight="{TemplateBinding FontWeight}"
+                                       FontSize="{TemplateBinding FontSize}"
+                                       Foreground="{TemplateBinding Foreground}"/>
+                            <Border x:Name="brd"
+                                    Visibility="Hidden"
+                                    Background="Transparent"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="0,0,0,2"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="brd" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="brd" Property="BorderBrush" Value="Black"/>
+                                <Setter TargetName="tb" Property="Foreground" Value="Black"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="brd" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="brd" Property="BorderBrush" Value="Black"/>
+                                <Setter TargetName="tb" Property="Foreground" Value="Black"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
 
     </Application.Resources>
