@@ -16,6 +16,7 @@ namespace UTEMerchant
         public string District { get; set; }
         public string Ward { get; set; }
 
+        public string Phone { get; set; }
         public float Average_rating { get; set; }
 
     }
