@@ -56,7 +56,7 @@ namespace UTEMerchant
             item.Id_user = Id_User;
             item.Item_Id = info.Item_Id;
             new PurchasedItem_DAO().AddItem(item);
-
+            this.Close();
         }
     }
 }
