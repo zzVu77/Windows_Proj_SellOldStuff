@@ -316,7 +316,8 @@
                             Width="656"
                             HorizontalAlignment="Center"
                             Style="{StaticResource addButton}"                                                           
-                            HorizontalContentAlignment="Center" Margin="0,20,0,45">
+                            HorizontalContentAlignment="Center" Margin="0,20,0,45"
+                            Click="Button_Click">
                         <StackPanel Orientation="Horizontal">
                             <Icon:PackIconMaterial Kind="TruckDelivery" VerticalAlignment="Center" Margin="0 1 8 0" Width="28" Height="35"/>
                             <TextBlock Text="Order" FontWeight="Bold" FontFamily="Segoe UI" FontSize="25" Width="85"/>

@@ -27,6 +27,7 @@ namespace UTEMerchant
         private Item_DAO Item_dao = new Item_DAO();
         private Seller_DAO seller_DAO = new Seller_DAO();
         List<Item> items = new List<Item>();
+        public int Id_user { get; set; }
         public UC_PurchasingUI()
         {
             InitializeComponent();
@@ -101,7 +102,7 @@ namespace UTEMerchant
             if (sender is UC_ItemView clickedItem)
             {
                 Seller seller = seller_DAO.GetSeller(clickedItem.info.SellerID);
-                WinDeltailItem winDeltailItem = new WinDeltailItem(clickedItem.info, seller);
+                WinDeltailItem winDeltailItem = new WinDeltailItem(clickedItem.info, seller, Id_user);
                 winDeltailItem.ShowDialog();                
             }
         }

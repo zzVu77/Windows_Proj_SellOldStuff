@@ -23,7 +23,7 @@ namespace UTEMerchant
     {
 
         private readonly Item Item;
-        private readonly User User;
+        private readonly Seller SellerOfItem;
 
         public UC_ToReceiveItem()
         {
@@ -31,22 +31,23 @@ namespace UTEMerchant
             this.Width = 1300;
         }
 
-        public UC_ToReceiveItem(Item item, User user) : this()
+        public UC_ToReceiveItem(Item item, Seller seller) : this()
         {
             this.Item = item;
-            this.User = user;
-            SetData(item, user);
+            this.SellerOfItem = seller;
+            SetData(item, SellerOfItem);
         }
 
         //Binding data to the UI
-        private void SetData(Item item, User user)
+        private void SetData(Item item, Seller seller)
         {
-            imgToReceiveItem.Source = item.Image;
-            txblShopName.Text = user.Name;
-            txblToReceiveOriginalPrice.Text = $"{item.Original_Price.ToString(CultureInfo.InvariantCulture)}$";
-            txblToReceivePrice.Text = $"{item.Price.ToString(CultureInfo.InvariantCulture)}$";
-            txblToReceiveConditon.Text = $"{item.Condition.ToString(CultureInfo.InvariantCulture)}%";
-            txblToReceiveItemName.Text = item.Name;
+            var resourceUri = new Uri(item.Image_Path, UriKind.RelativeOrAbsolute);
+            imgToReceiveItem.Source = new BitmapImage(resourceUri);
+            txblShopName.Text = SellerOfItem.ShopName;
+            txblToReceiveOriginalPrice.Text = $"{Item.Original_Price.ToString(CultureInfo.InvariantCulture)}$";
+            txblToReceivePrice.Text = $"{Item.Price.ToString(CultureInfo.InvariantCulture)}$";
+            txblToReceiveConditon.Text = $"{Item.Condition.ToString(CultureInfo.InvariantCulture)}%";
+            txblToReceiveItemName.Text = Item.Name;
         }
     }
 }

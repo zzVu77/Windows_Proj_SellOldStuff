@@ -25,10 +25,12 @@ namespace UTEMerchant
         UC_RegistrationComplete uc_RegistrationComplete;
         UC_SellerRegistration uc_SellerRegistration;
         UC_SellerUI uc_SellerUI;
+        //UC_DeliveryUI uc_Delivery;
         public WinSellerInterface(User user) : this()
         {
             this.User = user;
             txbName.Text = user.Name;
+            uc_PurchasingUI.Id_user = user.Id_user;
             List<Seller> sellers = new List<Seller>();
             sellers = new Seller_DAO().Load();
             foreach (Seller seller in sellers)
@@ -39,18 +41,28 @@ namespace UTEMerchant
                 }    
             }
             this.uc_SellerUI = new UC_SellerUI(Seller.SellerID);
-            grdSellerUI.Children.Add(uc_SellerUI);
-            uc_SellerUI.Visibility = Visibility.Collapsed;
+            //this.uc_Delivery = new UC_DeliveryUI(user.Id_user);
 
+            grdSellerUI.Children.Add(uc_SellerUI);
+            //grdSellerUI.Children.Add(uc_Delivery);
+            uc_SellerUI.Visibility = Visibility.Collapsed;
+            //uc_Delivery.Visibility = Visibility.Visible;
+
+            /* uc_Delivery.VerticalAlignment = VerticalAlignment.Bottom;
+             uc_Delivery.Height = 735;
+             uc_Delivery.Margin = new Thickness(0, 20, 0, 15);*/
+            uc_Delivery.Id_user = user.Id_user;
+            uc_Delivery.Visibility = Visibility.Visible;
             uc_SellerUI.HorizontalAlignment = HorizontalAlignment.Stretch;
             uc_SellerUI.VerticalAlignment = VerticalAlignment.Stretch;
             uc_SellerUI.Background = Brushes.Transparent;
+            
         }
         public WinSellerInterface()
         {
             InitializeComponent();
-            
-            
+
+
             
             this.uc_StartSelling = new UC_StartSelling();
             this.uc_RegistrationComplete = new UC_RegistrationComplete();
@@ -185,6 +197,10 @@ namespace UTEMerchant
             this.Close();
         }
 
+        private void uc_Delivery_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            uc_Delivery.Load();
+        }
     }
 }
 
