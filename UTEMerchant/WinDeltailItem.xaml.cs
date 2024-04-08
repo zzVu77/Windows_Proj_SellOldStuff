@@ -21,15 +21,17 @@ namespace UTEMerchant
     {
         
         public Item info;
+        private Seller seller;
         List<User> users = new List<User>();
         user_DAO user_dao = new user_DAO();
         public WinDeltailItem()
         {
             InitializeComponent();
         }
-        public WinDeltailItem(Item item)
+        public WinDeltailItem(Item item, Seller seller)
         {
-            info = item;
+            this.info = item;
+            this.seller = seller;
             var user_dao = new user_DAO();
             users = user_dao.Load();
             InitializeComponent();
@@ -45,6 +47,11 @@ namespace UTEMerchant
             txbType.Text = info.Type.ToString();
             txbConditon.Text = info.Condition.ToString()+" %";
             txtItemPrice.Text = info.Price.ToString() + " $";
+            txbSellerName.Text = seller.ShopName;
+            txbSellerContact.Text = seller.Phone;
+            txbSellerAddress.Text = seller.Ward +", "+ seller.District + ", " + seller.City;
+
+            
             var resourceUri = new Uri(info.Image_Path, UriKind.RelativeOrAbsolute);
             imgItem.Source = new BitmapImage(resourceUri);
             // Tạo một FlowDocument

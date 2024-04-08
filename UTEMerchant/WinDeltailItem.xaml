@@ -350,9 +350,9 @@
                 HorizontalAlignment="Center"
                 RenderTransformOrigin="0.799,0.479"                  
                 FontWeight="Medium"
-                Height="32" Width="198" 
-                Padding="1,1,1,1" 
-                Grid.Row="2" Margin="0,1,5,0" Grid.RowSpan="3"                     
+                Height="32" Width="202" 
+                Padding="1,1,10,1" 
+                Grid.Row="2" Margin="0,1,0,0" Grid.RowSpan="3"                     
               />
             <!--Seller Address-->
             <TextBlock     

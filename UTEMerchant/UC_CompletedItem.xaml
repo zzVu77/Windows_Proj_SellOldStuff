@@ -39,6 +39,7 @@
             <TextBlock
                 Text="Successful delivery"
                 VerticalAlignment="Center"
+                HorizontalAlignment="Right"
                 FontSize="20"
                 Padding="0 20 0 20"
                 FontFamily="Segoe UI"

@@ -25,6 +25,7 @@ namespace UTEMerchant
     public partial class UC_PurchasingUI : UserControl
     {
         private Item_DAO Item_dao = new Item_DAO();
+        private Seller_DAO seller_DAO = new Seller_DAO();
         List<Item> items = new List<Item>();
         public UC_PurchasingUI()
         {
@@ -99,26 +100,9 @@ namespace UTEMerchant
         {
             if (sender is UC_ItemView clickedItem)
             {
-                WinDeltailItem winDeltailItem = new WinDeltailItem(clickedItem.info);
-                winDeltailItem.ShowDialog();
-                //UC_ItemDetail itemDetail = new UC_ItemDetail(clickedItem.info);
-                // // If the panel is empty, a new UC_ItemDetail is will be added
-                // if (dpSelectedItemDetailedInformation.Children.Count == 0)
-                // {
-                //     dpSelectedItemDetailedInformation.Children.Add(itemDetail);
-                // }
-                // // If there exist one UC_ItemDetail but not the same as the recently clicked one, then the old one will be replaced by the new one
-                // else if (dpSelectedItemDetailedInformation.Children.Count == 1 && dpSelectedItemDetailedInformation.Children[0] != itemDetail)
-                // {
-                //     dpSelectedItemDetailedInformation.Children.Clear();
-                //     dpSelectedItemDetailedInformation.Children.Add(itemDetail);
-
-                // }
-                // // If there exist one UC_ItemDetail but the same as the recently clicked one, then the existing one will be removed
-                // else if (dpSelectedItemDetailedInformation.Children.Count == 1 && dpSelectedItemDetailedInformation.Children[0] == itemDetail)
-                // {
-                //     dpSelectedItemDetailedInformation.Children.Remove(itemDetail);
-                // }
+                Seller seller = seller_DAO.GetSeller(clickedItem.info.SellerID);
+                WinDeltailItem winDeltailItem = new WinDeltailItem(clickedItem.info, seller);
+                winDeltailItem.ShowDialog();                
             }
         }
 
