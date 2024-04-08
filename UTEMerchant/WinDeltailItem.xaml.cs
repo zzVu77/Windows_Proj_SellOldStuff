@@ -49,6 +49,7 @@ namespace UTEMerchant
             txtItemPrice.Text = info.Price.ToString() + " $";
             txbSellerName.Text = seller.ShopName;
             txbSellerContact.Text = seller.Phone;
+            txbSellerAddress.Text = seller.Ward +", "+ seller.District + ", " + seller.City;
 
             
             var resourceUri = new Uri(info.Image_Path, UriKind.RelativeOrAbsolute);
