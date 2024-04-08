@@ -46,5 +46,7 @@ namespace UTEMerchant
             string sqlStr = "DELETE FROM [dbo].[Item] WHERE Item_Id = @ItemId";
             db.ExecuteNonQuery(sqlStr, new SqlParameter("@ItemId", item.Item_Id));
         }
+
+        
     }
 }
