@@ -36,27 +36,14 @@ namespace UTEMerchant
         }
         public void Load()
         {
-            sellers = SellerDao.Load();
-            purchasedItems = dao.Load();
-            items = item_DAO.Load();
-
-            var filteritems = purchasedItems.Where(item => item.Id_user == Id_user).ToList();
-            var matchedItems =
-                (from purchasedItem in filteritems
-                join item in items on purchasedItem.Item_Id equals item.Item_Id
-                select item).ToList();
-            var matchedSellerNItem =
-                (from purchasedItem in matchedItems
-                join seller in sellers on purchasedItem.SellerID equals seller.SellerID
-                select new
-                {
-                    seller,
-                    purchasedItem
-                }).ToList();
+            
+            var matchedItems = dao.Load(Id_user);
+         
             spDeliveringStatus.Children.Clear();
-            foreach (var item in matchedSellerNItem)
+            foreach (var item in matchedItems)
             {
-                UC_ToReceiveItem uc_item = new UC_ToReceiveItem(item.purchasedItem, item.seller);
+                
+                UC_ToReceiveItem uc_item = new UC_ToReceiveItem(item, SellerDao.GetSeller(item.SellerID));
                 spDeliveringStatus.Children.Add(uc_item);
             }
             

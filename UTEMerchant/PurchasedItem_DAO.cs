@@ -14,7 +14,18 @@ namespace UTEMerchant
         {
             return db.LoadData<purchasedItem>("PurchasedProducts");
         }
-
+        public List<Item> Load(int Id_user) 
+        {
+            List<Item> items = new Item_DAO().Load();
+            
+            List<purchasedItem> purchasedItems = db.LoadData<purchasedItem>("PurchasedProducts");
+            purchasedItems = purchasedItems.Where(item => item.Id_user == Id_user).ToList();
+            List<Item> matchedItems =
+                (from purchasedItem in purchasedItems
+                 join item in items on purchasedItem.Item_Id equals item.Item_Id
+                 select item).ToList();
+            return matchedItems;
+        }
         public void AddItem(purchasedItem item) // Using PascalCase for method name
         {
             string sqlQuery = @"

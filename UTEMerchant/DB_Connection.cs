@@ -69,12 +69,11 @@ namespace UTEMerchant
                 }
                 catch (IndexOutOfRangeException)
                 {
-                    // Handle missing column gracefully
-                    // Log or ignore based on your requirements
+                    
                 }
                 catch (Exception ex)
                 {
-                    // Handle conversion errors or log a warning
+                  
                 }
             }
         }
