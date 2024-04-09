@@ -395,7 +395,8 @@
                                        HorizontalAlignment="Stretch"
                                        VerticalAlignment="Stretch"/>-->
                 </Grid>
-                <local:UC_DeliveryUI x:Name="uc_Delivery" Height="735" Visibility="Visible" VerticalAlignment="Bottom" Margin="0 20 0 15"/>
+                <local:UC_DeliveryUI x:Name="uc_Delivery" Height="735" Visibility="Collapsed" VerticalAlignment="Bottom" Margin="0 20 0 15"
+                                    IsVisibleChanged="uc_Delivery_IsVisibleChanged"/>
             </Grid>
 
             <!--Main Section-->

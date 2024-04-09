@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,13 +24,15 @@ namespace UTEMerchant
         public Item info;
         List<User> users = new List<User>();
         user_DAO user_dao = new user_DAO();
+        private int Id_User;
         public WinBuyingInterface()
         {
             InitializeComponent();
         }
-        public WinBuyingInterface(Item item)
+        public WinBuyingInterface(Item item, int id_user)
         {
             info = item;
+            Id_User = id_user;
             var user_dao = new user_DAO();
             users = user_dao.Load();
             InitializeComponent();
@@ -45,6 +48,15 @@ namespace UTEMerchant
             var resourceUri = new Uri(info.Image_Path, UriKind.RelativeOrAbsolute);
             imgOrderItem.Source = new BitmapImage(resourceUri);
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            purchasedItem item = new purchasedItem();
+            item.Id_user = Id_User;
+            item.Item_Id = info.Item_Id;
+            new PurchasedItem_DAO().AddItem(item);
+            this.Close();
         }
     }
 }

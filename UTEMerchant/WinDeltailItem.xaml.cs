@@ -22,18 +22,20 @@ namespace UTEMerchant
         
         public Item info;
         private Seller seller;
-        List<User> users = new List<User>();
+        //        List<User> users = new List<User>();
+        private int Id_user;
         user_DAO user_dao = new user_DAO();
         public WinDeltailItem()
         {
             InitializeComponent();
         }
-        public WinDeltailItem(Item item, Seller seller)
+        public WinDeltailItem(Item item, Seller seller,int id_user)
         {
             this.info = item;
             this.seller = seller;
-            var user_dao = new user_DAO();
-            users = user_dao.Load();
+            Id_user = id_user;
+            //var user_dao = new user_DAO();
+            //users = user_dao.Load();
             InitializeComponent();
             SetDefaultValue();
 
@@ -70,7 +72,7 @@ namespace UTEMerchant
 
         private void btnBuyNow_Click(object sender, RoutedEventArgs e)
         {
-            WinBuyingInterface winBuyingInterface = new WinBuyingInterface(this.info);
+            WinBuyingInterface winBuyingInterface = new WinBuyingInterface(this.info, Id_user);
             this.Hide();
             winBuyingInterface.ShowDialog();
             this.ShowDialog();

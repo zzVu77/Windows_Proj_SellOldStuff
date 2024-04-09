@@ -20,10 +20,33 @@ namespace UTEMerchant
     /// </summary>
     public partial class UC_DeliveryUI : UserControl
     {
+
+        List <purchasedItem> purchasedItems = new List<purchasedItem> ();
+        List <Seller> sellers = new List<Seller> ();
+        List <Item> items = new List<Item> ();
+        PurchasedItem_DAO dao = new PurchasedItem_DAO();
+        Seller_DAO SellerDao = new Seller_DAO();
+        Item_DAO item_DAO = new Item_DAO();
+        public int Id_user;
         public UC_DeliveryUI()
         {
             InitializeComponent();
             rbPending.IsChecked = true;
+
+        }
+        public void Load()
+        {
+            
+            var matchedItems = dao.Load(Id_user);
+         
+            spDeliveringStatus.Children.Clear();
+            foreach (var item in matchedItems)
+            {
+                
+                UC_ToReceiveItem uc_item = new UC_ToReceiveItem(item, SellerDao.GetSeller(item.SellerID));
+                spDeliveringStatus.Children.Add(uc_item);
+            }
+            
         }
 
         private void rbPending_Checked(object sender, RoutedEventArgs e)
