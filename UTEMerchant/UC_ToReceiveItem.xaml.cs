@@ -54,7 +54,7 @@ namespace UTEMerchant
 
         private void btnToReceiveReceived_Click(object sender, RoutedEventArgs e)
         {
-            string deliveryStatus = purchasedItemDAO.GetPurchasedProductStatus(Item.Item_Id, this.userID);
+            //string deliveryStatus = purchasedItemDAO.GetPurchasedProductStatus(Item.Item_Id, this.userID);
             purchasedItemDAO.UpdateDeliveryStatus(Item.Item_Id, this.userID, "delivered");
             ReceivedButtonClicked?.Invoke(this, EventArgs.Empty);
         }
