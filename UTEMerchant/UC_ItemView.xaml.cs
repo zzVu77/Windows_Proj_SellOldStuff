@@ -50,7 +50,7 @@ namespace UTEMerchant
         {
             if(info.Sale_Status)
             {
-                btnAddToCart.Foreground = new SolidColorBrush(Colors.Blue);
+                imgSoldStamp.Visibility=Visibility.Visible;
             }   
             txblItemName.Text = info.Name;
             txblPrice.Text = info.Price.ToString()+"$";
