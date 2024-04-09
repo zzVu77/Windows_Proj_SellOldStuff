@@ -89,5 +89,14 @@ namespace UTEMerchant
         {
             Ellipse_MouseLeftButtonDown(sender, e);
         }
+        private void iconClose_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void iconClose_MouseUp_1(object sender, MouseButtonEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

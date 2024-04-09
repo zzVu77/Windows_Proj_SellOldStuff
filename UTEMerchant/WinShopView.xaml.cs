@@ -212,5 +212,10 @@ namespace UTEMerchant
                 spCategories.Children.Add(radioButton);
             }
         }
+
+        private void iconClose_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

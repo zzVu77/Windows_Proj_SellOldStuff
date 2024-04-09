@@ -257,7 +257,18 @@
                                   BorderThickness="1.5"
                                   Tag="District"
                                   HorizontalAlignment="Left" Margin="38,8,15,0">
-                            <ComboBoxItem Content="HCM"></ComboBoxItem>
+                            <ComboBoxItem Content="District 1"></ComboBoxItem>
+                            <ComboBoxItem Content="District 2"></ComboBoxItem>
+                            <ComboBoxItem Content="District 3"></ComboBoxItem>
+                            <ComboBoxItem Content="District 4"></ComboBoxItem>
+                            <ComboBoxItem Content="District 5"></ComboBoxItem>
+                            <ComboBoxItem Content="District 6"></ComboBoxItem>
+                            <ComboBoxItem Content="District 7"></ComboBoxItem>
+                            <ComboBoxItem Content="District 8"></ComboBoxItem>
+                            <ComboBoxItem Content="District 9"></ComboBoxItem>
+                            <ComboBoxItem Content="District 10"></ComboBoxItem>
+                            <ComboBoxItem Content="District 11"></ComboBoxItem>
+                            <ComboBoxItem Content="District 12"></ComboBoxItem>
                         </ComboBox>
                     </DockPanel>
 

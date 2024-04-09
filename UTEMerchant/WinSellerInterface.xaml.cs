@@ -46,13 +46,14 @@ namespace UTEMerchant
             grdSellerUI.Children.Add(uc_SellerUI);
             //grdSellerUI.Children.Add(uc_Delivery);
             uc_SellerUI.Visibility = Visibility.Collapsed;
+            uc_PurchasingUI.Visibility = Visibility.Visible;
             //uc_Delivery.Visibility = Visibility.Visible;
 
             /* uc_Delivery.VerticalAlignment = VerticalAlignment.Bottom;
              uc_Delivery.Height = 735;
              uc_Delivery.Margin = new Thickness(0, 20, 0, 15);*/
             uc_Delivery.Id_user = user.Id_user;
-            uc_Delivery.Visibility = Visibility.Visible;
+            uc_Delivery.Visibility = Visibility.Collapsed;
             uc_SellerUI.HorizontalAlignment = HorizontalAlignment.Stretch;
             uc_SellerUI.VerticalAlignment = VerticalAlignment.Stretch;
             uc_SellerUI.Background = Brushes.Transparent;
