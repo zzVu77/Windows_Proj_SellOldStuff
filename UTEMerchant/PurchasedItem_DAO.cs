@@ -36,5 +36,50 @@ namespace UTEMerchant
                 new SqlParameter("@deliveryStatus", "delivering")
                 );
         }
+
+        //public string GetPurchasedProductStatus(int itemID, int userID)
+        //{
+        //    //string sqlStr = @"select Delivery_Status from PurchasedProducts pp, Item i Where pp.Id_user=@userID and pp.Item_Id = i.Item_Id ";
+        //    string status = "";
+            
+        //    using (SqlConnection connection = new SqlConnection(db.connectionString))
+        //    {
+               
+        //        string sqlStr = @"select Delivery_Status from PurchasedProducts pp, Item i Where pp.Id_user=@userID and pp.Item_Id = i.Item_Id ";
+                
+        //        connection.Open();
+
+                
+        //        using (SqlCommand command = new SqlCommand(sqlStr, connection))
+        //        {
+                   
+        //            command.Parameters.AddWithValue("@userID", userID);
+        //            command.Parameters.AddWithValue("@itemID", itemID);
+
+        //            using (SqlDataReader reader = command.ExecuteReader())
+        //            {
+        //                if (reader.Read())
+        //                {
+        //                    status = reader["Delivery_Status"].ToString();
+        //                }
+        //            }
+        //        }
+        //    }
+        //    return status;
+        //}
+
+        public void UpdateDeliveryStatus(int itemID, int userID, string newStatus)
+        {
+            string sqlQuery = @"
+            Update  [dbo].[PurchasedProducts] 
+            SET Delivery_Status=@newStatus
+            WHERE Id_user=@userID AND Item_Id=@itemID
+            ";
+            new DB_Connection().ExecuteNonQuery(sqlQuery,
+                new SqlParameter("@userId", userID),
+                new SqlParameter("@itemId", itemID),
+                new SqlParameter("@newStatus", newStatus)
+                );
+        }
     }
 }

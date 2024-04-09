@@ -120,10 +120,7 @@
                         <StackPanel x:Name="spDeliveredStatus"
                                     Orientation="Vertical"
                                     Width="{Binding ElementName=wpDeliveredStatusChecking, Path=ActualWidth}">
-                            <local:UC_CompletedItem />
-                            <local:UC_CompletedItem />
-                            <local:UC_CompletedItem />
-                            <local:UC_CompletedItem  />
+                          
                             
                         </StackPanel>
                     </WrapPanel>

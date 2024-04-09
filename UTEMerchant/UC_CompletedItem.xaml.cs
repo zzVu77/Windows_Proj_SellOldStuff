@@ -23,6 +23,7 @@ namespace UTEMerchant
     {
         private readonly Item Item;
         private readonly User User;
+        private int userID;
 
         public UC_CompletedItem() 
         {
@@ -31,11 +32,12 @@ namespace UTEMerchant
         }
 
 
-        public UC_CompletedItem(Item item, User user) : this()
+        public UC_CompletedItem(Item item, User user, int userID) : this()
         {
             this.Item = item;
             this.User = user;
             SetData(item, user);
+            this.userID = userID;
         }
 
         //Binding data to the UI
