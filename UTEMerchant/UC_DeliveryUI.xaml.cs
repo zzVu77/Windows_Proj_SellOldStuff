@@ -34,13 +34,7 @@ namespace UTEMerchant
            
             InitializeComponent();
             rbDelivering.IsChecked = true;
-             var matchedItems = dao.Load(Id_user, "delivering");
-            foreach (var item in matchedItems)
-            {
-                UC_ToReceiveItem uc_item = new UC_ToReceiveItem(item, SellerDao.GetSeller(item.SellerID), this.Id_user);
-                uc_item.ReceivedButtonClicked+= UCToReceiveItem_ReceivedButtonClicked;
-                spDeliveringStatus.Children.Add(uc_item);
-            }
+            
 
         }
         public void Load()
@@ -51,6 +45,7 @@ namespace UTEMerchant
             foreach (var item in matchedItems)
             {                
                 UC_ToReceiveItem uc_item = new UC_ToReceiveItem(item, SellerDao.GetSeller(item.SellerID),this.Id_user);
+                uc_item.ReceivedButtonClicked += UCToReceiveItem_ReceivedButtonClicked;
                 spDeliveringStatus.Children.Add(uc_item);
             }
 
@@ -58,8 +53,7 @@ namespace UTEMerchant
             spDeliveredStatus.Children.Clear();
             foreach (var item in matchedItems)
             {
-                UC_ToReceiveItem uc_item = new UC_ToReceiveItem(item, SellerDao.GetSeller(item.SellerID), this.Id_user);
-                uc_item.ReceivedButtonClicked += UCToReceiveItem_ReceivedButtonClicked;
+                UC_CompletedItem uc_item = new UC_CompletedItem(item, SellerDao.GetSeller(item.SellerID), this.Id_user);              
                 spDeliveredStatus.Children.Add(uc_item);
             }
 

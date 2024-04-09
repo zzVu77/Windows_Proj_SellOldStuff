@@ -21,9 +21,11 @@ namespace UTEMerchant
     /// </summary>
     public partial class UC_CompletedItem : UserControl
     {
-        private readonly Item Item;
-        private readonly User User;
+        private  Item Item;
+        private  User User;
+        private  Seller SellerOfItem;
         private int userID;
+        public event EventHandler ReceivedButtonClicked;
 
         public UC_CompletedItem() 
         {
@@ -32,23 +34,40 @@ namespace UTEMerchant
         }
 
 
-        public UC_CompletedItem(Item item, User user, int userID) : this()
+        public UC_CompletedItem(Item item, Seller seller, int userID) : this()
         {
             this.Item = item;
-            this.User = user;
-            SetData(item, user);
+            this.userID = userID;
+            this.SellerOfItem = seller;
+            SetData(item, seller);
             this.userID = userID;
         }
 
         //Binding data to the UI
-        private void SetData(Item item, User user)
+        private void SetData(Item item, Seller seller)
         {
-            imgToReceiveItem.Source = item.Image;
-            txblShopName.Text = user.Name;
-            txblToReceiveOriginalPrice.Text = $"{item.Original_Price.ToString(CultureInfo.InvariantCulture)}$";
-            txblToReceivePrice.Text = $"{item.Price.ToString(CultureInfo.InvariantCulture)}$";
-            txblToReceiveConditon.Text = $"{item.Condition.ToString(CultureInfo.InvariantCulture)}%";
-            txblToReceiveItemName.Text = item.Name;
+            //imgToReceiveItem.Source = item.Image;
+            //txblShopName.Text = user.Name;
+            //txblToReceiveOriginalPrice.Text = $"{item.Original_Price.ToString(CultureInfo.InvariantCulture)}$";
+            //txblToReceivePrice.Text = $"{item.Price.ToString(CultureInfo.InvariantCulture)}$";
+            //txblToReceiveConditon.Text = $"{item.Condition.ToString(CultureInfo.InvariantCulture)}%";
+            //txblToReceiveItemName.Text = item.Name;
+
+
+            var resourceUri = new Uri(item.Image_Path, UriKind.RelativeOrAbsolute);
+            imgToReceiveItem.Source = new BitmapImage(resourceUri);
+            txblShopName.Text = SellerOfItem.ShopName;
+            txblToReceiveOriginalPrice.Text = $"{Item.Original_Price.ToString(CultureInfo.InvariantCulture)}$";
+            txblToReceivePrice.Text = $"{Item.Price.ToString(CultureInfo.InvariantCulture)}$";
+            txblToReceiveConditon.Text = $"{Item.Condition.ToString(CultureInfo.InvariantCulture)}%";
+            txblToReceiveItemName.Text = Item.Name;
+        }
+
+        private void btnRate_Click(object sender, RoutedEventArgs e)
+        {
+            ReceivedButtonClicked?.Invoke(this, EventArgs.Empty);
+            WinRating winRating = new WinRating(this.userID, this.SellerOfItem.SellerID,this.Item.Item_Id);
+            winRating.ShowDialog();
         }
     }
 }

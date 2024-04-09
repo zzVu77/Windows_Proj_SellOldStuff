@@ -167,6 +167,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="CheckValid.cs" />
+    <Compile Include="CustomerReview.cs" />
+    <Compile Include="CustomerReviewDAO.cs" />
     <Compile Include="DB_Connection.cs" />
     <Compile Include="InverseBooleanConverter.cs" />
     <Compile Include="Item.cs" />
@@ -230,6 +232,9 @@
     </Compile>
     <Compile Include="WinNewItem.xaml.cs">
       <DependentUpon>WinNewItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinRating.xaml.cs">
+      <DependentUpon>WinRating.xaml</DependentUpon>
     </Compile>
     <Compile Include="WinSellerInterface.xaml.cs">
       <DependentUpon>WinSellerInterface.xaml</DependentUpon>
@@ -325,6 +330,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UC_ItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinRating.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

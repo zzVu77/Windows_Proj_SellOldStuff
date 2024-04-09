@@ -101,9 +101,9 @@
                         <StackPanel x:Name="spDeliveringStatus"
                                     Orientation="Vertical"
                                     Width="{Binding ElementName=wpDeliveringStatusChecking, Path=ActualWidth}">
+                            <!--<local:UC_ToReceiveItem/>
                             <local:UC_ToReceiveItem/>
-                            <local:UC_ToReceiveItem/>
-                            <local:UC_ToReceiveItem/>
+                            <local:UC_ToReceiveItem/>-->
                         </StackPanel>
                     </WrapPanel>
                 </ScrollViewer>
