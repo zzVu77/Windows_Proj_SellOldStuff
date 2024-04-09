@@ -117,25 +117,24 @@ BorderBrush="#FF736161">
                         Width="106" 
                         BorderThickness="0,0,0,0"                          
                         IsHitTestVisible="False" Height="20" Margin="0,2,0,0"/>
-                    
+
                     <Grid Grid.Row="3">
                         <Button x:Name="btnAddToCart"    
                                 Width="70"
-                                HorizontalAlignment="Left"                              
-                                Height="26" 
+                                HorizontalAlignment="Left" 
                                 VerticalContentAlignment="Center" 
                                 BorderThickness="1,1,1,1" 
                                 Foreground="White"
                                 FontFamily="Rockwell" FontWeight="Bold"                        
-                                Click="btnAddToCart_Click" Margin="0,0,4,0">
+                                Click="btnAddToCart_Click" Margin="0,3,0,2" VerticalAlignment="Stretch">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
-                                    <Border CornerRadius="7" Background="#FF3131" >
+                                    <Border  CornerRadius="7" Background="#FF3131" >
                                         <ContentPresenter VerticalAlignment="Center" />
                                     </Border>
                                 </ControlTemplate>
                             </Button.Template>
-                           
+
                             <Grid>
                                 <Icon:PackIconMaterial  Kind="HeartPlusOutline" HorizontalAlignment="Left"  Foreground="White" Margin="3,0,0,0" />
                                 <TextBlock Text="Like"

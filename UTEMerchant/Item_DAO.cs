@@ -1,4 +1,5 @@
 ﻿using HandyControl.Controls;
+using HandyControl.Themes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -46,7 +47,12 @@ namespace UTEMerchant
             string sqlStr = "DELETE FROM [dbo].[Item] WHERE Item_Id = @ItemId";
             db.ExecuteNonQuery(sqlStr, new SqlParameter("@ItemId", item.Item_Id));
         }
-
+        public void UpdateStatus(int Item_Id)
+        {
+            bool status = true;
+            string sqlStr = "UPDATE[dbo].[Item] SET sale_status = @NewSaleStatus WHERE Item_Id = @ItemId";
+            db.ExecuteNonQuery(sqlStr, new SqlParameter("@ItemId", Item_Id), new SqlParameter("@NewSaleStatus", status));
+        }
         
     }
 }

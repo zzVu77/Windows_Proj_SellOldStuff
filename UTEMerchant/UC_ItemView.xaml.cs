@@ -48,6 +48,10 @@ namespace UTEMerchant
 
         public void SetDefaultValue()
         {
+            if(info.Sale_Status)
+            {
+                btnAddToCart.Foreground = new SolidColorBrush(Colors.Blue);
+            }   
             txblItemName.Text = info.Name;
             txblPrice.Text = info.Price.ToString()+"$";
             txblOldPrice.Text=info.Original_Price.ToString()+"$";
