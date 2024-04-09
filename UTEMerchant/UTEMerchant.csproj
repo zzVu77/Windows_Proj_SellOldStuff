@@ -415,6 +415,7 @@
       <DependentUpon>db_ute_merchant.mdf</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Img\shoe.png" />
     <Resource Include="Img\watch.png" />
     <Resource Include="Img\hairDryer.png" />
     <Resource Include="Img\earphone.png" />
