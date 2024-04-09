@@ -16,8 +16,8 @@ namespace UTEMerchant
         }
         public List<Item> Load(int Id_user) 
         {
-            List<Item> items = new Item_DAO().Load();
             
+    
             List<Item> purchasedItems = db.LoadData<Item>($"SELECT i.* FROM [dbo].[Item] i INNER JOIN [dbo].[PurchasedProducts] pi ON pi.Item_Id = i.Item_Id WHERE pi.Id_user = {Id_user}");
             /*purchasedItems = purchasedItems.Where(item => item.Id_user == Id_user).ToList();
             List<Item> matchedItems =
