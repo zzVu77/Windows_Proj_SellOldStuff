@@ -27,13 +27,13 @@ namespace UTEMerchant
                 }
             }
         }
-        public List<T> LoadData<T>(string tableName) where T : new()
+        public List<T> LoadData<T>(string query) where T : new()
         {
             List<T> items = new List<T>();
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                using (SqlCommand command = new SqlCommand($"SELECT * FROM [dbo].[{tableName}]", conn))
+                using (SqlCommand command = new SqlCommand($"{query}", conn))
                 {
                     conn.Open();
                     using (SqlDataReader reader = command.ExecuteReader())

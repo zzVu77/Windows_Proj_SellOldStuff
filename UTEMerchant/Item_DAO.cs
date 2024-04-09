@@ -1,4 +1,5 @@
 ﻿using HandyControl.Controls;
+using HandyControl.Themes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls.Primitives;
 using System.Xml;
 
 namespace UTEMerchant
@@ -18,7 +20,7 @@ namespace UTEMerchant
         List<Item> items = new List<Item>();
         public List<Item> Load() // More descriptive method name
         {
-            return db.LoadData<Item>("Item");
+            return db.LoadData<Item>("SELECT * FROM [dbo].[Item]");
         }
 
         public void AddItem(Item item) // Using PascalCase for method name
@@ -46,7 +48,12 @@ namespace UTEMerchant
             string sqlStr = "DELETE FROM [dbo].[Item] WHERE Item_Id = @ItemId";
             db.ExecuteNonQuery(sqlStr, new SqlParameter("@ItemId", item.Item_Id));
         }
-
+        public void UpdateStatus(int Item_Id)
+        {
+            bool status = true;
+            string sqlStr = "UPDATE[dbo].[Item] SET sale_status = @NewSaleStatus WHERE Item_Id = @ItemId";
+            db.ExecuteNonQuery(sqlStr, new SqlParameter("@ItemId", Item_Id), new SqlParameter("@NewSaleStatus", status));
+        }
         
     }
 }

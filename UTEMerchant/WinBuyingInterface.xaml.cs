@@ -55,6 +55,7 @@ namespace UTEMerchant
             purchasedItem item = new purchasedItem();
             item.Id_user = Id_User;
             item.Item_Id = info.Item_Id;
+            new Item_DAO().UpdateStatus(item.Item_Id);
             new PurchasedItem_DAO().AddItem(item);
             this.Close();
         }

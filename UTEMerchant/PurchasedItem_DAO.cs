@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -10,21 +10,21 @@ namespace UTEMerchant
     public class PurchasedItem_DAO
     {
         new DB_Connection db = new DB_Connection();
-        public List<purchasedItem> Load () // More descriptive method name
+        public List<purchasedItem> Load() // More descriptive method name
         {
-            return db.LoadData<purchasedItem>("PurchasedProducts");
+            return db.LoadData<purchasedItem>("SELECT * FROM [dbo].[PurchasedProducts]");
         }
         public List<Item> Load(int Id_user) 
         {
-            List<Item> items = new Item_DAO().Load();
             
-            List<purchasedItem> purchasedItems = db.LoadData<purchasedItem>("PurchasedProducts");
-            purchasedItems = purchasedItems.Where(item => item.Id_user == Id_user).ToList();
+    
+            List<Item> purchasedItems = db.LoadData<Item>($"SELECT i.* FROM [dbo].[Item] i INNER JOIN [dbo].[PurchasedProducts] pi ON pi.Item_Id = i.Item_Id WHERE pi.Id_user = {Id_user}");
+            /*purchasedItems = purchasedItems.Where(item => item.Id_user == Id_user).ToList();
             List<Item> matchedItems =
                 (from purchasedItem in purchasedItems
                  join item in items on purchasedItem.Item_Id equals item.Item_Id
-                 select item).ToList();
-            return matchedItems;
+                 select item).ToList();*/
+            return purchasedItems;
         }
         public void AddItem(purchasedItem item) // Using PascalCase for method name
         {

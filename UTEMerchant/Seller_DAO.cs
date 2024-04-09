@@ -13,7 +13,7 @@ namespace UTEMerchant
         List<Seller> Users = new List<Seller>();
         public List<Seller> Load()
         {
-            return db.LoadData<Seller>("Seller");
+            return db.LoadData<Seller>("SELECT * FROM [dbo].[Seller]");
         }
         public Seller GetSeller(int sellerID)
         {

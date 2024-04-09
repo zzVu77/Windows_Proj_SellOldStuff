@@ -125,7 +125,6 @@ namespace UTEMerchant
                 wpItemsList.Children.Add(uc_item);
             }
         }
-
         private void btnRefresh_Click(object sender, RoutedEventArgs e)
         {
             this.wpItemsList.Children.Clear();
@@ -146,6 +145,20 @@ namespace UTEMerchant
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
             grdPurchasingInterface.IsEnabled = true;
+        }
+
+        private void UserControl_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            InitializeComponent();
+            wpItemsList.Children.Clear();
+
+            items = Item_dao.Load();
+            foreach (Item item in items)
+            {
+                UC_ItemView uc_item = new UC_ItemView(item);
+                uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
+                wpItemsList.Children.Add(uc_item);
+            }
         }
     }
 }
