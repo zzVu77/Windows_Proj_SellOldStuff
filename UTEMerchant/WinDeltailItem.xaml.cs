@@ -22,9 +22,7 @@ namespace UTEMerchant
         
         public Item info;
         private Seller seller;
-        //        List<User> users = new List<User>();
         private int Id_user;
-        user_DAO user_dao = new user_DAO();
         public WinDeltailItem()
         {
             InitializeComponent();
@@ -80,7 +78,8 @@ namespace UTEMerchant
 
         private void Ellipse_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            WinShopView winShopView = new WinShopView();
+            Item_DAO item_DAO = new Item_DAO();
+            WinShopView winShopView = new WinShopView(seller, item_DAO.GetItemsBySellerID(seller.SellerID));
             winShopView.ShowDialog();
             this.Show();
             this.BringIntoView();
