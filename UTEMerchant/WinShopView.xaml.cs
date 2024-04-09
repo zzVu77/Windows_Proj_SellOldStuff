@@ -197,11 +197,14 @@ namespace UTEMerchant
             spCategories.Children.Add(radioButtonAll);
 
             // Other categories
-            foreach (var item in items)
+            // Make sure the category is not duplicated
+            List<string> categories = items.Select(i => i.Type).Distinct().ToList();
+
+            foreach (var itemCategory in categories)
             {
                 RadioButton radioButton = new RadioButton
                 {
-                    Content = item.Type,
+                    Content = itemCategory,
                     GroupName = "Categories",
                 };
 
