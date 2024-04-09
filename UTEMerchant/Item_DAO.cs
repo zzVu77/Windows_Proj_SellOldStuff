@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls.Primitives;
 using System.Xml;
 
 namespace UTEMerchant
@@ -19,7 +20,7 @@ namespace UTEMerchant
         List<Item> items = new List<Item>();
         public List<Item> Load() // More descriptive method name
         {
-            return db.LoadData<Item>("Item");
+            return db.LoadData<Item>("SELECT * FROM [dbo].[Item]");
         }
 
         public void AddItem(Item item) // Using PascalCase for method name
