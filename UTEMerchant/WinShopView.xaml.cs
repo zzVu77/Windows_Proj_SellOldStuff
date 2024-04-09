@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace UTEMerchant
 {
@@ -34,8 +36,12 @@ namespace UTEMerchant
             Loaded += delegate
             {
                 txtAboutUsContent.Text = "UTEMerchant is a platform for UTE students to buy and sell items.\nIt is a project for the subject of Software Engineering.\nThe project is developed by a group of students from the University of Technology and Education.";
+                if (items != null)
+                {
+                    FillShopItems(items);
+                    LoadCategories(items);
+                }
             };
-
         }
 
         public WinShopView(Seller seller, List<Item> items) : this()
@@ -46,7 +52,11 @@ namespace UTEMerchant
 
         private void wpShopItems_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
+            if (sender is UC_ItemView itemView)
+            {
+                WinDeltailItem winDeltailItem = new WinDeltailItem(itemView.info, seller, seller.SellerID);
+                winDeltailItem.ShowDialog();
+            }
         }
 
         private void XIcon_MouseDown(object sender, MouseButtonEventArgs e)
@@ -77,6 +87,8 @@ namespace UTEMerchant
 
         private void btnCategories_Click(object sender, RoutedEventArgs e)
         {
+            btnShop.IsChecked = true;
+
             if (!IsCategoriesButtonClicked)
             {
                 DoubleAnimation widthAnimation = new DoubleAnimation
@@ -136,6 +148,65 @@ namespace UTEMerchant
             if (sender is TextBlock textBlock)
             {
                 string Category = textBlock.Text;
+            }
+        }
+
+        private void FillShopItems(List<Item> items)
+        {
+            foreach (var item in items)
+            {
+                UC_ItemView itemView = new UC_ItemView(item);
+                wpItems.Children.Add(itemView);
+                itemView.MouseLeftButtonDown += wpShopItems_MouseLeftButtonDown;
+            }
+        }
+
+        private void CategoryClicked(object sender, RoutedEventArgs e)
+        {
+            if (sender is RadioButton radioButton)
+            {
+                // Clear the items
+                wpItems.Children.Clear();
+
+                // Get the category
+                string Category = radioButton.Content.ToString();
+
+                // Fill the items
+                if (Category == "All")
+                {
+                    FillShopItems(items);
+                }
+                else
+                {
+                    List<Item> itemsByCategory = items.Where(i => i.Type == Category).ToList();
+                    FillShopItems(itemsByCategory);
+                }
+            }
+        }
+
+        private void LoadCategories(List<Item> items)
+        {
+            // All category
+            RadioButton radioButtonAll = new RadioButton
+            {
+                Content = "All",
+                GroupName = "Categories",
+            };
+
+            radioButtonAll.Click += CategoryClicked;
+            spCategories.Children.Add(radioButtonAll);
+
+            // Other categories
+            foreach (var item in items)
+            {
+                RadioButton radioButton = new RadioButton
+                {
+                    Content = item.Type,
+                    GroupName = "Categories",
+                };
+
+                radioButton.Click += CategoryClicked;
+                spCategories.Children.Add(radioButton);
             }
         }
     }

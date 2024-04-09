@@ -268,13 +268,6 @@
                                    Content="Categories"
                                    FontSize="15"
                                    FontWeight="Bold"/>
-                            <RadioButton x:Name="rbAll"
-                                         Content="All"
-                                         IsChecked="True"/>
-                            <RadioButton Content="Dildo"/>
-                            <RadioButton Content="Vibrator"/>
-                            <RadioButton Content="Condom"/>
-                            <RadioButton Content="Lubricant"/>
                         </StackPanel>
                     </ScrollViewer>
                 </Grid>
@@ -283,8 +276,7 @@
                               VerticalScrollBarVisibility="Hidden"
                               DockPanel.Dock="Right">
                     <WrapPanel x:Name="wpItems"
-                               Width="{Binding ElementName=dpItemsList,Path=ActualWidth}"
-                               MouseLeftButtonDown="wpShopItems_MouseLeftButtonDown">
+                               Width="{Binding ElementName=dpItemsList,Path=ActualWidth}">
                         <WrapPanel.Resources>
                             <Style TargetType="local:UC_ItemView">
                                 <Setter Property="Template">
