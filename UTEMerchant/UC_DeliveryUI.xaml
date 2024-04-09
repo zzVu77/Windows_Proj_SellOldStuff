@@ -101,9 +101,9 @@
                         <StackPanel x:Name="spDeliveringStatus"
                                     Orientation="Vertical"
                                     Width="{Binding ElementName=wpDeliveringStatusChecking, Path=ActualWidth}">
+                            <!--<local:UC_ToReceiveItem/>
                             <local:UC_ToReceiveItem/>
-                            <local:UC_ToReceiveItem/>
-                            <local:UC_ToReceiveItem/>
+                            <local:UC_ToReceiveItem/>-->
                         </StackPanel>
                     </WrapPanel>
                 </ScrollViewer>
@@ -120,10 +120,7 @@
                         <StackPanel x:Name="spDeliveredStatus"
                                     Orientation="Vertical"
                                     Width="{Binding ElementName=wpDeliveredStatusChecking, Path=ActualWidth}">
-                            <local:UC_CompletedItem />
-                            <local:UC_CompletedItem />
-                            <local:UC_CompletedItem />
-                            <local:UC_CompletedItem  />
+                          
                             
                         </StackPanel>
                     </WrapPanel>

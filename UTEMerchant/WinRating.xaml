@@ -1,0 +1,86 @@
+﻿<Window x:Class="UTEMerchant.WinRating"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:hc="https://handyorg.github.io/handycontrol"
+        xmlns:local="clr-namespace:UTEMerchant"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="WinRating" Height="450" Width="800">
+    
+    <Border Background="#E56B6F" CornerRadius="15">
+        <!-- Đây là phần đã được thêm vào -->
+        <Grid>
+
+            <StackPanel>
+                <TextBlock
+                    Text="Rate Item"                  
+                    x:Name="txblRating"
+                    Foreground="White"
+                    FontSize="30"
+                    FontFamily="Segoe UI "
+                    FontWeight="ExtraBlack"
+                    HorizontalAlignment="Center" Padding="0,11,0,0"                
+                    />
+                <local:UC_StarRating x:Name="ucStarRating"
+                                    Width="200"
+                                    Height="100"
+                                    HorizontalAlignment="Center"
+                    
+                    />
+                <RichTextBox 
+                    Width="450"
+                    Height="150"
+                    x:Name="rtbCommentFeedback"    
+                    Grid.Row="1"                      
+                    HorizontalAlignment="Center"
+                    Foreground="black"
+                    Background="#ebebe9"                                     
+                    BorderThickness="3"
+                    BorderBrush="Black" 
+                    Focusable="True"
+                    FontFamily="Segoe UI" 
+                    Padding="5,5,0,5">
+                    <RichTextBox.Resources>
+                        <Style TargetType="{x:Type Border }">
+                            <Setter Property="CornerRadius" Value="15"/>
+                        </Style>
+                    </RichTextBox.Resources>
+                </RichTextBox>
+
+                <DockPanel HorizontalAlignment="Center"
+                        Width="450">
+                    <Button x:Name="btnSubmit"
+                            Grid.Column="0"
+                            Height="40"
+                            Width="150"
+                            Background="Black"
+                            Style="{StaticResource addButton}" 
+                            VerticalAlignment="Top" 
+                            HorizontalAlignment="Left" Click="btnSubmit_Click"                                         
+                            >
+                        <StackPanel Orientation="Horizontal">
+                            <Icon:PackIconMaterial Kind="TooltipCheckOutline" VerticalAlignment="Center" Margin="0 1 8 0" Width="17" Height="21" Foreground="Yellow"/>
+                            <TextBlock Text="Submit" FontWeight="Bold" FontFamily="Segoe UI" FontSize="15" Foreground="Yellow"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button x:Name="btnLater"
+                            Height="40"
+                            Width="150"
+                            Background="Black"
+                            Style="{StaticResource addButton}" 
+                            VerticalAlignment="Top"                                         
+                            HorizontalAlignment="Right"  >
+                        <StackPanel Orientation="Horizontal">
+                            <!--<Icon:PackIconMaterial Kind="HeartPlus" VerticalAlignment="Center" Margin="0 1 8 0" Width="17" Height="21"/>-->
+                            <TextBlock Text="Later" FontWeight="Bold" FontFamily="Segoe UI" FontSize="15" Foreground="White"/>
+                        </StackPanel>
+                    </Button>
+                </DockPanel>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

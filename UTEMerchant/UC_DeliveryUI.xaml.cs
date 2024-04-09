@@ -28,25 +28,35 @@ namespace UTEMerchant
         Seller_DAO SellerDao = new Seller_DAO();
         Item_DAO item_DAO = new Item_DAO();
         public int Id_user;
+     
         public UC_DeliveryUI()
         {
+           
             InitializeComponent();
-            rbPending.IsChecked = true;
+            rbDelivering.IsChecked = true;
+            
 
         }
         public void Load()
         {
             
-            var matchedItems = dao.Load(Id_user);
-         
+            var matchedItems = dao.Load(Id_user, "delivering");         
             spDeliveringStatus.Children.Clear();
             foreach (var item in matchedItems)
-            {
-                
-                UC_ToReceiveItem uc_item = new UC_ToReceiveItem(item, SellerDao.GetSeller(item.SellerID));
+            {                
+                UC_ToReceiveItem uc_item = new UC_ToReceiveItem(item, SellerDao.GetSeller(item.SellerID),this.Id_user);
+                uc_item.ReceivedButtonClicked += UCToReceiveItem_ReceivedButtonClicked;
                 spDeliveringStatus.Children.Add(uc_item);
             }
-            
+
+            matchedItems = dao.Load(Id_user, "delivered");
+            spDeliveredStatus.Children.Clear();
+            foreach (var item in matchedItems)
+            {
+                UC_CompletedItem uc_item = new UC_CompletedItem(item, SellerDao.GetSeller(item.SellerID), this.Id_user);              
+                spDeliveredStatus.Children.Add(uc_item);
+            }
+
         }
 
         private void rbPending_Checked(object sender, RoutedEventArgs e)
@@ -84,6 +94,14 @@ namespace UTEMerchant
         private void svDeliveryStatus_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
         {
 
+        }
+        private void UCToReceiveItem_ReceivedButtonClicked(object sender, EventArgs e)
+        {
+            if (sender is UC_ToReceiveItem clickedItemView)
+            {
+                Load();
+            }
+            
         }
     }
 }
