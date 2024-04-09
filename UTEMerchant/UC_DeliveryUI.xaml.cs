@@ -37,8 +37,7 @@ namespace UTEMerchant
         public void Load()
         {
             
-            var matchedItems = dao.Load(Id_user);
-         
+            var matchedItems = dao.Load(Id_user, "delivering");         
             spDeliveringStatus.Children.Clear();
             foreach (var item in matchedItems)
             {

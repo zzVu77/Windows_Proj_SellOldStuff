@@ -14,28 +14,26 @@ namespace UTEMerchant
         {
             return db.LoadData<purchasedItem>("SELECT * FROM [dbo].[PurchasedProducts]");
         }
-        public List<Item> Load(int Id_user) 
+        public List<Item> Load(int Id_user, string deliverStatus)       
         {
-            
-    
-            List<Item> purchasedItems = db.LoadData<Item>($"SELECT i.* FROM [dbo].[Item] i INNER JOIN [dbo].[PurchasedProducts] pi ON pi.Item_Id = i.Item_Id WHERE pi.Id_user = {Id_user}");
-            /*purchasedItems = purchasedItems.Where(item => item.Id_user == Id_user).ToList();
-            List<Item> matchedItems =
-                (from purchasedItem in purchasedItems
-                 join item in items on purchasedItem.Item_Id equals item.Item_Id
-                 select item).ToList();*/
+
+
+            List<Item> purchasedItems = db.LoadData<Item>($"SELECT i.* FROM [dbo].[Item] i INNER JOIN [dbo].[PurchasedProducts] pi ON pi.Item_Id = i.Item_Id WHERE pi.Id_user = {Id_user} AND pi.Delivery_Status='{deliverStatus}'");
+
+
             return purchasedItems;
         }
         public void AddItem(purchasedItem item) // Using PascalCase for method name
         {
             string sqlQuery = @"
             INSERT INTO [dbo].[PurchasedProducts] 
-                (Id_user, Item_Id)
+                (Id_user, Item_Id, Delivery_Status)
             VALUES
-                (@userId, @itemId)";
+                (@userId, @itemId, @deliveryStatus)";
             new DB_Connection().ExecuteNonQuery(sqlQuery,
                 new SqlParameter("@userId", item.Id_user),
-                new SqlParameter("@itemId", item.Item_Id)
+                new SqlParameter("@itemId", item.Item_Id),
+                new SqlParameter("@deliveryStatus", "delivering")
                 );
         }
     }
