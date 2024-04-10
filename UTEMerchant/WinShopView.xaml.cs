@@ -33,6 +33,7 @@ namespace UTEMerchant
         public WinShopView()
         {
             InitializeComponent();
+            
             Loaded += delegate
             {
                 txtAboutUsContent.Text = "UTEMerchant is a platform for UTE students to buy and sell items.\nIt is a project for the subject of Software Engineering.\nThe project is developed by a group of students from the University of Technology and Education.";
@@ -48,6 +49,7 @@ namespace UTEMerchant
         {
             this.seller = seller;
             this.items = items;
+            txtShopName.Text = this.seller.ShopName;
         }
 
         private void wpShopItems_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
