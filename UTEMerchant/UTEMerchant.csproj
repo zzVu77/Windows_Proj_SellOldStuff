@@ -169,6 +169,7 @@
     <Compile Include="CheckValid.cs" />
     <Compile Include="CustomerReview.cs" />
     <Compile Include="CustomerReviewDAO.cs" />
+    <Compile Include="DAO.cs" />
     <Compile Include="DB_Connection.cs" />
     <Compile Include="InverseBooleanConverter.cs" />
     <Compile Include="Item.cs" />
