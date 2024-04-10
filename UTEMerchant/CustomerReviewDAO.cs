@@ -20,13 +20,14 @@ namespace UTEMerchant
         {
             string sqlQuery = @"
             INSERT INTO [dbo].[CustomerReviews] 
-                (Id_user, Item_Id, SellerID,ReviewText,ReviewDate)
+                (Id_user, Item_Id, SellerID, Rating, ReviewText, ReviewDate)
             VALUES
-                (@userId, @itemId, @sellerID, @ReviewText, @ReviewDate)";
+                (@userId, @itemId, @sellerID, @rating, @ReviewText, @ReviewDate)";
             new DB_Connection().ExecuteNonQuery(sqlQuery,
                 new SqlParameter("@userId", feedBack.ID_User),
                 new SqlParameter("@itemId", feedBack.Item_ID),
                 new SqlParameter("@sellerID", feedBack.SellerID),
+                new SqlParameter("@rating", feedBack.Rating),
                 new SqlParameter("@ReviewText", feedBack.ReviewText),
                 new SqlParameter("@ReviewDate", feedBack.ReviewDate)
                 );
