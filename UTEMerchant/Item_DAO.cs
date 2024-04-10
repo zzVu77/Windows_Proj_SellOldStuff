@@ -53,6 +53,11 @@ namespace UTEMerchant
             string sqlStr = "UPDATE[dbo].[Item] SET sale_status = @NewSaleStatus WHERE Item_Id = @ItemId";
             db.ExecuteNonQuery(sqlStr, new SqlParameter("@ItemId", Item_Id), new SqlParameter("@NewSaleStatus", status));
         }
+
+        public List<Item> GetItemsBySellerID(int SellerID)
+        {
+            return db.LoadData<Item>($"SELECT * FROM [dbo].[Item] WHERE SellerID = '{SellerID}'");
+        }
         
     }
 }

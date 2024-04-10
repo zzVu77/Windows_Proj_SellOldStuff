@@ -118,7 +118,7 @@ BorderBrush="#FF736161">
                         BorderThickness="0,0,0,0"                          
                         IsHitTestVisible="False" Height="20" Margin="0,2,0,0"/>
 
-                    <Grid Grid.Row="3">
+                    <DockPanel Grid.Row="3">
                         <Button x:Name="btnAddToCart"    
                                 Width="70"
                                 HorizontalAlignment="Left" 
@@ -141,7 +141,9 @@ BorderBrush="#FF736161">
                                            HorizontalAlignment="Center" Margin="0,0,-11,0"/>
                             </Grid>
                         </Button>
-                    </Grid>
+                        <Image x:Name="imgSoldStamp" Visibility="Collapsed" Source="Img/sold-stamp-3.png" Height="29" Width="63" HorizontalAlignment="Right" />
+                        
+                    </DockPanel>
 
 
 

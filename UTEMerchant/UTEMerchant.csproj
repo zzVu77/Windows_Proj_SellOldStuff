@@ -167,7 +167,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="CheckValid.cs" />
-    <Compile Include="DAO.cs" />
+    <Compile Include="CustomerReview.cs" />
+    <Compile Include="CustomerReviewDAO.cs" />
     <Compile Include="DB_Connection.cs" />
     <Compile Include="InverseBooleanConverter.cs" />
     <Compile Include="Item.cs" />
@@ -231,6 +232,9 @@
     </Compile>
     <Compile Include="WinNewItem.xaml.cs">
       <DependentUpon>WinNewItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinRating.xaml.cs">
+      <DependentUpon>WinRating.xaml</DependentUpon>
     </Compile>
     <Compile Include="WinSellerInterface.xaml.cs">
       <DependentUpon>WinSellerInterface.xaml</DependentUpon>
@@ -329,6 +333,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="WinRating.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WinSellerInterface.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -416,6 +424,11 @@
       <DependentUpon>db_ute_merchant.mdf</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Img\GucciBag.jpg" />
+    <Resource Include="Img\Keyboard.jpg" />
+    <Resource Include="Img\samsung_galaxy_s23_ultra_tim.png" />
+    <Resource Include="Img\sneaker.jpg" />
+    <Resource Include="Img\sold-stamp-3.png" />
     <Resource Include="Img\camera.jpg" />
     <Resource Include="Img\gamingmouse.jpg" />
     <Resource Include="Img\headphone.jpg" />

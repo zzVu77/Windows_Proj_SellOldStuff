@@ -21,19 +21,21 @@ namespace UTEMerchant
     /// </summary>
     public partial class UC_ToReceiveItem : UserControl
     {
-
+        public event EventHandler ReceivedButtonClicked;
         private readonly Item Item;
         private readonly Seller SellerOfItem;
-
+        private PurchasedItem_DAO purchasedItemDAO = new PurchasedItem_DAO();
+        private int userID;        
         public UC_ToReceiveItem()
         {
             InitializeComponent();
             this.Width = 1300;
         }
 
-        public UC_ToReceiveItem(Item item, Seller seller) : this()
+        public UC_ToReceiveItem(Item item, Seller seller, int userID) : this()
         {
             this.Item = item;
+            this.userID=userID;
             this.SellerOfItem = seller;
             SetData(item, SellerOfItem);
         }
@@ -48,6 +50,13 @@ namespace UTEMerchant
             txblToReceivePrice.Text = $"{Item.Price.ToString(CultureInfo.InvariantCulture)}$";
             txblToReceiveConditon.Text = $"{Item.Condition.ToString(CultureInfo.InvariantCulture)}%";
             txblToReceiveItemName.Text = Item.Name;
+        }
+
+        private void btnToReceiveReceived_Click(object sender, RoutedEventArgs e)
+        {
+            //string deliveryStatus = purchasedItemDAO.GetPurchasedProductStatus(Item.Item_Id, this.userID);
+            purchasedItemDAO.UpdateDeliveryStatus(Item.Item_Id, this.userID, "delivered");
+            ReceivedButtonClicked?.Invoke(this, EventArgs.Empty);
         }
     }
 }
