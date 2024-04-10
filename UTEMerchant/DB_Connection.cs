@@ -25,6 +25,7 @@ namespace UTEMerchant
                     cmd.Parameters.AddRange(parameters);
                     cmd.ExecuteNonQuery();
                 }
+                conn.Close();
             }
         }
         public List<T> LoadData<T>(string query) where T : new()
@@ -45,6 +46,7 @@ namespace UTEMerchant
                             items.Add(item);
                         }
                     }
+                    conn.Close();
                 }
             }
 
