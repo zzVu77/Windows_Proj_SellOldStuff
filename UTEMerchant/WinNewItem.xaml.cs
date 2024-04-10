@@ -90,7 +90,7 @@ namespace UTEMerchant
                 string text_detail = new TextRange(rtbDetailDescription.Document.ContentStart, rtbDetailDescription.Document.ContentEnd).Text;
                 string text_Condition = new TextRange(rtbConditonDescription.Document.ContentStart, rtbConditonDescription.Document.ContentEnd).Text;
                 Item_DAO dao = new Item_DAO();
-               dao.AddItem(new Item(Int32.Parse(txtID.Text.ToString()),txtName.Text.ToString(), 
+               dao.Add(new Item(Int32.Parse(txtID.Text.ToString()),txtName.Text.ToString(), 
                    float.Parse(txtPrice.Text.ToString()),
                    float.Parse(txtOriginalPrice.Text.ToString()), typeItem.Content.ToString(), 
                    DateTime.Parse(txtBoughtDate.Text.ToString()),

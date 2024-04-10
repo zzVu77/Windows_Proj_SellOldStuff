@@ -14,5 +14,9 @@ namespace UTEMerchant
         {
             return new List<T> ();
         }
+        public virtual void Add(T obj)
+        {
+
+        }
     }
 }

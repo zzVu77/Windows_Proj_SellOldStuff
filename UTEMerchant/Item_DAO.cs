@@ -22,7 +22,7 @@ namespace UTEMerchant
             return db.LoadData<Item>("SELECT * FROM [dbo].[Item]");
         }
 
-        public void AddItem(Item item) // Using PascalCase for method name
+        public override void Add(Item item) // Using PascalCase for method name
         {
             string sqlStr = "INSERT INTO [dbo].[Item] (Item_Id, name, price, original_price, type, bought_date, condition_description, condition, image_path, sale_status, detail_description, SellerID) " +
                             "VALUES (@ItemId, @Name, @Price, @OriginalPrice, @Type, @BoughtDate, @Condition_description, @Condition, @ImagePath, @Sale_status, @Detail_description, @SellerID)";
