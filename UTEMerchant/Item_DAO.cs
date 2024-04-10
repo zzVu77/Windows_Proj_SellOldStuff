@@ -13,12 +13,11 @@ using System.Xml;
 
 namespace UTEMerchant
 {
-    public class Item_DAO
+    public class Item_DAO: DAO<Item>
     {
-        private DB_Connection db = new DB_Connection();
+    
 
-        List<Item> items = new List<Item>();
-        public List<Item> Load() // More descriptive method name
+        public override List<Item> Load() // More descriptive method name
         {
             return db.LoadData<Item>("SELECT * FROM [dbo].[Item]");
         }

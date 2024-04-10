@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace UTEMerchant
 {
-    internal class Seller_DAO
+    internal class Seller_DAO : DAO<Seller>
     {
-        private DB_Connection db = new DB_Connection();
-        List<Seller> Users = new List<Seller>();
-        public List<Seller> Load()
+        
+    
+        public override List<Seller> Load()
         {
             return db.LoadData<Seller>("SELECT * FROM [dbo].[Seller]");
         }

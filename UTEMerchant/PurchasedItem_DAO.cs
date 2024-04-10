@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace UTEMerchant
 {
-    public class PurchasedItem_DAO
+    public class PurchasedItem_DAO : DAO<purchasedItem>
     {
-        new DB_Connection db = new DB_Connection();
-        public List<purchasedItem> Load() // More descriptive method name
+        
+        public override List<purchasedItem> Load() // More descriptive method name
         {
             return db.LoadData<purchasedItem>("SELECT * FROM [dbo].[PurchasedProducts]");
         }

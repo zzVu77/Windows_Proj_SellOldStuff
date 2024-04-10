@@ -167,6 +167,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="CheckValid.cs" />
+    <Compile Include="DAO.cs" />
     <Compile Include="DB_Connection.cs" />
     <Compile Include="InverseBooleanConverter.cs" />
     <Compile Include="Item.cs" />
