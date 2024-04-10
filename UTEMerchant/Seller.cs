@@ -6,18 +6,15 @@ using System.Threading.Tasks;
 
 namespace UTEMerchant
 {
-    public class Seller
+    public class Seller: Person
     {
         public int SellerID { get; set; }
         public int Id_user { get; set; }
 
         public string ShopName { get; set; }
-        public string City { get; set; }
-        public string District { get; set; }
-        public string Ward { get; set; }
+      
         public double Average_rating { get; set; }
-        public string Phone { get; set; }
-
+      
         public Seller()
         {
             

@@ -8,17 +8,14 @@ using System.Windows.Media;
 
 namespace UTEMerchant
 {
-    public class User
+    public class User: Person
     {
         public int Id_user { get; set; }
         public string Name { get; set; }
         public string User_name { get; set; }
         public string Password { get; set; }
-        public string City { get; set; }
-        public string District { get; set; }
-        public string Ward { get; set; }
+        
         public string Email { get; set; }
-        public string Phone { get; set; }
 
         public string Image_Path { get; set; }
 
