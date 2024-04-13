@@ -21,7 +21,7 @@ namespace UTEMerchant
     /// </summary>
     public partial class UC_StarRating : UserControl
     {
-        private float Rating = 0;
+        private float _rating = 0;
 
         public UC_StarRating()
         {
@@ -58,7 +58,7 @@ namespace UTEMerchant
 
         private void btn1stStarFirstHalf_Click(object sender, RoutedEventArgs e)
         {
-            Rating += 0.5f;
+            _rating += 0.5f;
             DisableMouseOver();
             grdInteract.Visibility = Visibility.Collapsed;
             grdView.Visibility = Visibility.Visible;
@@ -66,66 +66,66 @@ namespace UTEMerchant
 
         private void btn1stStarLatterHalf_Click(object sender, RoutedEventArgs e)
         {
-            Rating += 0.5f;
+            _rating += 0.5f;
             btn1stStarFirstHalf_Click(sender, e);
         }
 
         private void btn2ndStarFirstHalf_Click(object sender, RoutedEventArgs e)
         {
-            Rating += 0.5f;
+            _rating += 0.5f;
             btn1stStarLatterHalf_Click(sender, e);
         }
 
         private void btn2ndStarLatterHalf_Click(object sender, RoutedEventArgs e)
         {
-            Rating += 0.5f;
+            _rating += 0.5f;
             btn2ndStarFirstHalf_Click(sender, e);
         }
 
         private void btn3rdStarFirstHalf_Click(object sender, RoutedEventArgs e)
         {
-            Rating += 0.5f;
+            _rating += 0.5f;
             btn2ndStarLatterHalf_Click(sender, e);
         }
 
         private void btn3rdStarLatterHalf_Click(object sender, RoutedEventArgs e)
         {
-            Rating += 0.5f;
+            _rating += 0.5f;
             btn3rdStarFirstHalf_Click(sender, e);
         }
 
         private void btn4thStarFirstHalf_Click(object sender, RoutedEventArgs e)
         {
-            Rating += 0.5f;
+            _rating += 0.5f;
             btn3rdStarLatterHalf_Click(sender, e);
         }
 
         private void btn4thStarLatterHalf_Click(object sender, RoutedEventArgs e)
         {
-            Rating += 0.5f;
+            _rating += 0.5f;
             btn4thStarFirstHalf_Click(sender, e);
         }
 
         private void btn5thStarFirstHalf_Click(object sender, RoutedEventArgs e)
         {
-            Rating += 0.5f;
+            _rating += 0.5f;
             btn4thStarLatterHalf_Click(sender, e);
         }
 
         private void btn5thStarLatterHalf_Click(object sender, RoutedEventArgs e)
         {
-            Rating += 0.5f;
+            _rating += 0.5f;
             btn5thStarFirstHalf_Click(sender, e);
         }
 
         public float GetRating()
         {
-            return Rating;
+            return _rating;
         }
 
         private void grdView_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Rating = 0;
+            _rating = 0;
             grdView.Visibility = Visibility.Collapsed;
             grdInteract.Visibility = Visibility.Visible;
             EnableMouseOver();
@@ -134,7 +134,7 @@ namespace UTEMerchant
         public void SetRating(double rating)
         {
             // Set the rating
-            Rating = (float)rating;
+            _rating = (float)rating;
 
             // Strip the rating into whole and decimal parts
             int wholePart = (int)rating;
