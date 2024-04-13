@@ -20,17 +20,11 @@ namespace UTEMerchant
     /// </summary>
     public partial class UC_ShoppingCart : UserControl
     {
-        public List<UC_ShoppingCartItemView> listUC_ShoppingCartItemViews = new List<UC_ShoppingCartItemView>();
 
 
         public UC_ShoppingCart()
         {
             InitializeComponent();
-        }
-
-        private void btnBack_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         public void CheckCart()
@@ -46,6 +40,5 @@ namespace UTEMerchant
                 svItems.Visibility = Visibility.Visible;
             }
         }
-        
     }
 }

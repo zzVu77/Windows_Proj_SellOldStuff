@@ -1,0 +1,84 @@
+﻿<UserControl x:Class="UTEMerchant.UC_ItemInShoppingCartItemsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UTEMerchant"
+             mc:Ignorable="d" 
+             d:DesignHeight="70" d:DesignWidth="800" Loaded="UserControl_Loaded">
+    <Grid Background="#EAAC8B">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <CheckBox Grid.Column="0" 
+                  x:Name="chkItem"
+                  VerticalAlignment="Center"
+                  HorizontalAlignment="Right"
+                  Checked="chkItem_Checked" 
+                  Unchecked="chkItem_Unchecked">
+            <CheckBox.LayoutTransform>
+                <ScaleTransform ScaleX="1" ScaleY="1" />
+            </CheckBox.LayoutTransform>
+
+        </CheckBox>
+        <Image Grid.Column="2" 
+               x:Name="imgItem" 
+               Width="70"
+               Height="70"/>
+        <DockPanel x:Name="spItemInfo"
+                    Grid.Column="4"
+                    LastChildFill="False">
+            <Label x:Name="LblItemName" 
+                       FontSize="20"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Left"
+                       DockPanel.Dock="Top"/>
+            <StackPanel x:Name="spItemPrice"
+                        Orientation="Horizontal"
+                        DockPanel.Dock="Bottom">
+                <TextBlock x:Name="txtItemDiscountPrice" 
+                           FontSize="20"
+                           Foreground="Red"
+                           FontWeight="Bold"/>
+                <TextBlock x:Name="txtItemOriginalPrice"
+                           FontSize="15"
+                           Foreground="Black"
+                           VerticalAlignment="Top"
+                           FontWeight="Bold"
+                           TextDecorations="Strikethrough"/>
+            </StackPanel>
+        </DockPanel>
+        <Button Grid.Column="5" 
+                x:Name="btnRemove" 
+                Content="Remove"
+                Height="70"
+                Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}"
+                Visibility="Collapsed" Click="btnRemove_Click">
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="Border"
+                            Background="Red"
+                            BorderThickness="0">
+                        <ContentPresenter HorizontalAlignment="Center" 
+                                          VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="IndianRed"/>
+                            <Setter Property="Foreground" Value="White"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="IndianRed"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+    </Grid>
+</UserControl>
