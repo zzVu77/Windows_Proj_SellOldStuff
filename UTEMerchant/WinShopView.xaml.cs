@@ -94,6 +94,7 @@ namespace UTEMerchant
             dpShopOption.Visibility = Visibility.Collapsed;
             dpAboutOption.Visibility = Visibility.Collapsed;
             grdFeedBack.Visibility = Visibility.Visible;
+            spDeliveredStatus.Children.Clear();
             LoadFeedBack();
         }
         private void btnCategories_Click(object sender, RoutedEventArgs e)
