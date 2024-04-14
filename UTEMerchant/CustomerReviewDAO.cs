@@ -29,7 +29,7 @@ namespace UTEMerchant
                 new SqlParameter("@sellerID", feedBack.SellerID),
                 new SqlParameter("@ReviewText", feedBack.ReviewText),
                 new SqlParameter("@ReviewDate", feedBack.ReviewDate),
-                new SqlParameter("@rating", feedBack.RatePoint)
+                new SqlParameter("@rating", feedBack.Rating)
                 );
         }
 

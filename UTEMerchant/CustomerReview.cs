@@ -14,7 +14,7 @@ namespace UTEMerchant
         public int Item_ID { get; set; }    
         public string ReviewText { get; set; }  
         public DateTime ReviewDate { get; set; }
-        public float RatePoint { get; set; }
+        public float Rating { get; set; }
 
         public CustomerReview() { }
         public CustomerReview( int iD_User, int sellerID, int item_ID, string reviewText, DateTime ReviewDate, float ratePoint)
@@ -25,7 +25,7 @@ namespace UTEMerchant
             Item_ID = item_ID;
             ReviewText = reviewText;
             this.ReviewDate = ReviewDate;
-            this.RatePoint = ratePoint;
+            this.Rating = ratePoint;
            
         }
 
