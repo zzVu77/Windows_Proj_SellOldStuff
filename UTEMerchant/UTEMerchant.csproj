@@ -166,6 +166,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Address.cs" />
+    <Compile Include="Address_DAO.cs" />
     <Compile Include="CheckValid.cs" />
     <Compile Include="CustomerReview.cs" />
     <Compile Include="CustomerReviewDAO.cs" />

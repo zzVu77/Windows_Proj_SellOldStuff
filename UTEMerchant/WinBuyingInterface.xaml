@@ -244,7 +244,8 @@
                                   BorderBrush="DarkGray"
                                   BorderThickness="1.5"
                                   Tag="City"
-                                  HorizontalAlignment="Left" Margin="65,8,0,0">
+                                  HorizontalAlignment="Left" Margin="65,8,0,0"
+                                  SelectionChanged="cbPickupCity_SelectionChanged">
                             <ComboBoxItem Content="HCM"></ComboBoxItem>
                         </ComboBox>
 

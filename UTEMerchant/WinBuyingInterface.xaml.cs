@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -24,6 +25,7 @@ namespace UTEMerchant
         public Item info;
         List<User> users = new List<User>();
         user_DAO user_dao = new user_DAO();
+        Address_DAO address_dao = new Address_DAO();
         private int Id_User;
         public WinBuyingInterface()
         {
@@ -47,6 +49,12 @@ namespace UTEMerchant
             txblTotalValue.Text = info.Price.ToString() + "$";
             var resourceUri = new Uri(info.Image_Path, UriKind.RelativeOrAbsolute);
             imgOrderItem.Source = new BitmapImage(resourceUri);
+            List<Address> distinctCities = address_dao.Load();
+            cbPickupCity.Items.Clear();
+            foreach (Address address in distinctCities)
+            {
+                cbPickupCity.Items.Add(address.City);
+            }
 
         }
 
@@ -57,7 +65,28 @@ namespace UTEMerchant
             item.Item_Id = info.Item_Id;
             new Item_DAO().UpdateStatus(item.Item_Id);
             new PurchasedItem_DAO().AddItem(item);
+
             this.Close();
+        }
+
+        private void cbPickupCity_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cbPickupCity.SelectedItem != null)
+            {
+                string selectedCity = cbPickupCity.SelectedItem.ToString();
+
+                // Filter districts based on selected city
+                var filteredDistricts = address_dao.getdistrict(selectedCity);
+
+                // Update district ComboBox
+                if (cbPickupCity.Items != null)
+                    cbPickupDistrict.Items.Clear();
+                foreach (var district in filteredDistricts)
+                {
+                    cbPickupDistrict.Items.Add(district);
+                }
+                cbPickupDistrict.SelectedIndex = -1;
+            }
         }
     }
 }
