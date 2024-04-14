@@ -3,9 +3,9 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:UTEMerchant"
-             StartupUri="WinLogin.xaml"
-             xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
-              xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             StartupUri="WinCheckout.xaml"
+             xmlns:icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
              xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
              xmlns:sys="clr-namespace:System;assembly=mscorlib">                
     <Application.Resources>
@@ -128,7 +128,7 @@
         </Style>
 
         <!-- Style for menu button icon -->
-        <Style x:Key="menuButtonIcon" TargetType="Icon:PackIconMaterial">
+        <Style x:Key="menuButtonIcon" TargetType="icon:PackIconMaterial">
             <Setter Property="Margin" Value="20 2 20 0" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="Width" Value="15" />
@@ -536,7 +536,7 @@
         </Style>
 
 
-        <Style x:Key="pagingButtonIcon" TargetType="Icon:PackIconMaterial">
+        <Style x:Key="pagingButtonIcon" TargetType="icon:PackIconMaterial">
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="Width" Value="10" />
             <Setter Property="Height" Value="10" />
@@ -577,7 +577,7 @@
         </Style>
 
 
-        <Style x:Key="gridButtonIcon" TargetType="Icon:PackIconMaterial">
+        <Style x:Key="gridButtonIcon" TargetType="icon:PackIconMaterial">
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="Width" Value="12" />
             <Setter Property="Height" Value="12" />
@@ -1154,7 +1154,7 @@
                                     Background="White"
                                     Margin="10,0">
                                 <Image x:Name="imgCheckMark"
-                                       Source="{Icon:CooliconsImage Kind=Check, Brush=Green}"
+                                       Source="{icon:CooliconsImage Kind=Check, Brush=Green}"
                                        Visibility="Collapsed"
                                        Margin="3"></Image>
                             </Border>
@@ -1432,6 +1432,48 @@
                                 <Setter TargetName="brd" Property="BorderBrush" Value="Black"/>
                                 <Setter TargetName="tb" Property="Foreground" Value="Black"/>
                             </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="RoundedToggleButton" TargetType="ToggleButton">
+            <Setter Property="Background" Value="Wheat"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border x:Name="border"
+                        CornerRadius="10" 
+                        Height="{TemplateBinding Height}"
+                        Width="{TemplateBinding Height}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        Background="{TemplateBinding Background}">
+                            <Image x:Name="PART_Check" Source="{icon:BoxIconsImage Kind=RegularCheck, Brush=Wheat}"
+                           Stretch="Uniform"
+                           Visibility="Collapsed"
+                           Margin="5"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#E56B6F"/>
+                                <Setter TargetName="PART_Check" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsMouseOver" Value="True"/>
+                                    <Condition Property="IsChecked" Value="False"/>
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="border" Property="Background" Value="AntiqueWhite"/>
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsMouseOver" Value="True"/>
+                                    <Condition Property="IsChecked" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="border" Property="Background" Value="#E88C7D"/>
+                            </MultiTrigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
