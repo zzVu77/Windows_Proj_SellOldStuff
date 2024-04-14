@@ -48,6 +48,8 @@ namespace UTEMerchant
                 uc_item.ReceivedButtonClicked += UCToReceiveItem_ReceivedButtonClicked;
                 spDeliveringStatus.Children.Add(uc_item);
             }
+            rbDelivering.Content = $"Delivering ({matchedItems.Count()})";
+            
 
             matchedItems = dao.Load(Id_user, "delivered");
             spDeliveredStatus.Children.Clear();
@@ -56,7 +58,7 @@ namespace UTEMerchant
                 UC_CompletedItem uc_item = new UC_CompletedItem(item, SellerDao.GetSeller(item.SellerID), this.Id_user);              
                 spDeliveredStatus.Children.Add(uc_item);
             }
-
+            rbDelivered.Content = $"Delivered ({matchedItems.Count()})";
         }
 
         private void rbPending_Checked(object sender, RoutedEventArgs e)
@@ -103,5 +105,7 @@ namespace UTEMerchant
             }
             
         }
+
+        
     }
 }
