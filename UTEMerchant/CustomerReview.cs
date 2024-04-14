@@ -14,17 +14,19 @@ namespace UTEMerchant
         public int Item_ID { get; set; }    
         public string ReviewText { get; set; }  
         public DateTime ReviewDate { get; set; }
+        public float RatePoint { get; set; }
 
         public CustomerReview() { }
-        public CustomerReview( int iD_User, int sellerID, int item_ID, string reviewText, DateTime ReviewDate)
+        public CustomerReview( int iD_User, int sellerID, int item_ID, string reviewText, DateTime ReviewDate, float ratePoint)
         {
-            //ReviewID = reviewID;
+           
             ID_User = iD_User;
             SellerID = sellerID;
             Item_ID = item_ID;
             ReviewText = reviewText;
-            this.ReviewDate=ReviewDate;
-            //ReviewDate = reviewDate;
+            this.ReviewDate = ReviewDate;
+            this.RatePoint = ratePoint;
+           
         }
 
     }

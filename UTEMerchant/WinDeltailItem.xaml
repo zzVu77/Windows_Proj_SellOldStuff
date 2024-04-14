@@ -347,7 +347,7 @@
                     FontWeight="Bold"
                     Foreground="red"
                     Grid.Row="6"                    
-                    Width="100"                 
+                    Width="466"                 
                     Padding="0,3,0,0" Margin="0,0,0,7"  />
 
                         <DockPanel Grid.Row="2" Margin="0,10,0,-95" Height="91" >

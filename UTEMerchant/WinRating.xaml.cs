@@ -40,7 +40,7 @@ namespace UTEMerchant
         {
             string text_detail = new TextRange(rtbCommentFeedback.Document.ContentStart, rtbCommentFeedback.Document.ContentEnd).Text;
             DateTime currentDate = DateTime.Now;
-            CustomerReview customerReview = new CustomerReview(this.Id_User, this.Seller_ID,this.Item_ID, text_detail, currentDate);
+            CustomerReview customerReview = new CustomerReview(this.Id_User, this.Seller_ID,this.Item_ID, text_detail, (DateTime)currentDate, float.Parse(ucStarRating.GetRating().ToString()));
             customerReviewDAO.AddReview(customerReview);
             this.Close();
 

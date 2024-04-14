@@ -21,6 +21,8 @@ namespace UTEMerchant
     /// <summary>
     /// Interaction logic for WinShopView.xaml
     /// </summary>
+    ///
+    
     public partial class WinShopView : Window
     {
         // Flag to check if the categories button is clicked
@@ -29,6 +31,10 @@ namespace UTEMerchant
         // Properties
         private Seller seller;
         private List<Item> items;
+        private CustomerReviewDAO feedbackDAO = new CustomerReviewDAO();
+        private Item_DAO itemDAO = new Item_DAO();
+        private user_DAO userDAO = new user_DAO();
+        private List<CustomerReview> feedbacks = new List<CustomerReview>();
 
         public WinShopView()
         {
@@ -44,14 +50,20 @@ namespace UTEMerchant
                 }
             };
         }
-
         public WinShopView(Seller seller, List<Item> items) : this()
         {
             this.seller = seller;
             this.items = items;
             txtShopName.Text = this.seller.ShopName;
-        }
+            User user = userDAO.GetUserByItemID(this.seller.Id_user);
 
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri(user.Image_Path, UriKind.RelativeOrAbsolute); ;
+            bitmap.EndInit();
+            imgbrAvatar.ImageSource = bitmap;
+
+        }
         private void wpShopItems_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (sender is UC_ItemView itemView)
@@ -60,33 +72,30 @@ namespace UTEMerchant
                 winDeltailItem.ShowDialog();
             }
         }
-
         private void XIcon_MouseDown(object sender, MouseButtonEventArgs e)
         {
             txtSearchBox.Text = "";
         }
-
         private void btnShop_Checked(object sender, RoutedEventArgs e)
         {
             dpAboutOption.Visibility = Visibility.Collapsed;
-            //dpFeedbackOption.Visibility = Visibility.Collapsed;
+            grdFeedBack.Visibility = Visibility.Collapsed;
             dpShopOption.Visibility = Visibility.Visible;
         }
-
         private void btnAbout_Checked(object sender, RoutedEventArgs e)
         {
             dpShopOption.Visibility = Visibility.Collapsed;
-            //dpFeedbackOption.Visibility = Visibility.Collapsed;
+            grdFeedBack.Visibility = Visibility.Collapsed;
             dpAboutOption.Visibility = Visibility.Visible;
         }
-
         private void btnFeedback_Checked(object sender, RoutedEventArgs e)
         {
+          
             dpShopOption.Visibility = Visibility.Collapsed;
             dpAboutOption.Visibility = Visibility.Collapsed;
-            //dpFeedbackOption.Visibility = Visibility.Visible;
+            grdFeedBack.Visibility = Visibility.Visible;
+            LoadFeedBack();
         }
-
         private void btnCategories_Click(object sender, RoutedEventArgs e)
         {
             btnShop.IsChecked = true;
@@ -144,7 +153,6 @@ namespace UTEMerchant
             }
 
         }
-
         private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (sender is TextBlock textBlock)
@@ -152,7 +160,6 @@ namespace UTEMerchant
                 string Category = textBlock.Text;
             }
         }
-
         private void FillShopItems(List<Item> items)
         {
             foreach (var item in items)
@@ -214,10 +221,22 @@ namespace UTEMerchant
                 spCategories.Children.Add(radioButton);
             }
         }
-
         private void iconClose_MouseUp(object sender, MouseButtonEventArgs e)
         {
             this.Close();
+        }
+
+        private void LoadFeedBack()
+        {
+            feedbacks = feedbackDAO.GetFeedBack(this.seller.SellerID);
+            foreach (CustomerReview feedback in feedbacks)
+            {
+                Item item = itemDAO.GetItemByItemID(feedback.Item_ID);
+                User user =userDAO.GetUserByItemID(feedback.ID_User);
+                UC_FeedBackUI uC_FeedBackUI = new UC_FeedBackUI(item, user, feedback);
+                uC_FeedBackUI.Width = 1440;
+                spDeliveredStatus.Children.Add(uC_FeedBackUI);
+            }
         }
     }
 }

@@ -23,7 +23,8 @@ namespace UTEMerchant
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.Parameters.AddRange(parameters);
-                    cmd.ExecuteNonQuery();
+                    int row = cmd.ExecuteNonQuery();
+                    
                 }
             }
         }

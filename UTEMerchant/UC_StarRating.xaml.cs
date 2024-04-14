@@ -20,11 +20,12 @@ namespace UTEMerchant
     /// </summary>
     public partial class UC_StarRating : UserControl
     {
-        private float Rating = 0;
+        private float Rating;
 
         public UC_StarRating()
         {
             InitializeComponent();
+
         }
 
         private void DisableMouseOver()
@@ -129,5 +130,46 @@ namespace UTEMerchant
             grdInteract.Visibility = Visibility.Visible;
             EnableMouseOver();
         }
+
+        public void SetStar(float point)
+        {
+            switch (point)
+            {
+                case 0.5f:
+                    btn1stStarFirstHalf_Click(this, null);
+                    break;
+                case 1.0f:
+                    btn1stStarLatterHalf_Click(this, null);
+                    break;
+                case 1.5f:
+                    btn2ndStarFirstHalf_Click(this, null);
+                    break;
+                case 2.0f:
+                    btn2ndStarLatterHalf_Click(this, null);
+                    break;
+                case 2.5f:
+                    btn3rdStarFirstHalf_Click(this, null);
+                    break;
+                case 3.0f:
+                    btn3rdStarLatterHalf_Click(this, null);
+                    break;
+                case 3.5f:
+                    btn4thStarFirstHalf_Click(this, null);
+                    break;
+                case 4.0f:
+                    btn4thStarLatterHalf_Click(this, null);
+                    break;
+                case 4.5f:
+                    btn5thStarFirstHalf_Click(this, null);
+                    break;
+                case 5.0f:
+                    btn5thStarLatterHalf_Click(this, null);
+                    break;
+                default:
+                    // Xử lý trường hợp mặc định (nếu cần)
+                    break;
+            }
+        }
+
     }
 }

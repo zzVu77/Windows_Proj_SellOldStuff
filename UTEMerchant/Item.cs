@@ -46,6 +46,13 @@ namespace UTEMerchant
             Condition = condition;
         }
 
+        public Item(int itemID, string name, float price, string imagePath)
+        {
+            Item_Id = itemID;
+            Name = name;
+            Price = price;
+            Image_Path = imagePath;
+        }
         public ImageSource Image
         {
             get

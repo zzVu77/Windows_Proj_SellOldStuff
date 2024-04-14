@@ -25,7 +25,7 @@ namespace UTEMerchant
 
         public User() { }
         public User(int id, string user_name, string password, string name,
-            string city,string district, string ward, string phone, string email,string Image_Path)
+            string city,string district, string ward, string phone, string email,string imgPath)
         {
             Id_user = id;
             Name = name;
@@ -36,7 +36,15 @@ namespace UTEMerchant
             Ward = ward;
             Email = email;
             Phone = phone;
+            Image_Path = imgPath;
 
+        }
+
+        public User(int id, string name, string imgPath)
+        {
+            Id_user = id;
+            Name = name;
+            Image_Path = imgPath;
         }
         public ImageSource Image
         {

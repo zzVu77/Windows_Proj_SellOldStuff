@@ -28,7 +28,15 @@ namespace UTEMerchant
         //UC_DeliveryUI uc_Delivery;
         public WinSellerInterface(User user) : this()
         {
+
             this.User = user;
+            // Tạo một BitmapImage từ đường dẫn ảnh
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri(user.Image_Path.ToString(), UriKind.RelativeOrAbsolute);
+            bitmap.EndInit();
+            imgUserAvatar.ImageSource = bitmap;
+
             txbName.Text = user.Name;
             uc_PurchasingUI.Id_user = user.Id_user;
             List<Seller> sellers = new List<Seller>();
