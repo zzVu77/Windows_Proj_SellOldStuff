@@ -43,7 +43,7 @@ namespace UTEMerchant
             txblFeedback_ItemName.Text = this.item.Name.ToString();
             txblFeedback_RateDate.Text = this.customerReview.ReviewDate.ToShortDateString();
             txblFeedback_ItemPrice.Text = this.item.Price.ToString()+" $";
-            ucFeedbackStar.SetStar(customerReview.Rating);
+            ucFeedbackStar.SetRating(customerReview.Rating);
             
             BitmapImage bitmap = new BitmapImage();
             bitmap.BeginInit();

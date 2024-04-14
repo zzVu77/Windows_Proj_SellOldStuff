@@ -62,7 +62,7 @@
                    Source="/Img/iPhone-14-Pro-Max-9907.jpg" 
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
-                   Stretch="Uniform" Width="148"  />
+                   Stretch="Uniform" Width="105" Height="105"  />
                 <StackPanel Grid.Column="1">
                     <!--Item Name-->
                     <TextBlock                        

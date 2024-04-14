@@ -43,7 +43,7 @@
                 <Image x:Name="imgToReceiveItem" 
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
-                   Stretch="Uniform" Width="148"  />
+                   Stretch="Uniform" Width="105" Height="105"   />
                 <StackPanel Grid.Column="1">
                     <!--Item Name-->
                     <TextBlock                        
@@ -164,7 +164,7 @@
                             VerticalAlignment="Bottom" Margin="0,15,5,0" Click="btnToReceiveReceived_Click"                                         
                             >
                 <StackPanel Orientation="Horizontal">
-                    
+
                     <TextBlock Text="Received" 
                                TextAlignment="Center"
                                HorizontalAlignment="Center"
