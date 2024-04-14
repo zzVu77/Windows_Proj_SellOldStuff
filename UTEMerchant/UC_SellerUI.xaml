@@ -92,7 +92,7 @@
                                             <TextBlock Text="{Binding Character}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Margin="0 0 0 1"/>
                                         </Border>-->
 
-                                    <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Name}" VerticalAlignment="Center"  />
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -101,19 +101,19 @@
                     <DataGridTemplateColumn  Header="Image" Width="*"  >
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Image Source="{Binding Image_Path}" Width="50" Height="50" HorizontalAlignment="Left" />
+                                <Image Source="{Binding Image_Path}" Width="30" Height="30" HorizontalAlignment="Left" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTextColumn Header="Original Price" Binding="{Binding Original_Price}" IsReadOnly="True" Width="*"/>
+                    <DataGridTextColumn Header="Origi.Price" Binding="{Binding Original_Price}" IsReadOnly="True" Width="*" />
                     <DataGridTextColumn Header="Price" Binding="{Binding Price}" IsReadOnly="True" Width="*" />
                     <DataGridTextColumn Header="Type" Binding="{Binding Type}" IsReadOnly="True" Width="*" />
                     <DataGridTextColumn Header="Status" Binding="{Binding Sale_Status}"   IsReadOnly="True" Width="*"  />
-                    <DataGridTextColumn Header="Posted Date" Binding="{Binding Bought_date}"  IsReadOnly="True" Width="*" />
+                    <DataGridTextColumn Header="Posted" Binding="{Binding Bought_date}"  IsReadOnly="True" Width="*" />
                     <DataGridTextColumn Header="Condition" Binding="{Binding Condition}"  IsReadOnly="True" Width="*" />
-                    <DataGridTextColumn Header="Condition Desc" Binding="{Binding Condition_Description}" IsReadOnly="True" Width="*"  />
-                    <DataGridTextColumn Header="Detail Desc" Binding="{Binding Detail_description}" IsReadOnly="True" Width="*"  />
+                    <DataGridTextColumn Header="Condition.Desc" Binding="{Binding Condition_Description}" IsReadOnly="True" Width="*"  />
+                    <DataGridTextColumn Header="Detail" Binding="{Binding Detail_description}" IsReadOnly="True" Width="*"  />
                     <DataGridTemplateColumn Header="Actions" IsReadOnly="True" Width="auto" >
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

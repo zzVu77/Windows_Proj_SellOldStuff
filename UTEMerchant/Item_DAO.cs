@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Xml;
 
@@ -57,6 +58,27 @@ namespace UTEMerchant
         public List<Item> GetItemsBySellerID(int SellerID)
         {
             return db.LoadData<Item>($"SELECT * FROM [dbo].[Item] WHERE SellerID = '{SellerID}'");
+        }
+
+        public Item GetItemByItemID(int id)
+        {
+            Item item = null;
+            string sqlStr = "Select  Item_Id, name, price, image_path From  [dbo].[Item] Where @itemID = [dbo].[Item].Item_Id ";
+            SqlConnection conn = new SqlConnection(db.connectionString);
+            conn.Open();
+            SqlCommand command = new SqlCommand(sqlStr, conn);
+            command.Parameters.AddWithValue("@itemID", id);
+            SqlDataReader reader = command.ExecuteReader();
+            if (reader.Read())
+            {
+                int itemID = reader.GetInt32(0);
+                string name = reader.GetString(1);
+                double price = reader.GetDouble(2);             
+                string imgPath = reader.GetString(3);                
+                return item = new Item(itemID,name,(float)price,imgPath);    
+                
+            }
+            return item;
         }
         
     }

@@ -57,10 +57,20 @@ namespace UTEMerchant
             // Tạo một FlowDocument
             FlowDocument flowDoc = new FlowDocument();
             // Thêm một Paragraph chứa văn bản mặc định vào FlowDocument
-            Paragraph paragraph = new Paragraph(new Run(info.Condition_Description));
+            Paragraph paragraph = new Paragraph(new Run(info.Detail_description));
             flowDoc.Blocks.Add(paragraph);
             // Gán FlowDocument cho RichTextBox
             rtbDetailDescription.Document = flowDoc;
+
+            // Tạo một FlowDocument
+            FlowDocument flowDoc1 = new FlowDocument();
+            // Thêm một Paragraph chứa văn bản mặc định vào FlowDocument
+            Paragraph paragraph1 = new Paragraph(new Run(info.Condition_Description));
+            flowDoc1.Blocks.Add(paragraph1);
+            // Gán FlowDocument cho RichTextBox
+            rtbConditonDescription.Document = flowDoc1;
+
+
         }
 
         private void Image_MouseUp(object sender, MouseButtonEventArgs e)

@@ -20,16 +20,23 @@ namespace UTEMerchant
         {
             string sqlQuery = @"
             INSERT INTO [dbo].[CustomerReviews] 
-                (Id_user, Item_Id, SellerID,ReviewText,ReviewDate)
+                (Id_user, Item_Id, SellerID,ReviewText,ReviewDate,Rating)
             VALUES
-                (@userId, @itemId, @sellerID, @ReviewText, @ReviewDate)";
+                (@userId, @itemId, @sellerID, @ReviewText, @ReviewDate, @rating)";
             new DB_Connection().ExecuteNonQuery(sqlQuery,
                 new SqlParameter("@userId", feedBack.ID_User),
                 new SqlParameter("@itemId", feedBack.Item_ID),
                 new SqlParameter("@sellerID", feedBack.SellerID),
                 new SqlParameter("@ReviewText", feedBack.ReviewText),
-                new SqlParameter("@ReviewDate", feedBack.ReviewDate)
+                new SqlParameter("@ReviewDate", feedBack.ReviewDate),
+                new SqlParameter("@rating", feedBack.Rating)
                 );
+        }
+
+        public List<CustomerReview> GetFeedBack( int sellerID)
+        {
+             List < CustomerReview >  list=db.LoadData<CustomerReview>($"SELECT * FROM [dbo].[CustomerReviews] WHERE SellerID={sellerID}");
+            return list;
         }
     }
 }

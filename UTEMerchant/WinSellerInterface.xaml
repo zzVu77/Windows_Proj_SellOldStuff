@@ -281,7 +281,7 @@
                         <Border Width="80" Height="80" Padding="3" Background="White" CornerRadius="100" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="20 -30 0 0">
                             <Ellipse>
                                 <Ellipse.Fill>
-                                    <ImageBrush ImageSource="/Img/iPhone-14-Pro-Max-9907.jpg"/>
+                                    <ImageBrush x:Name="imgUserAvatar" ImageSource="/Img/kimetsu.jpg"/>
                                 </Ellipse.Fill>
                             </Ellipse>
                         </Border>

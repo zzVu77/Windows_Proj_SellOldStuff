@@ -387,6 +387,28 @@
                     </Grid>
                 </StackPanel>
             </DockPanel>
+            <Grid x:Name="grdFeedBack" Visibility="Collapsed" >
+
+                <ScrollViewer x:Name="svDeliveredStatus"
+                              VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Hidden"
+                              Visibility="Visible">
+                    <WrapPanel x:Name="wpDeliveredStatus">
+                        <StackPanel x:Name="spDeliveredStatus"
+                                    Orientation="Vertical"
+                                    Width="{Binding ElementName=wpDeliveredStatusChecking, Path=ActualWidth}">
+                            <!--<local:UC_FeedBackUI Width="1440" />
+                            <local:UC_FeedBackUI Width="1440" />
+                            <local:UC_FeedBackUI Width="1440" />
+                            <local:UC_FeedBackUI Width="1440" />
+                            <local:UC_FeedBackUI Width="1440" />-->
+                           
+
+                        </StackPanel>
+                    </WrapPanel>
+                </ScrollViewer>
+            </Grid>
+
         </Grid>
 
 
