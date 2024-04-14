@@ -435,6 +435,10 @@
       <DependentUpon>db_ute_merchant.mdf</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Img\sweater.png" />
+    <Resource Include="Img\mini-fan.png" />
+    <Resource Include="Img\kettle.png" />
+    <Resource Include="Img\jeans.png" />
     <Resource Include="Img\GucciBag.jpg" />
     <Resource Include="Img\Keyboard.jpg" />
     <Resource Include="Img\samsung_galaxy_s23_ultra_tim.png" />
