@@ -186,7 +186,8 @@
                             >
                 <StackPanel Orientation="Horizontal">
                     <Icon:PackIconMaterial Kind="ThumbsUpDown" VerticalAlignment="Center" Margin="0 1 8 0" Width="46" Height="35" Foreground="White"/>
-                    <TextBlock Text="Rate" 
+                    <TextBlock Text="Rate"
+                               x:Name="tbRate"
                                TextAlignment="Center"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"

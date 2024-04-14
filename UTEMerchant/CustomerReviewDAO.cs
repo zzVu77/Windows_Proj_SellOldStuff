@@ -38,5 +38,9 @@ namespace UTEMerchant
              List < CustomerReview >  list=db.LoadData<CustomerReview>($"SELECT * FROM [dbo].[CustomerReviews] WHERE SellerID={sellerID}");
             return list;
         }
+        public List<CustomerReview>  filterReview(int Id_user, int Item_Id)
+        {
+            return db.LoadData<CustomerReview>($"SELECT * FROM [dbo].[CustomerReviews] WHERE Id_user = {Id_user} AND Item_Id = {Item_Id}");
+        }
     }
 }
