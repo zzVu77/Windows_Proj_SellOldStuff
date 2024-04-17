@@ -136,13 +136,25 @@ BorderBrush="#FF736161">
                             </Button.Template>
 
                             <Grid>
-                                <Icon:PackIconMaterial  Kind="HeartPlusOutline" HorizontalAlignment="Left"  Foreground="White" Margin="3,0,0,0" />
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="9*"/>
+                                    <ColumnDefinition Width="26*"/>
+                                </Grid.ColumnDefinitions>
+                                <Icon:PackIconMaterial  Kind="HeartPlusOutline"  Foreground="White" Margin="3,0,0,0" Grid.ColumnSpan="2" VerticalAlignment="Center" />
                                 <TextBlock Text="Like"
-                                           HorizontalAlignment="Center" Margin="0,0,-11,0"/>
+                                           HorizontalAlignment="Left" Margin="9,0,0,0" Grid.Column="1"/>
                             </Grid>
                         </Button>
-                        <Image x:Name="imgSoldStamp" Visibility="Collapsed" Source="Img/sold-stamp-3.png" Height="29" Width="63" HorizontalAlignment="Right" />
-                        
+                        <Image x:Name="imgSoldStamp" Visibility="Collapsed" Source="Img/sold-stamp-3.png" Height="29" Width="63" HorizontalAlignment="Right" Margin="61,0,0,0"  />
+                        <TextBlock Text="4 days ago" 
+                                   x:Name="txblPostedDate"
+                                   HorizontalAlignment="Right" 
+                                   VerticalAlignment="Center" 
+                                   FontFamily="Segoe UI" 
+                                   FontWeight="SemiBold"
+                                   Visibility="Visible"
+                                   />
+
                     </DockPanel>
 
 

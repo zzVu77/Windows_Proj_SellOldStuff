@@ -51,6 +51,7 @@ namespace UTEMerchant
             if(info.Sale_Status)
             {
                 imgSoldStamp.Visibility=Visibility.Visible;
+                txblPostedDate.Visibility=Visibility.Hidden;
             }   
             txblItemName.Text = info.Name;
             txblPrice.Text = info.Price.ToString()+"$";
@@ -58,6 +59,9 @@ namespace UTEMerchant
             txblCondition.Text = info.Condition.ToString() + "%";
             var resourceUri = new Uri(info.Image_Path, UriKind.RelativeOrAbsolute);
             imgItemPic.Source = new BitmapImage(resourceUri);
+            DateTime today = DateTime.Now;
+            TimeSpan duration = today - info.PostedDate;
+            txblPostedDate.Text = duration.Days.ToString() + " days ago";
 
 
         }

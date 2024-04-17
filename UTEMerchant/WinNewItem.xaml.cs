@@ -29,7 +29,7 @@ namespace UTEMerchant
         {
             InitializeComponent();
         }
-        public WinNewItem(int idSeller): this()
+        public WinNewItem(int idSeller) : this()
         {
             IdSeller = idSeller;
         }
@@ -65,7 +65,7 @@ namespace UTEMerchant
         //{
 
         //    ComboBoxItem typeItem = (ComboBoxItem)cbType.SelectedItem;
-           
+
         //    dao.AddItem(new Item(Int32.Parse(txtID.Text.ToString()), 
         //                txtName.Text.ToString(), 
         //                rtbConditonDescription.ToString(),
@@ -78,26 +78,26 @@ namespace UTEMerchant
         //}
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
-        { 
-            if (new CheckValid().IsNumeric(txtID.Text.ToString()) 
-                && new CheckValid().IsDateFormatValid(txtBoughtDate.Text.ToString()) 
-                && new CheckValid().IsDateValid(txtBoughtDate.Text.ToString()) 
-                && !string.IsNullOrEmpty(txtID.Text.ToString()) 
-                &&!string.IsNullOrEmpty(txtBoughtDate.Text.ToString())
+        {
+            if (new CheckValid().IsNumeric(txtID.Text.ToString())
+                && new CheckValid().IsDateFormatValid(txtBoughtDate.Text.ToString())
+                && new CheckValid().IsDateValid(txtBoughtDate.Text.ToString())
+                && !string.IsNullOrEmpty(txtID.Text.ToString())
+                && !string.IsNullOrEmpty(txtBoughtDate.Text.ToString())
                 )
             {
                 ComboBoxItem typeItem = (ComboBoxItem)cbType.SelectedItem;
                 string text_detail = new TextRange(rtbDetailDescription.Document.ContentStart, rtbDetailDescription.Document.ContentEnd).Text;
                 string text_Condition = new TextRange(rtbConditonDescription.Document.ContentStart, rtbConditonDescription.Document.ContentEnd).Text;
                 Item_DAO dao = new Item_DAO();
-               dao.Add(new Item(Int32.Parse(txtID.Text.ToString()),txtName.Text.ToString(), 
-                   float.Parse(txtPrice.Text.ToString()),
-                   float.Parse(txtOriginalPrice.Text.ToString()), typeItem.Content.ToString(), 
-                   DateTime.Parse(txtBoughtDate.Text.ToString()),
-                   text_Condition, Int32.Parse(txtCondition.Text.ToString())
-                   ,image_path,false,text_detail, IdSeller
-                                )
-                            );
+                DateTime today = DateTime.Now;
+                dao.Add(new Item(Int32.Parse(txtID.Text.ToString()), txtName.Text.ToString(),
+                    float.Parse(txtPrice.Text.ToString()),
+                    float.Parse(txtOriginalPrice.Text.ToString()), typeItem.Content.ToString(),
+                    DateTime.Parse(txtBoughtDate.Text.ToString()),
+                    text_Condition, Int32.Parse(txtCondition.Text.ToString())
+                    , image_path, false, text_detail, IdSeller, today)
+                             );
                 this.Close();
             }
             else
@@ -108,11 +108,11 @@ namespace UTEMerchant
                    );
 
                 if (!new CheckValid().IsDateFormatValid(txtBoughtDate.Text.ToString())
-                    || !new CheckValid().IsDateValid(txtBoughtDate.Text.ToString()) 
+                    || !new CheckValid().IsDateValid(txtBoughtDate.Text.ToString())
                     || string.IsNullOrEmpty(txtBoughtDate.Text.ToString())
                    )
                     txtBoughtDate.Background = new SolidColorBrush(Color.FromRgb(255, 0, 0));
-               
+
 
             }
         }

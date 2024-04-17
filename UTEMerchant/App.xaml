@@ -1407,18 +1407,23 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="RadioButton">
-                        <Grid>
+                        <Grid >
                             <TextBlock x:Name="tb"
+                                       Background="Transparent"
                                        Text="{TemplateBinding Content}"
                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                       FontWeight="{TemplateBinding FontWeight}"
+                                       FontWeight="Bold"
                                        FontSize="{TemplateBinding FontSize}"
-                                       Foreground="{TemplateBinding Foreground}"/>
+                                       Foreground="{TemplateBinding Foreground}">
+                                <TextBlock.Effect>
+                                    <DropShadowEffect ShadowDepth="3" Color="Black" Opacity="0.5"/>
+                                </TextBlock.Effect>
+                            </TextBlock>
                             <Border x:Name="brd"
-                                    Visibility="Hidden"
+                                    Visibility="Visible"
                                     Background="Transparent"
-                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderBrush="LightGray"
                                     BorderThickness="0,0,0,2"/>
                         </Grid>
                         <ControlTemplate.Triggers>

@@ -23,6 +23,7 @@ namespace UTEMerchant
         public string Type { get; set; }
 
         public int SellerID { get; set; }
+        public DateTime PostedDate { get; set; }
 
         public Item()
         {
@@ -30,7 +31,7 @@ namespace UTEMerchant
         }
         public Item(int id, string name, float price, float originalPrice, string type, DateTime bought_date, 
             string condition_description, int condition, string imagePath, bool sale_status ,
-            string detail_description, int sellerId)
+            string detail_description, int sellerId,DateTime postedID)
         {
             Item_Id = id;
             Name = name;
@@ -44,6 +45,7 @@ namespace UTEMerchant
             Detail_description = detail_description;
             SellerID = sellerId;
             Condition = condition;
+            PostedDate = postedID;
         }
 
         public Item(int itemID, string name, float price, string imagePath)
