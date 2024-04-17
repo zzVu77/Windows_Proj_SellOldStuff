@@ -179,6 +179,7 @@
     <Compile Include="Person.cs" />
     <Compile Include="purchasedItem.cs" />
     <Compile Include="PurchasedItem_DAO.cs" />
+    <Compile Include="SaleStatusConverter.cs" />
     <Compile Include="UC_CompletedItem.xaml.cs">
       <DependentUpon>UC_CompletedItem.xaml</DependentUpon>
     </Compile>

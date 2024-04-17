@@ -60,7 +60,7 @@ namespace UTEMerchant
             var resourceUri = new Uri(info.Image_Path, UriKind.RelativeOrAbsolute);
             imgItemPic.Source = new BitmapImage(resourceUri);
             DateTime today = DateTime.Now;
-            TimeSpan duration = today - info.Bought_date;
+            TimeSpan duration = today - info.PostedDate;
             txblPostedDate.Text = duration.Days.ToString() + " days ago";
 
 

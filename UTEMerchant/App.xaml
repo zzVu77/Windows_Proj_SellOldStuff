@@ -1417,7 +1417,7 @@
                                        FontSize="{TemplateBinding FontSize}"
                                        Foreground="{TemplateBinding Foreground}">
                                 <TextBlock.Effect>
-                                    <DropShadowEffect ShadowDepth="5" Color="Black" Opacity="0.5"/>
+                                    <DropShadowEffect ShadowDepth="3" Color="Black" Opacity="0.5"/>
                                 </TextBlock.Effect>
                             </TextBlock>
                             <Border x:Name="brd"

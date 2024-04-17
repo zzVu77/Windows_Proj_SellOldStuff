@@ -25,8 +25,8 @@ namespace UTEMerchant
 
         public override void Add(Item item) // Using PascalCase for method name
         {
-            string sqlStr = "INSERT INTO [dbo].[Item] (Item_Id, name, price, original_price, type, bought_date, condition_description, condition, image_path, sale_status, detail_description, SellerID) " +
-                            "VALUES (@ItemId, @Name, @Price, @OriginalPrice, @Type, @BoughtDate, @Condition_description, @Condition, @ImagePath, @Sale_status, @Detail_description, @SellerID)";
+            string sqlStr = "INSERT INTO [dbo].[Item] (Item_Id, name, price, original_price, type, bought_date, condition_description, condition, image_path, sale_status, detail_description, SellerID, PostedDate) " +
+                            "VALUES (@ItemId, @Name, @Price, @OriginalPrice, @Type, @BoughtDate, @Condition_description, @Condition, @ImagePath, @Sale_status, @Detail_description, @SellerID, @PostedDate)";
 
             db.ExecuteNonQuery(sqlStr,
                 new SqlParameter("@ItemId", item.Item_Id),
@@ -40,7 +40,8 @@ namespace UTEMerchant
                 new SqlParameter("@ImagePath", item.Image_Path),
                 new SqlParameter("@Sale_status", item.Sale_Status),
                 new SqlParameter("@Detail_description", item.Detail_description),
-                new SqlParameter("@SellerID", item.SellerID));
+                new SqlParameter("@SellerID", item.SellerID),
+                new SqlParameter("@PostedDate", item.PostedDate));
         }
 
         public void RemoveItem(Item item)

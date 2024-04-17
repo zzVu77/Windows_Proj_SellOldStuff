@@ -9,9 +9,9 @@
         xmlns:local="clr-namespace:UTEMerchant"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        WindowStyle="None"
-        
+        WindowStyle="None"        
         Title="Item Details" Height="800" Width="1200">
+    
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
     </Window.Resources>
