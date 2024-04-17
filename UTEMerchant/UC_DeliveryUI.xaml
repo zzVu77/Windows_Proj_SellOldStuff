@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:UTEMerchant"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="1300">
-    <Grid>
+    <Grid Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="8*"/>
@@ -24,7 +24,7 @@
                              HorizontalContentAlignment="Center"
                              FontSize="15"
                              Background="Transparent"
-                             Width="325"
+                             Width="325"                             
                              Style="{StaticResource UnderlineStyle}"
                              GroupName="DeliveryStatus" Checked="rbPending_Checked"/>
                     <RadioButton x:Name="rbDelivering"
