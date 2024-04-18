@@ -35,7 +35,7 @@ namespace UTEMerchant
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                using (SqlCommand command = new SqlCommand($"{query}", conn))
+                using (SqlCommand command = new SqlCommand($@"{query}", conn))
                 {
                     conn.Open();
                     using (SqlDataReader reader = command.ExecuteReader())

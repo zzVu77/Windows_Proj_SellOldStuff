@@ -124,6 +124,7 @@
                     <WrapPanel x:Name="wpDeliveredStatus">
                         <StackPanel x:Name="spDeliveredStatus"
                                     Orientation="Vertical"
+                                   
                                     Width="{Binding ElementName=wpDeliveredStatusChecking, Path=ActualWidth}">
 
 
