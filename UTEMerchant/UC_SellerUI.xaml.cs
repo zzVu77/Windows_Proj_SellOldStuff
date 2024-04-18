@@ -97,11 +97,14 @@ namespace UTEMerchant
             items= dao.Load();
             DataGridRow clickedRow = (DataGridRow)productGrid.ItemContainerGenerator.ContainerFromItem(productGrid.SelectedItem);
             int rowIndex = productGrid.ItemContainerGenerator.IndexFromContainer(clickedRow);
-            dao.RemoveItem(items[rowIndex]);
-        
-            
-            productGrid.Items.RemoveAt(rowIndex);
-            productGrid.Items.Refresh();    
+            if (items[rowIndex].Sale_Status == false)
+            {
+                dao.RemoveItem(items[rowIndex]);
+
+                productGrid.Items.RemoveAt(rowIndex);
+
+                productGrid.Items.Refresh();
+            }
         }
 
         
