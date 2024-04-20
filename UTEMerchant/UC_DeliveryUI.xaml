@@ -115,21 +115,26 @@
 
             <!--Show Delivered Status-->
             <Grid x:Name="grdDeliveredStatus">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="11*"/>
+                    <ColumnDefinition Width="14*"/>
+                </Grid.ColumnDefinitions>
 
                 <ScrollViewer x:Name="svDeliveredStatus"
                               VerticalScrollBarVisibility="Auto"
                               HorizontalScrollBarVisibility="Hidden"
-                              Visibility="Visible">
+                              Visibility="Visible" Grid.ColumnSpan="2">
                     <WrapPanel x:Name="wpDeliveredStatus">
                         <StackPanel x:Name="spDeliveredStatus"
                                     Orientation="Vertical"
+                                   
                                     Width="{Binding ElementName=wpDeliveredStatusChecking, Path=ActualWidth}">
-                          
-                            
+
+
                         </StackPanel>
                     </WrapPanel>
                 </ScrollViewer>
-            </Grid> 
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

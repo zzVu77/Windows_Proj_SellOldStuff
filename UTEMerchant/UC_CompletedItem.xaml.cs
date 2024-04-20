@@ -26,7 +26,8 @@ namespace UTEMerchant
         private  Seller SellerOfItem;
         private int userID;
         public event EventHandler ReceivedButtonClicked;
-
+        private CustomerReviewDAO CustomerReview_DAO = new CustomerReviewDAO();
+        public event EventHandler RateButtonClicked;
         public UC_CompletedItem() 
         {
             InitializeComponent();
@@ -41,6 +42,18 @@ namespace UTEMerchant
             this.SellerOfItem = seller;
             SetData(item, seller);
             this.userID = userID;
+            List<CustomerReview> checkList = CustomerReview_DAO.filterReview(this.userID, this.Item.Item_Id);
+            if (checkList.Count == 0)
+            {
+                tbRate.Text = "Rate";
+                btnRate.IsEnabled = true;
+            }
+            else
+            {
+                tbRate.Text = "Rated";
+                btnRate.IsEnabled = false;
+            }
+
         }
 
         //Binding data to the UI
@@ -66,8 +79,27 @@ namespace UTEMerchant
         private void btnRate_Click(object sender, RoutedEventArgs e)
         {
             ReceivedButtonClicked?.Invoke(this, EventArgs.Empty);
-            WinRating winRating = new WinRating(this.userID, this.SellerOfItem.SellerID,this.Item.Item_Id);
-            winRating.ShowDialog();
+           
+            List<CustomerReview> checkList = CustomerReview_DAO.filterReview(this.userID,this.Item.Item_Id);
+            if (checkList.Count == 0)
+            {
+                WinRating winRating = new WinRating(this.userID, this.SellerOfItem.SellerID, this.Item.Item_Id);
+                winRating.ShowDialog();
+                
+                if (CustomerReview_DAO.filterReview(this.userID, this.Item.Item_Id).Count() != 0 )
+                {
+                    tbRate.Text = "Rated";
+                    btnRate.IsEnabled = false;
+                    RateButtonClicked?.Invoke(this, EventArgs.Empty);
+                }
+            }
+            else
+            {
+                //kiem tra ngoai le
+                tbRate.Text = "Rated";
+                btnRate.IsEnabled = false;
+            }
+           
         }
     }
 }

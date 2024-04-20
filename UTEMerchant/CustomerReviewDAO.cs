@@ -1,9 +1,11 @@
-﻿using System;
+﻿using HandyControl.Themes;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls.Primitives;
 
 namespace UTEMerchant
 {
@@ -31,12 +33,17 @@ namespace UTEMerchant
                 new SqlParameter("@ReviewDate", feedBack.ReviewDate),
                 new SqlParameter("@rating", feedBack.Rating)
                 );
+            
         }
 
         public List<CustomerReview> GetFeedBack( int sellerID)
         {
              List < CustomerReview >  list=db.LoadData<CustomerReview>($"SELECT * FROM [dbo].[CustomerReviews] WHERE SellerID={sellerID}");
             return list;
+        }
+        public List<CustomerReview>  filterReview(int Id_user, int Item_Id)
+        {
+            return db.LoadData<CustomerReview>($"SELECT * FROM [dbo].[CustomerReviews] WHERE Id_user = {Id_user} AND Item_Id = {Item_Id}");
         }
     }
 }

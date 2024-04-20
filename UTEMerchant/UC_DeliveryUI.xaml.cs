@@ -48,15 +48,28 @@ namespace UTEMerchant
                 uc_item.ReceivedButtonClicked += UCToReceiveItem_ReceivedButtonClicked;
                 spDeliveringStatus.Children.Add(uc_item);
             }
+            rbDelivering.Content = $"Delivering ({matchedItems.Count()})";
+            
 
             matchedItems = dao.Load(Id_user, "delivered");
+            //sort item
+            List<CustomerReview> ListCompare = new CustomerReviewDAO().Load();
+            matchedItems.Sort((item1, item2) =>
+            {
+                bool hasReview1 = ListCompare.Any(review => review.ID_User == this.Id_user && review.Item_ID == item1.Item_Id);
+                bool hasReview2 = ListCompare.Any(review => review.ID_User == this.Id_user && review.Item_ID == item2.Item_Id);
+
+                return hasReview1.CompareTo(hasReview2);
+            });
+
             spDeliveredStatus.Children.Clear();
             foreach (var item in matchedItems)
             {
-                UC_CompletedItem uc_item = new UC_CompletedItem(item, SellerDao.GetSeller(item.SellerID), this.Id_user);              
+                UC_CompletedItem uc_item = new UC_CompletedItem(item, SellerDao.GetSeller(item.SellerID), this.Id_user);
+                uc_item.RateButtonClicked += UCCompletedItem_RateButtonClicked;
                 spDeliveredStatus.Children.Add(uc_item);
             }
-
+            rbDelivered.Content = $"Delivered ({matchedItems.Count()})";
         }
 
         private void rbPending_Checked(object sender, RoutedEventArgs e)
@@ -103,5 +116,15 @@ namespace UTEMerchant
             }
             
         }
+
+        private void UCCompletedItem_RateButtonClicked(object sender, EventArgs e)
+        {
+            if (sender is UC_CompletedItem clickedItemView)
+            {
+                Load();
+            }
+
+        }
+
     }
 }

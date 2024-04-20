@@ -16,10 +16,12 @@ namespace UTEMerchant
         }
         public List<string> getdistrict(string city)
         {
-            
+
             return db.LoadData<Address>("SELECT * FROM [dbo].[Address]").Where(a => a.City == city)
-                 .Select(a => a.District)
-                 .Distinct().ToList();
+                   .Select(a => a.District)
+                   .Distinct().ToList();
+
+            //return db.LoadData<Address>($"SELECT * FROM [dbo].[Address] WHERE City={city}").Select(a=>a.District).Distinct().ToList();
         }
     }
 }
