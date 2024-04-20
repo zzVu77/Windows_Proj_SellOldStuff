@@ -50,8 +50,13 @@ namespace UTEMerchant
             }
             else
             {
+                var bc = new BrushConverter();
                 tbRate.Text = "Rated";
+                tbRate.Foreground=Brushes.Green;
+                btnRate.Background = Brushes.LightGray;
                 btnRate.IsEnabled = false;
+                iconRate.Kind = MahApps.Metro.IconPacks.PackIconMaterialKind.CheckBold;
+                iconRate.Foreground = Brushes.Green;
             }
 
         }

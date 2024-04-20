@@ -175,17 +175,17 @@
 
         </Border>
 
-        <Grid Grid.Row="3">
+        <Grid Grid.Row="3" >
             <Button x:Name="btnRate"
-                            Grid.Column="0"
-                            Height="55"
-                            Width="180"                            
-                            Style="{StaticResource addButton}" 
-                            VerticalAlignment="Bottom"  HorizontalAlignment="Right"
-                            Margin="0,15,5,0" Click="btnRate_Click"
+                    Grid.Column="0"
+                    Height="55"
+                    Width="180"                   
+                    Style="{StaticResource OrderButton}" 
+                    VerticalAlignment="Bottom"  HorizontalAlignment="Right"
+                    Margin="0,15,5,0" Click="btnRate_Click"
                             >
                 <StackPanel Orientation="Horizontal">
-                    <Icon:PackIconMaterial Kind="ThumbsUpDown" VerticalAlignment="Center" Margin="0 1 8 0" Width="46" Height="35" Foreground="White"/>
+                    <Icon:PackIconMaterial x:Name="iconRate"  Kind="ThumbsUpDown" VerticalAlignment="Center" Margin="0 1 8 0" Width="46" Height="35" Foreground="White"/>
                     <TextBlock Text="Rate"
                                x:Name="tbRate"
                                TextAlignment="Center"

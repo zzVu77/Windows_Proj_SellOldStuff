@@ -160,7 +160,7 @@
                             Grid.Column="0"
                             Height="55"
                             Width="180"                            
-                            Style="{StaticResource addButton}" 
+                            Style="{StaticResource OrderButton}" 
                             VerticalAlignment="Bottom" Margin="0,15,5,0" Click="btnToReceiveReceived_Click"                                         
                             >
                 <StackPanel Orientation="Horizontal">
