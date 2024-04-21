@@ -13,15 +13,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace UTEMerchant
 {
     /// <summary>
-    /// Interaction logic for UC_ForgotPasswordStep2.xaml
+    /// Interaction logic for UC_ForgotPasswordStep3.xaml
     /// </summary>
-    public partial class UC_ForgotPasswordStep2 : UserControl
+    public partial class UC_ForgotPasswordStep3 : UserControl
     {
         public event EventHandler EnterButtonClicked;
-        public UC_ForgotPasswordStep2()
+
+        public UC_ForgotPasswordStep3()
         {
             InitializeComponent();
         }
@@ -32,23 +34,40 @@ namespace UTEMerchant
 
             EnterButtonClicked?.Invoke(this, EventArgs.Empty);
 
-          
+
         }
 
         private void textVerifyCode_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            txtCode.Focus();
+            txtNewPassword.Focus();
         }
 
         private void txtCode_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtCode.Text) && txtCode.Text.Length > 0)
+            if (!string.IsNullOrEmpty(txtNewPassword.Text) && textNewPassword.Text.Length > 0)
             {
-                textVerifyCode.Visibility = Visibility.Collapsed;
+                textNewPassword.Visibility = Visibility.Collapsed;
             }
             else
             {
-                textVerifyCode.Visibility = Visibility.Visible;
+                textNewPassword.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void textNewPassword_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            txtCFNewPassword.Focus();
+        }
+
+        private void txtNewPassword_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtCFNewPassword.Text) && txtCFNewPassword.Text.Length > 0)
+            {
+                textCFNewPassword.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                textCFNewPassword.Visibility = Visibility.Visible;
             }
         }
     }

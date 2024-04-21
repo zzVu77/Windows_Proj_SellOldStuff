@@ -28,8 +28,10 @@ namespace UTEMerchant
             InitializeComponent();
             UC_Step1.SendButtonClicked += UCCompleted_SendButtonClicked;
             UC_Step2.EnterButtonClicked += UCCompleted_EnterButtonClicked;
-            UC_Step3.ContinueButtonClicked += UCCompleted_ContinueButtonClicked;
+            UC_Step3.EnterButtonClicked += UCCompleted_EnterButtonClickedPassword;
+            UC_Step4.ContinueButtonClicked += UCCompleted_ContinueButtonClicked1;
         }
+
         private void Image_MouseUp(object sender, MouseButtonEventArgs e)
         {
             this.Close();
@@ -49,6 +51,7 @@ namespace UTEMerchant
                     Step2.Visibility = Visibility.Visible;
                     Step1.Visibility = Visibility.Collapsed;
                     Step3.Visibility = Visibility.Collapsed;
+                    Step4.Visibility = Visibility.Collapsed;
                 }
 
             }
@@ -60,15 +63,35 @@ namespace UTEMerchant
             {
                 if (UC_Step2.txtCode.Text == verifycode)
                 {
-                    dao.updateUser(UC_Step2.txtNewPassword.Text.ToString(), gmail);
                     Step3.Visibility = Visibility.Visible;
                     Step2.Visibility = Visibility.Collapsed;
                     Step1.Visibility = Visibility.Collapsed;
+                    Step4.Visibility = Visibility.Collapsed;
                 }
 
             }
         }
-        private void UCCompleted_ContinueButtonClicked(object sender, EventArgs e)
+        private void UCCompleted_EnterButtonClickedPassword(object sender, EventArgs e)
+        {
+
+            if (sender is UC_ForgotPasswordStep3 clickedItemView)
+            {
+                if (UC_Step3.txtCFNewPassword.Text == UC_Step3.txtNewPassword.Text)
+                {
+                    dao.updateUser(UC_Step3.txtNewPassword.Text.ToString(), gmail);
+                    Step4.Visibility = Visibility.Visible;
+                    Step2.Visibility = Visibility.Collapsed;
+                    Step1.Visibility = Visibility.Collapsed;
+                    Step3.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    MessageBox.Show("the passwords do not match each other !!");
+                }
+
+            }
+        }
+        private void UCCompleted_ContinueButtonClicked1(object sender, EventArgs e)
         {
 
             if (sender is UC_ForgotPasswordCompleted clickedItemView)

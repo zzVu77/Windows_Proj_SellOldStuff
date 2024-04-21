@@ -237,6 +237,9 @@
     <Compile Include="UC_ForgotPasswordStep2.xaml.cs">
       <DependentUpon>UC_ForgotPasswordStep2.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UC_ForgotPasswordStep3.xaml.cs">
+      <DependentUpon>UC_ForgotPasswordStep3.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UC_RatingUI.xaml.cs">
       <DependentUpon>UC_RatingUI.xaml</DependentUpon>
     </Compile>
@@ -338,6 +341,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UC_ForgotPasswordStep2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC_ForgotPasswordStep3.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

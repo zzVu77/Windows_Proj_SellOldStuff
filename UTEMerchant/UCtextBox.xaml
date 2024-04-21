@@ -12,7 +12,7 @@
     <Grid>
         <TextBlock Foreground="#868686" Margin="10 0" VerticalAlignment="Center" Panel.ZIndex="1" IsHitTestVisible="False"
                    Text="{Binding Path=Hint,RelativeSource={RelativeSource AncestorType={x:Type local:UCtextBox}}}"
-                   Visibility="{Binding ElementName=textbox, Path=Text.IsEmpty, Converter={StaticResource boolToVis}}"/>
-        <TextBox x:Name="textbox"/>
+                   Visibility="{Binding ElementName=textbox, Path=Text.isEmpty, Converter={StaticResource boolToVis}}"/>
+        <TextBox x:Name="textbox" Style="{StaticResource DefaultTextBoxStyle}"/> 
     </Grid>
 </UserControl>
