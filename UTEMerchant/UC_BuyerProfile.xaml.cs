@@ -1,5 +1,4 @@
-﻿using HandyControl.Controls;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,16 +16,17 @@ using System.Windows.Shapes;
 namespace UTEMerchant
 {
     /// <summary>
-    /// Interaction logic for UC_Profile.xaml
+    /// Interaction logic for UC_BuyerProfile.xaml
     /// </summary>
-    public partial class UC_Profile : UserControl
+    public partial class UC_BuyerProfile : UserControl
     {
+        
         Address_DAO address_dao = new Address_DAO();
         List<Address> distinctCities;
         private string image_path;
-        public UC_Profile()
+        public UC_BuyerProfile()
         {
-            InitializeComponent();            
+            InitializeComponent();
         }
 
         public void SetDefault(User user)
@@ -39,7 +39,7 @@ namespace UTEMerchant
             }
             txtFullName.Text = user.Name;
             txtUserID.Text = user.Id_user.ToString();
-            txtUserEmail.Text=user.Email;
+            txtUserEmail.Text = user.Email;
             txtUserPhoneNumber.Text = user.Phone.ToString();
             txtUserCity.Text = user.City;
             txtUserDistrict.Text = user.District;
@@ -72,8 +72,8 @@ namespace UTEMerchant
         private void cbPickupDistrict_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-        }  
-              
+        }
+
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
@@ -84,11 +84,11 @@ namespace UTEMerchant
 
             for (int i = 0; i < distinctCities.Count; i++)
             {
-                if (distinctCities[i].City==txtUserCity.Text)
+                if (distinctCities[i].City == txtUserCity.Text)
                 {
                     cbPickupCity.SelectedIndex = i;
                     break;
-                }    
+                }
             }
 
             for (int i = 0; i < distinctCities.Count; i++)

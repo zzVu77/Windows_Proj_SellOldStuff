@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="UTEMerchant.UC_Profile"
+﻿<UserControl x:Class="UTEMerchant.UC_BuyerProfile"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -140,7 +140,7 @@
                           Visibility="Collapsed"
                           SelectionChanged="cbPickupCity_SelectionChanged">
 
-                    
+
                 </ComboBox>
 
                 <TextBox x:Name="txtUserCity"  
@@ -176,7 +176,7 @@
                           VerticalAlignment="Center"
                           HorizontalAlignment="Left"
                           Visibility="Collapsed"
-                          SelectionChanged="cbPickupDistrict_SelectionChanged">                    
+                          SelectionChanged="cbPickupDistrict_SelectionChanged">
                 </ComboBox>
 
                 <TextBox x:Name="txtUserDistrict"  

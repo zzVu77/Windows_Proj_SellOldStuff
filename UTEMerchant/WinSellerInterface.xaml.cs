@@ -137,7 +137,7 @@ namespace UTEMerchant
             grdSellerUI.Visibility = Visibility.Collapsed;
             uc_Delivery.Visibility = Visibility.Collapsed;
             uc_PurchasingUI.Visibility = Visibility.Visible;
-            uc_Profile.Visibility = Visibility.Collapsed;
+            uc_BuyerProfile.Visibility = Visibility.Collapsed;
         }
 
         private void mnuitStock_Click(object sender, RoutedEventArgs e)
@@ -169,7 +169,7 @@ namespace UTEMerchant
             grdSellerUI.Visibility = Visibility.Collapsed;
             uc_PurchasingUI.Visibility = Visibility.Collapsed;
             uc_Delivery.Visibility = Visibility.Visible;
-            uc_Profile.Visibility=Visibility.Collapsed;
+            uc_BuyerProfile.Visibility=Visibility.Collapsed;
         }
 
         // This method is called when the user clicks the Start Trading button in the Start Selling UC
@@ -223,8 +223,8 @@ namespace UTEMerchant
             grdSellerUI.Visibility = Visibility.Collapsed;
             uc_PurchasingUI.Visibility = Visibility.Collapsed;
             uc_Delivery.Visibility = Visibility.Collapsed;
-            uc_Profile.Visibility = Visibility.Visible;
-            uc_Profile.SetDefault(User);
+            uc_BuyerProfile.Visibility = Visibility.Visible;
+            uc_BuyerProfile.SetDefault(User);
         }
     }
 }

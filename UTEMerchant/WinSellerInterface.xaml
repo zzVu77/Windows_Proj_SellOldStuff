@@ -413,7 +413,7 @@
 
                 <local:UC_DeliveryUI x:Name="uc_Delivery" Height="735" Visibility="Collapsed" VerticalAlignment="Bottom" Margin="0 20 0 15"
                                     IsVisibleChanged="uc_Delivery_IsVisibleChanged"/>
-                <local:UC_Profile x:Name="uc_Profile"
+                <local:UC_BuyerProfile x:Name="uc_BuyerProfile"
                                   Visibility="Collapsed"
                                   Background="Transparent"/>
             </Grid>
