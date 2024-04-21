@@ -32,5 +32,27 @@ namespace UTEMerchant
             }
             return user;
         }
+        public List<User> GetUserByItemEmail(string Email)
+        {
+           string sqlStr = $"Select * From [dbo].[User] Where [dbo].[User].email={Email}";
+           return db.LoadData<User>(sqlStr);
+        }
+        public override void Add(User user) // Using PascalCase for method name
+        {
+            string sqlStr = "INSERT INTO [dbo].[User] (User_name, Password, name, City, District, Ward, phone, email, Image_path) " +
+                            "VALUES (@UserName, @Password, @name, @City, @District, @Ward, @phone, @email, @Image_path)";
+
+            db.ExecuteNonQuery(sqlStr,
+                new SqlParameter("@UserName", user.User_name),
+                new SqlParameter("@Password", user.Password),
+                new SqlParameter("@name", user.Name),
+                new SqlParameter("@City", user.City),
+                new SqlParameter("@District", user.District),
+                new SqlParameter("@Ward", user.Ward),
+                new SqlParameter("@phone", user.Phone),
+                new SqlParameter("@email", user.Email),
+                new SqlParameter("@Image_path", (object)user.Image_Path ?? DBNull.Value)
+                );
+        }
     }
 }

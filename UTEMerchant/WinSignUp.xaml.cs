@@ -1,0 +1,89 @@
+﻿using MailKit.Security;
+using MimeKit;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+using System.Xml.Linq;
+
+namespace UTEMerchant
+{
+    /// <summary>
+    /// Interaction logic for WinSignUp.xaml
+    /// </summary>
+    public partial class WinSignUp : Window
+    {
+        private User User { get; set; }
+        private string verifycode ;
+        public WinSignUp()
+        {
+            InitializeComponent();
+            UCSignUpStep1.NextButtonClicked += UCSignUpStep1_NextButtonClicked;
+            UCSignUpStep2.BackButtonClicked += UCSignUpStep2_BackButtonClicked;
+            UCSignUpStep2.FinishButtonClicked += UCSignUpStep2_FinishButtonClicked;
+        }
+
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
+            }
+        }
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.Close();
+        }
+        private void UCSignUpStep1_NextButtonClicked(object sender, EventArgs e)
+        {
+            if (sender is UC_SignUpStep1 clickedItemView )
+            {
+                UCSignUpStep1.Visibility = Visibility.Collapsed;
+                UCSignUpStep2.Visibility = Visibility.Visible;
+                User = new User(UCSignUpStep1.ucUserName.textbox.Text.ToString(), UCSignUpStep1.ucPassword.textbox.Text.ToString(),
+               UCSignUpStep1.ucName.textbox.Text.ToString(), UCSignUpStep1.ucCity.textbox.Text.ToString(), UCSignUpStep1.ucDistrict.textbox.Text.ToString(),
+               UCSignUpStep1.ucWard.textbox.Text.ToString(), UCSignUpStep1.ucPhone.textbox.Text.ToString(), UCSignUpStep1.ucEmail.textbox.Text.ToString(), null);
+                Random random = new Random();
+                // Any random integer
+                verifycode = random.Next().ToString();
+                SendMail.Send(verifycode, UCSignUpStep1.ucEmail.textbox.Text.ToString());
+  
+            }
+
+        }
+        private void UCSignUpStep2_BackButtonClicked(object sender, EventArgs e)
+        {
+            if (sender is UC_SignUpStep2 clickedItemView)
+            {
+                UCSignUpStep2.Visibility = Visibility.Collapsed;
+                UCSignUpStep1.Visibility =Visibility.Visible;
+            }
+
+        }
+
+        private void UCSignUpStep2_FinishButtonClicked(object sender, EventArgs e)
+        {
+            if (sender is UC_SignUpStep2 clickedItemView)
+            {
+                UCSignUpStep2.Visibility = Visibility.Collapsed;
+                UCSignUpStep1.Visibility = Visibility.Visible;
+
+               
+                if (UCSignUpStep2.ucVerifyCode.textbox.Text.ToString() == verifycode)
+                {
+                    new user_DAO().Add(User);
+                }
+            }
+
+        }
+    }
+}

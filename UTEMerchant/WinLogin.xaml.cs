@@ -70,12 +70,19 @@ namespace UTEMerchant
 
         private void textForgot_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            
+            this.Hide();
+            var forgot = new WinForgotPassword();
+            forgot.ShowDialog();
+            this.Show();
         }
 
         private void textRegister_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            this.Hide();
+            var signup = new WinSignUp();
+            signup.ShowDialog();
+            this.Show();
         }
 
 

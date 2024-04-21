@@ -21,10 +21,10 @@ namespace UTEMerchant
 
 
         public User() { }
-        public User(int id, string user_name, string password, string name,
+        public User( string user_name, string password, string name,
             string city,string district, string ward, string phone, string email,string imgPath)
         {
-            Id_user = id;
+            
             Name = name;
             User_name = user_name;
             Password = password;

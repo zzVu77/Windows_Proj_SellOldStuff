@@ -9,7 +9,7 @@
         Title="WinLogin" Height="450" Width="800">
 
     <Grid>
-       
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -30,7 +30,7 @@
 
         <Border Background="White" CornerRadius="0 10 10 0" Grid.ColumnSpan="2" Margin="397,0,3,0">
             <StackPanel>
-                
+
                 <TextBlock Text="User Login" FontSize="23" FontWeight="Bold" TextAlignment="Center" Foreground="#ef6621" Margin="0,120,0,20" FontFamily="Segoe UI Black"/>
                 <Image Source="Img/UserName.png" Height="28" Margin="30,0,0,-50" HorizontalAlignment="Left" RenderTransformOrigin="0.375,1.22" Width="26"/>
                 <Border BorderBrush="#ACB0AF" BorderThickness="1" Margin="70 7" CornerRadius="5">
@@ -66,7 +66,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock x:Name="textForgot" Text="Forgot password" FontSize="14" MouseDown="textForgot_MouseDown" HorizontalAlignment="Left" Margin="50,10,0,38" Foreground="Red" FontWeight="Bold" Style="{StaticResource textBlockTransform}"/>
-                        <TextBlock x:Name="textRegister" Grid.Column="1" Text="Register" HorizontalAlignment="Left" FontSize="14" MouseDown="textRegister_MouseDown" Margin="110,10,0,43" Foreground="#5a59a7" FontWeight="Bold" Style="{StaticResource textBlockTransform}" />
+                        <TextBlock x:Name="textRegister" Grid.Column="1" Text="Register" HorizontalAlignment="Left" FontSize="14" MouseDown="textRegister_MouseDown" Margin="110,0,0,43" Foreground="#5a59a7" FontWeight="Bold" Style="{StaticResource textBlockTransform}" Height="33" VerticalAlignment="Bottom" />
                     </Grid>
                 </Border>
 
