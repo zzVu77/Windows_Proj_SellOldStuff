@@ -1,4 +1,5 @@
-﻿using System;
+﻿//using HandyControl.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,38 +21,60 @@ namespace UTEMerchant
     public partial class WinForgotPassword : Window
     {
         new user_DAO dao = new user_DAO();
+        private string verifycode;
+        private string gmail;
         public WinForgotPassword()
         {
             InitializeComponent();
+            UC_Step1.SendButtonClicked += UCCompleted_SendButtonClicked;
+            UC_Step2.EnterButtonClicked += UCCompleted_EnterButtonClicked;
+            UC_Step3.ContinueButtonClicked += UCCompleted_ContinueButtonClicked;
         }
-
-        private void textUserName_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            txtEmail.Focus();
-        }
-
-        private void txtUserName_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (!string.IsNullOrEmpty(txtEmail.Text) && txtEmail.Text.Length > 0)
-            {
-                textEmail.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                textEmail.Visibility = Visibility.Visible;
-            }
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            User user = dao.GetUserByItemEmail(txtEmail.Text.ToString());
-            if (user != null)
-                SendMail.Send(user.Password, user.Email);
-        }
-
         private void Image_MouseUp(object sender, MouseButtonEventArgs e)
         {
             this.Close();
+        }
+        private void UCCompleted_SendButtonClicked(object sender, EventArgs e)
+        {
+            
+            if (sender is UC_ForgotPasswordStep1 clickedItemView)
+            {
+                User user = dao.GetUserByItemEmail(UC_Step1.txtEmail.Text.ToString());
+                if (user != null)
+                {
+                    gmail = user.Email;
+                    Random random = new Random();
+                    verifycode = random.Next().ToString();
+                    SendMail.Send(verifycode, user.Email);
+                    Step2.Visibility = Visibility.Visible;
+                    Step1.Visibility = Visibility.Collapsed;
+                    Step3.Visibility = Visibility.Collapsed;
+                }
+
+            }
+        }
+        private void UCCompleted_EnterButtonClicked(object sender, EventArgs e)
+        {
+
+            if (sender is UC_ForgotPasswordStep2 clickedItemView)
+            {
+                if (UC_Step2.txtCode.Text == verifycode)
+                {
+                    dao.updateUser(UC_Step2.txtNewPassword.Text.ToString(), gmail);
+                    Step3.Visibility = Visibility.Visible;
+                    Step2.Visibility = Visibility.Collapsed;
+                    Step1.Visibility = Visibility.Collapsed;
+                }
+
+            }
+        }
+        private void UCCompleted_ContinueButtonClicked(object sender, EventArgs e)
+        {
+
+            if (sender is UC_ForgotPasswordCompleted clickedItemView)
+            {
+                this.Close();
+            }
         }
     }
 }

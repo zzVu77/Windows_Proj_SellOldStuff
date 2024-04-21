@@ -21,16 +21,50 @@ namespace UTEMerchant
     public partial class UC_SignUpStep1 : UserControl
     {
         public event EventHandler NextButtonClicked;
-
+        public string selectedCity;
+        public string selectedDistrict;
+        Address_DAO address_dao = new Address_DAO();
         public UC_SignUpStep1()
         {
             InitializeComponent();
+            List<Address> distinctCities = address_dao.Load();
+            cbPickupCity.Items.Clear();
+            foreach (Address address in distinctCities)
+            {
+                cbPickupCity.Items.Add(address.City);
+            }
+        }
+        private void cbPickupCity_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cbPickupCity.SelectedItem != null)
+            {
+                selectedCity = cbPickupCity.SelectedItem.ToString();
+
+                // Filter districts based on selected city
+                var filteredDistricts = address_dao.getdistrict(selectedCity);
+
+                // Update district ComboBox
+                if (cbPickupCity.Items != null)
+                    cbPickupDistrict.Items.Clear();
+                foreach (var district in filteredDistricts)
+                {
+                    cbPickupDistrict.Items.Add(district);
+                }
+                cbPickupDistrict.SelectedIndex = -1;
+            }
+        }
+        private void btnNext_Click(object sender, RoutedEventArgs e)
+        {
+
+            NextButtonClicked?.Invoke(this, EventArgs.Empty);
         }
 
-        private void btnNext_Click(object sender, RoutedEventArgs e)    
+        private void cbPickupDistrict_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-           
-            NextButtonClicked?.Invoke(this, EventArgs.Empty);
+            if (cbPickupCity.SelectedItem != null)
+            {
+                selectedDistrict = cbPickupCity.SelectedItem.ToString();
+            }
         }
     }
 }

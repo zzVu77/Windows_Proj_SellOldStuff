@@ -35,8 +35,43 @@
             <local:UCtextBox Grid.Column="1" Grid.Row="0" Hint="Nguyen Van A" x:Name="ucName"/>
             <local:UCtextBox Grid.Column="1" Grid.Row="1" Hint="kiyo12312" x:Name="ucUserName"/>
             <local:UCtextBox Grid.Column="1" Grid.Row="2" Hint="*******" x:Name="ucPassword"/>
-            <local:UCtextBox Grid.Column="1" Grid.Row="3" Hint="Ho Chi Minh" x:Name="ucCity"/>
-            <local:UCtextBox Grid.Column="1" Grid.Row="4" Hint="Thu Duc" x:Name="ucDistrict"/>
+            <ComboBox x:Name="cbPickupCity"
+              Style="{StaticResource DefaultComboBoxStyle}"
+              Background="White"
+              Width="354"
+              Height="45"
+              BorderBrush="DarkGray"
+              BorderThickness="1.5"
+              Tag="City"
+              HorizontalAlignment="Center" Margin="0,4,0,4"
+              SelectionChanged="cbPickupCity_SelectionChanged"
+                      Grid.Column="1" Grid.Row="3">
+                <ComboBoxItem Content="HCM"></ComboBoxItem>
+            </ComboBox>
+            <ComboBox x:Name="cbPickupDistrict"
+               Style="{StaticResource DefaultComboBoxStyle}"
+               Background="White"
+               Width="354"
+               Height="45"
+               BorderBrush="DarkGray"
+               BorderThickness="1.5"
+               Tag="District"
+               HorizontalAlignment="Center" Margin="0,6,0,2"
+                      Grid.Column="1" Grid.Row="4"
+                      SelectionChanged="cbPickupDistrict_SelectionChanged">
+                <ComboBoxItem Content="District 1"></ComboBoxItem>
+                <ComboBoxItem Content="District 2"></ComboBoxItem>
+                <ComboBoxItem Content="District 3"></ComboBoxItem>
+                <ComboBoxItem Content="District 4"></ComboBoxItem>
+                <ComboBoxItem Content="District 5"></ComboBoxItem>
+                <ComboBoxItem Content="District 6"></ComboBoxItem>
+                <ComboBoxItem Content="District 7"></ComboBoxItem>
+                <ComboBoxItem Content="District 8"></ComboBoxItem>
+                <ComboBoxItem Content="District 9"></ComboBoxItem>
+                <ComboBoxItem Content="District 10"></ComboBoxItem>
+                <ComboBoxItem Content="District 11"></ComboBoxItem>
+                <ComboBoxItem Content="District 12"></ComboBoxItem>
+            </ComboBox>
             <local:UCtextBox Grid.Column="1" Grid.Row="5" Hint="Le Van Viet" x:Name="ucWard"/>
             <local:UCtextBox Grid.Column="1" Grid.Row="6" Hint="0909092222" x:Name="ucPhone"/>
             <local:UCtextBox Grid.Column="1" Grid.Row="7" Hint="asdbc@gmail.com" Margin="0,0,0,58" x:Name="ucEmail"/>

@@ -64,5 +64,13 @@ namespace UTEMerchant
                 new SqlParameter("@Image_path", (object)user.Image_Path ?? DBNull.Value)
                 );
         }
+        public void updateUser(string newpassword, string email)
+        {
+            string sqlStr = "UPDATE [dbo].[User] SET Password = @NewPassword WHERE Email = @GmailAddress";
+            db.ExecuteNonQuery(sqlStr,
+                new SqlParameter("@NewPassword", newpassword),
+                new SqlParameter("@GmailAddress", email));
+
+        }
     }
 }
