@@ -305,11 +305,35 @@
                             <MenuItem x:Name="mnuitProfile"
                                       Header="Profile"
                                       FontWeight="SemiBold"
-                                      Style="{StaticResource Menu_Style}" >
+                                      Style="{StaticResource SubMenu_MenuItem}"  >
                                 <MenuItem.Icon>
                                     <Image Source="{Icon:ModernImage Brush=Black, Kind=PeopleProfile}" 
                                            Stretch="Uniform"/>
                                 </MenuItem.Icon>
+                                
+                                <MenuItem x:Name="mnuitBuyerProfile"
+                                          Header="Buyer Profile"
+                                          FontWeight="SemiBold"
+                                          Style="{StaticResource Menu_Item}"
+                                          Background="{Binding ElementName=mnuitSettings, Path=Background}"
+                                          Width="{Binding ElementName=mnuitSettings,Path=ActualWidth}" Click="mnuitBuyerProfile_Click">
+                                    <MenuItem.Icon>
+                                        <Icon:PackIconMaterial Kind="Account" VerticalAlignment="Center" Margin="0 1 8 0" Width="18" Height="18" Foreground="Black"/>
+                                    </MenuItem.Icon>                              
+                                </MenuItem>
+                                
+                                <MenuItem x:Name="mnuitSellerProfile"
+                                          Header="Seller Profile"
+                                          FontWeight="SemiBold"
+                                          Style="{StaticResource Menu_Item}"
+                                          Background="{Binding ElementName=mnuitSettings, Path=Background}"
+                                          Width="{Binding ElementName=mnuitSettings,Path=ActualWidth}">
+                                    <MenuItem.Icon>
+                                        <Icon:PackIconMaterial Kind="AccountTie" VerticalAlignment="Center" Margin="0 1 8 0" Width="18" Height="18" Foreground="Black"/>
+                                    </MenuItem.Icon>
+                                </MenuItem>
+
+
                             </MenuItem>
                             <MenuItem x:Name="mnuitPurchase"
                                       Header="Purchase"     
@@ -351,6 +375,7 @@
                                     <Image Source="{Icon:MaterialDesignImage Brush=Black, Kind=Settings}" 
                                            Stretch="Uniform"/>
                                 </MenuItem.Icon>
+                                
                                 <MenuItem x:Name="mnuitDeleteAccount"
                                           Header="Delete Account"
                                           FontWeight="SemiBold"
@@ -363,6 +388,7 @@
                                     </MenuItem.Icon>
 
                                 </MenuItem>
+                                
                             </MenuItem>
                         </Menu>
 
@@ -382,11 +408,14 @@
                 <local:UC_PurchasingUI x:Name="uc_PurchasingUI"
                                        Visibility="Collapsed"
                                        Background="Transparent"/>
-                <Grid x:Name="grdSellerUI" Visibility="Collapsed">
-                   
-                </Grid>
+
+                <Grid x:Name="grdSellerUI" Visibility="Collapsed"/>
+
                 <local:UC_DeliveryUI x:Name="uc_Delivery" Height="735" Visibility="Collapsed" VerticalAlignment="Bottom" Margin="0 20 0 15"
                                     IsVisibleChanged="uc_Delivery_IsVisibleChanged"/>
+                <local:UC_Profile x:Name="uc_Profile"
+                                  Visibility="Collapsed"
+                                  Background="Transparent"/>
             </Grid>
 
         
