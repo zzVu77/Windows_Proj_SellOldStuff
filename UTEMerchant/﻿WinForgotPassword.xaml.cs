@@ -44,9 +44,9 @@ namespace UTEMerchant
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            List<User> Users = dao.GetUserByItemEmail(txtEmail.Text.ToString());
-            if (Users.Count() != 0)
-                SendMail.Send(Users[0].Password, Users[0].Email);
+            User user = dao.GetUserByItemEmail(txtEmail.Text.ToString());
+            if (user != null)
+                SendMail.Send(user.Password, user.Email);
         }
 
         private void Image_MouseUp(object sender, MouseButtonEventArgs e)

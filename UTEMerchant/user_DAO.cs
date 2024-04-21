@@ -32,10 +32,20 @@ namespace UTEMerchant
             }
             return user;
         }
-        public List<User> GetUserByItemEmail(string Email)
+        public User GetUserByItemEmail(string Email)
         {
-           string sqlStr = $"Select * From [dbo].[User] Where [dbo].[User].email={Email}";
-           return db.LoadData<User>(sqlStr);
+            User user = null;
+            string sqlStr = "Select User_name, Password, email  From  [dbo].[User] Where @email = [dbo].[User].email ";
+            SqlConnection conn = new SqlConnection(db.connectionString);
+            conn.Open();
+            SqlCommand command = new SqlCommand(sqlStr, conn);
+            command.Parameters.AddWithValue("@email", Email);
+            SqlDataReader reader = command.ExecuteReader();
+            if (reader.Read())
+            {
+                user = new User(reader.GetString(0),reader.GetString(1), reader.GetString(2));
+            }
+            return user;
         }
         public override void Add(User user) // Using PascalCase for method name
         {

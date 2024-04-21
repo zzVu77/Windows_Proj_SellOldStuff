@@ -43,6 +43,12 @@ namespace UTEMerchant
             Name = name;
             Image_Path = imgPath;
         }
+        public User(string user_name, string password,string email)
+        {
+            User_name = user_name;
+            Password = password;
+            Email = email;
+        }
         public ImageSource Image
         {
             get
