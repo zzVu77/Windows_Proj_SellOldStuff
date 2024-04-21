@@ -49,14 +49,14 @@ namespace UTEMerchant
         {
             _items.Add(item);
             UC_ItemInShoppingCartItemsView ucItem = new UC_ItemInShoppingCartItemsView(item);
-            ucItem.ChkItemChecked += chkItem_Checked;
-            ucItem.ChkItemUnchecked += chkItem_Unchecked;
+            ucItem.TogItemChecked += togItem_Checked;
+            ucItem.TogItemUnchecked += togItem_Unchecked;
             ucItem.RmItemClicked += btnRemoveItem_Click;
             spItems.Children.Add(ucItem);
             return true;
         }
 
-        private void chkAll_Checked(object sender, RoutedEventArgs e)
+        private void togAll_Checked(object sender, RoutedEventArgs e)
         {
             if (_alreadyCheckedEveryItem)
             {
@@ -66,14 +66,14 @@ namespace UTEMerchant
             // Add all items to the list of selected items
             foreach (UC_ItemInShoppingCartItemsView item in spItems.Children)
             {
-                if (item.chkItem.IsChecked == false)
-                    item.chkItem.IsChecked = true;
+                if (item.togItem.IsChecked == false)
+                    item.togItem.IsChecked = true;
             }
 
             _shouldUnmarkAll = true;
         }
 
-        private void chkAll_Unchecked(object sender, RoutedEventArgs e)
+        private void togAll_Unchecked(object sender, RoutedEventArgs e)
         {
             if (_shouldUnmarkAll)
             {
@@ -82,12 +82,12 @@ namespace UTEMerchant
                 // Clear the list of selected items
                 foreach (UC_ItemInShoppingCartItemsView item in spItems.Children)
                 {
-                    item.chkItem.IsChecked = false;
+                    item.togItem.IsChecked = false;
                 }
             }
         }
 
-        private void chkItem_Unchecked(object sender, RoutedEventArgs e)
+        private void togItem_Unchecked(object sender, RoutedEventArgs e)
         {
 
             if (sender is UC_ItemInShoppingCartItemsView item)
@@ -97,7 +97,7 @@ namespace UTEMerchant
             }
         }
 
-        private void chkItem_Checked(object sender, RoutedEventArgs e)
+        private void togItem_Checked(object sender, RoutedEventArgs e)
         {
             if (sender is UC_ItemInShoppingCartItemsView item)
             {
@@ -118,7 +118,7 @@ namespace UTEMerchant
                 _alreadyCheckedEveryItem = false;
 
                 // Uncheck the checkbox for all items
-                chkAll.IsChecked = false;
+                togAll.IsChecked = false;
             }
         }
 
@@ -136,7 +136,7 @@ namespace UTEMerchant
                 _alreadyCheckedEveryItem = true;
 
                 // Check the checkbox for all items
-                chkAll.IsChecked = true;
+                togAll.IsChecked = true;
             }
         }
 
@@ -186,7 +186,7 @@ namespace UTEMerchant
             {
                 // Remove the item
                 item.SetRemoveButtonVisibility(false);
-                item.chkItem.IsChecked = false;
+                item.togItem.IsChecked = false;
                 _items.Remove(item.GetItem());
                 spItems.Children.Remove(item);
 

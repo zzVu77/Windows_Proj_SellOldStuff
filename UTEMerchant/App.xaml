@@ -3,7 +3,7 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:UTEMerchant"
-             StartupUri="WinCheckout.xaml"
+             StartupUri="WinLogin.xaml"
              xmlns:icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
              xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
@@ -945,7 +945,7 @@
         <Style x:Key="DefaultTextBoxStyle" TargetType="TextBox">
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Padding" Value="10,0"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="TextBox">
@@ -954,7 +954,7 @@
                                     Background="{TemplateBinding Background}" 
                                     BorderBrush="{TemplateBinding BorderBrush}" 
                                     BorderThickness="{TemplateBinding BorderThickness}" 
-                                    CornerRadius="15"/>
+                                    CornerRadius="10"/>
                             <TextBlock x:Name="defaultText" 
                                        Text="{Binding RelativeSource={RelativeSource TemplatedParent}, 
                                                       Path=Tag}" 
@@ -1029,7 +1029,7 @@
         <Style x:Key="DefaultComboBoxStyle" TargetType="ComboBox">
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Padding" Value="10,0"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ComboBox">
@@ -1044,7 +1044,7 @@
                                     Background="{TemplateBinding Background}" 
                                     BorderBrush="{TemplateBinding BorderBrush}" 
                                     BorderThickness="{TemplateBinding BorderThickness}" 
-                                    CornerRadius="15"/>
+                                    CornerRadius="10"/>
                             <TextBlock Grid.Column="0"
                                        x:Name="defaultText" 
                                        Text="{Binding RelativeSource={RelativeSource TemplatedParent}, 
@@ -1143,7 +1143,7 @@
                                     Background="{TemplateBinding Background}" 
                                     BorderBrush="{TemplateBinding BorderBrush}" 
                                     BorderThickness="{TemplateBinding BorderThickness}" 
-                                    CornerRadius="15"/>
+                                    CornerRadius="10"/>
                             <Border x:Name="CircleBorder" 
                                     Grid.Column="0"
                                     Width="20"
@@ -1258,7 +1258,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="DatePicker">
                         <Border Name="Border"
-                                CornerRadius="15"
+                                CornerRadius="10"
                                 Width="{TemplateBinding Width}"
                                 Height="{TemplateBinding Height}"
                                 BorderBrush="{TemplateBinding BorderBrush}" 
@@ -1444,16 +1444,17 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="ToggleButton">
                         <Border x:Name="border"
-                        CornerRadius="10" 
-                        Height="{TemplateBinding Height}"
-                        Width="{TemplateBinding Height}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        Background="{TemplateBinding Background}">
-                            <Image x:Name="PART_Check" Source="{icon:BoxIconsImage Kind=RegularCheck, Brush=Wheat}"
-                           Stretch="Uniform"
-                           Visibility="Collapsed"
-                           Margin="5"/>
+                                CornerRadius="{TemplateBinding Height, Converter={StaticResource PercentageConverter}, ConverterParameter=25}" 
+                                Height="{TemplateBinding Height}"
+                                Width="{TemplateBinding Height}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                Background="{TemplateBinding Background}">
+                            <Image x:Name="PART_Check" 
+                                   Source="{icon:BoxIconsImage Kind=RegularCheck, Brush=Wheat}"
+                                   Stretch="Uniform"
+                                   Visibility="Collapsed"
+                                   Margin="5"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsChecked" Value="True">

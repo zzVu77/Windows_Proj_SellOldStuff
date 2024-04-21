@@ -15,16 +15,12 @@
                             Orientation="Horizontal"
                             Margin="0,10"
                             DockPanel.Dock="Left">
-                    <CheckBox x:Name="chkAll"
-                              HorizontalAlignment="Center"
-                              VerticalAlignment="Center"
-                              Margin="0,0,20,0" 
-                              Checked="chkAll_Checked"
-                              Unchecked="chkAll_Unchecked">
-                        <CheckBox.LayoutTransform>
-                            <ScaleTransform ScaleX="1" ScaleY="1" />
-                        </CheckBox.LayoutTransform>
-                    </CheckBox>
+                    <ToggleButton x:Name="togAll"
+                                  Height="20"
+                                  Style="{StaticResource RoundedToggleButton}"
+                                  Margin="0,0,20,0"
+                                  Checked="togAll_Checked"
+                                  Unchecked="togAll_Unchecked"/>
                     <Image x:Name="imgShopIcon"
                            Source="{iconPacks:MaterialImage Brush=Black, Kind=Store}"
                            Stretch="Uniform"
@@ -50,11 +46,6 @@
             <StackPanel x:Name="spItems"
                         Orientation="Vertical"
                         DockPanel.Dock="Top">
-                <StackPanel.Resources>
-                    <Style TargetType="local:UC_ItemInShoppingCartItemsView">
-                        <Setter Property="Margin" Value="0,0,0,20" />
-                    </Style>
-                </StackPanel.Resources>
             </StackPanel>
         </DockPanel>
     </Grid>
