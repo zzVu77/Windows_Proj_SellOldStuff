@@ -224,6 +224,7 @@ namespace UTEMerchant
             uc_PurchasingUI.Visibility = Visibility.Collapsed;
             uc_Delivery.Visibility = Visibility.Collapsed;
             uc_Profile.Visibility = Visibility.Visible;
+            uc_Profile.SetDefault(User);
         }
     }
 }

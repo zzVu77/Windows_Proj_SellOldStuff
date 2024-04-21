@@ -7,13 +7,13 @@
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d" 
               d:DesignHeight="800" d:DesignWidth="1400">
-    <Grid Background="White">
+    <Grid Background="Transparent">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="253*"/>
-            <ColumnDefinition Width="447*"/>
+            <ColumnDefinition Width="129*"/>
+            <ColumnDefinition Width="221*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Column="0" VerticalAlignment="Top" Margin="50 60 0 0">
+        <StackPanel Grid.Column="0" VerticalAlignment="Top" Margin="50 60 0 0" Height="379">
 
             <Border Grid.Column="0" 
                     Grid.Row="0"  
@@ -25,15 +25,16 @@
                     BorderBrush="Black"
                     VerticalAlignment="Top" 
                     CornerRadius="7">
-                <Image x:Name="imgItem" Source="C:\Users\FPTSHOP\Desktop\Window_Proj_UTEMerchant\UTEMerchant\Img\kimetsu.jpg" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Uniform" Margin="7,0,7,0"/>
+                <Image x:Name="imgUserPhoto" Source="C:\Users\FPTSHOP\Desktop\Window_Proj_UTEMerchant\UTEMerchant\Img\kimetsu.jpg" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Uniform" Margin="7,0,7,0"/>
             </Border>
 
             <Button Grid.Column="0"
-                        Height="49"                 
-                        Width="226"
-                        Style="{StaticResource OrderButton}" 
-                        HorizontalAlignment="Center"                                                
-                        HorizontalContentAlignment="Center">
+                    x:Name="btnChangePhoto"
+                    Height="49"                 
+                    Width="226"
+                    Style="{StaticResource OrderButton}" 
+                    HorizontalAlignment="Center"                                                
+                    HorizontalContentAlignment="Center" Click="btnChangePhoto_Click">
                 <StackPanel Orientation="Horizontal">
 
                     <Icon:PackIconMaterial Kind="Upload" VerticalAlignment="Center" Margin="0 1 8 0" Width="23" Height="22" Foreground="Black"/>
@@ -46,13 +47,15 @@
         <StackPanel Grid.Column="1"  Margin="45,45,0,0" HorizontalAlignment="Left" Width="530">
 
             <DockPanel Margin="0 5 0 15">
-                <Label Content="User ID: " VerticalAlignment="Center" FontFamily="Segoe UI Black" Width="110"/>
+                <Label Content="User ID: " VerticalAlignment="Center" FontFamily="Segoe UI Black" Width="110" FontSize="15"/>
 
                 <TextBox x:Name="txtUserID"  
                      Grid.Row="0"
                      Style="{StaticResource DefaultTextBoxStyle}"
                      Width="420"
-                     Height="45"                     
+                     Height="45"     
+                     FontSize="15"
+                     FontWeight="SemiBold"
                      BorderBrush="DarkGray"
                      BorderThickness="1.5"
                      VerticalAlignment="Center"
@@ -63,48 +66,16 @@
             </DockPanel>
 
             <DockPanel Margin="0 5 0 15">
-                <Label Content="Full Name: " VerticalAlignment="Center" FontFamily="Segoe UI Black" Width="110"/>
+                <Label Content="Full Name: " VerticalAlignment="Center" FontFamily="Segoe UI Black" Width="110" FontSize="15"/>
 
                 <TextBox x:Name="txtFullName"  
                          Grid.Row="0"
                          Style="{StaticResource DefaultTextBoxStyle}"
                          Width="420"
                          IsReadOnly="True"
-                         Height="45"                     
-                         BorderBrush="DarkGray"
-                         BorderThickness="1.5"
-                         VerticalAlignment="Center"
-                         HorizontalAlignment="Left"    
-                />
-
-            </DockPanel>
-
-            <DockPanel Margin="0 5 0 15">
-                <Label Content="User Name: " VerticalAlignment="Center" FontFamily="Segoe UI Black" Width="110"/>
-
-                <TextBox x:Name="txtUserName"  
-                         IsReadOnly="True"
-                         Grid.Row="0"
-                         Style="{StaticResource DefaultTextBoxStyle}"
-                         Width="420"
-                         Height="45"                     
-                         BorderBrush="DarkGray"
-                         BorderThickness="1.5"
-                         VerticalAlignment="Center"
-                         HorizontalAlignment="Left"    
-                />
-
-            </DockPanel>
-
-            <DockPanel Margin="0 5 0 15">
-                <Label Content="User Password: " VerticalAlignment="Center" FontFamily="Segoe UI Black" Width="110"/>
-
-                <TextBox x:Name="txtUserPassword"  
-                         IsReadOnly="True"
-                         Grid.Row="0"
-                         Style="{StaticResource DefaultTextBoxStyle}"
-                         Width="420"
-                         Height="45"                     
+                         Height="45"    
+                         FontSize="15"
+                         FontWeight="SemiBold"
                          BorderBrush="DarkGray"
                          BorderThickness="1.5"
                          VerticalAlignment="Center"
@@ -114,13 +85,15 @@
             </DockPanel>
 
             <DockPanel Margin="0 5 0 15" >
-                <Label Content="Email: " VerticalAlignment="Center" FontFamily="Segoe UI Black" Width="110"/>
+                <Label Content="Email: " VerticalAlignment="Center" FontFamily="Segoe UI Black" Width="110" FontSize="15"/>
 
                 <TextBox x:Name="txtUserEmail"  
                          Grid.Row="0"
                          Style="{StaticResource DefaultTextBoxStyle}"
                          Width="420"
-                         Height="45"                     
+                         Height="45"   
+                         FontSize="15"
+                         FontWeight="SemiBold"
                          BorderBrush="DarkGray"
                          BorderThickness="1.5"
                          VerticalAlignment="Center"
@@ -131,13 +104,15 @@
             </DockPanel>
 
             <DockPanel Margin="0 5 0 15">
-                <Label Content="Phone Number: " VerticalAlignment="Center" FontFamily="Segoe UI Black" Width="110"/>
+                <Label Content="Phone: " VerticalAlignment="Center" FontFamily="Segoe UI Black" Width="110" FontSize="15"/>
 
                 <TextBox x:Name="txtUserPhoneNumber"  
                          Grid.Row="0"
                          Style="{StaticResource DefaultTextBoxStyle}"
                          Width="420"
-                         Height="45"                     
+                         Height="45"          
+                         FontSize="15"
+                         FontWeight="SemiBold"
                          BorderBrush="DarkGray"
                          BorderThickness="1.5"
                          VerticalAlignment="Center"
@@ -148,7 +123,7 @@
             </DockPanel>
 
             <DockPanel Margin="0 5 0 15">
-                <Label Content="City: " VerticalAlignment="Center" FontFamily="Segoe UI Black" Width="110"/>
+                <Label Content="City: " VerticalAlignment="Center" FontFamily="Segoe UI Black" Width="110" FontSize="15"/>
 
                 <ComboBox x:Name="cbPickupCity"
                           Style="{StaticResource DefaultComboBoxStyle}"
@@ -158,32 +133,35 @@
                           Height="45"
                           BorderBrush="DarkGray"
                           BorderThickness="1.5"
+                          FontSize="15"
+                          FontWeight="SemiBold"
                           VerticalAlignment="Center"
                           HorizontalAlignment="Left"
-                           Visibility="Collapsed"
+                          Visibility="Collapsed"
                           SelectionChanged="cbPickupCity_SelectionChanged">
 
-                    <ComboBoxItem Content="HCM" ></ComboBoxItem>
+                    
                 </ComboBox>
-                
+
                 <TextBox x:Name="txtUserCity"  
                          Grid.Row="0"
                          Style="{StaticResource DefaultTextBoxStyle}"
                          Width="420"
-                         Height="45"                     
+                         Height="45" 
+                         FontSize="15"
+                         FontWeight="SemiBold"
                          BorderBrush="DarkGray"
                          BorderThickness="1.5"
                          VerticalAlignment="Center"
                          HorizontalAlignment="Left"    
                          IsReadOnly="True"
-                         Visibility="Visible"
-                         Text="Nha Trang"
+                         Visibility="Visible"                         
                 />
 
             </DockPanel>
 
             <DockPanel Margin="0 5 0 15">
-                <Label Content="District: " VerticalAlignment="Center" FontFamily="Segoe UI Black" Width="110"/>
+                <Label Content="District: " VerticalAlignment="Center" FontFamily="Segoe UI Black" Width="110" FontSize="15"/>
 
                 <ComboBox x:Name="cbPickupDistrict"
                           IsReadOnly="True"
@@ -191,25 +169,44 @@
                           Background="White"
                           Width="420"
                           Height="45"
+                          FontSize="15"
+                          FontWeight="SemiBold"
                           BorderBrush="DarkGray"
                           BorderThickness="1.5"
                           VerticalAlignment="Center"
                           HorizontalAlignment="Left"
-                          SelectionChanged="cbPickupDistrict_SelectionChanged">
-                    <ComboBoxItem Content="HCM"></ComboBoxItem>
+                          Visibility="Collapsed"
+                          SelectionChanged="cbPickupDistrict_SelectionChanged">                    
                 </ComboBox>
+
+                <TextBox x:Name="txtUserDistrict"  
+                         Grid.Row="0"
+                         Style="{StaticResource DefaultTextBoxStyle}"
+                         Width="420"
+                         Height="45"
+                         FontSize="15"
+                         FontWeight="SemiBold"
+                         BorderBrush="DarkGray"
+                         BorderThickness="1.5"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Left"    
+                         IsReadOnly="True"
+                         Visibility="Visible"                         
+                />
 
             </DockPanel>
 
             <DockPanel Margin="0 5 0 15">
-                <Label Content="Ward: " VerticalAlignment="Center" FontFamily="Segoe UI Black" Width="110"/>
+                <Label Content="Ward: " VerticalAlignment="Center" FontFamily="Segoe UI Black" Width="110" FontSize="15"/>
 
                 <TextBox x:Name="txtUserWard"
                          IsReadOnly="True"
                          Grid.Row="0"
                          Style="{StaticResource DefaultTextBoxStyle}"
                          Width="420"
-                         Height="45"                     
+                         Height="45"  
+                         FontSize="15"
+                         FontWeight="SemiBold"
                          BorderBrush="DarkGray"
                          BorderThickness="1.5"
                          VerticalAlignment="Center"
@@ -241,7 +238,8 @@
                         Background="LightGreen"
                         Style="{StaticResource OrderButton}"                        
                         VerticalAlignment="Center" 
-                        HorizontalAlignment="Right"                                                
+                        HorizontalAlignment="Right"                     
+                        Visibility="Collapsed"
                         HorizontalContentAlignment="Center" Click="btnSave_Click">
                     <StackPanel Orientation="Horizontal" Width="80" Height="27">
                         <Icon:PackIconMaterial Kind="ContentSave" VerticalAlignment="Center" Margin="0 1 8 0" Width="23" Height="22" Foreground="Black"/>
