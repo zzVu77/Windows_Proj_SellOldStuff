@@ -176,21 +176,34 @@ namespace UTEMerchant
             btnSave.Visibility = Visibility.Collapsed;
 
             seller.SellerID = Int32.Parse(txtSellerID.Text);
-            seller.ShopName = txtSellerShopName.Text;
-            user.Email = txtSellerShopEmail.Text;
-            if (!string.IsNullOrEmpty(selectedCity))
-                seller.City = selectedCity;
-            else seller.City = txtSellerCity.Text;
-            if (!string.IsNullOrEmpty(selectedDistrict))
-                seller.District = selectedDistrict;
-            else seller.District = txtSellerDistrict.Text;
-            seller.Ward = txtSellerWard.Text;
-            seller.Phone = txtSellerPhoneNumber.Text;
-            
-            user.Image_Path = image_path;
-            seller_dao.UpdateSeller(seller);
-            user_dao.UpdateUserThroughSeller(user);
-            SavedButtonClicked?.Invoke(this, EventArgs.Empty);
+            if (string.IsNullOrWhiteSpace(txtSellerShopName.Text) || string.IsNullOrWhiteSpace(txtSellerShopEmail.Text) ||
+               string.IsNullOrWhiteSpace(txtSellerWard.Text) || string.IsNullOrWhiteSpace(txtSellerPhoneNumber.Text)
+               )
+            {
+                MessageBox.Show("Please complete all information");
+                txtSellerShopName.Text = seller.ShopName;
+                txtSellerShopEmail.Text = user.Email;
+                txtSellerPhoneNumber.Text = seller.Phone;
+                txtSellerWard.Text = seller.Ward;
+            }
+            else
+            {
+                seller.ShopName = txtSellerShopName.Text;
+                user.Email = txtSellerShopEmail.Text;
+                if (!string.IsNullOrEmpty(selectedCity))
+                    seller.City = selectedCity;
+                else seller.City = txtSellerCity.Text;
+                if (!string.IsNullOrEmpty(selectedDistrict))
+                    seller.District = selectedDistrict;
+                else seller.District = txtSellerDistrict.Text;
+                seller.Ward = txtSellerWard.Text;
+                seller.Phone = txtSellerPhoneNumber.Text;
+
+                user.Image_Path = image_path;
+                seller_dao.UpdateSeller(seller);
+                user_dao.UpdateUserThroughSeller(user);
+                SavedButtonClicked?.Invoke(this, EventArgs.Empty);
+            }
         }
 
         private void btnChangePhoto_Click(object sender, RoutedEventArgs e)

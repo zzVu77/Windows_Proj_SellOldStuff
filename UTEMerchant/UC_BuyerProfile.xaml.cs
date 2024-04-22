@@ -171,21 +171,35 @@ namespace UTEMerchant
             btnSave.Visibility = Visibility.Collapsed;
 
             user.Id_user = Int32.Parse(txtUserID.Text);
-            user.Name = txtUserFullName.Text;
-            user.Email = txtUserEmail.Text;
-            if (!string.IsNullOrEmpty(selectedCity)) 
-                user.City = selectedCity;
-            else user.City = txtUserCity.Text;
-            if (!string.IsNullOrEmpty(selectedDistrict))
-                user.District = selectedDistrict;
-            else user.District = txtUserDistrict.Text;
-            user.Ward = txtUserWard.Text;
-            user.Phone = txtUserPhoneNumber.Text;
-            
-            user.Image_Path = image_path;
+            if (string.IsNullOrWhiteSpace(txtUserFullName.Text) || string.IsNullOrWhiteSpace(txtUserEmail.Text) ||
+                string.IsNullOrWhiteSpace(txtUserWard.Text) || string.IsNullOrWhiteSpace(txtUserPhoneNumber.Text)
+                )
+            {
+                MessageBox.Show("Please complete all information");
+                txtUserFullName.Text = user.Name;
+                txtUserEmail.Text = user.Email;
+                txtUserWard.Text = user.Ward;
+                txtUserPhoneNumber.Text = user.Phone;
+            }
+            else
+            {
+                user.Name = txtUserFullName.Text;
+                user.Email = txtUserEmail.Text;
+                if (!string.IsNullOrEmpty(selectedCity))
+                    user.City = selectedCity;
+                else user.City = txtUserCity.Text;
+                if (!string.IsNullOrEmpty(selectedDistrict))
+                    user.District = selectedDistrict;
+                else user.District = txtUserDistrict.Text;
+                user.Ward = txtUserWard.Text;
+                user.Phone = txtUserPhoneNumber.Text;
 
-            user_dao.UpdateUser(user);
-            SavedButtonClicked?.Invoke(this, EventArgs.Empty);
+                user.Image_Path = image_path;
+
+                user_dao.UpdateUser(user);
+                SavedButtonClicked?.Invoke(this, EventArgs.Empty);
+               
+            }
         }
 
         private void btnChangePhoto_Click(object sender, RoutedEventArgs e)
