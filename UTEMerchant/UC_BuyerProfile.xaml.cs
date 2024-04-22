@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Media;
+using System.Xml.Linq;
 
 namespace UTEMerchant
 {
@@ -21,10 +22,14 @@ namespace UTEMerchant
     /// </summary>
     public partial class UC_BuyerProfile : UserControl
     {
-        
+        public event EventHandler SavedButtonClicked;
+        User user =new User();
+        string selectedCity;
+        string selectedDistrict;
+        user_DAO user_dao = new user_DAO();
         Address_DAO address_dao = new Address_DAO();
         List<Address> distinctCities;
-        private string image_path;
+        public string image_path;
         public UC_BuyerProfile()
         {
             InitializeComponent();
@@ -32,6 +37,7 @@ namespace UTEMerchant
 
         public void SetDefault(User user)
         {
+            this.user = user;
             distinctCities = address_dao.Load();
             cbPickupCity.Items.Clear();
             foreach (Address address in distinctCities)
@@ -45,8 +51,8 @@ namespace UTEMerchant
             txtUserCity.Text = user.City;
             txtUserDistrict.Text = user.District;
             txtUserWard.Text = user.Ward;
-
-            var resourceUri = new Uri(user.Image_Path, UriKind.RelativeOrAbsolute);
+            image_path = user.Image_Path;
+            var resourceUri = new Uri(image_path, UriKind.RelativeOrAbsolute);
             imgUserPhoto.Source = new BitmapImage(resourceUri);
 
         }
@@ -57,26 +63,43 @@ namespace UTEMerchant
             txtUserPhoneNumber.Background = Brushes.White;
             txtUserEmail.Background = Brushes.White;
             txtUserWard.Background = Brushes.White;
-        }    
+
+            txtUserFullName.IsReadOnly = false;
+            txtUserPhoneNumber.IsReadOnly = false;
+            txtUserEmail.IsReadOnly = false;
+            txtUserWard.IsReadOnly = false;
+        }
         private void ChangeTextBoxBackGroundSave()
         {
             txtUserFullName.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#f4f4f4"));
             txtUserPhoneNumber.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#f4f4f4"));
             txtUserEmail.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#f4f4f4"));
             txtUserWard.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#f4f4f4"));
+
+            btnSave.Visibility = Visibility.Collapsed;
+            txtUserFullName.IsReadOnly = true;
+            txtUserPhoneNumber.IsReadOnly = true;
+            txtUserEmail.IsReadOnly = true;
+            txtUserWard.IsReadOnly = true;
+            cbPickupCity.Visibility = Visibility.Collapsed;
+            cbPickupDistrict.Visibility = Visibility.Collapsed;
+            txtUserCity.Visibility = Visibility.Visible;
+            txtUserDistrict.Visibility = Visibility.Visible;
         }
         private void cbPickupCity_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cbPickupCity.SelectedItem != null)
             {
-                string selectedCity = cbPickupCity.SelectedItem.ToString();
-
+                selectedCity = cbPickupCity.SelectedItem.ToString();
+                txtUserCity.Text = selectedCity;
                 // Filter districts based on selected city
                 var filteredDistricts = address_dao.getdistrict(selectedCity);
 
                 // Update district ComboBox
                 if (cbPickupCity.Items != null)
+                {
                     cbPickupDistrict.Items.Clear();
+                }
                 foreach (var district in filteredDistricts)
                 {
                     cbPickupDistrict.Items.Add(district);
@@ -87,7 +110,11 @@ namespace UTEMerchant
 
         private void cbPickupDistrict_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if (cbPickupDistrict.SelectedItem != null)
+            {
+                selectedDistrict = cbPickupDistrict.SelectedItem.ToString();
+                txtUserDistrict.Text = selectedDistrict;
+            }
         }
 
 
@@ -129,26 +156,41 @@ namespace UTEMerchant
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            string selectedValue = cbPickupCity.SelectedItem.ToString();
-            txtUserCity.Text = selectedValue;
+            /*string selectedValue = cbPickupCity.SelectedItem.ToString();
+            txtUserCity.Text = selectedValue;*/
 
             ChangeTextBoxBackGroundSave();
 
-            selectedValue = cbPickupDistrict.SelectedItem.ToString();
-            txtUserDistrict.Text = selectedValue;
+            /*selectedValue = cbPickupDistrict.SelectedItem.ToString();
+            txtUserDistrict.Text = selectedValue;*/
 
             cbPickupCity.Visibility = Visibility.Collapsed;
             txtUserCity.Visibility = Visibility.Visible;
             cbPickupDistrict.Visibility = Visibility.Collapsed;
             txtUserDistrict.Visibility = Visibility.Visible;
-
             btnSave.Visibility = Visibility.Collapsed;
-         
+
+            user.Id_user = Int32.Parse(txtUserID.Text);
+            user.Name = txtUserFullName.Text;
+            user.Email = txtUserEmail.Text;
+            if (!string.IsNullOrEmpty(selectedCity)) 
+                user.City = selectedCity;
+            else user.City = txtUserCity.Text;
+            if (!string.IsNullOrEmpty(selectedDistrict))
+                user.District = selectedDistrict;
+            else user.District = txtUserDistrict.Text;
+            user.Ward = txtUserWard.Text;
+            user.Phone = txtUserPhoneNumber.Text;
+            
+            user.Image_Path = image_path;
+
+            user_dao.UpdateUser(user);
+            SavedButtonClicked?.Invoke(this, EventArgs.Empty);
         }
 
         private void btnChangePhoto_Click(object sender, RoutedEventArgs e)
         {
-            string image_path;
+            
             Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
             openFileDialog.Filter = "Tất cả các tệp (*.*)|*.*";
             if (openFileDialog.ShowDialog() == true)
@@ -168,7 +210,7 @@ namespace UTEMerchant
         {
             if(this.Visibility == Visibility.Collapsed)
             {
-                btnSave.Visibility = Visibility.Collapsed;
+                ChangeTextBoxBackGroundSave();
             }    
         }
     }
