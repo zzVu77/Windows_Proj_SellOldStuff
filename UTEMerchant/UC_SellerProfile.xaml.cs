@@ -20,6 +20,10 @@ namespace UTEMerchant
     /// </summary>
     public partial class UC_SellerProfile : UserControl
     {
+        Seller seller = new Seller();
+        string selectedCity;
+        string selectedDistrict;
+        Seller_DAO seller_dao = new Seller_DAO();
         Address_DAO address_dao = new Address_DAO();
         List<Address> distinctCities;
         private string image_path;
@@ -29,6 +33,7 @@ namespace UTEMerchant
         }
         public void SetDefault(User user, Seller seller)
         {
+            this.seller = seller;
             distinctCities = address_dao.Load();
             cbPickupCity.Items.Clear();
             foreach (Address address in distinctCities)
@@ -66,7 +71,8 @@ namespace UTEMerchant
         {
             if (cbPickupCity.SelectedItem != null)
             {
-                string selectedCity = cbPickupCity.SelectedItem.ToString();
+                selectedCity = cbPickupCity.SelectedItem.ToString();
+                txtSellerCity.Text = selectedCity;
 
                 // Filter districts based on selected city
                 var filteredDistricts = address_dao.getdistrict(selectedCity);
@@ -84,7 +90,11 @@ namespace UTEMerchant
 
         private void cbPickupDistrict_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if (cbPickupDistrict.SelectedItem != null)
+            {
+                selectedDistrict = cbPickupDistrict.SelectedItem.ToString();
+                txtSellerDistrict.Text = selectedDistrict;
+            }
         }
 
 
@@ -126,12 +136,12 @@ namespace UTEMerchant
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            string selectedValue = cbPickupCity.SelectedItem.ToString();
+            /*string selectedValue = cbPickupCity.SelectedItem.ToString();
             txtSellerCity.Text = selectedValue;
 
             selectedValue = cbPickupDistrict.SelectedItem.ToString();
             txtSellerDistrict.Text = selectedValue;
-
+*/
             txtSellerShopName.IsReadOnly = true;
             txtSellerShopEmail.IsReadOnly = true;
             txtSellerPhoneNumber.IsReadOnly = true;
@@ -145,6 +155,21 @@ namespace UTEMerchant
             txtSellerDistrict.Visibility = Visibility.Visible;
 
             btnSave.Visibility = Visibility.Collapsed;
+
+            seller.SellerID = Int32.Parse(txtSellerID.Text);
+            seller.ShopName = txtSellerShopName.Text;
+            //seller.email = txtSellerShopEmail.Text;
+            if (!string.IsNullOrEmpty(selectedCity))
+                seller.City = selectedCity;
+            else seller.City = txtSellerCity.Text;
+            if (!string.IsNullOrEmpty(selectedDistrict))
+                seller.District = selectedDistrict;
+            else seller.District = txtSellerDistrict.Text;
+            seller.Ward = txtSellerWard.Text;
+            seller.Phone = txtSellerPhoneNumber.Text;
+            /*if (!string.IsNullOrEmpty(image_path))
+                seller.Image_Path = image_path;*/
+            seller_dao.UpdateSeller(seller);
         }
 
         private void btnChangePhoto_Click(object sender, RoutedEventArgs e)

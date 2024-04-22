@@ -32,5 +32,30 @@ namespace UTEMerchant
             }
             return user;
         }
+        public void UpdateUser(User user)
+        {
+            string updateSql = @"
+            UPDATE [dbo].[User]
+            SET 
+                name = @name,
+                City = @city,
+                District = @district,
+                Ward = @ward,
+                phone = @phone,
+                email = @email,
+                Image_path = @imagePath
+            WHERE Id_user = @idUser";
+            db.ExecuteNonQuery(updateSql,
+                new SqlParameter("@name", user.Name),
+                new SqlParameter("@city", user.City),
+                new SqlParameter("@district", user.District),
+                new SqlParameter("@ward", user.Ward),
+                new SqlParameter("@phone", user.Phone),
+                new SqlParameter("@email", user.Email),
+                new SqlParameter("@imagePath", user.Image_Path),
+                new SqlParameter("@idUser", user.Id_user)
+                );
+
+        }
     }
 }
