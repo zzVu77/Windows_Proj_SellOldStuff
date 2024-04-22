@@ -7,8 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using MailKit.Net.Smtp;
 using MailKit;
-using MimeKit;
-using MailKit.Security;
 
 namespace UTEMerchant
 {

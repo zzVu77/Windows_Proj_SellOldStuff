@@ -9,8 +9,7 @@
     <Grid>
         <Grid x:Name="grdEmptyShoppingCart"
               Visibility="Visible"
-              VerticalAlignment="Top"
-              Margin="15">
+              VerticalAlignment="Top">
 
             <Grid.RowDefinitions>
                 <RowDefinition x:Name="rShoppingIcon" Height="*"/>
@@ -31,7 +30,8 @@
                        TextAlignment="Center"
                        Margin="0,30"/>
         </Grid>
-        <ScrollViewer x:Name="svItems"
+        <ScrollViewer Grid.Row="0"
+                      x:Name="svItems"
                       VerticalScrollBarVisibility="Hidden">
             <StackPanel x:Name="spItems">
             </StackPanel>

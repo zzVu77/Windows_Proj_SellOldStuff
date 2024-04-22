@@ -547,7 +547,6 @@ HorizontalAlignment="Left">
                                        FontSize="17" 
                                        Width="42"/>
                                 <TextBox x:Name="txtMax" 
-                                         Grid.Column="0" 
                                          Height="{Binding ElementName=txtMin, Path=ActualHeight}"
                                          Background="Transparent" 
                                          BorderBrush="Black"></TextBox>
@@ -566,16 +565,17 @@ HorizontalAlignment="Left">
               Margin="0,0,-400,0">
             <Border x:Name="brdShoppingCart"
                     Background="#E56B6F"
-                    CornerRadius="30">
+                    CornerRadius="30,0,0,30">
                 <Grid x:Name="grdInnerShoppingCart">
                     <Grid.RowDefinitions>
                         <RowDefinition x:Name="rBackButton" Height="60"/>
                         <RowDefinition x:Name="rUCShoppingCart" Height="*"/>
+                        <RowDefinition x:Name="rTotalPriceCheckOut" Height="80"/>
                     </Grid.RowDefinitions>
                     <Button Grid.Row="0"
                             x:Name="btnBack"
                             HorizontalAlignment="Left"
-                            Margin="20,10,0,10" Click="btnBack_Click">
+                            Margin="20,10" Click="btnBack_Click">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Grid x:Name="grdCircleButton">
@@ -610,8 +610,64 @@ HorizontalAlignment="Left">
                         </Button.Triggers>
                     </Button>
                     <local:UC_ShoppingCart x:Name="uc_ShoppingCart"
-                                           Grid.Row="1">
+                                           Grid.Row="1"
+                                           Loaded="uc_ShoppingCart_Loaded">
                     </local:UC_ShoppingCart>
+                    <Grid x:Name="grdTotalPriceCheckOut"
+                          Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition x:Name="cTotalPrice" Width="2*"/>
+                            <ColumnDefinition x:Name="cCheckout" Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Grid.ColumnSpan="2" Grid.Column="0"
+                                BorderThickness="0,2,0,0"
+                                BorderBrush="#E88C7B"/>
+                        <StackPanel Grid.Column="0"
+                                    x:Name="spTotalPrice"
+                                    Orientation="Horizontal"
+                                    Margin="20,0">
+                            <TextBlock x:Name="tbTotalPrice"
+                                       Text="Total Price: "
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       FontSize="20"/>
+                            <TextBlock x:Name="tbTotalPriceValue"
+                                       Text="0"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       FontSize="20"/>
+                            <TextBlock x:Name="tbDollarSign"
+                                       Text="$"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       FontSize="20"/>
+                        </StackPanel>
+                        <Button x:Name="btnCheckout"
+                                Grid.Column="1"
+                                Content="Checkout"
+                                FontSize="20" Click="btnCheckout_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border x:Name="Border"
+                                            Background="#EAAC8B                                            " 
+                                            BorderThickness="0">
+                                        <ContentPresenter HorizontalAlignment="Center" 
+                                                          VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="Border" Property="Background" Value="#E88C7B"/>
+                                            <Setter Property="Foreground" Value="White"/>
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="True">
+                                            <Setter TargetName="Border" Property="Background" Value="#E88C7B"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </Grid>
                 </Grid>
             </Border>
             <Grid.RenderTransform>

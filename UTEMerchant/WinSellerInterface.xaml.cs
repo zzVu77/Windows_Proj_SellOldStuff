@@ -30,15 +30,15 @@ namespace UTEMerchant
         {
 
             this.User = user;
-            // Tạo một BitmapImage từ đường dẫn ảnh
-            BitmapImage bitmap = new BitmapImage();
-            bitmap.BeginInit();
-            bitmap.UriSource = new Uri(user.Image_Path.ToString(), UriKind.RelativeOrAbsolute);
-            bitmap.EndInit();
-            imgUserAvatar.ImageSource = bitmap;
+            //// Tạo một BitmapImage từ đường dẫn ảnh
+            //BitmapImage bitmap = new BitmapImage();
+            //bitmap.BeginInit();
+            //bitmap.UriSource = new Uri(user.Image_Path.ToString(), UriKind.RelativeOrAbsolute);
+            //bitmap.EndInit();
+            //imgUserAvatar.ImageSource = bitmap;
 
             txbName.Text = user.Name;
-            uc_PurchasingUI.Id_user = user.Id_user;
+            uc_PurchasingUI.IdUser = user.Id_user;
             List<Seller> sellers = new List<Seller>();
             sellers = new Seller_DAO().Load();
             foreach (Seller seller in sellers)
@@ -202,7 +202,6 @@ namespace UTEMerchant
 
         private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
             this.Close();
         }
 

@@ -20,7 +20,7 @@ namespace UTEMerchant
     /// </summary>
     public partial class UC_ItemView : UserControl
     {
-        public event EventHandler ItemClicked;
+        public event EventHandler<RoutedEventArgs> ItemClicked;
 
         public Item info;
         
@@ -38,12 +38,12 @@ namespace UTEMerchant
 
         private void UC_ItemView_MouseUp(object sender, MouseButtonEventArgs e)
         {            
-            ItemClicked?.Invoke(this, EventArgs.Empty);
+            ItemClicked?.Invoke(this, EventArgs.Empty as RoutedEventArgs);
         }
 
         private void btnAddToCart_Click(object sender, RoutedEventArgs e)
         {
-            ItemClicked?.Invoke(this, EventArgs.Empty);
+            ItemClicked?.Invoke(this, EventArgs.Empty as RoutedEventArgs);
         }
 
         public void SetDefaultValue()

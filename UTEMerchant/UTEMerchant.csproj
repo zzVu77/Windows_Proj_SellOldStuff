@@ -192,8 +192,8 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="Wpf.Ui, Version=3.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WPF-UI.3.0.3\lib\net472\Wpf.Ui.dll</HintPath>
+    <Reference Include="Wpf.Ui, Version=3.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WPF-UI.3.0.4\lib\net472\Wpf.Ui.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -225,6 +225,15 @@
     <Compile Include="UC_DeliveryUI.xaml.cs">
       <DependentUpon>UC_DeliveryUI.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UC_ItemInShoppingCartItemsView.xaml.cs">
+      <DependentUpon>UC_ItemInShoppingCartItemsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_PlaceOrderItem.xaml.cs">
+      <DependentUpon>UC_PlaceOrderItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_PlaceOrderItemsBox.xaml.cs">
+      <DependentUpon>UC_PlaceOrderItemsBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UC_FeedBackUI.xaml.cs">
       <DependentUpon>UC_FeedBackUI.xaml</DependentUpon>
     </Compile>
@@ -238,6 +247,9 @@
     </Compile>
     <Compile Include="UC_SignUpStep2.xaml.cs">
       <DependentUpon>UC_SignUpStep2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_ShoppingCartItemsView.xaml.cs">
+      <DependentUpon>UC_ShoppingCartItemsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="UC_StarRating.xaml.cs">
       <DependentUpon>UC_StarRating.xaml</DependentUpon>
@@ -266,9 +278,6 @@
     <Compile Include="UC_SellerUI.xaml.cs">
       <DependentUpon>UC_SellerUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UC_ShoppingCartItemView.xaml.cs">
-      <DependentUpon>UC_ShoppingCartItemView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UC_SellerRegistration.xaml.cs">
       <DependentUpon>UC_SellerRegistration.xaml</DependentUpon>
     </Compile>
@@ -285,6 +294,9 @@
     </Compile>
     <Compile Include="WinNewItem.xaml.cs">
       <DependentUpon>WinNewItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinPlaceOrder.xaml.cs">
+      <DependentUpon>WinPlaceOrder.xaml</DependentUpon>
     </Compile>
     <Compile Include="WinRating.xaml.cs">
       <DependentUpon>WinRating.xaml</DependentUpon>
@@ -313,6 +325,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UC_ItemInShoppingCartItemsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC_PlaceOrderItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC_PlaceOrderItemsBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UC_FeedBackUI.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -326,6 +350,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UC_SignUpStep2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC_ShoppingCartItemsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -357,10 +385,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UC_ShoppingCartItemView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="UC_SellerRegistration.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -382,6 +406,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WinNewItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinPlaceOrder.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
