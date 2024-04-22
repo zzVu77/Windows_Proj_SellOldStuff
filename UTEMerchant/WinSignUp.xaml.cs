@@ -48,15 +48,23 @@ namespace UTEMerchant
         {
             if (sender is UC_SignUpStep1 clickedItemView )
             {
-                UCSignUpStep1.Visibility = Visibility.Collapsed;
-                UCSignUpStep2.Visibility = Visibility.Visible;
-                User = new User(UCSignUpStep1.ucUserName.textbox.Text.ToString(), UCSignUpStep1.ucPassword.textbox.Text.ToString(),
-               UCSignUpStep1.ucName.textbox.Text.ToString(), UCSignUpStep1.selectedCity, UCSignUpStep1.selectedDistrict,
-               UCSignUpStep1.ucWard.textbox.Text.ToString(), UCSignUpStep1.ucPhone.textbox.Text.ToString(), UCSignUpStep1.ucEmail.textbox.Text.ToString(), null);
-                Random random = new Random();
-                // Any random integer
-                verifycode = random.Next().ToString();
-                SendMail.Send(verifycode, UCSignUpStep1.ucEmail.textbox.Text.ToString());
+                if (UCSignUpStep1.ucEmail.textbox.Text.ToString() != "")
+                {
+                    UCSignUpStep1.Visibility = Visibility.Collapsed;
+                    UCSignUpStep2.Visibility = Visibility.Visible;
+                    User = new User(UCSignUpStep1.ucUserName.textbox.Text.ToString(), UCSignUpStep1.ucPassword.textbox.Text.ToString(),
+                   UCSignUpStep1.ucName.textbox.Text.ToString(), UCSignUpStep1.selectedCity, UCSignUpStep1.selectedDistrict,
+                   UCSignUpStep1.ucWard.textbox.Text.ToString(), UCSignUpStep1.ucPhone.textbox.Text.ToString(), UCSignUpStep1.ucEmail.textbox.Text.ToString(), null);
+                    Random random = new Random();
+                    // Any random integer
+                    verifycode = random.Next().ToString();
+                    SendMail.Send(verifycode, UCSignUpStep1.ucEmail.textbox.Text.ToString());
+
+                }
+                else
+                {
+                    MessageBox.Show("Please complete all information");
+                }
   
             }
 

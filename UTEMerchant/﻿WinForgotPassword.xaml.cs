@@ -53,6 +53,10 @@ namespace UTEMerchant
                     Step3.Visibility = Visibility.Collapsed;
                     Step4.Visibility = Visibility.Collapsed;
                 }
+                else
+                {
+                    MessageBox.Show("Email is not registered !!!");
+                }
 
             }
         }
