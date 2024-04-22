@@ -34,8 +34,8 @@ namespace UTEMerchant
         public UC_PurchasingUI()
         {
             InitializeComponent();
-            }
- 
+        }
+
         private void XIcon_MouseDown(object sender, MouseButtonEventArgs e)
         {
             txtSearchBox.Text = "";
@@ -76,7 +76,7 @@ namespace UTEMerchant
             }
             else dpRightSideBar.Visibility = Visibility.Collapsed;
         }
-        
+
 
         private void OnItemButtonAddToCartClicked(object sender, RoutedEventArgs e)
         {
@@ -114,7 +114,7 @@ namespace UTEMerchant
             {
                 Seller seller = _sellerDao.GetSeller(clickedItem.info.SellerID);
                 WinDeltailItem winDeltailItem = new WinDeltailItem(clickedItem.info, seller, IdUser);
-                winDeltailItem.ShowDialog();                
+                winDeltailItem.ShowDialog();
             }
         }
 
@@ -140,32 +140,10 @@ namespace UTEMerchant
             grdPurchasingInterface.IsEnabled = true;
         }
 
-        private void UserControl_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            InitializeComponent();
-
-            wpItemsList.Children.Clear();
-            _items = _itemDao.Load();
-            foreach (Item item in _items)
-            {
-                UC_ItemView uc_item = new UC_ItemView(item);
-                uc_item.ItemClicked += OnItemButtonAddToCartClicked;
-                uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
-                wpItemsList.Children.Add(uc_item);
-            }
-        }
 
         private void uc_ShoppingCart_Loaded(object sender, RoutedEventArgs e)
         {
-            wpItemsList.Children.Clear();
-            _items = _itemDao.Load();
-            foreach (Item item in _items)
-            {
-                UC_ItemView uc_item = new UC_ItemView(item);
-                uc_item.ItemClicked += OnItemButtonAddToCartClicked;
-                uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
-                wpItemsList.Children.Add(uc_item);
-            }
+            uc_ShoppingCart.CheckCart();
         }
 
         private void RecalculateTotalPrice(object sender, RoutedEventArgs e)
@@ -202,6 +180,21 @@ namespace UTEMerchant
             {
                 uc_ShoppingCart.spItems.Children.Clear();
                 tbTotalPriceValue.Text = "0";
+            }
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            wpItemsList.Children.Clear();
+            _items = _itemDao.Load();
+            _items.Sort((item1, item2) => item1.Sale_Status.CompareTo(item2.Sale_Status));
+            foreach (Item item in _items)
+            {
+                UC_ItemView uc_item = new UC_ItemView(item);
+                uc_item.ItemClicked += OnItemButtonAddToCartClicked;
+                uc_ShoppingCart.CheckCart();
+                uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
+                wpItemsList.Children.Add(uc_item);
             }
         }
     }

@@ -8,7 +8,7 @@
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d"
              d:DesignHeight="800" d:DesignWidth="1400"
-             IsVisibleChanged="UserControl_IsVisibleChanged"
+             Loaded="UserControl_Loaded"
              >
 
     <UserControl.Resources>
