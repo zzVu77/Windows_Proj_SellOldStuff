@@ -3,6 +3,8 @@ using MimeKit;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Xml.Linq;
+using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
 
 namespace UTEMerchant
 {
@@ -53,8 +56,12 @@ namespace UTEMerchant
                     UCSignUpStep1.Visibility = Visibility.Collapsed;
                     UCSignUpStep2.Visibility = Visibility.Visible;
                     User = new User(UCSignUpStep1.ucUserName.textbox.Text.ToString(), UCSignUpStep1.ucPassword.textbox.Text.ToString(),
-                   UCSignUpStep1.ucName.textbox.Text.ToString(), UCSignUpStep1.selectedCity, UCSignUpStep1.selectedDistrict,
-                   UCSignUpStep1.ucWard.textbox.Text.ToString(), UCSignUpStep1.ucPhone.textbox.Text.ToString(), UCSignUpStep1.ucEmail.textbox.Text.ToString(), null);
+                    UCSignUpStep1.ucName.textbox.Text.ToString(), UCSignUpStep1.selectedCity, UCSignUpStep1.selectedDistrict,
+                    UCSignUpStep1.ucWard.textbox.Text.ToString(), UCSignUpStep1.ucPhone.textbox.Text.ToString(), 
+                    UCSignUpStep1.ucEmail.textbox.Text.ToString(),
+                    @"D:\code\winPrograming\Git\Window_Proj_UTEMerchant\UTEMerchant\Img\icons8-account-50.png");
+
+  
                     Random random = new Random();
                     // Any random integer
                     verifycode = random.Next().ToString();

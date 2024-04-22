@@ -30,6 +30,7 @@ namespace UTEMerchant
         private void textUserName_MouseDown(object sender, MouseButtonEventArgs e)
         {
             txtEmail.Focus();
+
         }
 
         private void txtUserName_TextChanged(object sender, TextChangedEventArgs e)
