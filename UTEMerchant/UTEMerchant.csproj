@@ -197,6 +197,9 @@
     </Compile>
     <Compile Include="Seller.cs" />
     <Compile Include="Seller_DAO.cs" />
+    <Compile Include="UC_SellerProfile.xaml.cs">
+      <DependentUpon>UC_SellerProfile.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UC_StarRating.xaml.cs">
       <DependentUpon>UC_StarRating.xaml</DependentUpon>
     </Compile>
@@ -270,6 +273,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UC_RatingUI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC_SellerProfile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

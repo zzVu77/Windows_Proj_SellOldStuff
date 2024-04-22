@@ -6,14 +6,28 @@
              xmlns:local="clr-namespace:UTEMerchant"
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d" 
-              d:DesignHeight="800" d:DesignWidth="1400">
-    <Grid Background="Transparent">
+              d:DesignHeight="800" d:DesignWidth="1400" IsVisibleChanged="UserControl_IsVisibleChanged">
+    <Grid  Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="41*"/>
+            <RowDefinition Height="359*"/>
+
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="129*"/>
             <ColumnDefinition Width="221*"/>
         </Grid.ColumnDefinitions>
+        
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="2"
+                   Text="BUYER INFORMATION"
+                   FontSize="50"
+                   VerticalAlignment="Bottom"
+                   HorizontalAlignment="Right"
+                   FontFamily="Segoe UI Black"
+                   Margin="0 0 25 0"
+                   />
 
-        <StackPanel Grid.Column="0" VerticalAlignment="Top" Margin="50 60 0 0" Height="379">
+        <StackPanel Grid.Column="0" Grid.Row="1" VerticalAlignment="Top" Margin="50 60 0 0" Height="379">
 
             <Border Grid.Column="0" 
                     Grid.Row="0"  
@@ -44,7 +58,7 @@
 
         </StackPanel >
 
-        <StackPanel Grid.Column="1"  Margin="45,45,0,0" HorizontalAlignment="Left" Width="530">
+        <StackPanel Grid.Column="1" Grid.Row="1"  Margin="45,45,0,0" HorizontalAlignment="Left" Width="530">
 
             <DockPanel Margin="0 5 0 15">
                 <Label Content="User ID: " VerticalAlignment="Center" FontFamily="Segoe UI Black" Width="110" FontSize="15"/>
@@ -57,6 +71,7 @@
                      FontSize="15"
                      FontWeight="SemiBold"
                      BorderBrush="DarkGray"
+                     Background="#f4f4f4"
                      BorderThickness="1.5"
                      VerticalAlignment="Center"
                      HorizontalAlignment="Left"  
@@ -68,7 +83,7 @@
             <DockPanel Margin="0 5 0 15">
                 <Label Content="Full Name: " VerticalAlignment="Center" FontFamily="Segoe UI Black" Width="110" FontSize="15"/>
 
-                <TextBox x:Name="txtFullName"  
+                <TextBox x:Name="txtUserFullName"  
                          Grid.Row="0"
                          Style="{StaticResource DefaultTextBoxStyle}"
                          Width="420"
@@ -76,6 +91,7 @@
                          Height="45"    
                          FontSize="15"
                          FontWeight="SemiBold"
+                         Background="#f4f4f4"
                          BorderBrush="DarkGray"
                          BorderThickness="1.5"
                          VerticalAlignment="Center"
@@ -95,6 +111,7 @@
                          FontSize="15"
                          FontWeight="SemiBold"
                          BorderBrush="DarkGray"
+                         Background="#f4f4f4"
                          BorderThickness="1.5"
                          VerticalAlignment="Center"
                          HorizontalAlignment="Left"    
@@ -114,6 +131,7 @@
                          FontSize="15"
                          FontWeight="SemiBold"
                          BorderBrush="DarkGray"
+                         Background="#f4f4f4"
                          BorderThickness="1.5"
                          VerticalAlignment="Center"
                          HorizontalAlignment="Left"    
@@ -151,6 +169,7 @@
                          FontSize="15"
                          FontWeight="SemiBold"
                          BorderBrush="DarkGray"
+                         Background="#f4f4f4"
                          BorderThickness="1.5"
                          VerticalAlignment="Center"
                          HorizontalAlignment="Left"    
@@ -187,6 +206,7 @@
                          FontSize="15"
                          FontWeight="SemiBold"
                          BorderBrush="DarkGray"
+                         Background="#f4f4f4"
                          BorderThickness="1.5"
                          VerticalAlignment="Center"
                          HorizontalAlignment="Left"    
@@ -208,6 +228,7 @@
                          FontSize="15"
                          FontWeight="SemiBold"
                          BorderBrush="DarkGray"
+                         Background="#f4f4f4"
                          BorderThickness="1.5"
                          VerticalAlignment="Center"
                          HorizontalAlignment="Left"    

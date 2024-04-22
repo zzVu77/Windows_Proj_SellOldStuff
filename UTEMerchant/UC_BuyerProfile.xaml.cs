@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Media;
 
 namespace UTEMerchant
 {
@@ -37,7 +38,7 @@ namespace UTEMerchant
             {
                 cbPickupCity.Items.Add(address.City);
             }
-            txtFullName.Text = user.Name;
+            txtUserFullName.Text = user.Name;      
             txtUserID.Text = user.Id_user.ToString();
             txtUserEmail.Text = user.Email;
             txtUserPhoneNumber.Text = user.Phone.ToString();
@@ -48,6 +49,21 @@ namespace UTEMerchant
             var resourceUri = new Uri(user.Image_Path, UriKind.RelativeOrAbsolute);
             imgUserPhoto.Source = new BitmapImage(resourceUri);
 
+        }
+
+        private void ChangeTextBoxBackGroundEdit()
+        {
+            txtUserFullName.Background = Brushes.White;
+            txtUserPhoneNumber.Background = Brushes.White;
+            txtUserEmail.Background = Brushes.White;
+            txtUserWard.Background = Brushes.White;
+        }    
+        private void ChangeTextBoxBackGroundSave()
+        {
+            txtUserFullName.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#f4f4f4"));
+            txtUserPhoneNumber.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#f4f4f4"));
+            txtUserEmail.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#f4f4f4"));
+            txtUserWard.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#f4f4f4"));
         }
         private void cbPickupCity_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -75,12 +91,19 @@ namespace UTEMerchant
         }
 
 
+
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
             cbPickupCity.Visibility = Visibility.Visible;
             txtUserCity.Visibility = Visibility.Collapsed;
             cbPickupDistrict.Visibility = Visibility.Visible;
             txtUserDistrict.Visibility = Visibility.Collapsed;
+            ChangeTextBoxBackGroundEdit();
+
+            txtUserFullName.IsReadOnly = false;          
+            txtUserPhoneNumber.IsReadOnly = false;          
+            txtUserEmail.IsReadOnly = false;           
+            txtUserWard.IsReadOnly = false;          
 
             for (int i = 0; i < distinctCities.Count; i++)
             {
@@ -109,6 +132,8 @@ namespace UTEMerchant
             string selectedValue = cbPickupCity.SelectedItem.ToString();
             txtUserCity.Text = selectedValue;
 
+            ChangeTextBoxBackGroundSave();
+
             selectedValue = cbPickupDistrict.SelectedItem.ToString();
             txtUserDistrict.Text = selectedValue;
 
@@ -118,6 +143,7 @@ namespace UTEMerchant
             txtUserDistrict.Visibility = Visibility.Visible;
 
             btnSave.Visibility = Visibility.Collapsed;
+         
         }
 
         private void btnChangePhoto_Click(object sender, RoutedEventArgs e)
@@ -136,6 +162,14 @@ namespace UTEMerchant
                 imgUserPhoto.Source = bitmap;
                 // Xử lý đường dẫn đã chọn ở đây
             }
+        }
+
+        private void UserControl_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if(this.Visibility == Visibility.Collapsed)
+            {
+                btnSave.Visibility = Visibility.Collapsed;
+            }    
         }
     }
 }

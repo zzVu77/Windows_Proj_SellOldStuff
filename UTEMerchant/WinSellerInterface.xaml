@@ -305,36 +305,38 @@
                             <MenuItem x:Name="mnuitProfile"
                                       Header="Profile"
                                       FontWeight="SemiBold"
-                                      Style="{StaticResource SubMenu_MenuItem}"  >
+                                      Style="{StaticResource SubMenu_MenuItem}" Click="mnuitProfile_Click_1"   >
                                 <MenuItem.Icon>
                                     <Image Source="{Icon:ModernImage Brush=Black, Kind=PeopleProfile}" 
                                            Stretch="Uniform"/>
-                                </MenuItem.Icon>
-                                
-                                <MenuItem x:Name="mnuitBuyerProfile"
+                                </MenuItem.Icon>                              
+                            </MenuItem>
+                            <MenuItem x:Name="mnuitBuyerProfile"
                                           Header="Buyer Profile"
                                           FontWeight="SemiBold"
+                                          Margin="30 0 0 0"
+                                          Visibility="Collapsed"
                                           Style="{StaticResource Menu_Item}"
                                           Background="{Binding ElementName=mnuitSettings, Path=Background}"
                                           Width="{Binding ElementName=mnuitSettings,Path=ActualWidth}" Click="mnuitBuyerProfile_Click">
-                                    <MenuItem.Icon>
-                                        <Icon:PackIconMaterial Kind="Account" VerticalAlignment="Center" Margin="0 1 8 0" Width="18" Height="18" Foreground="Black"/>
-                                    </MenuItem.Icon>                              
-                                </MenuItem>
-                                
-                                <MenuItem x:Name="mnuitSellerProfile"
+                                <MenuItem.Icon>
+                                    <Icon:PackIconMaterial Kind="Account" VerticalAlignment="Center" Margin="0 1 8 0" Width="18" Height="18" Foreground="Black"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+
+                            <MenuItem x:Name="mnuitSellerProfile"
                                           Header="Seller Profile"
                                           FontWeight="SemiBold"
+                                          Margin="30 0 0 0"
+                                          Visibility="Collapsed"
                                           Style="{StaticResource Menu_Item}"
                                           Background="{Binding ElementName=mnuitSettings, Path=Background}"
-                                          Width="{Binding ElementName=mnuitSettings,Path=ActualWidth}">
-                                    <MenuItem.Icon>
-                                        <Icon:PackIconMaterial Kind="AccountTie" VerticalAlignment="Center" Margin="0 1 8 0" Width="18" Height="18" Foreground="Black"/>
-                                    </MenuItem.Icon>
-                                </MenuItem>
-
-
+                                          Width="{Binding ElementName=mnuitSettings,Path=ActualWidth}" Click="mnuitSellerProfile_Click">
+                                <MenuItem.Icon>
+                                    <Icon:PackIconMaterial Kind="AccountTie" VerticalAlignment="Center" Margin="0 1 8 0" Width="18" Height="18" Foreground="Black"/>
+                                </MenuItem.Icon>
                             </MenuItem>
+                            
                             <MenuItem x:Name="mnuitPurchase"
                                       Header="Purchase"     
                                       FontWeight="SemiBold"
@@ -416,6 +418,9 @@
                 <local:UC_BuyerProfile x:Name="uc_BuyerProfile"
                                   Visibility="Collapsed"
                                   Background="Transparent"/>
+
+                <local:UC_SellerProfile x:Name="uc_SellerProfile"
+                                        Visibility="Collapsed"/>
             </Grid>
 
         

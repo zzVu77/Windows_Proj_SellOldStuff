@@ -138,6 +138,9 @@ namespace UTEMerchant
             uc_Delivery.Visibility = Visibility.Collapsed;
             uc_PurchasingUI.Visibility = Visibility.Visible;
             uc_BuyerProfile.Visibility = Visibility.Collapsed;
+            uc_SellerProfile.Visibility = Visibility.Collapsed;
+            mnuitSellerProfile.Visibility = Visibility.Collapsed;
+            mnuitBuyerProfile.Visibility = Visibility.Collapsed;
         }
 
         private void mnuitStock_Click(object sender, RoutedEventArgs e)
@@ -170,6 +173,9 @@ namespace UTEMerchant
             uc_PurchasingUI.Visibility = Visibility.Collapsed;
             uc_Delivery.Visibility = Visibility.Visible;
             uc_BuyerProfile.Visibility=Visibility.Collapsed;
+            uc_SellerProfile.Visibility = Visibility.Collapsed;
+            mnuitSellerProfile.Visibility = Visibility.Collapsed;
+            mnuitBuyerProfile.Visibility = Visibility.Collapsed;
         }
 
         // This method is called when the user clicks the Start Trading button in the Start Selling UC
@@ -213,18 +219,30 @@ namespace UTEMerchant
             uc_Delivery.Load();
         }
 
-        private void mnuitProfile_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
         private void mnuitBuyerProfile_Click(object sender, RoutedEventArgs e)
         {
             grdSellerUI.Visibility = Visibility.Collapsed;
             uc_PurchasingUI.Visibility = Visibility.Collapsed;
             uc_Delivery.Visibility = Visibility.Collapsed;
+            uc_SellerProfile.Visibility = Visibility.Collapsed;
             uc_BuyerProfile.Visibility = Visibility.Visible;
             uc_BuyerProfile.SetDefault(User);
+        }
+
+        private void mnuitSellerProfile_Click(object sender, RoutedEventArgs e)
+        {
+            grdSellerUI.Visibility = Visibility.Collapsed;
+            uc_PurchasingUI.Visibility = Visibility.Collapsed;
+            uc_Delivery.Visibility = Visibility.Collapsed;
+            uc_SellerProfile.Visibility = Visibility.Visible;
+            uc_BuyerProfile.Visibility = Visibility.Collapsed;
+            uc_SellerProfile.SetDefault(User, Seller);
+        }       
+
+        private void mnuitProfile_Click_1(object sender, RoutedEventArgs e)
+        {
+            mnuitSellerProfile.Visibility = Visibility.Visible;
+            mnuitBuyerProfile.Visibility = Visibility.Visible;
         }
     }
 }
