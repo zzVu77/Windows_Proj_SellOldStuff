@@ -64,5 +64,10 @@ namespace UTEMerchant
                 new SqlParameter("@Image_path", (object)user.Image_Path ?? DBNull.Value)
                 );
         }
+
+        public User GetUserByID (int id)
+        {
+            return db.LoadData<User>($"SELECT * FROM [dbo].[User] WHERE Id_user = {id}").FirstOrDefault();
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -24,17 +25,19 @@ namespace UTEMerchant
     /// </summary>
     public partial class UC_PurchasingUI : UserControl
     {
-        private Item_DAO Item_dao = new Item_DAO();
-        private Seller_DAO seller_DAO = new Seller_DAO();
-        List<Item> items = new List<Item>();
-        public int Id_user { get; set; }
+        private readonly Item_DAO _itemDao = new Item_DAO();
+        private readonly Seller_DAO _sellerDao = new Seller_DAO();
+        List<Item> _items = new List<Item>();
+        public int IdUser { get; set; }
+
+
         public UC_PurchasingUI()
         {
             InitializeComponent();
             wpItemsList.Children.Clear();
-            items = Item_dao.Load();
-            items.Sort((item1, item2) => item1.Sale_Status.CompareTo(item2.Sale_Status));
-            foreach (Item item in items)
+            _items = _itemDao.Load();
+            _items.Sort((item1, item2) => item1.Sale_Status.CompareTo(item2.Sale_Status));
+            foreach (Item item in _items)
             {
                 UC_ItemView uc_item = new UC_ItemView(item);
                 uc_item.ItemClicked += OnItemButtonAddToCartClicked;
@@ -42,9 +45,8 @@ namespace UTEMerchant
                 uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
                 wpItemsList.Children.Add(uc_item);
             }
-            
         }
- 
+
         private void XIcon_MouseDown(object sender, MouseButtonEventArgs e)
         {
             txtSearchBox.Text = "";
@@ -87,13 +89,32 @@ namespace UTEMerchant
         }
         
 
-        private void OnItemButtonAddToCartClicked(object sender, EventArgs e)
+        private void OnItemButtonAddToCartClicked(object sender, RoutedEventArgs e)
         {
             // The button in UC_ItemView was clicked!
             if (sender is UC_ItemView clickedItemView)
             {
-                UC_ShoppingCartItemView uc_ShoppingCartItemView = new UC_ShoppingCartItemView(clickedItemView.info);
-                uc_ShoppingCart.spItems.Children.Add(uc_ShoppingCartItemView);
+                Item clickedItem = clickedItemView.info;
+
+                // Find existing seller view, otherwise create a new one
+                var sellerView = uc_ShoppingCart.spItems.Children.OfType<UC_ShoppingCartItemsView>()
+                    .FirstOrDefault(seller => seller.GetSeller().SellerID == clickedItem.SellerID);
+
+                if (sellerView == null)
+                {
+                    sellerView = new UC_ShoppingCartItemsView(_sellerDao.GetSeller(clickedItem.SellerID));
+                    uc_ShoppingCart.spItems.Children.Add(sellerView);
+                }
+
+                // Check if the item is already in the cart
+                if (sellerView.spItems.Children.OfType<UC_ItemInShoppingCartItemsView>()
+                    .Any(item => item.GetItem().Item_Id == clickedItem.Item_Id))
+                {
+                    return;
+                }
+                sellerView.AddItem(clickedItem);
+                sellerView.spItems.Children.OfType<UC_ItemInShoppingCartItemsView>().Last().TogItemChecked += RecalculateTotalPrice;
+                sellerView.spItems.Children.OfType<UC_ItemInShoppingCartItemsView>().Last().TogItemUnchecked += RecalculateTotalPrice;
                 uc_ShoppingCart.CheckCart();
             }
         }
@@ -102,14 +123,14 @@ namespace UTEMerchant
         {
             if (sender is UC_ItemView clickedItem)
             {
-                Seller seller = seller_DAO.GetSeller(clickedItem.info.SellerID);
-                WinDeltailItem winDeltailItem = new WinDeltailItem(clickedItem.info, seller, Id_user);
+                Seller seller = _sellerDao.GetSeller(clickedItem.info.SellerID);
+                WinDeltailItem winDeltailItem = new WinDeltailItem(clickedItem.info, seller, IdUser);
                 winDeltailItem.ShowDialog();
                 wpItemsList.Children.Clear();
 
-                items = Item_dao.Load();
-                items.Sort((item1, item2) => item1.Sale_Status.CompareTo(item2.Sale_Status));
-                foreach (Item item in items)
+                _items = _itemDao.Load();
+                _items.Sort((item1, item2) => item1.Sale_Status.CompareTo(item2.Sale_Status));
+                foreach (Item item in _items)
                 {
                     UC_ItemView uc_item = new UC_ItemView(item);
                     uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
@@ -119,24 +140,6 @@ namespace UTEMerchant
             }
         }
 
-        private void ClickedItem_ItemClicked(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            InitializeComponent();
-            wpItemsList.Children.Clear();
-          
-            items = Item_dao.Load();
-            foreach (Item item in items)
-            {
-                UC_ItemView uc_item = new UC_ItemView(item);
-                uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
-                wpItemsList.Children.Add(uc_item);
-            }
-        }
         private void btnRefresh_Click(object sender, RoutedEventArgs e)
         {
             this.wpItemsList.Children.Clear();
@@ -164,13 +167,66 @@ namespace UTEMerchant
             InitializeComponent();
             wpItemsList.Children.Clear();
 
-            items = Item_dao.Load();
-            items.Sort((item1, item2) => item1.Sale_Status.CompareTo(item2.Sale_Status));
-            foreach (Item item in items)
+            _items = _itemDao.Load();
+            _items.Sort((item1, item2) => item1.Sale_Status.CompareTo(item2.Sale_Status));
+            foreach (Item item in _items)
             {
                 UC_ItemView uc_item = new UC_ItemView(item);
                 uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
                 wpItemsList.Children.Add(uc_item);
+            }
+        }
+
+        private void uc_ShoppingCart_Loaded(object sender, RoutedEventArgs e)
+        {
+            wpItemsList.Children.Clear();
+            _items = _itemDao.Load();
+            foreach (Item item in _items)
+                _items = _itemDao.Load();
+            _items.Sort((item1, item2) => item1.Sale_Status.CompareTo(item2.Sale_Status));
+            foreach (Item item in _items)
+            {
+                UC_ItemView uc_item = new UC_ItemView(item);
+                uc_item.ItemClicked += OnItemButtonAddToCartClicked;
+                uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
+                wpItemsList.Children.Add(uc_item);
+            }
+        }
+
+        private void RecalculateTotalPrice(object sender, RoutedEventArgs e)
+        {
+            if (sender is UC_ItemInShoppingCartItemsView item)
+            {
+                double total = Double.Parse(tbTotalPriceValue.Text);
+
+                if (item.togItem.IsChecked == true)
+                {
+                    total += item.GetItem().Price;
+                }
+                else
+                {
+                    total -= item.GetItem().Price;
+                }
+
+                tbTotalPriceValue.Text = total.ToString(CultureInfo.CurrentCulture);
+            }
+        }
+
+        private void btnCheckout_Click(object sender, RoutedEventArgs e)
+        {
+            Dictionary<Seller, List<Item>> items = new Dictionary<Seller, List<Item>>();
+            foreach (UC_ShoppingCartItemsView sellerView in uc_ShoppingCart.spItems.Children.OfType<UC_ShoppingCartItemsView>())
+            {
+                items.Add(sellerView.GetSeller(), sellerView.GetSelectedItems());
+            }
+
+            WinPlaceOrder winPlaceOrder = new WinPlaceOrder(items, new user_DAO().GetUserByID(IdUser));
+            winPlaceOrder.ShowDialog();
+
+            if (winPlaceOrder.IsPlaceOrderComplete)
+            {
+                uc_ShoppingCart.spItems.Children.Clear();
+                tbTotalPriceValue.Text = "0";
             }
         }
     }

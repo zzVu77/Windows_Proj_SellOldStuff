@@ -23,7 +23,7 @@
                   Margin="8,0,8,0"  Height="307" 
                   VerticalAlignment="Center" 
                   Background="White" 
-BorderBrush="#FF736161">
+                  BorderBrush="#FF736161">
 
             <!--Card Content section-->
             <Border CornerRadius="4,4,0,0" Width="160" Height="160">
