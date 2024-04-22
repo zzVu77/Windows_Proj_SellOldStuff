@@ -95,7 +95,8 @@ namespace UTEMerchant
             uc_StartSelling.btnStartSelling.Click += OnStartTradingButtonClicked;
             uc_SellerRegistration.btnDone.Click += OnDoneRegistrationButtonClicked;
             uc_RegistrationComplete.btnRefresh.Click += OnRefreshButtonClicked;
-            uc_BuyerProfile.SavedButtonClicked += UCProfile_SavedButtonClicked;
+            uc_BuyerProfile.SavedButtonClicked += UCUserProfile_SavedButtonClicked;
+            uc_SellerProfile.SavedButtonClicked += UCSellerProfile_SavedButtonClicked;
         }
 
         private bool IsMaximize = false;
@@ -245,7 +246,7 @@ namespace UTEMerchant
             mnuitSellerProfile.Visibility = Visibility.Visible;
             mnuitBuyerProfile.Visibility = Visibility.Visible;
         }
-        private void UCProfile_SavedButtonClicked(object sender, EventArgs e)
+        private void UCUserProfile_SavedButtonClicked(object sender, EventArgs e)
         {
             if (sender is UC_BuyerProfile clickedItemView)
             {
@@ -257,11 +258,21 @@ namespace UTEMerchant
                 imgUserAvatar.ImageSource = bitmap;
                 txbName.Text = uc_BuyerProfile.txtUserFullName.Text;
             }
-            else 
-            {
 
+        }
+        private void UCSellerProfile_SavedButtonClicked(object sender, EventArgs e)
+        {
+
+            if (sender is UC_SellerProfile clickedItemView)
+            {
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(uc_SellerProfile.image_path.ToString(), UriKind.RelativeOrAbsolute);
+                bitmap.EndInit();
+                imgUserAvatar.ImageSource = bitmap;
             }
         }
     }
+
 }
 

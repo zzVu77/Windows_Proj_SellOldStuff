@@ -63,13 +63,28 @@ namespace UTEMerchant
             txtUserPhoneNumber.Background = Brushes.White;
             txtUserEmail.Background = Brushes.White;
             txtUserWard.Background = Brushes.White;
-        }    
+
+            txtUserFullName.IsReadOnly = false;
+            txtUserPhoneNumber.IsReadOnly = false;
+            txtUserEmail.IsReadOnly = false;
+            txtUserWard.IsReadOnly = false;
+        }
         private void ChangeTextBoxBackGroundSave()
         {
             txtUserFullName.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#f4f4f4"));
             txtUserPhoneNumber.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#f4f4f4"));
             txtUserEmail.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#f4f4f4"));
             txtUserWard.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#f4f4f4"));
+
+            btnSave.Visibility = Visibility.Collapsed;
+            txtUserFullName.IsReadOnly = true;
+            txtUserPhoneNumber.IsReadOnly = true;
+            txtUserEmail.IsReadOnly = true;
+            txtUserWard.IsReadOnly = true;
+            cbPickupCity.Visibility = Visibility.Collapsed;
+            cbPickupDistrict.Visibility = Visibility.Collapsed;
+            txtUserCity.Visibility = Visibility.Visible;
+            txtUserDistrict.Visibility = Visibility.Visible;
         }
         private void cbPickupCity_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -153,8 +168,8 @@ namespace UTEMerchant
             txtUserCity.Visibility = Visibility.Visible;
             cbPickupDistrict.Visibility = Visibility.Collapsed;
             txtUserDistrict.Visibility = Visibility.Visible;
-
             btnSave.Visibility = Visibility.Collapsed;
+
             user.Id_user = Int32.Parse(txtUserID.Text);
             user.Name = txtUserFullName.Text;
             user.Email = txtUserEmail.Text;
@@ -195,7 +210,7 @@ namespace UTEMerchant
         {
             if(this.Visibility == Visibility.Collapsed)
             {
-                btnSave.Visibility = Visibility.Collapsed;
+                ChangeTextBoxBackGroundSave();
             }    
         }
     }

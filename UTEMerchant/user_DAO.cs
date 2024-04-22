@@ -57,5 +57,19 @@ namespace UTEMerchant
                 );
 
         }
+        public void UpdateUserThroughSeller (User user)
+        {
+            string updateSellerSql = @"
+                        UPDATE [dbo].[User]
+                        SET email = @email,
+                            Image_path = @imagePath
+                        WHERE Id_user = @Id_user
+                    ";
+            db.ExecuteNonQuery(updateSellerSql,
+                new SqlParameter("@email", user.Email),
+                new SqlParameter("@imagePath", user.Image_Path),
+                new SqlParameter("@Id_user", user.Id_user));
+
+        }
     }
 }

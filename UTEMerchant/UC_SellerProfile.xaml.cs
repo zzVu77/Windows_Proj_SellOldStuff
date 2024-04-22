@@ -22,12 +22,14 @@ namespace UTEMerchant
     {
         public event EventHandler SavedButtonClicked;
         Seller seller = new Seller();
+        User user = new User();
         string selectedCity;
         string selectedDistrict;
         Seller_DAO seller_dao = new Seller_DAO();
+        user_DAO user_dao = new user_DAO();
         Address_DAO address_dao = new Address_DAO();
         List<Address> distinctCities;
-        private string image_path;
+        public string image_path;
         public UC_SellerProfile()
         {
             InitializeComponent();
@@ -35,6 +37,7 @@ namespace UTEMerchant
         public void SetDefault(User user, Seller seller)
         {
             this.seller = seller;
+            this.user = user;
             distinctCities = address_dao.Load();
             cbPickupCity.Items.Clear();
             foreach (Address address in distinctCities)
@@ -48,8 +51,8 @@ namespace UTEMerchant
             txtSellerCity.Text = seller.City;
             txtSellerDistrict.Text = seller.District;
             txtSellerWard.Text = seller.Ward;
-
-            var resourceUri = new Uri(user.Image_Path, UriKind.RelativeOrAbsolute);
+            image_path = user.Image_Path;
+            var resourceUri = new Uri(image_path, UriKind.RelativeOrAbsolute);
             imgSellerPhoto.Source = new BitmapImage(resourceUri);
 
         }
@@ -57,16 +60,31 @@ namespace UTEMerchant
         private void ChangeTextBoxBackGroundEdit()
         {
             txtSellerShopName.Background = Brushes.White;
-            txtSellerShopEmail.Background = Brushes.White;
             txtSellerPhoneNumber.Background = Brushes.White;
+            txtSellerShopEmail.Background = Brushes.White;
             txtSellerWard.Background = Brushes.White;
+
+            txtSellerShopName.IsReadOnly = false;
+            txtSellerPhoneNumber.IsReadOnly = false;
+            txtSellerShopEmail.IsReadOnly = false;
+            txtSellerWard.IsReadOnly = false;
         }
         private void ChangeTextBoxBackGroundSave()
         {
             txtSellerShopName.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#f4f4f4"));
-            txtSellerShopEmail.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#f4f4f4"));
             txtSellerPhoneNumber.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#f4f4f4"));
+            txtSellerShopEmail.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#f4f4f4"));
             txtSellerWard.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#f4f4f4"));
+
+            btnSave.Visibility = Visibility.Collapsed;
+            txtSellerShopName.IsReadOnly = true;
+            txtSellerPhoneNumber.IsReadOnly = true;
+            txtSellerShopEmail.IsReadOnly = true;
+            txtSellerWard.IsReadOnly = true;
+            cbPickupCity.Visibility = Visibility.Collapsed;
+            cbPickupDistrict.Visibility = Visibility.Collapsed;
+            txtSellerCity.Visibility = Visibility.Visible;
+            txtSellerDistrict.Visibility = Visibility.Visible;
         }
         private void cbPickupCity_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -159,7 +177,7 @@ namespace UTEMerchant
 
             seller.SellerID = Int32.Parse(txtSellerID.Text);
             seller.ShopName = txtSellerShopName.Text;
-            //seller.email = txtSellerShopEmail.Text;
+            user.Email = txtSellerShopEmail.Text;
             if (!string.IsNullOrEmpty(selectedCity))
                 seller.City = selectedCity;
             else seller.City = txtSellerCity.Text;
@@ -168,15 +186,16 @@ namespace UTEMerchant
             else seller.District = txtSellerDistrict.Text;
             seller.Ward = txtSellerWard.Text;
             seller.Phone = txtSellerPhoneNumber.Text;
-            /*if (!string.IsNullOrEmpty(image_path))
-                seller.Image_Path = image_path;*/
+            
+            user.Image_Path = image_path;
             seller_dao.UpdateSeller(seller);
+            user_dao.UpdateUserThroughSeller(user);
             SavedButtonClicked?.Invoke(this, EventArgs.Empty);
         }
 
         private void btnChangePhoto_Click(object sender, RoutedEventArgs e)
         {
-            string image_path;
+
             Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
             openFileDialog.Filter = "Tất cả các tệp (*.*)|*.*";
             if (openFileDialog.ShowDialog() == true)
@@ -196,7 +215,7 @@ namespace UTEMerchant
         {
             if (this.Visibility == Visibility.Collapsed)
             {
-                btnSave.Visibility = Visibility.Collapsed;
+                ChangeTextBoxBackGroundSave();
             }
         }
     }
