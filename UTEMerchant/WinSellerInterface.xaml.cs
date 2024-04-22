@@ -257,6 +257,10 @@ namespace UTEMerchant
                 imgUserAvatar.ImageSource = bitmap;
                 txbName.Text = uc_BuyerProfile.txtUserFullName.Text;
             }
+            else 
+            {
+
+            }
         }
     }
 }

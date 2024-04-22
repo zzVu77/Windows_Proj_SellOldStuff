@@ -20,6 +20,7 @@ namespace UTEMerchant
     /// </summary>
     public partial class UC_SellerProfile : UserControl
     {
+        public event EventHandler SavedButtonClicked;
         Seller seller = new Seller();
         string selectedCity;
         string selectedDistrict;
@@ -170,6 +171,7 @@ namespace UTEMerchant
             /*if (!string.IsNullOrEmpty(image_path))
                 seller.Image_Path = image_path;*/
             seller_dao.UpdateSeller(seller);
+            SavedButtonClicked?.Invoke(this, EventArgs.Empty);
         }
 
         private void btnChangePhoto_Click(object sender, RoutedEventArgs e)
