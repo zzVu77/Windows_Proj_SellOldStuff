@@ -55,6 +55,7 @@ namespace UTEMerchant
                 
             }
             else this.uc_SellerUI = new UC_SellerUI();
+
             grdSellerUI.Children.Add(uc_SellerUI);
             uc_SellerUI.Visibility = Visibility.Collapsed;
             uc_SellerUI.HorizontalAlignment = HorizontalAlignment.Stretch;
