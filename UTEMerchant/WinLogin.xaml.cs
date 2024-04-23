@@ -24,7 +24,7 @@ namespace UTEMerchant
         public WinLogin()
         {
             InitializeComponent();
-            user_DAO a = new user_DAO();
+           
 
             users= dao.Load();
         }
@@ -74,6 +74,7 @@ namespace UTEMerchant
             this.Hide();
             var forgot = new WinForgotPassword();
             forgot.ShowDialog();
+            users = dao.Load();
             this.Show();
         }
 
@@ -82,6 +83,7 @@ namespace UTEMerchant
             this.Hide();
             var signup = new WinSignUp();
             signup.ShowDialog();
+            users = dao.Load();
             this.Show();
         }
 

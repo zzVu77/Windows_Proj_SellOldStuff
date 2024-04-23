@@ -240,11 +240,26 @@
     <Compile Include="UC_FeedBackUI.xaml.cs">
       <DependentUpon>UC_FeedBackUI.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UC_ForgotPasswordCompleted.xaml.cs">
+      <DependentUpon>UC_ForgotPasswordCompleted.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_ForgotPasswordStep1.xaml.cs">
+      <DependentUpon>UC_ForgotPasswordStep1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_ForgotPasswordStep2.xaml.cs">
+      <DependentUpon>UC_ForgotPasswordStep2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_ForgotPasswordStep3.xaml.cs">
+      <DependentUpon>UC_ForgotPasswordStep3.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UC_RatingUI.xaml.cs">
       <DependentUpon>UC_RatingUI.xaml</DependentUpon>
     </Compile>
     <Compile Include="Seller.cs" />
     <Compile Include="Seller_DAO.cs" />
+    <Compile Include="UC_RegistrationCompleted.xaml.cs">
+      <DependentUpon>UC_RegistrationCompleted.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UC_SignUpStep1.xaml.cs">
       <DependentUpon>UC_SignUpStep1.xaml</DependentUpon>
     </Compile>
@@ -332,6 +347,22 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UC_ForgotPasswordCompleted.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC_ForgotPasswordStep1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC_ForgotPasswordStep2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC_ForgotPasswordStep3.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UC_ItemInShoppingCartItemsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -345,6 +376,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UC_RatingUI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC_RegistrationCompleted.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -474,6 +509,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Img\icons8-account-50.png" />
     <Resource Include="Img\icons8-sign-up-80.png" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

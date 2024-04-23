@@ -30,12 +30,12 @@ namespace UTEMerchant
         {
 
             this.User = user;
-            //// Tạo một BitmapImage từ đường dẫn ảnh
-            //BitmapImage bitmap = new BitmapImage();
-            //bitmap.BeginInit();
-            //bitmap.UriSource = new Uri(user.Image_Path.ToString(), UriKind.RelativeOrAbsolute);
-            //bitmap.EndInit();
-            //imgUserAvatar.ImageSource = bitmap;
+            // Tạo một BitmapImage từ đường dẫn ảnh
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri(user.Image_Path.ToString(), UriKind.RelativeOrAbsolute);
+            bitmap.EndInit();
+            imgUserAvatar.ImageSource = bitmap;
 
             txbName.Text = user.Name;
             uc_PurchasingUI.IdUser = user.Id_user;
@@ -48,12 +48,24 @@ namespace UTEMerchant
                     this.Seller = seller;
                 }    
             }
-            this.uc_SellerUI = new UC_SellerUI(Seller.SellerID);
-            //this.uc_Delivery = new UC_DeliveryUI(user.Id_user);
+
+            if (Seller != null)
+            {
+                this.uc_SellerUI = new UC_SellerUI(Seller.SellerID);
+                
+            }
+            else this.uc_SellerUI = new UC_SellerUI();
 
             grdSellerUI.Children.Add(uc_SellerUI);
-            //grdSellerUI.Children.Add(uc_Delivery);
             uc_SellerUI.Visibility = Visibility.Collapsed;
+            uc_SellerUI.HorizontalAlignment = HorizontalAlignment.Stretch;
+            uc_SellerUI.VerticalAlignment = VerticalAlignment.Stretch;
+            uc_SellerUI.Background = Brushes.Transparent;
+            //this.uc_Delivery = new UC_DeliveryUI(user.Id_user);
+
+
+            //grdSellerUI.Children.Add(uc_Delivery);
+
             uc_PurchasingUI.Visibility = Visibility.Visible;
             //uc_Delivery.Visibility = Visibility.Visible;
 
@@ -62,9 +74,7 @@ namespace UTEMerchant
              uc_Delivery.Margin = new Thickness(0, 20, 0, 15);*/
             uc_Delivery.Id_user = user.Id_user;
             uc_Delivery.Visibility = Visibility.Collapsed;
-            uc_SellerUI.HorizontalAlignment = HorizontalAlignment.Stretch;
-            uc_SellerUI.VerticalAlignment = VerticalAlignment.Stretch;
-            uc_SellerUI.Background = Brushes.Transparent;
+            
             
         }
         public WinSellerInterface()
@@ -193,8 +203,9 @@ namespace UTEMerchant
         // This method is called when the user clicks the Refresh List button in the Registration Complete UC
         private void OnRefreshButtonClicked(object sender, EventArgs e)
         {
-            if (sender is Button)
+            if (sender is Button )
             {
+
                 uc_RegistrationComplete.Visibility = Visibility.Collapsed;
                 uc_SellerUI.Visibility = Visibility.Visible;
             }

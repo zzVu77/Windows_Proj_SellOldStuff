@@ -16,31 +16,64 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto" MinHeight="125.96"/>
+                <RowDefinition Height="Auto" MinHeight="21.62"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
 
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="Name" Style="{StaticResource Text}"/>
-            <TextBlock Grid.Row="1" Text="User Name" Style="{StaticResource Text}"/>
-            <TextBlock Grid.Row="2" Text="Password" Style="{StaticResource Text}"/>
-            <TextBlock Grid.Row="3" Text="City" Style="{StaticResource Text}"/>
-            <TextBlock Grid.Row="4" Text="District" Style="{StaticResource Text}"/>
-            <TextBlock Grid.Row="5" Text="Ward" Style="{StaticResource Text}"/>
-            <TextBlock Grid.Row="6" Text="Phone" Style="{StaticResource Text}"/>
-            <TextBlock Grid.Row="7" Text="Email" Style="{StaticResource Text}" Margin="0,16,0,0" VerticalAlignment="Top"/>
-            <local:UCtextBox Grid.Column="1" Grid.Row="0" Hint="Nguyen Van A" x:Name="ucName"/>
-            <local:UCtextBox Grid.Column="1" Grid.Row="1" Hint="kiyo12312" x:Name="ucUserName"/>
-            <local:UCtextBox Grid.Column="1" Grid.Row="2" Hint="*******" x:Name="ucPassword"/>
-            <local:UCtextBox Grid.Column="1" Grid.Row="3" Hint="Ho Chi Minh" x:Name="ucCity"/>
-            <local:UCtextBox Grid.Column="1" Grid.Row="4" Hint="Thu Duc" x:Name="ucDistrict"/>
-            <local:UCtextBox Grid.Column="1" Grid.Row="5" Hint="Le Van Viet" x:Name="ucWard"/>
-            <local:UCtextBox Grid.Column="1" Grid.Row="6" Hint="0909092222" x:Name="ucPhone"/>
-            <local:UCtextBox Grid.Column="1" Grid.Row="7" Hint="asdbc@gmail.com" Margin="0,0,0,58" x:Name="ucEmail"/>
-            <Grid Grid.Column="1" Grid.Row="8" Margin="0 80 0 0">
+            <TextBlock Grid.Row="0" Text="Name" Style="{StaticResource Text}" Margin="0,-9,0,0" VerticalAlignment="Top" Height="21"/>
+            <TextBlock Grid.Row="2" Text="User Name" Style="{StaticResource Text}" Margin="0,10,0,0" VerticalAlignment="Top" Height="21"/>
+            <TextBlock Grid.Row="2" Text="Password" Style="{StaticResource Text}" Height="22"/>
+            <TextBlock Grid.Row="2" Text="City" Style="{StaticResource Text}" Height="21" Margin="0,98,0,0" VerticalAlignment="Top"/>
+            <TextBlock Grid.Row="3" Text="District" Style="{StaticResource Text}" Height="22" Margin="0,9,0,0" Grid.RowSpan="2" VerticalAlignment="Top"/>
+            <TextBlock Grid.Row="5" Text="Ward" Style="{StaticResource Text}" Height="21" Margin="-5,27,5,0" Grid.RowSpan="2" VerticalAlignment="Top"/>
+            <TextBlock Grid.Row="7" Text="Phone" Style="{StaticResource Text}" Height="21" Margin="0,13,0,0" VerticalAlignment="Top"/>
+            <TextBlock Grid.Row="7" Text="Email" Style="{StaticResource Text}" Margin="0,58,0,0" VerticalAlignment="Top" Height="21"/>
+            <local:UCtextBox Grid.Column="1" Grid.Row="0" Hint="Nguyen Van A" x:Name="ucName" Margin="0,-9,0,0" Height="33" VerticalAlignment="Top"/>
+            <local:UCtextBox Grid.Column="1" Hint="kiyo12312" x:Name="ucUserName" Margin="0,4,0,86" Grid.Row="2"/>
+            <local:UCtextBox Grid.Column="1" Grid.Row="2" Hint="*******" x:Name="ucPassword" Margin="0,44,0,43"/>
+            <ComboBox x:Name="cbPickupCity"
+              Style="{StaticResource DefaultComboBoxStyle}"
+              Background="White"
+              Width="354"
+              BorderBrush="DarkGray"
+              BorderThickness="1.5"
+              Tag="City"
+              HorizontalAlignment="Center" Margin="0,88,0,26"
+              SelectionChanged="cbPickupCity_SelectionChanged"
+                      Grid.Column="1" Grid.Row="2" Grid.RowSpan="2">
+                <ComboBoxItem Content="HCM"></ComboBoxItem>
+            </ComboBox>
+            <ComboBox x:Name="cbPickupDistrict"
+               Style="{StaticResource DefaultComboBoxStyle}"
+               Background="White"
+               Width="354"
+               BorderBrush="DarkGray"
+               BorderThickness="1.5"
+               Tag="District"
+               HorizontalAlignment="Center" Margin="0,5,0,14"
+                      Grid.Column="1" Grid.Row="3"
+                      SelectionChanged="cbPickupDistrict_SelectionChanged" Grid.RowSpan="3">
+                <ComboBoxItem Content="District 1"></ComboBoxItem>
+                <ComboBoxItem Content="District 2"></ComboBoxItem>
+                <ComboBoxItem Content="District 3"></ComboBoxItem>
+                <ComboBoxItem Content="District 4"></ComboBoxItem>
+                <ComboBoxItem Content="District 5"></ComboBoxItem>
+                <ComboBoxItem Content="District 6"></ComboBoxItem>
+                <ComboBoxItem Content="District 7"></ComboBoxItem>
+                <ComboBoxItem Content="District 8"></ComboBoxItem>
+                <ComboBoxItem Content="District 9"></ComboBoxItem>
+                <ComboBoxItem Content="District 10"></ComboBoxItem>
+                <ComboBoxItem Content="District 11"></ComboBoxItem>
+                <ComboBoxItem Content="District 12"></ComboBoxItem>
+            </ComboBox>
+            <local:UCtextBox Grid.Column="1" Grid.Row="5" Hint="Le Van Viet" x:Name="ucWard" Margin="0,16,0,144" Grid.RowSpan="3"/>
+            <local:UCtextBox Grid.Column="1" Grid.Row="7" Hint="0909092222" x:Name="ucPhone" Margin="0,10,0,103"/>
+            <local:UCtextBox Grid.Column="1" Grid.Row="7" Hint="asdbc@gmail.com" Margin="0,51,0,61" x:Name="ucEmail"/>
+            <Grid Grid.Column="1" Grid.Row="7" Margin="0,80,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>

@@ -69,5 +69,13 @@ namespace UTEMerchant
         {
             return db.LoadData<User>($"SELECT * FROM [dbo].[User] WHERE Id_user = {id}").FirstOrDefault();
         }
+        public void updateUser(string newpassword, string email)
+        {
+            string sqlStr = "UPDATE [dbo].[User] SET Password = @NewPassword WHERE Email = @GmailAddress";
+            db.ExecuteNonQuery(sqlStr,
+                new SqlParameter("@NewPassword", newpassword),
+                new SqlParameter("@GmailAddress", email));
+
+        }
     }
 }
