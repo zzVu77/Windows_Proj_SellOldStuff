@@ -23,6 +23,7 @@ namespace UTEMerchant
     public partial class WinNewItem : Window
     {
         private string image_path;
+        CheckValid check = new CheckValid();
         Item_DAO dao = new Item_DAO();
         private int IdSeller;
         public WinNewItem()
@@ -79,16 +80,35 @@ namespace UTEMerchant
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            if (new CheckValid().IsNumeric(txtID.Text.ToString())
-                && new CheckValid().IsDateFormatValid(txtBoughtDate.Text.ToString())
-                && new CheckValid().IsDateValid(txtBoughtDate.Text.ToString())
-                && !string.IsNullOrEmpty(txtID.Text.ToString())
-                && !string.IsNullOrEmpty(txtBoughtDate.Text.ToString())
-                )
+            ComboBoxItem typeItem = cbType.SelectedItem as ComboBoxItem;
+            string text_detail = new TextRange(rtbDetailDescription.Document.ContentStart, rtbDetailDescription.Document.ContentEnd).Text;
+            string text_Condition = new TextRange(rtbConditonDescription.Document.ContentStart, rtbConditonDescription.Document.ContentEnd).Text;
+            
+            // Perform validation checks
+            if (typeItem == null ||
+                string.IsNullOrWhiteSpace(txtID.Text) ||
+                string.IsNullOrWhiteSpace(txtBoughtDate.Text) ||
+                string.IsNullOrWhiteSpace(txtName.Text) ||
+                string.IsNullOrWhiteSpace(txtCondition.Text) ||
+                string.IsNullOrWhiteSpace(txtOriginalPrice.Text) ||
+                string.IsNullOrWhiteSpace(txtPrice.Text) ||
+                string.IsNullOrWhiteSpace(text_detail) ||
+                string.IsNullOrWhiteSpace(text_Condition) ||
+                !check.IsNumeric(txtID.Text) ||                           // Check if ID is numeric
+                !check.IsDateFormatValid(txtBoughtDate.Text) ||           // Check if bought date has valid format
+                !check.IsDateValid(txtBoughtDate.Text) ||                 // Check if bought date is a valid date
+                !check.IsNumeric(txtCondition.Text) ||                    // Check if condition is numeric
+                !check.IsNumeric(txtOriginalPrice.Text) ||                // Check if original price is numeric
+                !check.IsNumeric(txtPrice.Text)                       // Check if price is numeric
+               )
             {
-                ComboBoxItem typeItem = (ComboBoxItem)cbType.SelectedItem;
-                string text_detail = new TextRange(rtbDetailDescription.Document.ContentStart, rtbDetailDescription.Document.ContentEnd).Text;
-                string text_Condition = new TextRange(rtbConditonDescription.Document.ContentStart, rtbConditonDescription.Document.ContentEnd).Text;
+                // Show error message if any of the conditions fail
+                System.Windows.MessageBox.Show("Invalid information !!!");
+            }
+            else
+            {
+
+                
                 Item_DAO dao = new Item_DAO();
                 DateTime today = DateTime.Now;
                 dao.Add(new Item(Int32.Parse(txtID.Text.ToString()), txtName.Text.ToString(),
@@ -99,20 +119,6 @@ namespace UTEMerchant
                     , image_path, false, text_detail, IdSeller, today)
                              );
                 this.Close();
-            }
-            else
-            {
-                System.Windows.MessageBox.Show("Invalid information !!!");
-                if (!(new CheckValid().IsNumeric(txtID.Text.ToString())) || string.IsNullOrEmpty(txtID.Text.ToString()))
-                    txtID.Background = new SolidColorBrush(Color.FromRgb(255, 0, 0)
-                   );
-
-                if (!new CheckValid().IsDateFormatValid(txtBoughtDate.Text.ToString())
-                    || !new CheckValid().IsDateValid(txtBoughtDate.Text.ToString())
-                    || string.IsNullOrEmpty(txtBoughtDate.Text.ToString())
-                   )
-                    txtBoughtDate.Background = new SolidColorBrush(Color.FromRgb(255, 0, 0));
-
 
             }
         }

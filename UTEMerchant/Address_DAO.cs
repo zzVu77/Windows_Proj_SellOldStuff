@@ -23,5 +23,7 @@ namespace UTEMerchant
 
             //return db.LoadData<Address>($"SELECT * FROM [dbo].[Address] WHERE City={city}").Select(a=>a.District).Distinct().ToList();
         }
+
+        //public string GetCityName()
     }
 }
