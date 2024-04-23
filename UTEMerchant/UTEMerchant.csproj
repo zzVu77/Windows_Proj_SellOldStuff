@@ -215,97 +215,94 @@
     <Compile Include="purchasedItem.cs" />
     <Compile Include="PurchasedItem_DAO.cs" />
     <Compile Include="SaleStatusConverter.cs" />
-    <Compile Include="UC_BuyerProfile.xaml.cs">
+    <Compile Include="UC\UC_BuyerProfile.xaml.cs">
       <DependentUpon>UC_BuyerProfile.xaml</DependentUpon>
     </Compile>
     <Compile Include="SendMail.cs" />
-    <Compile Include="UCtextBox.xaml.cs">
+    <Compile Include="UC\UCtextBox.xaml.cs">
       <DependentUpon>UCtextBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UC_CompletedItem.xaml.cs">
+    <Compile Include="UC\UC_CompletedItem.xaml.cs">
       <DependentUpon>UC_CompletedItem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UC_DeliveryUI.xaml.cs">
+    <Compile Include="UC\UC_DeliveryUI.xaml.cs">
       <DependentUpon>UC_DeliveryUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UC_FeedBackUI.xaml.cs">
+    <Compile Include="UC\UC_FeedBackUI.xaml.cs">
       <DependentUpon>UC_FeedBackUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UC_ItemInShoppingCartItemsView.xaml.cs">
+    <Compile Include="UC\UC_ItemInShoppingCartItemsView.xaml.cs">
       <DependentUpon>UC_ItemInShoppingCartItemsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UC_PlaceOrderItem.xaml.cs">
+    <Compile Include="UC\UC_PlaceOrderItem.xaml.cs">
       <DependentUpon>UC_PlaceOrderItem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UC_PlaceOrderItemsBox.xaml.cs">
+    <Compile Include="UC\UC_PlaceOrderItemsBox.xaml.cs">
       <DependentUpon>UC_PlaceOrderItemsBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UC_FeedBackUI.xaml.cs">
-      <DependentUpon>UC_FeedBackUI.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UC_ForgotPasswordCompleted.xaml.cs">
+    <Compile Include="UC\UC_ForgotPasswordCompleted.xaml.cs">
       <DependentUpon>UC_ForgotPasswordCompleted.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UC_ForgotPasswordStep1.xaml.cs">
+    <Compile Include="UC\UC_ForgotPasswordStep1.xaml.cs">
       <DependentUpon>UC_ForgotPasswordStep1.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UC_ForgotPasswordStep2.xaml.cs">
+    <Compile Include="UC\UC_ForgotPasswordStep2.xaml.cs">
       <DependentUpon>UC_ForgotPasswordStep2.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UC_ForgotPasswordStep3.xaml.cs">
+    <Compile Include="UC\UC_ForgotPasswordStep3.xaml.cs">
       <DependentUpon>UC_ForgotPasswordStep3.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UC_RatingUI.xaml.cs">
+    <Compile Include="UC\UC_RatingUI.xaml.cs">
       <DependentUpon>UC_RatingUI.xaml</DependentUpon>
     </Compile>
     <Compile Include="Seller.cs" />
     <Compile Include="Seller_DAO.cs" />
-    <Compile Include="UC_SellerProfile.xaml.cs">
+    <Compile Include="UC\UC_SellerProfile.xaml.cs">
       <DependentUpon>UC_SellerProfile.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UC_RegistrationCompleted.xaml.cs">
+    <Compile Include="UC\UC_RegistrationCompleted.xaml.cs">
       <DependentUpon>UC_RegistrationCompleted.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UC_SignUpStep1.xaml.cs">
+    <Compile Include="UC\UC_SignUpStep1.xaml.cs">
       <DependentUpon>UC_SignUpStep1.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UC_SignUpStep2.xaml.cs">
+    <Compile Include="UC\UC_SignUpStep2.xaml.cs">
       <DependentUpon>UC_SignUpStep2.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UC_ShoppingCartItemsView.xaml.cs">
+    <Compile Include="UC\UC_ShoppingCartItemsView.xaml.cs">
       <DependentUpon>UC_ShoppingCartItemsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UC_StarRating.xaml.cs">
+    <Compile Include="UC\UC_StarRating.xaml.cs">
       <DependentUpon>UC_StarRating.xaml</DependentUpon>
     </Compile>
     <Compile Include="PercentageConverter.cs" />
     <Compile Include="StringNullOrEmptyToVisibilityConverter.cs" />
     <Compile Include="TextToVisibilityConverter.cs" />
-    <Compile Include="UC_RegistrationComplete.xaml.cs">
+    <Compile Include="UC\UC_RegistrationComplete.xaml.cs">
       <DependentUpon>UC_RegistrationComplete.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UC_StartSelling.xaml.cs">
+    <Compile Include="UC\UC_StartSelling.xaml.cs">
       <DependentUpon>UC_StartSelling.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UC_ShoppingCart.xaml.cs">
+    <Compile Include="UC\UC_ShoppingCart.xaml.cs">
       <DependentUpon>UC_ShoppingCart.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UC_PurchasingUI.xaml.cs">
+    <Compile Include="UC\UC_PurchasingUI.xaml.cs">
       <DependentUpon>UC_PurchasingUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UC_ItemDetail.xaml.cs">
+    <Compile Include="UC\UC_ItemDetail.xaml.cs">
       <DependentUpon>UC_ItemDetail.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UC_ItemView.xaml.cs">
+    <Compile Include="UC\UC_ItemView.xaml.cs">
       <DependentUpon>UC_ItemView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UC_SellerUI.xaml.cs">
+    <Compile Include="UC\UC_SellerUI.xaml.cs">
       <DependentUpon>UC_SellerUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UC_SellerRegistration.xaml.cs">
+    <Compile Include="UC\UC_SellerRegistration.xaml.cs">
       <DependentUpon>UC_SellerRegistration.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UC_ToReceiveItem.xaml.cs">
+    <Compile Include="UC\UC_ToReceiveItem.xaml.cs">
       <DependentUpon>UC_ToReceiveItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />
@@ -331,7 +328,7 @@
     <Compile Include="WinShopView.xaml.cs">
       <DependentUpon>WinShopView.xaml</DependentUpon>
     </Compile>
-    <Page Include="UC_BuyerProfile.xaml">
+    <Page Include="UC\UC_BuyerProfile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -341,107 +338,107 @@
     <Compile Include="﻿WinForgotPassword.xaml.cs">
       <DependentUpon>﻿WinForgotPassword.xaml</DependentUpon>
     </Compile>
-    <Page Include="UCtextBox.xaml">
+    <Page Include="UC\UCtextBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UC_CompletedItem.xaml">
+    <Page Include="UC\UC_CompletedItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UC_DeliveryUI.xaml">
+    <Page Include="UC\UC_DeliveryUI.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UC_FeedBackUI.xaml">
+    <Page Include="UC\UC_FeedBackUI.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UC_ForgotPasswordCompleted.xaml">
+    <Page Include="UC\UC_ForgotPasswordCompleted.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UC_ForgotPasswordStep1.xaml">
+    <Page Include="UC\UC_ForgotPasswordStep1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UC_ForgotPasswordStep2.xaml">
+    <Page Include="UC\UC_ForgotPasswordStep2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UC_ForgotPasswordStep3.xaml">
+    <Page Include="UC\UC_ForgotPasswordStep3.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UC_ItemInShoppingCartItemsView.xaml">
+    <Page Include="UC\UC_ItemInShoppingCartItemsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UC_PlaceOrderItem.xaml">
+    <Page Include="UC\UC_PlaceOrderItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UC_PlaceOrderItemsBox.xaml">
+    <Page Include="UC\UC_PlaceOrderItemsBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UC_RatingUI.xaml">
+    <Page Include="UC\UC_RatingUI.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UC_SellerProfile.xaml">
+    <Page Include="UC\UC_SellerProfile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UC_RegistrationCompleted.xaml">
+    <Page Include="UC\UC_RegistrationCompleted.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UC_SignUpStep1.xaml">
+    <Page Include="UC\UC_SignUpStep1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UC_SignUpStep2.xaml">
+    <Page Include="UC\UC_SignUpStep2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UC_ShoppingCartItemsView.xaml">
+    <Page Include="UC\UC_ShoppingCartItemsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UC_StarRating.xaml">
+    <Page Include="UC\UC_StarRating.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UC_RegistrationComplete.xaml">
+    <Page Include="UC\UC_RegistrationComplete.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UC_StartSelling.xaml">
+    <Page Include="UC\UC_StartSelling.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UC_ShoppingCart.xaml">
+    <Page Include="UC\UC_ShoppingCart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UC_PurchasingUI.xaml">
+    <Page Include="UC\UC_PurchasingUI.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UC_ItemDetail.xaml">
+    <Page Include="UC\UC_ItemDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UC_SellerUI.xaml">
+    <Page Include="UC\UC_SellerUI.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UC_SellerRegistration.xaml">
+    <Page Include="UC\UC_SellerRegistration.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UC_ToReceiveItem.xaml">
+    <Page Include="UC\UC_ToReceiveItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -484,7 +481,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UC_ItemView.xaml">
+    <Page Include="UC\UC_ItemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -584,6 +581,9 @@
     <Resource Include="Img\icons8-close-50.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="DAO\" />
+    <Folder Include="Class\" />
+    <Folder Include="Win\" />
     <Folder Include="Resources\Assets\" />
   </ItemGroup>
   <ItemGroup>
