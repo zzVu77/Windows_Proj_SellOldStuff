@@ -98,13 +98,13 @@ namespace UTEMerchant
 
         private void cbShippingChanel_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cbShippingChanel.SelectedValue.ToString() == "Standard Shipping")
+            if (cbShippingChanel.SelectedIndex == 0)
             {
                 _shippingFee = 5;
                 tbShippingCost.Text = "$5.00";
                 tbTotal.Text = "$" + CalculateTotalPrice().ToString("F");
             }
-            else if (cbShippingChanel.SelectedValue.ToString() == "Express Shipping")
+            else if (cbShippingChanel.SelectedIndex == 1)
             {
                 _shippingFee = 10;
                 tbShippingCost.Text = "$10.00";
