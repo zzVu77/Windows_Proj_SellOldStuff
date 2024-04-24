@@ -34,6 +34,9 @@
                 <local:UC_SignUpStep2 x:Name="UCSignUpStep2"
                                       Visibility="Collapsed"
                                       Background="Transparent"/>
+                <local:UC_RegistrationCompleted x:Name="UCCompleted"
+                                                Visibility="Collapsed"
+                                                Background="Transparent"/>
             </Grid>
         </Border>
     </Grid>

@@ -33,5 +33,10 @@ namespace UTEMerchant
             }
         }
         public static readonly DependencyProperty HintProperty = DependencyProperty.Register("Hint", typeof(string), typeof(UCtextBox));
+
+        private void textbox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            textBlock.Text = "";
+        }
     }
 }

@@ -10,24 +10,27 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace UTEMerchant
 {
     /// <summary>
-    /// Interaction logic for WinForgotPassword.xaml
+    /// Interaction logic for UC_ForgotPasswordStep1.xaml
     /// </summary>
-    public partial class WinForgotPassword : Window
+    public partial class UC_ForgotPasswordStep1 : UserControl
     {
         new user_DAO dao = new user_DAO();
-        public WinForgotPassword()
+        public event EventHandler SendButtonClicked;
+       
+        public UC_ForgotPasswordStep1()
         {
             InitializeComponent();
         }
-
         private void textUserName_MouseDown(object sender, MouseButtonEventArgs e)
         {
             txtEmail.Focus();
+
         }
 
         private void txtUserName_TextChanged(object sender, TextChangedEventArgs e)
@@ -42,16 +45,14 @@ namespace UTEMerchant
             }
         }
 
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            User user = dao.GetUserByItemEmail(txtEmail.Text.ToString());
-            if (user != null)
-                SendMail.Send(user.Password, user.Email);
+          
+            SendButtonClicked?.Invoke(this, EventArgs.Empty);
+            
         }
 
-        private void Image_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            this.Close();
-        }
+       
     }
 }

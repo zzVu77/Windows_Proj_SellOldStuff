@@ -30,12 +30,12 @@ namespace UTEMerchant
         {
 
             this.User = user;
-            //// Tạo một BitmapImage từ đường dẫn ảnh
-            //BitmapImage bitmap = new BitmapImage();
-            //bitmap.BeginInit();
-            //bitmap.UriSource = new Uri(user.Image_Path.ToString(), UriKind.RelativeOrAbsolute);
-            //bitmap.EndInit();
-            //imgUserAvatar.ImageSource = bitmap;
+            // Tạo một BitmapImage từ đường dẫn ảnh
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri(user.Image_Path.ToString(), UriKind.RelativeOrAbsolute);
+            bitmap.EndInit();
+            imgUserAvatar.ImageSource = bitmap;
 
             txbName.Text = user.Name;
             uc_PurchasingUI.IdUser = user.Id_user;
@@ -46,14 +46,26 @@ namespace UTEMerchant
                 if (seller.Id_user == this.User.Id_user)
                 {
                     this.Seller = seller;
-                }    
+                }
             }
-            this.uc_SellerUI = new UC_SellerUI(Seller.SellerID);
-            //this.uc_Delivery = new UC_DeliveryUI(user.Id_user);
+
+            if (Seller != null)
+            {
+                this.uc_SellerUI = new UC_SellerUI(Seller.SellerID);
+                
+            }
+            else this.uc_SellerUI = new UC_SellerUI();
 
             grdSellerUI.Children.Add(uc_SellerUI);
-            //grdSellerUI.Children.Add(uc_Delivery);
             uc_SellerUI.Visibility = Visibility.Collapsed;
+            uc_SellerUI.HorizontalAlignment = HorizontalAlignment.Stretch;
+            uc_SellerUI.VerticalAlignment = VerticalAlignment.Stretch;
+            uc_SellerUI.Background = Brushes.Transparent;
+            //this.uc_Delivery = new UC_DeliveryUI(user.Id_user);
+
+
+            //grdSellerUI.Children.Add(uc_Delivery);
+
             uc_PurchasingUI.Visibility = Visibility.Visible;
             //uc_Delivery.Visibility = Visibility.Visible;
 
@@ -65,28 +77,28 @@ namespace UTEMerchant
             uc_SellerUI.HorizontalAlignment = HorizontalAlignment.Stretch;
             uc_SellerUI.VerticalAlignment = VerticalAlignment.Stretch;
             uc_SellerUI.Background = Brushes.Transparent;
-            
+
         }
         public WinSellerInterface()
         {
             InitializeComponent();
 
 
-            
+
             this.uc_StartSelling = new UC_StartSelling();
             this.uc_RegistrationComplete = new UC_RegistrationComplete();
             this.uc_SellerRegistration = new UC_SellerRegistration();
-            
-          
+
+
             grdSellerUI.Children.Add(uc_StartSelling);
             grdSellerUI.Children.Add(uc_RegistrationComplete);
             grdSellerUI.Children.Add(uc_SellerRegistration);
-            
 
-            uc_StartSelling.Visibility=Visibility.Collapsed;
-            uc_RegistrationComplete.Visibility=Visibility.Collapsed;
-            uc_SellerRegistration.Visibility=Visibility.Collapsed;
-           
+
+            uc_StartSelling.Visibility = Visibility.Collapsed;
+            uc_RegistrationComplete.Visibility = Visibility.Collapsed;
+            uc_SellerRegistration.Visibility = Visibility.Collapsed;
+
 
 
 
@@ -95,6 +107,8 @@ namespace UTEMerchant
             uc_StartSelling.btnStartSelling.Click += OnStartTradingButtonClicked;
             uc_SellerRegistration.btnDone.Click += OnDoneRegistrationButtonClicked;
             uc_RegistrationComplete.btnRefresh.Click += OnRefreshButtonClicked;
+            uc_BuyerProfile.SavedButtonClicked += UCUserProfile_SavedButtonClicked;
+            uc_SellerProfile.SavedButtonClicked += UCSellerProfile_SavedButtonClicked;
         }
 
         private bool IsMaximize = false;
@@ -137,6 +151,10 @@ namespace UTEMerchant
             grdSellerUI.Visibility = Visibility.Collapsed;
             uc_Delivery.Visibility = Visibility.Collapsed;
             uc_PurchasingUI.Visibility = Visibility.Visible;
+            uc_BuyerProfile.Visibility = Visibility.Collapsed;
+            uc_SellerProfile.Visibility = Visibility.Collapsed;
+            mnuitSellerProfile.Visibility = Visibility.Collapsed;
+            mnuitBuyerProfile.Visibility = Visibility.Collapsed;
         }
 
         private void mnuitStock_Click(object sender, RoutedEventArgs e)
@@ -150,7 +168,7 @@ namespace UTEMerchant
 
             // If the user is registered as a seller
             if (3 > 2)
-            {                
+            {
                 grdSellerUI.Visibility = Visibility.Visible;
                 uc_SellerUI.Visibility = Visibility.Visible;
             }
@@ -168,6 +186,10 @@ namespace UTEMerchant
             grdSellerUI.Visibility = Visibility.Collapsed;
             uc_PurchasingUI.Visibility = Visibility.Collapsed;
             uc_Delivery.Visibility = Visibility.Visible;
+            uc_BuyerProfile.Visibility = Visibility.Collapsed;
+            uc_SellerProfile.Visibility = Visibility.Collapsed;
+            mnuitSellerProfile.Visibility = Visibility.Collapsed;
+            mnuitBuyerProfile.Visibility = Visibility.Collapsed;
         }
 
         // This method is called when the user clicks the Start Trading button in the Start Selling UC
@@ -193,8 +215,9 @@ namespace UTEMerchant
         // This method is called when the user clicks the Refresh List button in the Registration Complete UC
         private void OnRefreshButtonClicked(object sender, EventArgs e)
         {
-            if (sender is Button)
+            if (sender is Button )
             {
+
                 uc_RegistrationComplete.Visibility = Visibility.Collapsed;
                 uc_SellerUI.Visibility = Visibility.Visible;
             }
@@ -209,6 +232,59 @@ namespace UTEMerchant
         {
             uc_Delivery.Load();
         }
+
+        private void mnuitBuyerProfile_Click(object sender, RoutedEventArgs e)
+        {
+            grdSellerUI.Visibility = Visibility.Collapsed;
+            uc_PurchasingUI.Visibility = Visibility.Collapsed;
+            uc_Delivery.Visibility = Visibility.Collapsed;
+            uc_SellerProfile.Visibility = Visibility.Collapsed;
+            uc_BuyerProfile.Visibility = Visibility.Visible;
+            uc_BuyerProfile.SetDefault(User);
+        }
+
+        private void mnuitSellerProfile_Click(object sender, RoutedEventArgs e)
+        {
+            grdSellerUI.Visibility = Visibility.Collapsed;
+            uc_PurchasingUI.Visibility = Visibility.Collapsed;
+            uc_Delivery.Visibility = Visibility.Collapsed;
+            uc_SellerProfile.Visibility = Visibility.Visible;
+            uc_BuyerProfile.Visibility = Visibility.Collapsed;
+            uc_SellerProfile.SetDefault(User, Seller);
+        }
+
+        private void mnuitProfile_Click_1(object sender, RoutedEventArgs e)
+        {
+            mnuitSellerProfile.Visibility = Visibility.Visible;
+            mnuitBuyerProfile.Visibility = Visibility.Visible;
+        }
+        private void UCUserProfile_SavedButtonClicked(object sender, EventArgs e)
+        {
+            if (sender is UC_BuyerProfile clickedItemView)
+            {
+                // Tạo một BitmapImage từ đường dẫn ảnh
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(uc_BuyerProfile.image_path.ToString(), UriKind.RelativeOrAbsolute);
+                bitmap.EndInit();
+                imgUserAvatar.ImageSource = bitmap;
+                txbName.Text = uc_BuyerProfile.txtUserFullName.Text;
+            }
+
+        }
+        private void UCSellerProfile_SavedButtonClicked(object sender, EventArgs e)
+        {
+
+            if (sender is UC_SellerProfile clickedItemView)
+            {
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(uc_SellerProfile.image_path.ToString(), UriKind.RelativeOrAbsolute);
+                bitmap.EndInit();
+                imgUserAvatar.ImageSource = bitmap;
+            }
+        }
     }
+
 }
 

@@ -24,7 +24,7 @@
             <TextBlock Grid.Row="1" Text="verification code" Style="{StaticResource Text}"/>
 
 
-            <local:UCtextBox Grid.Column="1" Grid.Row="1" Hint="1231301 (please check your gmail)" x:Name="ucVerifyCode"/>
+            <local:UCtextBox Grid.Column="1" Grid.Row="1" Hint="1231301 (please check your gmail)" x:Name="ucVerifyCode" Margin="0,35,0,35"/>
 
 
             <Grid Grid.Column="1" Grid.Row="8" Margin="0 80 0 0">
