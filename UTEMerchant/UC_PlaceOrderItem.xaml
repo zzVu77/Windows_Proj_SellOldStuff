@@ -13,17 +13,17 @@
         </Grid.ColumnDefinitions>
         <Border x:Name="brdImage"
                 Grid.Column="0"
+                Width="80"
+                Height="80"
                 BorderBrush="Gray"
                 BorderThickness="2"
                 CornerRadius="5">
             <Image x:Name="imgItem"
-                   Width="80"
-                   Height="80"
-                   Stretch="Fill">
-                <Image.Clip>
-                    <RectangleGeometry RadiusX="5" RadiusY="5" Rect="0,0,80,76"/>
-                </Image.Clip>
-            </Image>
+                   Width="70"
+                   Height="70"
+                   Stretch="Uniform"
+                   Source="C:\Users\FPTSHOP\Desktop\Window_Proj_UTEMerchant\UTEMerchant\Img\GucciBag.jpg"
+                   />
         </Border>
         <DockPanel x:Name="dpItemInfo"
                    Grid.Column="2"

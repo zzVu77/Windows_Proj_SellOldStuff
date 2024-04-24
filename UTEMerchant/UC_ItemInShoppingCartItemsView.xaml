@@ -26,15 +26,14 @@
         <Border Grid.Column="2" x:Name="brdImage"
                 BorderBrush="Gray"
                 BorderThickness="2"
+                Width="80"
+                Height="80"
                 CornerRadius="10"
                 Margin="0,10">
             <Image x:Name="imgItem"
                    Width="70"
                    Height="70"
-                   Stretch="Fill">
-                <Image.Clip>
-                    <RectangleGeometry RadiusX="10" RadiusY="10" Rect="0,0,70,70"/>
-                </Image.Clip>
+                   Stretch="Uniform">
             </Image>
         </Border>
         

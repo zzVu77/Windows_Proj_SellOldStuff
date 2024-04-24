@@ -50,6 +50,7 @@ namespace UTEMerchant
             txblToReceivePrice.Text = $"{Item.Price.ToString(CultureInfo.InvariantCulture)}$";
             txblToReceiveConditon.Text = $"{Item.Condition.ToString(CultureInfo.InvariantCulture)}%";
             txblToReceiveItemName.Text = Item.Name;
+            txblToReceiveTotalValue.Text = Item.Price.ToString();
         }
 
         private void btnToReceiveReceived_Click(object sender, RoutedEventArgs e)
