@@ -34,12 +34,12 @@ namespace UTEMerchant
         }
         public UC_SellerUI(int idSeller) :this()
         {
-            items = dao.Load();
-            IdSeller = idSeller;
+            items = dao.GetItemsBySellerID(idSeller);
+            this.IdSeller = idSeller;
             foreach (Item a in items)
             {
-                if(IdSeller == a.SellerID)
-                    productGrid.Items.Add(a);
+ 
+                productGrid.Items.Add(a);
             }
 
         }
@@ -94,7 +94,7 @@ namespace UTEMerchant
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             
-            items= dao.Load();
+            items= dao.GetItemsBySellerID(IdSeller);
             DataGridRow clickedRow = (DataGridRow)productGrid.ItemContainerGenerator.ContainerFromItem(productGrid.SelectedItem);
             int rowIndex = productGrid.ItemContainerGenerator.IndexFromContainer(clickedRow);
             if (items[rowIndex].Sale_Status == false)
@@ -104,6 +104,10 @@ namespace UTEMerchant
                 productGrid.Items.RemoveAt(rowIndex);
 
                 productGrid.Items.Refresh();
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("11111");
             }
         }
 
