@@ -41,8 +41,8 @@ namespace UTEMerchant
             {
                 imgItem.Source = new BitmapImage(new Uri(_item.Image_Path, UriKind.RelativeOrAbsolute));
                 tbItemName.Text = _item.Name;
-                tbItemOriginalPrice.Text = "$" + _item.Price.ToString(CultureInfo.InvariantCulture);
-                tbItemDiscountPrice.Text = "$" + _item.Original_Price.ToString(CultureInfo.InvariantCulture);
+                tbItemOriginalPrice.Text = "$" + _item.Original_Price.ToString(CultureInfo.InvariantCulture);
+                tbItemDiscountPrice.Text = "$" + _item.Price.ToString(CultureInfo.InvariantCulture);
             }
         }
     }
