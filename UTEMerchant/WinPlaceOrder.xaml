@@ -6,6 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UTEMerchant"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="WinPlaceOrder" Height="600" Width="1500" Loaded="Window_Loaded">
     <Window.Resources>
 
@@ -335,7 +336,7 @@
                                 <ControlTemplate TargetType="Button">
                                     <Border x:Name="brdCPlaceOrder"
                                             CornerRadius="5"
-                                            Background="#B56576">
+                                            Background="#E56B6F">
                                         <Grid x:Name="grdPlaceOrder"
                                               HorizontalAlignment="Center"
                                               Margin="0,5">
@@ -346,9 +347,10 @@
                                             <TextBlock x:Name="tbPlaceOrder"
                                                        Grid.Column="1"
                                                        Text="Place order"
+                                                       FontFamily="Segoe UI"
+                                                       FontWeight="Bold"
                                                        Foreground="White"
                                                        FontSize="15"
-                                                       FontWeight="SemiBold"
                                                        VerticalAlignment="Center"
                                                        HorizontalAlignment="Center"/>
                                             <Image x:Name="imgPlaceOrder"

@@ -31,11 +31,11 @@ namespace UTEMerchant
 
             this.User = user;
             // Tạo một BitmapImage từ đường dẫn ảnh
-            BitmapImage bitmap = new BitmapImage();
-            bitmap.BeginInit();
-            bitmap.UriSource = new Uri(user.Image_Path.ToString(), UriKind.RelativeOrAbsolute);
-            bitmap.EndInit();
-            imgUserAvatar.ImageSource = bitmap;
+            //BitmapImage bitmap = new BitmapImage();
+            //bitmap.BeginInit();
+            //bitmap.UriSource = new Uri(user.Image_Path.ToString(), UriKind.RelativeOrAbsolute);
+            //bitmap.EndInit();
+            //imgUserAvatar.ImageSource = bitmap;
 
             txbName.Text = user.Name;
             uc_PurchasingUI.IdUser = user.Id_user;

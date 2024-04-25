@@ -120,13 +120,12 @@
 
                     <DockPanel Grid.Row="3">
                         <Button x:Name="btnAddToCart"    
-                                Width="70"
-                                HorizontalAlignment="Left" 
+                                Width="96" 
                                 VerticalContentAlignment="Center" 
                                 BorderThickness="1,1,1,1" 
                                 Foreground="White"
                                 FontFamily="Rockwell" FontWeight="Bold"                        
-                                Click="btnAddToCart_Click" Margin="0,3,0,2" VerticalAlignment="Stretch">
+                                Click="btnAddToCart_Click" Margin="0,3,0,2">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Border  CornerRadius="7" Background="#FF3131" >
@@ -140,9 +139,10 @@
                                     <ColumnDefinition Width="9*"/>
                                     <ColumnDefinition Width="26*"/>
                                 </Grid.ColumnDefinitions>
-                                <Icon:PackIconMaterial  Kind="HeartPlusOutline"  Foreground="White" Margin="3,0,0,0" Grid.ColumnSpan="2" VerticalAlignment="Center" />
-                                <TextBlock Text="Like"
-                                           HorizontalAlignment="Left" Margin="9,0,0,0" Grid.Column="1"/>
+                                <Icon:PackIconMaterial  Kind="CartPlus"  Foreground="White" Margin="2,0,0,0" Grid.ColumnSpan="2" VerticalAlignment="Center" />
+                                <TextBlock Text="Add To Cart"
+                                           FontSize="12"
+                                           HorizontalAlignment="Left" Margin="21,0,0,0" Grid.ColumnSpan="2" Width="73"/>
                             </Grid>
                         </Button>
                         <Image x:Name="imgSoldStamp" Visibility="Collapsed" Source="Img/sold-stamp-3.png" Height="29" Width="63" HorizontalAlignment="Right" Margin="61,0,0,0"  />

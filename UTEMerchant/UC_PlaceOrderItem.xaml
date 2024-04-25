@@ -5,57 +5,59 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UTEMerchant"
              mc:Ignorable="d" d:DesignWidth="800" Loaded="UserControl_Loaded">
-    <Grid Height="80">
+    <Grid Height="110" Background="Transparent">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="10"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="21"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Border x:Name="brdImage"
                 Grid.Column="0"
                 BorderBrush="Gray"
                 BorderThickness="2"
-                CornerRadius="5">
+                Height="90"
+                Width="90"
+                CornerRadius="5" Margin="5,10,0,10">
             <Image x:Name="imgItem"
                    Width="80"
                    Height="80"
-                   Stretch="Fill">
-                <Image.Clip>
-                    <RectangleGeometry RadiusX="5" RadiusY="5" Rect="0,0,80,76"/>
-                </Image.Clip>
-            </Image>
+                   Stretch="Uniform"
+                   Source="\Img\GucciBag.jpg"
+                   />
         </Border>
         <DockPanel x:Name="dpItemInfo"
                    Grid.Column="2"
                    LastChildFill="False">
             <TextBlock x:Name="tbItemName"
+                       VerticalAlignment="Top"
                        DockPanel.Dock="Top"
                        Margin="0,10"
                        Text="Gucci Bag"
                        TextAlignment="Left"
                        TextWrapping="Wrap"
-                       FontSize="15"
-                       FontWeight="SemiBold"
+                       FontSize="25"
+                       FontWeight="Black"
                        Foreground="Black"/>
             <StackPanel x:Name="spItemPrice"
-                        Orientation="Horizontal"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Bottom"
-                        Margin="0,10">
-                <TextBlock x:Name="tbItemDiscountPrice"
-                           FontSize="15"
-                           FontWeight="SemiBold"
-                           Text="$100"
-                           TextAlignment="Left"
-                           Foreground="Black"/>
+                        Orientation="Vertical"    
+                        VerticalAlignment="Top"
+                       >
+
                 <TextBlock x:Name="tbItemOriginalPrice"
-                           FontSize="10"
+                           FontSize="15"
                            VerticalAlignment="Top"
                            TextAlignment="Left"
                            Text="$200"
                            FontWeight="SemiBold"
                            Foreground="Gray"
                            TextDecorations="Strikethrough"/>
+                <TextBlock x:Name="tbItemDiscountPrice"
+                           FontSize="22"
+                           FontFamily="Segoe UI Black"
+                           FontWeight="SemiBold"
+                           Text="$100"
+                           TextAlignment="Left"
+                           Foreground="Red"/>
             </StackPanel>
         </DockPanel>
     </Grid>

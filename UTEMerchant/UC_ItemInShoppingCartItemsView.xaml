@@ -3,10 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:local="clr-namespace:UTEMerchant"
              mc:Ignorable="d" 
              d:DesignHeight="90" d:DesignWidth="800" Loaded="UserControl_Loaded">
-    <Grid x:Name="grd" Background="#EAAC8B">
+    <Grid x:Name="grd" Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1.5*"/>
             <ColumnDefinition Width="0.5*"/>
@@ -26,15 +27,14 @@
         <Border Grid.Column="2" x:Name="brdImage"
                 BorderBrush="Gray"
                 BorderThickness="2"
+                Width="80"
+                Height="80"
                 CornerRadius="10"
                 Margin="0,10">
             <Image x:Name="imgItem"
                    Width="70"
                    Height="70"
-                   Stretch="Fill">
-                <Image.Clip>
-                    <RectangleGeometry RadiusX="10" RadiusY="10" Rect="0,0,70,70"/>
-                </Image.Clip>
+                   Stretch="Uniform">
             </Image>
         </Border>
         
@@ -44,33 +44,45 @@
             <Label x:Name="LblItemName" 
                        FontSize="20"
                        FontWeight="Bold"
+                        Foreground="Black"
                        HorizontalAlignment="Left"
                        DockPanel.Dock="Top"/>
             <StackPanel x:Name="spItemPrice"
-                        Orientation="Horizontal"
-                        DockPanel.Dock="Bottom">
-                <TextBlock x:Name="txtItemDiscountPrice" 
-                           FontSize="20"
-                           Foreground="Red"
-                           FontWeight="Bold"/>
+                        Orientation="Vertical"
+                        VerticalAlignment="Top">
                 <TextBlock x:Name="txtItemOriginalPrice"
-                           FontSize="15"
-                           Foreground="Black"
+                           FontSize="18"
+                           Foreground="Gray"
                            VerticalAlignment="Top"
-                           FontWeight="Bold"
+                           FontWeight="SemiBold"
                            TextDecorations="Strikethrough"/>
+                
+                <TextBlock x:Name="txtItemDiscountPrice" 
+                           FontSize="21"
+                           FontFamily="Segoe UI Black"
+                           FontWeight="SemiBold"
+                           Foreground="Red"
+                           />
             </StackPanel>
         </DockPanel>
         <Button Grid.Column="5" 
-                x:Name="btnRemove" 
-                Content="Remove"
-                Height="70"
-                Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}"
+                x:Name="btnRemove"                
+                FontFamily="Segoe UI"
+                FontWeight="SemiBold"
+                Height="40"
+                Width="70"
+                FontSize="12"
+                HorizontalAlignment="Center"
+                Margin="0 0 10 0"
                 Visibility="Collapsed" Click="btnRemove_Click">
+            
+            <Icon:PackIconMaterial Kind="Delete" HorizontalAlignment="Center" VerticalAlignment="Center" Width="23" Height="22" Foreground="Black"/>
+
             <Button.Template>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border x:Name="Border"
                             Background="Red"
+                            CornerRadius="15"
                             BorderThickness="0">
                         <ContentPresenter HorizontalAlignment="Center" 
                                           VerticalAlignment="Center"/>
