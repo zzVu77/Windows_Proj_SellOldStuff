@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:UTEMerchant"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d" d:DesignWidth="800" Loaded="UserControl_Loaded">
-    <Grid Background="#E88C7D">
+    <Grid Background="Transparent">
         <DockPanel x:Name="dpShoppingCart">
             <DockPanel x:Name="dpShopNameAndEdit"
                        DockPanel.Dock="Top"
@@ -29,12 +29,15 @@
                     <TextBlock x:Name="tbShopName"
                                FontSize="20"
                                Text="Shop"
+                               FontFamily="Segoe UI Black"                          
                                VerticalAlignment="Center"
                                MouseDown="tbShopName_MouseDown"/>
                 </StackPanel>
                 <TextBlock x:Name="lblEdit" 
                            Text="Edit"
                            FontSize="20"
+                           FontFamily="Segoe UI Black"
+                           FontWeight="SemiBold"
                            HorizontalAlignment="Right"
                            TextAlignment="Center"
                            VerticalAlignment="Center"

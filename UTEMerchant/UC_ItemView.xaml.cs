@@ -54,8 +54,8 @@ namespace UTEMerchant
                 txblPostedDate.Visibility=Visibility.Hidden;
             }   
             txblItemName.Text = info.Name;
-            txblPrice.Text = info.Price.ToString()+"$";
-            txblOldPrice.Text=info.Original_Price.ToString()+"$";
+            txblPrice.Text = "$"+info.Price.ToString();
+            txblOldPrice.Text= "$"+info.Original_Price.ToString();
             txblCondition.Text = info.Condition.ToString() + "%";
             var resourceUri = new Uri(info.Image_Path, UriKind.RelativeOrAbsolute);
             imgItemPic.Source = new BitmapImage(resourceUri);

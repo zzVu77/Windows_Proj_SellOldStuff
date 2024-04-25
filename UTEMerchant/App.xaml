@@ -1510,7 +1510,7 @@
         </Style>
 
         <Style x:Key="RoundedToggleButton" TargetType="ToggleButton">
-            <Setter Property="Background" Value="Wheat"/>
+            <Setter Property="Background" Value="White"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ToggleButton">
@@ -1522,14 +1522,14 @@
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 Background="{TemplateBinding Background}">
                             <Image x:Name="PART_Check" 
-                                   Source="{icon:BoxIconsImage Kind=RegularCheck, Brush=Wheat}"
+                                   Source="{icon:BoxIconsImage Kind=RegularCheck, Brush=White}"
                                    Stretch="Uniform"
                                    Visibility="Collapsed"
                                    Margin="5"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsChecked" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="#E56B6F"/>
+                                <Setter TargetName="border" Property="Background" Value="Red"/>
                                 <Setter TargetName="PART_Check" Property="Visibility" Value="Visible"/>
                             </Trigger>
                             <MultiTrigger>

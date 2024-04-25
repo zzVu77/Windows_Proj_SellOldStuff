@@ -17,7 +17,7 @@
                 Grid.Column="0"
                 Grid.RowSpan="2"
                 HorizontalAlignment="Stretch"
-                Background="Gray"
+                Background="#E56B6F"
                 CornerRadius="5">
         </Border>
         <StackPanel Grid.Row="0"
@@ -33,14 +33,16 @@
                    Margin="0,0,10,0"/>
             <TextBlock x:Name="tbShopName"
                        Text="Shop"
-                       FontSize="15"
-                       FontWeight="SemiBold"
+                       FontSize="20"
+                       FontWeight="Black"
                        VerticalAlignment="Center"/>
         </StackPanel>
         <Border x:Name="brdItems"
                 Grid.Column="0"
                 Grid.Row="1"
-                Background="#E8E8E8"
+                BorderBrush="Black"
+                BorderThickness="1.5"
+                Background="White"
                 CornerRadius="5">
             <ScrollViewer x:Name="svItems"
                           Margin="20"

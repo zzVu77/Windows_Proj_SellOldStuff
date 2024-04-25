@@ -565,8 +565,10 @@ HorizontalAlignment="Left">
               HorizontalAlignment="Right"
               Margin="0,0,-400,0">
             <Border x:Name="brdShoppingCart"
-                    Background="#E56B6F"
-                    CornerRadius="30,0,0,30">
+                    Background="White"
+                    BorderThickness="1.8"
+                    BorderBrush="#E56B6F"
+                    CornerRadius="20,0,0,20">
                 <Grid x:Name="grdInnerShoppingCart">
                     <Grid.RowDefinitions>
                         <RowDefinition x:Name="rBackButton" Height="60"/>
@@ -582,13 +584,13 @@ HorizontalAlignment="Left">
                                 <Grid x:Name="grdCircleButton">
                                     <Ellipse x:Name="ellCircle" 
                                              StrokeThickness="5"
-                                             Stroke="#B56576"
+                                             Stroke="#E56B6F"
                                              Fill="Transparent"
                                              Height="40"
                                              Width="{Binding ElementName=ellCircle,Path=ActualHeight}">
                                     </Ellipse>
                                     <Image x:Name="imgArrowLeftIcon"
-                                           Source="{Icon:FeatherIconsImage Brush=#B56576, Kind=ArrowLeft}"
+                                           Source="{Icon:FeatherIconsImage Brush=#E56B6F, Kind=ArrowLeft}"
                                            Height="20"
                                            Stretch="Uniform"/>
                                 </Grid>
@@ -623,7 +625,7 @@ HorizontalAlignment="Left">
 
                         <Border Grid.ColumnSpan="2" Grid.Column="0"
                                 BorderThickness="0,2,0,0"
-                                BorderBrush="#E88C7B"/>
+                                BorderBrush="#E56B6F"/>
                         <StackPanel Grid.Column="0"
                                     x:Name="spTotalPrice"
                                     Orientation="Horizontal"
@@ -631,14 +633,20 @@ HorizontalAlignment="Left">
                             <TextBlock x:Name="tbTotalPrice"
                                        Text="Total Price: "
                                        VerticalAlignment="Center"
+                                       FontFamily="Segoe UI"
+                                       FontWeight="SemiBold"
                                        HorizontalAlignment="Left"
                                        FontSize="20"/>
                             <TextBlock x:Name="tbTotalPriceValue"
                                        Text="0"
+                                       FontFamily="Segoe UI Black"
+                                       Foreground="Red"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Left"
                                        FontSize="20"/>
                             <TextBlock x:Name="tbDollarSign"
+                                       FontFamily="Segoe UI Black"
+                                       Foreground="Red"
                                        Text="$"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Left"
@@ -646,12 +654,17 @@ HorizontalAlignment="Left">
                         </StackPanel>
                         <Button x:Name="btnCheckout"
                                 Grid.Column="1"
+                                Margin="0 0 8 0"
                                 Content="Checkout"
+                                FontFamily="Segoe UI"
+                                FontWeight="Bold"
+                                Height="60"
                                 FontSize="20" Click="btnCheckout_Click">
                             <Button.Template>
                                 <ControlTemplate TargetType="{x:Type Button}">
                                     <Border x:Name="Border"
-                                            Background="#EAAC8B                                            " 
+                                            Background="#E56B6F"
+                                            CornerRadius="14"
                                             BorderThickness="0">
                                         <ContentPresenter HorizontalAlignment="Center" 
                                                           VerticalAlignment="Center"/>
