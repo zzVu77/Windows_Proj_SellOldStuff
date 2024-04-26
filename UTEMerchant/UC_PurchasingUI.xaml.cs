@@ -46,7 +46,10 @@ namespace UTEMerchant
             if (btnRelevance.Background == Brushes.Transparent)
             {
                 wpItemsList.Children.Clear();
-                foreach (Item item in _itemDao.SortRevelance(IdUser))
+                List<Item> items = _itemDao.SortRevelance(IdUser);
+
+                List<Item> sortedItems = _items.OrderByDescending(item => item.Item_Id).ToList();
+                foreach (Item item in sortedItems)
                 {
                     UC_ItemView uc_item = new UC_ItemView(item);
                     uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
@@ -256,9 +259,45 @@ namespace UTEMerchant
             }
         }
 
-        private void txtSearchBox_TextChanged(object sender, TextChangedEventArgs e)
+       
+
+        private void txtSearchBox_KeyDown(object sender, KeyEventArgs e)
         {
-            
+            if (e.Key == Key.Enter)
+            {
+                if (!string.IsNullOrWhiteSpace(txtSearchBox.Text))
+                {
+                    List<Item> items = _itemDao.Search(txtSearchBox.Text);
+                    if (items.Count > 0)
+                    {
+                        wpItemsList.Children.Clear();
+                        foreach (Item item in items)
+                        {
+                            UC_ItemView uc_item = new UC_ItemView(item);
+                            uc_item.ItemClicked += OnItemButtonAddToCartClicked;
+                            uc_ShoppingCart.CheckCart();
+                            uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
+                            wpItemsList.Children.Add(uc_item);
+                        }
+                    }
+                }
+                else
+                {
+                    wpItemsList.Children.Clear();
+                    foreach (Item item in _items)
+                    {
+                        UC_ItemView uc_item = new UC_ItemView(item);
+                        uc_item.ItemClicked += OnItemButtonAddToCartClicked;
+                        uc_ShoppingCart.CheckCart();
+                        uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
+                        wpItemsList.Children.Add(uc_item);
+                    }
+                }
+            }
+        }
+
+        private void imgSearchIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
             if (!string.IsNullOrWhiteSpace(txtSearchBox.Text))
             {
                 List<Item> items = _itemDao.Search(txtSearchBox.Text);

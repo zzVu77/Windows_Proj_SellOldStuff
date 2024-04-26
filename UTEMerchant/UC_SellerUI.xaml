@@ -67,7 +67,7 @@
                            Panel.ZIndex="1" Text="Search in Members ..."
                            Visibility="{Binding ElementName=textBoxFilter, Converter={StaticResource BoolToVis}}" />
 
-                <TextBox Name="textBoxFilter" Style="{StaticResource filterTextBox}"/>
+                <TextBox Name="textBoxFilter" Style="{StaticResource filterTextBox}" KeyDown="textBoxFilter_KeyDown"/>
             </Grid>
 
             <!--Members Data Grid-->
