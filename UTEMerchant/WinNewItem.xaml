@@ -92,17 +92,7 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="2*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBox Grid.Column="0" 
-                                 x:Name="txtID"   
-                                 Height="40"
-                                 Foreground="Black" 
-                                 FontFamily="Segoe UI " 
-                                 FontWeight="SemiBold"  
-                                 Style="{StaticResource DefaultTextBoxStyle}"  
-                                 BorderThickness="3" 
-                                 Tag="ID"
-                                 Margin="0,0,10,0"/>
-                        <TextBox Grid.Column="1"
+                        <TextBox Grid.Column="0"
                                  x:Name="txtName"      
                                  Height="{Binding ElementName=txtID, Path=ActualHeight}"
                                  Foreground="Black" 
@@ -111,40 +101,46 @@
                                  Style="{StaticResource DefaultTextBoxStyle}"  
                                  BorderThickness="3"
                                  Tag="Name"
-                                 Margin="5,0,0,0"/>
+                                 Margin="0,0,0,10" Grid.ColumnSpan="2"/>
                     </Grid>
 
 
                     <UniformGrid Grid.Row="1"
                                  Columns="3">
                         <TextBox x:Name="txtOriginalPrice"                      
-                                 Width="{Binding ElementName=txtID, Path=ActualWidth}"
-                                 Height="{Binding ElementName=txtID, Path=ActualHeight}"
                                  Foreground="Black" 
                                  FontFamily="Segoe UI " 
                                  FontWeight="SemiBold"  
                                  Style="{StaticResource DefaultTextBoxStyle}"
+                                 Height="40"
+                                 Width="100"
+                                 VerticalAlignment="Top"
                                  HorizontalAlignment="Left" 
                                  BorderThickness="3"
-                                 Tag="Original Price"/>
-                        <TextBox x:Name="txtPrice"    
-                                 Width="{Binding ElementName=txtOriginalPrice, Path=ActualWidth}"
-                                 Height="{Binding ElementName=txtOriginalPrice, Path=ActualHeight}"
+                                 
+                                 Tag="Original Price" Margin="0,0,0,10"/>
+                        <TextBox x:Name="txtPrice"
                                  Foreground="Black" 
                                  FontFamily="Segoe UI " 
                                  FontWeight="SemiBold"  
                                  Style="{StaticResource DefaultTextBoxStyle}"  
                                  BorderThickness="3"
-                                 Tag="Price"/>
+                                 Height="40"
+                                 Width="100"
+                                 VerticalAlignment="Top"
+                                 HorizontalAlignment="Center"
+                                 
+                                 Tag="Price" />
                         <ComboBox Grid.Column="2" x:Name="cbType"
                                   Tag="Type"
                                   BorderThickness="3"
                                   HorizontalAlignment="Right"
                                   Style="{StaticResource DefaultComboBoxStyle}"
-                                  Width="{Binding ElementName=txtPrice, Path=ActualWidth}"
-                                  Height="{Binding ElementName=txtPrice, Path=ActualHeight}"
+                                  Height="40"
+                                  Width="100"
+                                  VerticalAlignment="Top"                                  
                                   Background="White"
-                                  SelectionChanged="ComboBox_SelectionChanged">
+                                  SelectionChanged="ComboBox_SelectionChanged" Margin="0,0,0,10">
                             <ComboBoxItem Content="laptop"/>
                             <ComboBoxItem Content="mobile phone"/>
                             <ComboBoxItem Content="television"/>
@@ -234,8 +230,6 @@
                                      Focusable="True"
                                      FontFamily="Segoe UI"/>
                     </Grid>
-
-
 
                 </Grid>
             </Grid>

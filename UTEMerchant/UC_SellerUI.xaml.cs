@@ -124,5 +124,58 @@ namespace UTEMerchant
                     productGrid.Items.Add(a);
             }
         }
+
+        private void textBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            /*if (!string.IsNullOrWhiteSpace(textBoxSearch.Text))
+            {
+                List<Item> itemsSearch = dao.Search(textBoxSearch.Text);
+                if (itemsSearch.Count > 0)
+                {
+                    productGrid.Items.Clear();
+                    foreach (Item item in itemsSearch)
+                    {
+                        if (IdSeller == item.SellerID)
+                            productGrid.Items.Add(item);
+                    }
+                }
+            }
+            else
+            {
+                productGrid.Items.Clear();
+                foreach (Item a in items)
+                {
+                    productGrid.Items.Add(a);
+                }
+            }*/
+        }
+
+        private void textBoxFilter_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (!string.IsNullOrWhiteSpace(textBoxFilter.Text))
+                {
+                    List<Item> itemsSearch = dao.Search(textBoxFilter.Text);
+                    if (itemsSearch.Count > 0)
+                    {
+                        productGrid.Items.Clear();
+                        foreach (Item item in itemsSearch)
+                        {
+                            if (IdSeller == item.SellerID)
+                                productGrid.Items.Add(item);
+                        }
+                    }
+                }
+                else
+                {
+                    productGrid.Items.Clear();
+                    foreach (Item a in items)
+                    {
+                        productGrid.Items.Add(a);
+                    }
+                }
+            }
+        }
     }
 }

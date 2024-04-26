@@ -137,12 +137,17 @@
                                     </Grid.ColumnDefinitions>
                                     <Image x:Name="imgSearchIcon" Margin="50,15,0,15"
                                            Source="{StaticResource SearchIcon}" 
-                                           Height="20"/>
+                                           Height="20"
+                                           MouseLeftButtonDown="imgSearchIcon_MouseLeftButtonDown"
+                                           />
                                     <TextBox x:Name="txtSearchBox"
                                              Grid.Column="1"
                                              Margin="20,0,20,0"
                                              Background="Transparent"
                                              BorderBrush="Transparent"
+                                             
+                                             KeyDown="txtSearchBox_KeyDown"
+                                             
                                              VerticalContentAlignment="Center"
                                              FontSize="{Binding ElementName=imgSearchIcon, Path=ActualHeight}"
                                              FocusVisualStyle="{x:Null}"

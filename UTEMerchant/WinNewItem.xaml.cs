@@ -43,7 +43,7 @@ namespace UTEMerchant
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
-            openFileDialog.Filter = "Tất cả các tệp (*.*)|*.*";
+            openFileDialog.Filter = "Images (*.jpg,*.png)|*.jpg;*.png";
             if (openFileDialog.ShowDialog() == true)
             {
                 string selectedFilePath = openFileDialog.FileName;
@@ -86,7 +86,7 @@ namespace UTEMerchant
             
             // Perform validation checks
             if (typeItem == null ||
-                string.IsNullOrWhiteSpace(txtID.Text) ||
+                //string.IsNullOrWhiteSpace(txtID.Text) ||
                 string.IsNullOrWhiteSpace(txtBoughtDate.Text) ||
                 string.IsNullOrWhiteSpace(txtName.Text) ||
                 string.IsNullOrWhiteSpace(txtCondition.Text) ||
@@ -94,7 +94,7 @@ namespace UTEMerchant
                 string.IsNullOrWhiteSpace(txtPrice.Text) ||
                 string.IsNullOrWhiteSpace(text_detail) ||
                 string.IsNullOrWhiteSpace(text_Condition) ||
-                !check.IsNumeric(txtID.Text) ||                           // Check if ID is numeric
+                string.IsNullOrWhiteSpace(image_path) ||
                 !check.IsDateFormatValid(txtBoughtDate.Text) ||           // Check if bought date has valid format
                 !check.IsDateValid(txtBoughtDate.Text) ||                 // Check if bought date is a valid date
                 !check.IsNumeric(txtCondition.Text) ||                    // Check if condition is numeric
@@ -111,7 +111,7 @@ namespace UTEMerchant
                 
                 Item_DAO dao = new Item_DAO();
                 DateTime today = DateTime.Now;
-                dao.Add(new Item(Int32.Parse(txtID.Text.ToString()), txtName.Text.ToString(),
+                dao.Add(new Item(0, txtName.Text.ToString(),
                     float.Parse(txtPrice.Text.ToString()),
                     float.Parse(txtOriginalPrice.Text.ToString()), typeItem.Content.ToString(),
                     DateTime.Parse(txtBoughtDate.Text.ToString()),

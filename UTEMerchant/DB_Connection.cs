@@ -29,14 +29,15 @@ namespace UTEMerchant
                 conn.Close();
             }
         }
-        public List<T> LoadData<T>(string query) where T : new()
+        public List<T> LoadData<T>(string query, params SqlParameter[] parameters) where T : new()
         {
             List<T> items = new List<T>();
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                using (SqlCommand command = new SqlCommand($@"{query}", conn))
+                using (SqlCommand command = new SqlCommand(query, conn))
                 {
+                    command.Parameters.AddRange(parameters); // Add parameters to the command
                     conn.Open();
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
@@ -56,7 +57,6 @@ namespace UTEMerchant
 
         private void LoadItemProperties<T>(SqlDataReader reader, T item)
         {
-            // Reflection-based property loading
             PropertyInfo[] properties = typeof(T).GetProperties();
             foreach (PropertyInfo property in properties)
             {
@@ -72,11 +72,11 @@ namespace UTEMerchant
                 }
                 catch (IndexOutOfRangeException)
                 {
-                    
+                    // Handle missing columns
                 }
                 catch (Exception ex)
                 {
-                  
+                    // Handle other exceptions
                 }
             }
         }
