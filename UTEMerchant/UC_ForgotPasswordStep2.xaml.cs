@@ -21,6 +21,7 @@ namespace UTEMerchant
     public partial class UC_ForgotPasswordStep2 : UserControl
     {
         public event EventHandler EnterButtonClicked;
+        public event EventHandler BackButtonClicked;
         public UC_ForgotPasswordStep2()
         {
             InitializeComponent();
@@ -32,24 +33,13 @@ namespace UTEMerchant
 
             EnterButtonClicked?.Invoke(this, EventArgs.Empty);
 
-          
         }
 
-        private void textVerifyCode_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            txtCode.Focus();
-        }
+        
 
-        private void txtCode_TextChanged(object sender, TextChangedEventArgs e)
+        private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtCode.Text) && txtCode.Text.Length > 0)
-            {
-                textVerifyCode.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                textVerifyCode.Visibility = Visibility.Visible;
-            }
+            BackButtonClicked?.Invoke(this, EventArgs.Empty);
         }
     }
 }
