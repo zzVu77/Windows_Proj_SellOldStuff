@@ -154,9 +154,9 @@ namespace UTEMerchant
         {
             if (e.Key == Key.Enter)
             {
-                if (!string.IsNullOrWhiteSpace(textBoxSearch.Text))
+                if (!string.IsNullOrWhiteSpace(textBoxFilter.Text))
                 {
-                    List<Item> itemsSearch = dao.Search(textBoxSearch.Text);
+                    List<Item> itemsSearch = dao.Search(textBoxFilter.Text);
                     if (itemsSearch.Count > 0)
                     {
                         productGrid.Items.Clear();
