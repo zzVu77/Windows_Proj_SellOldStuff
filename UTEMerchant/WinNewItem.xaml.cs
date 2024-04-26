@@ -43,7 +43,7 @@ namespace UTEMerchant
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
-            openFileDialog.Filter = "Tất cả các tệp (*.*)|*.*";
+            openFileDialog.Filter = "Images (*.jpg,*.png)|*.jpg;*.png";
             if (openFileDialog.ShowDialog() == true)
             {
                 string selectedFilePath = openFileDialog.FileName;

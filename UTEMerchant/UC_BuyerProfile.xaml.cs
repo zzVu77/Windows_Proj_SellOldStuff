@@ -204,9 +204,9 @@ namespace UTEMerchant
 
         private void btnChangePhoto_Click(object sender, RoutedEventArgs e)
         {
-            
+
             Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
-            openFileDialog.Filter = "Tất cả các tệp (*.*)|*.*";
+            openFileDialog.Filter = "Images (*.jpg,*.png)|*.jpg;*.png";
             if (openFileDialog.ShowDialog() == true)
             {
                 string selectedFilePath = openFileDialog.FileName;
@@ -218,6 +218,7 @@ namespace UTEMerchant
                 imgUserPhoto.Source = bitmap;
                 // Xử lý đường dẫn đã chọn ở đây
             }
+            btnSave.Visibility = Visibility.Visible;
         }
 
         private void UserControl_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)

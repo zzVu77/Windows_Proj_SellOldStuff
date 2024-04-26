@@ -101,21 +101,23 @@
                                  Style="{StaticResource DefaultTextBoxStyle}"  
                                  BorderThickness="3"
                                  Tag="Name"
-                                 Margin="0,0,253,10" Grid.ColumnSpan="2"/>
+                                 Margin="0,0,0,10" Grid.ColumnSpan="2"/>
                     </Grid>
 
 
                     <UniformGrid Grid.Row="1"
                                  Columns="3">
                         <TextBox x:Name="txtOriginalPrice"                      
-                                 Width="98"
-                                 Height="{Binding ElementName=txtID, Path=ActualHeight}"
                                  Foreground="Black" 
                                  FontFamily="Segoe UI " 
                                  FontWeight="SemiBold"  
                                  Style="{StaticResource DefaultTextBoxStyle}"
+                                 Height="40"
+                                 Width="100"
+                                 VerticalAlignment="Top"
                                  HorizontalAlignment="Left" 
                                  BorderThickness="3"
+                                 
                                  Tag="Original Price" Margin="0,0,0,10"/>
                         <TextBox x:Name="txtPrice"
                                  Foreground="Black" 
@@ -123,13 +125,20 @@
                                  FontWeight="SemiBold"  
                                  Style="{StaticResource DefaultTextBoxStyle}"  
                                  BorderThickness="3"
-                                 Tag="Price" Margin="21,0,1,10"/>
+                                 Height="40"
+                                 Width="100"
+                                 VerticalAlignment="Top"
+                                 HorizontalAlignment="Center"
+                                 
+                                 Tag="Price" />
                         <ComboBox Grid.Column="2" x:Name="cbType"
                                   Tag="Type"
                                   BorderThickness="3"
                                   HorizontalAlignment="Right"
                                   Style="{StaticResource DefaultComboBoxStyle}"
-                                  Width="{Binding ElementName=txtPrice, Path=ActualWidth}"
+                                  Height="40"
+                                  Width="100"
+                                  VerticalAlignment="Top"                                  
                                   Background="White"
                                   SelectionChanged="ComboBox_SelectionChanged" Margin="0,0,0,10">
                             <ComboBoxItem Content="laptop"/>
