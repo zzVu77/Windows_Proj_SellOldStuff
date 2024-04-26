@@ -223,5 +223,38 @@ namespace UTEMerchant
                 wpItemsList.Children.Add(uc_item);
             }
         }
+
+        private void txtSearchBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            
+            if (!string.IsNullOrWhiteSpace(txtSearchBox.Text))
+            {
+                List<Item> items = _itemDao.Search(txtSearchBox.Text);
+                if (items.Count > 0)
+                {
+                    wpItemsList.Children.Clear();
+                    foreach (Item item in items)
+                    {
+                        UC_ItemView uc_item = new UC_ItemView(item);
+                        uc_item.ItemClicked += OnItemButtonAddToCartClicked;
+                        uc_ShoppingCart.CheckCart();
+                        uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
+                        wpItemsList.Children.Add(uc_item);
+                    }
+                }
+            }
+            else
+            {
+                wpItemsList.Children.Clear();
+                foreach (Item item in _items)
+                {
+                    UC_ItemView uc_item = new UC_ItemView(item);
+                    uc_item.ItemClicked += OnItemButtonAddToCartClicked;
+                    uc_ShoppingCart.CheckCart();
+                    uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
+                    wpItemsList.Children.Add(uc_item);
+                }
+            }
+        }
     }
 }

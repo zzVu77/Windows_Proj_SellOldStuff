@@ -143,6 +143,7 @@
                                              Margin="20,0,20,0"
                                              Background="Transparent"
                                              BorderBrush="Transparent"
+                                             TextChanged="txtSearchBox_TextChanged"
                                              VerticalContentAlignment="Center"
                                              FontSize="{Binding ElementName=imgSearchIcon, Path=ActualHeight}"
                                              FocusVisualStyle="{x:Null}"
