@@ -100,6 +100,17 @@ namespace UTEMerchant
             FROM [dbo].[Item]
             ORDER BY [price] DESC");
         }
+        public List<Item> SortRevelance(int userID)
+        {
+            return db.LoadData<Item>(@"SELECT i.* FROM [dbo].[Item] i 
+            WHERE i.[type] IN (
+                SELECT DISTINCT [type]
+                FROM [dbo].[Item] it
+                INNER JOIN [dbo].[PurchasedProducts] pp ON it.Item_Id = pp.Item_Id
+                WHERE pp.[Id_user] = @UserId
+            )", new SqlParameter("@UserId", userID));
+        }
 
+        
     }
 }

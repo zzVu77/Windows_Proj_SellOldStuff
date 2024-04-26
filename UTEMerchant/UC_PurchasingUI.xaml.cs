@@ -45,9 +45,26 @@ namespace UTEMerchant
         {
             if (btnRelevance.Background == Brushes.Transparent)
             {
+                wpItemsList.Children.Clear();
+                foreach (Item item in _itemDao.SortRevelance(IdUser))
+                {
+                    UC_ItemView uc_item = new UC_ItemView(item);
+                    uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
+                    wpItemsList.Children.Add(uc_item);
+                }
                 btnRelevance.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#EAAC8B");
             }
-            else btnRelevance.Background = Brushes.Transparent;
+            else
+            {
+                btnRelevance.Background = Brushes.Transparent;
+                wpItemsList.Children.Clear();
+                foreach (Item item in _items)
+                {
+                    UC_ItemView uc_item = new UC_ItemView(item);
+                    uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
+                    wpItemsList.Children.Add(uc_item);
+                }
+            }
         }
 
         private void btnPopular_Click(object sender, RoutedEventArgs e)
@@ -64,8 +81,9 @@ namespace UTEMerchant
             if (btnPrice.Background == Brushes.Transparent)
             {
 
-                wpItemsList.Children.Clear();
+      
                 btnPrice.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#EAAC8B");
+                wpItemsList.Children.Clear();
                 foreach (Item item in _itemDao.SortPrice())
                 {
                     UC_ItemView uc_item = new UC_ItemView(item);
@@ -76,14 +94,9 @@ namespace UTEMerchant
             }
             else
             {
-                wpItemsList.Children.Clear();
+                
                 btnPrice.Background = Brushes.Transparent;
-                foreach (Item item in _items)
-                {
-                    UC_ItemView uc_item = new UC_ItemView(item);
-                    uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
-                    wpItemsList.Children.Add(uc_item);
-                }
+                
             }
         }
 
