@@ -63,9 +63,28 @@ namespace UTEMerchant
         {
             if (btnPrice.Background == Brushes.Transparent)
             {
+
+                wpItemsList.Children.Clear();
                 btnPrice.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#EAAC8B");
+                foreach (Item item in _itemDao.SortPrice())
+                {
+                    UC_ItemView uc_item = new UC_ItemView(item);
+                    uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
+                    wpItemsList.Children.Add(uc_item);
+                }
+
             }
-            else btnPrice.Background = Brushes.Transparent;
+            else
+            {
+                wpItemsList.Children.Clear();
+                btnPrice.Background = Brushes.Transparent;
+                foreach (Item item in _items)
+                {
+                    UC_ItemView uc_item = new UC_ItemView(item);
+                    uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
+                    wpItemsList.Children.Add(uc_item);
+                }
+            }
         }
 
         private void imgFilter_MouseDown(object sender, MouseButtonEventArgs e)

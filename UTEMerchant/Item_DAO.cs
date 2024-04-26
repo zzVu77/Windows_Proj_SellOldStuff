@@ -93,6 +93,13 @@ namespace UTEMerchant
           UPPER(condition_description) LIKE '%' + @Text + '%') ";   // AND [sale_status] = 0
             return db.LoadData<Item>(query, new SqlParameter("@Text", formattedText));
         }
+        public List<Item> SortPrice()
+        {
+            return db.LoadData<Item>(@"
+            SELECT *
+            FROM [dbo].[Item]
+            ORDER BY [price] DESC");
+        }
 
     }
 }
