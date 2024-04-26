@@ -20,32 +20,13 @@ namespace UTEMerchant
     /// </summary>
     public partial class UC_ForgotPasswordStep1 : UserControl
     {
-        new user_DAO dao = new user_DAO();
         public event EventHandler SendButtonClicked;
        
         public UC_ForgotPasswordStep1()
         {
             InitializeComponent();
         }
-        private void textUserName_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            txtEmail.Focus();
-
-        }
-
-        private void txtUserName_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (!string.IsNullOrEmpty(txtEmail.Text) && txtEmail.Text.Length > 0)
-            {
-                textEmail.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                textEmail.Visibility = Visibility.Visible;
-            }
-        }
-
-
+        
         private void Button_Click(object sender, RoutedEventArgs e)
         {
           
