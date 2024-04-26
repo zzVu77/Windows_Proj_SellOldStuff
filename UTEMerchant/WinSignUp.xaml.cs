@@ -51,7 +51,7 @@ namespace UTEMerchant
         {
             if (sender is UC_SignUpStep1 clickedItemView )
             {
-                if (UCSignUpStep1.ucEmail.textbox.Text.ToString() != "")
+                if (!string.IsNullOrWhiteSpace(UCSignUpStep1.ucEmail.textbox.Text.ToString()) && CheckValid.IsValidEmail(UCSignUpStep1.ucEmail.textbox.Text.ToString()))
                 {
                     UCSignUpStep1.Visibility = Visibility.Collapsed;
                     UCSignUpStep2.Visibility = Visibility.Visible;
@@ -70,7 +70,7 @@ namespace UTEMerchant
                 }
                 else
                 {
-                    MessageBox.Show("Please complete all information");
+                    MessageBox.Show("invalid information");
                 }
   
             }

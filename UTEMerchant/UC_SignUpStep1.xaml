@@ -35,10 +35,10 @@
             <TextBlock Grid.Row="7" Text="Email" Style="{StaticResource Text}"  VerticalAlignment="Top" Margin="0,16,0,0" />
             <local:UCtextBox Grid.Column="1" Grid.Row="0" Hint="Nguyen Van A" x:Name="ucName" Height="48" VerticalAlignment="Top"/>
             <local:UCtextBox Grid.Column="1" Hint="kiyo12312" x:Name="ucUserName" Margin="0,0,0,10" Grid.Row="1"/>
-            <local:UCtextBox Grid.Column="1" Grid.Row="2" Hint="*******" x:Name="ucPassword" Margin="0,4,0,11" RenderTransformOrigin="0.5,0.5">
+            <local:UCtextBox Grid.Column="1" Grid.Row="2" Hint="*******" x:Name="ucPassword" Margin="0,0,0,8" RenderTransformOrigin="0.5,0.5">
                 <local:UCtextBox.RenderTransform>
                     <TransformGroup>
-                        <ScaleTransform ScaleY="-1"/>
+                        <ScaleTransform ScaleY="1"/>
                         <SkewTransform/>
                         <RotateTransform/>
                         <TranslateTransform/>
@@ -82,10 +82,10 @@
             </ComboBox>
             <local:UCtextBox Grid.Column="1" Grid.Row="4" Hint="Le Van Viet" x:Name="ucWard" Margin="0,57,0,10" Grid.RowSpan="2"/>
             <local:UCtextBox Grid.Column="1" Grid.Row="5" Hint="0909092222" x:Name="ucPhone" Margin="0,58,0,10" Grid.RowSpan="2"/>
-            <local:UCtextBox Grid.Column="1" Grid.Row="7" Hint="asdbc@gmail.com" Margin="0,2,0,0" x:Name="ucEmail" RenderTransformOrigin="0.5,0.5" Height="49" VerticalAlignment="Top">
+            <local:UCtextBox Grid.Column="1" Grid.Row="7" Hint="asdbc@gmail.com" x:Name="ucEmail" RenderTransformOrigin="0.5,0.5" Height="48" VerticalAlignment="Center">
                 <local:UCtextBox.RenderTransform>
                     <TransformGroup>
-                        <ScaleTransform ScaleY="-1"/>
+                        <ScaleTransform ScaleY="1"/>
                         <SkewTransform/>
                         <RotateTransform/>
                         <TranslateTransform/>
