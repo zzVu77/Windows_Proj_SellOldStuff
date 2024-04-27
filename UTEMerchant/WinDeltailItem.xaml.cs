@@ -23,6 +23,7 @@ namespace UTEMerchant
         public Item info;
         private Seller seller;
         private int Id_user;
+        private ImgPath_DAO ImgPath_DAO = new ImgPath_DAO();
         public WinDeltailItem()
         {
             InitializeComponent();
@@ -36,23 +37,11 @@ namespace UTEMerchant
             //users = user_dao.Load();
             InitializeComponent();
             SetDefaultValue();
-            List<string> paths = new List<string>();
-            paths.Add(@"C:\\Users\\FPTSHOP\\Desktop\\Window_Proj_UTEMerchant\\UTEMerchant\\Img\\gamingmouse.jpg");
-            paths.Add(@"C:\\Users\\FPTSHOP\\Desktop\\Window_Proj_UTEMerchant\\UTEMerchant\\Img\\gamingmouse.jpg");
-            paths.Add(@"C:\\Users\\FPTSHOP\\Desktop\\Window_Proj_UTEMerchant\\UTEMerchant\\Img\\gamingmouse.jpg");
-            paths.Add(@"C:\\Users\\FPTSHOP\\Desktop\\Window_Proj_UTEMerchant\\UTEMerchant\\Img\\gamingmouse.jpg");
-            paths.Add(@"C:\\Users\\FPTSHOP\\Desktop\\Window_Proj_UTEMerchant\\UTEMerchant\\Img\\GucciBag.jpg");
-            paths.Add(@"C:\\Users\\FPTSHOP\\Desktop\\Window_Proj_UTEMerchant\\UTEMerchant\\Img\\GucciBag.jpg");
-            paths.Add(@"C:\\Users\\FPTSHOP\\Desktop\\Window_Proj_UTEMerchant\\UTEMerchant\\Img\\GucciBag.jpg");
-            paths.Add(@"C:\\Users\\FPTSHOP\\Desktop\\Window_Proj_UTEMerchant\\UTEMerchant\\Img\\GucciBag.jpg");
-            paths.Add(@"C:\\Users\\FPTSHOP\\Desktop\\Window_Proj_UTEMerchant\\UTEMerchant\\Img\\GucciBag.jpg");
-            paths.Add(@"C:\\Users\\FPTSHOP\\Desktop\\Window_Proj_UTEMerchant\\UTEMerchant\\Img\\GucciBag.jpg");
-            paths.Add(@"C:\\Users\\FPTSHOP\\Desktop\\Window_Proj_UTEMerchant\\UTEMerchant\\Img\\GucciBag.jpg");
-            paths.Add(@"C:\\Users\\FPTSHOP\\Desktop\\Window_Proj_UTEMerchant\\UTEMerchant\\Img\\GucciBag.jpg");
+            List<ImgPath> imgPaths = ImgPath_DAO.GetListImagePathByItemID(this.info.Item_Id);
             dplImageSlide.Children.Clear();
-            foreach (var i in paths)
+            foreach (var i in imgPaths)
             {
-                UC_ImageSlide imgs = new UC_ImageSlide(i);
+                UC_ImageSlide imgs = new UC_ImageSlide(i.Path);
                 imgs.ImageClicked += OnImageSlideClicked;
                 dplImageSlide.Children.Add(imgs);
             }

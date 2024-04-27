@@ -46,9 +46,11 @@
                     <Image x:Name="imgItem" Source="/Img/iPhone-14-Pro-Max-9907.jpg" Height="450"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Uniform" Margin="7,0,7,0"/>
                 </Border>
 
-                <ScrollViewer Margin="10 0 0 0 " Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" HorizontalAlignment="Center" VerticalAlignment="Center" Height="118" Width="612">
+                <ScrollViewer Margin="10 0 0 0 " Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" HorizontalAlignment="Center" VerticalAlignment="Center" Height="118" Width="445">
 
                     <DockPanel x:Name="dplImageSlide" Height="100" Width="auto" HorizontalAlignment="Center">
+                        <Image Source="C:\Users\FPTSHOP\Desktop\Window_Proj_UTEMerchant\UTEMerchant\Img\iPhone-14-Pro-Max-9907.jpg" Margin="5 0 5 0"/>
+                        <Image Source="C:\Users\FPTSHOP\Desktop\Window_Proj_UTEMerchant\UTEMerchant\Img\iPhone-14-Pro-Max-9907.jpg" Margin="5 0 5 0"/>
                         <Image Source="C:\Users\FPTSHOP\Desktop\Window_Proj_UTEMerchant\UTEMerchant\Img\iPhone-14-Pro-Max-9907.jpg" Margin="5 0 5 0"/>
                         <Image Source="C:\Users\FPTSHOP\Desktop\Window_Proj_UTEMerchant\UTEMerchant\Img\iPhone-14-Pro-Max-9907.jpg" Margin="5 0 5 0"/>
                         <Image Source="C:\Users\FPTSHOP\Desktop\Window_Proj_UTEMerchant\UTEMerchant\Img\iPhone-14-Pro-Max-9907.jpg" Margin="5 0 5 0"/>

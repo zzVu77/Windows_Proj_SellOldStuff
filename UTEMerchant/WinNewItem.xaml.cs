@@ -26,6 +26,7 @@ namespace UTEMerchant
         List<string> selectedFilePath = new List<string>();
         CheckValid check = new CheckValid();
         Item_DAO dao = new Item_DAO();
+        ImgPath_DAO ImgPath_DAO = new ImgPath_DAO();
         private int IdSeller;
         public WinNewItem()
         {
@@ -58,27 +59,6 @@ namespace UTEMerchant
                 // Xử lý đường dẫn đã chọn ở đây
             }
         }
-
-        private void rtbDescription_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        //private void Button_MouseDown(object sender, MouseButtonEventArgs e)
-        //{
-
-        //    ComboBoxItem typeItem = (ComboBoxItem)cbType.SelectedItem;
-
-        //    dao.AddItem(new Item(Int32.Parse(txtID.Text.ToString()), 
-        //                txtName.Text.ToString(), 
-        //                rtbConditonDescription.ToString(),
-        //                float.Parse(txtOriginalPrice.Text.ToString()),
-        //                float.Parse(txtPrice.Text.ToString()),
-        //                image_path,
-        //                DateTime.Parse(txtBoughtDate.Text.ToString()),
-        //                txtCondition.Text.ToString(),
-        //                typeItem.Content.ToString(), 1));
-        //}
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
@@ -118,8 +98,14 @@ namespace UTEMerchant
                     float.Parse(txtOriginalPrice.Text.ToString()), typeItem.Content.ToString(),
                     DateTime.Parse(txtBoughtDate.Text.ToString()),
                     text_Condition, Int32.Parse(txtCondition.Text.ToString())
-                    , image_path, false, text_detail, IdSeller, today)
-                             );
+                    , selectedFilePath[0], false, text_detail, IdSeller, today));
+                int itemID = dao.GetTheMaximumItem_ID();
+                foreach (var x in selectedFilePath)
+                {
+                    ImgPath imgPath = new ImgPath(itemID, x);
+                    ImgPath_DAO.Add(imgPath);
+                }
+                List<ImgPath> list = ImgPath_DAO.Load();
                 this.Close();
 
             }
