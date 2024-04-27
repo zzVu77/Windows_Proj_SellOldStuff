@@ -322,6 +322,9 @@
     <Compile Include="WinForgotPassword.xaml.cs">
       <DependentUpon>WinForgotPassword.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WinImageZoom.xaml.cs">
+      <DependentUpon>WinImageZoom.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WinNewItem.xaml.cs">
       <DependentUpon>WinNewItem.xaml</DependentUpon>
     </Compile>
@@ -471,6 +474,10 @@
     <Page Include="WinForgotPassword.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WinImageZoom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WinLogin.xaml">
       <SubType>Designer</SubType>
