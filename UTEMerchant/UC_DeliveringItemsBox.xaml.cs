@@ -17,22 +17,22 @@ using System.Windows.Shapes;
 namespace UTEMerchant
 {
     /// <summary>
-    /// Interaction logic for UC_ToReceiveItem.xaml
+    /// Interaction logic for UC_DeliveringItemsBox.xaml
     /// </summary>
-    public partial class UC_ToReceiveItem : UserControl
+    public partial class UC_DeliveringItemsBox : UserControl
     {
         public event EventHandler ReceivedButtonClicked;
         private readonly Item Item;
         private readonly Seller SellerOfItem;
         private PurchasedItem_DAO purchasedItemDAO = new PurchasedItem_DAO();
         private int userID;        
-        public UC_ToReceiveItem()
+        public UC_DeliveringItemsBox()
         {
             InitializeComponent();
             this.Width = 1300;
         }
 
-        public UC_ToReceiveItem(Item item, Seller seller, int userID) : this()
+        public UC_DeliveringItemsBox(Item item, Seller seller, int userID) : this()
         {
             this.Item = item;
             this.userID=userID;

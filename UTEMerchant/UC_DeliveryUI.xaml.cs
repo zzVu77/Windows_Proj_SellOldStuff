@@ -44,7 +44,7 @@ namespace UTEMerchant
             spDeliveringStatus.Children.Clear();
             foreach (var item in matchedItems)
             {                
-                UC_ToReceiveItem uc_item = new UC_ToReceiveItem(item, SellerDao.GetSeller(item.SellerID),this.Id_user);
+                UC_DeliveringItemsBox uc_item = new UC_DeliveringItemsBox(item, SellerDao.GetSeller(item.SellerID),this.Id_user);
                 uc_item.ReceivedButtonClicked += UCToReceiveItem_ReceivedButtonClicked;
                 spDeliveringStatus.Children.Add(uc_item);
             }
@@ -110,7 +110,7 @@ namespace UTEMerchant
         }
         private void UCToReceiveItem_ReceivedButtonClicked(object sender, EventArgs e)
         {
-            if (sender is UC_ToReceiveItem clickedItemView)
+            if (sender is UC_DeliveringItemsBox clickedItemView)
             {
                 Load();
             }

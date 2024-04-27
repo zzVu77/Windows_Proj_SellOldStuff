@@ -230,6 +230,9 @@
     <Compile Include="UC_CompletedItem.xaml.cs">
       <DependentUpon>UC_CompletedItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UC_DeliveringItem.xaml.cs">
+      <DependentUpon>UC_DeliveringItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UC_DeliveryUI.xaml.cs">
       <DependentUpon>UC_DeliveryUI.xaml</DependentUpon>
     </Compile>
@@ -305,8 +308,8 @@
     <Compile Include="UC_StartSelling.xaml.cs">
       <DependentUpon>UC_StartSelling.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UC_ToReceiveItem.xaml.cs">
-      <DependentUpon>UC_ToReceiveItem.xaml</DependentUpon>
+    <Compile Include="UC_DeliveringItemsBox.xaml.cs">
+      <DependentUpon>UC_DeliveringItemsBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />
     <Compile Include="user_DAO.cs" />
@@ -354,6 +357,10 @@
     <Page Include="UC_CompletedItem.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UC_DeliveringItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UC_DeliveryUI.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -455,7 +462,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UC_ToReceiveItem.xaml">
+    <Page Include="UC_DeliveringItemsBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
