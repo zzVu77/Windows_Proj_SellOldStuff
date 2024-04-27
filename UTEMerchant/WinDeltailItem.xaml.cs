@@ -36,7 +36,38 @@ namespace UTEMerchant
             //users = user_dao.Load();
             InitializeComponent();
             SetDefaultValue();
+            List<string> paths = new List<string>();
+            paths.Add(@"C:\\Users\\FPTSHOP\\Desktop\\Window_Proj_UTEMerchant\\UTEMerchant\\Img\\gamingmouse.jpg");
+            paths.Add(@"C:\\Users\\FPTSHOP\\Desktop\\Window_Proj_UTEMerchant\\UTEMerchant\\Img\\gamingmouse.jpg");
+            paths.Add(@"C:\\Users\\FPTSHOP\\Desktop\\Window_Proj_UTEMerchant\\UTEMerchant\\Img\\gamingmouse.jpg");
+            paths.Add(@"C:\\Users\\FPTSHOP\\Desktop\\Window_Proj_UTEMerchant\\UTEMerchant\\Img\\gamingmouse.jpg");
+            paths.Add(@"C:\\Users\\FPTSHOP\\Desktop\\Window_Proj_UTEMerchant\\UTEMerchant\\Img\\GucciBag.jpg");
+            paths.Add(@"C:\\Users\\FPTSHOP\\Desktop\\Window_Proj_UTEMerchant\\UTEMerchant\\Img\\GucciBag.jpg");
+            paths.Add(@"C:\\Users\\FPTSHOP\\Desktop\\Window_Proj_UTEMerchant\\UTEMerchant\\Img\\GucciBag.jpg");
+            paths.Add(@"C:\\Users\\FPTSHOP\\Desktop\\Window_Proj_UTEMerchant\\UTEMerchant\\Img\\GucciBag.jpg");
+            paths.Add(@"C:\\Users\\FPTSHOP\\Desktop\\Window_Proj_UTEMerchant\\UTEMerchant\\Img\\GucciBag.jpg");
+            paths.Add(@"C:\\Users\\FPTSHOP\\Desktop\\Window_Proj_UTEMerchant\\UTEMerchant\\Img\\GucciBag.jpg");
+            paths.Add(@"C:\\Users\\FPTSHOP\\Desktop\\Window_Proj_UTEMerchant\\UTEMerchant\\Img\\GucciBag.jpg");
+            paths.Add(@"C:\\Users\\FPTSHOP\\Desktop\\Window_Proj_UTEMerchant\\UTEMerchant\\Img\\GucciBag.jpg");
+            dplImageSlide.Children.Clear();
+            foreach (var i in paths)
+            {
+                UC_ImageSlide imgs = new UC_ImageSlide(i);
+                imgs.ImageClicked += OnImageSlideClicked;
+                dplImageSlide.Children.Add(imgs);
+            }
 
+
+        }
+
+        private void OnImageSlideClicked(object sender, RoutedEventArgs e)
+        {
+            if(sender is UC_ImageSlide img)
+            {
+                string imgpath = img.imgPath;
+                var resourceUri = new Uri(imgpath, UriKind.RelativeOrAbsolute);
+                imgItem.Source = new BitmapImage(resourceUri);
+            }
         }
         
         private void SetDefaultValue()

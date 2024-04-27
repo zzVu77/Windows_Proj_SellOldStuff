@@ -23,6 +23,7 @@ namespace UTEMerchant
     public partial class WinNewItem : Window
     {
         private string image_path;
+        List<string> selectedFilePath = new List<string>();
         CheckValid check = new CheckValid();
         Item_DAO dao = new Item_DAO();
         private int IdSeller;
@@ -44,10 +45,11 @@ namespace UTEMerchant
         {
             Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
             openFileDialog.Filter = "Images (*.jpg,*.png)|*.jpg;*.png";
+            openFileDialog.Multiselect = true;
             if (openFileDialog.ShowDialog() == true)
             {
-                string selectedFilePath = openFileDialog.FileName;
-                image_path = selectedFilePath;
+                selectedFilePath = openFileDialog.FileNames.ToList();
+                image_path = selectedFilePath.First();
                 BitmapImage bitmap = new BitmapImage();
                 bitmap.BeginInit();
                 bitmap.UriSource = new Uri(image_path);
@@ -122,23 +124,6 @@ namespace UTEMerchant
 
             }
         }
-        /*private void Image_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            this.Close();
-        }*/
-
-        //private void ToggleButton_Click(object sender, RoutedEventArgs e)
-        //{
-        //    var toggleButton = sender as ToggleButton;
-        //    if (toggleButton != null)
-        //    {
-        //        var comboBox = toggleButton.TemplatedParent as ComboBox;
-        //        if (comboBox != null)
-        //        {
-        //            comboBox.IsDropDownOpen = !comboBox.IsDropDownOpen;
-        //        }
-        //    }
-        //}
 
     }
 }

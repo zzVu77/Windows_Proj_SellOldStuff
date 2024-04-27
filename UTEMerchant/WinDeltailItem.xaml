@@ -11,7 +11,7 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"        
         Title="Item Details" Height="800" Width="1200">
-    
+
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
     </Window.Resources>
@@ -19,9 +19,9 @@
 
         <Grid Background="#f4f6f8" >
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="524*"/>
-                <ColumnDefinition Width="479*"/>
-                <ColumnDefinition Width="197*"/>
+                <ColumnDefinition Width="102*"/>
+                <ColumnDefinition Width="83*"/>
+                <ColumnDefinition Width="15*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="17*"/>
@@ -31,40 +31,44 @@
             <!--Item Image-->
             <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="97*"/>
-                    <RowDefinition Height="63*"/>
+                    <RowDefinition Height="492*"/>
+                    <RowDefinition Height="159*"/>
+                    <RowDefinition Height="149*"/>
                 </Grid.RowDefinitions>
-                <Border
-                Width="532" 
-                Height="468" 
-                HorizontalAlignment="Center" 
-                BorderThickness="0"
-                BorderBrush="Black"
-                VerticalAlignment="Top"
-                CornerRadius="7">
-                    <Image x:Name="imgItem" Source="/Img/iPhone-14-Pro-Max-9907.jpg"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Uniform" Margin="7,0,7,0"/>
+                <Border                     
+                    Width="532" 
+                    Height="468" 
+                    HorizontalAlignment="Center" 
+                    BorderThickness="2"
+                    BorderBrush="Black"
+                    VerticalAlignment="Center"
+                    CornerRadius="7">
+                    <Image x:Name="imgItem" Source="/Img/iPhone-14-Pro-Max-9907.jpg" Height="450"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Uniform" Margin="7,0,7,0"/>
                 </Border>
 
-                <StackPanel Grid.Row="1"  VerticalAlignment="Top" HorizontalAlignment="Left" Orientation="Vertical" Margin="15 35 0 0" Height="222" Width="257">
-                    <!--<Grid.RowDefinitions>
-                    <RowDefinition Height="91"/>
-                    <RowDefinition Height="38"/>
-                    <RowDefinition/>
-                    <RowDefinition Height="0*"/>
-                    <RowDefinition Height="383.579"/>
-                </Grid.RowDefinitions>-->
+                <ScrollViewer Margin="10 0 0 0 " Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" HorizontalAlignment="Center" VerticalAlignment="Center" Height="118" Width="612">
 
+                    <DockPanel x:Name="dplImageSlide" Height="100" Width="auto" HorizontalAlignment="Center">
+                        <Image Source="C:\Users\FPTSHOP\Desktop\Window_Proj_UTEMerchant\UTEMerchant\Img\iPhone-14-Pro-Max-9907.jpg" Margin="5 0 5 0"/>
+                        <Image Source="C:\Users\FPTSHOP\Desktop\Window_Proj_UTEMerchant\UTEMerchant\Img\iPhone-14-Pro-Max-9907.jpg" Margin="5 0 5 0"/>
+                        <Image Source="C:\Users\FPTSHOP\Desktop\Window_Proj_UTEMerchant\UTEMerchant\Img\iPhone-14-Pro-Max-9907.jpg" Margin="5 0 5 0"/>
+                   
+                   
+                    </DockPanel>
+                </ScrollViewer>
+
+                <StackPanel  Grid.Row="2"  VerticalAlignment="Bottom" HorizontalAlignment="Left" Orientation="Vertical" Margin="15,0,0,0" Height="133" Width="257">
                     <!--Seller Avartar-->
                     <DockPanel>
 
                         <Border
-                Width="72" 
-                Height="68" 
-                Padding="3" 
-                Background="Black" 
-                CornerRadius="100" 
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top" Margin="1,0,5,0">
+                            Width="72" 
+                            Height="68" 
+                            Padding="3" 
+                            Background="Black" 
+                            CornerRadius="100" 
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top" Margin="1,0,5,0">
                             <Ellipse MouseLeftButtonDown="Ellipse_MouseLeftButtonDown" Cursor="Hand">
                                 <Ellipse.Fill>
                                     <ImageBrush x:Name="imgSellerAvartar" ImageSource="/Img/kimetsu.jpg"/>
@@ -118,14 +122,10 @@
 
                 </StackPanel>
 
-
             </Grid>
 
-
-
-
             <!--Grid for Detail Information-->
-            <Grid Grid.Column="1">
+            <Grid Margin="20 0 0 0" Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="35"/>
