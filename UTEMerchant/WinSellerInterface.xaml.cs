@@ -253,11 +253,6 @@ namespace UTEMerchant
             uc_SellerProfile.SetDefault(User, Seller);
         }
 
-        private void mnuitProfile_Click_1(object sender, RoutedEventArgs e)
-        {
-            mnuitSellerProfile.Visibility = Visibility.Visible;
-            mnuitBuyerProfile.Visibility = Visibility.Visible;
-        }
         private void UCUserProfile_SavedButtonClicked(object sender, EventArgs e)
         {
             if (sender is UC_BuyerProfile clickedItemView)

@@ -305,37 +305,39 @@
                             <MenuItem x:Name="mnuitProfile"
                                       Header="Profile"
                                       FontWeight="SemiBold"
-                                      Style="{StaticResource SubMenu_MenuItem}" Click="mnuitProfile_Click_1"   >
+                                      Style="{StaticResource SubMenu_MenuItem}"
+                                      Background="{Binding ElementName=brdMenu, Path=Background}">
                                 <MenuItem.Icon>
                                     <Image Source="{Icon:ModernImage Brush=Black, Kind=PeopleProfile}" 
                                            Stretch="Uniform"/>
-                                </MenuItem.Icon>                              
-                            </MenuItem>
-                            <MenuItem x:Name="mnuitBuyerProfile"
+                                </MenuItem.Icon>
+                                <MenuItem x:Name="mnuitBuyerProfile"
                                           Header="Buyer Profile"
                                           FontWeight="SemiBold"
-                                          Margin="30 0 0 0"
-                                          Visibility="Collapsed"
                                           Style="{StaticResource Menu_Item}"
-                                          Background="{Binding ElementName=mnuitSettings, Path=Background}"
-                                          Width="{Binding ElementName=mnuitSettings,Path=ActualWidth}" Click="mnuitBuyerProfile_Click">
-                                <MenuItem.Icon>
-                                    <Icon:PackIconMaterial Kind="Account" VerticalAlignment="Center" Margin="0 1 8 0" Width="18" Height="18" Foreground="Black"/>
-                                </MenuItem.Icon>
-                            </MenuItem>
+                                          Background="{Binding ElementName=mnuitProfile, Path=Background}"
+                                          Width="{Binding ElementName=mnuitProfile,Path=ActualWidth}"
+                                          Click="mnuitBuyerProfile_Click">
+                                    <MenuItem.Icon>
+                                        <Image Source="{Icon:MaterialImage Kind=Account, Brush=Black}"
+                                               Stretch="Uniform"/>
+                                    </MenuItem.Icon>
+                                </MenuItem>
 
-                            <MenuItem x:Name="mnuitSellerProfile"
+                                <MenuItem x:Name="mnuitSellerProfile"
                                           Header="Seller Profile"
                                           FontWeight="SemiBold"
-                                          Margin="30 0 0 0"
-                                          Visibility="Collapsed"
                                           Style="{StaticResource Menu_Item}"
-                                          Background="{Binding ElementName=mnuitSettings, Path=Background}"
-                                          Width="{Binding ElementName=mnuitSettings,Path=ActualWidth}" Click="mnuitSellerProfile_Click">
-                                <MenuItem.Icon>
-                                    <Icon:PackIconMaterial Kind="AccountTie" VerticalAlignment="Center" Margin="0 1 8 0" Width="18" Height="18" Foreground="Black"/>
-                                </MenuItem.Icon>
+                                          Background="{Binding ElementName=mnuitProfile, Path=Background}"
+                                          Width="{Binding ElementName=mnuitProfile,Path=ActualWidth}"
+                                          Click="mnuitSellerProfile_Click">
+                                    <MenuItem.Icon>
+                                        <Image Source="{Icon:MaterialImage Kind=AccountTie, Brush=Black}"
+                                               Stretch="Uniform"/>
+                                    </MenuItem.Icon>
+                                </MenuItem>
                             </MenuItem>
+                            
                             
                             <MenuItem x:Name="mnuitPurchase"
                                       Header="Purchase"     
