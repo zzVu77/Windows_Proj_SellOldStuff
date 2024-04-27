@@ -150,16 +150,6 @@ namespace UTEMerchant
                 Seller seller = _sellerDao.GetSeller(clickedItem.info.SellerID);
                 WinDeltailItem winDeltailItem = new WinDeltailItem(clickedItem.info, seller, IdUser);
                 winDeltailItem.ShowDialog();
-                wpItemsList.Children.Clear();
-
-                _items = _itemDao.Load();
-                _items.Sort((item1, item2) => item1.Sale_Status.CompareTo(item2.Sale_Status));
-                foreach (Item item in _items)
-                {
-                    UC_ItemView uc_item = new UC_ItemView(item);
-                    uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
-                    wpItemsList.Children.Add(uc_item);
-                }
             }
         }
 
@@ -216,6 +206,7 @@ namespace UTEMerchant
             Dictionary<Seller, List<Item>> items = new Dictionary<Seller, List<Item>>();
             foreach (UC_ShoppingCartItemsView sellerView in uc_ShoppingCart.spItems.Children.OfType<UC_ShoppingCartItemsView>())
             {
+                if (sellerView.GetSelectedItems().Count == 0) continue;
                 items.Add(sellerView.GetSeller(), sellerView.GetSelectedItems());
             }
 
