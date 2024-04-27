@@ -21,9 +21,9 @@ namespace UTEMerchant
     {
         private readonly Dictionary<Seller, List<Item>> _items;
         private readonly User _user;
-        private double _subTotalPrice;
-        private double _shippingFee;
-        private double _totalPrice;
+        private readonly double? _subTotalPrice;
+        private double? _shippingFee;
+        private double? _totalPrice;
         private bool _placeOrderSuccessful = false;
 
 
@@ -32,9 +32,10 @@ namespace UTEMerchant
             InitializeComponent();
         }
 
-        public WinPlaceOrder(Dictionary<Seller, List<Item>> items, User user) : this()
+        public WinPlaceOrder(Dictionary<Seller, List<Item>> items, User user, double subTotalPrice) : this()
         {
             this._items = items;
+            this._subTotalPrice = subTotalPrice;
             _user = user;
         }
 
@@ -42,15 +43,21 @@ namespace UTEMerchant
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            if (_user != null) tbDeliveryAddress.Text = $"{_user.District} {_user.Ward} {_user.City}";
+            _placeOrderSuccessful = false;
+            if (_subTotalPrice != null)
+            {
+                _totalPrice = _subTotalPrice;
+                tbTotal.Text = "$" + _totalPrice;
+            }
+
+            if (_user != null) tbDeliveryAddress.Text = $"{_user.District}, {_user.Ward}, {_user.City}";
             if (_items != null)
             {
                 foreach (KeyValuePair<Seller, List<Item>> entry in _items)
                 {
                     AddItems(entry.Key, entry.Value);
                 }
-                _subTotalPrice = CalculateSubTotalPrice();
-                tbSubTotal.Text = "$" + _subTotalPrice.ToString("F");
+                tbSubTotal.Text = "$" + _subTotalPrice;
             }
             cbShippingChanel.SelectedValue = "Standard Shipping";
         }
@@ -81,21 +88,6 @@ namespace UTEMerchant
             }
         }
 
-        private double CalculateSubTotalPrice()
-        {
-            double totalPrice = 0;
-            
-            foreach (KeyValuePair<Seller, List<Item>> entry in _items)
-            {
-                foreach (Item item in entry.Value)
-                {
-                    totalPrice += item.Price;
-                }
-            }
-
-            return totalPrice;
-        }
-
         private void cbShippingChanel_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cbShippingChanel.SelectedIndex == 0)
@@ -120,13 +112,51 @@ namespace UTEMerchant
 
         private double CalculateTotalPrice()
         {
-            return _subTotalPrice + _shippingFee;
+            if (_subTotalPrice == null || _shippingFee == null) return 0;
+            return (double)(_subTotalPrice + _shippingFee);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            _placeOrderSuccessful = true;
-            this.Close();
+            // Check if the user has selected a shipping channel
+            if (cbShippingChanel.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a shipping channel.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            // Check if the user has entered details for delivery address
+            if (tbDeliveryAddress.Text == "")
+            {
+                MessageBox.Show("Please enter your delivery address.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            try
+            {
+                foreach (KeyValuePair<Seller, List<Item>> entry in _items)
+                {
+                    foreach (Item item in entry.Value)
+                    {
+                        new Item_DAO().UpdateStatus(item.Item_Id);
+                        new PurchasedItem_DAO().AddItem(new purchasedItem()
+                            { Id_user = _user.Id_user, Item_Id = item.Item_Id });
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while placing the order. Please try again later.", "Error",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            finally
+            {
+                _placeOrderSuccessful = true;
+                this.Close();
+            }
+
         }
     }
 }
