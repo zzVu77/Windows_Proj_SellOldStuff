@@ -51,7 +51,7 @@ namespace UTEMerchant
                 tbTotal.Text = "$" + _totalPrice.Value.ToString("F");
             }
 
-            if (_user != null) tbDeliveryAddress.Text = $"{_user.District}, {_user.Ward}, {_user.City}";
+            if (_user != null) tbDeliveryAddress.Text = $", {_user.Ward}, {_user.District}, {_user.City}";
             if (_items != null)
             {
                 foreach (KeyValuePair<Seller, List<Item>> entry in _items)
@@ -156,6 +156,34 @@ namespace UTEMerchant
             {
                 _placeOrderSuccessful = true;
                 this.Close();
+            }
+
+        }
+
+        private void tbDeliveryAddress_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            // Split the address into city, district, ward, and details and remove any leading/trailing spaces
+            string[] addressParts = tbDeliveryAddress.Text.Split(',');
+
+            int len = addressParts.Length;
+            for (int i = len - 1; i >= 0; i--)
+            {
+                if (addressParts[i] != string.Empty) addressParts[i] = addressParts[i].Trim();
+            }
+
+            string city = addressParts[--len];
+            string district = addressParts[--len];
+            string ward = addressParts[--len];
+
+            // Join the rest of the array
+            string details = string.Join(",", addressParts.Take(len));
+
+            WinAddressCustomization winAddressCustomization =
+                new WinAddressCustomization(city, district, ward, details);
+            if (winAddressCustomization.ShowDialog() == true)
+            {
+                var address = $"{winAddressCustomization.Details}, {winAddressCustomization.Ward}, {winAddressCustomization.District}, {winAddressCustomization.City}";
+                tbDeliveryAddress.Text = address;
             }
 
         }
