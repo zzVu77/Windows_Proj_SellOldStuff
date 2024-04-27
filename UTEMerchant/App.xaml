@@ -637,7 +637,7 @@
             </Setter>
         </Style>
 
-        <Style x:Key="DataGridStyle1" TargetType="{x:Type DataGrid}">
+        <Style x:Key="DataGridStyle" TargetType="{x:Type DataGrid}">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="#222528"/>
             <Setter Property="BorderThickness" Value="0"/>
@@ -711,7 +711,7 @@
             </Style.Triggers>
         </Style>
 
-        <Style x:Key="DataGridRowStyle1" TargetType="{x:Type DataGridRow}">
+        <Style x:Key="DataGridRowStyle" TargetType="{x:Type DataGridRow}">
             <Setter Property="Margin" Value="0 4 0 0" />
             <Setter Property="Background" Value="#FFFFFF"/>
             <Setter Property="SnapsToDevicePixels" Value="true"/>
@@ -764,7 +764,7 @@
             </Style.Triggers>
         </Style>
 
-        <Style x:Key="DataGridCellStyle1" TargetType="{x:Type DataGridCell}">
+        <Style x:Key="DataGridCellStyle" TargetType="{x:Type DataGridCell}">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="FocusVisualStyle" Value="{x:Null}" />
@@ -793,7 +793,7 @@
             </Setter>
         </Style>
 
-        <Style x:Key="DataGridColumnHeaderStyle1" TargetType="{x:Type DataGridColumnHeader}">
+        <Style x:Key="DataGridColumnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="Foreground" Value="#69717D" />
