@@ -47,7 +47,8 @@ namespace UTEMerchant
             if (_subTotalPrice != null)
             {
                 _totalPrice = _subTotalPrice;
-                tbTotal.Text = "$" + _totalPrice;
+                tbSubTotal.Text = "$" + _subTotalPrice.Value.ToString("F");
+                tbTotal.Text = "$" + _totalPrice.Value.ToString("F");
             }
 
             if (_user != null) tbDeliveryAddress.Text = $"{_user.District}, {_user.Ward}, {_user.City}";
@@ -57,7 +58,7 @@ namespace UTEMerchant
                 {
                     AddItems(entry.Key, entry.Value);
                 }
-                tbSubTotal.Text = "$" + _subTotalPrice;
+
             }
             cbShippingChanel.SelectedValue = "Standard Shipping";
         }
