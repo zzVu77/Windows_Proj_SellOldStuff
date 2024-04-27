@@ -23,6 +23,7 @@ namespace UTEMerchant
         public Item info;
         private Seller seller;
         private int Id_user;
+        private ImgPath_DAO ImgPath_DAO = new ImgPath_DAO();
         public WinDeltailItem()
         {
             InitializeComponent();
@@ -36,7 +37,26 @@ namespace UTEMerchant
             //users = user_dao.Load();
             InitializeComponent();
             SetDefaultValue();
+            List<ImgPath> imgPaths = ImgPath_DAO.GetListImagePathByItemID(this.info.Item_Id);
+            dplImageSlide.Children.Clear();
+            foreach (var i in imgPaths)
+            {
+                UC_ImageSlide imgs = new UC_ImageSlide(i.Path);
+                imgs.ImageClicked += OnImageSlideClicked;
+                dplImageSlide.Children.Add(imgs);
+            }
 
+
+        }
+
+        private void OnImageSlideClicked(object sender, RoutedEventArgs e)
+        {
+            if(sender is UC_ImageSlide img)
+            {
+                string imgpath = img.imgPath;
+                var resourceUri = new Uri(imgpath, UriKind.RelativeOrAbsolute);
+                imgItem.Source = new BitmapImage(resourceUri);
+            }
         }
         
         private void SetDefaultValue()

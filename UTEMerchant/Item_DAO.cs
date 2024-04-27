@@ -30,7 +30,9 @@ namespace UTEMerchant
 
             db.ExecuteNonQuery(sqlStr,
                
-                new SqlParameter("@Name", item.Name),
+                new SqlParameter("@Name" +
+                "" +
+                "", item.Name),
                 new SqlParameter("@Price", item.Price),
                 new SqlParameter("@OriginalPrice", item.Original_Price),
                 new SqlParameter("@Type", item.Type),
@@ -79,6 +81,7 @@ namespace UTEMerchant
                 return item = new Item(itemID,name,(float)price,imgPath);    
                 
             }
+            conn.Close();
             return item;
         }
         public List<Item> Search(string text)
@@ -109,6 +112,33 @@ namespace UTEMerchant
                 INNER JOIN [dbo].[PurchasedProducts] pp ON it.Item_Id = pp.Item_Id
                 WHERE pp.[Id_user] = @UserId
             )", new SqlParameter("@UserId", userID));
+        }
+
+        public int GetTheMaximumItem_ID()
+        {
+            int maxValue = 0;
+            using (SqlConnection connection = new SqlConnection(db.connectionString))
+            {
+                // Mở kết nối
+                connection.Open();
+
+                // Tạo câu lệnh SQL               
+                string sqlString = $"SELECT MAX(Item_Id) FROM [dbo].[Item]";
+
+                // Tạo đối tượng SqlCommand
+                using (SqlCommand command = new SqlCommand(sqlString, connection))
+                {
+                    // Thực thi câu truy vấn và lấy giá trị trả về
+                    object result = command.ExecuteScalar();
+
+                    // Kiểm tra và ép kiểu kết quả về kiểu int
+                    if (result != DBNull.Value)
+                    {
+                        maxValue = Convert.ToInt32(result);
+                    }
+                }
+            }
+            return maxValue;
         }
 
         
