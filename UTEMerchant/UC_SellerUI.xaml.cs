@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Wpf.Ui.Controls;
+using Image = System.Windows.Controls.Image;
 
 namespace UTEMerchant
 {
@@ -176,6 +177,13 @@ namespace UTEMerchant
                     }
                 }
             }
+        }
+
+        private void imgItem_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            // Image viewer
+            WinImageZoom winImageZoom = new WinImageZoom(sender as Image);
+            winImageZoom.ShowDialog();
         }
     }
 }

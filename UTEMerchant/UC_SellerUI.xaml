@@ -71,7 +71,7 @@
             </Grid>
 
             <!--Members Data Grid-->
-            <DataGrid RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" x:Name="productGrid" Style="{DynamicResource DataGridStyle1}" SelectionChanged="productGrid_SelectionChanged">
+            <DataGrid RowStyle="{DynamicResource DataGridRowStyle}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" CellStyle="{DynamicResource DataGridCellStyle}" x:Name="productGrid" Style="{DynamicResource DataGridStyle}" SelectionChanged="productGrid_SelectionChanged">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" IsReadOnly="True"  Width="*" Binding="{Binding Item_Id}" MaxWidth="50"/>
                     <DataGridTemplateColumn Header="Name" IsReadOnly="True" Width="*"  >
@@ -91,12 +91,12 @@
                     <DataGridTemplateColumn  Header="Image" Width="*"  >
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Image Source="{Binding Image_Path}" Width="30" Height="30" HorizontalAlignment="Left" />
+                                <Image x:Name="imgItem" Source="{Binding Image_Path}" Width="30" Height="30" HorizontalAlignment="Left" MouseLeftButtonDown="imgItem_MouseLeftButtonDown" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTextColumn Header="Origi.Price" Binding="{Binding Original_Price}" IsReadOnly="True" Width="*" />
+                    <DataGridTextColumn Header="Original Price" Binding="{Binding Original_Price}" IsReadOnly="True" Width="*" />
                     <DataGridTextColumn Header="Price" Binding="{Binding Price}" IsReadOnly="True" Width="*" />
                     <DataGridTextColumn Header="Type" Binding="{Binding Type}" IsReadOnly="True" Width="*" />
                     <DataGridTextColumn Header="Status" IsReadOnly="True" Width="*" >
