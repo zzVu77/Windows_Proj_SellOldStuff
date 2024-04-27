@@ -1095,7 +1095,7 @@
                                           Margin="10,0"/>
                             <ContentPresenter Grid.Column="0" x:Name="contentPresenter" 
                                               ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" 
-                                              Content="{TemplateBinding SelectionBoxItem}" 
+                                              Content="{TemplateBinding Text}" 
                                               ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" 
                                               HorizontalAlignment="Left" 
                                               Margin="10,0,0,0" 
