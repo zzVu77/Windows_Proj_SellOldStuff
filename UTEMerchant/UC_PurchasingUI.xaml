@@ -125,9 +125,10 @@
                                    DockPanel.Dock="Top"
                                    Height="Auto"
                                    Margin="50,20,0,20">
-                            <Border BorderBrush="Transparent"
-                                    Background="#FFD2D2D2"
-                                    BorderThickness="1"
+                            <Border BorderBrush="LightGray"
+                                    Height="50"
+                                    Background="White"
+                                    BorderThickness="3"
                                     CornerRadius="20">
                                 <Grid x:Name="grdSearchBarSections">
                                     <Grid.ColumnDefinitions>
@@ -135,27 +136,28 @@
                                         <ColumnDefinition x:Name="cTextBox" Width="*"/>
                                         <ColumnDefinition x:Name="cXIcon" Width="Auto"/>
                                     </Grid.ColumnDefinitions>
-                                    <Image x:Name="imgSearchIcon" Margin="50,15,0,15"
-                                           Source="{StaticResource SearchIcon}" 
-                                           Height="20"
-                                           MouseLeftButtonDown="imgSearchIcon_MouseLeftButtonDown"
-                                           />
+                                    <Image Grid.Column="0"
+                                           x:Name="imgSearchIcon" Margin="30,0,0,0"
+                                           Height="{Binding ElementName=txtSearchBox, Path=FontSize}"
+                                           Source="{Icon:FeatherIconsImage Kind=Search, Brush=Black}" 
+                                           Stretch="UniformToFill"
+                                           VerticalAlignment="Center"/>
                                     <TextBox x:Name="txtSearchBox"
                                              Grid.Column="1"
                                              Margin="20,0,20,0"
                                              Background="Transparent"
                                              BorderBrush="Transparent"
-                                             
-                                             KeyDown="txtSearchBox_KeyDown"
-                                             
-                                             VerticalContentAlignment="Center"
-                                             FontSize="{Binding ElementName=imgSearchIcon, Path=ActualHeight}"
+                                             Tag="Search all items"
+                                             FontSize="15"
                                              FocusVisualStyle="{x:Null}"
-                                             Template="{StaticResource NoGlowingBorder}"/>
-                                    <Image Source="{StaticResource XIcon}"
+                                             Style="{StaticResource DefaultTextBoxStyle}"/>
+                                    <Image x:Name="XIcon"
+                                           Source="{Icon:FeatherIconsImage Kind=X, Brush=Black}"
+                                           Stretch="UniformToFill"
+                                           VerticalAlignment="Center"
                                            Grid.Column="2"
-                                           Margin="0,15,50,15"
-                                           Height="{Binding ElementName=imgSearchIcon, Path=ActualHeight}"
+                                           Margin="0,15,30,15"
+                                           Height="{Binding ElementName=txtSearchBox, Path=FontSize}"
                                            Visibility="{Binding Text, ElementName=txtSearchBox, Converter={StaticResource TextToVisibilityConverter}}"
                                            MouseDown="XIcon_MouseDown"/>
                                 </Grid>
