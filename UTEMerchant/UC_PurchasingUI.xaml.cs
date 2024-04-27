@@ -231,16 +231,10 @@ namespace UTEMerchant
 
         private void UserControl_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            InitializeComponent();
-            wpItemsList.Children.Clear();
-
-            _items = _itemDao.Load();
-            _items.Sort((item1, item2) => item1.Sale_Status.CompareTo(item2.Sale_Status));
-            foreach (Item item in _items)
+            // Activate the loaded event when the user control is visible
+            if (IsVisible)
             {
-                UC_ItemView uc_item = new UC_ItemView(item);
-                uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
-                wpItemsList.Children.Add(uc_item);
+                UserControl_Loaded(sender, new RoutedEventArgs());
             }
         }
 
