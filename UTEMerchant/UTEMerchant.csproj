@@ -257,6 +257,9 @@
     <Compile Include="UC_ItemView.xaml.cs">
       <DependentUpon>UC_ItemView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UC_PendingOrderReview.xaml.cs">
+      <DependentUpon>UC_PendingOrderReview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UC_PlaceOrderItem.xaml.cs">
       <DependentUpon>UC_PlaceOrderItem.xaml</DependentUpon>
     </Compile>
@@ -307,6 +310,9 @@
     </Compile>
     <Compile Include="User.cs" />
     <Compile Include="user_DAO.cs" />
+    <Compile Include="WinAddressCustomization.xaml.cs">
+      <DependentUpon>WinAddressCustomization.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WinBuyingInterface.xaml.cs">
       <DependentUpon>WinBuyingInterface.xaml</DependentUpon>
     </Compile>
@@ -382,6 +388,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="UC_PendingOrderReview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UC_PlaceOrderItem.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -445,6 +455,10 @@
     <Page Include="UC_ToReceiveItem.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WinAddressCustomization.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WinBuyingInterface.xaml">
       <SubType>Designer</SubType>

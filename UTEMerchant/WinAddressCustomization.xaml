@@ -1,0 +1,109 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UTEMerchant"
+        xmlns:hc="https://handyorg.github.io/handycontrol" x:Class="UTEMerchant.WinAddressCustomization"
+        mc:Ignorable="d"
+        Title="WinAddressCustomization" Height="287" Width="611" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label x:Name="lblYourAddress"
+               Grid.Column="0"
+               Grid.Row="0"
+               Grid.ColumnSpan="3"
+               Content="Address"
+               FontWeight="SemiBold"
+               Background="Transparent"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Center"
+               Margin="10,0"/>
+        <ComboBox x:Name="cbCity"
+                  Grid.Column="0"
+                  Grid.Row="1"
+                  Foreground="Black"
+                  Tag="City"
+                  Style="{StaticResource DefaultComboBoxStyle}"
+                  Background="Transparent"
+                  Margin="10">
+            <ComboBoxItem Content="HCM"/>
+        </ComboBox>
+        <ComboBox x:Name="cbDistrict"
+                  Grid.Column="1"
+                  Grid.Row="1"
+                  Foreground="Black"
+                  Tag="District"
+                  Style="{StaticResource DefaultComboBoxStyle}"
+                  Background="Transparent"
+                  Margin="10">
+        </ComboBox>
+        <ComboBox x:Name="cbWard"
+                  Grid.Column="2"
+                  Grid.Row="1"
+                  Foreground="Black"
+                  Tag="Ward"
+                  Style="{StaticResource DefaultComboBoxStyle}"
+                  Background="Transparent"
+                  Margin="10">
+        </ComboBox>
+        <TextBox x:Name="tbDetails"
+                 Grid.Column="0"
+                 Grid.ColumnSpan="3"
+                 Grid.Row="2"
+                 Foreground="Black"
+                 Tag="Building name, building number, street name"
+                 Style="{StaticResource DefaultTextBoxStyle}"
+                 Background="Transparent"
+                 Margin="10"/>
+        <Button x:Name="btnSave"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                Grid.Row="3"
+                Content="Save"
+                Background="#E56B6F"
+                BorderThickness="0"
+                Foreground="White"
+                FontWeight="DemiBold"
+                Click="BtnSave_OnClick"
+                Margin="10">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="10">
+                                    <ContentPresenter HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#B56576"/>
+                                        <Setter Property="Foreground" Value="Wheat"/>
+                                    </Trigger>
+                                    <Trigger Property="IsPressed" Value="True">
+                                        <Setter Property="Background" Value="#B56576"/>
+                                        <Setter Property="Foreground" Value="NavajoWhite"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
+    </Grid>
+</Window>
