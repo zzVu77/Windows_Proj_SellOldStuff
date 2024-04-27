@@ -39,12 +39,11 @@ namespace UTEMerchant
 
         private void BtnSave_OnClick(object sender, RoutedEventArgs e)
         {
-            _city = cbWard.Text;
-            _district = cbWard.Text;
+            _city = cbCity.Text;
+            _district = cbDistrict.Text;
             _ward = cbWard.Text;
             _details = tbDetails.Text;
-
-
+            
             // don't need to check if the address is valid or not
             // because the user can input any address they want
             // the address will be checked when the user place the order
