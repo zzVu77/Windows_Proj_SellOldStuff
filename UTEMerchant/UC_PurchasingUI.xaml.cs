@@ -219,13 +219,15 @@ namespace UTEMerchant
                 items.Add(sellerView.GetSeller(), sellerView.GetSelectedItems());
             }
 
-            WinPlaceOrder winPlaceOrder = new WinPlaceOrder(items, new user_DAO().GetUserByID(IdUser));
+            WinPlaceOrder winPlaceOrder = new WinPlaceOrder(items, new user_DAO().GetUserByID(IdUser), double.Parse(tbTotalPriceValue.Text));
             winPlaceOrder.ShowDialog();
 
             if (winPlaceOrder.IsPlaceOrderComplete)
             {
                 uc_ShoppingCart.spItems.Children.Clear();
                 tbTotalPriceValue.Text = "0";
+
+                UserControl_IsVisibleChanged(this, new DependencyPropertyChangedEventArgs(DependencyProperty.Register( "IsVisible", typeof(bool), typeof(UC_PurchasingUI), new PropertyMetadata(false)), false, true));
             }
         }
 
