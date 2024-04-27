@@ -57,7 +57,9 @@
                              x:Name="tbDeliveryAddress"
                              FontSize="15"
                              Height="{Binding ElementName=lblDeliveryAddress, Path=ActualHeight}"
-                             Tag="Delivery Address">
+                             Tag="Delivery Address"
+                             IsReadOnly="True"
+                             Cursor="Hand">
                         <TextBox.Style>
                             <Style TargetType="TextBox">
                                 <Setter Property="HorizontalAlignment" Value="Stretch"/>
