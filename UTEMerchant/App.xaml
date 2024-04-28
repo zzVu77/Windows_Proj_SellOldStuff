@@ -387,9 +387,7 @@
             <Setter Property="FocusVisualStyle" Value="{x:Null}" />
             <Setter Property="Height" Value="35" />
             <Setter Property="Width" Value="150" />
-            <Setter Property="Margin" Value="0 20 0 0" />
             <Setter Property="FontSize" Value="13" />
-            <Setter Property="HorizontalAlignment" Value="Right" />
             <Setter Property="Grid.Row" Value="1" />
             <Setter Property="Template" >
                 <Setter.Value>
@@ -1435,24 +1433,25 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="RadioButton">
-                        <Grid >
-                            <TextBlock x:Name="tb"
-                                       Background="Transparent"
-                                       Text="{TemplateBinding Content}"
-                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                       FontWeight="Bold"
-                                       FontSize="{TemplateBinding FontSize}"
-                                       Foreground="{TemplateBinding Foreground}">
-                                <TextBlock.Effect>
-                                    <DropShadowEffect ShadowDepth="3" Color="Black" Opacity="0.5"/>
-                                </TextBlock.Effect>
-                            </TextBlock>
+                        <Grid>
                             <Border x:Name="brd"
                                     Visibility="Visible"
                                     Background="Transparent"
-                                    BorderBrush="LightGray"
-                                    BorderThickness="0,0,0,2"/>
+                                    BorderBrush="Transparent"
+                                    BorderThickness="0,0,0,2">
+                                <TextBlock x:Name="tb"
+                                           Background="Transparent"
+                                           Text="{TemplateBinding Content}"
+                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                           FontWeight="Bold"
+                                           FontSize="{TemplateBinding FontSize}"
+                                           Foreground="{TemplateBinding Foreground}">
+
+                                </TextBlock>
+                            </Border>
+                            
+                            
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">

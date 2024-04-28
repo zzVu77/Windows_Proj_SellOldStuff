@@ -155,15 +155,7 @@ namespace UTEMerchant
 
         private void btnRefresh_Click(object sender, RoutedEventArgs e)
         {
-            this.wpItemsList.Children.Clear();
-            
-            foreach (Item item in new Item_DAO().Load())
-            {
-                UC_ItemView uc_item = new UC_ItemView(item);
-                uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
-                wpItemsList.Children.Add(uc_item);
-
-            }
+            UserControl_Loaded(this, new RoutedEventArgs());
         }
 
         public void imgShoppingCart_MouseDown(object sender, MouseButtonEventArgs e)
