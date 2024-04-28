@@ -14,15 +14,18 @@ namespace UTEMerchant
         {
             return db.LoadData<purchasedItem>("SELECT * FROM [dbo].[PurchasedProducts]");
         }
+
+        public List<purchasedItem> Load(string status)
+        {
+            return db.LoadData<purchasedItem>($"SELECT * FROM [dbo].[PurchasedProducts] WHERE Delivery_Status = '{status}'");
+        }
+
         public List<Item> Load(int Id_user, string deliverStatus)       
         {
-
-
             List<Item> purchasedItems = db.LoadData<Item>($"SELECT i.* FROM [dbo].[Item] i INNER JOIN [dbo].[PurchasedProducts] pi ON pi.Item_Id = i.Item_Id WHERE pi.Id_user = {Id_user} AND pi.Delivery_Status='{deliverStatus}'");
-
-
             return purchasedItems;
         }
+
         public void AddItem(purchasedItem item) // Using PascalCase for method name
         {
             string sqlQuery = @"
@@ -33,7 +36,7 @@ namespace UTEMerchant
             new DB_Connection().ExecuteNonQuery(sqlQuery,
                 new SqlParameter("@userId", item.Id_user),
                 new SqlParameter("@itemId", item.Item_Id),
-                new SqlParameter("@deliveryStatus", "delivering")
+                new SqlParameter("@deliveryStatus", "pending")
                 );
         }
 
