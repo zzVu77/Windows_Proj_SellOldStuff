@@ -6,31 +6,28 @@
              xmlns:local="clr-namespace:UTEMerchant"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="White" Margin="0,0,-290,-32">
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded" IsVisibleChanged="UserControl_IsVisibleChanged"
+             >
+    <Grid x:Name="grd">
         <DataGrid x:Name="productGrid"
                   HorizontalScrollBarVisibility="Visible"
+                  HorizontalAlignment="Center"
+                  Height="{Binding ElementName=grd, Path=ActualHeight}"
+                  VerticalAlignment="Top"
                   RowStyle="{DynamicResource DataGridRowStyle}" 
                   ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" 
                   CellStyle="{DynamicResource DataGridCellStyle}"
-                  Style="{DynamicResource DataGridStyle}" SelectionChanged="ProductGrid_OnSelectionChanged">
+                  Style="{DynamicResource DataGridStyle}" 
+                  SelectionChanged="ProductGrid_OnSelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID"
                                     IsReadOnly="True" 
                                     Width="Auto"
                                     Binding="{Binding Item_Id}"/>
-                <DataGridTemplateColumn Header="Name"
-                                        IsReadOnly="True" 
-                                        Width="Auto">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding Name}"
-                                           VerticalAlignment="Center"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Name"
+                                    IsReadOnly="True" 
+                                    Width="Auto"
+                                    Binding="{Binding Name}"/>
                 <DataGridTemplateColumn Header="Image" 
                                         Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
@@ -53,7 +50,12 @@
                                     IsReadOnly="True" 
                                     Width="Auto"/>
                 <DataGridTextColumn Header="Buyer"
-                                    Binding="{Binding BuyerName}" 
+                                    Binding="{Binding User_name}" 
+                                    IsReadOnly="True"
+                                    Width="Auto">
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Phone"
+                                    Binding="{Binding Phone}" 
                                     IsReadOnly="True"
                                     Width="Auto">
                 </DataGridTextColumn>
@@ -69,7 +71,7 @@
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Requested Date"
-                                    Binding="{Binding RequestedDate, StringFormat={}{0:dd/MM/yyyy}}" 
+                                    Binding="{Binding PurchaseDate, StringFormat={}{0:dd/MM/yyyy}}" 
                                     IsReadOnly="True" 
                                     Width="Auto"/>
 
