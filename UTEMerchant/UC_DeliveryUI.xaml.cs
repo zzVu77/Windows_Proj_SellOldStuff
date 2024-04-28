@@ -21,76 +21,51 @@ namespace UTEMerchant
     public partial class UC_DeliveryUI : UserControl
     {
 
-        List <purchasedItem> purchasedItems = new List<purchasedItem> ();
-        List <Seller> sellers = new List<Seller> ();
-        List <Item> items = new List<Item> ();
+        List<purchasedItem> purchasedItems = new List<purchasedItem>();
+        List<Seller> sellers = new List<Seller>();
+        List<Item> items = new List<Item>();
         PurchasedItem_DAO dao = new PurchasedItem_DAO();
         Seller_DAO SellerDao = new Seller_DAO();
         Item_DAO item_DAO = new Item_DAO();
-        public int Id_user;
-     
+        private User _user;
+
         public UC_DeliveryUI()
         {
-           
             InitializeComponent();
             rbDelivering.IsChecked = true;
-            
-
         }
-        public void Load()
+
+        public UC_DeliveryUI(User user) : this()
         {
-            
-            var matchedItems = dao.Load(Id_user, "delivering");         
-            spDeliveringStatus.Children.Clear();
-            foreach (var item in matchedItems)
-            {                
-                UC_DeliveringItemsBox uc_item = new UC_DeliveringItemsBox(item, SellerDao.GetSeller(item.SellerID),this.Id_user);
-                uc_item.ReceivedButtonClicked += UCToReceiveItem_ReceivedButtonClicked;
-                spDeliveringStatus.Children.Add(uc_item);
-            }
-            rbDelivering.Content = $"Delivering ({matchedItems.Count()})";
-            
-
-            matchedItems = dao.Load(Id_user, "delivered");
-            //sort item
-            List<CustomerReview> ListCompare = new CustomerReviewDAO().Load();
-            matchedItems.Sort((item1, item2) =>
-            {
-                bool hasReview1 = ListCompare.Any(review => review.ID_User == this.Id_user && review.Item_ID == item1.Item_Id);
-                bool hasReview2 = ListCompare.Any(review => review.ID_User == this.Id_user && review.Item_ID == item2.Item_Id);
-
-                return hasReview1.CompareTo(hasReview2);
-            });
-
-            spDeliveredStatus.Children.Clear();
-            foreach (var item in matchedItems)
-            {
-                UC_CompletedItem uc_item = new UC_CompletedItem(item, SellerDao.GetSeller(item.SellerID), this.Id_user);
-                uc_item.RateButtonClicked += UCCompletedItem_RateButtonClicked;
-                spDeliveredStatus.Children.Add(uc_item);
-            }
-            rbDelivered.Content = $"Delivered ({matchedItems.Count()})";
+            _user = user;
         }
+
+        public void SetUser(User user)
+        {
+            _user = user;
+            UserControl_Loaded(this, new RoutedEventArgs());
+        }
+
 
         private void rbPending_Checked(object sender, RoutedEventArgs e)
         {
             this.grdDeliveredStatus.Visibility = Visibility.Collapsed;
             this.grdDeliveringStatus.Visibility = Visibility.Collapsed;
-            //grdPendingStatus.Visibility = Visibility.Visible;
+            grdPendingStatus.Visibility = Visibility.Visible;
             //grdCancelledStatus.Visibility = Visibility.Collapsed;
         }
 
         private void rbDelivering_Checked(object sender, RoutedEventArgs e)
         {
             grdDeliveredStatus.Visibility = Visibility.Collapsed;
-            //grdPendingStatus.Visibility = Visibility.Collapsed;
+            grdPendingStatus.Visibility = Visibility.Collapsed;
             grdDeliveringStatus.Visibility = Visibility.Visible;
             //grdCancelledStatus.Visibility = Visibility.Collapsed;
         }
 
         private void rbDelivered_Checked(object sender, RoutedEventArgs e)
         {
-            //grdPendingStatus.Visibility = Visibility.Collapsed;
+            grdPendingStatus.Visibility = Visibility.Collapsed;
             grdDeliveringStatus.Visibility = Visibility.Collapsed;
             grdDeliveredStatus.Visibility = Visibility.Visible;
             //grdCancelledStatus.Visibility = Visibility.Collapsed;
@@ -100,7 +75,7 @@ namespace UTEMerchant
         {
             grdDeliveredStatus.Visibility = Visibility.Collapsed;
             grdDeliveringStatus.Visibility = Visibility.Collapsed;
-            //grdPendingStatus.Visibility = Visibility.Collapsed;
+            grdPendingStatus.Visibility = Visibility.Collapsed;
             //grdCancelledStatus.Visibility = Visibility.Visible;
         }
 
@@ -108,23 +83,160 @@ namespace UTEMerchant
         {
 
         }
+
         private void UCToReceiveItem_ReceivedButtonClicked(object sender, EventArgs e)
         {
-            if (sender is UC_DeliveringItemsBox clickedItemView)
+            if (sender is UC_DeliveringItemsBox box)
             {
-                Load();
+                UserControl_Loaded(this, new RoutedEventArgs());
             }
-            
+
         }
 
         private void UCCompletedItem_RateButtonClicked(object sender, EventArgs e)
         {
             if (sender is UC_CompletedItem clickedItemView)
             {
-                Load();
+                UserControl_Loaded(this, new RoutedEventArgs());
             }
+        }
+
+        private void PendingStatus_Load(object sender, RoutedEventArgs e)
+        {
+            // Filter items that are pending
+            List<Item> matchedItems = dao.Load(_user.Id_user, "pending");
+
+            // Clear the list of items that are being delivered
+            spPendingStatus.Children.Clear();
+
+            // Sort items that has the same seller
+            IEnumerable<IGrouping<int, Item>> groupBySeller = matchedItems.GroupBy(item => item.SellerID);
+            foreach (var group in groupBySeller)
+            {
+                AddItemsInPending(group);
+            }
+
+            rbPending.Content = $"Pending ({matchedItems.Count()})";
+        }
+
+        private void DeliveringStatus_Load(object sender, RoutedEventArgs e)
+        {
+            // Filter items that are being delivered
+            var matchedItems = dao.Load(_user.Id_user, "delivering");
+
+            // Clear the list of items that are being delivered
+            spDeliveringStatus.Children.Clear();
+
+            // Sort items that has the same seller
+            IEnumerable<IGrouping<int, Item>> groupBySeller = matchedItems.GroupBy(item => item.SellerID);
+            foreach (var group in groupBySeller)
+            {
+                AddItemsInDelivering(group);
+            }
+
+            rbDelivering.Content = $"Delivering ({matchedItems.Count()})";
+        }
+
+        private void DeliveredStatus_Load(object sender, RoutedEventArgs e)
+        {
+            // Filter items that are delivered
+            List<Item> matchedItems = dao.Load(_user.Id_user, "delivered");
+
+            // Sort the matchedItems list. Items that have been reviewed by the current user are placed at the beginning of the list.
+            List<CustomerReview> ListCompare = new CustomerReviewDAO().Load();
+            matchedItems = matchedItems.OrderBy(item =>
+                ListCompare.Any(review => review.ID_User == this._user.Id_user && review.Item_ID == item.Item_Id)).ToList();
+
+            // Clear the list of items that are delivered
+            spDeliveredStatus.Children.Clear();
+
+            foreach (var item in matchedItems)
+            {
+                UC_CompletedItem uc_item = new UC_CompletedItem(item, SellerDao.GetSeller(item.SellerID), this._user.Id_user);
+                uc_item.RateButtonClicked += UCCompletedItem_RateButtonClicked;
+                spDeliveredStatus.Children.Add(uc_item);
+            }
+
+            rbDelivered.Content = $"Delivered ({matchedItems.Count()})";
 
         }
 
+        
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            PendingStatus_Load(sender, e);
+            DeliveringStatus_Load(sender, e);
+            DeliveredStatus_Load(sender, e);
+        }
+
+        public void Reload()
+        {
+            UserControl_Loaded(this, new RoutedEventArgs());
+        }
+
+        private void AddItemsInPending(IGrouping<int, Item> group)
+        {
+            UC_PendingItemsBox ucItemBox = new UC_PendingItemsBox(group.ToList(), SellerDao.GetSeller(group.Key), this._user.Id_user);
+
+            int len = spPendingStatus.Children.Count;
+            if (len == 0)
+            {
+                spPendingStatus.Children.Add(ucItemBox);
+                return;
+
+            }
+
+            ucItemBox.Margin = new Thickness(0, 5, 0, 0);
+
+            if (len == 1)
+            {
+                var first = (UC_PendingItemsBox)spPendingStatus.Children[0];
+                first.Margin = new Thickness(0, 0, 0, 5);
+            }
+            else if (spPendingStatus.Children.Count > 1)
+            {
+                for (int i = 1; i < len; i++)
+                {
+                    var box = (UC_PendingItemsBox)spPendingStatus.Children[i];
+                    box.Margin = new Thickness(0, 5, 0, 5);
+                }
+            }
+
+            spPendingStatus.Children.Add(ucItemBox);
+        }
+        
+        private void AddItemsInDelivering(IGrouping<int, Item> group)
+        {
+            UC_DeliveringItemsBox ucItemBox =
+                new UC_DeliveringItemsBox(group.ToList(), SellerDao.GetSeller(group.Key), this._user.Id_user);
+            ucItemBox.ReceivedButtonClicked += UCToReceiveItem_ReceivedButtonClicked;
+
+            int len = spDeliveringStatus.Children.Count;
+            if (len == 0)
+            {
+                spDeliveringStatus.Children.Add(ucItemBox);
+                return;
+
+            }
+
+            ucItemBox.Margin = new Thickness(0, 5, 0, 0);
+
+            if (len == 1)
+            {
+                var first = (UC_DeliveringItemsBox)spDeliveringStatus.Children[0];
+                first.Margin = new Thickness(0, 0, 0, 5);
+            }
+            else if (spDeliveringStatus.Children.Count > 1)
+            {
+                for (int i = 1; i < len; i++)
+                {
+                    var box = (UC_DeliveringItemsBox)spDeliveringStatus.Children[i];
+                    box.Margin = new Thickness(0, 5, 0, 5);
+                }
+            }
+
+            spDeliveringStatus.Children.Add(ucItemBox);
+        }
     }
 }

@@ -6,7 +6,7 @@
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:local="clr-namespace:UTEMerchant"
              mc:Ignorable="d" 
-             d:DesignHeight="800" d:DesignWidth="1300">  
+             d:DesignHeight="800" d:DesignWidth="1300" Loaded="UserControl_Loaded">  
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
         <local:SaleStatusConverter x:Key="SaleStatusConverter"/>

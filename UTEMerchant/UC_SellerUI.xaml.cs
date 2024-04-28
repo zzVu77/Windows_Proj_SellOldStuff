@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -26,23 +27,17 @@ namespace UTEMerchant
     {
         List<Item> items;
         Item_DAO dao = new Item_DAO();
-        private int IdSeller;
+        private Seller _seller;
         public UC_SellerUI()
         {
             InitializeComponent();       
             
 
         }
-        public UC_SellerUI(int idSeller) :this()
+        public UC_SellerUI(Seller seller) :this()
         {
-            items = dao.GetItemsBySellerID(idSeller);
-            this.IdSeller = idSeller;
-            foreach (Item a in items)
-            {
- 
-                productGrid.Items.Add(a);
-            }
-
+            this._seller = seller;
+            items = dao.GetItemsBySellerID(seller.SellerID);
         }
         private void productGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -95,7 +90,7 @@ namespace UTEMerchant
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             
-            items= dao.GetItemsBySellerID(IdSeller);
+            items= dao.GetItemsBySellerID(_seller.SellerID);
             DataGridRow clickedRow = (DataGridRow)productGrid.ItemContainerGenerator.ContainerFromItem(productGrid.SelectedItem);
             int rowIndex = productGrid.ItemContainerGenerator.IndexFromContainer(clickedRow);
             if (items[rowIndex].Sale_Status == false)
@@ -116,12 +111,12 @@ namespace UTEMerchant
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            new WinNewItem(IdSeller).ShowDialog();
+            new WinNewItem(_seller.SellerID).ShowDialog();
             productGrid.Items.Clear();
             
             foreach (Item a in dao.Load())
             {
-                if (IdSeller == a.SellerID)
+                if (_seller.SellerID == a.SellerID)
                     productGrid.Items.Add(a);
             }
         }
@@ -163,7 +158,7 @@ namespace UTEMerchant
                         productGrid.Items.Clear();
                         foreach (Item item in itemsSearch)
                         {
-                            if (IdSeller == item.SellerID)
+                            if (_seller.SellerID == item.SellerID)
                                 productGrid.Items.Add(item);
                         }
                     }
@@ -184,6 +179,27 @@ namespace UTEMerchant
             // Image viewer
             WinImageZoom winImageZoom = new WinImageZoom(sender as Image);
             winImageZoom.ShowDialog();
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (items != null)
+            {
+                productGrid.Items.Clear();
+                foreach (Item a in items)
+                {
+                    productGrid.Items.Add(a);
+                }
+            }
+
+                
+        }
+
+        public void SetSeller(Seller seller)
+        {
+            this._seller = seller;
+            items = dao.GetItemsBySellerID(seller.SellerID);
+            UserControl_Loaded(this, new RoutedEventArgs());
         }
     }
 }

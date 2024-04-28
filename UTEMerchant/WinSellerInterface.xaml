@@ -9,7 +9,7 @@
         Height="720" Width="1386" WindowStartupLocation="CenterScreen" AllowsTransparency="True"
         Background="Transparent" WindowStyle="None"
         WindowState="Maximized"
-        >
+        Loaded ="Window_Loaded">
 
 
     <Window.Resources>
@@ -353,12 +353,38 @@
                             <MenuItem x:Name="mnuitStock"
                                       Header="Stock"    
                                       FontWeight="SemiBold"
-                                      Style="{StaticResource Menu_Style}" Click="mnuitStock_Click" 
-                                      >
+                                      Style="{StaticResource SubMenu_MenuItem}"
+                                      Background="{Binding ElementName=brdMenu, Path=Background}"
+                                      Click="mnuitStock_Click">
                                 <MenuItem.Icon>
                                     <Image Source="{Icon:ModernImage Brush=Black, Kind=Store}" 
                                            Stretch="Uniform"/>
                                 </MenuItem.Icon>
+                                <MenuItem x:Name="mnuitInventory"
+                                          Header="Inventory"
+                                          FontWeight="SemiBold"
+                                          Style="{StaticResource Menu_Item}"
+                                          Background="{Binding ElementName=mnuitStock, Path=Background}"
+                                          Width="{Binding ElementName=mnuitStock,Path=ActualWidth}"
+                                          Click="mnuitInventory_Click">
+                                    <MenuItem.Icon>
+                                        <Image Source="{Icon:MaterialDesignImage Brush=Black, Kind=Delete}" 
+                                               Stretch="Uniform"/>
+                                    </MenuItem.Icon>
+                                </MenuItem>
+
+                                <MenuItem x:Name="mnuitPendingOrder"
+                                          Header="Pending Order"
+                                          FontWeight="SemiBold"
+                                          Style="{StaticResource Menu_Item}"
+                                          Background="{Binding ElementName=mnuitStock, Path=Background}"
+                                          Width="{Binding ElementName=mnuitStock,Path=ActualWidth}" 
+                                          Click="mnuitPendingOrder_Click">
+                                    <MenuItem.Icon>
+                                        <Image Source="{Icon:MaterialDesignImage Brush=Black, Kind=Delete}" 
+                                               Stretch="Uniform"/>
+                                    </MenuItem.Icon>
+                                </MenuItem>
 
                             </MenuItem>
                             <MenuItem x:Name="mnuitOrder"
@@ -413,16 +439,35 @@
                                        Visibility="Collapsed"
                                        Background="Transparent"/>
 
-                <Grid x:Name="grdSellerUI" Visibility="Collapsed"/>
+                <Grid x:Name="grdSellerUI" 
+                      Visibility="Visible">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="200"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <local:UC_PendingOrderReview Grid.Row="1"
+                                                 x:Name="uc_PendingOrderReview"
+                                                 Visibility="Collapsed"/>
+                    <local:UC_SellerUI Grid.Row="0"
+                                       Grid.RowSpan="2"
+                                       x:Name="uc_SellerUI"
+                                       Visibility="Collapsed"/>
+                </Grid>
 
-                <local:UC_DeliveryUI x:Name="uc_Delivery" Height="735" Visibility="Collapsed" VerticalAlignment="Bottom" Margin="0 20 0 15"
-                                    IsVisibleChanged="uc_Delivery_IsVisibleChanged"/>
+                <local:UC_DeliveryUI x:Name="uc_Delivery"
+                                     Height="735" Visibility="Collapsed"
+                                     VerticalAlignment="Bottom" 
+                                     Margin="0 20 0 15"
+                                     IsVisibleChanged="uc_Delivery_IsVisibleChanged"/>
                 <local:UC_BuyerProfile x:Name="uc_BuyerProfile"
                                   Visibility="Collapsed"
                                   Background="Transparent"/>
 
                 <local:UC_SellerProfile x:Name="uc_SellerProfile"
                                         Visibility="Collapsed"/>
+
+                
             </Grid>
 
         

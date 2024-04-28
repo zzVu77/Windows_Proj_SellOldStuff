@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UTEMerchant"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="1300">
+             d:DesignHeight="450" d:DesignWidth="1300" Loaded="UserControl_Loaded">
     <Grid Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -94,6 +94,20 @@
         </ScrollViewer>
         <Grid Grid.Row="1" 
           x:Name="grdSelectedStatusChecking">
+
+            <!--Show Pending Status-->
+            <Grid x:Name="grdPendingStatus">
+                <ScrollViewer x:Name="svPendingStatus"
+                              VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Hidden"
+                              Visibility="Visible" Grid.ColumnSpan="2">
+                    <StackPanel x:Name="spPendingStatus"
+                                Orientation="Vertical"
+                                Margin="20,10">
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+
             <!--Show Delivering Status-->
             <Grid x:Name="grdDeliveringStatus">
 
@@ -101,35 +115,23 @@
                               VerticalScrollBarVisibility="Auto"
                               HorizontalScrollBarVisibility="Hidden"
                               Visibility="Visible">
-                    <WrapPanel x:Name="wpDeliveringStatus">
-                        <StackPanel x:Name="spDeliveringStatus"
-                                    Orientation="Vertical"
-                                    Width="{Binding ElementName=wpDeliveringStatusChecking, Path=ActualWidth}">
-                        </StackPanel>
-                    </WrapPanel>
+                    <StackPanel x:Name="spDeliveringStatus"
+                                Orientation="Vertical"
+                                Margin="20,10">
+                    </StackPanel>
                 </ScrollViewer>
             </Grid>
 
             <!--Show Delivered Status-->
             <Grid x:Name="grdDeliveredStatus">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="11*"/>
-                    <ColumnDefinition Width="14*"/>
-                </Grid.ColumnDefinitions>
-
                 <ScrollViewer x:Name="svDeliveredStatus"
                               VerticalScrollBarVisibility="Auto"
                               HorizontalScrollBarVisibility="Hidden"
                               Visibility="Visible" Grid.ColumnSpan="2">
-                    <WrapPanel x:Name="wpDeliveredStatus">
-                        <StackPanel x:Name="spDeliveredStatus"
-                                    Orientation="Vertical"
-                                   
-                                    Width="{Binding ElementName=wpDeliveredStatusChecking, Path=ActualWidth}">
-
-
-                        </StackPanel>
-                    </WrapPanel>
+                    <StackPanel x:Name="spDeliveredStatus"
+                                Orientation="Vertical"
+                                Margin="20,10">
+                    </StackPanel>
                 </ScrollViewer>
             </Grid>
         </Grid>
