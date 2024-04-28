@@ -116,5 +116,10 @@ namespace UTEMerchant
                 new SqlParameter("@GmailAddress", email));
 
         }
+
+        public User GetUserByUserName(string username)
+        {
+            return db.LoadData<User>($"SELECT * FROM [dbo].[User] WHERE User_name = '{username}'").FirstOrDefault();
+        }
     }
 }
