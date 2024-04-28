@@ -23,17 +23,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-
-            <!--Search Textbox-->
-            <Grid Width="300" HorizontalAlignment="Left">
-                <TextBlock Margin="20 0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False"
-                           Panel.ZIndex="1" Text="Search here ..."
-                           Visibility="{Binding ElementName=textBoxSearch, Converter={StaticResource BoolToVis}}" />
-
-                <TextBox Name="textBoxSearch" Style="{StaticResource searchTextbox}" TextChanged="textBoxSearch_TextChanged"/>
-
-                <Icon:PackIconMaterial Kind="Magnify" Width="15" Height="15" VerticalAlignment="Center" Margin="0 0 15 0" Foreground="#B0B9C6" HorizontalAlignment="Right" />
-            </Grid>
+            
 
             <!--Top Buttons-->
             <Button Style="{StaticResource topButton}" Margin="0 0 20 0" Background="#dcdcdc">
@@ -82,6 +72,7 @@
                                             <TextBlock Text="{Binding Character}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Margin="0 0 0 1"/>
                                         </Border>-->
 
+                                    <TextBlock Text="{Binding Name}" VerticalAlignment="Center"  />
                                     <TextBlock Text="{Binding Name}" VerticalAlignment="Center"  />
                                 </StackPanel>
                             </DataTemplate>

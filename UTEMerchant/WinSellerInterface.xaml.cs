@@ -284,6 +284,11 @@ namespace UTEMerchant
                 imgUserAvatar.ImageSource = bitmap;
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 
 }
