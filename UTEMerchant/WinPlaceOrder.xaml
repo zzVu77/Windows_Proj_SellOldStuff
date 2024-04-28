@@ -22,14 +22,21 @@
                 CornerRadius="5"
                 Margin="20,20,10,20">
             <ScrollViewer x:Name="svItems"
-                          VerticalScrollBarVisibility="Hidden">
+                          VerticalScrollBarVisibility="Hidden"
+                          CanContentScroll="True">
                 <StackPanel x:Name="spItems"
                             Orientation="Vertical"
                             CanVerticallyScroll="True"
-                            ScrollViewer.CanContentScroll="True"
-                            ScrollViewer.PanningMode="VerticalOnly"
+                            Cursor="ScrollNS"
                             Margin="20">
+                    <StackPanel.Resources>
+                        <Style TargetType="local:UC_PlaceOrderItemsBox">
+                            <Setter Property="ScrollViewer.CanContentScroll" Value="True"/>
+                            <Setter Property="Cursor" Value="ScrollNS"/>
+                        </Style>
+                    </StackPanel.Resources>
                 </StackPanel>
+
             </ScrollViewer>
         </Border>
         <DockPanel Grid.Column="1"

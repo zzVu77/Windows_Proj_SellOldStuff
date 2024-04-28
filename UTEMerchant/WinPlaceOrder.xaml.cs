@@ -66,6 +66,7 @@ namespace UTEMerchant
         private void AddItems(Seller seller, List<Item> items)
         {
             UC_PlaceOrderItemsBox box = new UC_PlaceOrderItemsBox(seller);
+            
             foreach (Item item in items)
             {
                 box.AddItem(item);
