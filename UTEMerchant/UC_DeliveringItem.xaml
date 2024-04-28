@@ -1,0 +1,113 @@
+﻿<UserControl x:Class="UTEMerchant.UC_DeliveringItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UTEMerchant"
+             mc:Ignorable="d" d:DesignWidth="800" Loaded="UserControl_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <Image Grid.Column="0"
+               x:Name="imgItem"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Stretch="Uniform"/>
+        <StackPanel Grid.Column="1">
+            <!--Item Name-->
+            <TextBlock VerticalAlignment="Center"
+                       x:Name="tbName"
+                       TextWrapping="Wrap"             
+                       TextTrimming="None"
+                       Text="Iphone 14 Pro Max 512GB"
+                       FontFamily="Segoe UI Black"
+                       MaxHeight="95" 
+                       Padding="5,0,0,0"
+                       FontSize="25" />
+
+            <Grid x:Name="grdDetails">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label x:Name="lblCondition"
+                       Grid.Row="0" 
+                       Grid.Column="0" 
+                       Content="Condition:"
+                       HorizontalAlignment="Left"
+                       FontWeight="SemiBold"
+                       FontSize="18"
+                       VerticalAlignment="Center"
+                       VerticalContentAlignment="Center"
+                       HorizontalContentAlignment="Left"
+                       BorderThickness="0"  
+                       IsHitTestVisible="False"/>
+
+
+                <TextBlock x:Name="tbConditonValue"
+                           Grid.Row="0"
+                           Grid.Column="1" 
+                           Foreground="Black"                         
+                           FontSize="18"
+                           Text="95%"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           TextAlignment="Left"
+                           FontWeight="Black"/>
+                <TextBlock x:Name="tbOriginalPrice"
+                           Grid.Row="1" 
+                           Grid.Column="0" 
+                           VerticalAlignment="Top" 
+                           HorizontalAlignment="Left"
+                           Foreground="DarkGray"
+                           TextDecorations="Strikethrough"                
+                           FontSize="20"
+                           Text="50 $"                
+                           FontWeight="SemiBold"
+                           Padding="5,0,0,0"/>
+
+                <TextBlock x:Name="tbDiscountedPrice"
+                           Grid.Row="1" 
+                           Grid.Column="1" 
+                           VerticalAlignment="Top"                     
+                           Foreground="Red"                               
+                           FontSize="20"
+                           FontWeight="Normal"
+                           FontFamily="Segoe UI Black"
+                           Text="100$"
+                           HorizontalAlignment="Left"                            
+                />
+            </Grid>
+
+            <DockPanel x:Name="dpTotalPrice">
+                <Label x:Name="lblTotal"
+                       Foreground="Black"
+                       FontSize="25"     
+                       FontFamily="Segoe UI"
+                       Content="TOTAL: "
+                       HorizontalAlignment="Left"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       VerticalContentAlignment="Center"
+                       HorizontalContentAlignment="Left"
+                       IsHitTestVisible="False"/>
+                <TextBlock x:Name="tbTotalValue"
+                           VerticalAlignment="Top"                     
+                           Foreground="Red"                               
+                           FontSize="30"
+                           FontWeight="Bold"
+                           Text="100$"
+                           FontFamily="Segoe UI Black"
+                           HorizontalAlignment="Right"
+                           TextAlignment="Right"/>
+            </DockPanel>
+
+        </StackPanel>
+    </Grid>
+</UserControl>
