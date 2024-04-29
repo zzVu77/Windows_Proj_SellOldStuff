@@ -20,6 +20,11 @@ namespace UTEMerchant
             return db.LoadData<purchasedItem>($"SELECT * FROM [dbo].[PurchasedProducts] WHERE Delivery_Status = '{status}'");
         }
 
+        public List<purchasedItem> LoadItemsByUser(int userId, string status)
+        {
+            return db.LoadData<purchasedItem>($"SELECT * FROM [dbo].[PurchasedProducts] WHERE Id_user = {userId} AND Delivery_Status = '{status}'");
+        }
+
         public List<Item> Load(int Id_user, string deliverStatus)       
         {
             List<Item> purchasedItems = db.LoadData<Item>($"SELECT i.* FROM [dbo].[Item] i INNER JOIN [dbo].[PurchasedProducts] pi ON pi.Item_Id = i.Item_Id WHERE pi.Id_user = {Id_user} AND pi.Delivery_Status='{deliverStatus}'");
@@ -30,9 +35,9 @@ namespace UTEMerchant
         {
             string sqlQuery = @"
             INSERT INTO [dbo].[PurchasedProducts] 
-                (Id_user, Item_Id, Delivery_Status)
+                (Id_user, Item_Id, Delivery_Status, PurchaseDate)
             VALUES
-                (@userId, @itemId, @deliveryStatus)";
+                (@userId, @itemId, @deliveryStatus, dbo.GETDATE())";
             new DB_Connection().ExecuteNonQuery(sqlQuery,
                 new SqlParameter("@userId", item.Id_user),
                 new SqlParameter("@itemId", item.Item_Id),
@@ -40,22 +45,43 @@ namespace UTEMerchant
                 );
         }
 
+        public void RequestItems(List<Item> items, int userId, string deliveryAddress) // Using PascalCase for method name
+        {
+            DateTime requestDate = DateTime.Now;
+            foreach (var item in items)
+            {
+                string sqlQuery = @"
+                INSERT INTO [dbo].[PurchasedProducts] (Id_user, Item_Id, Delivery_Status, PurchaseDate)
+                VALUES (@userId, @itemId, @deliveryStatus, @requestDate)";
+                new DB_Connection().ExecuteNonQuery(sqlQuery,
+                    new SqlParameter("@userId", userId),
+                    new SqlParameter("@itemId", item.Item_Id),
+                    new SqlParameter("@deliveryStatus", "pending"),
+                    new SqlParameter("@requestDate", requestDate)
+                );
+                new Item_DAO().UpdateStatus(item.Item_Id);
+            }
+
+        }
+
+
+
         //public string GetPurchasedProductStatus(int itemID, int userID)
         //{
         //    //string sqlStr = @"select Delivery_Status from PurchasedProducts pp, Item i Where pp.Id_user=@userID and pp.Item_Id = i.Item_Id ";
         //    string status = "";
-            
+
         //    using (SqlConnection connection = new SqlConnection(db.connectionString))
         //    {
-               
+
         //        string sqlStr = @"select Delivery_Status from PurchasedProducts pp, Item i Where pp.Id_user=@userID and pp.Item_Id = i.Item_Id ";
-                
+
         //        connection.Open();
 
-                
+
         //        using (SqlCommand command = new SqlCommand(sqlStr, connection))
         //        {
-                   
+
         //            command.Parameters.AddWithValue("@userID", userID);
         //            command.Parameters.AddWithValue("@itemID", itemID);
 
