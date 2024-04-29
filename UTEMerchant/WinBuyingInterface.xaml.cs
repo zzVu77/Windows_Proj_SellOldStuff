@@ -60,12 +60,7 @@ namespace UTEMerchant
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            purchasedItem item = new purchasedItem();
-            item.Id_user = Id_User;
-            item.Item_Id = info.Item_Id;
-            new Item_DAO().UpdateStatus(item.Item_Id);
-            new PurchasedItem_DAO().AddItem(item);
-
+            new PurchasedItem_DAO().RequestItems(new List<Item> { info }, Id_User, $"{txtDeliveryAddress.Text}, {cbPickupWard.Text}, {cbPickupDistrict}, {cbPickupCity.Text}");
             this.Close();
         }
 
