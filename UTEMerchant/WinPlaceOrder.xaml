@@ -122,7 +122,7 @@
                             </Style>
                         </TextBox.Style>
                     </TextBox>
-                    <Label x:Name="lblShippingChanel"
+                    <!--<Label x:Name="lblShippingChanel"
                            Grid.Row="2"
                            Content="Shipping Chanel"
                            FontSize="15"
@@ -238,7 +238,7 @@
                         </ComboBox.Style>
                         <ComboBoxItem Content="Standard Shipping"/>
                         <ComboBoxItem Content="Express Shipping"/>
-                    </ComboBox>
+                    </ComboBox>-->
                 </Grid>
                 <StackPanel Grid.Row="0" 
                             x:Name="spShipping"
@@ -279,8 +279,8 @@
                         Background="#E8E8E8">
                     <Grid x:Name="grdPricingDetails">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="1.5*"/>
                         </Grid.RowDefinitions>
@@ -288,8 +288,8 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <!--Convert all labels to TextBlock-->
-                        <Label x:Name="lblSubTotal"
+
+                        <!--<Label x:Name="lblSubTotal"
                                Grid.Row="0"
                                Grid.Column="0"
                                Content="Sub Total"
@@ -324,7 +324,7 @@
                                    Foreground="Gray"
                                    VerticalAlignment="Center"
                                    HorizontalAlignment="Right"
-                                   Margin="15,0"/>
+                                   Margin="15,0"/>-->
                         <Label x:Name="lblTotal"
                                Grid.Row="2"
                                Grid.Column="0"

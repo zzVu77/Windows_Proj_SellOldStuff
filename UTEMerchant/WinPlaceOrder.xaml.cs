@@ -21,8 +21,6 @@ namespace UTEMerchant
     {
         private readonly Dictionary<Seller, List<Item>> _items;
         private readonly User _user;
-        private readonly double? _subTotalPrice;
-        private double? _shippingFee;
         private double? _totalPrice;
         private bool _placeOrderSuccessful = false;
 
@@ -32,10 +30,10 @@ namespace UTEMerchant
             InitializeComponent();
         }
 
-        public WinPlaceOrder(Dictionary<Seller, List<Item>> items, User user, double subTotalPrice) : this()
+        public WinPlaceOrder(Dictionary<Seller, List<Item>> items, User user, double TotalPrice) : this()
         {
             this._items = items;
-            this._subTotalPrice = subTotalPrice;
+            this._totalPrice = TotalPrice;
             _user = user;
         }
 
@@ -44,10 +42,8 @@ namespace UTEMerchant
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             _placeOrderSuccessful = false;
-            if (_subTotalPrice != null)
+            if (_totalPrice != null)
             {
-                _totalPrice = _subTotalPrice;
-                tbSubTotal.Text = "$" + _subTotalPrice.Value.ToString("F");
                 tbTotal.Text = "$" + _totalPrice.Value.ToString("F");
             }
 
@@ -60,7 +56,6 @@ namespace UTEMerchant
                 }
 
             }
-            cbShippingChanel.SelectedValue = "Standard Shipping";
         }
 
         private void AddItems(Seller seller, List<Item> items)
@@ -90,43 +85,30 @@ namespace UTEMerchant
             }
         }
 
-        private void cbShippingChanel_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (cbShippingChanel.SelectedIndex == 0)
-            {
-                _shippingFee = 5;
-                tbShippingCost.Text = "$5.00";
-                tbTotal.Text = "$" + CalculateTotalPrice().ToString("F");
-            }
-            else if (cbShippingChanel.SelectedIndex == 1)
-            {
-                _shippingFee = 10;
-                tbShippingCost.Text = "$10.00";
-                tbTotal.Text = "$" + CalculateTotalPrice().ToString("F");
-            }
-            else
-            {
-                _shippingFee = 0;
-                tbShippingCost.Text = "$0.00";
-                tbTotal.Text = "$" + CalculateTotalPrice().ToString("F");
-            }
-        }
-
-        private double CalculateTotalPrice()
-        {
-            if (_subTotalPrice == null || _shippingFee == null) return 0;
-            return (double)(_subTotalPrice + _shippingFee);
-        }
+        //private void cbShippingChanel_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    if (cbShippingChanel.SelectedIndex == 0)
+        //    {
+        //        _shippingFee = 5;
+        //        tbShippingCost.Text = "$5.00";
+        //        tbTotal.Text = "$" + CalculateTotalPrice().ToString("F");
+        //    }
+        //    else if (cbShippingChanel.SelectedIndex == 1)
+        //    {
+        //        _shippingFee = 10;
+        //        tbShippingCost.Text = "$10.00";
+        //        tbTotal.Text = "$" + CalculateTotalPrice().ToString("F");
+        //    }
+        //    else
+        //    {
+        //        _shippingFee = 0;
+        //        tbShippingCost.Text = "$0.00";
+        //        tbTotal.Text = "$" + CalculateTotalPrice().ToString("F");
+        //    }
+        //}
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            // Check if the user has selected a shipping channel
-            if (cbShippingChanel.SelectedIndex == -1)
-            {
-                MessageBox.Show("Please select a shipping channel.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
             // Check if the user has entered details for delivery address
             if (tbDeliveryAddress.Text == "")
             {
@@ -136,15 +118,12 @@ namespace UTEMerchant
 
             try
             {
-                foreach (KeyValuePair<Seller, List<Item>> entry in _items)
+                List<Item> items = new List<Item>();
+                foreach (KeyValuePair<Seller, List<Item>> pair in _items)
                 {
-                    foreach (Item item in entry.Value)
-                    {
-                        new Item_DAO().UpdateStatus(item.Item_Id);
-                        new PurchasedItem_DAO().AddItem(new purchasedItem()
-                            { Id_user = _user.Id_user, Item_Id = item.Item_Id });
-                    }
+                    items.AddRange(pair.Value);
                 }
+                new PurchasedItem_DAO().RequestItems(items, _user.Id_user, tbDeliveryAddress.Text);
             }
 
             catch (Exception ex)
