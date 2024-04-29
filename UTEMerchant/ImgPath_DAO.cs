@@ -29,5 +29,12 @@ namespace UTEMerchant
                 new SqlParameter("@Item_Id" , imgPath.Item_Id),
                 new SqlParameter("@Path", imgPath.Path));
         }
+
+        public void DeleteImgPaths(int itemID)
+        {
+            string sqlStr = "DELETE FROM [dbo].[ImgPath] WHERE Item_Id = @itemID";
+            db.ExecuteNonQuery(sqlStr, new SqlParameter("@ItemId", itemID));
+        }
+
     }
 }

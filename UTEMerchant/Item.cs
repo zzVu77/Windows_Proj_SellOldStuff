@@ -55,6 +55,19 @@ namespace UTEMerchant
             Price = price;
             Image_Path = imagePath;
         }
+       
+        public Item(int itemID, string name, float price, float originalPrice,DateTime bought_date, string condition_description, int condition, string imagePath, string detail_description )
+        {
+            this.Item_Id = itemID;
+            this.Name = name;
+            this.Price = price;
+            this.Original_Price = originalPrice;
+            this.Bought_date = bought_date;
+            this.Condition_Description = condition_description;
+            this.Condition = condition;
+            this.Image_Path = imagePath;
+            this.Detail_description = detail_description;
+        }
         public ImageSource Image
         {
             get

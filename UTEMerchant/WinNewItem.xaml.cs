@@ -105,7 +105,6 @@ namespace UTEMerchant
                     ImgPath imgPath = new ImgPath(itemID, x);
                     ImgPath_DAO.Add(imgPath);
                 }
-                List<ImgPath> list = ImgPath_DAO.Load();
                 this.Close();
 
             }

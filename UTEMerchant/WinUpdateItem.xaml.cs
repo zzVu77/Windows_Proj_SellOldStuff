@@ -19,11 +19,12 @@ namespace UTEMerchant
     /// </summary>
     public partial class WinUpdateItem : Window
     {
-        private string image_path;
+        private string mainImgPath;
         List<string> selectedFilePath = new List<string>();
         Item_DAO dao = new Item_DAO();
         ImgPath_DAO ImgPath_DAO = new ImgPath_DAO();
         Item item;
+        CheckValid check = new CheckValid();
         public WinUpdateItem()
         {
             InitializeComponent();
@@ -69,6 +70,82 @@ namespace UTEMerchant
             flowDoc1.Blocks.Add(paragraph1);
             // Gán FlowDocument cho RichTextBox
             rtbConditonDescription.Document = flowDoc1;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
+            openFileDialog.Filter = "Images (*.jpg,*.png)|*.jpg;*.png";
+            openFileDialog.Multiselect = true;
+            if (openFileDialog.ShowDialog() == true)
+            {
+                selectedFilePath = openFileDialog.FileNames.ToList();
+                mainImgPath = selectedFilePath[0];
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(mainImgPath);
+                bitmap.EndInit();
+                imgItem.Source = bitmap;
+                // Xử lý đường dẫn đã chọn ở đây
+            }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            ComboBoxItem typeItem = cbType.SelectedItem as ComboBoxItem;
+            string text_detail = new TextRange(rtbDetailDescription.Document.ContentStart, rtbDetailDescription.Document.ContentEnd).Text;
+            string text_Condition = new TextRange(rtbConditonDescription.Document.ContentStart, rtbConditonDescription.Document.ContentEnd).Text;
+
+            // Perform validation checks
+            if (typeItem == null ||
+                //string.IsNullOrWhiteSpace(txtID.Text) ||
+                string.IsNullOrWhiteSpace(txtBoughtDate.Text) ||
+                string.IsNullOrWhiteSpace(txtName.Text) ||
+                string.IsNullOrWhiteSpace(txtCondition.Text) ||
+                string.IsNullOrWhiteSpace(txtOriginalPrice.Text) ||
+                string.IsNullOrWhiteSpace(txtPrice.Text) ||
+                string.IsNullOrWhiteSpace(text_detail) ||
+                string.IsNullOrWhiteSpace(text_Condition) ||
+                string.IsNullOrWhiteSpace(mainImgPath) ||
+                !check.IsDateFormatValid(txtBoughtDate.Text) ||           // Check if bought date has valid format
+                !check.IsDateValid(txtBoughtDate.Text) ||                 // Check if bought date is a valid date
+                !check.IsNumeric(txtCondition.Text) ||                    // Check if condition is numeric
+                !check.IsNumeric(txtOriginalPrice.Text) ||                // Check if original price is numeric
+                !check.IsNumeric(txtPrice.Text)                       // Check if price is numeric
+               )
+            {
+                // Show error message if any of the conditions fail
+                System.Windows.MessageBox.Show("Invalid information !!!");
+            }
+            else
+            {
+
+                Item product = new Item();
+                product.Item_Id = this.item.Item_Id;
+                product.Name = txtName.Text;
+                product.Price = float.Parse(txtPrice.Text.ToString());
+                product.Original_Price = float.Parse(txtOriginalPrice.Text.ToString());
+                product.Bought_date = DateTime.Parse(txtBoughtDate.Text.ToString());
+                product.Condition = Int32.Parse(txtCondition.Text.ToString());
+                product.Condition_Description = text_Condition;
+                product.Detail_description = text_detail;
+                product.Image_Path = mainImgPath;
+                product.Type = typeItem.Content.ToString();
+                
+                dao.UpdateItem(product);
+                if (selectedFilePath != null)
+                {
+                    ImgPath_DAO.DeleteImgPaths(this.item.Item_Id);
+                    foreach (var x in selectedFilePath)
+                    {
+                        ImgPath imgPath = new ImgPath(this.item.Item_Id, x);
+                        ImgPath_DAO.Add(imgPath);
+                    }
+                }
+                //List<ImgPath> list = ImgPath_DAO.Load();
+                this.Close();
+
+            }
         }
     }
 }

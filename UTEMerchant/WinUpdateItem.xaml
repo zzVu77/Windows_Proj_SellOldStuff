@@ -10,9 +10,7 @@
         x:Class="UTEMerchant.WinUpdateItem"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Update Item" Height="550" Width="700
-        
-    "
+        Title="Update Item" Height="580" Width="920"
     >
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
@@ -54,7 +52,7 @@
                         Style="{StaticResource OrderButton}"                        
                         VerticalAlignment="Top" 
                         HorizontalAlignment="Center"                       
-                        HorizontalContentAlignment="Center" >
+                        HorizontalContentAlignment="Center" Click="Button_Click" >
                     <StackPanel Orientation="Horizontal">
                         <Icon:PackIconMaterial Kind="Upload" VerticalAlignment="Center" FontWeight="Black" Margin="0 1 8 0" Width="13" Height="15"/>
                         <TextBlock Text="Upload" FontWeight="Light" FontFamily="Segoe UI Black"/>
@@ -70,7 +68,7 @@
                         FontSize="20"
                         FontFamily="Segoe UI"
                         FontWeight="Bold"
-                        Foreground="White"
+                        Foreground="White" Click="Button_Click_1"
                         >
                     <StackPanel Orientation="Horizontal" Width="80" Height="27">
                         <Icon:PackIconMaterial Kind="ContentSave" VerticalAlignment="Center" Margin="0 1 8 0" Width="23" Height="22" Foreground="Black"/>
@@ -79,52 +77,48 @@
                 </Button>
                 </StackPanel>
 
-                <Grid x:Name="grdShortDetails"
+                <StackPanel x:Name="grdShortDetails"
                       Grid.Column="1"
-                      Margin="20,0,0,0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="55" />
-                        <RowDefinition Height="55"/>
-                        <RowDefinition Height="55"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="Auto"/>
-
-
-                    </Grid.RowDefinitions>
-
-                    <Grid Grid.Row="0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="2*"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBox Grid.Column="0"
+                      Margin="20,15,0,0">                   
+                 
+                        <Label Content="Item Name"
+                               FontFamily="Segoe UI " 
+                               FontWeight="SemiBold"  />
+                        <TextBox 
                                  x:Name="txtName"      
-                                 Height="{Binding ElementName=txtID, Path=ActualHeight}"
+                                 Height="{Binding ElementName=txtBoughtDate, Path=ActualHeight}"
                                  Foreground="Black" 
                                  FontFamily="Segoe UI " 
                                  FontWeight="SemiBold"  
                                  Style="{StaticResource DefaultTextBoxStyle}"  
                                  BorderThickness="3"
                                  Tag="Name"
-                                 Margin="0,0,0,10" Grid.ColumnSpan="2"/>
-                    </Grid>
-
-
-                    <UniformGrid Grid.Row="1"
-                                 Columns="3">
+                                 />
+                        <DockPanel>
+                            
+                        <StackPanel Margin="0 0 10 0">                            
+                        <Label Content="Orginal Price"
+                               FontFamily="Segoe UI " 
+                               FontWeight="SemiBold"  />
                         <TextBox x:Name="txtOriginalPrice"                      
                                  Foreground="Black" 
                                  FontFamily="Segoe UI " 
                                  FontWeight="SemiBold"  
                                  Style="{StaticResource DefaultTextBoxStyle}"
                                  Height="40"
-                                 Width="115"
+                                 Width="200"
                                  VerticalAlignment="Top"
                                  HorizontalAlignment="Left" 
-                                 BorderThickness="3"
-                                 
+                                 BorderThickness="3"                                 
                                  Tag="Original Price" Margin="0,0,0,10"/>
-                        <TextBox x:Name="txtPrice"
+                        </StackPanel>
+                        
+                        <StackPanel Margin="10 0 0 0">
+                            <Label Content="Price"
+                               FontFamily="Segoe UI " 
+                               FontWeight="SemiBold"  />
+                            
+                            <TextBox x:Name="txtPrice"
                                  Foreground="Black" 
                                  Margin="0 0 10 0"
                                  FontFamily="Segoe UI " 
@@ -132,39 +126,44 @@
                                  Style="{StaticResource DefaultTextBoxStyle}"  
                                  BorderThickness="3"
                                  Height="40"
-                                 Width="115"
+                                 Width="200"
                                  VerticalAlignment="Top"
-                                 HorizontalAlignment="Center"
-                                 
+                                 HorizontalAlignment="Left"                                 
                                  Tag="Price" />
-                        <ComboBox Grid.Column="2" x:Name="cbType"
+                        </StackPanel>
+
+                        <StackPanel Margin="10 0 0 0">
+                            <Label Content="Type"
+                               FontFamily="Segoe UI " 
+                               FontWeight="SemiBold"  />
+
+                            <ComboBox Grid.Column="2" x:Name="cbType"
                                   Tag="Type"
                                   BorderThickness="3"
-                                  HorizontalAlignment="Right"
+                                  HorizontalAlignment="Left"
                                   Style="{StaticResource DefaultComboBoxStyle}"
                                   Height="40"
-                                  Width="128"
+                                  Width="200"
                                   VerticalAlignment="Top"                                  
                                   Background="White"
                                   Margin="0,0,0,10">
-                            <ComboBoxItem Content="Laptop"/>
-                            <ComboBoxItem Content="Mobile Phone"/>
-                            <ComboBoxItem Content="Television"/>
-                            <ComboBoxItem Content="Clothes"/>
-                            <ComboBoxItem Content="Camera"/>
-                            <ComboBoxItem Content="HeadPhone"/>
-                            <ComboBoxItem Content="Houseware"/>                            
-                        </ComboBox>
-                    </UniformGrid>
+                                <ComboBoxItem Content="Laptop"/>
+                                <ComboBoxItem Content="Mobile Phone"/>
+                                <ComboBoxItem Content="Television"/>
+                                <ComboBoxItem Content="Clothes"/>
+                                <ComboBoxItem Content="Camera"/>
+                                <ComboBoxItem Content="HeadPhone"/>
+                                <ComboBoxItem Content="Houseware"/>
+                            </ComboBox>
+                        </StackPanel>
 
-                    <Grid Grid.Row="2">
-                        <Grid.ColumnDefinitions>
-
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <DatePicker Grid.Column="0" 
+                    </DockPanel>
+                    <DockPanel>
+                        <StackPanel VerticalAlignment="Top">
+                            <Label Content="Bought Date"
+                               FontFamily="Segoe UI " 
+                               FontWeight="SemiBold"  />
+                            <DatePicker Grid.Column="0" 
                                  x:Name="txtBoughtDate"
                                  Foreground="Black" 
                                  FontFamily="Segoe UI " 
@@ -173,25 +172,32 @@
                                  FontWeight="SemiBold"  
                                  Style="{StaticResource DatePickerStyle}" 
                                  Height="40"
+                                 Width="300"
                                  BorderThickness="3"
                                  Tag="Bought Date"
                                  Margin="0,0,10,0"/>
-                        <TextBox Grid.Column="1"
+                        </StackPanel>
+                        <StackPanel Margin="30 0 0 0">
+                            <Label Content="Condition"
+                               FontFamily="Segoe UI " 
+                               FontWeight="SemiBold"  />
+                            <TextBox 
                                  x:Name="txtCondition"                       
                                  Foreground="Black" 
+                                 Width="300"
+                                 HorizontalAlignment="Left"
                                  FontFamily="Segoe UI " 
                                  FontWeight="SemiBold"  
                                  Style="{StaticResource DefaultTextBoxStyle}"  
                                  Height="{Binding ElementName=txtBoughtDate, Path=ActualHeight}"
                                  BorderThickness="3"
                                  Tag="Condition"
-                                 Margin="10,0,0,0"/>
-                    </Grid>
-                    <Grid Grid.Row="3" >
-                        <Grid.RowDefinitions>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                        </Grid.RowDefinitions>
+                                 />
+
+                        </StackPanel>
+                        
+                    </DockPanel>
+                  
                         <Label Grid.Row="0"
                                x:Name="lblConditionDescription"
                                Content="Condition description"
@@ -199,44 +205,42 @@
                                HorizontalAlignment="Left"
                                FontFamily="Segoe UI"
                                FontWeight="Bold"
-                               Foreground="DarkGray"/>
+                               Foreground="Black"/>
                         <RichTextBox x:Name="rtbConditonDescription"
                                      VerticalAlignment="Center"
                                      Foreground="black"
                                      Background="Transparent"
                                      Grid.Row="1"
-                                     Height="140"
+                                     Height="130"
+                                     Width="620"
                                      BorderThickness="2"
                                      BorderBrush="DarkGray" 
                                      Focusable="True"
                                      FontFamily="Segoe UI"/>
-                    </Grid>
-                    <Grid Grid.Row="4" >
-                        <Grid.RowDefinitions>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Label Grid.Row="0"
+      
+                    
+                      
+                        <Label 
                                x:Name="lblDetailDescription"
                                Content="Detail description"
                                VerticalAlignment="Top"
                                HorizontalAlignment="Left"
                                FontFamily="Segoe UI"
                                FontWeight="Bold"
-                               Foreground="DarkGray"/>
+                               Foreground="Black"/>
                         <RichTextBox x:Name="rtbDetailDescription"
                                      VerticalAlignment="Center"
                                      Foreground="black"
                                      Background="Transparent"
-                                     Grid.Row="1"
-                                     Height="140"
+                                     Height="130"
+                                     Width="620"
                                      BorderThickness="2"
                                      BorderBrush="DarkGray" 
                                      Focusable="True"
                                      FontFamily="Segoe UI"/>
-                    </Grid>
+                   
 
-                </Grid>
+                </StackPanel>
             </Grid>
         </Border>
     </Grid>

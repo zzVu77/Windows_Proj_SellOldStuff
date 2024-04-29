@@ -34,19 +34,21 @@ namespace UTEMerchant
         }
         public UC_SellerUI(int idSeller) :this()
         {
-            items = dao.GetItemsBySellerID(idSeller);
+          
             this.IdSeller = idSeller;
+            LoadListItem();
+
+        }
+        private void LoadListItem()
+        {
+            items = dao.GetItemsBySellerID(this.IdSeller);
             foreach (Item a in items)
             {
- 
+
                 productGrid.Items.Add(a);
             }
-
         }
-        private void productGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+     
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
@@ -55,6 +57,12 @@ namespace UTEMerchant
             int rowIndex = productGrid.ItemContainerGenerator.IndexFromContainer(clickedRow);
             WinUpdateItem winUpdateItem = new WinUpdateItem(items[rowIndex]);
             winUpdateItem.ShowDialog();
+
+            productGrid.Items.Clear();
+            LoadListItem();
+
+
+
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
