@@ -1213,22 +1213,20 @@
                                        Text="{TemplateBinding Tag}"
                                        Foreground="LightGray"
                                        FontStyle="Italic"
+                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                        FontSize="{TemplateBinding FontSize}"
                                        Visibility="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}">
 
                             </TextBlock>
-                            <TextBox x:Name="PART_TextBox"
+                            <TextBlock x:Name="PART_TextBox"
                                      Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Text}"
-                                     HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                     VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                     VerticalAlignment="Center"
-                                     HorizontalAlignment="Center"
-                                     Background="Transparent"
-                                     BorderThickness="0"
+                                     HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                     VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                     Background="{TemplateBinding Background}"
                                      Foreground="{TemplateBinding Foreground}"
-                                     FontSize="{TemplateBinding FontSize}"
-                                     IsReadOnly="{TemplateBinding IsReadOnly}">
-                            </TextBox>
+                                     FontSize="{TemplateBinding FontSize}">
+                            </TextBlock>
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
@@ -1280,6 +1278,8 @@
         <Style x:Key="DatePickerStyle" TargetType="DatePicker">
             <Setter Property="IsTodayHighlighted" Value="True"/>
             <Setter Property="SelectedDateFormat" Value="Short"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="DatePicker">
@@ -1290,7 +1290,7 @@
                                 BorderBrush="{TemplateBinding BorderBrush}" 
                                 BorderThickness="{TemplateBinding BorderThickness}" 
                                 Background="{TemplateBinding Background}">
-                            <Grid Margin="10,5">
+                            <Grid Margin="10,0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
@@ -1302,8 +1302,11 @@
                                                    Focusable="{TemplateBinding Focusable}"
                                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                   HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                   VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                   Foreground="{TemplateBinding Foreground}"
                                                    FontSize="{TemplateBinding FontSize}"
-                                                   Background="Transparent"
+                                                   Background="{TemplateBinding Background}"
                                                    BorderThickness="0"
                                                    IsReadOnly="True"
                                                    Style="{StaticResource DefaultTextDatePickerTextBoxStyle}">
