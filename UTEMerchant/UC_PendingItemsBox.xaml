@@ -8,42 +8,36 @@
              mc:Ignorable="d" d:DesignWidth="800"
              Loaded="UserControl_Loaded">
     <Grid>
-        <Border x:Name="brdBox"
-                CornerRadius="5"
-                BorderBrush="Black"
-                BorderThickness="2">
-            <Grid x:Name="grdBox">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Border Grid.Row="0"
-                        BorderBrush="LightGray">
-                    <DockPanel x:Name="dpShop"
+        <Grid x:Name="grdBox">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0"
+                    BorderBrush="LightGray">
+                <DockPanel x:Name="dpShop"
                            Margin="10">
-                        <iconPacks:PackIconMaterial Kind="Store"
-                                           VerticalAlignment="Center"
-                                           Margin="10 1 8 0"
-                                           Width="28" Height="35"/>
-                        <TextBlock x:Name="tbShopName"
-                                   Text="UTE Merchant"
-                                   FontWeight="Bold"
-                                   FontSize="20"
-                                   FontFamily="Segoe UI Black"
-                                   VerticalAlignment="Center"
-                                   Padding="10 0 0 0"/>
-                    </DockPanel>
+                    <iconPacks:PackIconMaterial Kind="Store"
+                                                VerticalAlignment="Center"
+                                                Margin="10 1 8 0"
+                                                Width="28" Height="35"/>
+                    <TextBlock x:Name="tbShopName"
+                               Text="UTE Merchant"
+                               FontWeight="Bold"
+                               FontSize="20"
+                               FontFamily="Segoe UI Black"
+                               VerticalAlignment="Center"
+                               Padding="10 0 0 0"/>
+                </DockPanel>
 
-                </Border>
-                <Border Grid.Row="1"
-                        BorderBrush="LightGray">
-                    <StackPanel x:Name="spItems">
+            </Border>
+            <Border Grid.Row="1"
+                    BorderBrush="LightGray">
+                <StackPanel x:Name="spItems">
 
-                    </StackPanel>
-
-                </Border>
-            </Grid>
-        </Border>
+                </StackPanel>
+            </Border>
+        </Grid>
     </Grid>
 </UserControl>
