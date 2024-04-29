@@ -106,12 +106,18 @@ namespace UTEMerchant
             // Filter items that are pending
             List<Item> matchedItems = dao.Load(_user.Id_user, "pending");
 
+            // Filter items that are pending
+            List<purchasedItem> purchasedItems = new PurchasedItem_DAO().LoadItemsByUser(_user.Id_user, "pending");
+
+            // Group items by the date they were purchased
+            IEnumerable<IGrouping<DateTime, Item>> groups = matchedItems.GroupBy(item =>
+                purchasedItems.First(purchasedItem => purchasedItem.Item_Id == item.Item_Id).PurchaseDate);
+
             // Clear the list of items that are being delivered
             spPendingStatus.Children.Clear();
 
-            // Sort items that has the same seller
-            IEnumerable<IGrouping<int, Item>> groupBySeller = matchedItems.GroupBy(item => item.SellerID);
-            foreach (var group in groupBySeller)
+            // Add items to the list
+            foreach (var group in groups)
             {
                 AddItemsInPending(group);
             }
@@ -161,7 +167,7 @@ namespace UTEMerchant
 
         }
 
-        
+
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
@@ -175,37 +181,39 @@ namespace UTEMerchant
             UserControl_Loaded(this, new RoutedEventArgs());
         }
 
-        private void AddItemsInPending(IGrouping<int, Item> group)
+        private void AddItemsInPending(IGrouping<DateTime, Item> items)
         {
-            UC_PendingItemsBox ucItemBox = new UC_PendingItemsBox(group.ToList(), SellerDao.GetSeller(group.Key), this._user.Id_user);
+
+            UC_PendingOrderBox ucOrderBox = new UC_PendingOrderBox(items, _user);
 
             int len = spPendingStatus.Children.Count;
             if (len == 0)
             {
-                spPendingStatus.Children.Add(ucItemBox);
+                spPendingStatus.Children.Add(ucOrderBox);
                 return;
 
             }
 
-            ucItemBox.Margin = new Thickness(0, 5, 0, 0);
+            ucOrderBox.Margin = new Thickness(0, 5, 0, 0);
 
             if (len == 1)
             {
-                var first = (UC_PendingItemsBox)spPendingStatus.Children[0];
+                var first = (UC_PendingOrderBox)spPendingStatus.Children[0];
                 first.Margin = new Thickness(0, 0, 0, 5);
             }
             else if (spPendingStatus.Children.Count > 1)
             {
                 for (int i = 1; i < len; i++)
                 {
-                    var box = (UC_PendingItemsBox)spPendingStatus.Children[i];
+                    var box = (UC_PendingOrderBox)spPendingStatus.Children[i];
                     box.Margin = new Thickness(0, 5, 0, 5);
                 }
             }
 
-            spPendingStatus.Children.Add(ucItemBox);
+            spPendingStatus.Children.Add(ucOrderBox);
+
         }
-        
+
         private void AddItemsInDelivering(IGrouping<int, Item> group)
         {
             UC_DeliveringItemsBox ucItemBox =
