@@ -82,8 +82,32 @@
                        FontWeight="Normal"
                        FontFamily="Segoe UI Black"
                        Text="100$"
-                       HorizontalAlignment="Left" />
+                       HorizontalAlignment="Left"                            
+            />
             </Grid>
+
+            <DockPanel x:Name="dpTotalPrice">
+                <Label x:Name="lblTotal"
+                   Foreground="Black"
+                   FontSize="25"     
+                   FontFamily="Segoe UI"
+                   Content="TOTAL: "
+                   HorizontalAlignment="Left"
+                   FontWeight="Bold"
+                   VerticalAlignment="Center"
+                   VerticalContentAlignment="Center"
+                   HorizontalContentAlignment="Left"
+                   IsHitTestVisible="False"/>
+                <TextBlock x:Name="tbTotalValue"
+                       VerticalAlignment="Top"                     
+                       Foreground="Red"                               
+                       FontSize="30"
+                       FontWeight="Bold"
+                       Text="100$"
+                       FontFamily="Segoe UI Black"
+                       HorizontalAlignment="Right"
+                       TextAlignment="Right"/>
+            </DockPanel>
 
         </StackPanel>
     </Grid>

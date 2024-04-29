@@ -45,7 +45,6 @@ namespace UTEMerchant
 
             if (_items != null)
             {
-                spItems.Children.Clear();
                 foreach (var item in _items)
                 {
                     AddItem(item);

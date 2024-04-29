@@ -42,6 +42,7 @@ namespace UTEMerchant
                 tbName.Text = _item.Name;
                 tbDiscountedPrice.Text = _item.Price.ToString("C", CultureInfo.CurrentCulture);
                 tbOriginalPrice.Text = _item.Original_Price.ToString("C", CultureInfo.CurrentCulture);
+                tbTotalValue.Text = _item.Price.ToString("C", CultureInfo.CurrentCulture) + "$";
                 //var resourceUri = new Uri(_item.Image_Path, UriKind.RelativeOrAbsolute);
                 //imgItem.Source = new BitmapImage(resourceUri);
             }
