@@ -19,6 +19,8 @@ namespace UTEMerchant
     /// </summary>
     public partial class WinSellerInterface : Window
     {
+        bool isFirstClickProfile = true;
+        bool isFirstClickStock = true;
         private User User { get; set; }
         private Seller Seller { get; set; }
         UC_StartSelling uc_StartSelling;
@@ -110,12 +112,30 @@ namespace UTEMerchant
         private void mnuitPurchase_Click(object sender, RoutedEventArgs e)
         {
             CollapseAll();
+            mnuitBuyerProfile.Visibility = Visibility.Collapsed;
+            mnuitSellerProfile.Visibility = Visibility.Collapsed;
+            mnuitPendingOrder.Visibility = Visibility.Collapsed;
+            mnuitInventory.Visibility = Visibility.Collapsed;
             uc_PurchasingUI.Visibility = Visibility.Visible;
 
         }
 
         private void mnuitStock_Click(object sender, RoutedEventArgs e)
         {
+            mnuitBuyerProfile.Visibility = Visibility.Collapsed;
+            mnuitSellerProfile.Visibility = Visibility.Collapsed;
+            if (isFirstClickStock)
+            {
+                mnuitPendingOrder.Visibility = Visibility.Visible;
+                mnuitInventory.Visibility = Visibility.Visible;
+                isFirstClickStock = false;
+            }
+            else
+            {
+                mnuitPendingOrder.Visibility = Visibility.Collapsed;
+                mnuitInventory.Visibility = Visibility.Collapsed;
+                isFirstClickStock = true;
+            }
             // If the user is registered as a seller
             if (3 > 2)
             {
@@ -134,6 +154,10 @@ namespace UTEMerchant
         {
             CollapseAll();
             uc_Delivery.Visibility = Visibility.Visible;
+            mnuitBuyerProfile.Visibility = Visibility.Collapsed;
+            mnuitSellerProfile.Visibility = Visibility.Collapsed;
+            mnuitPendingOrder.Visibility = Visibility.Collapsed;
+            mnuitInventory.Visibility = Visibility.Collapsed;
 
         }
 
@@ -247,6 +271,27 @@ namespace UTEMerchant
             uc_BuyerProfile.Visibility = Visibility.Collapsed;
             uc_SellerProfile.Visibility = Visibility.Collapsed;
         }
+
+        private void mnuitProfile_Click(object sender, RoutedEventArgs e)
+        {
+            mnuitPendingOrder.Visibility = Visibility.Collapsed;
+            mnuitInventory.Visibility = Visibility.Collapsed;
+            if (isFirstClickProfile)
+            {
+                mnuitBuyerProfile.Visibility = Visibility.Visible;
+                mnuitSellerProfile.Visibility = Visibility.Visible;
+                isFirstClickProfile = false;
+            }
+            else
+            {
+                mnuitBuyerProfile.Visibility = Visibility.Collapsed;
+                mnuitSellerProfile.Visibility = Visibility.Collapsed;
+                isFirstClickProfile = true;
+            }
+
+        }
+
+        
     }
 
 }
