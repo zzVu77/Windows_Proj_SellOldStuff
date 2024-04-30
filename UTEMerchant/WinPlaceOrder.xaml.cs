@@ -47,7 +47,15 @@ namespace UTEMerchant
                 tbTotal.Text = "$" + _totalPrice.Value.ToString("F");
             }
 
-            if (_user != null) tbDeliveryAddress.Text = $", {_user.Ward}, {_user.District}, {_user.City}";
+            if (_user != null)
+            {
+                tbDeliveryAddress.Text = $" {_user.Ward}, {_user.District}, {_user.City}";
+                tbDeliveryEmail.Text = _user.Email;
+                tbDeliveryName.Text = _user.Name;
+                tbDeliveryPhone.Text = _user.Phone;
+
+            } 
+                
             if (_items != null)
             {
                 foreach (KeyValuePair<Seller, List<Item>> entry in _items)
