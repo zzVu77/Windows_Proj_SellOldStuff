@@ -12,7 +12,7 @@ namespace UTEMerchant
         public int Id_user { get; set; }
         public int Item_Id { get; set; }
         public DateTime PurchaseDate { get; set; }
-        public string Name { get; set; }
+        public string name { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
         public string City { get; set; }
@@ -26,7 +26,7 @@ namespace UTEMerchant
             Id_user = id_user;
             Item_Id = item_id;
             PurchaseDate = purchaseDate;
-            Name = name;
+            this.name = name;
             Phone = phone;
             Email = email;
             City = city;

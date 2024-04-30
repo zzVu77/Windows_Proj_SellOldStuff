@@ -50,7 +50,7 @@
                                     IsReadOnly="True" 
                                     Width="Auto"/>
                 <DataGridTextColumn Header="Buyer"
-                                    Binding="{Binding User_name}" 
+                                    Binding="{Binding name}" 
                                     IsReadOnly="True"
                                     Width="Auto">
                 </DataGridTextColumn>

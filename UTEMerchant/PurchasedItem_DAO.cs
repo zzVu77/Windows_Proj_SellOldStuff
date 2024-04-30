@@ -66,7 +66,7 @@ namespace UTEMerchant
             foreach (var item in items)
             {
                 string sqlQuery = @"
-                INSERT INTO [dbo].[PurchasedProducts] (Id_user, Item_Id,  PurchaseDate, Delivery_Status, Name, Phone, Email, Delivery_Address)
+                INSERT INTO [dbo].[PurchasedProducts] (Id_user, Item_Id,  PurchaseDate, Delivery_Status, name, Phone, Email, Delivery_Address)
                 VALUES (@userId, @itemId, @requestDate, @deliveryStatus,@name, @phone, @email,@delivery_address )";
                 new DB_Connection().ExecuteNonQuery(sqlQuery,
                     new SqlParameter("@userId", userId),

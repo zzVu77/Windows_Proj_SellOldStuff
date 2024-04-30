@@ -65,11 +65,11 @@ namespace UTEMerchant
         private void SetData(Item item, Seller seller)
         {
             //imgToReceiveItem.Source = item.Image;
-            //txblShopName.Text = user.Name;
+            //txblShopName.Text = user.name;
             //txblToReceiveOriginalPrice.Text = $"{item.Original_Price.ToString(CultureInfo.InvariantCulture)}$";
             //txblToReceivePrice.Text = $"{item.Price.ToString(CultureInfo.InvariantCulture)}$";
             //txblToReceiveConditon.Text = $"{item.Condition.ToString(CultureInfo.InvariantCulture)}%";
-            //txblToReceiveItemName.Text = item.Name;
+            //txblToReceiveItemName.Text = item.name;
 
 
             var resourceUri = new Uri(item.Image_Path, UriKind.RelativeOrAbsolute);

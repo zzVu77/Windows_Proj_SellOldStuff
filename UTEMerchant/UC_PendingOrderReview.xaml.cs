@@ -101,11 +101,12 @@ namespace UTEMerchant
                              item.Item_Id,
                              items.FirstOrDefault(i => i.Item_Id == item.Item_Id)?.Name,
                              item.PurchaseDate,
+                             item.name,
                              items.FirstOrDefault(i => i.Item_Id == item.Item_Id)?.Price,
                              items.FirstOrDefault(i => i.Item_Id == item.Item_Id)?.Image_Path,
                              items. FirstOrDefault(i => i.Item_Id == item.Item_Id)?.PostedDate,
                              users.FirstOrDefault(user => user.Id_user == item.Id_user)?.User_name,
-                             users.FirstOrDefault(user => user.Id_user == item.Id_user)?.Phone,
+                             item.Phone,
                              DeliveryAddress
                          }
                     );
