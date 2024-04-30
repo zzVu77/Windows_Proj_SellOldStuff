@@ -45,19 +45,38 @@ namespace UTEMerchant
                 );
         }
 
-        public void RequestItems(List<Item> items, int userId, string deliveryAddress) // Using PascalCase for method name
+        public void RequestItems(List<Item> items, int userId, string deliveryAddress, string name, string phone, string email) // Using PascalCase for method name
         {
+            //DateTime requestDate = DateTime.Now;
+            //foreach (var item in items)
+            //{
+            //    string sqlQuery = @"
+            //    INSERT INTO [dbo].[PurchasedProducts] (Id_user, Item_Id, Delivery_Status, PurchaseDate)
+            //    VALUES (@userId, @itemId, @deliveryStatus, @requestDate)";
+            //    new DB_Connection().ExecuteNonQuery(sqlQuery,
+            //        new SqlParameter("@userId", userId),
+            //        new SqlParameter("@itemId", item.Item_Id),
+            //        new SqlParameter("@deliveryStatus", "pending"),
+            //        new SqlParameter("@requestDate", requestDate)
+            //    );
+            //    new Item_DAO().UpdateStatus(item.Item_Id);
+            //} 
+            
             DateTime requestDate = DateTime.Now;
             foreach (var item in items)
             {
                 string sqlQuery = @"
-                INSERT INTO [dbo].[PurchasedProducts] (Id_user, Item_Id, Delivery_Status, PurchaseDate)
-                VALUES (@userId, @itemId, @deliveryStatus, @requestDate)";
+                INSERT INTO [dbo].[PurchasedProducts] (Id_user, Item_Id,  PurchaseDate, Delivery_Status, Name, Phone, Email, Delivery_Address)
+                VALUES (@userId, @itemId, @requestDate, @deliveryStatus,@name, @phone, @email,@delivery_address )";
                 new DB_Connection().ExecuteNonQuery(sqlQuery,
                     new SqlParameter("@userId", userId),
                     new SqlParameter("@itemId", item.Item_Id),
+                    new SqlParameter("@requestDate", requestDate),
                     new SqlParameter("@deliveryStatus", "pending"),
-                    new SqlParameter("@requestDate", requestDate)
+                    new SqlParameter("@name", name),
+                    new SqlParameter("@phone", phone),
+                    new SqlParameter("@email", email),
+                    new SqlParameter("@delivery_address", deliveryAddress)
                 );
                 new Item_DAO().UpdateStatus(item.Item_Id);
             }

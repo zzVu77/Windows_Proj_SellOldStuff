@@ -123,7 +123,7 @@ namespace UTEMerchant
                 {
                     items.AddRange(pair.Value);
                 }
-                new PurchasedItem_DAO().RequestItems(items, _user.Id_user, tbDeliveryAddress.Text);
+                new PurchasedItem_DAO().RequestItems(items, _user.Id_user,tbDeliveryAddress.Text, tbDeliveryName.Text, tbDeliveryPhone.Text,tbDeliveryEmail.Text);
             }
 
             catch (Exception ex)
