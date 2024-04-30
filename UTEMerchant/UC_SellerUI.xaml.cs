@@ -34,60 +34,34 @@ namespace UTEMerchant
         }
         public UC_SellerUI(int idSeller) :this()
         {
-            items = dao.GetItemsBySellerID(idSeller);
+          
             this.IdSeller = idSeller;
+            LoadListItem();
+
+        }
+        private void LoadListItem()
+        {
+            items = dao.GetItemsBySellerID(this.IdSeller);
             foreach (Item a in items)
             {
- 
+
                 productGrid.Items.Add(a);
             }
-
         }
-        private void productGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+     
 
-        }
-
-        //private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
-        //{
-        //    new WinNewItem().ShowDialog();
-        //    productGrid.Items.Clear();
-        //    var test = new Item_DAO();
-        //    test.Load();
-        //    foreach (Item a in test.items)
-        //    {
-        //        productGrid.Items.Add(a);
-        //    }
-        //}
-
-
-        /*private void btnDelete_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (productGrid.SelectedItem != null)
-            {
-                DataGridRow clickedRow = (DataGridRow)productGrid.ItemContainerGenerator.ContainerFromItem(productGrid.SelectedItem);
-                if (clickedRow != null)
-                {
-                    int rowIndex = productGrid.ItemContainerGenerator.IndexFromContainer(clickedRow);
-                    Item_DAO dAO = new Item_DAO();
-                    dAO.remove(items[rowIndex]);
-
-                    if (productGrid.ItemsSource is IList data)
-                    {
-                        data.RemoveAt(rowIndex);
-                    }
-                }
-            }
-
-        }
-
-        private void btnUpdate_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            
-        }
-*/
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
+            items = dao.GetItemsBySellerID(IdSeller);
+            DataGridRow clickedRow = (DataGridRow)productGrid.ItemContainerGenerator.ContainerFromItem(productGrid.SelectedItem);
+            int rowIndex = productGrid.ItemContainerGenerator.IndexFromContainer(clickedRow);
+            WinUpdateItem winUpdateItem = new WinUpdateItem(items[rowIndex]);
+            winUpdateItem.ShowDialog();
+
+            productGrid.Items.Clear();
+            LoadListItem();
+
+
 
         }
 

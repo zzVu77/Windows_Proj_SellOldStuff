@@ -210,7 +210,6 @@
     <Compile Include="DB_Connection.cs" />
     <Compile Include="ImgPath.cs" />
     <Compile Include="ImgPath_DAO.cs" />
-    <Compile Include="ImgPath_DAOBase.cs" />
     <Compile Include="InverseBooleanConverter.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Item_DAO.cs" />
@@ -342,6 +341,9 @@
     </Compile>
     <Compile Include="WinSignUp.xaml.cs">
       <DependentUpon>WinSignUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinUpdateItem.xaml.cs">
+      <DependentUpon>WinUpdateItem.xaml</DependentUpon>
     </Compile>
     <Page Include="UCtextBox.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -519,6 +521,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WinSignUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinUpdateItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

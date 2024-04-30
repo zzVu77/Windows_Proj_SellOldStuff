@@ -10,7 +10,7 @@
         x:Class="UTEMerchant.WinNewItem"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="WinNewItem" Height="550" Width="700
+        Title="Add New Item" Height="550" Width="700
         
     "
     >
@@ -26,19 +26,20 @@
             <Grid x:Name="gridTotalLayout" 
                   Height="600"
                   VerticalAlignment="Top"
-                  Background="Transparent"
-                  Width="600">
+                  Background="Transparent" Margin="7,0,7,0">
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="200"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="222"/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-
-                <Border Grid.Column="0" 
+                <StackPanel Margin="0 15 0 0">
+                    
+                
+                    <Border Grid.Column="0" 
                         Grid.Row="0"  
                         Width="200" 
                         Height="200" 
-                        HorizontalAlignment="Left" 
+                        HorizontalAlignment="Center" 
                         BorderThickness="2"
                         BorderBrush="Black"
                         VerticalAlignment="Top" Margin="-5,0,0,0"
@@ -49,31 +50,35 @@
                 <Button Grid.Column="0"
                         Height="40"
                         Width="100"
-                        Style="{StaticResource addButton}"                        
+                        Style="{StaticResource OrderButton}"                        
                         VerticalAlignment="Top" 
-                        HorizontalAlignment="Left"                        
+                        HorizontalAlignment="Center"                        
                         Click="Button_Click" 
-                        HorizontalContentAlignment="Center" Margin="45,233,0,0">
+                        HorizontalContentAlignment="Center" >
                     <StackPanel Orientation="Horizontal">
-                        <Icon:PackIconMaterial Kind="Upload" VerticalAlignment="Center" Margin="0 1 8 0" Width="11" Height="11"/>
-                        <TextBlock Text="Upload" FontWeight="Light" FontFamily="Segoe UI"/>
+                        <Icon:PackIconMaterial Kind="Upload" VerticalAlignment="Center" FontWeight="Black" Margin="0 1 8 0" Width="13" Height="15"/>
+                        <TextBlock Text="Upload" FontWeight="Light" FontFamily="Segoe UI Black"/>
                     </StackPanel>
                 </Button>
                 <Button Grid.Column="0"
-                        Background="Black" 
-                        Style="{StaticResource addButton}" 
+                        Background="LightBlue" 
+                        Style="{StaticResource OrderButton}" 
                         VerticalAlignment="Bottom" 
                         HorizontalAlignment="Center" 
                         Height="50"
                         Width="150"
-                        Content="DONE"
                         FontSize="20"
                         FontFamily="Segoe UI"
                         FontWeight="Bold"
                         Foreground="White"
-                        Click="Button_Click_1" Margin="0,20,4,246"/>
+                        Click="Button_Click_1" >
+                    <StackPanel Orientation="Horizontal" Width="84" Height="30">
+                        <Icon:PackIconMaterial Kind="CheckBold" VerticalAlignment="Center" Margin="0 1 8 0" Width="23" Height="22" Foreground="Black"/>
+                        <TextBlock Text="Done" FontSize="20" FontWeight="Light" FontFamily="Segoe UI Black" Foreground="Black" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button>
 
-
+                </StackPanel>
                 <Grid x:Name="grdShortDetails"
                       Grid.Column="1"
                       Margin="20,0,0,0">
@@ -113,20 +118,21 @@
                                  FontWeight="SemiBold"  
                                  Style="{StaticResource DefaultTextBoxStyle}"
                                  Height="40"
-                                 Width="100"
+                                 Width="115"
                                  VerticalAlignment="Top"
                                  HorizontalAlignment="Left" 
                                  BorderThickness="3"
                                  
                                  Tag="Original Price" Margin="0,0,0,10"/>
                         <TextBox x:Name="txtPrice"
+                                 Margin="0 0 10 0"
                                  Foreground="Black" 
                                  FontFamily="Segoe UI " 
                                  FontWeight="SemiBold"  
                                  Style="{StaticResource DefaultTextBoxStyle}"  
                                  BorderThickness="3"
                                  Height="40"
-                                 Width="100"
+                                 Width="115"
                                  VerticalAlignment="Top"
                                  HorizontalAlignment="Center"
                                  
@@ -137,18 +143,17 @@
                                   HorizontalAlignment="Right"
                                   Style="{StaticResource DefaultComboBoxStyle}"
                                   Height="40"
-                                  Width="100"
+                                  Width="128"
                                   VerticalAlignment="Top"                                  
                                   Background="White"
                                   SelectionChanged="ComboBox_SelectionChanged" Margin="0,0,0,10">
-                            <ComboBoxItem Content="laptop"/>
-                            <ComboBoxItem Content="mobile phone"/>
-                            <ComboBoxItem Content="television"/>
-                            <ComboBoxItem Content="clothes"/>
-                            <ComboBoxItem Content="Hello"/>
-                            <ComboBoxItem Content="Hello"/>
-                            <ComboBoxItem Content="Hello"/>
-                            <ComboBoxItem Content="Hello"/>
+                            <ComboBoxItem Content="Laptop"/>
+                            <ComboBoxItem Content="Mobile Phone"/>
+                            <ComboBoxItem Content="Television"/>
+                            <ComboBoxItem Content="Clothes"/>
+                            <ComboBoxItem Content="Camera"/>
+                            <ComboBoxItem Content="HeadPhone"/>
+                            <ComboBoxItem Content="Houseware"/>
                         </ComboBox>
                     </UniformGrid>
 

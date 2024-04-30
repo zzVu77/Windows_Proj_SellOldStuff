@@ -141,6 +141,36 @@ namespace UTEMerchant
             return maxValue;
         }
 
+        public void UpdateItem(Item item)
+        {
+            string updateSql = @"
+            UPDATE [dbo].[Item]
+            SET 
+                name = @Name,
+                price = @price,
+                original_price = @original_price,
+                type = @type,
+                bought_date = @bought_date,
+                condition_description = @condition_description,
+                condition = @condition,
+                image_path = @mainImgPath,
+                detail_description = @detail_description
+            WHERE Item_Id = @Item_Id";
+            db.ExecuteNonQuery(updateSql,
+
+               new SqlParameter("@Name" , item.Name),
+               new SqlParameter("@price", item.Price),
+               new SqlParameter("@original_price", item.Original_Price),
+               new SqlParameter("@type", item.Type),
+               new SqlParameter("@bought_date", item.Bought_date),
+               new SqlParameter("@condition_description", item.Condition_Description),
+               new SqlParameter("@condition", item.Condition),
+               new SqlParameter("@mainImgPath", item.Image_Path),
+               new SqlParameter("@Item_Id", item.Item_Id),
+               new SqlParameter("@detail_description", item.Detail_description));
+        }
+
+
         
     }
 }
