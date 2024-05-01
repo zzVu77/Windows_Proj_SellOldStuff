@@ -76,5 +76,20 @@ namespace UTEMerchant
             UC_DeliveringItem uc_item = new UC_DeliveringItem(item);
             spItems.Children.Add(uc_item);
         }
+
+        private void tbTotalValue_Loaded(object sender, RoutedEventArgs e)
+        {
+            double totalValue = 0;
+            foreach (var item in _items)
+            {
+                totalValue += item.Price;
+            }
+            tbTotalValue.Text = $"${totalValue.ToString("F", CultureInfo.CurrentCulture)}";
+        }
+
+        private void tbNumberOfItems_Loaded(object sender, RoutedEventArgs e)
+        {
+            tbNumberOfItems.Text = $"{_items.Count} items";
+        }
     }
 }

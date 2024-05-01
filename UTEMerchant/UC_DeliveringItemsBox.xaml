@@ -8,7 +8,8 @@
              mc:Ignorable="d"  d:DesignWidth="1300" Loaded="UserControl_Loaded">
     <Grid>
         <Border x:Name="brdBox"
-                CornerRadius="5"
+                CornerRadius="10"
+                Background="White"
                 BorderBrush="Black"
                 BorderThickness="2">
             <Grid x:Name="grdBox">
@@ -43,8 +44,46 @@
 
                 </Border>
                 <Grid Grid.Row="2">
-                    <Button x:Name="btnReceived"
-                            Grid.Column="0"
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Border Grid.Row="0"
+                            BorderBrush="LightGray"
+                            BorderThickness="0,0,0,2"
+                            Padding="10">
+                        <Grid x:Name="grdSummary" 
+                              Margin="10,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0"
+                                       x:Name="tbNumberOfItems"
+                                       FontSize="20"
+                                       VerticalAlignment="Center"
+                                       Text="2 items"
+                                       Loaded="tbNumberOfItems_Loaded"/>
+                            <StackPanel Grid.Column="1"
+                                        x:Name="spTotal"
+                                        HorizontalAlignment="Right"
+                                        Orientation="Horizontal">
+                                <TextBlock x:Name="tbTotal"
+                                           FontSize="25"
+                                           FontWeight="Bold"
+                                           Text="Total: "
+                                           HorizontalAlignment="Right"/>
+                                <TextBlock x:Name="tbTotalValue"
+                                           FontSize="25"
+                                           FontWeight="Bold"
+                                           Text="100$"
+                                           Foreground="Red"
+                                           HorizontalAlignment="Right"
+                                           Loaded="tbTotalValue_Loaded"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                    <Button Grid.Row="1" x:Name="btnReceived"
                             Height="55"
                             Width="180"                            
                             Style="{StaticResource OrderButton}" 
