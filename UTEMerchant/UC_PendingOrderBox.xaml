@@ -21,7 +21,7 @@
                 </StackPanel>
                 <Border Grid.Row="1"
                         BorderBrush="LightGray"
-                        BorderThickness="0,0,0,2"
+                        BorderThickness="0,0,0,1"
                         Padding="10">
                     <Grid x:Name="grdSummary" 
                           Margin="10,0">

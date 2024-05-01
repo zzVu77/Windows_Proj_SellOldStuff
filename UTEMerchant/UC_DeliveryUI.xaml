@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:UTEMerchant"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="1300" Loaded="UserControl_Loaded">
-    <Grid Background="Transparent">
+    <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="8*"/>
@@ -103,7 +103,7 @@
                               Visibility="Visible" Grid.ColumnSpan="2">
                     <StackPanel x:Name="spPendingStatus"
                                 Orientation="Vertical"
-                                Margin="20,10">
+                                Margin="20,20">
                     </StackPanel>
                 </ScrollViewer>
             </Grid>
