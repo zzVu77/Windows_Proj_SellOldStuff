@@ -17,16 +17,18 @@
                   RowStyle="{DynamicResource DataGridRowStyle}" 
                   ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" 
                   CellStyle="{DynamicResource DataGridCellStyle}"
-                  Style="{DynamicResource DataGridStyle}" 
-                  SelectionChanged="ProductGrid_OnSelectionChanged">
+                  Style="{DynamicResource DataGridStyle}"
+                  Width="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=ActualWidth}" 
+                  SelectionChanged="ProductGrid_OnSelectionChanged" 
+                  Loaded="productGrid_Loaded">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID"
                                     IsReadOnly="True" 
-                                    Width="Auto"
+                                    Width="*"
                                     Binding="{Binding Item_Id}"/>
                 <DataGridTextColumn Header="Name"
                                     IsReadOnly="True" 
-                                    Width="Auto"
+                                    Width="1.5*"
                                     Binding="{Binding Name}"/>
                 <DataGridTemplateColumn Header="Image" 
                                         Width="Auto">
@@ -44,11 +46,11 @@
                 <DataGridTextColumn Header="Price" 
                                     Binding="{Binding Price}"
                                     IsReadOnly="True"
-                                    Width="Auto"/>
+                                    Width="*"/>
                 <DataGridTextColumn Header="Posted"
-                                    Binding="{Binding PostedDate, StringFormat={}{0:dd/MM/yyyy}}"
+                                    Binding="{Binding PostedDate, StringFormat={}{0:dd/MM/yyyy HH:mm:ss}}"
                                     IsReadOnly="True" 
-                                    Width="Auto"/>
+                                    Width="*"/>
                 <DataGridTextColumn Header="Buyer"
                                     Binding="{Binding name}" 
                                     IsReadOnly="True"
@@ -57,12 +59,12 @@
                 <DataGridTextColumn Header="Phone"
                                     Binding="{Binding Phone}" 
                                     IsReadOnly="True"
-                                    Width="Auto">
+                                    Width="*">
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Delivery Address"
                                     Binding="{Binding DeliveryAddress}"
                                     IsReadOnly="True"
-                                    Width="Auto">
+                                    Width="2*">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <EventSetter Event="MouseLeftButtonDown"
@@ -73,11 +75,11 @@
                 <DataGridTextColumn Header="Requested Date"
                                     Binding="{Binding PurchaseDate, StringFormat={}{0:dd/MM/yyyy}}" 
                                     IsReadOnly="True" 
-                                    Width="Auto"/>
+                                    Width="1.5*"/>
 
                 <DataGridTemplateColumn Header="Confirmation"
                                         IsReadOnly="True"
-                                        Width="Auto">
+                                        Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">

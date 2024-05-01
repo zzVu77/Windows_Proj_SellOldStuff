@@ -7,46 +7,77 @@
              mc:Ignorable="d"  d:DesignWidth="800" Loaded="UserControl_Loaded">
     <Grid>
         <Border x:Name="brdBox"
-                CornerRadius="5"
-                BorderBrush="Black"
-                BorderThickness="2">
+                CornerRadius="10"
+                Background="White"
+                BorderThickness="0">
             <Grid x:Name="grdOrder">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/> 
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <StackPanel x:Name="spItems">
 
                 </StackPanel>
-                <Grid Grid.Row="1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" 
-                           x:Name="lblTotal"
-                           Foreground="Black"
-                           FontSize="25"     
-                           FontFamily="Segoe UI"
-                           Content="TOTAL: "
-                           HorizontalAlignment="Left"
-                           FontWeight="Bold"
-                           VerticalAlignment="Center"
-                           VerticalContentAlignment="Center"
-                           HorizontalContentAlignment="Left"
-                           IsHitTestVisible="False"/>
-                    <TextBlock Grid.Column="1"
-                               x:Name="tbTotalValue"
-                               VerticalAlignment="Top"                     
-                               Foreground="Red"                               
-                               FontSize="30"
-                               FontWeight="Bold"
-                               Text="100$"
-                               FontFamily="Segoe UI Black"
-                               HorizontalAlignment="Right"
-                               TextAlignment="Right"/>
-
-                </Grid>
+                <Border Grid.Row="1"
+                        BorderBrush="LightGray"
+                        BorderThickness="0,0,0,2"
+                        Padding="10">
+                    <Grid x:Name="grdSummary" 
+                          Margin="10,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0"
+                                   x:Name="tbNumberOfItems"
+                                   FontSize="20"
+                                   VerticalAlignment="Center"
+                                   Text="2 items" Loaded="tbNumberOfItems_Loaded"/>
+                        <StackPanel Grid.Column="1"
+                                    x:Name="spTotal"
+                                    HorizontalAlignment="Right"
+                                    Orientation="Horizontal">
+                            <TextBlock x:Name="tbTotal"
+                                       FontSize="25"
+                                       FontWeight="Bold"
+                                       Text="Total: "
+                                       HorizontalAlignment="Right"/>
+                            <TextBlock x:Name="tbTotalValue"
+                                       FontSize="25"
+                                       FontWeight="Bold"
+                                       Text="100$"
+                                       Foreground="Red"
+                                       HorizontalAlignment="Right" Loaded="tbTotalValue_Loaded"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+                <Button Grid.Row="2"
+                        x:Name="btnCancel"
+                        Content="Cancel"
+                        HorizontalAlignment="Right"
+                        Foreground="White"
+                        FontWeight="DemiBold"
+                        Margin="10"
+                        FontSize="25" Click="btnCancel_Click">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border x:Name="brdButton"
+                                                Background="#E56B6F"
+                                                CornerRadius="10">
+                                            <ContentPresenter HorizontalAlignment="Center"
+                                                              VerticalAlignment="Center"
+                                                              Margin="50,5"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
+                </Button>
             </Grid>
         </Border>
     </Grid>

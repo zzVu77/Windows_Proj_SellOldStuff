@@ -34,22 +34,8 @@ namespace UTEMerchant
             this._items = items;
             this._userId = userId;
             this._seller = seller;
-        }
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            if (_seller != null)
-            {
-                tbShopName.Text = _seller.ShopName;
-            }
-
-            if (_items != null)
-            {
-                foreach (var item in _items)
-                {
-                    AddItem(item);
-                }
-            }
+            LoadItems();
         }
 
         private void AddItem(Item item)
@@ -63,6 +49,22 @@ namespace UTEMerchant
             }
             var ucItem = new UC_PendingItem(item);
             spItems.Children.Add(ucItem);
+        }
+
+        private void LoadItems()
+        {
+            if (_seller != null)
+            {
+                tbShopName.Text = _seller.ShopName;
+            }
+
+            if (_items != null)
+            {
+                foreach (var item in _items)
+                {
+                    AddItem(item);
+                }
+            }
         }
     }
 }

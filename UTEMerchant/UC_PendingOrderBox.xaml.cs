@@ -13,6 +13,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Wpf.Ui.Controls;
+using MessageBox = System.Windows.MessageBox;
+using MessageBoxButton = System.Windows.MessageBoxButton;
+using MessageBoxResult = System.Windows.MessageBoxResult;
 
 namespace UTEMerchant
 {
@@ -22,7 +26,7 @@ namespace UTEMerchant
     public partial class UC_PendingOrderBox : UserControl
     {
         private readonly IGrouping<DateTime, Item> _items;
-        private User _user;
+        private readonly User _user;
 
         public UC_PendingOrderBox()
         {
@@ -50,8 +54,6 @@ namespace UTEMerchant
                     spItems.Children.Add(ucPendingItemsBox);
                     k = i + 1;
                 }
-
-                tbTotalValue.Text = CalculateTotalPrice().ToString("F", System.Globalization.CultureInfo.CurrentCulture);
             }
         }
 
@@ -66,6 +68,44 @@ namespace UTEMerchant
                 }
             }
             return totalPrice;
+        }
+
+        private int CountItems()
+        {
+            int count = 0;
+            foreach (UC_PendingItemsBox ucPendingItemsBox in spItems.Children)
+            {
+                count += ucPendingItemsBox.spItems.Children.Count;
+            }
+            return count;
+        }
+
+        private void tbNumberOfItems_Loaded(object sender, RoutedEventArgs e)
+        {
+            tbTotalValue.Text = $"${CalculateTotalPrice().ToString("F", System.Globalization.CultureInfo.CurrentCulture)}";
+        }
+
+        private void tbTotalValue_Loaded(object sender, RoutedEventArgs e)
+        {
+            tbNumberOfItems.Text = $"{CountItems().ToString()} items";
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            // Show a message box to confirm the cancellation
+            MessageBoxResult result = MessageBox.Show("Are you sure you want to cancel this order?", "Cancel Order", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                // Cancel the order
+                foreach (UC_PendingItemsBox ucPendingItemsBox in spItems.Children)
+                {
+                    foreach (UC_PendingItem ucPendingItem in ucPendingItemsBox.spItems.Children)
+                    {
+                        new PurchasedItem_DAO().UpdateDeliveryStatus(ucPendingItem.Item.Item_Id, _user.Id_user, "cancelled");
+                    }
+                }
+                ((StackPanel)Parent).Children.Remove(this);
+            }
         }
     }
 }

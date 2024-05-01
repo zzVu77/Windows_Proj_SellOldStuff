@@ -5,21 +5,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UTEMerchant"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-             mc:Ignorable="d" d:DesignWidth="800"
-             Loaded="UserControl_Loaded">
+             mc:Ignorable="d" d:DesignWidth="800">
     <Grid>
         <Border x:Name="brdBox"
-                CornerRadius="5"
-                BorderBrush="Black"
-                BorderThickness="2">
+                BorderBrush="LightGray"
+                BorderThickness="0,0,0,1">
             <Grid x:Name="grdBox">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Border Grid.Row="0"
-                        BorderBrush="LightGray">
+                <Border Grid.Row="0" BorderThickness="0">
                     <DockPanel x:Name="dpShop"
                            Margin="10">
                         <iconPacks:PackIconMaterial Kind="Store"

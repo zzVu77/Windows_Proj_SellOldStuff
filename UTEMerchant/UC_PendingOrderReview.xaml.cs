@@ -84,34 +84,7 @@ namespace UTEMerchant
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            if (_seller != null)
-            {
-                productGrid.Items.Clear();
-                List<purchasedItem> pendingOrders = new PurchasedItem_DAO().Load("pending");
-                List<User> users = new user_DAO().Load();
-                List<Item> items = new Item_DAO().Load();
-                
-                // Create a new row for each pending order
-                foreach (var item in pendingOrders)
-                {
-                    string DeliveryAddress = item.Delivery_address;
-                    productGrid.Items.Add
-                    (  new
-                         {
-                             item.Item_Id,
-                             items.FirstOrDefault(i => i.Item_Id == item.Item_Id)?.Name,
-                             item.PurchaseDate,
-                             item.name,
-                             items.FirstOrDefault(i => i.Item_Id == item.Item_Id)?.Price,
-                             items.FirstOrDefault(i => i.Item_Id == item.Item_Id)?.Image_Path,
-                             items. FirstOrDefault(i => i.Item_Id == item.Item_Id)?.PostedDate,
-                             users.FirstOrDefault(user => user.Id_user == item.Id_user)?.User_name,
-                             item.Phone,
-                             DeliveryAddress
-                         }
-                    );
-                }
-            }
+            
         }
 
         public void SetSeller (Seller seller)
@@ -124,6 +97,39 @@ namespace UTEMerchant
         private void UserControl_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if (IsVisible) UserControl_Loaded(this, new RoutedEventArgs());
+        }
+
+        private void productGrid_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (_seller != null)
+            {
+                productGrid.Items.Clear();
+                List<purchasedItem> pendingOrders = new PurchasedItem_DAO().Load("pending");
+                List<User> users = new user_DAO().Load();
+                List<Item> items = new Item_DAO().Load();
+
+                int len = pendingOrders.Count();
+                // Create a new row for each pending order
+                foreach (var item in pendingOrders)
+                {
+                    string DeliveryAddress = item.Delivery_address;
+                    productGrid.Items.Add
+                    (new
+                        {
+                            item.Item_Id,
+                            items.FirstOrDefault(i => i.Item_Id == item.Item_Id)?.Name,
+                            item.PurchaseDate,
+                            item.name,
+                            items.FirstOrDefault(i => i.Item_Id == item.Item_Id)?.Price,
+                            items.FirstOrDefault(i => i.Item_Id == item.Item_Id)?.Image_Path,
+                            items.FirstOrDefault(i => i.Item_Id == item.Item_Id)?.PostedDate,
+                            users.FirstOrDefault(user => user.Id_user == item.Id_user)?.User_name,
+                            item.Phone,
+                            DeliveryAddress
+                        }
+                    );
+                }
+            }
         }
     }
 }

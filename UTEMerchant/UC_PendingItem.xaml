@@ -8,15 +8,21 @@
              Loaded="UserControl_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
-        <Image Grid.Column="0"
-           x:Name="imgItem"
-           HorizontalAlignment="Center"
-           VerticalAlignment="Center"
-           Stretch="Uniform"/>
-        <StackPanel Grid.Column="1">
+        <Border x:Name="brdImage"
+                BorderBrush="Black"
+                BorderThickness="2"
+                CornerRadius="10"
+                Height="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth}"
+                Margin="10,10,5,10">
+            <Image x:Name="imgItem"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Stretch="Uniform"/>
+        </Border>
+        <StackPanel Grid.Column="1" Margin="5,10,10,10">
             <!--Item Name-->
             <TextBlock VerticalAlignment="Center"
                    x:Name="tbName"
@@ -24,10 +30,7 @@
                    TextTrimming="None"
                    Text="Iphone 14 Pro Max 512GB"
                    FontFamily="Segoe UI Black"
-                   MaxHeight="95" 
-                   Padding="5,0,0,0"
-                   FontSize="25" />
-
+                   FontSize="25"/>
             <Grid x:Name="grdDetails">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -37,78 +40,47 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Label x:Name="lblCondition"
-                   Grid.Row="0" 
-                   Grid.Column="0" 
-                   Content="Condition:"
-                   HorizontalAlignment="Left"
-                   FontWeight="SemiBold"
-                   FontSize="18"
-                   VerticalAlignment="Center"
-                   VerticalContentAlignment="Center"
-                   HorizontalContentAlignment="Left"
-                   BorderThickness="0"  
-                   IsHitTestVisible="False"/>
-
-
-                <TextBlock x:Name="tbConditonValue"
-                       Grid.Row="0"
-                       Grid.Column="1" 
-                       Foreground="Black"                         
-                       FontSize="18"
-                       Text="95%"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Center"
-                       TextAlignment="Left"
-                       FontWeight="Black"/>
-                <TextBlock x:Name="tbOriginalPrice"
-                       Grid.Row="1" 
+                <TextBlock x:Name="tbCondition"
+                       Grid.Row="0" 
                        Grid.Column="0" 
-                       VerticalAlignment="Top" 
+                       Text="Condition: "
                        HorizontalAlignment="Left"
-                       Foreground="DarkGray"
-                       TextDecorations="Strikethrough"                
-                       FontSize="20"
-                       Text="50 $"                
                        FontWeight="SemiBold"
-                       Padding="5,0,0,0"/>
+                       FontSize="18"
+                       VerticalAlignment="Center"
+                       IsHitTestVisible="False"/>
+                <TextBlock x:Name="tbConditonValue"
+                           Grid.Row="0"
+                           Grid.Column="1" 
+                           Foreground="Black"                         
+                           FontSize="18"
+                           Text="95%"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           TextAlignment="Left"
+                           FontWeight="Black"/>
+                <TextBlock x:Name="tbOriginalPrice"
+                           Grid.Row="1" 
+                           Grid.Column="0" 
+                           VerticalAlignment="Center" 
+                           HorizontalAlignment="Left"
+                           Foreground="DarkGray"
+                           TextDecorations="Strikethrough"                
+                           FontSize="20"
+                           Text="50 $"                
+                           FontWeight="SemiBold"/>
 
                 <TextBlock x:Name="tbDiscountedPrice"
-                       Grid.Row="1" 
-                       Grid.Column="1" 
-                       VerticalAlignment="Top"                     
-                       Foreground="Red"                               
-                       FontSize="20"
-                       FontWeight="Normal"
-                       FontFamily="Segoe UI Black"
-                       Text="100$"
-                       HorizontalAlignment="Left"                            
-            />
+                           Grid.Row="1" 
+                           Grid.Column="1" 
+                           VerticalAlignment="Top"                     
+                           Foreground="Red"                               
+                           FontSize="20"
+                           FontWeight="Normal"
+                           FontFamily="Segoe UI Black"
+                           Text="100$"
+                           HorizontalAlignment="Left"/>
             </Grid>
-
-            <DockPanel x:Name="dpTotalPrice">
-                <Label x:Name="lblTotal"
-                   Foreground="Black"
-                   FontSize="25"     
-                   FontFamily="Segoe UI"
-                   Content="TOTAL: "
-                   HorizontalAlignment="Left"
-                   FontWeight="Bold"
-                   VerticalAlignment="Center"
-                   VerticalContentAlignment="Center"
-                   HorizontalContentAlignment="Left"
-                   IsHitTestVisible="False"/>
-                <TextBlock x:Name="tbTotalValue"
-                       VerticalAlignment="Top"                     
-                       Foreground="Red"                               
-                       FontSize="30"
-                       FontWeight="Bold"
-                       Text="100$"
-                       FontFamily="Segoe UI Black"
-                       HorizontalAlignment="Right"
-                       TextAlignment="Right"/>
-            </DockPanel>
-
         </StackPanel>
     </Grid>
 </UserControl>
