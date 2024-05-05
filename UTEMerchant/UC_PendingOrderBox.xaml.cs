@@ -44,13 +44,13 @@ namespace UTEMerchant
             if (_orders != null && _user != null)
             {
                 spItems.Children.Clear();
-                IOrderedEnumerable<purchasedItem> order = _orders.OrderBy(x => new PurchasedItem_DAO().GetItem(x.PurchasedID).SellerID);
+                IOrderedEnumerable<purchasedItem> order = _orders.OrderBy(x => new PurchasedItem_DAO().GetItem(x.PurchaseID).SellerID);
                 int k = 0;
                 for (int i = 0; i < order.Count(); i++)
                 {
                     if (i == order.Count() - 1) ;
-                    else if (new PurchasedItem_DAO().GetItem(order.ElementAt(i).PurchasedID).SellerID == new PurchasedItem_DAO().GetItem(order.ElementAt(i + 1).PurchasedID).SellerID) continue;
-                    UC_PendingItemsBox ucPendingItemsBox = new UC_PendingItemsBox(order.Skip(k).Take(i - k + 1).ToList(), new Seller_DAO().GetSeller(new PurchasedItem_DAO().GetItem(order.ElementAt(i).PurchasedID).SellerID), _user.Id_user);
+                    else if (new PurchasedItem_DAO().GetItem(order.ElementAt(i).PurchaseID).SellerID == new PurchasedItem_DAO().GetItem(order.ElementAt(i + 1).PurchaseID).SellerID) continue;
+                    UC_PendingItemsBox ucPendingItemsBox = new UC_PendingItemsBox(order.Skip(k).Take(i - k + 1).ToList(), new Seller_DAO().GetSeller(new PurchasedItem_DAO().GetItem(order.ElementAt(i).PurchaseID).SellerID), _user.Id_user);
                     spItems.Children.Add(ucPendingItemsBox);
                     k = i + 1;
                 }
@@ -64,7 +64,7 @@ namespace UTEMerchant
             {
                 foreach (UC_PendingItem ucPendingItem in ucPendingItemsBox.spItems.Children)
                 {
-                    totalPrice += new PurchasedItem_DAO().GetItem(ucPendingItem.Order.PurchasedID).Price;
+                    totalPrice += new PurchasedItem_DAO().GetItem(ucPendingItem.Order.PurchaseID).Price;
                 }
             }
             return totalPrice;
@@ -101,7 +101,7 @@ namespace UTEMerchant
                 {
                     foreach (UC_PendingItem ucPendingItem in ucPendingItemsBox.spItems.Children)
                     {
-                        new PurchasedItem_DAO().CancelOrder(ucPendingItem.Order.PurchasedID);
+                        new PurchasedItem_DAO().CancelOrder(ucPendingItem.Order.PurchaseID);
                     }
                 }
                 ((StackPanel)Parent).Children.Remove(this);

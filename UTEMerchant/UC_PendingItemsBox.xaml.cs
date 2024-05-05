@@ -42,7 +42,7 @@ namespace UTEMerchant
         {
             foreach (UC_PendingItem ucPendingItem in spItems.Children)
             {
-                if (ucPendingItem.Order.PurchasedID == order.PurchasedID)
+                if (ucPendingItem.Order.PurchaseID == order.PurchaseID)
                 {
                     return;
                 }

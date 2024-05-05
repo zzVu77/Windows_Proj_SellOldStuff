@@ -130,7 +130,7 @@ namespace UTEMerchant
             spDeliveringStatus.Children.Clear();
 
             // Sort orders that has the same seller
-            IEnumerable<IGrouping<int, purchasedItem>> groupBySeller = matchedItems.GroupBy(item => dao.GetItem(item.PurchasedID).SellerID);
+            IEnumerable<IGrouping<int, purchasedItem>> groupBySeller = matchedItems.GroupBy(item => dao.GetItem(item.PurchaseID).SellerID);
             foreach (var group in groupBySeller)
             {
                 AddOrdersInDelivering(group);
@@ -154,7 +154,7 @@ namespace UTEMerchant
 
             foreach (var item in matchedItems)
             {
-                UC_CompletedItem uc_item = new UC_CompletedItem(item, SellerDao.GetSeller(dao.GetItem(item.PurchasedID).SellerID), this._user.Id_user);
+                UC_CompletedItem uc_item = new UC_CompletedItem(item, SellerDao.GetSeller(dao.GetItem(item.PurchaseID).SellerID), this._user.Id_user);
                 uc_item.RateButtonClicked += UCCompletedItem_RateButtonClicked;
                 spDeliveredStatus.Children.Add(uc_item);
             }

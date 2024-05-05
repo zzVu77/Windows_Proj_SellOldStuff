@@ -117,7 +117,7 @@ namespace UTEMerchant
                     productGrid.Items.Add
                     (new
                         {
-                            item.PurchasedID,
+                            item.PurchaseID,
                             item.Item_Id,
                             items.FirstOrDefault(i => i.Item_Id == item.Item_Id)?.Name,
                             item.PurchaseDate,

@@ -43,7 +43,7 @@ namespace UTEMerchant
             //string deliveryStatus = purchasedItemDAO.GetPurchasedProductStatus(Item.Item_Id, this.userID);
             foreach (var item in _orders)
             {
-                new PurchasedItem_DAO().UpdateDeliveryStatus(item.PurchasedID, "delivered");
+                new PurchasedItem_DAO().UpdateDeliveryStatus(item.PurchaseID, "delivered");
             }
             ReceivedButtonClicked?.Invoke(this, EventArgs.Empty);
         }
