@@ -33,7 +33,7 @@
                                    x:Name="tbNumberOfItems"
                                    FontSize="20"
                                    VerticalAlignment="Center"
-                                   Text="2 items" Loaded="tbNumberOfItems_Loaded"/>
+                                   Text="2 orders" Loaded="tbNumberOfItems_Loaded"/>
                         <StackPanel Grid.Column="1"
                                     x:Name="spTotal"
                                     HorizontalAlignment="Right"

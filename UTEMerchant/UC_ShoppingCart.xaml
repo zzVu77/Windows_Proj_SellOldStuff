@@ -21,7 +21,7 @@
                    Stretch="Uniform"
                    Margin="80,0"/>
             <TextBlock x:Name="tbNoticeEmpty"
-                       Text="You don't have any items in your shopping cart. Let's go shopping!"
+                       Text="You don't have any orders in your shopping cart. Let's go shopping!"
                        VerticalAlignment="Top"
                        HorizontalAlignment="Center"
                        Foreground="LightGray"

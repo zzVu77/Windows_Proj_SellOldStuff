@@ -85,12 +85,12 @@ namespace UTEMerchant
         {
             string formattedText = text.ToUpper(); // Format the text to uppercase
             string query = @"
-    SELECT *
-    FROM [dbo].[Item]
-    WHERE (UPPER(type) LIKE '%' + @Text + '%' OR 
-          UPPER(name) LIKE '%' + @Text + '%' OR 
-          UPPER(detail_description) LIKE '%' + @Text + '%' OR 
-          UPPER(condition_description) LIKE '%' + @Text + '%') ";   // AND [sale_status] = 0
+        SELECT *
+        FROM [dbo].[Item]
+        WHERE (UPPER(type) LIKE '%' + @Text + '%' OR 
+              UPPER(name) LIKE '%' + @Text + '%' OR 
+              UPPER(detail_description) LIKE '%' + @Text + '%' OR 
+              UPPER(condition_description) LIKE '%' + @Text + '%') ";   // AND [sale_status] = 0
             return db.LoadData<Item>(query, new SqlParameter("@Text", formattedText));
         }
         public List<Item> SortPrice()
@@ -110,7 +110,5 @@ namespace UTEMerchant
                 WHERE pp.[Id_user] = @UserId
             )", new SqlParameter("@UserId", userID));
         }
-
-        
     }
 }

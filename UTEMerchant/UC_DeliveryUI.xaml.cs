@@ -103,23 +103,19 @@ namespace UTEMerchant
 
         private void PendingStatus_Load(object sender, RoutedEventArgs e)
         {
-            // Filter items that are pending
-            List<Item> matchedItems = dao.Load(_user.Id_user, "pending");
+            // Filter orders that are pending
+            var matchedItems = dao.LoadOrdersByUser(_user.Id_user, "pending");
 
-            // Filter items that are pending
-            List<purchasedItem> purchasedItems = new PurchasedItem_DAO().LoadItemsByUser(_user.Id_user, "pending");
+            // Group orders by purchase date
+            IEnumerable<IGrouping<DateTime, purchasedItem>> groups = matchedItems.GroupBy(item => item.PurchaseDate);
 
-            // Group items by the date they were purchased
-            IEnumerable<IGrouping<DateTime, Item>> groups = matchedItems.GroupBy(item =>
-                purchasedItems.First(purchasedItem => purchasedItem.Item_Id == item.Item_Id).PurchaseDate);
-
-            // Clear the list of items that are being delivered
+            // Clear the list of orders that are being delivered
             spPendingStatus.Children.Clear();
 
-            // Add items to the list
+            // Add orders to the list
             foreach (var group in groups)
             {
-                AddItemsInPending(group);
+                AddOrdersInPending(group);
             }
 
             rbPending.Content = $"Pending ({matchedItems.Count()})";
@@ -127,17 +123,17 @@ namespace UTEMerchant
 
         private void DeliveringStatus_Load(object sender, RoutedEventArgs e)
         {
-            // Filter items that are being delivered
-            var matchedItems = dao.Load(_user.Id_user, "delivering");
+            // Filter orders that are being delivered
+            var matchedItems = dao.LoadOrdersByUser(_user.Id_user, "delivering");
 
-            // Clear the list of items that are being delivered
+            // Clear the list of orders that are being delivered
             spDeliveringStatus.Children.Clear();
 
-            // Sort items that has the same seller
-            IEnumerable<IGrouping<int, Item>> groupBySeller = matchedItems.GroupBy(item => item.SellerID);
+            // Sort orders that has the same seller
+            IEnumerable<IGrouping<int, purchasedItem>> groupBySeller = matchedItems.GroupBy(item => dao.GetItem(item.PurchasedID).SellerID);
             foreach (var group in groupBySeller)
             {
-                AddItemsInDelivering(group);
+                AddOrdersInDelivering(group);
             }
 
             rbDelivering.Content = $"Delivering ({matchedItems.Count()})";
@@ -145,20 +141,20 @@ namespace UTEMerchant
 
         private void DeliveredStatus_Load(object sender, RoutedEventArgs e)
         {
-            // Filter items that are delivered
-            List<Item> matchedItems = dao.Load(_user.Id_user, "delivered");
+            // Filter orders that are delivered
+            var matchedItems = dao.LoadOrdersByUser(_user.Id_user, "delivered");
 
             // Sort the matchedItems list. Items that have been reviewed by the current user are placed at the beginning of the list.
             List<CustomerReview> ListCompare = new CustomerReviewDAO().Load();
             matchedItems = matchedItems.OrderBy(item =>
                 ListCompare.Any(review => review.ID_User == this._user.Id_user && review.Item_ID == item.Item_Id)).ToList();
 
-            // Clear the list of items that are delivered
+            // Clear the list of orders that are delivered
             spDeliveredStatus.Children.Clear();
 
             foreach (var item in matchedItems)
             {
-                UC_CompletedItem uc_item = new UC_CompletedItem(item, SellerDao.GetSeller(item.SellerID), this._user.Id_user);
+                UC_CompletedItem uc_item = new UC_CompletedItem(item, SellerDao.GetSeller(dao.GetItem(item.PurchasedID).SellerID), this._user.Id_user);
                 uc_item.RateButtonClicked += UCCompletedItem_RateButtonClicked;
                 spDeliveredStatus.Children.Add(uc_item);
             }
@@ -181,10 +177,10 @@ namespace UTEMerchant
             UserControl_Loaded(this, new RoutedEventArgs());
         }
 
-        private void AddItemsInPending(IGrouping<DateTime, Item> items)
+        private void AddOrdersInPending(IGrouping<DateTime, purchasedItem> orders)
         {
 
-            UC_PendingOrderBox ucOrderBox = new UC_PendingOrderBox(items, _user);
+            UC_PendingOrderBox ucOrderBox = new UC_PendingOrderBox(orders, _user);
 
             int len = spPendingStatus.Children.Count;
             if (len == 0)
@@ -214,7 +210,7 @@ namespace UTEMerchant
 
         }
 
-        private void AddItemsInDelivering(IGrouping<int, Item> group)
+        private void AddOrdersInDelivering(IGrouping<int, purchasedItem> group)
         {
             UC_DeliveringItemsBox ucItemBox =
                 new UC_DeliveringItemsBox(group.ToList(), SellerDao.GetSeller(group.Key), this._user.Id_user);

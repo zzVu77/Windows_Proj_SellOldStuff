@@ -22,6 +22,11 @@
                   SelectionChanged="ProductGrid_OnSelectionChanged" 
                   Loaded="productGrid_Loaded">
             <DataGrid.Columns>
+                <DataGridTextColumn Header="Order ID"
+                                    IsReadOnly="True" 
+                                    Width="*"
+                                    Visibility="Hidden"
+                                    Binding="{Binding PurchasedID}"/>
                 <DataGridTextColumn Header="ID"
                                     IsReadOnly="True" 
                                     Width="*"
@@ -54,13 +59,11 @@
                 <DataGridTextColumn Header="Buyer"
                                     Binding="{Binding name}" 
                                     IsReadOnly="True"
-                                    Width="Auto">
-                </DataGridTextColumn>
+                                    Width="Auto"/>
                 <DataGridTextColumn Header="Phone"
                                     Binding="{Binding Phone}" 
                                     IsReadOnly="True"
-                                    Width="*">
-                </DataGridTextColumn>
+                                    Width="*"/>
                 <DataGridTextColumn Header="Delivery Address"
                                     Binding="{Binding DeliveryAddress}"
                                     IsReadOnly="True"

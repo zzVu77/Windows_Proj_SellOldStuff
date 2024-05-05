@@ -207,7 +207,7 @@
                              Margin="20,0,20,0"
                              Background="Transparent"
                              BorderBrush="Transparent"
-                             Tag="Search all items"
+                             Tag="Search all orders"
                              FontSize="15"
                              FocusVisualStyle="{x:Null}"
                              Style="{StaticResource DefaultTextBoxStyle}"/>

@@ -22,6 +22,7 @@ namespace UTEMerchant
     public partial class UC_PendingOrderReview : UserControl
     {
         private Seller _seller;
+        private List<purchasedItem> _pendingOrders;
         
         public UC_PendingOrderReview()
         {
@@ -31,6 +32,7 @@ namespace UTEMerchant
         public UC_PendingOrderReview(Seller seller) : this()
         {
             _seller = seller;
+           _pendingOrders = new PurchasedItem_DAO().Load("pending");
         }
 
         private void ProductGrid_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -44,12 +46,12 @@ namespace UTEMerchant
             var row = (DataGridRow)productGrid.ItemContainerGenerator.ContainerFromItem(((Button)sender).DataContext);
             // Get the index of the clicked row
             var index = productGrid.ItemContainerGenerator.IndexFromContainer(row);
+            // Update the status of the clicked row in the database
+            var purchaseId = ((dynamic)productGrid.Items[index]).PurchasedID;
+            User user = new user_DAO().GetUserByUserName((string)((dynamic)productGrid.Items[index]).User_name);
+            new PurchasedItem_DAO().UpdateDeliveryStatus(purchaseId, "delivering");
             // Remove the clicked row from the data grid
             productGrid.Items.RemoveAt(index);
-            // Update the status of the clicked row in the database
-            var id = ((dynamic)productGrid.Items[index]).Item_Id;
-            User user = new user_DAO().GetUserByUserName((string)((dynamic)productGrid.Items[index]).User_name);
-            new PurchasedItem_DAO().UpdateDeliveryStatus(id, user.Id_user, "delivering");
 
         }
 
@@ -59,12 +61,12 @@ namespace UTEMerchant
             var row = (DataGridRow)productGrid.ItemContainerGenerator.ContainerFromItem(((Button)sender).DataContext);
             // Get the index of the clicked row
             var index = productGrid.ItemContainerGenerator.IndexFromContainer(row);
+            // Update the status of the clicked row in the database
+            var id = ((dynamic)productGrid.Items[index]).PurchasedID;
+            User user = new user_DAO().GetUserByUserName((string)((dynamic)productGrid.Items[index]).User_name);
+            new PurchasedItem_DAO().UpdateDeliveryStatus(id, "declined");
             // Remove the clicked row from the data grid
             productGrid.Items.RemoveAt(index);
-            // Update the status of the clicked row in the database
-            var id = ((dynamic)productGrid.Items[index]).Item_Id;
-            User user = new user_DAO().GetUserByUserName((string)((dynamic)productGrid.Items[index]).User_name);
-            new PurchasedItem_DAO().UpdateDeliveryStatus(id, user.Id_user, "cancelled");
         }
 
         private void DeliveryAddress_OnHandler(object sender, MouseButtonEventArgs e)
@@ -101,21 +103,21 @@ namespace UTEMerchant
 
         private void productGrid_Loaded(object sender, RoutedEventArgs e)
         {
-            if (_seller != null)
+            if (_seller != null && _pendingOrders != null)
             {
                 productGrid.Items.Clear();
-                List<purchasedItem> pendingOrders = new PurchasedItem_DAO().Load("pending");
                 List<User> users = new user_DAO().Load();
                 List<Item> items = new Item_DAO().Load();
 
-                int len = pendingOrders.Count();
+                int len = _pendingOrders.Count();
                 // Create a new row for each pending order
-                foreach (var item in pendingOrders)
+                foreach (var item in _pendingOrders)
                 {
                     string DeliveryAddress = item.Delivery_address;
                     productGrid.Items.Add
                     (new
                         {
+                            item.PurchasedID,
                             item.Item_Id,
                             items.FirstOrDefault(i => i.Item_Id == item.Item_Id)?.Name,
                             item.PurchaseDate,
@@ -131,5 +133,8 @@ namespace UTEMerchant
                 }
             }
         }
+
+        // create a method to select a bunch of rows when click on the checkbox
+
     }
 }

@@ -21,7 +21,7 @@ namespace UTEMerchant
     /// </summary>
     public partial class UC_CompletedItem : UserControl
     {
-        private  Item Item;
+        private purchasedItem _order;
         private  User User;
         private  Seller SellerOfItem;
         private int userID;
@@ -35,14 +35,15 @@ namespace UTEMerchant
         }
 
 
-        public UC_CompletedItem(Item item, Seller seller, int userID) : this()
+        public UC_CompletedItem(purchasedItem order, Seller seller, int userID) : this()
         {
-            this.Item = item;
+            this._order = order;
             this.userID = userID;
             this.SellerOfItem = seller;
+            Item item = new PurchasedItem_DAO().GetItem(order.Item_Id);
             SetData(item, seller);
             this.userID = userID;
-            List<CustomerReview> checkList = CustomerReview_DAO.filterReview(this.userID, this.Item.Item_Id);
+            List<CustomerReview> checkList = CustomerReview_DAO.filterReview(this.userID, this._order.Item_Id);
             if (checkList.Count == 0)
             {
                 tbRate.Text = "Rate";
@@ -64,34 +65,34 @@ namespace UTEMerchant
         //Binding data to the UI
         private void SetData(Item item, Seller seller)
         {
-            //imgToReceiveItem.Source = item.Image;
+            //imgToReceiveItem.Source = order.Image;
             //txblShopName.Text = user.name;
-            //txblToReceiveOriginalPrice.Text = $"{item.Original_Price.ToString(CultureInfo.InvariantCulture)}$";
-            //txblToReceivePrice.Text = $"{item.Price.ToString(CultureInfo.InvariantCulture)}$";
-            //txblToReceiveConditon.Text = $"{item.Condition.ToString(CultureInfo.InvariantCulture)}%";
-            //txblToReceiveItemName.Text = item.name;
+            //txblToReceiveOriginalPrice.Text = $"{order.Original_Price.ToString(CultureInfo.InvariantCulture)}$";
+            //txblToReceivePrice.Text = $"{order.Price.ToString(CultureInfo.InvariantCulture)}$";
+            //txblToReceiveConditon.Text = $"{order.Condition.ToString(CultureInfo.InvariantCulture)}%";
+            //txblToReceiveItemName.Text = order.name;
 
 
             var resourceUri = new Uri(item.Image_Path, UriKind.RelativeOrAbsolute);
             imgToReceiveItem.Source = new BitmapImage(resourceUri);
             txblShopName.Text = SellerOfItem.ShopName;
-            txblToReceiveOriginalPrice.Text = $"{Item.Original_Price.ToString(CultureInfo.InvariantCulture)}$";
-            txblToReceivePrice.Text = $"{Item.Price.ToString(CultureInfo.InvariantCulture)}$";
-            txblToReceiveConditon.Text = $"{Item.Condition.ToString(CultureInfo.InvariantCulture)}%";
-            txblToReceiveItemName.Text = Item.Name;
+            txblToReceiveOriginalPrice.Text = $"{item.Original_Price.ToString(CultureInfo.InvariantCulture)}$";
+            txblToReceivePrice.Text = $"{item.Price.ToString(CultureInfo.InvariantCulture)}$";
+            txblToReceiveConditon.Text = $"{item.Condition.ToString(CultureInfo.InvariantCulture)}%";
+            txblToReceiveItemName.Text = item.Name;
         }
 
         private void btnRate_Click(object sender, RoutedEventArgs e)
         {
             ReceivedButtonClicked?.Invoke(this, EventArgs.Empty);
            
-            List<CustomerReview> checkList = CustomerReview_DAO.filterReview(this.userID,this.Item.Item_Id);
+            List<CustomerReview> checkList = CustomerReview_DAO.filterReview(this.userID,this._order.Item_Id);
             if (checkList.Count == 0)
             {
-                WinRating winRating = new WinRating(this.userID, this.SellerOfItem.SellerID, this.Item.Item_Id);
+                WinRating winRating = new WinRating(this.userID, this.SellerOfItem.SellerID, this._order.Item_Id);
                 winRating.ShowDialog();
                 
-                if (CustomerReview_DAO.filterReview(this.userID, this.Item.Item_Id).Count() != 0 )
+                if (CustomerReview_DAO.filterReview(this.userID, this._order.Item_Id).Count() != 0 )
                 {
                     tbRate.Text = "Rated";
                     btnRate.IsEnabled = false;

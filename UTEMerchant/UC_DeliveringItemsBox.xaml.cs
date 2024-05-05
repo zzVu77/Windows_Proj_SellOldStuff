@@ -22,7 +22,7 @@ namespace UTEMerchant
     public partial class UC_DeliveringItemsBox : UserControl
     {
         public event EventHandler ReceivedButtonClicked;
-        private readonly List<Item> _items;
+        private readonly List<purchasedItem> _orders;
         private readonly Seller _seller;
         private readonly int _userId;        
         public UC_DeliveringItemsBox()
@@ -31,9 +31,9 @@ namespace UTEMerchant
             this.Width = 1300;
         }
 
-        public UC_DeliveringItemsBox(List<Item> items, Seller seller, int userId) : this()
+        public UC_DeliveringItemsBox(List<purchasedItem> orders, Seller seller, int userId) : this()
         {
-            this._items = items;
+            this._orders = orders;
             this._userId = userId; 
             this._seller = seller;
         }
@@ -41,9 +41,9 @@ namespace UTEMerchant
         private void btnReceived_Click(object sender, RoutedEventArgs e)
         {
             //string deliveryStatus = purchasedItemDAO.GetPurchasedProductStatus(Item.Item_Id, this.userID);
-            foreach (var item in _items)
+            foreach (var item in _orders)
             {
-                new PurchasedItem_DAO().UpdateDeliveryStatus(item.Item_Id, this._userId, "delivered");
+                new PurchasedItem_DAO().UpdateDeliveryStatus(item.PurchasedID, "delivered");
             }
             ReceivedButtonClicked?.Invoke(this, EventArgs.Empty);
         }
@@ -55,16 +55,16 @@ namespace UTEMerchant
                 tbShopName.Text = _seller.ShopName;
             }
 
-            if (_items != null)
+            if (_orders != null)
             {
-                foreach (var item in _items)
+                foreach (var item in _orders)
                 {
                     AddItem(item);
                 }
             }
         }
 
-        private void AddItem(Item item)
+        private void AddItem(purchasedItem item)
         {
             foreach (UC_DeliveringItem ucDeliveringItem in spItems.Children)
             {
@@ -80,16 +80,16 @@ namespace UTEMerchant
         private void tbTotalValue_Loaded(object sender, RoutedEventArgs e)
         {
             double totalValue = 0;
-            foreach (var item in _items)
+            foreach (var item in _orders)
             {
-                totalValue += item.Price;
+                totalValue += new PurchasedItem_DAO().GetItem(item.Item_Id).Price;
             }
             tbTotalValue.Text = $"${totalValue.ToString("F", CultureInfo.CurrentCulture)}";
         }
 
         private void tbNumberOfItems_Loaded(object sender, RoutedEventArgs e)
         {
-            tbNumberOfItems.Text = $"{_items.Count} items";
+            tbNumberOfItems.Text = $"{_orders.Count} items";
         }
     }
 }

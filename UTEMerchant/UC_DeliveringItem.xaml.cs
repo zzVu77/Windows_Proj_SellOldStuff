@@ -21,30 +21,31 @@ namespace UTEMerchant
     /// </summary>
     public partial class UC_DeliveringItem : UserControl
     {
-        private readonly Item _item;
+        private readonly purchasedItem _orders;
 
         public UC_DeliveringItem()
         {
             InitializeComponent();
         }
 
-        public UC_DeliveringItem(Item item) : this()
+        public UC_DeliveringItem(purchasedItem order) : this()
         {
-            this._item = item;
+            this._orders = order;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            if (_item != null)
+            if (_orders != null)
             {
-                tbName.Text = _item.Name;
-                tbDiscountedPrice.Text = _item.Price.ToString("C", CultureInfo.CurrentCulture);
-                tbOriginalPrice.Text = _item.Original_Price.ToString("C", CultureInfo.CurrentCulture);
-                var resourceUri = new Uri(_item.Image_Path, UriKind.RelativeOrAbsolute);
+                Item item = new PurchasedItem_DAO().GetItem(_orders.Item_Id);
+                tbName.Text = item.Name;
+                tbDiscountedPrice.Text = item.Price.ToString("C", CultureInfo.CurrentCulture);
+                tbOriginalPrice.Text = item.Original_Price.ToString("C", CultureInfo.CurrentCulture);
+                var resourceUri = new Uri(item.Image_Path, UriKind.RelativeOrAbsolute);
                 imgItem.Source = new BitmapImage(resourceUri);
             }
         }
 
-        public Item Item => _item;
+        public purchasedItem Item => _orders;
     }
 }
