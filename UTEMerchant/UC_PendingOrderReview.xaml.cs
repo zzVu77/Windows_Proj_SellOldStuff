@@ -29,11 +29,11 @@ namespace UTEMerchant
             InitializeComponent();
         }
 
-        public UC_PendingOrderReview(Seller seller) : this()
-        {
-            _seller = seller;
-           _pendingOrders = new PurchasedItem_DAO().Load("pending");
-        }
+        //public UC_PendingOrderReview(Seller seller) : this()
+        //{
+        //    _seller = seller;
+        //   _pendingOrders = new PurchasedItem_DAO().Load("pending");
+        //}
 
         private void ProductGrid_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -89,9 +89,9 @@ namespace UTEMerchant
             
         }
 
-        public void SetSeller (Seller seller)
+        public void SetSeller ()
         {
-            _seller = seller;
+            //_seller = seller;
 
             UserControl_Loaded(this, new RoutedEventArgs());
         }
@@ -103,7 +103,7 @@ namespace UTEMerchant
 
         private void productGrid_Loaded(object sender, RoutedEventArgs e)
         {
-            if (_seller != null && _pendingOrders != null)
+            if (StaticValue.SELLER != null && _pendingOrders != null)
             {
                 productGrid.Items.Clear();
                 List<User> users = new user_DAO().Load();

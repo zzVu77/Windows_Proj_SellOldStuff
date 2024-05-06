@@ -21,8 +21,8 @@ namespace UTEMerchant
     public partial class UC_SellerProfile : UserControl
     {
         public event EventHandler SavedButtonClicked;
-        Seller seller = new Seller();
-        User user = new User();
+        //Seller seller = new Seller();
+        //User user = new User();
         string selectedCity;
         string selectedDistrict;
         Seller_DAO seller_dao = new Seller_DAO();
@@ -34,24 +34,24 @@ namespace UTEMerchant
         {
             InitializeComponent();
         }
-        public void SetDefault(User user, Seller seller)
+        public void SetDefault()
         {
-            this.seller = seller;
-            this.user = user;
+            //this.seller = seller;
+            //this.user = user;
             distinctCities = address_dao.Load();
             cbPickupCity.Items.Clear();
             foreach (Address address in distinctCities)
             {
                 cbPickupCity.Items.Add(address.City);
             }
-            txtSellerShopName.Text = seller.ShopName;
-            txtSellerID.Text = seller.Id_user.ToString();
-            txtSellerShopEmail.Text = user.Email;
-            txtSellerPhoneNumber.Text = seller.Phone.ToString();
-            txtSellerCity.Text = seller.City;
-            txtSellerDistrict.Text = seller.District;
-            txtSellerWard.Text = seller.Ward;
-            image_path = user.Image_Path;
+            txtSellerShopName.Text = StaticValue.SELLER.ShopName;
+            txtSellerID.Text = StaticValue.SELLER.Id_user.ToString();
+            txtSellerShopEmail.Text = StaticValue.USER.Email;
+            txtSellerPhoneNumber.Text = StaticValue.SELLER.Phone.ToString();
+            txtSellerCity.Text = StaticValue.SELLER.City;
+            txtSellerDistrict.Text = StaticValue.SELLER.District;
+            txtSellerWard.Text = StaticValue.SELLER.Ward;
+            image_path = StaticValue.USER.Image_Path;
             var resourceUri = new Uri(image_path, UriKind.RelativeOrAbsolute);
             imgSellerPhoto.Source = new BitmapImage(resourceUri);
 
@@ -175,33 +175,33 @@ namespace UTEMerchant
 
             btnSave.Visibility = Visibility.Collapsed;
 
-            seller.SellerID = Int32.Parse(txtSellerID.Text);
+            StaticValue.SELLER.SellerID = Int32.Parse(txtSellerID.Text);
             if (string.IsNullOrWhiteSpace(txtSellerShopName.Text) || string.IsNullOrWhiteSpace(txtSellerShopEmail.Text) ||
                string.IsNullOrWhiteSpace(txtSellerWard.Text) || string.IsNullOrWhiteSpace(txtSellerPhoneNumber.Text)
                )
             {
                 MessageBox.Show("Please complete all information");
-                txtSellerShopName.Text = seller.ShopName;
-                txtSellerShopEmail.Text = user.Email;
-                txtSellerPhoneNumber.Text = seller.Phone;
-                txtSellerWard.Text = seller.Ward;
+                txtSellerShopName.Text = StaticValue.SELLER.ShopName;
+                txtSellerShopEmail.Text = StaticValue.USER.Email;
+                txtSellerPhoneNumber.Text = StaticValue.SELLER.Phone;
+                txtSellerWard.Text = StaticValue.SELLER.Ward;
             }
             else
             {
-                seller.ShopName = txtSellerShopName.Text;
-                user.Email = txtSellerShopEmail.Text;
+                StaticValue.SELLER.ShopName = txtSellerShopName.Text;
+                StaticValue.USER.Email = txtSellerShopEmail.Text;
                 if (!string.IsNullOrEmpty(selectedCity))
-                    seller.City = selectedCity;
-                else seller.City = txtSellerCity.Text;
+                    StaticValue.SELLER.City = selectedCity;
+                else StaticValue.SELLER.City = txtSellerCity.Text;
                 if (!string.IsNullOrEmpty(selectedDistrict))
-                    seller.District = selectedDistrict;
-                else seller.District = txtSellerDistrict.Text;
-                seller.Ward = txtSellerWard.Text;
-                seller.Phone = txtSellerPhoneNumber.Text;
+                    StaticValue.SELLER.District = selectedDistrict;
+                else StaticValue.SELLER.District = txtSellerDistrict.Text;
+                StaticValue.SELLER.Ward = txtSellerWard.Text;
+                StaticValue.SELLER.Phone = txtSellerPhoneNumber.Text;
 
-                user.Image_Path = image_path;
-                seller_dao.UpdateSeller(seller);
-                user_dao.UpdateUserThroughSeller(user);
+                StaticValue.USER.Image_Path = image_path;
+                seller_dao.UpdateSeller(StaticValue.SELLER);
+                user_dao.UpdateUserThroughSeller(StaticValue.USER);
                 SavedButtonClicked?.Invoke(this, EventArgs.Empty);
             }
         }

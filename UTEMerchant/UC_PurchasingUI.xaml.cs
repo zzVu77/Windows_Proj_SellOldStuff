@@ -202,7 +202,7 @@ namespace UTEMerchant
                 items.Add(sellerView.GetSeller(), sellerView.GetSelectedItems());
             }
 
-            WinPlaceOrder winPlaceOrder = new WinPlaceOrder(items, new user_DAO().GetUserByID(IdUser), double.Parse(tbTotalPriceValue.Text));
+            WinPlaceOrder winPlaceOrder = new WinPlaceOrder(items, double.Parse(tbTotalPriceValue.Text));
             winPlaceOrder.ShowDialog();
 
             if (winPlaceOrder.IsPlaceOrderComplete)

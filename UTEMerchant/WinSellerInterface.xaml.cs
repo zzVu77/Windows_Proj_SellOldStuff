@@ -21,17 +21,14 @@ namespace UTEMerchant
     {
         bool isFirstClickProfile = true;
         bool isFirstClickStock = true;
-        private User User { get; set; }
-        private Seller Seller { get; set; }
+        //private User User { get; set; }
+        //private Seller Seller { get; set; }
         Seller_DAO Seller_DAO = new Seller_DAO();
         //UC_StartSelling uc_StartSelling;
         //UC_RegistrationComplete uc_RegistrationComplete;
         //UC_SellerRegistration uc_SellerRegistration;
         //UC_DeliveryUI uc_Delivery;
-        public WinSellerInterface(User user) : this()
-        {
-            this.User = user;
-        }
+       
         public WinSellerInterface()
         {
             InitializeComponent();
@@ -87,9 +84,9 @@ namespace UTEMerchant
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            if (User != null)
+            if (StaticValue.USER != null)
             {
-                uc_PurchasingUI.IdUser = User.Id_user;
+                uc_PurchasingUI.IdUser = StaticValue.USER.Id_user;
                 //List<Seller> sellers = new List<Seller>();
                 //sellers = new Seller_DAO().Load();
                 //foreach (Seller seller in sellers)
@@ -101,17 +98,17 @@ namespace UTEMerchant
                 //        break;
                 //    }
                 //}
-                Seller seller = Seller_DAO.GetSellerByUserID(User.Id_user);
+                Seller seller = Seller_DAO.GetSellerByUserID(StaticValue.USER.Id_user);
                 if (seller!=null)
                 {
-                    this.Seller = seller;
-                    uc_SellerUI.SetSeller(Seller);
+                    StaticValue.SELLER = seller;
+                    uc_SellerUI.SetSeller();
                 }
-                txbName.Text = User.Name;
+                txbName.Text = StaticValue.USER.Name;
                 uc_PurchasingUI.Visibility = Visibility.Visible;
-                uc_Delivery.SetUser(User);
+                uc_Delivery.SetUser();
                 
-                uc_PendingOrderReview.SetSeller(Seller);
+                uc_PendingOrderReview.SetSeller();
             }
             
         }
@@ -134,7 +131,7 @@ namespace UTEMerchant
 
 
             // If the user is registered as a seller
-            if (this.Seller != null)
+            if (StaticValue.SELLER != null)
             {
                 if (isFirstClickStock)
                 {
@@ -150,7 +147,7 @@ namespace UTEMerchant
                 }
             }
             // If the user haven't registered to be a seller
-            else if (this.Seller==null)
+            else if (StaticValue.SELLER == null)
             {
                 CollapseAll();
                 mnuitBuyerProfile.Visibility = Visibility.Collapsed;
@@ -195,9 +192,10 @@ namespace UTEMerchant
                 ComboBoxItem districtValue = uc_SellerRegistration.cbPickupDistrict.SelectedItem as ComboBoxItem;
 
 
-                Seller seller = new Seller(this.User.Id_user, uc_SellerRegistration.txtShopName.Text, cityValue.Content.ToString(), districtValue.Content.ToString(), uc_SellerRegistration.txtWard.Text, uc_SellerRegistration.txtContactNumber.Text);
+                Seller seller = new Seller(StaticValue.USER.Id_user, uc_SellerRegistration.txtShopName.Text, cityValue.Content.ToString(), districtValue.Content.ToString(), uc_SellerRegistration.txtWard.Text, uc_SellerRegistration.txtContactNumber.Text);
                 Seller_DAO.Add(seller);
-                this.Seller=seller;
+                
+                StaticValue.SELLER = Seller_DAO.GetSellerByUserID(StaticValue.USER.Id_user); 
                 uc_SellerRegistration.Visibility = Visibility.Collapsed;
                 uc_RegistrationComplete.Visibility = Visibility.Visible;
             }
@@ -227,14 +225,14 @@ namespace UTEMerchant
         {
             CollapseAll();
             uc_BuyerProfile.Visibility = Visibility.Visible;
-            uc_BuyerProfile.SetDefault(User);
+            uc_BuyerProfile.SetDefault();
         }
 
         private void mnuitSellerProfile_Click(object sender, RoutedEventArgs e)
         {
             CollapseAll();
             uc_SellerProfile.Visibility = Visibility.Visible;
-            uc_SellerProfile.SetDefault(User, Seller);
+            uc_SellerProfile.SetDefault();
         }
 
         private void UCUserProfile_SavedButtonClicked(object sender, EventArgs e)

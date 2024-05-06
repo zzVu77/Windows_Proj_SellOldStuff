@@ -58,8 +58,9 @@ namespace UTEMerchant
             {
                 if (user.Password == txtPassword.Password && user.User_name == txtUserName.Text)
                 {
+                    StaticValue.USER = user;
                     this.Hide();
-                    var purchasing = new WinSellerInterface(user);
+                    var purchasing = new WinSellerInterface();
                     purchasing.ShowDialog();
                     this.Show();
                 }

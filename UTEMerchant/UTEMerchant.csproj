@@ -219,6 +219,7 @@
     <Compile Include="Seller.cs" />
     <Compile Include="Seller_DAO.cs" />
     <Compile Include="PercentageConverter.cs" />
+    <Compile Include="StaticValue.cs" />
     <Compile Include="StringNullOrEmptyToVisibilityConverter.cs" />
     <Compile Include="TextToVisibilityConverter.cs" />
     <Compile Include="UCtextBox.xaml.cs">
