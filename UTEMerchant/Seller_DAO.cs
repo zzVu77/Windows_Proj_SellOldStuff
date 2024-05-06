@@ -58,7 +58,7 @@ namespace UTEMerchant
                 string District = reader.GetString(4);
                 string Ward = reader.GetString(5);
                 string Phone = reader.GetString(6);
-                //double Average_rating = reader.GetDouble(7);
+                double Average_rating = reader.GetDouble(7);
                 return seller = new Seller(SellerID, Id_user, ShopName, City, District, Ward, 0, Phone);
             }
 
@@ -91,8 +91,8 @@ namespace UTEMerchant
         }
         public override void Add(Seller seller) // Using PascalCase for method name
         {
-            string sqlStr = "INSERT INTO [dbo].[Seller] (Id_user, ShopName, City, District, Ward, phone) " +
-                            "VALUES (@Id_user, @ShopName, @City, @District, @Ward, @phone)";
+            string sqlStr = "INSERT INTO [dbo].[Seller] (Id_user, ShopName, City, District, Ward, phone, Average_Rating) " +
+                            "VALUES (@Id_user, @ShopName, @City, @District, @Ward, @phone, @Average_Rating)";
 
             db.ExecuteNonQuery(sqlStr,
                 new SqlParameter("@Id_user", seller.Id_user),
@@ -100,8 +100,8 @@ namespace UTEMerchant
                 new SqlParameter("@City", seller.City),
                 new SqlParameter("@District", seller.District),
                 new SqlParameter("@Ward", seller.Ward),
-                new SqlParameter("@phone", seller.Phone)
-                //new SqlParameter("@average", float())
+                new SqlParameter("@phone", seller.Phone),
+                new SqlParameter("@Average_Rating",seller.Average_rating)
                 );
         }
 
