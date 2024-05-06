@@ -52,7 +52,7 @@ namespace UTEMerchant
             this.grdDeliveredStatus.Visibility = Visibility.Collapsed;
             this.grdDeliveringStatus.Visibility = Visibility.Collapsed;
             grdPendingStatus.Visibility = Visibility.Visible;
-            //grdCancelledStatus.Visibility = Visibility.Collapsed;
+            grdCancelledStatus.Visibility = Visibility.Collapsed;
         }
 
         private void rbDelivering_Checked(object sender, RoutedEventArgs e)
@@ -60,7 +60,7 @@ namespace UTEMerchant
             grdDeliveredStatus.Visibility = Visibility.Collapsed;
             grdPendingStatus.Visibility = Visibility.Collapsed;
             grdDeliveringStatus.Visibility = Visibility.Visible;
-            //grdCancelledStatus.Visibility = Visibility.Collapsed;
+            grdCancelledStatus.Visibility = Visibility.Collapsed;
         }
 
         private void rbDelivered_Checked(object sender, RoutedEventArgs e)
@@ -68,7 +68,7 @@ namespace UTEMerchant
             grdPendingStatus.Visibility = Visibility.Collapsed;
             grdDeliveringStatus.Visibility = Visibility.Collapsed;
             grdDeliveredStatus.Visibility = Visibility.Visible;
-            //grdCancelledStatus.Visibility = Visibility.Collapsed;
+            grdCancelledStatus.Visibility = Visibility.Collapsed;
         }
 
         private void rbCancelled_Checked(object sender, RoutedEventArgs e)
@@ -76,7 +76,7 @@ namespace UTEMerchant
             grdDeliveredStatus.Visibility = Visibility.Collapsed;
             grdDeliveringStatus.Visibility = Visibility.Collapsed;
             grdPendingStatus.Visibility = Visibility.Collapsed;
-            //grdCancelledStatus.Visibility = Visibility.Visible;
+            grdCancelledStatus.Visibility = Visibility.Visible;
         }
 
         private void svDeliveryStatus_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
@@ -103,11 +103,27 @@ namespace UTEMerchant
 
         private void PendingStatus_Load(object sender, RoutedEventArgs e)
         {
-            // Filter orders that are pending
+            // Filter orders that are pending, declined, and delivering
             var matchedItems = dao.LoadOrdersByUser(_user.Id_user, "pending");
+            if (matchedItems != null)
+            {
+                var declinedItems = dao.LoadOrdersByUser(_user.Id_user, "declined");
+                if (declinedItems != null)
+                {
+                    matchedItems = matchedItems.Concat(declinedItems).ToList();
 
-            // Group orders by purchase date
-            IEnumerable<IGrouping<DateTime, purchasedItem>> groups = matchedItems.GroupBy(item => item.PurchaseDate);
+                    var deliveringItems = dao.LoadOrdersByUser(_user.Id_user, "delivering");
+                    if (deliveringItems != null)
+                    {
+                        matchedItems = matchedItems.Concat(deliveringItems).ToList();
+                    }
+                }
+            }
+
+            // Group orders by purchase date and filter out the groups that have all items with status other than "delivering"
+            IEnumerable<IGrouping<DateTime, purchasedItem>> groups = matchedItems
+                .GroupBy(item => item.PurchaseDate)
+                .Where(group => !group.All(item => item.Delivery_Status == "delivering"));
 
             // Clear the list of orders that are being delivered
             spPendingStatus.Children.Clear();
@@ -123,20 +139,38 @@ namespace UTEMerchant
 
         private void DeliveringStatus_Load(object sender, RoutedEventArgs e)
         {
-            // Filter orders that are being delivered
-            var matchedItems = dao.LoadOrdersByUser(_user.Id_user, "delivering");
+            // Filter orders that are pending, declined, and delivering
+            var matchedItems = dao.LoadOrdersByUser(_user.Id_user, "pending");
+            if (matchedItems != null)
+            {
+                var declinedItems = dao.LoadOrdersByUser(_user.Id_user, "declined");
+                if (declinedItems != null)
+                {
+                    matchedItems = matchedItems.Concat(declinedItems).ToList();
+
+                    var deliveringItems = dao.LoadOrdersByUser(_user.Id_user, "delivering");
+                    if (deliveringItems != null)
+                    {
+                        matchedItems = matchedItems.Concat(deliveringItems).ToList();
+                    }
+                }
+            }
+
+            // Sort orders that has the same seller and remove groups where any item has a Delivery_Status other than "delivering"
+            IEnumerable<IGrouping<int, purchasedItem>> groupBySeller = matchedItems
+                .GroupBy(item => dao.GetItem(item.PurchaseID).SellerID)
+                .Where(group => group.All(item => item.Delivery_Status == "delivering"));
 
             // Clear the list of orders that are being delivered
             spDeliveringStatus.Children.Clear();
 
-            // Sort orders that has the same seller
-            IEnumerable<IGrouping<int, purchasedItem>> groupBySeller = matchedItems.GroupBy(item => dao.GetItem(item.PurchaseID).SellerID);
+            // Add orders to the list
             foreach (var group in groupBySeller)
             {
                 AddOrdersInDelivering(group);
             }
 
-            rbDelivering.Content = $"Delivering ({matchedItems.Count()})";
+            rbDelivering.Content = $"Delivering ({groupBySeller.Count()})";
         }
 
         private void DeliveredStatus_Load(object sender, RoutedEventArgs e)
@@ -154,13 +188,25 @@ namespace UTEMerchant
 
             foreach (var item in matchedItems)
             {
-                UC_CompletedItem uc_item = new UC_CompletedItem(item, SellerDao.GetSeller(dao.GetItem(item.PurchaseID).SellerID), this._user.Id_user);
-                uc_item.RateButtonClicked += UCCompletedItem_RateButtonClicked;
-                spDeliveredStatus.Children.Add(uc_item);
+                AddOrdersInDelivered(item);
             }
 
             rbDelivered.Content = $"Delivered ({matchedItems.Count()})";
 
+        }
+
+        private void CancelledStatus_Load(object sender, RoutedEventArgs e)
+        {
+            // Filter orders that are cancelled
+            var matchedItems = dao.LoadOrdersByUser(_user.Id_user, "cancelled");
+
+            // Clear the list of orders that are cancelled
+            spCancelledStatus.Children.Clear();
+
+            foreach (var item in matchedItems)
+            {
+                AddOrdersInCancelled(item);
+            }
         }
 
 
@@ -170,6 +216,7 @@ namespace UTEMerchant
             PendingStatus_Load(sender, e);
             DeliveringStatus_Load(sender, e);
             DeliveredStatus_Load(sender, e);
+            CancelledStatus_Load(sender, e);
         }
 
         public void Reload()
@@ -181,6 +228,7 @@ namespace UTEMerchant
         {
 
             UC_PendingOrderBox ucOrderBox = new UC_PendingOrderBox(orders, _user);
+            ucOrderBox.CancelButtonClicked += OnCancelPendingOrder_Clicked;
 
             int len = spPendingStatus.Children.Count;
             if (len == 0)
@@ -207,7 +255,6 @@ namespace UTEMerchant
             }
 
             spPendingStatus.Children.Add(ucOrderBox);
-
         }
 
         private void AddOrdersInDelivering(IGrouping<int, purchasedItem> group)
@@ -241,6 +288,74 @@ namespace UTEMerchant
             }
 
             spDeliveringStatus.Children.Add(ucItemBox);
+        }
+
+        private void AddOrdersInDelivered(purchasedItem item)
+        {
+            UC_CompletedItem ucOrderBox = new UC_CompletedItem(item, SellerDao.GetSeller(dao.GetItem(item.PurchaseID).SellerID), _user.Id_user);
+            ucOrderBox.RateButtonClicked += UCCompletedItem_RateButtonClicked;
+
+            int len = spDeliveredStatus.Children.Count;
+            if (len == 0)
+            {
+                spDeliveredStatus.Children.Add(ucOrderBox);
+                return;
+
+            }
+
+            ucOrderBox.Margin = new Thickness(0, 5, 0, 0);
+
+            if (len == 1)
+            {
+                var first = (UC_CompletedItem)spDeliveredStatus.Children[0];
+                first.Margin = new Thickness(0, 0, 0, 5);
+            }
+            else if (spDeliveredStatus.Children.Count > 1)
+            {
+                for (int i = 1; i < len; i++)
+                {
+                    var box = (UC_CompletedItem)spDeliveredStatus.Children[i];
+                    box.Margin = new Thickness(0, 5, 0, 5);
+                }
+            }
+
+            spDeliveredStatus.Children.Add(ucOrderBox);
+        }
+
+        private void AddOrdersInCancelled(purchasedItem item)
+        {
+            UC_CancelledItem ucOrderBox = new UC_CancelledItem(item, _user);
+
+            int len = spCancelledStatus.Children.Count;
+            if (len == 0)
+            {
+                spCancelledStatus.Children.Add(ucOrderBox);
+                return;
+
+            }
+
+            ucOrderBox.Margin = new Thickness(0, 5, 0, 0);
+
+            if (len == 1)
+            {
+                var first = (UC_CancelledItem)spCancelledStatus.Children[0];
+                first.Margin = new Thickness(0, 0, 0, 5);
+            }
+            else if (spCancelledStatus.Children.Count > 1)
+            {
+                for (int i = 1; i < len; i++)
+                {
+                    var box = (UC_CancelledItem)spCancelledStatus.Children[i];
+                    box.Margin = new Thickness(0, 5, 0, 5);
+                }
+            }
+
+            spCancelledStatus.Children.Add(ucOrderBox);
+        }
+
+        private void OnCancelPendingOrder_Clicked(object sender, EventArgs e)
+        {
+            PendingStatus_Load(this, new RoutedEventArgs());
         }
     }
 }

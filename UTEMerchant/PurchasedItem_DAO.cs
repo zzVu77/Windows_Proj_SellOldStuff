@@ -26,6 +26,15 @@ namespace UTEMerchant
             return db.LoadData<purchasedItem>($"SELECT * FROM [dbo].[PurchasedProducts] WHERE Id_user = {userId} AND Delivery_Status = '{status}'");
         }
 
+        public List<purchasedItem> LoadOrdersBySeller(int sellerId, string status)
+        {
+            return db.LoadData<purchasedItem>($@"
+            SELECT pp.*
+            FROM [dbo].[PurchasedProducts] pp
+            JOIN [dbo].[Item] i ON pp.Item_Id = i.Item_Id
+            WHERE i.SellerID = {sellerId} AND pp.Delivery_Status = '{status}'");
+        }
+
         public void AddItem(purchasedItem item) // Using PascalCase for method name
         {
             string sqlQuery = @"

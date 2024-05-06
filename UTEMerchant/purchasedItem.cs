@@ -18,9 +18,10 @@ namespace UTEMerchant
         public string City { get; set; }
         public string District { get; set; }
         public string Delivery_address { get; set; }
+        public string Delivery_Status { get; set; }
         public purchasedItem() { }
         public purchasedItem(int purchasedID, int id_user,int item_id, DateTime purchaseDate, string name,string phone
-            ,string email, string city,string district, string delivery_address)
+            ,string email, string city,string district, string delivery_address, string delivery_status)
         {
             PurchaseID = purchasedID;
             Id_user = id_user;
@@ -32,6 +33,7 @@ namespace UTEMerchant
             City = city;
             District = district;
             Delivery_address = delivery_address;
+            Delivery_Status = delivery_status;
         }
     }
 }

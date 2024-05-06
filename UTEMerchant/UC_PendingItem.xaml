@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UTEMerchant"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d" d:DesignWidth="800"
              Loaded="UserControl_Loaded">
     <Grid>
@@ -20,7 +21,8 @@
             <Image x:Name="imgItem"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
-                   Stretch="Uniform"/>
+                   Stretch="Uniform"
+                   Margin="5"/>
         </Border>
         <StackPanel Grid.Column="1" Margin="5,10,10,10">
             <!--Item Name-->
@@ -81,6 +83,16 @@
                            Text="100$"
                            HorizontalAlignment="Left"/>
             </Grid>
+            
         </StackPanel>
+        <Image x:Name="imgDeclined"
+               Source="Img/image declined.png"
+               Width="200"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Center"
+               Stretch="Uniform"
+               Grid.Column="0"
+               Grid.ColumnSpan="2"
+               Visibility="Collapsed"/>
     </Grid>
 </UserControl>

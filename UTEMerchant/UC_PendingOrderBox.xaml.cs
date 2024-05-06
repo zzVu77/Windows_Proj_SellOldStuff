@@ -27,6 +27,7 @@ namespace UTEMerchant
     {
         private readonly IGrouping<DateTime, purchasedItem> _orders;
         private readonly User _user;
+        public EventHandler CancelButtonClicked;
 
         public UC_PendingOrderBox()
         {
@@ -105,6 +106,12 @@ namespace UTEMerchant
                     }
                 }
                 ((StackPanel)Parent).Children.Remove(this);
+
+                // Show a message box to inform the user that the order has been cancelled
+                MessageBox.Show("The order has been cancelled successfully.", "Order Cancelled", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                // Refresh the parent window
+                CancelButtonClicked?.Invoke(this, EventArgs.Empty);
             }
         }
     }

@@ -38,14 +38,13 @@ namespace UTEMerchant
             this.uc_StartSelling = new UC_StartSelling();
             this.uc_RegistrationComplete = new UC_RegistrationComplete();
             this.uc_SellerRegistration = new UC_SellerRegistration();
+            this.uc_PendingOrderReview.SetSeller(Seller);
 
             grdSellerUI.Children.Add(uc_StartSelling);
             grdSellerUI.Children.Add(uc_RegistrationComplete);
             grdSellerUI.Children.Add(uc_SellerRegistration);
             
-            uc_StartSelling.Visibility = Visibility.Collapsed;
-            uc_RegistrationComplete.Visibility = Visibility.Collapsed;
-            uc_SellerRegistration.Visibility = Visibility.Collapsed;
+            CollapseAll();
 
             uc_StartSelling.btnStartSelling.Click += OnStartTradingButtonClicked;
             uc_SellerRegistration.btnDone.Click += OnDoneRegistrationButtonClicked;

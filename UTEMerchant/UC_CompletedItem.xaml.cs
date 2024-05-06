@@ -40,7 +40,7 @@ namespace UTEMerchant
             this._order = order;
             this.userID = userID;
             this.SellerOfItem = seller;
-            Item item = new PurchasedItem_DAO().GetItem(order.Item_Id);
+            Item item = new PurchasedItem_DAO().GetItem(order.PurchaseID);
             SetData(item, seller);
             this.userID = userID;
             List<CustomerReview> checkList = CustomerReview_DAO.filterReview(this.userID, this._order.Item_Id);

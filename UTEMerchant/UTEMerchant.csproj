@@ -227,6 +227,9 @@
     <Compile Include="UC_BuyerProfile.xaml.cs">
       <DependentUpon>UC_BuyerProfile.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UC_CancelledItem.xaml.cs">
+      <DependentUpon>UC_CancelledItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UC_CompletedItem.xaml.cs">
       <DependentUpon>UC_CompletedItem.xaml</DependentUpon>
     </Compile>
@@ -362,6 +365,10 @@
     <Page Include="UC_BuyerProfile.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UC_CancelledItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UC_CompletedItem.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -569,6 +576,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Img\image declined.png" />
     <Resource Include="Img\icons8-account-50.png" />
     <Resource Include="Img\icons8-sign-up-80.png" />
     <EmbeddedResource Include="Properties\Resources.resx">

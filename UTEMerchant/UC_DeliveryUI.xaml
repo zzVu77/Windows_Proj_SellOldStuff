@@ -134,6 +134,19 @@
                     </StackPanel>
                 </ScrollViewer>
             </Grid>
+
+                        <!--Show Cancelled Status-->
+            <Grid x:Name="grdCancelledStatus">
+                <ScrollViewer x:Name="svCancelledStatus"
+                              VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Hidden"
+                              Visibility="Visible">
+                    <StackPanel x:Name="spCancelledStatus"
+                                Orientation="Vertical"
+                                Margin="20,10">
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

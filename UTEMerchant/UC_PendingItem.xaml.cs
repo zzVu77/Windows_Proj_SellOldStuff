@@ -39,12 +39,16 @@ namespace UTEMerchant
         {
             if (_order != null)
             {
-                Item item = new PurchasedItem_DAO().GetItem(_order.Item_Id);
+                Item item = new PurchasedItem_DAO().GetItem(_order.PurchaseID);
                 tbName.Text = item.Name;
                 tbDiscountedPrice.Text = item.Price.ToString("C", CultureInfo.CurrentCulture);
                 tbOriginalPrice.Text = item.Original_Price.ToString("C", CultureInfo.CurrentCulture);
                 var resourceUri = new Uri(item.Image_Path, UriKind.RelativeOrAbsolute);
                 imgItem.Source = new BitmapImage(resourceUri);
+                if (_order.Delivery_Status == "declined")
+                {
+                    imgDeclined.Visibility = Visibility.Visible;
+                }
             }
         }
 

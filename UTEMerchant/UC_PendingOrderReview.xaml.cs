@@ -32,7 +32,6 @@ namespace UTEMerchant
         public UC_PendingOrderReview(Seller seller) : this()
         {
             _seller = seller;
-           _pendingOrders = new PurchasedItem_DAO().Load("pending");
         }
 
         private void ProductGrid_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -47,7 +46,7 @@ namespace UTEMerchant
             // Get the index of the clicked row
             var index = productGrid.ItemContainerGenerator.IndexFromContainer(row);
             // Update the status of the clicked row in the database
-            var purchaseId = ((dynamic)productGrid.Items[index]).PurchasedID;
+            var purchaseId = ((dynamic)productGrid.Items[index]).PurchaseID;
             User user = new user_DAO().GetUserByUserName((string)((dynamic)productGrid.Items[index]).User_name);
             new PurchasedItem_DAO().UpdateDeliveryStatus(purchaseId, "delivering");
             // Remove the clicked row from the data grid
@@ -62,7 +61,7 @@ namespace UTEMerchant
             // Get the index of the clicked row
             var index = productGrid.ItemContainerGenerator.IndexFromContainer(row);
             // Update the status of the clicked row in the database
-            var id = ((dynamic)productGrid.Items[index]).PurchasedID;
+            var id = ((dynamic)productGrid.Items[index]).PurchaseID;
             User user = new user_DAO().GetUserByUserName((string)((dynamic)productGrid.Items[index]).User_name);
             new PurchasedItem_DAO().UpdateDeliveryStatus(id, "declined");
             // Remove the clicked row from the data grid
@@ -86,14 +85,15 @@ namespace UTEMerchant
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            
+            if (_seller != null)
+            {
+                _pendingOrders = new PurchasedItem_DAO().LoadOrdersBySeller(_seller.SellerID, "pending");
+            }
         }
 
         public void SetSeller (Seller seller)
         {
             _seller = seller;
-
-            UserControl_Loaded(this, new RoutedEventArgs());
         }
 
         private void UserControl_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -107,7 +107,6 @@ namespace UTEMerchant
             {
                 productGrid.Items.Clear();
                 List<User> users = new user_DAO().Load();
-                List<Item> items = new Item_DAO().Load();
 
                 int len = _pendingOrders.Count();
                 // Create a new row for each pending order
@@ -119,12 +118,12 @@ namespace UTEMerchant
                         {
                             item.PurchaseID,
                             item.Item_Id,
-                            items.FirstOrDefault(i => i.Item_Id == item.Item_Id)?.Name,
+                            new PurchasedItem_DAO().GetItem(item.PurchaseID).Name,
                             item.PurchaseDate,
                             item.name,
-                            items.FirstOrDefault(i => i.Item_Id == item.Item_Id)?.Price,
-                            items.FirstOrDefault(i => i.Item_Id == item.Item_Id)?.Image_Path,
-                            items.FirstOrDefault(i => i.Item_Id == item.Item_Id)?.PostedDate,
+                            new PurchasedItem_DAO().GetItem(item.PurchaseID).Price,
+                            new PurchasedItem_DAO().GetItem(item.PurchaseID).Image_Path,
+                            new PurchasedItem_DAO().GetItem(item.PurchaseID).PostedDate,
                             users.FirstOrDefault(user => user.Id_user == item.Id_user)?.User_name,
                             item.Phone,
                             DeliveryAddress
@@ -133,8 +132,5 @@ namespace UTEMerchant
                 }
             }
         }
-
-        // create a method to select a bunch of rows when click on the checkbox
-
     }
 }
