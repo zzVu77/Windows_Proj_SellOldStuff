@@ -23,9 +23,10 @@ namespace UTEMerchant
         bool isFirstClickStock = true;
         private User User { get; set; }
         private Seller Seller { get; set; }
-        UC_StartSelling uc_StartSelling;
-        UC_RegistrationComplete uc_RegistrationComplete;
-        UC_SellerRegistration uc_SellerRegistration;
+        Seller_DAO Seller_DAO = new Seller_DAO();
+        //UC_StartSelling uc_StartSelling;
+        //UC_RegistrationComplete uc_RegistrationComplete;
+        //UC_SellerRegistration uc_SellerRegistration;
         //UC_DeliveryUI uc_Delivery;
         public WinSellerInterface(User user) : this()
         {
@@ -35,13 +36,13 @@ namespace UTEMerchant
         {
             InitializeComponent();
             
-            this.uc_StartSelling = new UC_StartSelling();
-            this.uc_RegistrationComplete = new UC_RegistrationComplete();
-            this.uc_SellerRegistration = new UC_SellerRegistration();
+            //this.uc_StartSelling = new UC_StartSelling();
+            //this.uc_RegistrationComplete = new UC_RegistrationComplete();
+            //this.uc_SellerRegistration = new UC_SellerRegistration();
 
-            grdSellerUI.Children.Add(uc_StartSelling);
-            grdSellerUI.Children.Add(uc_RegistrationComplete);
-            grdSellerUI.Children.Add(uc_SellerRegistration);
+            //grdSellerUI.Children.Add(uc_StartSelling);
+            //grdSellerUI.Children.Add(uc_RegistrationComplete);
+            //grdSellerUI.Children.Add(uc_SellerRegistration);
             
             uc_StartSelling.Visibility = Visibility.Collapsed;
             uc_RegistrationComplete.Visibility = Visibility.Collapsed;
@@ -89,21 +90,27 @@ namespace UTEMerchant
             if (User != null)
             {
                 uc_PurchasingUI.IdUser = User.Id_user;
-                List<Seller> sellers = new List<Seller>();
-                sellers = new Seller_DAO().Load();
-                foreach (Seller seller in sellers)
+                //List<Seller> sellers = new List<Seller>();
+                //sellers = new Seller_DAO().Load();
+                //foreach (Seller seller in sellers)
+                //{
+                //    if (seller.Id_user == this.User.Id_user)
+                //    {
+                //        this.Seller = seller;
+                //        uc_SellerUI.SetSeller(Seller);
+                //        break;
+                //    }
+                //}
+                Seller seller = Seller_DAO.GetSellerByUserID(User.Id_user);
+                if (seller!=null)
                 {
-                    if (seller.Id_user == this.User.Id_user)
-                    {
-                        this.Seller = seller;
-                        break;
-                    }
+                    this.Seller = seller;
+                    uc_SellerUI.SetSeller(Seller);
                 }
-
                 txbName.Text = User.Name;
                 uc_PurchasingUI.Visibility = Visibility.Visible;
                 uc_Delivery.SetUser(User);
-                uc_SellerUI.SetSeller(Seller);
+                
                 uc_PendingOrderReview.SetSeller(Seller);
             }
             
@@ -124,26 +131,34 @@ namespace UTEMerchant
         {
             mnuitBuyerProfile.Visibility = Visibility.Collapsed;
             mnuitSellerProfile.Visibility = Visibility.Collapsed;
-            if (isFirstClickStock)
-            {
-                mnuitPendingOrder.Visibility = Visibility.Visible;
-                mnuitInventory.Visibility = Visibility.Visible;
-                isFirstClickStock = false;
-            }
-            else
-            {
-                mnuitPendingOrder.Visibility = Visibility.Collapsed;
-                mnuitInventory.Visibility = Visibility.Collapsed;
-                isFirstClickStock = true;
-            }
-            // If the user is registered as a seller
-            if (3 > 2)
-            {
 
+
+            // If the user is registered as a seller
+            if (this.Seller != null)
+            {
+                if (isFirstClickStock)
+                {
+                    mnuitPendingOrder.Visibility = Visibility.Visible;
+                    mnuitInventory.Visibility = Visibility.Visible;
+                    isFirstClickStock = false;
+                }
+                else
+                {
+                    mnuitPendingOrder.Visibility = Visibility.Collapsed;
+                    mnuitInventory.Visibility = Visibility.Collapsed;
+                    isFirstClickStock = true;
+                }
             }
             // If the user haven't registered to be a seller
-            else if (1 > 2)
+            else if (this.Seller==null)
             {
+                CollapseAll();
+                mnuitBuyerProfile.Visibility = Visibility.Collapsed;
+                mnuitSellerProfile.Visibility = Visibility.Collapsed;
+                mnuitPendingOrder.Visibility = Visibility.Collapsed;
+                mnuitInventory.Visibility = Visibility.Collapsed;
+                uc_PurchasingUI.Visibility = Visibility.Collapsed;
+
                 grdSellerUI.Visibility = Visibility.Visible;
                 uc_StartSelling.Visibility = Visibility.Visible;
             }
@@ -176,6 +191,13 @@ namespace UTEMerchant
         {
             if (sender is Button)
             {
+                ComboBoxItem cityValue = uc_SellerRegistration.cbPickupCity.SelectedItem as ComboBoxItem;
+                ComboBoxItem districtValue = uc_SellerRegistration.cbPickupDistrict.SelectedItem as ComboBoxItem;
+
+
+                Seller seller = new Seller(this.User.Id_user, uc_SellerRegistration.txtShopName.Text, cityValue.Content.ToString(), districtValue.Content.ToString(), uc_SellerRegistration.txtWard.Text, uc_SellerRegistration.txtContactNumber.Text);
+                Seller_DAO.Add(seller);
+                this.Seller=seller;
                 uc_SellerRegistration.Visibility = Visibility.Collapsed;
                 uc_RegistrationComplete.Visibility = Visibility.Visible;
             }

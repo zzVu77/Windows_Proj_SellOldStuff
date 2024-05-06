@@ -461,6 +461,17 @@
                                        Grid.RowSpan="2"
                                        x:Name="uc_SellerUI"
                                        Visibility="Collapsed"/>
+                    <local:UC_StartSelling Grid.RowSpan="2"
+                                           x:Name="uc_StartSelling"
+                                           Visibility="Collapsed"
+                                           />
+                    <local:UC_SellerRegistration Grid.Row="1"                                                 
+                                                 x:Name="uc_SellerRegistration"
+                                                 Visibility="Collapsed"/>
+                    <local:UC_RegistrationComplete Grid.RowSpan="2"
+                                                   x:Name="uc_RegistrationComplete"
+                                                   Visibility="Collapsed"/>
+
                 </Grid>
 
                 <local:UC_DeliveryUI x:Name="uc_Delivery"

@@ -7,13 +7,14 @@
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
-             d:DesignHeight="670" d:DesignWidth="1000">
+             d:DesignHeight="800" d:DesignWidth="1400">
     <UserControl.Resources>
 
     </UserControl.Resources>
     <Grid>
         <Grid x:Name="grdRegistration"
-              Margin="20">
+             
+              Background="Transparent">
             <Grid.RowDefinitions>
                 <RowDefinition x:Name="rLogoImage" Height="4*"/>
                 <RowDefinition x:Name="rLogoName" Height="Auto"/>
@@ -47,82 +48,66 @@
             <Grid x:Name="grdMain"
                   Grid.Row="3">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition x:Name="cImage1" Width="0.8*"/>
-                    <ColumnDefinition x:Name="cDetails" Width="1.7*"/>
-                    <ColumnDefinition x:Name="cImage2" Width="0.8*"/>
+                    <ColumnDefinition x:Name="cImage1" Width="111*"/>
+                    <ColumnDefinition x:Name="cDetails" Width="128*"/>
+                    <ColumnDefinition x:Name="cImage2" Width="111*"/>
                 </Grid.ColumnDefinitions>
                 <Image x:Name="img1"
                        Grid.Column="0"
-                       Source="Img/Registration 1.png"/>
+                       Source="Img/Registration 1.png" Margin="0,1,0,0"/>
                 <Image x:Name="img2"
                        Grid.Column="2"
-                       Source="Img/Registration 2.png"/>
-                <Grid x:Name="grdDetails"
-                      Grid.Column="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition x:Name="rShopAddressLabel" Height="*"/>
-                        <RowDefinition x:Name="rShopAddress" Height="*"/>
-                        <RowDefinition x:Name="rPickupAddressLabel" Height="*"/>
-                        <RowDefinition x:Name="rPickupAddress" Height="*"/>
-                        <RowDefinition x:Name="rEmpty1" Height="0.5*"/>
-                        <RowDefinition x:Name="rContact" Height="*"/>
-                        <RowDefinition x:Name="rEmpty2" Height="0.5*"/>
-                        <RowDefinition x:Name="rShippingChannel" Height="*"/>
-                        <RowDefinition x:Name="rBusinessTypeLabel" Height="*"/>
-                        <RowDefinition x:Name="rBusinessType" Height="*"/>
-                        <RowDefinition x:Name="rEmpty3" Height="0.5*"/>
-                        <RowDefinition x:Name="rDoneButton" Height="*"/>
-                    </Grid.RowDefinitions>
+                       Source="Img/Registration 2.png" Margin="0,1,0,0"/>
+                <StackPanel x:Name="grdDetails"
+                            VerticalAlignment="Top"
+                      Grid.Column="1" Height="361">
+
                     <!--Shop Address-->
-                    <Label x:Name="lblShopAddress"
+                    <Label x:Name="lblShopName"
                            Grid.Row="0"
-                           Content="Shop address"
+                           Content="Shop Name"
+                           HorizontalContentAlignment="Left"
+                           HorizontalAlignment="Left"
                            VerticalContentAlignment="Center"/>
 
-                    <UniformGrid x:Name="unigrdShopAddress"
-                                 Grid.Row="1"
-                                 Columns="3">
-                        <ComboBox x:Name="cbCity"
-                                  Style="{StaticResource DefaultComboBoxStyle}"
-                                  Background="White"
-                                  BorderBrush="Gray"
-                                  BorderThickness="3"
-                                  Tag="City"
-                                  Margin="0,0,20,0"/>
-                        <ComboBox x:Name="cbDistrict"
-                                  Style="{StaticResource DefaultComboBoxStyle}"
-                                  Background="White"
-                                  BorderBrush="Gray"
-                                  BorderThickness="3"
-                                  Tag="District"
-                                  Width="{Binding ElementName=cbCity, Path=ActualWidth}"
-                                  HorizontalAlignment="Center"/>
-                        <ComboBox x:Name="cbWard"
-                                  Style="{StaticResource DefaultComboBoxStyle}"
-                                  Background="White"
-                                  BorderBrush="Gray"
-                                  BorderThickness="3"
-                                  Tag="Ward"
-                                  Margin="20,0,0,0"/>
-                    </UniformGrid>
+                    <Grid x:Name="unigrdShopAddress" 
+                          HorizontalAlignment="Left"
+                                >
+                        <TextBox x:Name="txtShopName"
+                                 Style="{StaticResource DefaultTextBoxStyle}"
+                                 Tag="Shop Name"
+                                 BorderBrush="Gray"
+                                 BorderThickness="3"
+                                 Height="40"
+                                 Width="490"/>
+                    </Grid>
 
                     <!--Pickup Address-->
-                    <Label x:Name="lblPickupAddress"
+                    <Label x:Name="lblShopAddress"
                            Grid.Row="2"
-                           Content="Pickup address"
+                           Content="Shop Address"
+                           HorizontalAlignment="Left"
                            VerticalContentAlignment="Center"/>
 
-                    <UniformGrid x:Name="unigrdPickupAddress"
-                                 Grid.Row="3"
-                                 Columns="3">
+                    <DockPanel x:Name="unigrdPickupAddress"
+                               Width="490"
+                               HorizontalAlignment="Left"
+                               
+                                 >
                         <ComboBox x:Name="cbPickupCity"
                                   Style="{StaticResource DefaultComboBoxStyle}"
                                   Background="White"
                                   BorderBrush="Gray"
                                   BorderThickness="3"
+                                  Height="40"
+                                  Width="235"
                                   Tag="City"
-                                  Margin="0,0,20,0">
-                            <ComboBoxItem Content="HCM"></ComboBoxItem>
+                                  HorizontalAlignment="Left">
+                            <ComboBoxItem Content="HCM"/>
+                            <ComboBoxItem Content="Ha Noi"/>
+                            <ComboBoxItem Content="Nha Trang"/>
+                            <ComboBoxItem Content="Vung Tau"/>
+                            <ComboBoxItem Content="Binh Dinh"/>
                         </ComboBox>
                         <ComboBox x:Name="cbPickupDistrict"
                                   Style="{StaticResource DefaultComboBoxStyle}"
@@ -130,86 +115,56 @@
                                   BorderBrush="Gray"
                                   BorderThickness="3"
                                   Tag="District"
-                                  Width="{Binding ElementName=cbPickupCity, Path=ActualWidth}"
-                                  HorizontalAlignment="Center"/>
-                        <ComboBox x:Name="cbPickupWard"
-                                  Style="{StaticResource DefaultComboBoxStyle}"
-                                  Background="White"
-                                  BorderBrush="Gray"
-                                  BorderThickness="3"
-                                  Tag="Ward"
-                                  Margin="20,0,0,0"/>
-                    </UniformGrid>
+                                  Height="40"
+                                  Width="235"
+                                  HorizontalAlignment="Right"
+                                  >
+                            <ComboBoxItem Content="Quan 10"/>
+                            <ComboBoxItem Content="Quan 11"/>
+                            <ComboBoxItem Content="Quan 12"/>
+                            <ComboBoxItem Content="Thu Duc"/>
+                            <ComboBoxItem Content="Quan 1"/>
+                        </ComboBox>
 
-                    <UniformGrid x:Name="unigrdContact"
-                                 Grid.Row="5"
-                                 Columns="2">
+                    </DockPanel>
+                    <Label x:Name="lblShopWard"
+                           Grid.Row="2"
+                           Content="Ward"
+                           HorizontalAlignment="Left"
+                           VerticalContentAlignment="Center"/>
+
+                    <TextBox x:Name="txtWard"                             
+                                 Style="{StaticResource DefaultTextBoxStyle}"
+                                 Tag="Ward"
+                                 BorderBrush="Gray"
+                                 BorderThickness="3"
+                                 HorizontalAlignment="Left"
+                                 Height="40"
+                                 Width="488"/>
+                    <Label x:Name="lblShopPhone"
+                           Grid.Row="2"
+                           Content="Phone"
+                           HorizontalAlignment="Left"
+                           VerticalContentAlignment="Center"/>
+                    <DockPanel x:Name="unigrdContact"
+                               
+                               >
                         <!--Contact Number-->
                         <TextBox x:Name="txtContactNumber"
                                  Style="{StaticResource DefaultTextBoxStyle}"
                                  Tag="Contact number"
                                  BorderBrush="Gray"
                                  BorderThickness="3"
-                                 Margin="0,0,15,0"/>
+                                 Height="40"
+                                  Width="490"
+                                 HorizontalAlignment="Left"
+                                 />                   
+                    </DockPanel>
 
-                        <!--Email-->
-                        <TextBox x:Name="txtEmail"
-                                 Style="{StaticResource DefaultTextBoxStyle}"
-                                 Tag="Email"
-                                 BorderBrush="Gray"
-                                 BorderThickness="3"
-                                 Margin="15,0,0,0"/>
-                    </UniformGrid>
-
-                    <!--Shipping Channel-->
-                    <ComboBox x:Name="cbShippingChannel"
-                              Grid.Row="7"
-                              Style="{StaticResource DefaultComboBoxStyle}"
-                              Background="White"
-                              BorderBrush="Gray"
-                              BorderThickness="3"
-                              Tag="Shipping channel"/>
-
-                    <!--Business Type-->
-                    <Label x:Name="lblBusinessType"
-                           Grid.Row="8"
-                           Content="Business type"
-                           VerticalContentAlignment="Center"/>
-
-                    <Grid x:Name="grdBusinessType"
-                                 Grid.Row="9">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.7*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="0.7*"/>
-                        </Grid.ColumnDefinitions>
-                        <CheckBox x:Name="chkIndividual"
-                                  Grid.Column="0"
-                                  Style="{StaticResource FancyCheckBoxStyle}"
-                                  Content="Individual"
-                                  Background="White"
-                                  BorderBrush="Gray"
-                                  BorderThickness="3"
-                                  Margin="0,0,0,0"/>
-                        <CheckBox x:Name="chkHouseholdBusiness"
-                                  Grid.Column="1"
-                                  Style="{StaticResource FancyCheckBoxStyle}"
-                                  Content="Household business"
-                                  Background="White"
-                                  BorderBrush="Gray"
-                                  BorderThickness="3"
-                                  HorizontalAlignment="Center"/>
-                        <CheckBox x:Name="chkEnterprise"
-                                  Grid.Column="2"
-                                  Style="{StaticResource FancyCheckBoxStyle}"
-                                  Content="Enterprise"
-                                  Background="White"
-                                  BorderBrush="Gray"
-                                  BorderThickness="3"
-                                  HorizontalAlignment="Right"/>
-                    </Grid>
                     <Button x:Name="btnDone"
-                            Grid.Row="13"
+                            Margin="0 15 0 0"
+                            Height="40"
+                            Width="150" 
                             HorizontalAlignment="Center"
                             FontSize="12"
                             Content="Done">
@@ -234,7 +189,7 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
-                </Grid>
+                </StackPanel>
             </Grid>
         </Grid>
     </Grid>
