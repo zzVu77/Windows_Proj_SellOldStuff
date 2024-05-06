@@ -27,18 +27,18 @@ namespace UTEMerchant
     {
         List<Item> items;
         Item_DAO dao = new Item_DAO();
-        private Seller _seller;
+        //private Seller _seller;
         public UC_SellerUI()
         {
             InitializeComponent();       
             
 
         }
-        public UC_SellerUI(Seller seller) :this()
-        {
-            this._seller = seller;
-            items = dao.GetItemsBySellerID(seller.SellerID);
-        }
+        //public UC_SellerUI(Seller seller) :this()
+        //{
+        //    this._seller = seller;
+        //    items = dao.GetItemsBySellerID(seller.SellerID);
+        //}
         private void productGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -158,7 +158,7 @@ namespace UTEMerchant
                         productGrid.Items.Clear();
                         foreach (Item item in itemsSearch)
                         {
-                            if (_seller.SellerID == item.SellerID)
+                            if (StaticValue.SELLER.SellerID == item.SellerID)
                                 productGrid.Items.Add(item);
                         }
                     }
