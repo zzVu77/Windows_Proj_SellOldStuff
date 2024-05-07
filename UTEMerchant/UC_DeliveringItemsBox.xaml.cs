@@ -82,7 +82,7 @@ namespace UTEMerchant
             double totalValue = 0;
             foreach (var item in _orders)
             {
-                totalValue += new PurchasedItem_DAO().GetItem(item.Item_Id).Price;
+                totalValue += new PurchasedItem_DAO().GetItem(item.PurchaseID).Price;
             }
             tbTotalValue.Text = $"${totalValue.ToString("F", CultureInfo.CurrentCulture)}";
         }

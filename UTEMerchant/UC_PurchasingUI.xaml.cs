@@ -210,7 +210,7 @@ namespace UTEMerchant
                 uc_ShoppingCart.spItems.Children.Clear();
                 tbTotalPriceValue.Text = "0";
 
-                UserControl_IsVisibleChanged(this, new DependencyPropertyChangedEventArgs(DependencyProperty.Register( "IsVisible", typeof(bool), typeof(UC_PurchasingUI), new PropertyMetadata(false)), false, true));
+                UserControl_Loaded(this, new RoutedEventArgs());
             }
         }
 
