@@ -111,13 +111,15 @@ namespace UTEMerchant
                 
                 Item_DAO dao = new Item_DAO();
                 DateTime today = DateTime.Now;
-                dao.Add(new Item(0, txtName.Text.ToString(),
+                DateTime bought_date = txtBoughtDate.SelectedDate.Value;
+                Item a = new Item(0, txtName.Text.ToString(),
                     float.Parse(txtPrice.Text.ToString()),
-                    float.Parse(txtOriginalPrice.Text.ToString()), typeItem.Content.ToString(),
-                    DateTime.Parse(txtBoughtDate.Text.ToString()),
+                    float.Parse(txtOriginalPrice.Text.ToString()), typeItem.Content.ToString(), 
+                    bought_date,
                     text_Condition, Int32.Parse(txtCondition.Text.ToString())
-                    , image_path, false, text_detail, IdSeller, today)
-                             );
+                    , image_path, false, text_detail, IdSeller, today);
+
+                dao.Add(a);
                 this.Close();
 
             }

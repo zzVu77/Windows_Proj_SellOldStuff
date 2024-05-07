@@ -27,7 +27,7 @@ namespace UTEMerchant
         PurchasedItem_DAO dao = new PurchasedItem_DAO();
         Seller_DAO SellerDao = new Seller_DAO();
         Item_DAO item_DAO = new Item_DAO();
-        private User _user;
+        //private User _user;
 
         public UC_DeliveryUI()
         {
@@ -35,14 +35,14 @@ namespace UTEMerchant
             rbDelivering.IsChecked = true;
         }
 
-        public UC_DeliveryUI(User user) : this()
-        {
-            _user = user;
-        }
+        //public UC_DeliveryUI(User user) : this()
+        //{
+        //    _user = user;
+        //}
 
-        public void SetUser(User user)
+        public void SetUser()
         {
-            _user = user;
+            
             UserControl_Loaded(this, new RoutedEventArgs());
         }
 
@@ -104,15 +104,15 @@ namespace UTEMerchant
         private void PendingStatus_Load(object sender, RoutedEventArgs e)
         {
             // Filter orders that are pending, declined, and delivering
-            var matchedItems = dao.LoadOrdersByUser(_user.Id_user, "pending");
+            var matchedItems = dao.LoadOrdersByUser(StaticValue.USER.Id_user, "pending");
             if (matchedItems != null)
             {
-                var declinedItems = dao.LoadOrdersByUser(_user.Id_user, "declined");
+                var declinedItems = dao.LoadOrdersByUser(StaticValue.USER.Id_user, "declined");
                 if (declinedItems != null)
                 {
                     matchedItems = matchedItems.Concat(declinedItems).ToList();
 
-                    var deliveringItems = dao.LoadOrdersByUser(_user.Id_user, "delivering");
+                    var deliveringItems = dao.LoadOrdersByUser(StaticValue.USER.Id_user, "delivering");
                     if (deliveringItems != null)
                     {
                         matchedItems = matchedItems.Concat(deliveringItems).ToList();
@@ -140,15 +140,15 @@ namespace UTEMerchant
         private void DeliveringStatus_Load(object sender, RoutedEventArgs e)
         {
             // Filter orders that are pending, declined, and delivering
-            var matchedItems = dao.LoadOrdersByUser(_user.Id_user, "pending");
+            var matchedItems = dao.LoadOrdersByUser(StaticValue.USER.Id_user, "pending");
             if (matchedItems != null)
             {
-                var declinedItems = dao.LoadOrdersByUser(_user.Id_user, "declined");
+                var declinedItems = dao.LoadOrdersByUser(StaticValue.USER.Id_user, "declined");
                 if (declinedItems != null)
                 {
                     matchedItems = matchedItems.Concat(declinedItems).ToList();
 
-                    var deliveringItems = dao.LoadOrdersByUser(_user.Id_user, "delivering");
+                    var deliveringItems = dao.LoadOrdersByUser(StaticValue.USER.Id_user, "delivering");
                     if (deliveringItems != null)
                     {
                         matchedItems = matchedItems.Concat(deliveringItems).ToList();
@@ -176,12 +176,12 @@ namespace UTEMerchant
         private void DeliveredStatus_Load(object sender, RoutedEventArgs e)
         {
             // Filter orders that are delivered
-            var matchedItems = dao.LoadOrdersByUser(_user.Id_user, "delivered");
+            var matchedItems = dao.LoadOrdersByUser(StaticValue.USER.Id_user, "delivered");
 
             // Sort the matchedItems list. Items that have been reviewed by the current user are placed at the beginning of the list.
             List<CustomerReview> ListCompare = new CustomerReviewDAO().Load();
             matchedItems = matchedItems.OrderBy(item =>
-                ListCompare.Any(review => review.ID_User == this._user.Id_user && review.Item_ID == item.Item_Id)).ToList();
+                ListCompare.Any(review => review.ID_User == StaticValue.USER.Id_user && review.Item_ID == item.Item_Id)).ToList();
 
             // Clear the list of orders that are delivered
             spDeliveredStatus.Children.Clear();
@@ -198,7 +198,7 @@ namespace UTEMerchant
         private void CancelledStatus_Load(object sender, RoutedEventArgs e)
         {
             // Filter orders that are cancelled
-            var matchedItems = dao.LoadOrdersByUser(_user.Id_user, "cancelled");
+            var matchedItems = dao.LoadOrdersByUser(StaticValue.USER.Id_user, "cancelled");
 
             // Clear the list of orders that are cancelled
             spCancelledStatus.Children.Clear();
@@ -227,7 +227,7 @@ namespace UTEMerchant
         private void AddOrdersInPending(IGrouping<DateTime, purchasedItem> orders)
         {
 
-            UC_PendingOrderBox ucOrderBox = new UC_PendingOrderBox(orders, _user);
+            UC_PendingOrderBox ucOrderBox = new UC_PendingOrderBox(orders, StaticValue.USER);
             ucOrderBox.CancelButtonClicked += OnCancelPendingOrder_Clicked;
 
             int len = spPendingStatus.Children.Count;
@@ -260,7 +260,7 @@ namespace UTEMerchant
         private void AddOrdersInDelivering(IGrouping<int, purchasedItem> group)
         {
             UC_DeliveringItemsBox ucItemBox =
-                new UC_DeliveringItemsBox(group.ToList(), SellerDao.GetSeller(group.Key), this._user.Id_user);
+                new UC_DeliveringItemsBox(group.ToList(), SellerDao.GetSeller(group.Key), StaticValue.USER.Id_user);
             ucItemBox.ReceivedButtonClicked += UCToReceiveItem_ReceivedButtonClicked;
 
             int len = spDeliveringStatus.Children.Count;
@@ -292,7 +292,7 @@ namespace UTEMerchant
 
         private void AddOrdersInDelivered(purchasedItem item)
         {
-            UC_CompletedItem ucOrderBox = new UC_CompletedItem(item, SellerDao.GetSeller(dao.GetItem(item.PurchaseID).SellerID), _user.Id_user);
+            UC_CompletedItem ucOrderBox = new UC_CompletedItem(item, SellerDao.GetSeller(dao.GetItem(item.PurchaseID).SellerID), StaticValue.USER.Id_user);
             ucOrderBox.RateButtonClicked += UCCompletedItem_RateButtonClicked;
 
             int len = spDeliveredStatus.Children.Count;
@@ -324,7 +324,7 @@ namespace UTEMerchant
 
         private void AddOrdersInCancelled(purchasedItem item)
         {
-            UC_CancelledItem ucOrderBox = new UC_CancelledItem(item, _user);
+            UC_CancelledItem ucOrderBox = new UC_CancelledItem(item, StaticValue.USER);
 
             int len = spCancelledStatus.Children.Count;
             if (len == 0)

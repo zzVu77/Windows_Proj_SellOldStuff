@@ -85,15 +85,15 @@ namespace UTEMerchant
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            if (_seller != null)
+            if (StaticValue.SELLER != null)
             {
-                _pendingOrders = new PurchasedItem_DAO().LoadOrdersBySeller(_seller.SellerID, "pending");
+                _pendingOrders = new PurchasedItem_DAO().LoadOrdersBySeller(StaticValue.SELLER.SellerID, "pending");
             }
         }
 
-        public void SetSeller (Seller seller)
+        public void SetSeller ()
         {
-            _seller = seller;
+            //_seller = StaticValue.SELLER;
         }
 
         private void UserControl_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -103,7 +103,7 @@ namespace UTEMerchant
 
         private void productGrid_Loaded(object sender, RoutedEventArgs e)
         {
-            if (_seller != null && _pendingOrders != null)
+            if (StaticValue.SELLER != null && _pendingOrders != null)
             {
                 productGrid.Items.Clear();
                 List<User> users = new user_DAO().Load();

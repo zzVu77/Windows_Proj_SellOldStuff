@@ -20,7 +20,7 @@ namespace UTEMerchant
     public partial class WinPlaceOrder : Window
     {
         private readonly Dictionary<Seller, List<Item>> _items;
-        private readonly User _user;
+        //private readonly User _user;
         private double? _totalPrice;
         private bool _placeOrderSuccessful = false;
 
@@ -30,11 +30,11 @@ namespace UTEMerchant
             InitializeComponent();
         }
 
-        public WinPlaceOrder(Dictionary<Seller, List<Item>> items, User user, double TotalPrice) : this()
+        public WinPlaceOrder(Dictionary<Seller, List<Item>> items, double TotalPrice) : this()
         {
             this._items = items;
             this._totalPrice = TotalPrice;
-            _user = user;
+            
         }
 
         public bool IsPlaceOrderComplete => _placeOrderSuccessful;
@@ -47,12 +47,12 @@ namespace UTEMerchant
                 tbTotal.Text = "$" + _totalPrice.Value.ToString("F");
             }
 
-            if (_user != null)
+            if (StaticValue.USER != null)
             {
-                tbDeliveryAddress.Text = $" {_user.Ward}, {_user.District}, {_user.City}";
-                tbDeliveryEmail.Text = _user.Email;
-                tbDeliveryName.Text = _user.Name;
-                tbDeliveryPhone.Text = _user.Phone;
+                tbDeliveryAddress.Text = $" {StaticValue.USER.Ward}, {StaticValue.USER.District}, {StaticValue.USER.City}";
+                tbDeliveryEmail.Text = StaticValue.USER.Email;
+                tbDeliveryName.Text = StaticValue.USER.Name;
+                tbDeliveryPhone.Text = StaticValue.USER.Phone;
 
             } 
                 
@@ -131,7 +131,7 @@ namespace UTEMerchant
                 {
                     items.AddRange(pair.Value);
                 }
-                new PurchasedItem_DAO().RequestItems(items, _user.Id_user,tbDeliveryAddress.Text, tbDeliveryName.Text, tbDeliveryPhone.Text,tbDeliveryEmail.Text);
+                new PurchasedItem_DAO().RequestItems(items, StaticValue.USER.Id_user,tbDeliveryAddress.Text, tbDeliveryName.Text, tbDeliveryPhone.Text,tbDeliveryEmail.Text);
             }
 
             catch (Exception ex)

@@ -27,18 +27,18 @@ namespace UTEMerchant
     {
         List<Item> items;
         Item_DAO dao = new Item_DAO();
-        private Seller _seller;
+        //private Seller _seller;
         public UC_SellerUI()
         {
             InitializeComponent();       
             
 
         }
-        public UC_SellerUI(Seller seller) :this()
-        {
-            this._seller = seller;
-            items = dao.GetItemsBySellerID(seller.SellerID);
-        }
+        //public UC_SellerUI(Seller seller) :this()
+        //{
+        //    this._seller = seller;
+        //    items = dao.GetItemsBySellerID(seller.SellerID);
+        //}
         private void productGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -90,7 +90,7 @@ namespace UTEMerchant
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             
-            items= dao.GetItemsBySellerID(_seller.SellerID);
+            items= dao.GetItemsBySellerID(StaticValue.SELLER.SellerID);
             DataGridRow clickedRow = (DataGridRow)productGrid.ItemContainerGenerator.ContainerFromItem(productGrid.SelectedItem);
             int rowIndex = productGrid.ItemContainerGenerator.IndexFromContainer(clickedRow);
             if (items[rowIndex].Sale_Status == false)
@@ -111,12 +111,12 @@ namespace UTEMerchant
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            new WinNewItem(_seller.SellerID).ShowDialog();
+            new WinNewItem(StaticValue.SELLER.SellerID).ShowDialog();
             productGrid.Items.Clear();
             
             foreach (Item a in dao.Load())
             {
-                if (_seller.SellerID == a.SellerID)
+                if (StaticValue.SELLER.SellerID== a.SellerID)
                     productGrid.Items.Add(a);
             }
         }
@@ -158,7 +158,7 @@ namespace UTEMerchant
                         productGrid.Items.Clear();
                         foreach (Item item in itemsSearch)
                         {
-                            if (_seller.SellerID == item.SellerID)
+                            if (StaticValue.SELLER.SellerID == item.SellerID)
                                 productGrid.Items.Add(item);
                         }
                     }
@@ -195,10 +195,10 @@ namespace UTEMerchant
                 
         }
 
-        public void SetSeller(Seller seller)
+        public void SetSeller()
         {
-            this._seller = seller;
-            items = dao.GetItemsBySellerID(seller.SellerID);
+            
+            items = dao.GetItemsBySellerID(StaticValue.SELLER.SellerID);
             UserControl_Loaded(this, new RoutedEventArgs());
         }
     }

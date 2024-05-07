@@ -30,5 +30,14 @@ namespace UTEMerchant
             Average_rating = average_rating;
             Phone = phone;
         }
+        public Seller( int id_user, string shopName, string city, string district, string ward, string phone)
+        {            
+            Id_user = id_user;
+            ShopName = shopName;
+            City = city;
+            District = district;
+            Ward = ward;
+            Phone = phone;
+        }
     }
 }
