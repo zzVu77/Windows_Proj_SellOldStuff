@@ -108,6 +108,10 @@ namespace UTEMerchant
         {
             return db.LoadData<User>($"SELECT * FROM [dbo].[User] WHERE Id_user = {id}").FirstOrDefault();
         }
+        public User GetUserByUserName(string userName)
+        {
+            return db.LoadData<User>($"SELECT * FROM [dbo].[User] WHERE User_name = @username", new SqlParameter("@username", userName)).FirstOrDefault();
+        }
         public void updateUser(string newpassword, string email)
         {
             string sqlStr = "UPDATE [dbo].[User] SET Password = @NewPassword WHERE Email = @GmailAddress";

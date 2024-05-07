@@ -51,7 +51,10 @@ namespace UTEMerchant
         {
             if (sender is UC_SignUpStep1 clickedItemView )
             {
-                if (!string.IsNullOrWhiteSpace(UCSignUpStep1.ucEmail.textbox.Text.ToString()) && CheckValid.IsValidEmail(UCSignUpStep1.ucEmail.textbox.Text.ToString()))
+                User check = new user_DAO().GetUserByUserName( UCSignUpStep1.ucUserName.textbox.Text.ToString());
+
+                if (!string.IsNullOrWhiteSpace(UCSignUpStep1.ucEmail.textbox.Text.ToString()) && CheckValid.IsValidEmail(UCSignUpStep1.ucEmail.textbox.Text.ToString())
+                    && check == null)
                 {
                     UCSignUpStep1.Visibility = Visibility.Collapsed;
                     UCSignUpStep2.Visibility = Visibility.Visible;
@@ -70,7 +73,8 @@ namespace UTEMerchant
                 }
                 else
                 {
-                    MessageBox.Show("invalid information");
+                    if(check == null) MessageBox.Show("username already exists");
+                    else MessageBox.Show("invalid information");
                 }
   
             }
