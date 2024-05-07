@@ -73,7 +73,8 @@ namespace UTEMerchant
                 }
                 else
                 {
-                    MessageBox.Show("invalid information");
+                    if(check == null) MessageBox.Show("username already exists");
+                    else MessageBox.Show("invalid information");
                 }
   
             }
