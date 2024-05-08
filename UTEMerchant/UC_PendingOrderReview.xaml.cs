@@ -91,11 +91,6 @@ namespace UTEMerchant
             }
         }
 
-        public void SetSeller ()
-        {
-            //_seller = StaticValue.SELLER;
-        }
-
         private void UserControl_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if (IsVisible) UserControl_Loaded(this, new RoutedEventArgs());

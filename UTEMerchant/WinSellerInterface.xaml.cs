@@ -36,7 +36,6 @@ namespace UTEMerchant
             this.uc_StartSelling = new UC_StartSelling();
             this.uc_RegistrationComplete = new UC_RegistrationComplete();
             this.uc_SellerRegistration = new UC_SellerRegistration();
-            this.uc_PendingOrderReview.SetSeller();
 
             //grdSellerUI.Children.Add(uc_StartSelling);
             //grdSellerUI.Children.Add(uc_RegistrationComplete);
@@ -106,8 +105,6 @@ namespace UTEMerchant
                 txbName.Text = StaticValue.USER.Name;
                 uc_PurchasingUI.Visibility = Visibility.Visible;
                 uc_Delivery.SetUser();
-                
-                uc_PendingOrderReview.SetSeller();
             }
             
         }
