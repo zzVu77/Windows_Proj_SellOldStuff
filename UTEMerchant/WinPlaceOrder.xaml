@@ -23,10 +23,20 @@
                 Margin="20,20,10,20">
             <ScrollViewer x:Name="svItems"
                           VerticalScrollBarVisibility="Hidden"
-                          Margin="20">
+                          CanContentScroll="True">
                 <StackPanel x:Name="spItems"
-                            Orientation="Vertical">
+                            Orientation="Vertical"
+                            CanVerticallyScroll="True"
+                            Cursor="ScrollNS"
+                            Margin="20">
+                    <StackPanel.Resources>
+                        <Style TargetType="local:UC_PlaceOrderItemsBox">
+                            <Setter Property="ScrollViewer.CanContentScroll" Value="True"/>
+                            <Setter Property="Cursor" Value="ScrollNS"/>
+                        </Style>
+                    </StackPanel.Resources>
                 </StackPanel>
+
             </ScrollViewer>
         </Border>
         <DockPanel Grid.Column="1"
@@ -34,215 +44,141 @@
               LastChildFill="False"
               Margin="10,20,20,20">
 
-            <Grid x:Name="grdShipping"
+            <StackPanel x:Name="grdShipping"
                   DockPanel.Dock="Top"
                   Margin="10,0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid Grid.Row="1" x:Name="grdShippingDetails">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Label x:Name="lblDeliveryAddress"
-                           Grid.Row="0"
-                           Content="Delivery Address"
-                           FontSize="15"
-                           FontWeight="Bold"/>
-                    <TextBox Grid.Row="1"
-                             x:Name="tbDeliveryAddress"
-                             FontSize="15"
-                             Height="{Binding ElementName=lblDeliveryAddress, Path=ActualHeight}"
-                             Tag="Delivery Address">
-                        <TextBox.Style>
-                            <Style TargetType="TextBox">
-                                <Setter Property="HorizontalAlignment" Value="Stretch"/>
-                                <Setter Property="VerticalContentAlignment" Value="Center"/>
-                                <Setter Property="Padding" Value="10,0"/>
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="TextBox">
-                                            <Grid>
-                                                <Border x:Name="border" 
-                                                        Background="{TemplateBinding Background}" 
-                                                        BorderBrush="{TemplateBinding BorderBrush}" 
-                                                        BorderThickness="{TemplateBinding BorderThickness}" 
-                                                        CornerRadius="5"/>
-                                                <TextBlock x:Name="defaultText" 
-                                                           Text="{Binding RelativeSource={RelativeSource TemplatedParent}, 
-                                                                          Path=Tag}" 
-                                                           Foreground="LightGray"
-                                                           FontStyle="Italic"
-                                                           VerticalAlignment="Center"
-                                                           HorizontalAlignment="Left"
-                                                           Margin="10,0,0,0"
-                                                           Visibility="{TemplateBinding Text, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}"/>
-                                                <ScrollViewer x:Name="PART_ContentHost" 
-                                                              HorizontalAlignment="Stretch" 
-                                                              VerticalAlignment="Center"/>
-                                            </Grid>
-                                            <ControlTemplate.Triggers>
-                                                <MultiTrigger>
-                                                    <MultiTrigger.Conditions>
-                                                        <Condition Property="IsFocused" Value="False"/>
-                                                        <Condition Property="Text" Value=""/>
-                                                    </MultiTrigger.Conditions>
-                                                    <Setter TargetName="defaultText" Property="Visibility" Value="Visible"/>
-                                                </MultiTrigger>
-                                                <Trigger Property="IsFocused" Value="True">
-                                                    <Setter TargetName="defaultText" Property="Visibility" Value="Collapsed"/>
-                                                </Trigger>
-                                            </ControlTemplate.Triggers>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                                <Style.Triggers>
-                                    <Trigger Property="IsFocused" Value="True">
-                                        <Setter Property="Foreground" Value="Black"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBox.Style>
-                    </TextBox>
-                    <Label x:Name="lblShippingChanel"
-                           Grid.Row="2"
-                           Content="Shipping Chanel"
-                           FontSize="15"
-                           FontWeight="Bold"/>
-                    <ComboBox x:Name="cbShippingChanel"
-                              Grid.Row="3"
-                              FontSize="15"
-                              Background="Transparent"
-                              Height="{Binding ElementName=lblShippingChanel, Path=ActualHeight}"
-                              Tag="Shipping Chanel" SelectionChanged="cbShippingChanel_SelectionChanged">
-                        <ComboBox.Style>
-                            <Style TargetType="ComboBox">
-                                <Setter Property="HorizontalAlignment" Value="Stretch"/>
-                                <Setter Property="VerticalContentAlignment" Value="Center"/>
-                                <Setter Property="Padding" Value="10,0"/>
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="ComboBox">
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="5*"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                </Grid.ColumnDefinitions>
-                                                <Border Grid.Column="0"
-                                                        Grid.ColumnSpan="2"
-                                                        x:Name="border" 
-                                                        Background="{TemplateBinding Background}" 
-                                                        BorderBrush="{TemplateBinding BorderBrush}" 
-                                                        BorderThickness="{TemplateBinding BorderThickness}" 
-                                                        CornerRadius="5"/>
-                                                <TextBlock Grid.Column="0"
-                                                           x:Name="defaultText" 
-                                                           Text="{Binding RelativeSource={RelativeSource TemplatedParent}, 
-                                                                          Path=Tag}" 
-                                                           Foreground="LightGray"
-                                                           FontStyle="Italic"
-                                                           FontSize="{TemplateBinding FontSize}"
-                                                           VerticalAlignment="Center"
-                                                           HorizontalAlignment="Left"
-                                                           Margin="10,0,0,0"
-                                                           Visibility="{TemplateBinding Text, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}"/>
-                                                <ToggleButton Grid.Column="0"
-                                                              Grid.ColumnSpan="2"
-                                                              x:Name="toggleButton" 
-                                                              ClickMode="Press" 
-                                                              Focusable="False" 
-                                                              Style="{StaticResource ComboBoxToggleButtonStyle}"
-                                                              Background="Transparent" 
-                                                              IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                                                              Margin="10,0"/>
-                                                <ContentPresenter Grid.Column="0" x:Name="contentPresenter" 
-                                                                  ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" 
-                                                                  Content="{TemplateBinding SelectionBoxItem}" 
-                                                                  ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" 
-                                                                  HorizontalAlignment="Left" 
-                                                                  Margin="10,0,0,0" 
-                                                                  VerticalAlignment="Center"/>
-                                                <Popup Grid.Column="0"
-                                                       Grid.ColumnSpan="2"
-                                                       x:Name="Popup"
-                                                       Placement="Bottom"
-                                                       IsOpen="{TemplateBinding IsDropDownOpen}"
-                                                       AllowsTransparency="True"
-                                                       Focusable="False"                                    
-                                                       PopupAnimation="Slide">
 
-                                                    <Grid x:Name="DropDown"
-                                                          SnapsToDevicePixels="True"
-                                                          MinWidth="{TemplateBinding ActualWidth}"
-                                                          MaxHeight="{TemplateBinding MaxDropDownHeight}">
-                                                        <Border x:Name="DropDownBorder"
-                                                                BorderThickness="0.5"
-                                                                CornerRadius="7"
-                                                                BorderBrush="DarkGray"
-                                                                Background="White"/>
-                                                        <ScrollViewer Margin="4 6 4 6"
-                                                                      SnapsToDevicePixels="True"
-                                                                      OverridesDefaultStyle="True"
-                                                                      Foreground="Red"
-                                                                      FontSize="{TemplateBinding FontSize}"
-                                                                      VerticalScrollBarVisibility="Auto"/>
-                                                        <StackPanel IsItemsHost="True"
-                                                                    KeyboardNavigation.DirectionalNavigation="Contained"/>
-                                                    </Grid>
-                                                </Popup>
-                                            </Grid>
-                                            <ControlTemplate.Triggers>
-                                                <MultiTrigger>
-                                                    <MultiTrigger.Conditions>
-                                                        <Condition Property="IsFocused" Value="False"/>
-                                                        <Condition Property="Text" Value=""/>
-                                                    </MultiTrigger.Conditions>
-                                                    <Setter TargetName="defaultText" Property="Visibility" Value="Visible"/>
-                                                </MultiTrigger>
-                                                <MultiTrigger>
-                                                    <MultiTrigger.Conditions>
-                                                        <Condition Property="IsFocused" Value="True"/>
-                                                        <Condition Property="Text" Value=""/>
-                                                    </MultiTrigger.Conditions>
-                                                    <Setter TargetName="defaultText" Property="Visibility" Value="Visible"/>
-                                                </MultiTrigger>
-
-                                            </ControlTemplate.Triggers>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                                <Style.Triggers>
-                                    <Trigger Property="IsFocused" Value="True">
-                                        <Setter Property="Foreground" Value="Black"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </ComboBox.Style>
-                        <ComboBoxItem Content="Standard Shipping"/>
-                        <ComboBoxItem Content="Express Shipping"/>
-                    </ComboBox>
-                </Grid>
-                <StackPanel Grid.Row="0" 
-                            x:Name="spShipping"
-                            Orientation="Vertical">
-                    <Label x:Name="lblShippingDetails"
+                <Label x:Name="lblShippingDetails"
                                Content="Shipping Details"
                                FontSize="20"
                                FontWeight="Bold"
                                VerticalAlignment="Center"/>
-                    <TextBlock x:Name="tbWords"
+                <TextBlock x:Name="tbWords"
                                Text="Your shipping cost will be charged based on you selection"
                                TextWrapping="WrapWithOverflow"
                                Foreground="LightSlateGray"
                                FontSize="12"
                                Margin="5,0,5,0"/>
-                </StackPanel>
 
-            </Grid>
+                <Label x:Name="lblDeliveryName"
+                           Grid.Row="0"
+                           Content="Name"
+                           FontSize="15"
+                           FontWeight="Bold"/>
+
+                <TextBox Grid.Row="1"
+                             x:Name="tbDeliveryName"
+                             FontSize="15"
+                             Height="{Binding ElementName=lblDeliveryAddress, Path=ActualHeight}"
+                             Tag="Full Name"
+                             Cursor="Hand" 
+                             Style="{StaticResource DefaultTextBoxStyle}"  
+                             />
+
+
+
+                <Label x:Name="lblDeliveryPhone"
+                           Grid.Row="0"
+                           Content="Phone"
+                           FontSize="15"
+                           FontWeight="Bold"/>
+
+                <TextBox Grid.Row="1"
+                             x:Name="tbDeliveryPhone"
+                             FontSize="15"
+                             Height="{Binding ElementName=lblDeliveryAddress, Path=ActualHeight}"
+                             Tag="Phone Number"
+                             Cursor="Hand" 
+                             Style="{StaticResource DefaultTextBoxStyle}"  
+                             />
+
+                <Label x:Name="lblDeliveryEmail"
+                           Grid.Row="0"
+                           Content="Email"
+                           FontSize="15"
+                           FontWeight="Bold"/>
+
+                <TextBox Grid.Row="1"
+                             x:Name="tbDeliveryEmail"
+                             FontSize="15"
+                             Height="{Binding ElementName=lblDeliveryAddress, Path=ActualHeight}"
+                             Tag="Email"
+                             Cursor="Hand" 
+                             Style="{StaticResource DefaultTextBoxStyle}"  
+                             />
+
+
+
+                <Label x:Name="lblDeliveryAddress"
+                           Grid.Row="0"
+                           Content="Delivery Address"
+                           FontSize="15"
+                           FontWeight="Bold"/>
+
+                <TextBox Grid.Row="1"
+                             x:Name="tbDeliveryAddress"
+                             FontSize="15"
+                             Height="{Binding ElementName=lblDeliveryAddress, Path=ActualHeight}"
+                             Tag="Delivery Address"
+                             IsHitTestVisible="True" 
+                             Focusable="False"
+                             Cursor="Hand" 
+                             MouseLeftButtonDown="tbDeliveryAddress_MouseLeftButtonDown">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                            <Setter Property="VerticalContentAlignment" Value="Center"/>
+                            <Setter Property="Padding" Value="10,0"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="TextBox">
+                                        <Grid>
+                                            <Border x:Name="border" 
+                                                        Background="{TemplateBinding Background}" 
+                                                        BorderBrush="{TemplateBinding BorderBrush}" 
+                                                        BorderThickness="{TemplateBinding BorderThickness}" 
+                                                        CornerRadius="5"/>
+                                            <TextBlock x:Name="defaultText" 
+                                                           Text="{Binding RelativeSource={RelativeSource TemplatedParent}, 
+                                                                          Path=Tag}" 
+                                                           Foreground="LightGray"
+                                                           FontStyle="Italic"
+                                                           VerticalAlignment="Center"
+                                                           HorizontalAlignment="Left"
+                                                           Margin="10,0,0,0"
+                                                           Visibility="{TemplateBinding Text, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}"/>
+                                            <ScrollViewer x:Name="PART_ContentHost" 
+                                                              HorizontalAlignment="Stretch" 
+                                                              VerticalAlignment="Center"/>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <MultiTrigger>
+                                                <MultiTrigger.Conditions>
+                                                    <Condition Property="IsFocused" Value="False"/>
+                                                    <Condition Property="Text" Value=""/>
+                                                </MultiTrigger.Conditions>
+                                                <Setter TargetName="defaultText" Property="Visibility" Value="Visible"/>
+                                            </MultiTrigger>
+                                            <Trigger Property="IsFocused" Value="True">
+                                                <Setter TargetName="defaultText" Property="Visibility" Value="Collapsed"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsFocused" Value="True">
+                                    <Setter Property="Foreground" Value="Black"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+
+
+
+
+            </StackPanel>
 
 
             <Grid x:Name="grdPricing" 
@@ -265,8 +201,8 @@
                         Background="#E8E8E8">
                     <Grid x:Name="grdPricingDetails">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="1.5*"/>
                         </Grid.RowDefinitions>
@@ -274,8 +210,8 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <!--Convert all labels to TextBlock-->
-                        <Label x:Name="lblSubTotal"
+
+                        <!--<Label x:Name="lblSubTotal"
                                Grid.Row="0"
                                Grid.Column="0"
                                Content="Sub Total"
@@ -310,27 +246,30 @@
                                    Foreground="Gray"
                                    VerticalAlignment="Center"
                                    HorizontalAlignment="Right"
-                                   Margin="15,0"/>
+                                   Margin="15,0"/>-->
                         <Label x:Name="lblTotal"
                                Grid.Row="2"
                                Grid.Column="0"
                                Content="Total"
-                               FontSize="15"
+                               FontSize="20"
+                               FontFamily="Segoe UI Black"
                                FontWeight="SemiBold"
-                               Foreground="Gray"
+                               Foreground="Black"
                                Margin="10,0"/>
                         <TextBlock x:Name="tbTotal"
                                    Grid.Row="2"
                                    Grid.Column="1"
                                    Text="$0.00"
-                                   FontSize="15"
-                                   FontWeight="SemiBold"
-                                   Foreground="Gray"
+                                   FontSize="20"
+                                   FontWeight="Black"
+                                   Foreground="Red"
+                                   FontFamily="Segoe UI Black"
                                    VerticalAlignment="Center"
                                    HorizontalAlignment="Right"
                                    Margin="15,0"/>
                         <Button Grid.Row="3"
                                 Grid.Column="0"
+                                Height="35"
                                 Grid.ColumnSpan="2" Click="Button_Click">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">

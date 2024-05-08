@@ -57,11 +57,11 @@ namespace UTEMerchant
             txtShopName.Text = this.seller.ShopName;
             User user = userDAO.GetUserByItemID(this.seller.Id_user);
 
-            BitmapImage bitmap = new BitmapImage();
-            bitmap.BeginInit();
-            bitmap.UriSource = new Uri(user.Image_Path, UriKind.RelativeOrAbsolute); ;
-            bitmap.EndInit();
-            imgbrAvatar.ImageSource = bitmap;
+            //BitmapImage bitmap = new BitmapImage();
+            //bitmap.BeginInit();
+            //bitmap.UriSource = new Uri(user.Image_Path, UriKind.RelativeOrAbsolute); ;
+            //bitmap.EndInit();
+            //imgbrAvatar.ImageSource = bitmap;
 
         }
         private void wpShopItems_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

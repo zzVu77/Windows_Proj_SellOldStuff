@@ -44,13 +44,10 @@
                 BorderThickness="1.5"
                 Background="White"
                 CornerRadius="5">
-            <ScrollViewer x:Name="svItems"
-                          Margin="20"
-                          VerticalScrollBarVisibility="Hidden">
-                <StackPanel x:Name="spItems"
-                            Orientation="Vertical">
-                </StackPanel>
-            </ScrollViewer>
+            <StackPanel x:Name="spItems"
+                        Orientation="Vertical"
+                        Margin="20">
+            </StackPanel>
         </Border>
     </Grid>
 </UserControl>

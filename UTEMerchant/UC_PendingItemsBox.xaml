@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="UTEMerchant.UC_PendingItemsBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UTEMerchant"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             mc:Ignorable="d" d:DesignWidth="800">
+    <Grid>
+        <Border x:Name="brdBox"
+                BorderBrush="LightGray"
+                BorderThickness="0,0,0,1">
+            <Grid x:Name="grdBox">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" BorderThickness="0">
+                    <DockPanel x:Name="dpShop"
+                           Margin="10">
+                        <iconPacks:PackIconMaterial Kind="Store"
+                                           VerticalAlignment="Center"
+                                           Margin="10 1 8 0"
+                                           Width="28" Height="35"/>
+                        <TextBlock x:Name="tbShopName"
+                                   Text="UTE Merchant"
+                                   FontWeight="Bold"
+                                   FontSize="20"
+                                   FontFamily="Segoe UI Black"
+                                   VerticalAlignment="Center"
+                                   Padding="10 0 0 0"/>
+                    </DockPanel>
+
+                </Border>
+                <Border Grid.Row="1"
+                        BorderBrush="LightGray">
+                    <StackPanel x:Name="spItems">
+
+                    </StackPanel>
+
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

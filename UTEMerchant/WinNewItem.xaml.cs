@@ -90,7 +90,7 @@ namespace UTEMerchant
             else
             {
 
-                
+
                 Item_DAO dao = new Item_DAO();
                 DateTime today = DateTime.Now;
                 dao.Add(new Item(0, txtName.Text.ToString(),

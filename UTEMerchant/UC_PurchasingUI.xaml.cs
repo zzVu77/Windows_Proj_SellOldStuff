@@ -150,30 +150,12 @@ namespace UTEMerchant
                 Seller seller = _sellerDao.GetSeller(clickedItem.info.SellerID);
                 WinDeltailItem winDeltailItem = new WinDeltailItem(clickedItem.info, seller, IdUser);
                 winDeltailItem.ShowDialog();
-                wpItemsList.Children.Clear();
-
-                _items = _itemDao.Load();
-                _items.Sort((item1, item2) => item1.Sale_Status.CompareTo(item2.Sale_Status));
-                foreach (Item item in _items)
-                {
-                    UC_ItemView uc_item = new UC_ItemView(item);
-                    uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
-                    wpItemsList.Children.Add(uc_item);
-                }
             }
         }
 
         private void btnRefresh_Click(object sender, RoutedEventArgs e)
         {
-            this.wpItemsList.Children.Clear();
-            
-            foreach (Item item in new Item_DAO().Load())
-            {
-                UC_ItemView uc_item = new UC_ItemView(item);
-                uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
-                wpItemsList.Children.Add(uc_item);
-
-            }
+            UserControl_Loaded(this, new RoutedEventArgs());
         }
 
         public void imgShoppingCart_MouseDown(object sender, MouseButtonEventArgs e)
@@ -216,38 +198,35 @@ namespace UTEMerchant
             Dictionary<Seller, List<Item>> items = new Dictionary<Seller, List<Item>>();
             foreach (UC_ShoppingCartItemsView sellerView in uc_ShoppingCart.spItems.Children.OfType<UC_ShoppingCartItemsView>())
             {
+                if (sellerView.GetSelectedItems().Count == 0) continue;
                 items.Add(sellerView.GetSeller(), sellerView.GetSelectedItems());
             }
 
-            WinPlaceOrder winPlaceOrder = new WinPlaceOrder(items, new user_DAO().GetUserByID(IdUser));
+            WinPlaceOrder winPlaceOrder = new WinPlaceOrder(items, double.Parse(tbTotalPriceValue.Text));
             winPlaceOrder.ShowDialog();
 
             if (winPlaceOrder.IsPlaceOrderComplete)
             {
                 uc_ShoppingCart.spItems.Children.Clear();
                 tbTotalPriceValue.Text = "0";
+
+                UserControl_Loaded(this, new RoutedEventArgs());
             }
         }
 
         private void UserControl_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            InitializeComponent();
-            wpItemsList.Children.Clear();
-
-            _items = _itemDao.Load();
-            _items.Sort((item1, item2) => item1.Sale_Status.CompareTo(item2.Sale_Status));
-            foreach (Item item in _items)
+            // Activate the loaded event when the user control is visible
+            if (IsVisible)
             {
-                UC_ItemView uc_item = new UC_ItemView(item);
-                uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
-                wpItemsList.Children.Add(uc_item);
+                UserControl_Loaded(sender, new RoutedEventArgs());
             }
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             wpItemsList.Children.Clear();
-            _items = _itemDao.Load();
+            _items = _itemDao.Load().Where(i => i.SellerID != StaticValue.SELLER.SellerID).ToList();
             _items.Sort((item1, item2) => item1.Sale_Status.CompareTo(item2.Sale_Status));
             foreach (Item item in _items)
             {

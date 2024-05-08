@@ -387,9 +387,7 @@
             <Setter Property="FocusVisualStyle" Value="{x:Null}" />
             <Setter Property="Height" Value="35" />
             <Setter Property="Width" Value="150" />
-            <Setter Property="Margin" Value="0 20 0 0" />
             <Setter Property="FontSize" Value="13" />
-            <Setter Property="HorizontalAlignment" Value="Right" />
             <Setter Property="Grid.Row" Value="1" />
             <Setter Property="Template" >
                 <Setter.Value>
@@ -637,7 +635,7 @@
             </Setter>
         </Style>
 
-        <Style x:Key="DataGridStyle1" TargetType="{x:Type DataGrid}">
+        <Style x:Key="DataGridStyle" TargetType="{x:Type DataGrid}">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="#222528"/>
             <Setter Property="BorderThickness" Value="0"/>
@@ -711,7 +709,7 @@
             </Style.Triggers>
         </Style>
 
-        <Style x:Key="DataGridRowStyle1" TargetType="{x:Type DataGridRow}">
+        <Style x:Key="DataGridRowStyle" TargetType="{x:Type DataGridRow}">
             <Setter Property="Margin" Value="0 4 0 0" />
             <Setter Property="Background" Value="#FFFFFF"/>
             <Setter Property="SnapsToDevicePixels" Value="true"/>
@@ -764,7 +762,7 @@
             </Style.Triggers>
         </Style>
 
-        <Style x:Key="DataGridCellStyle1" TargetType="{x:Type DataGridCell}">
+        <Style x:Key="DataGridCellStyle" TargetType="{x:Type DataGridCell}">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="FocusVisualStyle" Value="{x:Null}" />
@@ -793,7 +791,7 @@
             </Setter>
         </Style>
 
-        <Style x:Key="DataGridColumnHeaderStyle1" TargetType="{x:Type DataGridColumnHeader}">
+        <Style x:Key="DataGridColumnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="Foreground" Value="#69717D" />
@@ -1095,7 +1093,7 @@
                                           Margin="10,0"/>
                             <ContentPresenter Grid.Column="0" x:Name="contentPresenter" 
                                               ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" 
-                                              Content="{TemplateBinding SelectionBoxItem}" 
+                                              Content="{TemplateBinding Text}" 
                                               ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" 
                                               HorizontalAlignment="Left" 
                                               Margin="10,0,0,0" 
@@ -1438,24 +1436,25 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="RadioButton">
-                        <Grid >
-                            <TextBlock x:Name="tb"
-                                       Background="Transparent"
-                                       Text="{TemplateBinding Content}"
-                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                       FontWeight="Bold"
-                                       FontSize="{TemplateBinding FontSize}"
-                                       Foreground="{TemplateBinding Foreground}">
-                                <TextBlock.Effect>
-                                    <DropShadowEffect ShadowDepth="3" Color="Black" Opacity="0.5"/>
-                                </TextBlock.Effect>
-                            </TextBlock>
+                        <Grid>
                             <Border x:Name="brd"
                                     Visibility="Visible"
                                     Background="Transparent"
-                                    BorderBrush="LightGray"
-                                    BorderThickness="0,0,0,2"/>
+                                    BorderBrush="Transparent"
+                                    BorderThickness="0,0,0,2">
+                                <TextBlock x:Name="tb"
+                                           Background="Transparent"
+                                           Text="{TemplateBinding Content}"
+                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                           FontWeight="Bold"
+                                           FontSize="{TemplateBinding FontSize}"
+                                           Foreground="{TemplateBinding Foreground}">
+
+                                </TextBlock>
+                            </Border>
+                            
+                            
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">

@@ -20,10 +20,8 @@ namespace UTEMerchant
     public partial class WinPlaceOrder : Window
     {
         private readonly Dictionary<Seller, List<Item>> _items;
-        private readonly User _user;
-        private double _subTotalPrice;
-        private double _shippingFee;
-        private double _totalPrice;
+        //private readonly User _user;
+        private double? _totalPrice;
         private bool _placeOrderSuccessful = false;
 
 
@@ -32,32 +30,46 @@ namespace UTEMerchant
             InitializeComponent();
         }
 
-        public WinPlaceOrder(Dictionary<Seller, List<Item>> items, User user) : this()
+        public WinPlaceOrder(Dictionary<Seller, List<Item>> items, double TotalPrice) : this()
         {
             this._items = items;
-            _user = user;
+            this._totalPrice = TotalPrice;
+            
         }
 
         public bool IsPlaceOrderComplete => _placeOrderSuccessful;
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            if (_user != null) tbDeliveryAddress.Text = $"{_user.District} {_user.Ward} {_user.City}";
+            _placeOrderSuccessful = false;
+            if (_totalPrice != null)
+            {
+                tbTotal.Text = "$" + _totalPrice.Value.ToString("F");
+            }
+
+            if (StaticValue.USER != null)
+            {
+                tbDeliveryAddress.Text = $" {StaticValue.USER.Ward}, {StaticValue.USER.District}, {StaticValue.USER.City}";
+                tbDeliveryEmail.Text = StaticValue.USER.Email;
+                tbDeliveryName.Text = StaticValue.USER.Name;
+                tbDeliveryPhone.Text = StaticValue.USER.Phone;
+
+            } 
+                
             if (_items != null)
             {
                 foreach (KeyValuePair<Seller, List<Item>> entry in _items)
                 {
                     AddItems(entry.Key, entry.Value);
                 }
-                _subTotalPrice = CalculateSubTotalPrice();
-                tbSubTotal.Text = "$" + _subTotalPrice.ToString("F");
+
             }
-            cbShippingChanel.SelectedValue = "Standard Shipping";
         }
 
         private void AddItems(Seller seller, List<Item> items)
         {
             UC_PlaceOrderItemsBox box = new UC_PlaceOrderItemsBox(seller);
+            
             foreach (Item item in items)
             {
                 box.AddItem(item);
@@ -81,52 +93,87 @@ namespace UTEMerchant
             }
         }
 
-        private double CalculateSubTotalPrice()
-        {
-            double totalPrice = 0;
-            
-            foreach (KeyValuePair<Seller, List<Item>> entry in _items)
-            {
-                foreach (Item item in entry.Value)
-                {
-                    totalPrice += item.Price;
-                }
-            }
-
-            return totalPrice;
-        }
-
-        private void cbShippingChanel_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (cbShippingChanel.SelectedIndex == 0)
-            {
-                _shippingFee = 5;
-                tbShippingCost.Text = "$5.00";
-                tbTotal.Text = "$" + CalculateTotalPrice().ToString("F");
-            }
-            else if (cbShippingChanel.SelectedIndex == 1)
-            {
-                _shippingFee = 10;
-                tbShippingCost.Text = "$10.00";
-                tbTotal.Text = "$" + CalculateTotalPrice().ToString("F");
-            }
-            else
-            {
-                _shippingFee = 0;
-                tbShippingCost.Text = "$0.00";
-                tbTotal.Text = "$" + CalculateTotalPrice().ToString("F");
-            }
-        }
-
-        private double CalculateTotalPrice()
-        {
-            return _subTotalPrice + _shippingFee;
-        }
+        //private void cbShippingChanel_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    if (cbShippingChanel.SelectedIndex == 0)
+        //    {
+        //        _shippingFee = 5;
+        //        tbShippingCost.Text = "$5.00";
+        //        tbTotal.Text = "$" + CalculateTotalPrice().ToString("F");
+        //    }
+        //    else if (cbShippingChanel.SelectedIndex == 1)
+        //    {
+        //        _shippingFee = 10;
+        //        tbShippingCost.Text = "$10.00";
+        //        tbTotal.Text = "$" + CalculateTotalPrice().ToString("F");
+        //    }
+        //    else
+        //    {
+        //        _shippingFee = 0;
+        //        tbShippingCost.Text = "$0.00";
+        //        tbTotal.Text = "$" + CalculateTotalPrice().ToString("F");
+        //    }
+        //}
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            _placeOrderSuccessful = true;
-            this.Close();
+            // Check if the user has entered details for delivery address
+            if (tbDeliveryAddress.Text == "")
+            {
+                MessageBox.Show("Please enter your delivery address.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            try
+            {
+                List<Item> items = new List<Item>();
+                foreach (KeyValuePair<Seller, List<Item>> pair in _items)
+                {
+                    items.AddRange(pair.Value);
+                }
+                new PurchasedItem_DAO().RequestItems(items, StaticValue.USER.Id_user,tbDeliveryAddress.Text, tbDeliveryName.Text, tbDeliveryPhone.Text,tbDeliveryEmail.Text);
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while placing the order. Please try again later.", "Error",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            finally
+            {
+                _placeOrderSuccessful = true;
+                this.Close();
+            }
+
+        }
+
+        private void tbDeliveryAddress_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            // Split the address into city, district, ward, and details and remove any leading/trailing spaces
+            string[] addressParts = tbDeliveryAddress.Text.Split(',');
+
+            int len = addressParts.Length;
+            for (int i = len - 1; i >= 0; i--)
+            {
+                if (addressParts[i] != string.Empty) addressParts[i] = addressParts[i].Trim();
+            }
+
+            string city = addressParts[--len];
+            string district = addressParts[--len];
+            string ward = addressParts[--len];
+
+            // Join the rest of the array
+            string details = string.Join(",", addressParts.Take(len));
+
+            WinAddressCustomization winAddressCustomization =
+                new WinAddressCustomization(city, district, ward, details);
+            if (winAddressCustomization.ShowDialog() == true)
+            {
+                var address = $"{winAddressCustomization.Details}, {winAddressCustomization.Ward}, {winAddressCustomization.District}, {winAddressCustomization.City}";
+                tbDeliveryAddress.Text = address;
+            }
+
         }
     }
 }

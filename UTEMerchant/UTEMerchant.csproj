@@ -221,6 +221,7 @@
     <Compile Include="Seller.cs" />
     <Compile Include="Seller_DAO.cs" />
     <Compile Include="PercentageConverter.cs" />
+    <Compile Include="StaticValue.cs" />
     <Compile Include="StringNullOrEmptyToVisibilityConverter.cs" />
     <Compile Include="TextToVisibilityConverter.cs" />
     <Compile Include="UCtextBox.xaml.cs">
@@ -229,8 +230,14 @@
     <Compile Include="UC_BuyerProfile.xaml.cs">
       <DependentUpon>UC_BuyerProfile.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UC_CancelledItem.xaml.cs">
+      <DependentUpon>UC_CancelledItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UC_CompletedItem.xaml.cs">
       <DependentUpon>UC_CompletedItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_DeliveringItem.xaml.cs">
+      <DependentUpon>UC_DeliveringItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="UC_DeliveryUI.xaml.cs">
       <DependentUpon>UC_DeliveryUI.xaml</DependentUpon>
@@ -261,6 +268,18 @@
     </Compile>
     <Compile Include="UC_ItemView.xaml.cs">
       <DependentUpon>UC_ItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_PendingItem.xaml.cs">
+      <DependentUpon>UC_PendingItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_PendingItemsBox.xaml.cs">
+      <DependentUpon>UC_PendingItemsBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_PendingOrderBox.xaml.cs">
+      <DependentUpon>UC_PendingOrderBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_PendingOrderReview.xaml.cs">
+      <DependentUpon>UC_PendingOrderReview.xaml</DependentUpon>
     </Compile>
     <Compile Include="UC_PlaceOrderItem.xaml.cs">
       <DependentUpon>UC_PlaceOrderItem.xaml</DependentUpon>
@@ -295,9 +314,6 @@
     <Compile Include="UC_ShoppingCartItemsView.xaml.cs">
       <DependentUpon>UC_ShoppingCartItemsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UC_ShoppingCartItemView.xaml.cs">
-      <DependentUpon>UC_ShoppingCartItemView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UC_SignUpStep1.xaml.cs">
       <DependentUpon>UC_SignUpStep1.xaml</DependentUpon>
     </Compile>
@@ -310,11 +326,14 @@
     <Compile Include="UC_StartSelling.xaml.cs">
       <DependentUpon>UC_StartSelling.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UC_ToReceiveItem.xaml.cs">
-      <DependentUpon>UC_ToReceiveItem.xaml</DependentUpon>
+    <Compile Include="UC_DeliveringItemsBox.xaml.cs">
+      <DependentUpon>UC_DeliveringItemsBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />
     <Compile Include="user_DAO.cs" />
+    <Compile Include="WinAddressCustomization.xaml.cs">
+      <DependentUpon>WinAddressCustomization.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WinBuyingInterface.xaml.cs">
       <DependentUpon>WinBuyingInterface.xaml</DependentUpon>
     </Compile>
@@ -323,6 +342,9 @@
     </Compile>
     <Compile Include="WinForgotPassword.xaml.cs">
       <DependentUpon>WinForgotPassword.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinImageZoom.xaml.cs">
+      <DependentUpon>WinImageZoom.xaml</DependentUpon>
     </Compile>
     <Compile Include="WinNewItem.xaml.cs">
       <DependentUpon>WinNewItem.xaml</DependentUpon>
@@ -353,9 +375,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="UC_CancelledItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UC_CompletedItem.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UC_DeliveringItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UC_DeliveryUI.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -396,6 +426,22 @@
     <Page Include="UC_ItemView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UC_PendingItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC_PendingItemsBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC_PendingOrderBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC_PendingOrderReview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UC_PlaceOrderItem.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -441,10 +487,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UC_ShoppingCartItemView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="UC_SignUpStep1.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -461,9 +503,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UC_ToReceiveItem.xaml">
+    <Page Include="UC_DeliveringItemsBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WinAddressCustomization.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WinBuyingInterface.xaml">
       <SubType>Designer</SubType>
@@ -476,6 +522,10 @@
     <Page Include="WinForgotPassword.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WinImageZoom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WinLogin.xaml">
       <SubType>Designer</SubType>
@@ -543,6 +593,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Img\image declined.png" />
     <Resource Include="Img\icons8-account-50.png" />
     <Resource Include="Img\icons8-sign-up-80.png" />
     <EmbeddedResource Include="Properties\Resources.resx">

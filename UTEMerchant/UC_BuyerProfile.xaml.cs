@@ -23,7 +23,7 @@ namespace UTEMerchant
     public partial class UC_BuyerProfile : UserControl
     {
         public event EventHandler SavedButtonClicked;
-        User user =new User();
+        //User user =new User();
         string selectedCity;
         string selectedDistrict;
         user_DAO user_dao = new user_DAO();
@@ -35,23 +35,23 @@ namespace UTEMerchant
             InitializeComponent();
         }
 
-        public void SetDefault(User user)
+        public void SetDefault()
         {
-            this.user = user;
+            
             distinctCities = address_dao.Load();
             cbPickupCity.Items.Clear();
             foreach (Address address in distinctCities)
             {
                 cbPickupCity.Items.Add(address.City);
             }
-            txtUserFullName.Text = user.Name;      
-            txtUserID.Text = user.Id_user.ToString();
-            txtUserEmail.Text = user.Email;
-            txtUserPhoneNumber.Text = user.Phone.ToString();
-            txtUserCity.Text = user.City;
-            txtUserDistrict.Text = user.District;
-            txtUserWard.Text = user.Ward;
-            image_path = user.Image_Path;
+            txtUserFullName.Text = StaticValue.USER.Name;      
+            txtUserID.Text = StaticValue.USER.Id_user.ToString();
+            txtUserEmail.Text = StaticValue.USER.Email;
+            txtUserPhoneNumber.Text = StaticValue.USER.Phone.ToString();
+            txtUserCity.Text = StaticValue.USER.City;
+            txtUserDistrict.Text = StaticValue.USER.District;
+            txtUserWard.Text = StaticValue.USER.Ward;
+            image_path = StaticValue.USER.Image_Path;
             var resourceUri = new Uri(image_path, UriKind.RelativeOrAbsolute);
             imgUserPhoto.Source = new BitmapImage(resourceUri);
 
@@ -170,33 +170,33 @@ namespace UTEMerchant
             txtUserDistrict.Visibility = Visibility.Visible;
             btnSave.Visibility = Visibility.Collapsed;
 
-            user.Id_user = Int32.Parse(txtUserID.Text);
+            StaticValue.USER.Id_user = Int32.Parse(txtUserID.Text);
             if (string.IsNullOrWhiteSpace(txtUserFullName.Text) || string.IsNullOrWhiteSpace(txtUserEmail.Text) ||
                 string.IsNullOrWhiteSpace(txtUserWard.Text) || string.IsNullOrWhiteSpace(txtUserPhoneNumber.Text)
                 )
             {
                 MessageBox.Show("Please complete all information");
-                txtUserFullName.Text = user.Name;
-                txtUserEmail.Text = user.Email;
-                txtUserWard.Text = user.Ward;
-                txtUserPhoneNumber.Text = user.Phone;
+                txtUserFullName.Text = StaticValue.USER.Name;
+                txtUserEmail.Text = StaticValue.USER.Email;
+                txtUserWard.Text = StaticValue.USER.Ward;
+                txtUserPhoneNumber.Text = StaticValue.USER.Phone;
             }
             else
             {
-                user.Name = txtUserFullName.Text;
-                user.Email = txtUserEmail.Text;
+                StaticValue.USER.Name = txtUserFullName.Text;
+                StaticValue.USER.Email = txtUserEmail.Text;
                 if (!string.IsNullOrEmpty(selectedCity))
-                    user.City = selectedCity;
-                else user.City = txtUserCity.Text;
+                    StaticValue.USER.City = selectedCity;
+                else StaticValue.USER.City = txtUserCity.Text;
                 if (!string.IsNullOrEmpty(selectedDistrict))
-                    user.District = selectedDistrict;
-                else user.District = txtUserDistrict.Text;
-                user.Ward = txtUserWard.Text;
-                user.Phone = txtUserPhoneNumber.Text;
+                    StaticValue.USER.District = selectedDistrict;
+                else StaticValue.USER.District = txtUserDistrict.Text;
+                StaticValue.USER.Ward = txtUserWard.Text;
+                StaticValue.USER.Phone = txtUserPhoneNumber.Text;
 
-                user.Image_Path = image_path;
+                StaticValue.USER.Image_Path = image_path;
 
-                user_dao.UpdateUser(user);
+                user_dao.UpdateUser(StaticValue.USER);
                 SavedButtonClicked?.Invoke(this, EventArgs.Empty);
                
             }
