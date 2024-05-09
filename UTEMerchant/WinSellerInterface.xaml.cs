@@ -271,6 +271,7 @@ namespace UTEMerchant
 
         private void CollapseAll()
         {
+            uc_WishList.Visibility = Visibility.Collapsed;
             grdSellerUI.Visibility = Visibility.Collapsed;
             uc_SellerUI.Visibility = Visibility.Collapsed;
             uc_Delivery.Visibility = Visibility.Collapsed;
@@ -305,6 +306,12 @@ namespace UTEMerchant
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void mnuitWishList_Click(object sender, RoutedEventArgs e)
+        {
+            CollapseAll();
+            uc_WishList.Visibility = Visibility.Visible;
         }
     }
 

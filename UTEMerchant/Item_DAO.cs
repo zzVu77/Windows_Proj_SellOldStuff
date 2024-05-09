@@ -82,6 +82,37 @@ namespace UTEMerchant
             conn.Close();
             return item;
         }
+
+        public Item GetAllInfoItemByItemID(int id)
+        {
+            Item item = null;
+            string sqlStr = "Select  * From  [dbo].[Item] Where @itemID = [dbo].[Item].Item_Id ";
+            SqlConnection conn = new SqlConnection(db.connectionString);
+            conn.Open();
+            SqlCommand command = new SqlCommand(sqlStr, conn);
+            command.Parameters.AddWithValue("@itemID", id);
+            SqlDataReader reader = command.ExecuteReader();
+            if (reader.Read())
+            {
+                int itemID = reader.GetInt32(0);
+                string name = reader.GetString(1);
+                double price = reader.GetDouble(2);
+                double originalPrice = reader.GetDouble(3);
+                string type = reader.GetString(4);
+                DateTime boughtDate=reader.GetDateTime(5);
+                string conditionScription = reader.GetString(6);
+                int condition = reader.GetInt32(7);
+                string imgPath=reader.GetString(8);
+                bool saleStatus=reader.GetBoolean(9);
+                string detail_Description=reader.GetString(10);
+                int sellerID = reader.GetInt32(11);
+                DateTime PostedDate = reader.GetDateTime(12);
+                return item = new Item(itemID, name, (float)price, (float)originalPrice, type, boughtDate, conditionScription, condition, imgPath, saleStatus, detail_Description, sellerID,PostedDate);
+
+            }
+            conn.Close();
+            return item;
+        }
         public List<Item> Search(string text)
         {
             string formattedText = text.ToUpper(); // Format the text to uppercase

@@ -137,8 +137,9 @@
                                         <ColumnDefinition x:Name="cXIcon" Width="Auto"/>
                                     </Grid.ColumnDefinitions>
                                     <Image Grid.Column="0"
-                                           x:Name="imgSearchIcon" Margin="30,0,0,0"
-                                           Height="{Binding ElementName=txtSearchBox, Path=FontSize}"
+                                           x:Name="imgSearchIcon"  
+                                           Margin="30,0,18,0"
+                                           Height="24"                                          
                                            Source="{Icon:FeatherIconsImage Kind=Search, Brush=Black}" 
                                            Stretch="UniformToFill"
                                            VerticalAlignment="Center"/>

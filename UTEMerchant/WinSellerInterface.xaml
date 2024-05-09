@@ -401,29 +401,15 @@
                                            Stretch="Uniform"/>
                                 </MenuItem.Icon>
                             </MenuItem>
-                            <MenuItem x:Name="mnuitSettings"
-                                      Header="Settings"  
+                            <MenuItem x:Name="mnuitWishList"
+                                      Header="WishList"  
                                       FontWeight="SemiBold"
                                       Style="{StaticResource SubMenu_MenuItem}"
-                                      Background="{Binding ElementName=brdMenu, Path=Background}">
+                                      Background="{Binding ElementName=brdMenu, Path=Background}" Click="mnuitWishList_Click">
                                 <MenuItem.Icon>
-                                    <Image Source="{Icon:MaterialDesignImage Brush=Black, Kind=Settings}" 
+                                    <Image Source="{Icon:MaterialImage Brush=Black, Kind=Heart}" 
                                            Stretch="Uniform"/>
-                                </MenuItem.Icon>
-                                
-                                <MenuItem x:Name="mnuitDeleteAccount"
-                                          Header="Delete Account"
-                                          FontWeight="SemiBold"
-                                          Style="{StaticResource Menu_Item}"
-                                          Background="{Binding ElementName=mnuitSettings, Path=Background}"
-                                          Width="{Binding ElementName=mnuitSettings,Path=ActualWidth}">
-                                    <MenuItem.Icon>
-                                        <Image Source="{Icon:MaterialDesignImage Brush=Black, Kind=Delete}" 
-                                               Stretch="Uniform"/>
-                                    </MenuItem.Icon>
-
-                                </MenuItem>
-                                
+                                </MenuItem.Icon>                                          
                             </MenuItem>
                         </Menu>
 
@@ -483,7 +469,10 @@
                 <local:UC_SellerProfile x:Name="uc_SellerProfile"
                                         Visibility="Collapsed"/>
 
-                
+                <local:UC_WishListUI x:Name="uc_WishList"
+                                     Visibility="Collapsed"/>
+
+
             </Grid>
 
         
