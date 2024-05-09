@@ -48,6 +48,7 @@
                 </Border>
 
                 <Button Grid.Column="0"
+                        Margin="0 15 0 0"
                         Height="40"
                         Width="100"
                         Style="{StaticResource OrderButton}"                        
@@ -61,6 +62,7 @@
                     </StackPanel>
                 </Button>
                 <Button Grid.Column="0"
+                        Margin="0 15 0 0"
                         Background="LightBlue" 
                         Style="{StaticResource OrderButton}" 
                         VerticalAlignment="Bottom" 

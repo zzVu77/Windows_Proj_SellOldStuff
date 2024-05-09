@@ -7,7 +7,7 @@
               xmlns:hc="https://handyorg.github.io/handycontrol"
              xmlns:local="clr-namespace:UTEMerchant"
              mc:Ignorable="d" 
-            d:DesignHeight="307" d:DesignWidth="240">
+            d:DesignHeight="330" d:DesignWidth="240">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -20,7 +20,7 @@
         <hc:Card  Width="200" 
                   BorderThickness="0,0,0,0"
                   Effect="{DynamicResource EffectShadow2}" 
-                  Margin="8,0,8,0"  Height="307" 
+                  Margin="8,0,8,0"  Height="330" 
                   VerticalAlignment="Center" 
                   Background="White" 
                   BorderBrush="#FF736161">
@@ -28,7 +28,9 @@
             <!--Card Content section-->
             <Border CornerRadius="4,4,0,0" Width="160" Height="160">
                 <!--<TextBlock   TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Text="test" Foreground="{x:Null}"/>-->
-                <Image x:Name="imgItemPic"/>
+                <Image x:Name="imgItemPic"
+                       Stretch="Uniform"
+                       />
             </Border>
             <!--Card Footer part-->
             <hc:Card.Footer >
@@ -146,7 +148,16 @@
                             </Grid>
                         </Button>
                         <Image x:Name="imgSoldStamp" Visibility="Collapsed" Source="Img/sold-stamp-3.png" Height="29" Width="63" HorizontalAlignment="Right" Margin="61,0,0,0"  />
-                        <TextBlock Text="4 days ago" 
+                        <StackPanel>
+                            <TextBlock Text="USA" 
+                                   x:Name="txblLocation"
+                                   HorizontalAlignment="Right" 
+                                   VerticalAlignment="Center" 
+                                   FontFamily="Segoe UI" 
+                                   FontWeight="Bold"
+                                   Visibility="Visible"                                   
+                                   />
+                            <TextBlock Text="4 days ago" 
                                    x:Name="txblPostedDate"
                                    HorizontalAlignment="Right" 
                                    VerticalAlignment="Center" 
@@ -154,6 +165,9 @@
                                    FontWeight="SemiBold"
                                    Visibility="Visible"
                                    />
+                            
+                            
+                        </StackPanel>
 
                     </DockPanel>
 

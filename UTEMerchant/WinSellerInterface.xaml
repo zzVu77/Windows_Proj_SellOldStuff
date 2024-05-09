@@ -302,7 +302,7 @@
                                     <VirtualizingStackPanel Orientation="Vertical"/>
                                 </ItemsPanelTemplate>
                             </Menu.ItemsPanel>
-                            <MenuItem x:Name="mnuitProfile"
+                            <!--<MenuItem x:Name="mnuitProfile"
                                       Header="Profile"
                                       FontWeight="SemiBold"
                                       Style="{StaticResource SubMenu_MenuItem}"
@@ -311,12 +311,11 @@
                                     <Image Source="{Icon:ModernImage Brush=Black, Kind=PeopleProfile}" 
                                            Stretch="Uniform"/>
                                 </MenuItem.Icon>                               
-                            </MenuItem>
+                            </MenuItem>-->
                             <MenuItem x:Name="mnuitBuyerProfile"
-                                      Margin="30 0 0 0"
                                       Header="Buyer Profile"
                                       FontWeight="SemiBold"
-                                      Visibility="Collapsed"
+                                      Visibility="Visible"
                                       Style="{StaticResource Menu_Item}"
                                       Background="{Binding ElementName=mnuitProfile, Path=Background}"
                                       Width="{Binding ElementName=mnuitProfile,Path=ActualWidth}"
@@ -325,23 +324,7 @@
                                     <Image Source="{Icon:MaterialImage Kind=Account, Brush=Black}"
                                                Stretch="Uniform"/>
                                 </MenuItem.Icon>
-                            </MenuItem>
-
-                            <MenuItem x:Name="mnuitSellerProfile"
-                                      Header="Seller Profile"
-                                      Visibility="Collapsed"
-                                      Margin="30 0 0 0"
-                                      FontWeight="SemiBold"
-                                      Style="{StaticResource Menu_Item}"
-                                      Background="{Binding ElementName=mnuitProfile, Path=Background}"
-                                      Width="{Binding ElementName=mnuitProfile,Path=ActualWidth}"
-                                      Click="mnuitSellerProfile_Click">
-                                <MenuItem.Icon>
-                                    <Image Source="{Icon:MaterialImage Kind=AccountTie, Brush=Black}"
-                                               Stretch="Uniform"/>
-                                </MenuItem.Icon>
-                            </MenuItem>
-
+                            </MenuItem>                         
 
                             <MenuItem x:Name="mnuitPurchase"
                                       Header="Purchase"     
@@ -355,7 +338,7 @@
 
                             </MenuItem>
                             <MenuItem x:Name="mnuitStock"
-                                      Header="Stock"    
+                                      Header="Seller"    
                                       FontWeight="SemiBold"
                                       Style="{StaticResource SubMenu_MenuItem}"
                                       Background="{Binding ElementName=brdMenu, Path=Background}"
@@ -364,6 +347,20 @@
                                     <Image Source="{Icon:ModernImage Brush=Black, Kind=Store}" 
                                            Stretch="Uniform"/>
                                 </MenuItem.Icon>                                
+                            </MenuItem>
+                            <MenuItem x:Name="mnuitSellerProfile"
+                                      Header="Seller Profile"
+                                      Visibility="Collapsed"
+                                      Margin="30 0 0 0"
+                                      FontWeight="SemiBold"
+                                      Style="{StaticResource Menu_Item}"
+                                      Background="{Binding ElementName=mnuitProfile, Path=Background}"
+                                      Width="{Binding ElementName=mnuitProfile,Path=ActualWidth}"
+                                      Click="mnuitSellerProfile_Click">
+                                <MenuItem.Icon>
+                                    <Image Source="{Icon:MaterialImage Kind=CardAccountDetails, Brush=Black}"
+                                               Stretch="Uniform"/>
+                                </MenuItem.Icon>
                             </MenuItem>
                             <MenuItem x:Name="mnuitInventory"
                                       Header="Inventory"
@@ -375,7 +372,7 @@
                                       Width="{Binding ElementName=mnuitStock,Path=ActualWidth}"
                                       Click="mnuitInventory_Click">
                                 <MenuItem.Icon>
-                                    <Image Source="{Icon:MaterialDesignImage Brush=Black, Kind=Delete}" 
+                                    <Image Source="{Icon:MaterialImage Brush=Black, Kind=Warehouse }" 
                                                Stretch="Uniform"/>
                                 </MenuItem.Icon>
                             </MenuItem>
@@ -390,7 +387,7 @@
                                       Width="{Binding ElementName=mnuitStock,Path=ActualWidth}" 
                                       Click="mnuitPendingOrder_Click">
                                 <MenuItem.Icon>
-                                    <Image Source="{Icon:MaterialDesignImage Brush=Black, Kind=Delete}" 
+                                    <Image Source="{Icon:MaterialDesignImage Brush=Black, Kind=CheckCircle}" 
                                                Stretch="Uniform"/>
                                 </MenuItem.Icon>
                             </MenuItem>

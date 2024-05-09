@@ -43,6 +43,7 @@
 
             <Button Grid.Column="0"
                     x:Name="btnChangePhoto"
+                    Margin="0 15 00 0"
                     Height="49"                 
                     Width="226"
                     Style="{StaticResource OrderButton}" 

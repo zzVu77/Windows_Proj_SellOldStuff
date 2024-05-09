@@ -23,6 +23,7 @@ namespace UTEMerchant
         public event EventHandler<RoutedEventArgs> ItemClicked;
 
         public Item info;
+        Seller_DAO seller_DAO = new Seller_DAO();
         
         public UC_ItemView()
         {
@@ -52,6 +53,7 @@ namespace UTEMerchant
             {
                 imgSoldStamp.Visibility=Visibility.Visible;
                 txblPostedDate.Visibility=Visibility.Hidden;
+                txblLocation.Visibility=Visibility.Hidden;
             }   
             txblItemName.Text = info.Name;
             txblPrice.Text = "$"+info.Price.ToString();
@@ -62,6 +64,7 @@ namespace UTEMerchant
             DateTime today = DateTime.Now;
             TimeSpan duration = today - info.PostedDate;
             txblPostedDate.Text = duration.Days.ToString() + " days ago";
+            txblLocation.Text = seller_DAO.GetSeller(this.info.SellerID).City.ToString();
 
 
         }

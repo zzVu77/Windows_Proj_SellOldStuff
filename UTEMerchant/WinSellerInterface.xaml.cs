@@ -116,18 +116,12 @@ namespace UTEMerchant
         private void mnuitPurchase_Click(object sender, RoutedEventArgs e)
         {
             CollapseAll();
-            mnuitBuyerProfile.Visibility = Visibility.Collapsed;
-            mnuitSellerProfile.Visibility = Visibility.Collapsed;
-            mnuitPendingOrder.Visibility = Visibility.Collapsed;
-            mnuitInventory.Visibility = Visibility.Collapsed;
             uc_PurchasingUI.Visibility = Visibility.Visible;
 
         }
 
         private void mnuitStock_Click(object sender, RoutedEventArgs e)
-        {
-            mnuitBuyerProfile.Visibility = Visibility.Collapsed;
-            mnuitSellerProfile.Visibility = Visibility.Collapsed;
+        {         
 
 
             // If the user is registered as a seller
@@ -137,12 +131,14 @@ namespace UTEMerchant
                 {
                     mnuitPendingOrder.Visibility = Visibility.Visible;
                     mnuitInventory.Visibility = Visibility.Visible;
+                    mnuitSellerProfile.Visibility = Visibility.Visible;
                     isFirstClickStock = false;
                 }
                 else
                 {
                     mnuitPendingOrder.Visibility = Visibility.Collapsed;
                     mnuitInventory.Visibility = Visibility.Collapsed;
+                    mnuitSellerProfile.Visibility = Visibility.Collapsed;
                     isFirstClickStock = true;
                 }
             }
@@ -150,7 +146,6 @@ namespace UTEMerchant
             else if (StaticValue.SELLER == null)
             {
                 CollapseAll();
-                mnuitBuyerProfile.Visibility = Visibility.Collapsed;
                 mnuitSellerProfile.Visibility = Visibility.Collapsed;
                 mnuitPendingOrder.Visibility = Visibility.Collapsed;
                 mnuitInventory.Visibility = Visibility.Collapsed;
@@ -166,10 +161,6 @@ namespace UTEMerchant
         {
             CollapseAll();
             uc_Delivery.Visibility = Visibility.Visible;
-            mnuitBuyerProfile.Visibility = Visibility.Collapsed;
-            mnuitSellerProfile.Visibility = Visibility.Collapsed;
-            mnuitPendingOrder.Visibility = Visibility.Collapsed;
-            mnuitInventory.Visibility = Visibility.Collapsed;
 
         }
 
@@ -288,8 +279,8 @@ namespace UTEMerchant
             uc_RegistrationComplete.Visibility = Visibility.Collapsed;
             uc_StartSelling.Visibility = Visibility.Collapsed;
             uc_PendingOrderReview.Visibility = Visibility.Collapsed;
-            uc_BuyerProfile.Visibility = Visibility.Collapsed;
             uc_SellerProfile.Visibility = Visibility.Collapsed;
+            uc_BuyerProfile.Visibility = Visibility.Collapsed;
         }
 
         private void mnuitProfile_Click(object sender, RoutedEventArgs e)

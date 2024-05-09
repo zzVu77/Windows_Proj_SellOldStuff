@@ -226,7 +226,7 @@ namespace UTEMerchant
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             wpItemsList.Children.Clear();
-            _items = _itemDao.Load().Where(i => i.SellerID != StaticValue.SELLER.SellerID).ToList();
+            if (StaticValue.SELLER != null) _items = _itemDao.Load().Where(i => i.SellerID != StaticValue.SELLER.SellerID).ToList(); else _items = _itemDao.Load();
             _items.Sort((item1, item2) => item1.Sale_Status.CompareTo(item2.Sale_Status));
             foreach (Item item in _items)
             {
