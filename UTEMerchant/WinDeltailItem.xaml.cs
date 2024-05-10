@@ -19,11 +19,12 @@ namespace UTEMerchant
     /// </summary>
     public partial class WinDeltailItem : Window
     {
-        
+        private bool checkWishList=false;
         public Item info;
         private Seller seller;
         private int Id_user;
         private ImgPath_DAO ImgPath_DAO = new ImgPath_DAO();
+        private WishList_DAO wishListDAO = new WishList_DAO();
         public WinDeltailItem()
         {
             InitializeComponent();
@@ -61,6 +62,13 @@ namespace UTEMerchant
         
         private void SetDefaultValue()
         {
+            if (wishListDAO.CheckAddedItemInWishList(info.Item_Id, Id_user) == true)
+            {
+                spAddToWishList.Visibility = Visibility.Collapsed;
+                spRemoveFromWishList.Visibility = Visibility.Visible;
+                btnAddToWishList.Background = Brushes.Black;
+                checkWishList = true;
+            }
             txblItemName.Text = info.Name;
             txbOriginalPrice.Text = info.Original_Price.ToString()+" $";
             txbBughtDate.Text=info.Bought_date.ToShortDateString();
@@ -127,6 +135,28 @@ namespace UTEMerchant
         private void iconClose_MouseUp_1(object sender, MouseButtonEventArgs e)
         {
             this.Close();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if(checkWishList==false)
+            {
+                DateTime now = DateTime.Now;
+                wishListDAO.Add(new WishList(this.Id_user, info.Item_Id, now));
+                checkWishList = true;
+                spAddToWishList.Visibility = Visibility.Collapsed;
+                spRemoveFromWishList.Visibility = Visibility.Visible;
+                btnAddToWishList.Background = Brushes.Black;
+            }    
+            else
+            {                
+                wishListDAO.RemoveItem(info.Item_Id,this.Id_user);
+                btnAddToWishList.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#E56B6F"));
+                checkWishList = false;
+                spAddToWishList.Visibility = Visibility.Visible;
+                spRemoveFromWishList.Visibility = Visibility.Collapsed;
+            }    
+
         }
     }
 }

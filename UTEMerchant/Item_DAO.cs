@@ -82,17 +82,68 @@ namespace UTEMerchant
             conn.Close();
             return item;
         }
-        public List<Item> Search(string text)
+
+        public Item GetAllInfoItemByItemID(int id)
+        {
+            Item item = null;
+            string sqlStr = "Select  * From  [dbo].[Item] Where @itemID = [dbo].[Item].Item_Id ";
+            SqlConnection conn = new SqlConnection(db.connectionString);
+            conn.Open();
+            SqlCommand command = new SqlCommand(sqlStr, conn);
+            command.Parameters.AddWithValue("@itemID", id);
+            SqlDataReader reader = command.ExecuteReader();
+            if (reader.Read())
+            {
+                int itemID = reader.GetInt32(0);
+                string name = reader.GetString(1);
+                double price = reader.GetDouble(2);
+                double originalPrice = reader.GetDouble(3);
+                string type = reader.GetString(4);
+                DateTime boughtDate=reader.GetDateTime(5);
+                string conditionScription = reader.GetString(6);
+                int condition = reader.GetInt32(7);
+                string imgPath=reader.GetString(8);
+                bool saleStatus=reader.GetBoolean(9);
+                string detail_Description=reader.GetString(10);
+                int sellerID = reader.GetInt32(11);
+                DateTime PostedDate = reader.GetDateTime(12);
+                return item = new Item(itemID, name, (float)price, (float)originalPrice, type, boughtDate, conditionScription, condition, imgPath, saleStatus, detail_Description, sellerID,PostedDate);
+
+            }
+            conn.Close();
+            return item;
+        }
+        public List<Item> Search(string text, int sellerID)
         {
             string formattedText = text.ToUpper(); // Format the text to uppercase
             string query = @"
         SELECT *
         FROM [dbo].[Item]
-        WHERE (UPPER(type) LIKE '%' + @Text + '%' OR 
+        WHERE 
+           SellerID != @sellerID AND 
+            (
+            (UPPER(type) LIKE '%' + @Text + '%' OR 
               UPPER(name) LIKE '%' + @Text + '%' OR 
               UPPER(detail_description) LIKE '%' + @Text + '%' OR 
-              UPPER(condition_description) LIKE '%' + @Text + '%') ";   // AND [sale_status] = 0
-            return db.LoadData<Item>(query, new SqlParameter("@Text", formattedText));
+              UPPER(condition_description) LIKE '%' + @Text + '%')
+            )";   // AND [sale_status] = 0
+            return db.LoadData<Item>(query, new SqlParameter("@sellerID", sellerID), new SqlParameter("@Text", formattedText));
+        }
+
+        public List<Item> SearchForWishList(string text, int userID)
+        {
+            string formattedText = text.ToUpper(); // Format the text to uppercase
+            string query = @"
+        SELECT  [dbo].[Item].*
+        FROM [dbo].[Item], [dbo].[WishList]
+        WHERE [dbo].[Item].Item_Id=[dbo].[WishList].Item_Id AND [dbo].[WishList].Id_user=@userID  AND 
+              (
+              (UPPER(type) LIKE '%' + @Text + '%' OR 
+              UPPER(name) LIKE '%' + @Text + '%' OR 
+              UPPER(detail_description) LIKE '%' + @Text + '%' OR 
+              UPPER(condition_description) LIKE '%' + @Text + '%') 
+              )";   // AND [sale_status] = 0
+            return db.LoadData<Item>(query, new SqlParameter("@userID", userID),new SqlParameter("@Text", formattedText));
         }
         public List<Item> SortPrice()
         {

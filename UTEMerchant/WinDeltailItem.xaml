@@ -370,15 +370,33 @@
                             </Button>
 
                             <Button Grid.Column="1"
-                        Height="40"
-                        Width="150"
-                        Style="{StaticResource addButton}" 
-                        VerticalAlignment="Center"                                         
-                        HorizontalContentAlignment="Center"  >
-                                <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial Kind="HeartPlus" VerticalAlignment="Center" Margin="0 1 8 0" Width="17" Height="21"/>
-                                    <TextBlock Text="Add To WishList" FontWeight="Bold" FontFamily="Segoe UI" FontSize="15"/>
-                                </StackPanel>
+                                    Height="40"
+                                    Width="200"
+                                    x:Name="btnAddToWishList"
+                                    Style="{StaticResource addButton}" 
+                                    VerticalAlignment="Center"                                         
+                                    HorizontalContentAlignment="Center" Click="Button_Click"  >
+                                <Grid>
+                                    <StackPanel Orientation="Horizontal"
+                                                Visibility="Visible"
+                                                x:Name="spAddToWishList">
+                                        <Image Source="{Icon:MaterialImage Brush=White, Kind=HeartPlus}" 
+                                           VerticalAlignment="Center" Margin="0 1 8 0" Width="17" Height="21"
+                                           Stretch="Uniform"/>
+                                        <TextBlock Text="Add To WishList" FontWeight="Bold" FontFamily="Segoe UI" FontSize="15"/>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal"
+                                                Visibility="Collapsed"
+                                                x:Name="spRemoveFromWishList">
+                                        <Image Source="{Icon:MaterialImage Brush=White, Kind=HeartMinus}" 
+                                           VerticalAlignment="Center" Margin="0 1 8 0" Width="17" Height="21"
+                                           Stretch="Uniform"/>
+                                        <TextBlock Text="Remove From WishList" FontWeight="Bold" FontFamily="Segoe UI" FontSize="15"/>
+                                    </StackPanel>
+                                </Grid>
+                                                            
+
                             </Button>
                         </DockPanel>
                     </StackPanel>
