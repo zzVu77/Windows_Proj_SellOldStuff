@@ -113,17 +113,21 @@ namespace UTEMerchant
             conn.Close();
             return item;
         }
-        public List<Item> Search(string text)
+        public List<Item> Search(string text, int sellerID)
         {
             string formattedText = text.ToUpper(); // Format the text to uppercase
             string query = @"
         SELECT *
         FROM [dbo].[Item]
-        WHERE (UPPER(type) LIKE '%' + @Text + '%' OR 
+        WHERE 
+           SellerID != @sellerID AND 
+            (
+            (UPPER(type) LIKE '%' + @Text + '%' OR 
               UPPER(name) LIKE '%' + @Text + '%' OR 
               UPPER(detail_description) LIKE '%' + @Text + '%' OR 
-              UPPER(condition_description) LIKE '%' + @Text + '%') ";   // AND [sale_status] = 0
-            return db.LoadData<Item>(query, new SqlParameter("@Text", formattedText));
+              UPPER(condition_description) LIKE '%' + @Text + '%')
+            )";   // AND [sale_status] = 0
+            return db.LoadData<Item>(query, new SqlParameter("@sellerID", sellerID), new SqlParameter("@Text", formattedText));
         }
 
         public List<Item> SearchForWishList(string text, int userID)

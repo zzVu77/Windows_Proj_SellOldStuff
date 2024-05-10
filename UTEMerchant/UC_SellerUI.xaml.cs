@@ -124,7 +124,7 @@ namespace UTEMerchant
             {
                 if (!string.IsNullOrWhiteSpace(textBoxFilter.Text))
                 {
-                    List<Item> itemsSearch = dao.Search(textBoxFilter.Text);
+                    List<Item> itemsSearch = dao.Search(textBoxFilter.Text, StaticValue.SELLER.SellerID);
                     if (itemsSearch.Count > 0)
                     {
                         productGrid.Items.Clear();

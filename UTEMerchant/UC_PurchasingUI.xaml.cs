@@ -246,7 +246,7 @@ namespace UTEMerchant
             {
                 if (!string.IsNullOrWhiteSpace(txtSearchBox.Text))
                 {
-                    List<Item> items = _itemDao.Search(txtSearchBox.Text);
+                    List<Item> items = _itemDao.Search(txtSearchBox.Text, StaticValue.SELLER.SellerID);
                     if (items.Count > 0)
                     {
                         wpItemsList.Children.Clear();
@@ -279,7 +279,7 @@ namespace UTEMerchant
         {
             if (!string.IsNullOrWhiteSpace(txtSearchBox.Text))
             {
-                List<Item> items = _itemDao.Search(txtSearchBox.Text);
+                List<Item> items = _itemDao.Search(txtSearchBox.Text, StaticValue.SELLER.SellerID);
                 if (items.Count > 0)
                 {
                     wpItemsList.Children.Clear();
