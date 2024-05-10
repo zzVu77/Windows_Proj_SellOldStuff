@@ -151,7 +151,9 @@
                                              Tag="Search all orders"
                                              FontSize="15"
                                              FocusVisualStyle="{x:Null}"
-                                             Style="{StaticResource DefaultTextBoxStyle}"/>
+                                             Style="{StaticResource DefaultTextBoxStyle}"
+                                             KeyDown="txtSearchBox_KeyDown"
+                                             />
                                     <Image x:Name="XIcon"
                                            Source="{Icon:FeatherIconsImage Kind=X, Brush=Black}"
                                            Stretch="UniformToFill"

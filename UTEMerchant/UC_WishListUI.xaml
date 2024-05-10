@@ -130,7 +130,7 @@
                                     Background="White"
                                     BorderThickness="3"
                                     CornerRadius="20">
-                                <Grid x:Name="grdSearchBarSections">
+                                <Grid x:Name="grdSearchBarSections" >
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition x:Name="cSearchIcon" Width="Auto"/>
                                         <ColumnDefinition x:Name="cTextBox" Width="*"/>
@@ -141,7 +141,7 @@
                                            Height="24"
                                            Source="{Icon:FeatherIconsImage Kind=Search, Brush=Black}" 
                                            Stretch="UniformToFill"
-                                           VerticalAlignment="Center"/>
+                                           VerticalAlignment="Center" MouseLeftButtonDown="imgSearchIcon_MouseLeftButtonDown"/>
                                     <TextBox x:Name="txtSearchBox"
                                              Grid.Column="1"
                                              Margin="20,0,20,0"
@@ -150,7 +150,7 @@
                                              Tag="Search all orders"
                                              FontSize="15"
                                              FocusVisualStyle="{x:Null}"
-                                             Style="{StaticResource DefaultTextBoxStyle}"/>
+                                             Style="{StaticResource DefaultTextBoxStyle}" KeyDown="txtSearchBox_KeyDown_1"/>
                                     <Image x:Name="XIcon"
                                            Source="{Icon:FeatherIconsImage Kind=X, Brush=Black}"
                                            Stretch="UniformToFill"

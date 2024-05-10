@@ -125,6 +125,22 @@ namespace UTEMerchant
               UPPER(condition_description) LIKE '%' + @Text + '%') ";   // AND [sale_status] = 0
             return db.LoadData<Item>(query, new SqlParameter("@Text", formattedText));
         }
+
+        public List<Item> SearchForWishList(string text, int userID)
+        {
+            string formattedText = text.ToUpper(); // Format the text to uppercase
+            string query = @"
+        SELECT  [dbo].[Item].*
+        FROM [dbo].[Item], [dbo].[WishList]
+        WHERE [dbo].[Item].Item_Id=[dbo].[WishList].Item_Id AND [dbo].[WishList].Id_user=@userID  AND 
+              (
+              (UPPER(type) LIKE '%' + @Text + '%' OR 
+              UPPER(name) LIKE '%' + @Text + '%' OR 
+              UPPER(detail_description) LIKE '%' + @Text + '%' OR 
+              UPPER(condition_description) LIKE '%' + @Text + '%') 
+              )";   // AND [sale_status] = 0
+            return db.LoadData<Item>(query, new SqlParameter("@userID", userID),new SqlParameter("@Text", formattedText));
+        }
         public List<Item> SortPrice()
         {
             return db.LoadData<Item>(@"

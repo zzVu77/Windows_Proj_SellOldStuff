@@ -229,6 +229,7 @@ namespace UTEMerchant
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             wpItemsList.Children.Clear();
+            _listItem.Clear();
             _wishItem = _wishListDAO.GetItemsByUserID(StaticValue.USER.Id_user);
             //if (StaticValue.SELLER != null) _wishItem = _itemDao.Load().Where(i => i.SellerID != StaticValue.SELLER.SellerID).ToList(); else _wishItem = _itemDao.Load();
             //_wishItem.Sort((item1, item2) => item1.Sale_Status.CompareTo(item2.Sale_Status));
@@ -243,15 +244,45 @@ namespace UTEMerchant
             }
         }
 
+        private void imgSearchIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(txtSearchBox.Text))
+            {
+                List<Item> items = _itemDao.SearchForWishList(txtSearchBox.Text, StaticValue.USER.Id_user);
+                if (items.Count > 0)
+                {
+                    wpItemsList.Children.Clear();
+                    foreach (Item item in items)
+                    {
+                        UC_ItemView uc_item = new UC_ItemView(item);
+                        uc_item.ItemClicked += OnItemButtonAddToCartClicked;
+                        uc_ShoppingCart.CheckCart();
+                        uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
+                        wpItemsList.Children.Add(uc_item);
+                    }
+                }
+            }
+            else
+            {
+                wpItemsList.Children.Clear();
+                foreach (Item item in _listItem)
+                {
+                    UC_ItemView uc_item = new UC_ItemView(item);
+                    uc_item.ItemClicked += OnItemButtonAddToCartClicked;
+                    uc_ShoppingCart.CheckCart();
+                    uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
+                    wpItemsList.Children.Add(uc_item);
+                }
+            }
+        }
 
-
-        private void txtSearchBox_KeyDown(object sender, KeyEventArgs e)
+        private void txtSearchBox_KeyDown_1(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
                 if (!string.IsNullOrWhiteSpace(txtSearchBox.Text))
                 {
-                    List<Item> items = _itemDao.Search(txtSearchBox.Text);
+                    List<Item> items = _itemDao.SearchForWishList(txtSearchBox.Text, StaticValue.USER.Id_user);
                     if (items.Count > 0)
                     {
                         wpItemsList.Children.Clear();
@@ -280,36 +311,6 @@ namespace UTEMerchant
             }
         }
 
-        private void imgSearchIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            if (!string.IsNullOrWhiteSpace(txtSearchBox.Text))
-            {
-                List<Item> items = _itemDao.Search(txtSearchBox.Text);
-                if (items.Count > 0)
-                {
-                    wpItemsList.Children.Clear();
-                    foreach (Item item in items)
-                    {
-                        UC_ItemView uc_item = new UC_ItemView(item);
-                        uc_item.ItemClicked += OnItemButtonAddToCartClicked;
-                        uc_ShoppingCart.CheckCart();
-                        uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
-                        wpItemsList.Children.Add(uc_item);
-                    }
-                }
-            }
-            else
-            {
-                wpItemsList.Children.Clear();
-                foreach (Item item in _listItem)
-                {
-                    UC_ItemView uc_item = new UC_ItemView(item);
-                    uc_item.ItemClicked += OnItemButtonAddToCartClicked;
-                    uc_ShoppingCart.CheckCart();
-                    uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
-                    wpItemsList.Children.Add(uc_item);
-                }
-            }
-        }
+
     }
 }
