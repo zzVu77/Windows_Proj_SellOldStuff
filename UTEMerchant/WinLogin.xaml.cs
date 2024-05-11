@@ -21,6 +21,7 @@ namespace UTEMerchant
     {
         List<User> users = new List<User>();
         user_DAO dao = new user_DAO();
+        Seller_DAO Seller_DAO = new Seller_DAO();
         public WinLogin()
         {
             InitializeComponent();
@@ -59,6 +60,8 @@ namespace UTEMerchant
                 if (user.Password == txtPassword.Password && user.User_name == txtUserName.Text)
                 {
                     StaticValue.USER = user;
+                    Seller seller = Seller_DAO.GetSellerByUserID(StaticValue.USER.Id_user);
+                    StaticValue.SELLER = seller;
                     this.Hide();
                     var purchasing = new WinSellerInterface();
                     purchasing.ShowDialog();

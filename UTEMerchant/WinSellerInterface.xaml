@@ -348,6 +348,20 @@
                                            Stretch="Uniform"/>
                                 </MenuItem.Icon>                                
                             </MenuItem>
+
+                            <MenuItem x:Name="mnuitDashBoard"
+                                      Header="Dashboard"  
+                                      Visibility="Collapsed"
+                                      Margin="30 0 0 0"
+                                      FontWeight="SemiBold"
+                                      Style="{StaticResource SubMenu_MenuItem}"
+                                      Background="{Binding ElementName=brdMenu, Path=Background}" Click="mnuitDashBoard_Click" >
+                                <MenuItem.Icon>
+                                    <Image Source="/Img/icons8-bar-chart-in-down-trend-after-market-crash-48.png" 
+                                           Stretch="Uniform"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+
                             <MenuItem x:Name="mnuitSellerProfile"
                                       Header="Seller Profile"
                                       Visibility="Collapsed"
@@ -411,6 +425,7 @@
                                            Stretch="Uniform"/>
                                 </MenuItem.Icon>                                          
                             </MenuItem>
+
                         </Menu>
 
                         <Button Style="{StaticResource menuButton}" VerticalAlignment="Bottom" DockPanel.Dock="Bottom" Margin="15 0 15 20" Click="Button_Click">
@@ -471,6 +486,8 @@
 
                 <local:UC_WishListUI x:Name="uc_WishList"
                                      Visibility="Collapsed"/>
+                <local:UC_DashBoard x:Name="uc_DashBoard"
+                                 Visibility="Collapsed"/>
 
 
             </Grid>

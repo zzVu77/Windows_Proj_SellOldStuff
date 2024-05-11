@@ -99,15 +99,13 @@ namespace UTEMerchant
                 //    }
                 //}
                 Seller seller = Seller_DAO.GetSellerByUserID(StaticValue.USER.Id_user);
-                if (seller != null)
-                {
-                    StaticValue.SELLER = seller;
+                if (StaticValue.SELLER != null)
+                {                    
                     uc_SellerUI.SetSeller();
                 }
                 txbName.Text = StaticValue.USER.Name;
                 uc_PurchasingUI.Visibility = Visibility.Visible;
                 uc_Delivery.SetUser();
-
                 uc_PendingOrderReview.SetSeller();
             }
 
@@ -129,6 +127,7 @@ namespace UTEMerchant
             {
                 if (isFirstClickStock)
                 {
+                    mnuitDashBoard.Visibility = Visibility.Visible;
                     mnuitPendingOrder.Visibility = Visibility.Visible;
                     mnuitInventory.Visibility = Visibility.Visible;
                     mnuitSellerProfile.Visibility = Visibility.Visible;
@@ -136,6 +135,7 @@ namespace UTEMerchant
                 }
                 else
                 {
+                    mnuitDashBoard.Visibility = Visibility.Collapsed;
                     mnuitPendingOrder.Visibility = Visibility.Collapsed;
                     mnuitInventory.Visibility = Visibility.Collapsed;
                     mnuitSellerProfile.Visibility = Visibility.Collapsed;
@@ -199,6 +199,7 @@ namespace UTEMerchant
             {
                 uc_RegistrationComplete.Visibility = Visibility.Collapsed;
                 uc_SellerUI.Visibility = Visibility.Visible;
+                uc_DashBoard.UserControl_Loaded(sender, new RoutedEventArgs());
             }
         }
 
@@ -271,6 +272,7 @@ namespace UTEMerchant
 
         private void CollapseAll()
         {
+            uc_DashBoard.Visibility=Visibility.Collapsed;
             uc_WishList.Visibility = Visibility.Collapsed;
             grdSellerUI.Visibility = Visibility.Collapsed;
             uc_SellerUI.Visibility = Visibility.Collapsed;
@@ -312,6 +314,13 @@ namespace UTEMerchant
         {
             CollapseAll();
             uc_WishList.Visibility = Visibility.Visible;
+        }
+
+        private void mnuitDashBoard_Click(object sender, RoutedEventArgs e)
+        {
+            CollapseAll();
+            uc_DashBoard.Visibility = Visibility.Visible;
+            uc_DashBoard.UserControl_Loaded(sender, new RoutedEventArgs());
         }
     }
 
