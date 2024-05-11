@@ -143,18 +143,6 @@ namespace UTEMerchant
 
         }
 
-        private void SelectDeliveryAddress_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            WinAddressOptions winAddressOptions = new WinAddressOptions(StaticValue.USER.Id_user, _deliveryAddress.ID);
-            winAddressOptions.ShowDialog();
-
-            if (winAddressOptions.DialogResult == true)
-            {
-                _deliveryAddress = winAddressOptions.SelectedDeliveryAddress;
-                grdDeliveryAddress_Loaded(this.grdDeliveryAddress, new RoutedEventArgs());
-            }
-        }
-
         private void grdDeliveryAddress_Loaded(object sender, RoutedEventArgs e)
         {
             if (_deliveryAddress != null)
@@ -167,6 +155,31 @@ namespace UTEMerchant
             {
                 ucAddressBox.Visibility = Visibility.Collapsed;
                 tbSelectDeliveryAddress.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void tbSelectDeliveryAddress_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            WinAddressOptions winAddressOptions = new WinAddressOptions(StaticValue.USER.Id_user);
+            winAddressOptions.ShowDialog();
+
+            if (winAddressOptions.DialogResult == true)
+            {
+                _deliveryAddress = winAddressOptions.SelectedDeliveryAddress;
+                grdDeliveryAddress_Loaded(this.grdDeliveryAddress, new RoutedEventArgs());
+            }
+        }
+
+        private void ucAddressBox_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (_deliveryAddress == null) return;
+            WinAddressOptions winAddressOptions = new WinAddressOptions(StaticValue.USER.Id_user, _deliveryAddress.ID);
+            winAddressOptions.ShowDialog();
+
+            if (winAddressOptions.DialogResult == true)
+            {
+                _deliveryAddress = winAddressOptions.SelectedDeliveryAddress;
+                grdDeliveryAddress_Loaded(this.grdDeliveryAddress, new RoutedEventArgs());
             }
         }
     }

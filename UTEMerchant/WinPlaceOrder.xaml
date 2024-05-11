@@ -70,13 +70,13 @@
                     <Grid x:Name="grdDeliveryAddress" 
                           Loaded="grdDeliveryAddress_Loaded">
                         <local:UC_AddressBox x:Name="ucAddressBox" 
-                                             MouseLeftButtonDown="SelectDeliveryAddress_MouseLeftButtonDown"
-                                             Visibility="Collapsed"/>
+                                             
+                                             Visibility="Collapsed" MouseLeftButtonDown="ucAddressBox_MouseLeftButtonDown"/>
                         <TextBlock x:Name="tbSelectDeliveryAddress"
                                    Text="Select a delivery address"
                                    FontSize="15"
-                                   TextAlignment="Center"
-                                   MouseLeftButtonDown="SelectDeliveryAddress_MouseLeftButtonDown"/>
+                                   TextAlignment="Center" MouseLeftButtonDown="tbSelectDeliveryAddress_MouseLeftButtonDown"
+                                   />
                     </Grid>
                 </Border>
             </StackPanel>

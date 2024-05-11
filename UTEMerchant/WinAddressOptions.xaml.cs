@@ -30,6 +30,11 @@ namespace UTEMerchant
             InitializeComponent();
         }
 
+        public WinAddressOptions(int userID) : this()
+        {
+            _userID = userID;
+        }
+
         public WinAddressOptions(int userID, int ID) : this()
         {
             _userID = userID;
@@ -78,13 +83,16 @@ namespace UTEMerchant
                 var addressBox = GetAddressBox(groupItem);
                 if (addressBox != null)
                 {
-                    if (deliveryAddress.ID == _selectedDeliveryPort)
+                    if (_selectedDeliveryPort != 0)
                     {
-                        // Set the radio button to checked
-                        var radioButton = GetRadioButton(groupItem);
-                        if (radioButton != null)
+                        if (deliveryAddress.ID == _selectedDeliveryPort)
                         {
-                            radioButton.IsChecked = true;
+                            // Set the radio button to checked
+                            var radioButton = GetRadioButton(groupItem);
+                            if (radioButton != null)
+                            {
+                                radioButton.IsChecked = true;
+                            }
                         }
                     }
                     addressBox.SetData(deliveryAddress);
