@@ -20,7 +20,7 @@ namespace UTEMerchant
     public partial class WinPlaceOrder : Window
     {
         private readonly Dictionary<Seller, List<Item>> _items;
-        //private readonly User _user;
+        private DeliveryAddress _deliveryAddress;
         private double? _totalPrice;
         private bool _placeOrderSuccessful = false;
 
@@ -49,11 +49,7 @@ namespace UTEMerchant
 
             if (StaticValue.USER != null)
             {
-                tbDeliveryAddress.Text = $" {StaticValue.USER.Ward}, {StaticValue.USER.District}, {StaticValue.USER.City}";
-                tbDeliveryEmail.Text = StaticValue.USER.Email;
-                tbDeliveryName.Text = StaticValue.USER.Name;
-                tbDeliveryPhone.Text = StaticValue.USER.Phone;
-
+                _deliveryAddress = new DeliveryAddress_DAO().GetUserDefaultAddress(StaticValue.USER.Id_user);
             } 
                 
             if (_items != null)
@@ -118,9 +114,9 @@ namespace UTEMerchant
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             // Check if the user has entered details for delivery address
-            if (tbDeliveryAddress.Text == "")
+            if (ucAddressBox.CheckNull)
             {
-                MessageBox.Show("Please enter your delivery address.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Please supply your delivery address.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -131,7 +127,7 @@ namespace UTEMerchant
                 {
                     items.AddRange(pair.Value);
                 }
-                new PurchasedItem_DAO().RequestItems(items, StaticValue.USER.Id_user,tbDeliveryAddress.Text, tbDeliveryName.Text, tbDeliveryPhone.Text,tbDeliveryEmail.Text);
+                new PurchasedItem_DAO().RequestItems(items, StaticValue.USER.Id_user, $"{_deliveryAddress}, {_deliveryAddress.Ward}, {_deliveryAddress.District}, {_deliveryAddress.City}", _deliveryAddress.RecipientName, _deliveryAddress.RecipientPhone);
             }
 
             catch (Exception ex)
@@ -139,7 +135,6 @@ namespace UTEMerchant
                 MessageBox.Show("An error occurred while placing the order. Please try again later.", "Error",
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
             finally
             {
                 _placeOrderSuccessful = true;
@@ -148,32 +143,31 @@ namespace UTEMerchant
 
         }
 
-        private void tbDeliveryAddress_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void SelectDeliveryAddress_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            // Split the address into city, district, ward, and details and remove any leading/trailing spaces
-            string[] addressParts = tbDeliveryAddress.Text.Split(',');
+            WinAddressOptions winAddressOptions = new WinAddressOptions(StaticValue.USER.Id_user, _deliveryAddress.ID);
+            winAddressOptions.ShowDialog();
 
-            int len = addressParts.Length;
-            for (int i = len - 1; i >= 0; i--)
+            if (winAddressOptions.DialogResult == true)
             {
-                if (addressParts[i] != string.Empty) addressParts[i] = addressParts[i].Trim();
+                _deliveryAddress = winAddressOptions.SelectedDeliveryAddress;
+                grdDeliveryAddress_Loaded(this.grdDeliveryAddress, new RoutedEventArgs());
             }
+        }
 
-            string city = addressParts[--len];
-            string district = addressParts[--len];
-            string ward = addressParts[--len];
-
-            // Join the rest of the array
-            string details = string.Join(",", addressParts.Take(len));
-
-            WinAddressCustomization winAddressCustomization =
-                new WinAddressCustomization(city, district, ward, details);
-            if (winAddressCustomization.ShowDialog() == true)
+        private void grdDeliveryAddress_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (_deliveryAddress != null)
             {
-                var address = $"{winAddressCustomization.Details}, {winAddressCustomization.Ward}, {winAddressCustomization.District}, {winAddressCustomization.City}";
-                tbDeliveryAddress.Text = address;
+                ucAddressBox.SetData(_deliveryAddress);
+                ucAddressBox.Visibility = Visibility.Visible;
+                tbSelectDeliveryAddress.Visibility = Visibility.Collapsed;
             }
-
+            else
+            {
+                ucAddressBox.Visibility = Visibility.Collapsed;
+                tbSelectDeliveryAddress.Visibility = Visibility.Visible;
+            }
         }
     }
 }

@@ -208,6 +208,8 @@
     <Compile Include="CustomerReviewDAO.cs" />
     <Compile Include="DAO.cs" />
     <Compile Include="DB_Connection.cs" />
+    <Compile Include="DeliveryAddress.cs" />
+    <Compile Include="DeliveryAddress_DAO.cs" />
     <Compile Include="ImgPath.cs" />
     <Compile Include="ImgPath_DAO.cs" />
     <Compile Include="InverseBooleanConverter.cs" />
@@ -226,6 +228,9 @@
     <Compile Include="TextToVisibilityConverter.cs" />
     <Compile Include="UCtextBox.xaml.cs">
       <DependentUpon>UCtextBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_AddressBox.xaml.cs">
+      <DependentUpon>UC_AddressBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="UC_BuyerProfile.xaml.cs">
       <DependentUpon>UC_BuyerProfile.xaml</DependentUpon>
@@ -337,6 +342,9 @@
     <Compile Include="WinAddressCustomization.xaml.cs">
       <DependentUpon>WinAddressCustomization.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WinAddressOptions.xaml.cs">
+      <DependentUpon>WinAddressOptions.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WinBuyingInterface.xaml.cs">
       <DependentUpon>WinBuyingInterface.xaml</DependentUpon>
     </Compile>
@@ -375,6 +383,10 @@
     <Page Include="UCtextBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UC_AddressBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UC_BuyerProfile.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -517,6 +529,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WinAddressCustomization.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinAddressOptions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

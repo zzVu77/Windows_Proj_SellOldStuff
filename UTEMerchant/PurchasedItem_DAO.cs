@@ -49,7 +49,7 @@ namespace UTEMerchant
                 );
         }
 
-        public void RequestItems(List<Item> items, int userId, string deliveryAddress, string name, string phone, string email) // Using PascalCase for method name
+        public void RequestItems(List<Item> items, int userId, string deliveryAddress, string recipientName, string recipientPhone) // Using PascalCase for method name
         {
             //DateTime requestDate = DateTime.Now;
             //foreach (var item in items)
@@ -70,21 +70,19 @@ namespace UTEMerchant
             foreach (var item in items)
             {
                 string sqlQuery = @"
-                INSERT INTO [dbo].[PurchasedProducts] (Id_user, Item_Id,  PurchaseDate, Delivery_Status, name, Phone, Email, Delivery_Address)
-                VALUES (@userId, @itemId, @requestDate, @deliveryStatus,@name, @phone, @email,@delivery_address )";
+                INSERT INTO [dbo].[PurchasedProducts] (Id_user, Item_Id, Delivery_Status, PurchaseDate, Delivery_address, Name, Phone)
+                VALUES (@userId, @itemId, @deliveryStatus, @requestDate, @deliveryAddress, @recipientName, @recipientPhone)";
                 new DB_Connection().ExecuteNonQuery(sqlQuery,
                     new SqlParameter("@userId", userId),
                     new SqlParameter("@itemId", item.Item_Id),
-                    new SqlParameter("@requestDate", requestDate),
                     new SqlParameter("@deliveryStatus", "pending"),
-                    new SqlParameter("@name", name),
-                    new SqlParameter("@phone", phone),
-                    new SqlParameter("@email", email),
-                    new SqlParameter("@delivery_address", deliveryAddress)
+                    new SqlParameter("@requestDate", requestDate),
+                    new SqlParameter("@deliveryAddress", deliveryAddress),
+                    new SqlParameter("@recipientName", recipientName),
+                    new SqlParameter("@recipientPhone", recipientPhone)
                 );
                 new Item_DAO().UpdateStatus(item.Item_Id);
             }
-
         }
 
 
@@ -158,6 +156,21 @@ namespace UTEMerchant
                 new SqlParameter("@purchaseId", purchaseId)
             );
             return items[0];
+        }
+
+        public User GetUser(int purchaseId)
+        {
+            List<purchasedItem> item = db.LoadData<purchasedItem>(@" SELECT * FROM [dbo].[PurchasedProducts] WHERE PurchaseID = @purchaseId",
+                new SqlParameter("@purchaseId", purchaseId)
+            );
+            List<User> users = db.LoadData<User>(@"
+            SELECT DISTINCT u.*
+            FROM [dbo].[User] u
+            JOIN [dbo].[PurchasedProducts] pp ON u.Id_user = pp.Id_user
+            WHERE pp.[PurchaseID] = @purchaseId",
+                new SqlParameter("@purchaseId", purchaseId)
+            );
+            return users[0];
         }
     }
 }

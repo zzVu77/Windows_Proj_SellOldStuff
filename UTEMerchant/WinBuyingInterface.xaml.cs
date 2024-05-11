@@ -60,7 +60,7 @@ namespace UTEMerchant
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            new PurchasedItem_DAO().RequestItems(new List<Item> { info }, Id_User, txtDeliveryAddress.Text, cbPickupWard.Text, cbPickupDistrict.Text, cbPickupCity.Text);
+            //new PurchasedItem_DAO().RequestItems(new List<Item> { info }, Id_User, txtDeliveryAddress.Text, cbPickupWard.Text, cbPickupDistrict.Text, cbPickupCity.Text);
             this.Close();
         }
 

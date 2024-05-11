@@ -106,13 +106,13 @@ namespace UTEMerchant
             if (StaticValue.SELLER != null && _pendingOrders != null)
             {
                 productGrid.Items.Clear();
-                List<User> users = new user_DAO().Load();
 
                 int len = _pendingOrders.Count();
                 // Create a new row for each pending order
                 foreach (var item in _pendingOrders)
                 {
                     string DeliveryAddress = item.Delivery_address;
+                    User user = new PurchasedItem_DAO().GetUser(item.Id_user);
                     productGrid.Items.Add
                     (new
                     {
@@ -120,12 +120,11 @@ namespace UTEMerchant
                         item.Item_Id,
                         new PurchasedItem_DAO().GetItem(item.PurchaseID).Name,
                         item.PurchaseDate,
-                        item.name,
                         new PurchasedItem_DAO().GetItem(item.PurchaseID).Price,
                         new PurchasedItem_DAO().GetItem(item.PurchaseID).Image_Path,
                         new PurchasedItem_DAO().GetItem(item.PurchaseID).PostedDate,
-                        users.FirstOrDefault(user => user.Id_user == item.Id_user)?.User_name,
-                        item.Phone,
+                        user.User_name,
+                        user.Phone,
                         DeliveryAddress
                     }
                     );

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:UTEMerchant"
         xmlns:hc="https://handyorg.github.io/handycontrol" x:Class="UTEMerchant.WinAddressCustomization"
         mc:Ignorable="d"
-        Title="WinAddressCustomization" Height="287" Width="611" Loaded="Window_Loaded">
+        Title="WinAddressCustomization" Height="450" Width="611" Loaded="Window_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -16,12 +16,45 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Label x:Name="lblYourAddress"
+        <Label x:Name="lblRecipient"
                Grid.Column="0"
                Grid.Row="0"
+               Grid.ColumnSpan="3"
+               Content="Recipient"
+               FontWeight="SemiBold"
+               Background="Transparent"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Center"
+               Margin="10,0"/>
+        <UniformGrid x:Name="ugRecipient"
+                     Grid.Column="0"
+                     Grid.Row="1"
+                     Grid.ColumnSpan="3"
+                     Columns="2"
+                     Margin="10">
+            <TextBox x:Name="txtRecipientName"
+                     Foreground="Black"
+                     Tag="Recipient name"
+                     Style="{StaticResource DefaultTextBoxStyle}"
+                     Background="Transparent"
+                     Margin="0,0,10,0"/>
+            <TextBox x:Name="txtRecipientPhone"
+                     Foreground="Black"
+                     Tag="Recipient phone"
+                     Style="{StaticResource DefaultTextBoxStyle}"
+                     Background="Transparent"
+                     Margin="10,0,0,0"/>
+        </UniformGrid>
+        <Label x:Name="lblAddress"
+               Grid.Column="0"
+               Grid.Row="2"
                Grid.ColumnSpan="3"
                Content="Address"
                FontWeight="SemiBold"
@@ -31,7 +64,7 @@
                Margin="10,0"/>
         <ComboBox x:Name="cbCity"
                   Grid.Column="0"
-                  Grid.Row="1"
+                  Grid.Row="3"
                   Foreground="Black"
                   Tag="City"
                   Style="{StaticResource DefaultComboBoxStyle}"
@@ -41,35 +74,88 @@
         </ComboBox>
         <ComboBox x:Name="cbDistrict"
                   Grid.Column="1"
-                  Grid.Row="1"
+                  Grid.Row="3"
                   Foreground="Black"
                   Tag="District"
                   Style="{StaticResource DefaultComboBoxStyle}"
                   Background="Transparent"
                   Margin="10">
+            <ComboBoxItem Content="District 1"/>
+            <ComboBoxItem Content="District 2"/>
+            <ComboBoxItem Content="District 3"/>
+            <ComboBoxItem Content="District 4"/>
+            <ComboBoxItem Content="District 5"/>
         </ComboBox>
         <ComboBox x:Name="cbWard"
                   Grid.Column="2"
-                  Grid.Row="1"
+                  Grid.Row="3"
                   Foreground="Black"
                   Tag="Ward"
                   Style="{StaticResource DefaultComboBoxStyle}"
                   Background="Transparent"
                   Margin="10">
+            <ComboBoxItem Content="Ward Nguyen Cu Trinh"/>
         </ComboBox>
-        <TextBox x:Name="tbDetails"
+        <TextBox x:Name="txtDetails"
                  Grid.Column="0"
                  Grid.ColumnSpan="3"
-                 Grid.Row="2"
+                 Grid.Row="4"
                  Foreground="Black"
                  Tag="Building name, building number, street name"
                  Style="{StaticResource DefaultTextBoxStyle}"
                  Background="Transparent"
                  Margin="10"/>
+        <CheckBox x:Name="cbSetAsDefault"
+                  Grid.Column="0"
+                  Grid.Row="5"
+                  Content="Set as default"
+                  Foreground="Black"
+                  Background="Transparent"
+                  Margin="10"/>
+        <Button x:Name="btnDeleteAddress"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                Grid.Row="6"
+                Height="{Binding ElementName=btnSave, Path=ActualHeight}"
+                Content="Delete this address"
+                Background="WhiteSmoke"
+                BorderThickness="0"
+                Foreground="#E56B6F"
+                FontWeight="DemiBold"
+                Click="BtnDeleteAddress_OnClick"
+                Margin="10">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="10">
+                                    <ContentPresenter HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#E56B6F"/>
+                                        <Setter Property="Foreground" Value="White"/>
+                                    </Trigger>
+                                    <Trigger Property="IsPressed" Value="True">
+                                        <Setter Property="Background" Value="#E56B6F"/>
+                                        <Setter Property="Foreground" Value="White"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
         <Button x:Name="btnSave"
                 Grid.Column="0"
                 Grid.ColumnSpan="3"
-                Grid.Row="3"
+                Grid.Row="7"
                 Content="Save"
                 Background="#E56B6F"
                 BorderThickness="0"
