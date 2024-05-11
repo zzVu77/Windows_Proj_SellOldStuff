@@ -219,7 +219,38 @@ namespace UTEMerchant
                new SqlParameter("@detail_description", item.Detail_description));
         }
 
+        public int CalculateTotalProducts(int sellerID)
+        {
+            int total = 0;
+            string query = @"
+                SELECT                     
+                    COUNT(i.Item_Id) AS Total
+                FROM 
+                    Item i
+                WHERE
+                    i.SellerID = @sellerID";
+            using (SqlConnection conn = new SqlConnection(db.connectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@sellerID", sellerID);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        total = reader.GetInt32(0);
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+                return total;
+            }
 
-        
+        }
+
+
+
     }
 }

@@ -45,5 +45,34 @@ namespace UTEMerchant
         {
             return db.LoadData<CustomerReview>($"SELECT * FROM [dbo].[CustomerReviews] WHERE Id_user = {Id_user} AND Item_Id = {Item_Id}");
         }
+
+        public double CalculateAverage(int sellerID)
+        {
+            double average = 0;
+            string query = @"
+                        SELECT                            
+                            AVG(Rating) AS AverageRating
+                        FROM
+                            CustomerReviews
+                        WHERE
+                            SellerID = @sellerID
+                        GROUP BY
+                            SellerID;";
+
+            using (SqlConnection conn = new SqlConnection(db.connectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@sellerID", sellerID);
+                    object result = cmd.ExecuteScalar(); // Thực hiện ExecuteScalar
+                    if (result != null && result != DBNull.Value)
+                    {
+                        average = Convert.ToDouble(result); // Chuyển đổi giá trị từ object sang double
+                    }
+                }
+            }
+            return average;
+        }
     }
 }

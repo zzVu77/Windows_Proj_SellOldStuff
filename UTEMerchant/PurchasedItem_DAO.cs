@@ -159,5 +159,64 @@ namespace UTEMerchant
             );
             return items[0];
         }
+
+        public double CalculateTotalPrice(int sellerID)
+        {
+            double totalPrice = 0;
+            string query = @"
+        SELECT                     
+            SUM(i.price) AS Total
+        FROM 
+            PurchasedProducts pp, Item i
+        WHERE
+             pp.Item_Id=i.Item_Id AND i.SellerID=@sellerID  AND pp.Delivery_Status != 'declined'";
+
+            using (SqlConnection conn = new SqlConnection(db.connectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@sellerID", sellerID);
+                    object result = cmd.ExecuteScalar(); // Thực hiện ExecuteScalar
+                    if (result != null && result != DBNull.Value)
+                    {
+                        totalPrice = Convert.ToDouble(result); // Chuyển đổi giá trị từ object sang double
+                    }
+                }
+            }
+            return totalPrice;
+        }
+
+
+        public int CalculateTotalSold(int sellerID)
+        {
+            int total = 0;
+            string query = @"
+                SELECT                     
+                    COUNT(pp.Item_Id) AS Total
+                FROM 
+                    PurchasedProducts pp, Item i
+                WHERE
+                    pp.Item_Id=i.Item_Id AND i.SellerID=@sellerID AND pp.Delivery_Status != 'declined'";
+            using (SqlConnection conn = new SqlConnection(db.connectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@sellerID", sellerID);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        total = reader.GetInt32(0);
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+                return total;
+            }
+            
+        }
     }
 }
