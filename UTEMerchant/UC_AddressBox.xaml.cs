@@ -40,6 +40,7 @@ namespace UTEMerchant
             tbRecipientPhone.Text = _deliveryAddress.RecipientPhone;
             tbStreetAddress.Text = _deliveryAddress.StreetAddress;
             tbDivision.Text = $"{_deliveryAddress.Ward}, {_deliveryAddress.District}, {_deliveryAddress.City}";
+            lblDefault.Visibility = _deliveryAddress.DefaultAddress ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public void SetData (DeliveryAddress deliveryAddress)

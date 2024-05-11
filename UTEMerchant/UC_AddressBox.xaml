@@ -44,7 +44,7 @@
                    FontSize="14"
                    Margin="10"/>
         <Label Grid.Row="3"
-               x:Name="lblPhone"
+               x:Name="lblDefault"
                Content="Default"
                Foreground="Red"
                BorderBrush="Red"
