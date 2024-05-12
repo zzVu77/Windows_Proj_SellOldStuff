@@ -103,32 +103,39 @@ namespace UTEMerchant
 
         private void productGrid_Loaded(object sender, RoutedEventArgs e)
         {
-            if (StaticValue.SELLER != null && _pendingOrders != null)
+            if (StaticValue.SELLER != null)
             {
-                productGrid.Items.Clear();
-                List<User> users = new user_DAO().Load();
-
-                int len = _pendingOrders.Count();
-                // Create a new row for each pending order
-                foreach (var item in _pendingOrders)
+                if (_pendingOrders != null)
                 {
-                    string DeliveryAddress = item.Delivery_address;
-                    productGrid.Items.Add
-                    (new
+                    productGrid.Items.Clear();
+
+                    int len = _pendingOrders.Count();
+                    // Create a new row for each pending order
+                    foreach (var item in _pendingOrders)
                     {
-                        item.PurchaseID,
-                        item.Item_Id,
-                        new PurchasedItem_DAO().GetItem(item.PurchaseID).Name,
-                        item.PurchaseDate,
-                        item.name,
-                        new PurchasedItem_DAO().GetItem(item.PurchaseID).Price,
-                        new PurchasedItem_DAO().GetItem(item.PurchaseID).Image_Path,
-                        new PurchasedItem_DAO().GetItem(item.PurchaseID).PostedDate,
-                        users.FirstOrDefault(user => user.Id_user == item.Id_user)?.User_name,
-                        item.Phone,
-                        DeliveryAddress
+                        string DeliveryAddress = item.Delivery_address;
+                        User user = new PurchasedItem_DAO().GetUser(item.Id_user);
+                        productGrid.Items.Add
+                        (new
+                            {
+                                item.PurchaseID,
+                                item.Item_Id,
+                                new PurchasedItem_DAO().GetItem(item.PurchaseID).Name,
+                                item.PurchaseDate,
+                                new PurchasedItem_DAO().GetItem(item.PurchaseID).Price,
+                                new PurchasedItem_DAO().GetItem(item.PurchaseID).Image_Path,
+                                new PurchasedItem_DAO().GetItem(item.PurchaseID).PostedDate,
+                                user.User_name,
+                                user.Phone,
+                                DeliveryAddress
+                            }
+                        );
                     }
-                    );
+                }
+                else
+                {
+                    MessageBox.Show("You have no items that need to be confirmed", "Information", MessageBoxButton.OK,
+                        MessageBoxImage.Information);
                 }
             }
         }

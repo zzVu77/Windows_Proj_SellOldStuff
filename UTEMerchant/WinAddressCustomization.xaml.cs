@@ -19,31 +19,54 @@ namespace UTEMerchant
     /// </summary>
     public partial class WinAddressCustomization : Window
     {
-        private string _city;
-        private string _district;
-        private string _ward;
-        private string _details;
+        private readonly bool _isEditing = false;
+
+        private DeliveryAddress _deliveryAddress;
 
         public WinAddressCustomization()
         {
             InitializeComponent();
         }
 
-        public WinAddressCustomization(string city, string district, string ward, string details) : this()
+        public WinAddressCustomization(bool isEditing = false) : this()
         {
-            _city = city;
-            _district = district;
-            _ward = ward;
-            _details = details;
+            _deliveryAddress = new DeliveryAddress();
+            _isEditing = isEditing;
+            btnDeleteAddress.Visibility = Visibility.Collapsed;
+        }
+
+        public WinAddressCustomization(DeliveryAddress deliveryAddress, bool isEditing = true) : this()
+        {
+            _deliveryAddress = deliveryAddress;
+            _isEditing = isEditing;
         }
 
         private void BtnSave_OnClick(object sender, RoutedEventArgs e)
         {
-            _city = cbCity.Text;
-            _district = cbDistrict.Text;
-            _ward = cbWard.Text;
-            _details = tbDetails.Text;
+            _deliveryAddress.RecipientName = txtRecipientName.Text;
+            _deliveryAddress.RecipientPhone = txtRecipientPhone.Text;
+            _deliveryAddress.City = cbCity.Text;
+            _deliveryAddress.District = cbDistrict.Text;
+            _deliveryAddress.Ward = cbWard.Text;
+            _deliveryAddress.StreetAddress = txtDetails.Text;
+            if (cbSetAsDefault.IsChecked != null) _deliveryAddress.DefaultAddress = cbSetAsDefault.IsChecked.Value;
+            else _deliveryAddress.DefaultAddress = false;
+
+            if (_isEditing)
+            {
+                // Update the delivery address
+                new DeliveryAddress_DAO().UpdateDeliveryAddress(_deliveryAddress);
+            }
+            else
+            {
+                // Create a new delivery address
+                new DeliveryAddress_DAO().AddDeliveryAddress(_deliveryAddress.RecipientName,
+                    _deliveryAddress.StreetAddress, _deliveryAddress.RecipientPhone, _deliveryAddress.City,
+                    _deliveryAddress.District, _deliveryAddress.Ward, StaticValue.USER.Id_user,
+                    _deliveryAddress.DefaultAddress);
+            }
             
+
             // don't need to check if the address is valid or not
             // because the user can input any address they want
             // the address will be checked when the user place the order
@@ -53,15 +76,29 @@ namespace UTEMerchant
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            if (_city != null) cbCity.Text = _city;
-            if (_district != null) cbDistrict.Text = _district;
-            if (_ward != null) cbWard.Text = _ward;
-            if (_details != null) tbDetails.Text = _details;
+            if (_deliveryAddress != null)
+            {
+                txtRecipientName.Text = _deliveryAddress.RecipientName;
+                txtRecipientPhone.Text = _deliveryAddress.RecipientPhone;
+                txtDetails.Text = _deliveryAddress.StreetAddress;
+                cbCity.Text = _deliveryAddress.City;
+                cbDistrict.Text = _deliveryAddress.District;
+                cbWard.Text = _deliveryAddress.Ward;
+                cbSetAsDefault.IsChecked = _deliveryAddress.DefaultAddress;
+            }
         }
 
-        public string City => _city;
-        public string District => _district;
-        public string Ward => _ward;
-        public string Details => _details;
+        public string RecipientName => _deliveryAddress.RecipientName;
+        public string RecipientPhone => _deliveryAddress.RecipientPhone;
+        public string Address => _deliveryAddress.StreetAddress;
+        public string City => _deliveryAddress.City;
+        public string District => _deliveryAddress.District;
+        public string Ward => _deliveryAddress.Ward;
+
+        private void BtnDeleteAddress_OnClick(object sender, RoutedEventArgs e)
+        {
+            new DeliveryAddress_DAO().RemoveDeliveryAddress(_deliveryAddress.ID);
+            DialogResult = true;
+        }
     }
 }

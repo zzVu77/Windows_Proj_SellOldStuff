@@ -10,407 +10,394 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"        
-        Title="Item Details" Height="800" Width="1200">
+        Title="Item Details" 
+        Height="800" Width="1200"
+        WindowState="Maximized"
+        Loaded="Window_Loaded">
 
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
     </Window.Resources>
-    <Border CornerRadius="30">
-
-        <Grid Background="#f4f6f8" >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="102*"/>
-                <ColumnDefinition Width="83*"/>
-                <ColumnDefinition Width="15*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="17*"/>
-
-
-            </Grid.RowDefinitions>
-            <!--Item Image-->
-            <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="492*"/>
-                    <RowDefinition Height="159*"/>
-                    <RowDefinition Height="149*"/>
-                </Grid.RowDefinitions>
-                <Border                     
-                    Width="532" 
-                    Height="468" 
-                    HorizontalAlignment="Center" 
-                    BorderThickness="2"
-                    BorderBrush="Black"
-                    VerticalAlignment="Center"
-                    CornerRadius="7">
-                    <Image x:Name="imgItem" Source="/Img/iPhone-14-Pro-Max-9907.jpg" Height="450"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Uniform" Margin="7,0,7,0"/>
-                </Border>
-
-                <ScrollViewer Margin="10 0 0 0 " Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" HorizontalAlignment="Center" VerticalAlignment="Center" Height="118" Width="445">
-
-                    <DockPanel x:Name="dplImageSlide" Height="100" Width="auto" HorizontalAlignment="Center">
-                        <Image Source="C:\Users\FPTSHOP\Desktop\Window_Proj_UTEMerchant\UTEMerchant\Img\iPhone-14-Pro-Max-9907.jpg" Margin="5 0 5 0"/>
-                        <Image Source="C:\Users\FPTSHOP\Desktop\Window_Proj_UTEMerchant\UTEMerchant\Img\iPhone-14-Pro-Max-9907.jpg" Margin="5 0 5 0"/>
-                        <Image Source="C:\Users\FPTSHOP\Desktop\Window_Proj_UTEMerchant\UTEMerchant\Img\iPhone-14-Pro-Max-9907.jpg" Margin="5 0 5 0"/>
-                        <Image Source="C:\Users\FPTSHOP\Desktop\Window_Proj_UTEMerchant\UTEMerchant\Img\iPhone-14-Pro-Max-9907.jpg" Margin="5 0 5 0"/>
-                        <Image Source="C:\Users\FPTSHOP\Desktop\Window_Proj_UTEMerchant\UTEMerchant\Img\iPhone-14-Pro-Max-9907.jpg" Margin="5 0 5 0"/>
-                   
-                   
-                    </DockPanel>
-                </ScrollViewer>
-
-                <StackPanel  Grid.Row="2"  VerticalAlignment="Bottom" HorizontalAlignment="Left" Orientation="Vertical" Margin="15,0,0,0" Height="133" Width="257">
-                    <!--Seller Avartar-->
-                    <DockPanel>
-
-                        <Border
-                            Width="72" 
-                            Height="68" 
-                            Padding="3" 
-                            Background="Black" 
-                            CornerRadius="100" 
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top" Margin="1,0,5,0">
-                            <Ellipse MouseLeftButtonDown="Ellipse_MouseLeftButtonDown" Cursor="Hand">
-                                <Ellipse.Fill>
-                                    <ImageBrush x:Name="imgSellerAvartar" ImageSource="/Img/kimetsu.jpg"/>
-                                </Ellipse.Fill>
-                            </Ellipse>
+    <Grid Background="#f4f6f8">
+        <ScrollViewer Grid.Column="0"
+                      VerticalScrollBarVisibility="Hidden"
+                      Margin="45,0">
+            <StackPanel>
+                <Grid Height="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=ActualHeight}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="1.5*"/>
+                    </Grid.ColumnDefinitions>
+                    <!--Item Image-->
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="4*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="1.5*"/>
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="0" 
+                                HorizontalAlignment="Center" 
+                                BorderThickness="2"
+                                BorderBrush="Black"
+                                VerticalAlignment="Center"
+                                CornerRadius="7">
+                            <Image x:Name="imgItem" Source="/Img/iPhone-14-Pro-Max-9907.jpg" Height="450"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Uniform" Margin="7,0,7,0"/>
                         </Border>
-                        <StackPanel Width="194">
-                            <!--Seller Name-->
-                            <TextBlock                     
-                                Foreground="Black"              
-                                FontSize="20"
-                                x:Name="txbSellerName"
-                                Text="Vu Nguyen"  
-                                TextAlignment="Left"                
-                                FontWeight="Medium" Height="38" Padding="0,5,0,5" Grid.Row="1" Margin="0,0,5,0" MouseLeftButtonDown="txbSellerName_MouseLeftButtonDown" Cursor="Hand"                     
-              />
 
-                            <!--Seller Contact-->
-                            <TextBlock       
-                TextAlignment="Left"                     
-                Foreground="Black"              
-                FontSize="18"
-                x:Name="txbSellerContact"
-                Text="0327521953"
-                HorizontalAlignment="Center"
-                RenderTransformOrigin="0.799,0.479"                  
-                FontWeight="Medium"
-                Height="32" Width="192" 
-                Padding="1,1,10,1" 
-                Grid.Row="2" Margin="0,1,0,0" Grid.RowSpan="3"                     
-              />
+                        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" HorizontalAlignment="Center" VerticalAlignment="Center" Height="118" Width="445">
+
+                            <DockPanel x:Name="dplImageSlide" HorizontalAlignment="Center">
+                                <Image Source="/Img\iPhone-14-Pro-Max-9907.jpg" Margin="5 0 5 0"/>
+                                <Image Source="/Img\iPhone-14-Pro-Max-9907.jpg" Margin="5 0 5 0"/>
+                                <Image Source="/Img\iPhone-14-Pro-Max-9907.jpg" Margin="5 0 5 0"/>
+                                <Image Source="/Img\iPhone-14-Pro-Max-9907.jpg" Margin="5 0 5 0"/>
+                                <Image Source="/Img\iPhone-14-Pro-Max-9907.jpg" Margin="5 0 5 0"/>
+
+
+                            </DockPanel>
+                        </ScrollViewer>
+
+                        <StackPanel  Grid.Row="2"  VerticalAlignment="Bottom" HorizontalAlignment="Left" Orientation="Vertical" Height="133" Width="257">
+                            <!--Seller Avartar-->
+                            <DockPanel>
+
+                                <Border Width="72" 
+                                        Height="68" 
+                                        Padding="3" 
+                                        Background="Black" 
+                                        CornerRadius="100" 
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top" Margin="0,0,5,0">
+                                    <Ellipse MouseLeftButtonDown="Ellipse_MouseLeftButtonDown" Cursor="Hand">
+                                        <Ellipse.Fill>
+                                            <ImageBrush x:Name="imgSellerAvartar" ImageSource="/Img/kimetsu.jpg"/>
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+                                </Border>
+                                <StackPanel Width="194">
+                                    <!--Seller Name-->
+                                    <TextBlock Foreground="Black"              
+                                               FontSize="20"
+                                               x:Name="txbSellerName"
+                                               Text="Vu Nguyen"  
+                                               TextAlignment="Left"                
+                                               FontWeight="Medium" Height="38" 
+                                               Padding="0,5,0,5"
+                                               Margin="0,0,5,0" 
+                                               MouseLeftButtonDown="txbSellerName_MouseLeftButtonDown" 
+                                               Cursor="Hand"/>
+
+                                    <!--Seller Contact-->
+                                    <TextBlock TextAlignment="Left"                     
+                                               Foreground="Black"              
+                                               FontSize="18"
+                                               x:Name="txbSellerContact"
+                                               Text="0327521953"
+                                               HorizontalAlignment="Center"
+                                               RenderTransformOrigin="0.799,0.479"                  
+                                               FontWeight="Medium"
+                                               Height="32" Width="192" 
+                                               Padding="1,1,10,1" 
+                                               Margin="0,1,0,0"/>
+                                </StackPanel>
+
+                            </DockPanel>
+                            <TextBlock TextAlignment="Left"                     
+                                       Foreground="Black"                              
+                                       FontSize="12"
+                                       x:Name="txbSellerAddress"
+                                       Text="63/49, duong so 10, Tang Nhon Phu B, Thu Duc"
+                                       TextWrapping="WrapWithOverflow"               
+                                       RenderTransformOrigin="0.799,0.479"                  
+                                       FontWeight="SemiBold"
+                                       Height="79" Width="254" 
+                                       Padding="1,5,5,5"/>
+                            <!--Seller Address-->
+
+
+
                         </StackPanel>
 
-                    </DockPanel>
-                    <TextBlock     
-                TextAlignment="Left"                     
-                Foreground="Black"                              
-                FontSize="12"
-                x:Name="txbSellerAddress"
-                Text="63/49, duong so 10, Tang Nhon Phu B, Thu Duc"
-                TextWrapping="WrapWithOverflow"               
-                RenderTransformOrigin="0.799,0.479"                  
-                FontWeight="SemiBold"
-                Height="79" Width="254" 
-                Padding="1,5,5,5"    
-                
-              />
-                    <!--Seller Address-->
+                    </Grid>
+
+                    <!--Grid for Detail Information-->
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <!-- Label for Original Price -->
+                            <Label FontSize="15"             
+                                   x:Name="lblOriginalPrice"
+                                   Content="Original price:"
+                                   HorizontalAlignment="Left"
+                                   FontWeight="SemiBold"
+                                   VerticalAlignment="Center"
+                                   VerticalContentAlignment="Top"
+                                   HorizontalContentAlignment="Left"
+                                   Grid.Row="0" 
+                                   Grid.Column="0"
+                                   IsHitTestVisible="False"/>
+
+                            <!--Value for Original Price-->
+                            <TextBlock VerticalAlignment="Center"                     
+                                       Foreground="Black"
+                                       TextDecorations="Strikethrough"
+                                       FontSize="15"
+                                       x:Name="txbOriginalPrice"
+                                       Text="100000 $"
+                                       HorizontalAlignment="Left"                 
+                                       FontWeight="SemiBold"
+                                       Grid.Row="0" Grid.Column="1" />
+
+
+                            <!-- Label for Type  -->
+                            <Label FontSize="15"             
+                                   x:Name="lblType"
+                                   Content="Type:"
+                                   HorizontalAlignment="Left"
+                                   FontWeight="SemiBold"
+                                   VerticalAlignment="Center"
+                                   VerticalContentAlignment="Top"
+                                   HorizontalContentAlignment="Left"
+                                   Grid.Row="1" Grid.Column="0"
+                                   IsHitTestVisible="False"/>
+
+                            <!--Value for Type -->
+                            <TextBlock VerticalAlignment="Center"                     
+                                       Foreground="Black"              
+                                       FontSize="15"
+                                       x:Name="txbType"
+                                       Text="Mobile Phone"
+                                       HorizontalAlignment="Left"                
+                                       FontWeight="SemiBold" 
+                                       Grid.Row="1" Grid.Column="1" />
+
+                            <!-- Label for Condition  -->
+                            <Label FontSize="15"             
+                                   x:Name="lblCondition"
+                                   Content="Condition: "
+                                   HorizontalAlignment="Left"
+                                   FontWeight="SemiBold"
+                                   VerticalAlignment="Center"
+                                   VerticalContentAlignment="Top"
+                                   HorizontalContentAlignment="Left"
+                                   Grid.Row="2" Grid.Column="0"
+                                   IsHitTestVisible="False"/>
+
+                            <!--Value for Condition-->
+                            <TextBlock VerticalAlignment="Center"                     
+                                       Foreground="Black"              
+                                       FontSize="15"
+                                       x:Name="txbConditon"
+                                       Text="95%"
+                                       HorizontalAlignment="Left"               
+                                       FontWeight="SemiBold"           
+                                       Grid.Row="2" Grid.Column="1" />
+
+                            <!-- Label for BoughtDate  -->
+                            <Label FontSize="15"             
+                                   x:Name="lblBoughtDate"
+                                   Content="Bought Date:"
+                                   HorizontalAlignment="Left"
+                                   FontWeight="SemiBold"
+                                   VerticalAlignment="Center"
+                                   VerticalContentAlignment="Top"
+                                   HorizontalContentAlignment="Left"
+                                   Grid.Row="3" Grid.Column="0"
+                                   IsHitTestVisible="False"/>
+
+                            <!--Value for BoughtDate-->
+                            <TextBlock VerticalAlignment="Center"                     
+                                       Foreground="Black"                           
+                                       FontSize="15"
+                                       x:Name="txbBughtDate"
+                                       Text="22/11/2023"
+                                       HorizontalAlignment="Left"                  
+                                       FontWeight="SemiBold"       
+                                       Grid.Row="3" Grid.Column="1" />
+                        </Grid>
+                        <!--Item name-->
+                        <TextBlock Grid.Row="0"
+                                   VerticalAlignment="Top"
+                                   x:Name="txblItemName"
+                                   TextWrapping="Wrap"             
+                                   TextTrimming="None"
+                                   Text="Iphone 14 Pro Max 512GB"
+                                   FontFamily="Segoe UI Black"
+                                   MaxHeight="95" 
+                                   FontSize="18" 
+                                   Padding="0,0,0,50"
+                                   Height="35" 
+                                   Margin="0,15,0,0" />
 
 
 
-                </StackPanel>
+                        <StackPanel Grid.Row="2">
+                            <!-- Label for Condition Description  -->
+                            <Label x:Name="lblConditionDescription"
+                                   Content="Condition description"
+                                   VerticalAlignment="Top"
+                                   HorizontalAlignment="Left"
+                                   FontFamily="Segoe UI"
+                                   FontWeight="SemiBold"
+                                   FontSize="15"                   
+                                   Foreground="Black"/>
 
-            </Grid>
+                            <!--Value for Condition Description-->
+                            <RichTextBox x:Name="rtbConditonDescription"                                     
+                                         Foreground="black"
+                                         IsReadOnly="True"
+                                         Background="Transparent"
+                                         HorizontalAlignment="Center"
+                                         BorderThickness="0.8"
+                                         BorderBrush="DarkGray" 
+                                         Focusable="False"
+                                         FontFamily="Segoe UI"
+                                         Height="110"
+                                         VerticalAlignment="Top"
+                                         Margin="40,0">
+                                <RichTextBox.Resources>
+                                    <Style TargetType="{x:Type Border }">
+                                        <Setter Property="CornerRadius" Value="12"/>
+                                    </Style>
+                                </RichTextBox.Resources>
+                            </RichTextBox>
+                        </StackPanel>
 
-            <!--Grid for Detail Information-->
-            <Grid Margin="20 0 0 0" Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="35"/>
-                    <RowDefinition Height="35"/>
-                    <RowDefinition Height="35"/>
-                    <RowDefinition Height="35"/>
-                    <RowDefinition Height="140"/>
-                    <RowDefinition Height="81"/>
-                </Grid.RowDefinitions>
-                <!--Item name-->
-                <TextBlock
-                Grid.Row="0"
-                VerticalAlignment="Top"
-                x:Name="txblItemName"
-                TextWrapping="Wrap"             
-                TextTrimming="None"
-                Text="Iphone 14 Pro Max 512GB"
-                FontFamily="Segoe UI Black"
-                MaxHeight="95" 
-                FontSize="18" Padding="0,0,0,50" Panel.ZIndex="-2" Height="35" Margin="0,15,0,0" />
+                        <StackPanel Grid.Row="3" >
 
-                <!-- Label for Original Price -->
-                <Label               
-                FontSize="15"             
-                x:Name="lblOriginalPrice"
-                Content="Original price: "
-                HorizontalAlignment="Left"
-                FontWeight="SemiBold"
-                VerticalAlignment="Center"
-                VerticalContentAlignment="Top"
-                HorizontalContentAlignment="Left"
-                Padding="0,0,0,0"
-                Grid.Row="1" 
-                Width="106" 
-                BorderThickness="0,0,0,0"                          
-                IsHitTestVisible="False" Height="20"/>
+                            <!-- Label for Detail Description  -->
+                            <Label FontSize="15"
+                                   x:Name="lblDetailDescription"
+                                   Content="Detail description"
+                                   VerticalAlignment="Top"
+                                   HorizontalAlignment="Left"
+                                   FontFamily="Segoe UI"            
+                                   FontWeight="SemiBold"
+                                   Foreground="Black" 
+                                   Height="35" 
+                                   Width="140"/>
+                            <!--Value for Detail Description-->
+                            <RichTextBox x:Name="rtbDetailDescription"
+                                         HorizontalAlignment="Center"
+                                         Foreground="black"
+                                         Background="Transparent"                       
+                                         IsReadOnly="True"                         
+                                         BorderThickness="1" Margin="0,0,0,5"
+                                         BorderBrush="LightGray" 
+                                         Focusable="False"
+                                         FontFamily="Segoe UI" Width="{Binding ElementName=rtbConditonDescription, Path=ActualWidth}"  Height="317">
+                                <RichTextBox.Resources>
+                                    <Style TargetType="{x:Type Border }">
+                                        <Setter Property="CornerRadius" Value="15"/>
+                                    </Style>
+                                </RichTextBox.Resources>
+                            </RichTextBox>
+                            <StackPanel>
 
-                <!--Value for Original Price-->
-                <TextBlock           
-                VerticalAlignment="Center"                     
-                Foreground="Black"
-                TextDecorations="Strikethrough"
-                FontSize="15"
-                x:Name="txbOriginalPrice"
-                Text="100000 $"
-                HorizontalAlignment="Left"
-                RenderTransformOrigin="0.799,0.479"                  
-                FontWeight="SemiBold"
-                Height="28" Width="219" 
-                Padding="5,5,5,5"                
-                Grid.Row="1" Margin="260,0,0,0"                        
-              />
-
-
-                <!-- Label for Type  -->
-                <Label               
-                FontSize="15"             
-                x:Name="lblType"
-                Content="Type: "
-                HorizontalAlignment="Left"
-                FontWeight="SemiBold"
-                VerticalAlignment="Center"
-                VerticalContentAlignment="Top"
-                HorizontalContentAlignment="Left"
-                Padding="0,0,0,0"
-                Grid.Row="2" 
-                Width="106" 
-                BorderThickness="0,0,0,0"                          
-                IsHitTestVisible="False" Height="20"/>
-
-                <!--Value for Type -->
-                <TextBlock       
-                VerticalAlignment="Top"                     
-                Foreground="Black"              
-                FontSize="15"
-                x:Name="txbType"
-                Text="Mobile Phone"
-                HorizontalAlignment="Right"
-                RenderTransformOrigin="0.799,0.479"                  
-                FontWeight="SemiBold" Height="28" Width="219" Padding="5,5,5,5"                
-                Grid.Row="2"                         
-              />
-
-                <!-- Label for Condition  -->
-                <Label               
-                FontSize="15"             
-                x:Name="lblCondition"
-                Content="Condition: "
-                HorizontalAlignment="Left"
-                FontWeight="SemiBold"
-                VerticalAlignment="Center"
-                VerticalContentAlignment="Top"
-                HorizontalContentAlignment="Left"
-                Padding="0,0,0,0"
-                Grid.Row="3" 
-                Width="106" 
-                BorderThickness="0,0,0,0"                          
-                IsHitTestVisible="False" Height="20"/>
-
-                <!--Value for Condition-->
-                <TextBlock                     
-                VerticalAlignment="Top"                     
-                Foreground="Black"              
-                FontSize="15"
-                x:Name="txbConditon"
-                Text="95%"
-                HorizontalAlignment="Right"                              
-                RenderTransformOrigin="0.799,0.479"                  
-                FontWeight="SemiBold" Height="28" Width="219" Padding="5,5,5,5"                
-                Grid.Row="3" Margin="0,2,0,0"                         
-                
-              />
-
-                <!-- Label for BoughtDate  -->
-                <Label               
-                FontSize="15"             
-                x:Name="lblBoughtDate"
-                Content="Bought Date: "
-                HorizontalAlignment="Left"
-                FontWeight="SemiBold"
-                VerticalAlignment="Center"
-                VerticalContentAlignment="Top"
-                HorizontalContentAlignment="Left"
-                Padding="0,0,0,0"
-                Grid.Row="4" 
-                Width="106" 
-                BorderThickness="0,0,0,0"                          
-                IsHitTestVisible="False" Height="20"/>
-
-                <!--Value for BoughtDate-->
-                <TextBlock  
-                VerticalAlignment="Top"                     
-                Foreground="Black"                           
-                FontSize="15"
-                x:Name="txbBughtDate"
-                Text="22/11/2023"
-                HorizontalAlignment="Right"                              
-                RenderTransformOrigin="0.799,0.479"                  
-                FontWeight="SemiBold" Height="28" Width="219" Padding="5,5,5,5"                
-                Grid.Row="4" Margin="0,2,0,0"                        
-              />
-
-                <!-- Label for Condition Description  -->
-                <Label Grid.Row="5"
-                   x:Name="lblConditionDescription"
-                   Content="Condition description"
-                   VerticalAlignment="Top"
-                   HorizontalAlignment="Left"
-                   FontFamily="Segoe UI"
-                   FontWeight="SemiBold"
-                   FontSize="15"                   
-                   Foreground="Black" Padding="0,5,5,5" Height="30" Width="152"/>
-
-                <!--Value for Condition Description-->
-                <RichTextBox x:Name="rtbConditonDescription"                                     
-                         Foreground="black"
-                         IsReadOnly="True"
-                         Background="Transparent"
-                         HorizontalAlignment="Center"
-                         Grid.Row="5"
-                         Width="369"                                    
-                         BorderThickness="0.8"
-                         BorderBrush="DarkGray" 
-                         Focusable="False"
-                         FontFamily="Segoe UI" Height="110" VerticalAlignment="Top" Margin="0,30,0,0"  >
-                    <RichTextBox.Resources>
-                        <Style TargetType="{x:Type Border }">
-                            <Setter Property="CornerRadius" Value="12"/>
-                        </Style>
-                    </RichTextBox.Resources>
-                </RichTextBox>
-
-                <StackPanel Grid.Row="6" Margin="0,0,0,-243">
-
-                    <!-- Label for Detail Description  -->
-                    <Label
-                         Grid.Column="1"
-                         FontSize="15"
-                         x:Name="lblDetailDescription"
-                         Content="Detail description"
-                         VerticalAlignment="Top"
-                         HorizontalAlignment="Left"
-                         FontFamily="Segoe UI"            
-                         FontWeight="SemiBold"
-                         Foreground="Black" 
-                         Height="35" 
-                         Width="140"
-                         RenderTransformOrigin="0.512,1.047" 
-                          />
-                    <!--Value for Detail Description-->
-                    <RichTextBox 
-                         x:Name="rtbDetailDescription"    
-                         Grid.Row="0"
-                         Grid.Column="1"
-                         HorizontalAlignment="Center"
-                         Foreground="black"
-                         Background="Transparent"                       
-                         IsReadOnly="True"                         
-                         BorderThickness="1"
-                        VerticalAlignment="Top" Margin="0,0,0,5"
-                         BorderBrush="LightGray" 
-                         Focusable="False"
-                         FontFamily="Segoe UI" Width="369"  Padding="5,5,0,5" Height="160">
-                        <RichTextBox.Resources>
-                            <Style TargetType="{x:Type Border }">
-                                <Setter Property="CornerRadius" Value="15"/>
-                            </Style>
-                        </RichTextBox.Resources>
-                    </RichTextBox>
-                    <StackPanel Grid.Column="1" Grid.Row="7" >
-
-                        <TextBlock 
-               
-                    x:Name="txtItemPrice"
-                    TextWrapping="WrapWithOverflow"                  
-                    Text=" 700 $"
-                    HorizontalAlignment="Left"                   
-                    FontSize="30"                   
-                    FontWeight="Bold"
-                    Foreground="red"
-                    Grid.Row="6"                    
-                    Width="466"                 
-                    Padding="0,3,0,0" Margin="0,0,0,7"  />
-
-                        <DockPanel Grid.Row="2" Margin="0,10,0,-95" Height="91" >
-
-
-                            <Button x:Name="btnAddToCart"
-                                    Grid.Column="0"
-                                    Height="40"
-                                    Width="150"
-                                    Style="{StaticResource addButton}" 
-                                    VerticalAlignment="Center" 
-                                    HorizontalAlignment="Left"                                         
-                                    HorizontalContentAlignment="Center"  
-                                    Grid.ColumnSpan="2" >
-                                <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial Kind="CartPlus" VerticalAlignment="Center" Margin="0 1 8 0" Width="17" Height="21"/>
-                                    <TextBlock Text="Add To Cart" FontWeight="Bold" FontFamily="Segoe UI" FontSize="15"/>
-                                </StackPanel>
-                            </Button>
-
-                            <Button Grid.Column="1"
-                                    Height="40"
-                                    Width="200"
-                                    x:Name="btnAddToWishList"
-                                    Style="{StaticResource addButton}" 
-                                    VerticalAlignment="Center"                                         
-                                    HorizontalContentAlignment="Center" Click="Button_Click"  >
+                                <TextBlock x:Name="txtItemPrice"
+                                           TextWrapping="WrapWithOverflow"                  
+                                           Text=" 700 $"
+                                           HorizontalAlignment="Left"                   
+                                           FontSize="30"                   
+                                           FontWeight="Bold"
+                                           Foreground="red"/>
                                 <Grid>
-                                    <StackPanel Orientation="Horizontal"
-                                                Visibility="Visible"
-                                                x:Name="spAddToWishList">
-                                        <Image Source="{Icon:MaterialImage Brush=White, Kind=HeartPlus}" 
-                                           VerticalAlignment="Center" Margin="0 1 8 0" Width="17" Height="21"
-                                           Stretch="Uniform"/>
-                                        <TextBlock Text="Add To WishList" FontWeight="Bold" FontFamily="Segoe UI" FontSize="15"/>
-                                    </StackPanel>
 
-                                    <StackPanel Orientation="Horizontal"
-                                                Visibility="Collapsed"
-                                                x:Name="spRemoveFromWishList">
-                                        <Image Source="{Icon:MaterialImage Brush=White, Kind=HeartMinus}" 
-                                           VerticalAlignment="Center" Margin="0 1 8 0" Width="17" Height="21"
-                                           Stretch="Uniform"/>
-                                        <TextBlock Text="Remove From WishList" FontWeight="Bold" FontFamily="Segoe UI" FontSize="15"/>
-                                    </StackPanel>
+                                
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Button x:Name="btnAddToCart"
+                                            Grid.Column="0"
+                                            Width="200"
+                                            Style="{StaticResource addButton}" 
+                                            VerticalAlignment="Center" 
+                                            HorizontalAlignment="Left"                                         
+                                            HorizontalContentAlignment="Center">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Icon:PackIconMaterial Kind="CartPlus" VerticalAlignment="Center" Margin="0 1 8 0" Width="17" Height="21"/>
+                                            <TextBlock Text="Add To Cart" FontWeight="Bold" FontFamily="Segoe UI" FontSize="15"/>
+                                        </StackPanel>
+                                    </Button>
+
+                                    <Button Grid.Column="1" Height="40"
+                                            Width="200"
+                                            x:Name="btnAddToWishList"
+                                            Style="{StaticResource addButton}" 
+                                            VerticalAlignment="Center"                                         
+                                            HorizontalContentAlignment="Center" Click="Button_Click"  >
+                                        <Grid>
+                                            <StackPanel Orientation="Horizontal"
+                                                        Visibility="Visible"
+                                                        x:Name="spAddToWishList">
+                                                <Image Source="{Icon:MaterialImage Brush=White, Kind=HeartPlus}" 
+                                                       VerticalAlignment="Center" Margin="0 1 8 0" Width="17" Height="21"
+                                                       Stretch="Uniform"/>
+                                                <TextBlock Text="Add To WishList" FontWeight="Bold" FontFamily="Segoe UI" FontSize="15"/>
+                                            </StackPanel>
+
+                                            <StackPanel Orientation="Horizontal"
+                                                        Visibility="Collapsed"
+                                                        x:Name="spRemoveFromWishList">
+                                                <Image Source="{Icon:MaterialImage Brush=White, Kind=HeartMinus}" 
+                                                       VerticalAlignment="Center" Margin="0 1 8 0" Width="17" Height="21"
+                                                       Stretch="Uniform"/>
+                                                <TextBlock Text="Remove From WishList" FontWeight="Bold" FontFamily="Segoe UI" FontSize="15"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Button>
                                 </Grid>
-                                                            
-
-                            </Button>
-                        </DockPanel>
-                    </StackPanel>
+                            </StackPanel>
 
 
-                </StackPanel>
+                        </StackPanel>
 
 
 
-            </Grid>
-            <Image Source="Img/icons8-close-50.png" x:Name="iconClose" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top"    Height="42"  Margin="0 5 10 0"  RenderTransformOrigin="-0.574,0.6"  Width="34" MouseUp="iconClose_MouseUp_1"/>
+                    </Grid>
+                </Grid>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock x:Name="tbRelatedItems"
+                               Grid.Row="0" 
+                               Text="Related Items" 
+                               FontSize="20" 
+                               FontWeight="Bold" 
+                               Foreground="Black" 
+                               VerticalAlignment="Center"/>
+                    <UniformGrid x:Name="uni" Grid.Row="1"
+                                 Columns="5"
+                                 Margin="10">
 
-
-        </Grid>
-    </Border>
+                    </UniformGrid>
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+        <Image Source="Img/icons8-close-50.png" 
+               x:Name="iconClose" 
+               HorizontalAlignment="Right" 
+               VerticalAlignment="Top"
+               Stretch="Uniform"
+               MouseUp="iconClose_MouseUp_1" Height="40"/>
+    </Grid>
 </Window>

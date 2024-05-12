@@ -29,25 +29,11 @@ namespace UTEMerchant
         {
             InitializeComponent();
         }
-        public WinDeltailItem(Item item, Seller seller,int id_user)
+        public WinDeltailItem(Item item, Seller seller,int id_user) : this()
         {
             this.info = item;
             this.seller = seller;
             Id_user = id_user;
-            //var user_dao = new user_DAO();
-            //users = user_dao.Load();
-            InitializeComponent();
-            SetDefaultValue();
-            List<ImgPath> imgPaths = ImgPath_DAO.GetListImagePathByItemID(this.info.Item_Id);
-            dplImageSlide.Children.Clear();
-            foreach (var i in imgPaths)
-            {
-                UC_ImageSlide imgs = new UC_ImageSlide(i.Path);
-                imgs.ImageClicked += OnImageSlideClicked;
-                dplImageSlide.Children.Add(imgs);
-            }
-
-
         }
 
         private void OnImageSlideClicked(object sender, RoutedEventArgs e)
@@ -157,6 +143,39 @@ namespace UTEMerchant
                 spRemoveFromWishList.Visibility = Visibility.Collapsed;
             }    
 
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (info == null) return;
+            SetDefaultValue();
+            List<ImgPath> imgPaths = ImgPath_DAO.GetListImagePathByItemID(this.info.Item_Id);
+            dplImageSlide.Children.Clear();
+            foreach (var i in imgPaths)
+            {
+                UC_ImageSlide imgs = new UC_ImageSlide(i.Path);
+                imgs.ImageClicked += OnImageSlideClicked;
+                dplImageSlide.Children.Add(imgs);
+            }
+            List<Item> recommendations = ItemRecommendationEngine.GetRecommendations(info, 30);
+            uni.Children.Clear();
+            foreach (var item in recommendations)
+            {
+                UC_ItemView uc_Item = new UC_ItemView(item);
+                uc_Item.ItemClicked += RelatedItem_Clicked;
+                uc_Item.btnAddToCart.Visibility = Visibility.Collapsed;
+                uni.Children.Add(uc_Item);
+            }
+        }
+
+        private void RelatedItem_Clicked(object sender, RoutedEventArgs e)
+        {
+            if (sender is UC_ItemView uc_Item)
+            {
+                WinDeltailItem winDeltailItem = new WinDeltailItem(uc_Item.info,
+                    new Seller_DAO().GetSeller(uc_Item.info.SellerID), Id_user);
+                winDeltailItem.ShowDialog();
+            }
         }
     }
 }
