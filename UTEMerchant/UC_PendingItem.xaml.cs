@@ -48,7 +48,6 @@ namespace UTEMerchant
                 if (_order.Delivery_Status == "declined")
                 {
                     imgDeclined.Visibility = Visibility.Visible;
-                    MessageBox.Show($"Your order: {item.Name} has been declined", "Order Declined", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }

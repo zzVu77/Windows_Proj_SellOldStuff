@@ -114,5 +114,58 @@ namespace UTEMerchant
                 CancelButtonClicked?.Invoke(this, EventArgs.Empty);
             }
         }
+
+        public void DeclinedOrderCheck()
+        {
+            var list = new List<purchasedItem>();
+            foreach (UC_PendingItemsBox itemBox in spItems.Children)
+            {
+                foreach (UC_PendingItem item in itemBox.spItems.Children)
+                {
+                    if (item.Order.Delivery_Status == "declined")
+                    {
+                        list.Add(item.Order);
+                    }
+                }
+            }
+
+            if (list.Count > 0)
+            {
+                // Create a message box to confirm the cancellation
+                var result = MessageBox.Show(
+                    "Seller has declined an item or more in your order.\nDo you want to cancel the whole order?\nIf no, only the declined items will be cancelled which includes:\n" +
+                    string.Join("\n- ", list.Select(item => new PurchasedItem_DAO().GetItem(item.Item_Id).Name)), "Cancel Order", MessageBoxButton.YesNoCancel,
+                    MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
+                {
+                    foreach (UC_PendingItemsBox itemBox in spItems.Children)
+                    {
+                        foreach (UC_PendingItem item in itemBox.spItems.Children)
+                        {
+                            new PurchasedItem_DAO().CancelOrder(item.Order.PurchaseID);
+                        }
+                    }
+                    // Inform the user that the order has been cancelled
+                    MessageBox.Show("The order has been cancelled successfully.", "Order Cancelled", MessageBoxButton.OK,
+                        MessageBoxImage.Information);
+                }
+                else if (result == MessageBoxResult.No)
+                {
+                    foreach (var item in list)
+                    {
+                        new PurchasedItem_DAO().CancelOrder(item.PurchaseID);
+                    }
+                    // Inform the user that the declined item has been cancelled
+                    MessageBox.Show("The declined item has been cancelled successfully.", "Order Cancelled",
+                        MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else if (result == MessageBoxResult.Cancel)
+                {
+                    MessageBox.Show("The declined item needs to be cancelled or the delivering cannot proceed",
+                        "Warning",
+                        MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+        }
     }
 }

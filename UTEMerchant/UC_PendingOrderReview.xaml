@@ -6,8 +6,7 @@
              xmlns:local="clr-namespace:UTEMerchant"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d" 
-             d:DesignHeight="800" d:DesignWidth="1300" Loaded="UserControl_Loaded" IsVisibleChanged="UserControl_IsVisibleChanged"
-             >
+             d:DesignHeight="800" d:DesignWidth="1300" Loaded="UserControl_Loaded" IsVisibleChanged="UserControl_IsVisibleChanged" SizeChanged="UserControl_SizeChanged">
     <Grid x:Name="grd" >
         <DataGrid x:Name="productGrid"
                   HorizontalScrollBarVisibility="Visible"

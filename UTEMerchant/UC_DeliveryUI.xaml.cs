@@ -360,22 +360,22 @@ namespace UTEMerchant
 
         private void grdPendingStatus_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            PendingStatus_Load(sender, new RoutedEventArgs());
+            if (grdPendingStatus.IsVisible) PendingStatus_Load(sender, new RoutedEventArgs());
         }
 
         private void grdDeliveringStatus_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            DeliveringStatus_Load(sender, new RoutedEventArgs());
+            if (grdDeliveringStatus.IsVisible) DeliveringStatus_Load(sender, new RoutedEventArgs());
         }
 
         private void grdDeliveredStatus_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            DeliveredStatus_Load(sender, new RoutedEventArgs());
+            if (grdDeliveredStatus.IsVisible) DeliveredStatus_Load(sender, new RoutedEventArgs());
         }
 
         private void grdCancelledStatus_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            CancelledStatus_Load(sender, new RoutedEventArgs());
+            if (grdCancelledStatus.IsVisible) CancelledStatus_Load(sender, new RoutedEventArgs());
         }
     }
 }

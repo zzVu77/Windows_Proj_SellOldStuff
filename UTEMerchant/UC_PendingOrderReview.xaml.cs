@@ -105,7 +105,7 @@ namespace UTEMerchant
         {
             if (StaticValue.SELLER != null)
             {
-                if (_pendingOrders != null && _pendingOrders.Count == 0)
+                if (_pendingOrders != null && _pendingOrders.Count != 0)
                 {
                     productGrid.Items.Clear();
 
@@ -131,11 +131,15 @@ namespace UTEMerchant
                         );
                     }
                 }
-                else
-                {
-                    MessageBox.Show("You have no items that need to be confirmed", "Information", MessageBoxButton.OK,
-                        MessageBoxImage.Information);
-                }
+            }
+        }
+
+        private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (_pendingOrders != null && _pendingOrders.Count == 0)
+            {
+                MessageBox.Show("You have no items that need to be confirmed", "Information", MessageBoxButton.OK,
+                    MessageBoxImage.Information);
             }
         }
     }
