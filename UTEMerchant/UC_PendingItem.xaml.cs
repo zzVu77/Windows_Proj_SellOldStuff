@@ -50,10 +50,6 @@ namespace UTEMerchant
                     imgDeclined.Visibility = Visibility.Visible;
                 }
             }
-            else
-            {
-                MessageBox.Show("There are no Items that need to be confirmed", "No Items", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
         }
 
         public purchasedItem Order => _order;
