@@ -639,22 +639,91 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Resource Include="Img\icons8-nothing-found-80.png" />
+    <Resource Include="Img\ao01.jpg" />
+    <Resource Include="Img\ao02.jpg" />
+    <Resource Include="Img\ao03.jpg" />
+    <Resource Include="Img\ao11.jpg" />
+    <Resource Include="Img\ao12.jpg" />
+    <Resource Include="Img\ao13.jpg" />
+    <Resource Include="Img\Bartering.png" />
+    <Resource Include="Img\camera.jpg" />
+    <Resource Include="Img\camera.png" />
+    <Resource Include="Img\camera1.png" />
+    <Resource Include="Img\camera2.png" />
+    <Resource Include="Img\crocs1.jpg" />
+    <Resource Include="Img\crocs2.jpg" />
+    <Resource Include="Img\crocs3.jpg" />
+    <Resource Include="Img\gamingmouse.jpg" />
+    <Resource Include="Img\gamingmouse.png" />
+    <Resource Include="Img\gamingmouse1.png" />
+    <Resource Include="Img\gamingmouse2.png" />
+    <Resource Include="Img\gamingmouse3.png" />
+    <Resource Include="Img\GucciBag.jpg" />
+    <Resource Include="Img\GucciBag.png" />
+    <Resource Include="Img\GucciBag1.png" />
+    <Resource Include="Img\GucciBag2.png" />
+    <Resource Include="Img\GucciBag3.png" />
+    <Resource Include="Img\GucciBag4.png" />
+    <Resource Include="Img\headphone.jpg" />
+    <Resource Include="Img\headphone.png" />
+    <Resource Include="Img\headphone1.jpg.png" />
+    <Resource Include="Img\headphone2.png" />
+    <Resource Include="Img\icons8-account-50.png" />
     <Resource Include="Img\icons8-bar-chart-in-down-trend-after-market-crash-48.png" />
+    <Resource Include="Img\icons8-close-50.png" />
     <Resource Include="Img\icons8-dashboard-50.png" />
-    <Resource Include="Img\icons8-summary-100.png" />
-    <Resource Include="Img\icons8-sale-100.png" />
     <Resource Include="Img\icons8-feedback-96.png" />
-    <Resource Include="Img\icons8-sold-64.png" />
-    <Resource Include="Img\icons8-rating-96.png" />
+    <Resource Include="Img\icons8-nothing-found-80.png" />
+    <Resource Include="Img\icons8-product-100.png" />
     <Resource Include="Img\icons8-rating-64.png" />
+    <Resource Include="Img\icons8-rating-96.png" />
+    <Resource Include="Img\icons8-revenue-48.png" />
+    <Resource Include="Img\icons8-revenue-96.png" />
+    <Resource Include="Img\icons8-sale-100.png" />
+    <Resource Include="Img\icons8-sign-up-80.png" />
+    <Resource Include="Img\icons8-sold-64.png" />
+    <Resource Include="Img\icons8-summary-100.png" />
     <Resource Include="Img\icons8-total-sales-48.png" />
     <Resource Include="Img\icons8-total-sales-96.png" />
-    <Resource Include="Img\icons8-revenue-96.png" />
-    <Resource Include="Img\icons8-product-100.png" />
     <Resource Include="Img\image declined.png" />
-    <Resource Include="Img\icons8-account-50.png" />
-    <Resource Include="Img\icons8-sign-up-80.png" />
+    <Resource Include="Img\iPhone-14-Pro-Max-9907.jpg" />
+    <Resource Include="Img\Iphone15%281%29.png" />
+    <Resource Include="Img\Iphone15%282%29.png" />
+    <Resource Include="Img\jeans.png" />
+    <Resource Include="Img\kettle.png" />
+    <Resource Include="Img\kettle1.png" />
+    <Resource Include="Img\kettle2.png" />
+    <Resource Include="Img\Keyboard.jpg" />
+    <Resource Include="Img\Keyboard.png" />
+    <Resource Include="Img\Keyboard1.png" />
+    <Resource Include="Img\kimetsu.jpg" />
+    <Resource Include="Img\laptop.jpg" />
+    <Resource Include="Img\laptop.png" />
+    <Resource Include="Img\laptop1.png" />
+    <Resource Include="Img\laptop2.png" />
+    <Resource Include="Img\loginIMG.jpg" />
+    <Resource Include="Img\mini-fan.png" />
+    <Resource Include="Img\mini-fan1.png" />
+    <Resource Include="Img\Password.png" />
+    <Resource Include="Img\quan1.jpg" />
+    <Resource Include="Img\quan2.jpg" />
+    <Resource Include="Img\quan3.jpg" />
+    <Resource Include="Img\quan4.jpg" />
+    <Resource Include="Img\Registration 1.png" />
+    <Resource Include="Img\Registration 2.png" />
+    <Resource Include="Img\repeater.jpg" />
+    <Resource Include="Img\samsung_galaxy_s23_ultra_tim.png" />
+    <Resource Include="Img\smartwatch.jpg" />
+    <Resource Include="Img\smartwatch1.png" />
+    <Resource Include="Img\smartwatch2.png" />
+    <Resource Include="Img\smartwatch3.png" />
+    <Resource Include="Img\sneaker.jpg" />
+    <Resource Include="Img\sold-stamp-3.png" />
+    <Resource Include="Img\sweater.png" />
+    <Resource Include="Img\TradexcellentLogo.png" />
+    <Resource Include="Img\TrustedSeller.png" />
+    <Resource Include="Img\UserName.png" />
+    <Resource Include="Img\UTELogo.png" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -699,21 +768,6 @@
     <Resource Include="Resources\Icons\X Icon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Img\iPhone-14-Pro-Max-9907.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Img\loginIMG.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Img\UserName.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Img\Password.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Img\icons8-close-50.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Resources\Assets\" />
   </ItemGroup>
   <ItemGroup>
@@ -727,28 +781,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="fonts\fontawesome-webfont.svg" />
-    <Resource Include="Img\sweater.png" />
-    <Resource Include="Img\mini-fan.png" />
-    <Resource Include="Img\kettle.png" />
-    <Resource Include="Img\jeans.png" />
-    <Resource Include="Img\GucciBag.jpg" />
-    <Resource Include="Img\Keyboard.jpg" />
-    <Resource Include="Img\samsung_galaxy_s23_ultra_tim.png" />
-    <Resource Include="Img\sneaker.jpg" />
-    <Resource Include="Img\sold-stamp-3.png" />
-    <Resource Include="Img\camera.jpg" />
-    <Resource Include="Img\gamingmouse.jpg" />
-    <Resource Include="Img\headphone.jpg" />
-    <Resource Include="Img\laptop.jpg" />
-    <Resource Include="Img\repeater.jpg" />
-    <Resource Include="Img\smartwatch.jpg" />
-    <Resource Include="Img\kimetsu.jpg" />
-    <Resource Include="Img\Registration 1.png" />
-    <Resource Include="Img\Registration 2.png" />
-    <Resource Include="Img\TrustedSeller.png" />
-    <Resource Include="Img\TradexcellentLogo.png" />
-    <Resource Include="Img\UTELogo.png" />
-    <Resource Include="Img\Bartering.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
