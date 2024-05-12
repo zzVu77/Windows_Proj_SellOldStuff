@@ -39,7 +39,7 @@
                                         Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Image x:Name="imgItem" Source="{Binding Image_Path}" 
+                            <Image x:Name="imgItem" Source="{Binding image_path}" 
                                    Height="30"
                                    Stretch="Uniform"
                                    HorizontalAlignment="Left"
@@ -49,7 +49,7 @@
                 </DataGridTemplateColumn>
 
                 <DataGridTextColumn Header="Price" 
-                                    Binding="{Binding Price}"
+                                    Binding="{Binding price}"
                                     IsReadOnly="True"
                                     Width="0.5*"/>
                 <DataGridTextColumn Header="Posted"
@@ -65,7 +65,7 @@
                                     IsReadOnly="True"
                                     Width="*"/>
                 <DataGridTextColumn Header="Delivery Address"
-                                    Binding="{Binding DeliveryAddress}"
+                                    Binding="{Binding Delivery_Address}"
                                     IsReadOnly="True"
                                     Width="2*">
                     <DataGridTextColumn.ElementStyle>

@@ -68,7 +68,7 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">  
-                                    <TextBlock Text="{Binding Name}" VerticalAlignment="Center"  />
+                                    <TextBlock Text="{Binding name}" VerticalAlignment="Center"  />
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -77,22 +77,22 @@
                     <DataGridTemplateColumn  Header="Image" Width="*"  >
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Image x:Name="imgItem" Source="{Binding Image_Path}" Width="30" Height="30" HorizontalAlignment="Left" MouseLeftButtonDown="imgItem_MouseLeftButtonDown" />
+                                <Image x:Name="imgItem" Source="{Binding image_path}" Width="30" Height="30" HorizontalAlignment="Left" MouseLeftButtonDown="imgItem_MouseLeftButtonDown" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTextColumn Header="Original Price" Binding="{Binding Original_Price}" IsReadOnly="True" Width="*" />
-                    <DataGridTextColumn Header="Price" Binding="{Binding Price}" IsReadOnly="True" Width="*" />
-                    <DataGridTextColumn Header="Type" Binding="{Binding Type}" IsReadOnly="True" Width="*" />
+                    <DataGridTextColumn Header="Original Price" Binding="{Binding original_price}" IsReadOnly="True" Width="*" />
+                    <DataGridTextColumn Header="Price" Binding="{Binding price}" IsReadOnly="True" Width="*" />
+                    <DataGridTextColumn Header="Type" Binding="{Binding type}" IsReadOnly="True" Width="*" />
                     <DataGridTextColumn Header="Status" IsReadOnly="True" Width="*" >
                         <DataGridTextColumn.Binding>
-                            <Binding Path="Sale_Status" Converter="{StaticResource SaleStatusConverter}"/>
+                            <Binding Path="sale_status" Converter="{StaticResource SaleStatusConverter}"/>
                         </DataGridTextColumn.Binding>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Header="Bought" Binding="{Binding Bought_date, StringFormat={}{0:dd/MM/yyyy}}" IsReadOnly="True" Width="*" />
+                    <DataGridTextColumn Header="Bought" Binding="{Binding bought_date, StringFormat={}{0:dd/MM/yyyy}}" IsReadOnly="True" Width="*" />
                     <DataGridTextColumn Header="Posted" Binding="{Binding PostedDate, StringFormat={}{0:dd/MM/yyyy}}" IsReadOnly="True" Width="*" />
-                    <DataGridTextColumn Header="Condition(%)" Binding="{Binding Condition}"  IsReadOnly="True" Width="*" />
+                    <DataGridTextColumn Header="Condition(%)" Binding="{Binding condition}"  IsReadOnly="True" Width="*" />
                     <!--<DataGridTextColumn Header="Condition.Desc" Binding="{Binding Condition_Description}" IsReadOnly="True" Width="*"  />
                     <DataGridTextColumn Header="Detail" Binding="{Binding Detail_description}" IsReadOnly="True" Width="*"  />-->
                     <DataGridTemplateColumn Header="Actions" IsReadOnly="True" Width="auto" >
