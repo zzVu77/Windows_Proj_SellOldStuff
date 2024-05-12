@@ -22,10 +22,21 @@ namespace UTEMerchant
     /// </summary>
     public partial class Purchasing_Interface : Window
     {
+        private Item_DAO Item_dao = new Item_DAO();
+        List<Item> items = new List<Item>();
         public Purchasing_Interface()
         {
-            InitializeComponent();
+           
+            /*InitializeComponent();
+            wpItemsList.Children.Clear();
+            Item_dao.Load();
+            items = Item_dao.items;
+            foreach (Item item in items)
+            {
+                wpItemsList.Children.Add(new UC_ItemView(item));
+            }    */
         }
+        
 
         private void XIcon_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -61,20 +72,31 @@ namespace UTEMerchant
 
         private void svItemsList_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            var Item = e.OriginalSource as FrameworkElement;
-            UC_ItemDetail uC_ItemDetail = new UC_ItemDetail();
-            if (Item != null && dpSelectedItemDetailedInformation.Children.Count != 1)
+            foreach (Item item in items)
             {
-                dpSelectedItemDetailedInformation.Children.Add(uC_ItemDetail);
+                var Item = e.OriginalSource as FrameworkElement;
+                UC_ItemDetail uC_ItemDetail = new UC_ItemDetail(item);
+                if (Item != null && dpSelectedItemDetailedInformation.Children.Count != 1)
+                {
+                    dpSelectedItemDetailedInformation.Children.Add(uC_ItemDetail);
+                }
             }
         }
 
         private void btnSellerMode_Click(object sender, RoutedEventArgs e)
         {
-            WinSellerInterface winSellerInterface = new WinSellerInterface();
+            //WinSellerInterface winSellerInterface = new WinSellerInterface();
             Hide();
-            winSellerInterface.ShowDialog();
+            //winSellerInterface.ShowDialog();
             Show();
+        }
+
+
+        private void tbSeller_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.Hide();
+            //var seller = new WinSellerInterface();
+            //seller.ShowDialog();
         }
 
         //public int RowCount

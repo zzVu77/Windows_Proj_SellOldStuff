@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="UTEMerchant.UC_SignUpStep2"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UTEMerchant" 
+             mc:Ignorable="d" d:DesignWidth="800" Height="571" 
+             IsVisibleChanged="UserControl_IsVisibleChanged">
+    <Grid>
+        <TextBlock Text="Enter the verification code sent to your email" TextAlignment="Center" Foreground="#363636" FontWeight="SemiBold" FontSize="28" Margin="10 100 0 0"/>
+        <Grid HorizontalAlignment="Center" Margin="0,150,0,0" Width="600">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+
+                <RowDefinition Height="Auto"/>
+
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="1" Text="verification code" Style="{StaticResource Text}"/>
+
+
+            <local:UCtextBox Grid.Column="1" Grid.Row="1" Hint="1231301 (please check your gmail)" x:Name="ucVerifyCode" Margin="0,35,0,35"/>
+
+
+            <Grid Grid.Column="1" Grid.Row="8" Margin="0 80 0 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="btnFinish"  Content="Finish" Margin="73,38,0,-38" Grid.Column="1" Style="{StaticResource addButton}"
+                Click="btnFinish_Click" HorizontalAlignment="Left"/>
+                <Button x:Name="btnBack" Content="Back" Margin="0,38,70,-38" Grid.Column="0" Style="{StaticResource addButton}"
+                Click="btnBack_Click"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

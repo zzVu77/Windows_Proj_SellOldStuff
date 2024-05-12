@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -38,8 +38,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>..\packages\BouncyCastle.Cryptography.2.3.0\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="FontAwesome.WPF, Version=4.7.0.37774, Culture=neutral, PublicKeyToken=0758b07a11a4f466, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome.WPF.4.7.0.9\lib\net40\FontAwesome.WPF.dll</HintPath>
+    </Reference>
     <Reference Include="HandyControl, Version=3.5.1.0, Culture=neutral, PublicKeyToken=45be8712787a1e5b, processorArchitecture=MSIL">
       <HintPath>..\packages\HandyControl.3.5.1\lib\net48\HandyControl.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="MahApps.Metro.IconPacks, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0c0d510f9915137a, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.IconPacks.4.11.0\lib\net47\MahApps.Metro.IconPacks.dll</HintPath>
@@ -140,9 +152,40 @@
     <Reference Include="MahApps.Metro.IconPacks.Zondicons, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0c0d510f9915137a, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.IconPacks.4.11.0\lib\net47\MahApps.Metro.IconPacks.Zondicons.dll</HintPath>
     </Reference>
+    <Reference Include="MailKit, Version=4.5.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
+      <HintPath>..\packages\MailKit.4.5.0\lib\net48\MailKit.dll</HintPath>
+    </Reference>
+    <Reference Include="MimeKit, Version=4.5.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
+      <HintPath>..\packages\MimeKit.4.5.0\lib\net48\MimeKit.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationFramework.Aero2" />
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Formats.Asn1, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Formats.Asn1.8.0.0\lib\net462\System.Formats.Asn1.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -155,8 +198,8 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="Wpf.Ui, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WPF-UI.3.0.1\lib\net472\Wpf.Ui.dll</HintPath>
+    <Reference Include="Wpf.Ui, Version=3.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WPF-UI.3.0.4\lib\net472\Wpf.Ui.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -164,35 +207,369 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Address.cs" />
+    <Compile Include="Address_DAO.cs" />
+    <Compile Include="CheckValid.cs" />
+    <Compile Include="CustomerReview.cs" />
+    <Compile Include="CustomerReviewDAO.cs" />
+    <Compile Include="DAO.cs" />
+    <Compile Include="DB_Connection.cs" />
+    <Compile Include="DeliveryAddress.cs" />
+    <Compile Include="DeliveryAddress_DAO.cs" />
+    <Compile Include="ImgPath.cs" />
+    <Compile Include="ImgPath_DAO.cs" />
+    <Compile Include="InverseBooleanConverter.cs" />
     <Compile Include="Item.cs" />
+    <Compile Include="ItemRecommendationEngine.cs" />
+    <Compile Include="Item_DAO.cs" />
+    <Compile Include="Person.cs" />
+    <Compile Include="purchasedItem.cs" />
+    <Compile Include="PurchasedItem_DAO.cs" />
+    <Compile Include="SaleStatusConverter.cs" />
+    <Compile Include="SendMail.cs" />
+    <Compile Include="Seller.cs" />
+    <Compile Include="Seller_DAO.cs" />
+    <Compile Include="PercentageConverter.cs" />
+    <Compile Include="StaticValue.cs" />
+    <Compile Include="StringNullOrEmptyToVisibilityConverter.cs" />
     <Compile Include="TextToVisibilityConverter.cs" />
-    <Compile Include="UC_PurchasingUI.xaml.cs">
-      <DependentUpon>UC_PurchasingUI.xaml</DependentUpon>
+    <Compile Include="UCtextBox.xaml.cs">
+      <DependentUpon>UCtextBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_AddressBox.xaml.cs">
+      <DependentUpon>UC_AddressBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_BuyerProfile.xaml.cs">
+      <DependentUpon>UC_BuyerProfile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_CancelledItem.xaml.cs">
+      <DependentUpon>UC_CancelledItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_CompletedItem.xaml.cs">
+      <DependentUpon>UC_CompletedItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_DashBoard.xaml.cs">
+      <DependentUpon>UC_DashBoard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_DeliveringItem.xaml.cs">
+      <DependentUpon>UC_DeliveringItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_DeliveryUI.xaml.cs">
+      <DependentUpon>UC_DeliveryUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_FeedbackForDashBoard.xaml.cs">
+      <DependentUpon>UC_FeedbackForDashBoard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_FeedBackUI.xaml.cs">
+      <DependentUpon>UC_FeedBackUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_ForgotPasswordCompleted.xaml.cs">
+      <DependentUpon>UC_ForgotPasswordCompleted.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_ForgotPasswordStep1.xaml.cs">
+      <DependentUpon>UC_ForgotPasswordStep1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_ForgotPasswordStep2.xaml.cs">
+      <DependentUpon>UC_ForgotPasswordStep2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_ForgotPasswordStep3.xaml.cs">
+      <DependentUpon>UC_ForgotPasswordStep3.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_ImageSlide.xaml.cs">
+      <DependentUpon>UC_ImageSlide.xaml</DependentUpon>
     </Compile>
     <Compile Include="UC_ItemDetail.xaml.cs">
       <DependentUpon>UC_ItemDetail.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UC_ItemInShoppingCartItemsView.xaml.cs">
+      <DependentUpon>UC_ItemInShoppingCartItemsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UC_ItemView.xaml.cs">
       <DependentUpon>UC_ItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_PendingItem.xaml.cs">
+      <DependentUpon>UC_PendingItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_PendingItemsBox.xaml.cs">
+      <DependentUpon>UC_PendingItemsBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_PendingOrderBox.xaml.cs">
+      <DependentUpon>UC_PendingOrderBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_PendingOrderReview.xaml.cs">
+      <DependentUpon>UC_PendingOrderReview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_PlaceOrderItem.xaml.cs">
+      <DependentUpon>UC_PlaceOrderItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_PlaceOrderItemsBox.xaml.cs">
+      <DependentUpon>UC_PlaceOrderItemsBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_PurchasingUI.xaml.cs">
+      <DependentUpon>UC_PurchasingUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_RatingUI.xaml.cs">
+      <DependentUpon>UC_RatingUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_RegistrationComplete.xaml.cs">
+      <DependentUpon>UC_RegistrationComplete.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_RegistrationCompleted.xaml.cs">
+      <DependentUpon>UC_RegistrationCompleted.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_SellerProfile.xaml.cs">
+      <DependentUpon>UC_SellerProfile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_SellerRegistration.xaml.cs">
+      <DependentUpon>UC_SellerRegistration.xaml</DependentUpon>
     </Compile>
     <Compile Include="UC_SellerUI.xaml.cs">
       <DependentUpon>UC_SellerUI.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UC_ShoppingCart.xaml.cs">
+      <DependentUpon>UC_ShoppingCart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_ShoppingCartItemsView.xaml.cs">
+      <DependentUpon>UC_ShoppingCartItemsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_SignUpStep1.xaml.cs">
+      <DependentUpon>UC_SignUpStep1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_SignUpStep2.xaml.cs">
+      <DependentUpon>UC_SignUpStep2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_StarRating.xaml.cs">
+      <DependentUpon>UC_StarRating.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_StartSelling.xaml.cs">
+      <DependentUpon>UC_StartSelling.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_DeliveringItemsBox.xaml.cs">
+      <DependentUpon>UC_DeliveringItemsBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_WishListUI.xaml.cs">
+      <DependentUpon>UC_WishListUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs" />
+    <Compile Include="user_DAO.cs" />
+    <Compile Include="WinAddressCustomization.xaml.cs">
+      <DependentUpon>WinAddressCustomization.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinAddressOptions.xaml.cs">
+      <DependentUpon>WinAddressOptions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinBuyingInterface.xaml.cs">
+      <DependentUpon>WinBuyingInterface.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinDeltailItem.xaml.cs">
+      <DependentUpon>WinDeltailItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinForgotPassword.xaml.cs">
+      <DependentUpon>WinForgotPassword.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinImageZoom.xaml.cs">
+      <DependentUpon>WinImageZoom.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WinNewItem.xaml.cs">
       <DependentUpon>WinNewItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinPlaceOrder.xaml.cs">
+      <DependentUpon>WinPlaceOrder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinRating.xaml.cs">
+      <DependentUpon>WinRating.xaml</DependentUpon>
     </Compile>
     <Compile Include="WinSellerInterface.xaml.cs">
       <DependentUpon>WinSellerInterface.xaml</DependentUpon>
     </Compile>
-    <Page Include="UC_PurchasingUI.xaml">
+    <Compile Include="WinShopView.xaml.cs">
+      <DependentUpon>WinShopView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinSignUp.xaml.cs">
+      <DependentUpon>WinSignUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinUpdateItem.xaml.cs">
+      <DependentUpon>WinUpdateItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WishList.cs" />
+    <Compile Include="WishList_DAO.cs" />
+    <Page Include="UCtextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UC_AddressBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC_BuyerProfile.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UC_CancelledItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC_CompletedItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UC_DashBoard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC_DeliveringItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC_DeliveryUI.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UC_FeedbackForDashBoard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC_FeedBackUI.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UC_ForgotPasswordCompleted.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UC_ForgotPasswordStep1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UC_ForgotPasswordStep2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UC_ForgotPasswordStep3.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UC_ImageSlide.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UC_ItemDetail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UC_ItemInShoppingCartItemsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UC_ItemView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UC_PendingItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UC_PendingItemsBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC_PendingOrderBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC_PendingOrderReview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC_PlaceOrderItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UC_PlaceOrderItemsBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UC_PurchasingUI.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UC_RatingUI.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UC_RegistrationComplete.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UC_RegistrationCompleted.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UC_SellerProfile.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UC_SellerRegistration.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="UC_SellerUI.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UC_ShoppingCart.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UC_ShoppingCartItemsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UC_SignUpStep1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UC_SignUpStep2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UC_StarRating.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UC_StartSelling.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UC_DeliveringItemsBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UC_WishListUI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinAddressCustomization.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinAddressOptions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinBuyingInterface.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinDeltailItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinForgotPassword.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WinImageZoom.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -201,6 +578,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WinNewItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinPlaceOrder.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -223,11 +604,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UC_ItemView.xaml">
+    <Page Include="WinRating.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WinSellerInterface.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinShopView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinSignUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinUpdateItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -246,10 +639,100 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Img\ao01.jpg" />
+    <Resource Include="Img\ao02.jpg" />
+    <Resource Include="Img\ao03.jpg" />
+    <Resource Include="Img\ao11.jpg" />
+    <Resource Include="Img\ao12.jpg" />
+    <Resource Include="Img\ao13.jpg" />
+    <Resource Include="Img\Bartering.png" />
+    <Resource Include="Img\camera.jpg" />
+    <Resource Include="Img\camera.png" />
+    <Resource Include="Img\camera1.png" />
+    <Resource Include="Img\camera2.png" />
+    <Resource Include="Img\crocs1.jpg" />
+    <Resource Include="Img\crocs2.jpg" />
+    <Resource Include="Img\crocs3.jpg" />
+    <Resource Include="Img\gamingmouse.jpg" />
+    <Resource Include="Img\gamingmouse.png" />
+    <Resource Include="Img\gamingmouse1.png" />
+    <Resource Include="Img\gamingmouse2.png" />
+    <Resource Include="Img\gamingmouse3.png" />
+    <Resource Include="Img\GucciBag.jpg" />
+    <Resource Include="Img\GucciBag.png" />
+    <Resource Include="Img\GucciBag1.png" />
+    <Resource Include="Img\GucciBag2.png" />
+    <Resource Include="Img\GucciBag3.png" />
+    <Resource Include="Img\GucciBag4.png" />
+    <Resource Include="Img\headphone.jpg" />
+    <Resource Include="Img\headphone.png" />
+    <Resource Include="Img\headphone1.jpg.png" />
+    <Resource Include="Img\headphone2.png" />
+    <Resource Include="Img\icons8-account-50.png" />
+    <Resource Include="Img\icons8-bar-chart-in-down-trend-after-market-crash-48.png" />
+    <Resource Include="Img\icons8-close-50.png" />
+    <Resource Include="Img\icons8-dashboard-50.png" />
+    <Resource Include="Img\icons8-feedback-96.png" />
+    <Resource Include="Img\icons8-nothing-found-80.png" />
+    <Resource Include="Img\icons8-product-100.png" />
+    <Resource Include="Img\icons8-rating-64.png" />
+    <Resource Include="Img\icons8-rating-96.png" />
+    <Resource Include="Img\icons8-revenue-48.png" />
+    <Resource Include="Img\icons8-revenue-96.png" />
+    <Resource Include="Img\icons8-sale-100.png" />
+    <Resource Include="Img\icons8-sign-up-80.png" />
+    <Resource Include="Img\icons8-sold-64.png" />
+    <Resource Include="Img\icons8-summary-100.png" />
+    <Resource Include="Img\icons8-total-sales-48.png" />
+    <Resource Include="Img\icons8-total-sales-96.png" />
+    <Resource Include="Img\image declined.png" />
+    <Resource Include="Img\iPhone-14-Pro-Max-9907.jpg" />
+    <Resource Include="Img\Iphone15%281%29.png" />
+    <Resource Include="Img\Iphone15%282%29.png" />
+    <Resource Include="Img\jeans.png" />
+    <Resource Include="Img\kettle.png" />
+    <Resource Include="Img\kettle1.png" />
+    <Resource Include="Img\kettle2.png" />
+    <Resource Include="Img\Keyboard.jpg" />
+    <Resource Include="Img\Keyboard.png" />
+    <Resource Include="Img\Keyboard1.png" />
+    <Resource Include="Img\kimetsu.jpg" />
+    <Resource Include="Img\laptop.jpg" />
+    <Resource Include="Img\laptop.png" />
+    <Resource Include="Img\laptop1.png" />
+    <Resource Include="Img\laptop2.png" />
+    <Resource Include="Img\loginIMG.jpg" />
+    <Resource Include="Img\mini-fan.png" />
+    <Resource Include="Img\mini-fan1.png" />
+    <Resource Include="Img\Password.png" />
+    <Resource Include="Img\quan1.jpg" />
+    <Resource Include="Img\quan2.jpg" />
+    <Resource Include="Img\quan3.jpg" />
+    <Resource Include="Img\quan4.jpg" />
+    <Resource Include="Img\Registration 1.png" />
+    <Resource Include="Img\Registration 2.png" />
+    <Resource Include="Img\repeater.jpg" />
+    <Resource Include="Img\samsung_galaxy_s23_ultra_tim.png" />
+    <Resource Include="Img\smartwatch.jpg" />
+    <Resource Include="Img\smartwatch1.png" />
+    <Resource Include="Img\smartwatch2.png" />
+    <Resource Include="Img\smartwatch3.png" />
+    <Resource Include="Img\sneaker.jpg" />
+    <Resource Include="Img\sold-stamp-3.png" />
+    <Resource Include="Img\sweater.png" />
+    <Resource Include="Img\TradexcellentLogo.png" />
+    <Resource Include="Img\TrustedSeller.png" />
+    <Resource Include="Img\UserName.png" />
+    <Resource Include="Img\UTELogo.png" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -285,20 +768,19 @@
     <Resource Include="Resources\Icons\X Icon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Img\iPhone-14-Pro-Max-9907.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Img\loginIMG.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Img\UserName.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Img\Password.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Img\icons8-close-50.png" />
     <Folder Include="Resources\Assets\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="db_ute_merchant.mdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="db_ute_merchant_log.ldf">
+      <DependentUpon>db_ute_merchant.mdf</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="fonts\fontawesome-webfont.svg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

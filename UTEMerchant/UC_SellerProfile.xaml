@@ -1,0 +1,276 @@
+﻿<UserControl x:Class="UTEMerchant.UC_SellerProfile"
+          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UTEMerchant"
+             xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             mc:Ignorable="d" 
+              d:DesignHeight="800" d:DesignWidth="1400" IsVisibleChanged="UserControl_IsVisibleChanged">
+    <Grid Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="41*"/>
+            <RowDefinition Height="359*"/>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="129*"/>
+            <ColumnDefinition Width="221*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="2"
+                   Text="SELLER INFORMATION"
+                   FontSize="50"
+                   VerticalAlignment="Bottom"
+                   HorizontalAlignment="Right"
+                   FontFamily="Segoe UI Black"
+                   Margin="0 0 25 0"
+                   />
+        <StackPanel Grid.Column="0" VerticalAlignment="Top" Margin="50 60 0 0" Height="379" Grid.Row="1">
+
+            <Border Grid.Column="0" 
+                    Grid.Row="0"  
+                    Width="300" 
+                    Height="300" 
+                    Margin="0 10 0 0"
+                    HorizontalAlignment="Center" 
+                    BorderThickness="2"
+                    BorderBrush="Black"
+                    VerticalAlignment="Top" 
+                    CornerRadius="7">
+                <Image x:Name="imgSellerPhoto" Source="C:\Users\FPTSHOP\Desktop\Window_Proj_UTEMerchant\UTEMerchant\Img\kimetsu.jpg" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Uniform" Margin="7,0,7,0"/>
+            </Border>
+
+            <Button Grid.Column="0"
+                    x:Name="btnChangePhoto"
+                    Margin="0 15 00 0"
+                    Height="49"                 
+                    Width="226"
+                    Style="{StaticResource OrderButton}" 
+                    HorizontalAlignment="Center"                                                
+                    HorizontalContentAlignment="Center" Click="btnChangePhoto_Click">
+                <StackPanel Orientation="Horizontal">
+
+                    <Icon:PackIconMaterial Kind="Upload" VerticalAlignment="Center" Margin="0 1 8 0" Width="23" Height="22" Foreground="Black"/>
+                    <TextBlock Text="Change photo" FontSize="20" FontWeight="Light" FontFamily="Segoe UI Black" Foreground="Black" VerticalAlignment="Center" />
+                </StackPanel>
+            </Button>
+
+        </StackPanel >
+
+        <StackPanel Grid.Column="1" Grid.Row="1" Margin="45,45,0,0" HorizontalAlignment="Left" Width="530">
+
+            <DockPanel Margin="0 5 0 15">
+                <Label Content="Seller ID: " VerticalAlignment="Center" FontFamily="Segoe UI Black" Width="110" FontSize="15"/>
+
+                <TextBox x:Name="txtSellerID"  
+                     Grid.Row="0"
+                     Style="{StaticResource DefaultTextBoxStyle}"
+                     Width="420"
+                     Height="45"     
+                     FontSize="15"
+                     FontWeight="SemiBold"
+                     BorderBrush="DarkGray"
+                     Background="#f4f4f4"
+                     BorderThickness="1.5"
+                     VerticalAlignment="Center"
+                     HorizontalAlignment="Left"  
+                     IsReadOnly="True"
+                />
+
+            </DockPanel>
+
+            <DockPanel Margin="0 5 0 15">
+                <Label Content="Shop Name: " VerticalAlignment="Center" FontFamily="Segoe UI Black" Width="110" FontSize="15"/>
+
+                <TextBox x:Name="txtSellerShopName"  
+                         Grid.Row="0"
+                         Style="{StaticResource DefaultTextBoxStyle}"
+                         Width="420"
+                         IsReadOnly="True"
+                         Height="45"    
+                         FontSize="15"
+                         FontWeight="SemiBold"
+                         BorderBrush="DarkGray"
+                         Background="#f4f4f4"
+                         BorderThickness="1.5"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Left"    
+                />
+
+            </DockPanel>
+
+            <DockPanel Margin="0 5 0 15" >
+                <Label Content="Email: " VerticalAlignment="Center" FontFamily="Segoe UI Black" Width="110" FontSize="15"/>
+
+                <TextBox x:Name="txtSellerShopEmail"  
+                         Grid.Row="0"
+                         Style="{StaticResource DefaultTextBoxStyle}"
+                         Width="420"
+                         Height="45"   
+                         FontSize="15"
+                         FontWeight="SemiBold"
+                         BorderBrush="DarkGray"
+                         Background="#f4f4f4"
+                         BorderThickness="1.5"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Left"    
+                         IsReadOnly="True"
+                />
+
+            </DockPanel>
+
+            <DockPanel Margin="0 5 0 15">
+                <Label Content="Phone: " VerticalAlignment="Center" FontFamily="Segoe UI Black" Width="110" FontSize="15"/>
+
+                <TextBox x:Name="txtSellerPhoneNumber"  
+                         Grid.Row="0"
+                         Style="{StaticResource DefaultTextBoxStyle}"
+                         Width="420"
+                         Height="45"          
+                         FontSize="15"
+                         FontWeight="SemiBold"
+                         BorderBrush="DarkGray"
+                         Background="#f4f4f4"
+                         BorderThickness="1.5"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Left"    
+                         IsReadOnly="True"
+                />
+
+            </DockPanel>
+
+            <DockPanel Margin="0 5 0 15">
+                <Label Content="City: " VerticalAlignment="Center" FontFamily="Segoe UI Black" Width="110" FontSize="15"/>
+
+                <ComboBox x:Name="cbPickupCity"
+                          Style="{StaticResource DefaultComboBoxStyle}"
+                          Background="White"
+                          Width="420"
+                          IsEditable="False"
+                          Height="45"
+                          BorderBrush="DarkGray"
+                          BorderThickness="1.5"
+                          FontSize="15"
+                          FontWeight="SemiBold"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Left"
+                          Visibility="Collapsed"
+                          SelectionChanged="cbPickupCity_SelectionChanged">
+
+
+                </ComboBox>
+
+                <TextBox x:Name="txtSellerCity"  
+                         Grid.Row="0"
+                         Style="{StaticResource DefaultTextBoxStyle}"
+                         Width="420"
+                         Height="45" 
+                         FontSize="15"
+                         FontWeight="SemiBold"
+                         BorderBrush="DarkGray"
+                         Background="#f4f4f4"
+                         BorderThickness="1.5"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Left"    
+                         IsReadOnly="True"
+                         Visibility="Visible"                         
+                />
+
+            </DockPanel>
+
+            <DockPanel Margin="0 5 0 15">
+                <Label Content="District: " VerticalAlignment="Center" FontFamily="Segoe UI Black" Width="110" FontSize="15"/>
+
+                <ComboBox x:Name="cbPickupDistrict"
+                          IsReadOnly="True"
+                          Style="{StaticResource DefaultComboBoxStyle}"
+                          Background="White"
+                          Width="420"
+                          Height="45"
+                          FontSize="15"
+                          FontWeight="SemiBold"
+                          BorderBrush="DarkGray"
+                          BorderThickness="1.5"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Left"
+                          Visibility="Collapsed"
+                          SelectionChanged="cbPickupDistrict_SelectionChanged">
+                </ComboBox>
+
+                <TextBox x:Name="txtSellerDistrict"  
+                         Grid.Row="0"
+                         Style="{StaticResource DefaultTextBoxStyle}"
+                         Width="420"
+                         Height="45"
+                         FontSize="15"
+                         FontWeight="SemiBold"
+                         BorderBrush="DarkGray"
+                         Background="#f4f4f4"
+                         BorderThickness="1.5"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Left"    
+                         IsReadOnly="True"
+                         Visibility="Visible"                         
+                />
+
+            </DockPanel>
+
+            <DockPanel Margin="0 5 0 15">
+                <Label Content="Ward: " VerticalAlignment="Center" FontFamily="Segoe UI Black" Width="110" FontSize="15"/>
+
+                <TextBox x:Name="txtSellerWard"
+                         IsReadOnly="True"
+                         Grid.Row="0"
+                         Style="{StaticResource DefaultTextBoxStyle}"
+                         Width="420"
+                         Height="45"  
+                         FontSize="15"
+                         FontWeight="SemiBold"
+                         BorderBrush="DarkGray"
+                         Background="#f4f4f4"
+                         BorderThickness="1.5"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Left"    
+                />
+
+            </DockPanel>
+
+            <DockPanel>
+                <Button Grid.Column="0"
+                         x:Name="btnEdit"
+                        Height="40"                 
+                        Width="150"
+                        Background="LightBlue"
+                        Style="{StaticResource OrderButton}"                        
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Left"                                                
+                        HorizontalContentAlignment="Center" Click="btnEdit_Click">
+                    <StackPanel Orientation="Horizontal" Width="73" Height="30">
+                        <Icon:PackIconMaterial Kind="AccountEdit" VerticalAlignment="Center" Margin="0 1 8 0" Width="23" Height="22" Foreground="Black"/>
+                        <TextBlock Text="Edit" FontSize="20" FontWeight="Light" FontFamily="Segoe UI Black" Foreground="Black" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+
+                <Button Grid.Column="0"
+                        x:Name="btnSave"
+                        Height="40"                 
+                        Width="150"
+                        Background="LightGreen"
+                        Style="{StaticResource OrderButton}"                        
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Right"                     
+                        Visibility="Collapsed"
+                        HorizontalContentAlignment="Center" Click="btnSave_Click">
+                    <StackPanel Orientation="Horizontal" Width="80" Height="27">
+                        <Icon:PackIconMaterial Kind="ContentSave" VerticalAlignment="Center" Margin="0 1 8 0" Width="23" Height="22" Foreground="Black"/>
+                        <TextBlock Text="Save" FontSize="20" FontWeight="Light" FontFamily="Segoe UI Black" Foreground="Black" VerticalAlignment="Center" Width="57" />
+                    </StackPanel>
+                </Button>
+
+            </DockPanel>
+
+
+        </StackPanel>
+    </Grid>
+</UserControl>

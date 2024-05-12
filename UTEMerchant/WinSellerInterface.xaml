@@ -9,7 +9,7 @@
         Height="720" Width="1386" WindowStartupLocation="CenterScreen" AllowsTransparency="True"
         Background="Transparent" WindowStyle="None"
         WindowState="Maximized"
-        >
+        Loaded ="Window_Loaded">
 
 
     <Window.Resources>
@@ -63,25 +63,25 @@
                                 <!--Popup-->
 
                                 <Popup x:Name="PART_Popup"
-                               AllowsTransparency="true"
-                               Focusable="false"
-                               HorizontalOffset="-2"
-                               IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}"
-                               Placement="Right"
-                               PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}"
-                               VerticalOffset="0">
+                                       AllowsTransparency="true"
+                                       Focusable="false"
+                                       HorizontalOffset="-2"
+                                       IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}"
+                                       Placement="Right"
+                                       PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}"
+                                       VerticalOffset="0">
                                     <Border x:Name="SubMenuBorder"
-                                    Background="Transparent"
-                                    BorderBrush="Transparent">
+                                            Background="Transparent"
+                                            BorderBrush="Transparent">
                                         <ScrollViewer x:Name="SubMenuScrollViewer"
-                                              Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
+                                                      Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
                                             <Grid RenderOptions.ClearTypeHint="Enabled">
                                                 <Canvas HorizontalAlignment="Left"
-                                                VerticalAlignment="Top"/>
+                                                        VerticalAlignment="Top"/>
                                                 <ItemsPresenter x:Name="ItemsPresenter"
-                                                        KeyboardNavigation.DirectionalNavigation="Cycle"
-                                                        Grid.IsSharedSizeScope="true"
-                                                        KeyboardNavigation.TabNavigation="Cycle"/>
+                                                                KeyboardNavigation.DirectionalNavigation="Cycle"
+                                                                Grid.IsSharedSizeScope="true"
+                                                                KeyboardNavigation.TabNavigation="Cycle"/>
                                             </Grid>
                                         </ScrollViewer>
                                     </Border>
@@ -142,24 +142,24 @@
                                 <!--Icon-->
 
                                 <ContentPresenter x:Name="Icon"
-                                          ContentSource="Icon"
-                                          HorizontalAlignment="Left"
-                                          Height="Auto"
-                                          Width="Auto"
-                                          Margin="30,15,0,15"
-                                          VerticalAlignment="Center" />
+                                                  ContentSource="Icon"
+                                                  HorizontalAlignment="Left"
+                                                  Height="Auto"
+                                                  Width="Auto"
+                                                  Margin="30,15,0,15"
+                                                  VerticalAlignment="Center" />
 
                                 <!--Menu Text-->
 
                                 <ContentPresenter ContentSource="Header"
-                                          Grid.Column="1"
-                                          TextBlock.Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
-                                          TextBlock.FontWeight="{Binding FontWeight, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
-                                          TextBlock.FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
-                                          HorizontalAlignment="Left"
-                                          RecognizesAccessKey="True"
-                                          Margin="3,0,0,0"
-                                          VerticalAlignment="Center" />
+                                                  Grid.Column="1"
+                                                  TextBlock.Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
+                                                  TextBlock.FontWeight="{Binding FontWeight, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
+                                                  TextBlock.FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
+                                                  HorizontalAlignment="Left"
+                                                  RecognizesAccessKey="True"
+                                                  Margin="3,0,0,0"
+                                                  VerticalAlignment="Center" />
                             </Grid>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -195,11 +195,11 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type MenuItem}">
                         <Border x:Name="border"
-                        Background="{TemplateBinding Background}"
-                        BorderBrush="Transparent"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        Height="Auto"
-                        Width="Auto">
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="Transparent"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Height="Auto"
+                                Width="Auto">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="2*" />
@@ -208,23 +208,23 @@
 
                                 <!--Icon-->
                                 <ContentPresenter x:Name="Icon"
-                                          ContentSource="Icon"
-                                          HorizontalAlignment="Left"
-                                          Height="Auto"
-                                          Width="Auto"
-                                          Margin="30,15,0,15"
-                                          VerticalAlignment="Center" />
+                                                  ContentSource="Icon"
+                                                  HorizontalAlignment="Left"
+                                                  Height="Auto"
+                                                  Width="Auto"
+                                                  Margin="30,15,0,15"
+                                                  VerticalAlignment="Center" />
 
                                 <!--Menu Text-->
                                 <ContentPresenter ContentSource="Header"
-                                          Grid.Column="1"
-                                          TextBlock.Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
-                                          TextBlock.FontWeight="{Binding FontWeight, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
-                                          TextBlock.FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
-                                          HorizontalAlignment="Left"
-                                          RecognizesAccessKey="True"
-                                          Margin="3,0,0,0"
-                                          VerticalAlignment="Center" />
+                                                  Grid.Column="1"
+                                                  TextBlock.Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
+                                                  TextBlock.FontWeight="{Binding FontWeight, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
+                                                  TextBlock.FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
+                                                  HorizontalAlignment="Left"
+                                                  RecognizesAccessKey="True"
+                                                  Margin="3,0,0,0"
+                                                  VerticalAlignment="Center" />
                             </Grid>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -275,19 +275,19 @@
                     <Icon:PackIconMaterial Kind="Menu" Width="15" Height="15" />
                 </Button>
 
-                <Border x:Name="brdMenu" Grid.Row="1" Background="#E56B6F" CornerRadius="0 50 0 30">
+                <Border x:Name="brdMenu" Grid.Row="1" Background="#E56B6F" CornerRadius="0 50 0 30" Margin="0,62,0,0">
                     <DockPanel>
                         <!--Menu Logo-->
                         <Border Width="80" Height="80" Padding="3" Background="White" CornerRadius="100" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="20 -30 0 0">
                             <Ellipse>
                                 <Ellipse.Fill>
-                                    <ImageBrush ImageSource="/Img/iPhone-14-Pro-Max-9907.jpg"/>
+                                    <ImageBrush x:Name="imgUserAvatar" ImageSource="/Img/kimetsu.jpg"/>
                                 </Ellipse.Fill>
                             </Ellipse>
                         </Border>
 
                         <!--Menu Titles-->
-                        <TextBlock Text="Nguyen Vu" Foreground="White" FontSize="22" FontWeight="SemiBold" DockPanel.Dock="Top" Margin="5 25 0 10" TextAlignment="Center"/>
+                        <TextBlock x:Name="txbName" Text="Nguyen Vu" Foreground="White" FontSize="22" FontWeight="SemiBold" DockPanel.Dock="Top" Margin="5 25 0 10" TextAlignment="Center"/>
                         <!--<TextBlock Text="Members, France" Foreground="#D0BFFF" FontSize="14" FontWeight="SemiBold" DockPanel.Dock="Top" TextAlignment="Center"/>-->
 
                         <!--Menu Seprator-->
@@ -302,16 +302,30 @@
                                     <VirtualizingStackPanel Orientation="Vertical"/>
                                 </ItemsPanelTemplate>
                             </Menu.ItemsPanel>
-                            <MenuItem x:Name="mnuitProfile"
+                            <!--<MenuItem x:Name="mnuitProfile"
                                       Header="Profile"
                                       FontWeight="SemiBold"
-                                      Style="{StaticResource Menu_Style}" 
-                                      Click="MenuItem_Click">
+                                      Style="{StaticResource SubMenu_MenuItem}"
+                                      Background="{Binding ElementName=brdMenu, Path=Background}" Click="mnuitProfile_Click">
                                 <MenuItem.Icon>
                                     <Image Source="{Icon:ModernImage Brush=Black, Kind=PeopleProfile}" 
                                            Stretch="Uniform"/>
+                                </MenuItem.Icon>                               
+                            </MenuItem>-->
+                            <MenuItem x:Name="mnuitBuyerProfile"
+                                      Header="Buyer Profile"
+                                      FontWeight="SemiBold"
+                                      Visibility="Visible"
+                                      Style="{StaticResource Menu_Item}"
+                                      Background="{Binding ElementName=mnuitProfile, Path=Background}"
+                                      Width="{Binding ElementName=mnuitProfile,Path=ActualWidth}"
+                                      Click="mnuitBuyerProfile_Click">
+                                <MenuItem.Icon>
+                                    <Image Source="{Icon:MaterialImage Kind=Account, Brush=Black}"
+                                               Stretch="Uniform"/>
                                 </MenuItem.Icon>
-                            </MenuItem>
+                            </MenuItem>                         
+
                             <MenuItem x:Name="mnuitPurchase"
                                       Header="Purchase"     
                                       FontWeight="SemiBold"
@@ -324,55 +338,100 @@
 
                             </MenuItem>
                             <MenuItem x:Name="mnuitStock"
-                                      Header="Stock"    
+                                      Header="Seller"    
                                       FontWeight="SemiBold"
-                                      Style="{StaticResource Menu_Style}" Click="mnuitStock_Click" 
-                                      >
+                                      Style="{StaticResource SubMenu_MenuItem}"
+                                      Background="{Binding ElementName=brdMenu, Path=Background}"
+                                      Click="mnuitStock_Click">
                                 <MenuItem.Icon>
                                     <Image Source="{Icon:ModernImage Brush=Black, Kind=Store}" 
                                            Stretch="Uniform"/>
-                                </MenuItem.Icon>
-
+                                </MenuItem.Icon>                                
                             </MenuItem>
+
+                            <MenuItem x:Name="mnuitDashBoard"
+                                      Header="Dashboard"  
+                                      Visibility="Collapsed"
+                                      Margin="30 0 0 0"
+                                      FontWeight="SemiBold"
+                                      Style="{StaticResource SubMenu_MenuItem}"
+                                      Background="{Binding ElementName=brdMenu, Path=Background}" Click="mnuitDashBoard_Click" >
+                                <MenuItem.Icon>
+                                    <Image Source="/Img/icons8-bar-chart-in-down-trend-after-market-crash-48.png" 
+                                           Stretch="Uniform"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+
+                            <MenuItem x:Name="mnuitSellerProfile"
+                                      Header="Seller Profile"
+                                      Visibility="Collapsed"
+                                      Margin="30 0 0 0"
+                                      FontWeight="SemiBold"
+                                      Style="{StaticResource Menu_Item}"
+                                      Background="{Binding ElementName=mnuitProfile, Path=Background}"
+                                      Width="{Binding ElementName=mnuitProfile,Path=ActualWidth}"
+                                      Click="mnuitSellerProfile_Click">
+                                <MenuItem.Icon>
+                                    <Image Source="{Icon:MaterialImage Kind=CardAccountDetails, Brush=Black}"
+                                               Stretch="Uniform"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem x:Name="mnuitInventory"
+                                      Header="Inventory"
+                                      Margin="30 0 0 0"
+                                      Visibility="Collapsed"
+                                      FontWeight="SemiBold"
+                                      Style="{StaticResource Menu_Item}"
+                                      Background="{Binding ElementName=mnuitStock, Path=Background}"
+                                      Width="{Binding ElementName=mnuitStock,Path=ActualWidth}"
+                                      Click="mnuitInventory_Click">
+                                <MenuItem.Icon>
+                                    <Image Source="{Icon:MaterialImage Brush=Black, Kind=Warehouse }" 
+                                               Stretch="Uniform"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+
+                            <MenuItem x:Name="mnuitPendingOrder"
+                                      Header="Pending Order"
+                                      FontWeight="SemiBold"
+                                      Margin="30 0 0 0"
+                                      Visibility="Collapsed"
+                                      Style="{StaticResource Menu_Item}"
+                                      Background="{Binding ElementName=mnuitStock, Path=Background}"
+                                      Width="{Binding ElementName=mnuitStock,Path=ActualWidth}" 
+                                      Click="mnuitPendingOrder_Click">
+                                <MenuItem.Icon>
+                                    <Image Source="{Icon:MaterialDesignImage Brush=Black, Kind=CheckCircle}" 
+                                               Stretch="Uniform"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+
                             <MenuItem x:Name="mnuitOrder"
                                       Header="Order"    
                                       FontWeight="SemiBold"
-                                      Style="{StaticResource Menu_Style}" 
-                                      Click="MenuItem_Click">
+                                      Style="{StaticResource Menu_Style}" Click="mnuitOrder_Click" >
                                 <MenuItem.Icon>
                                     <Image Source="{Icon:MaterialDesignImage Brush=Black, Kind=LocalShipping}" 
                                            Stretch="Uniform"/>
                                 </MenuItem.Icon>
                             </MenuItem>
-                            <MenuItem x:Name="mnuitSettings"
-                                      Header="Settings"  
+                            <MenuItem x:Name="mnuitWishList"
+                                      Header="WishList"  
                                       FontWeight="SemiBold"
                                       Style="{StaticResource SubMenu_MenuItem}"
-                                      Background="{Binding ElementName=brdMenu, Path=Background}">
+                                      Background="{Binding ElementName=brdMenu, Path=Background}" Click="mnuitWishList_Click">
                                 <MenuItem.Icon>
-                                    <Image Source="{Icon:MaterialDesignImage Brush=Black, Kind=Settings}" 
+                                    <Image Source="{Icon:MaterialImage Brush=Black, Kind=Heart}" 
                                            Stretch="Uniform"/>
-                                </MenuItem.Icon>
-                                <MenuItem x:Name="mnuitDeleteAccount"
-                                          Header="Delete Account"
-                                          FontWeight="SemiBold"
-                                          Style="{StaticResource Menu_Item}"
-                                          Background="{Binding ElementName=mnuitSettings, Path=Background}"
-                                          Width="{Binding ElementName=mnuitSettings,Path=ActualWidth}"
-                                          Click="MenuItem_Click">
-                                    <MenuItem.Icon>
-                                        <Image Source="{Icon:MaterialDesignImage Brush=Black, Kind=Delete}" 
-                                               Stretch="Uniform"/>
-                                    </MenuItem.Icon>
-
-                                </MenuItem>
+                                </MenuItem.Icon>                                          
                             </MenuItem>
+
                         </Menu>
 
-                        <Button Style="{StaticResource menuButton}" VerticalAlignment="Bottom" DockPanel.Dock="Bottom" Margin="15 0 15 20">
-                            <StackPanel Orientation="Horizontal">
+                        <Button Style="{StaticResource menuButton}" VerticalAlignment="Bottom" DockPanel.Dock="Bottom" Margin="15 0 15 20" Click="Button_Click">
+                            <StackPanel Orientation="Horizontal" MouseUp="TextBlock_MouseDown">
                                 <Icon:PackIconMaterial Kind="Logout" Style="{StaticResource menuButtonIcon}"/>
-                                <TextBlock Text="Logout"/>
+                                <TextBlock Text="Logout" MouseDown="TextBlock_MouseDown"/>
                             </StackPanel>
                         </Button>
 
@@ -380,153 +439,60 @@
                 </Border>
 
             </Grid>
+
             <Grid x:Name="grdSelectedMenuItem" Grid.Column="1">
-                <local:UC_SellerUI x:Name="uc_SellerUI" Background="Transparent" Visibility="Collapsed" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                <local:UC_PurchasingUI x:Name="uc_PurchasingUI" Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                <local:UC_PurchasingUI x:Name="uc_PurchasingUI"
+                                       Visibility="Collapsed"
+                                       Background="Transparent"/>
+
+                <Grid x:Name="grdSellerUI" 
+                      Visibility="Visible">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="200"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <local:UC_PendingOrderReview Grid.Row="1"
+                                                 x:Name="uc_PendingOrderReview"
+                                                 Visibility="Collapsed"/>
+                    <local:UC_SellerUI Grid.Row="0"
+                                       Grid.RowSpan="2"
+                                       x:Name="uc_SellerUI"
+                                       Visibility="Collapsed"/>
+                    <local:UC_StartSelling Grid.RowSpan="2"
+                                           x:Name="uc_StartSelling"
+                                           Visibility="Collapsed"
+                                           />
+                    <local:UC_SellerRegistration Grid.Row="1"                                                 
+                                                 x:Name="uc_SellerRegistration"
+                                                 Visibility="Collapsed"/>
+                    <local:UC_RegistrationComplete Grid.RowSpan="2"
+                                                   x:Name="uc_RegistrationComplete"
+                                                   Visibility="Collapsed"/>
+
+                </Grid>
+
+                <local:UC_DeliveryUI x:Name="uc_Delivery"
+                                     Height="735" Visibility="Collapsed"
+                                     VerticalAlignment="Bottom" 
+                                     Margin="0 20 0 15"
+                                     IsVisibleChanged="uc_Delivery_IsVisibleChanged"/>
+                <local:UC_BuyerProfile x:Name="uc_BuyerProfile"
+                                  Visibility="Collapsed"
+                                  Background="Transparent"/>
+
+                <local:UC_SellerProfile x:Name="uc_SellerProfile"
+                                        Visibility="Collapsed"/>
+
+                <local:UC_WishListUI x:Name="uc_WishList"
+                                     Visibility="Collapsed"/>
+                <local:UC_DashBoard x:Name="uc_DashBoard"
+                                 Visibility="Collapsed"/>
+
+
             </Grid>
 
-            <!--Main Section-->
-            <!--<Grid Grid.Column="1" Margin="30 20 20 20">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="auto"/>
-                </Grid.RowDefinitions>
-
-                --><!--Search Textbox--><!--
-                <Grid Width="300" HorizontalAlignment="Left">
-                    <TextBlock Margin="20 0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False"
-                           Panel.ZIndex="1" Text="Search here ..."
-                           Visibility="{Binding ElementName=textBoxSearch, Converter={StaticResource BoolToVis}}" />
-
-                    <TextBox Name="textBoxSearch" Style="{StaticResource searchTextbox}"/>
-
-                    <Icon:PackIconMaterial Kind="Magnify" Width="15" Height="15" VerticalAlignment="Center" Margin="0 0 15 0" Foreground="#B0B9C6" HorizontalAlignment="Right" />
-                </Grid>
-
-                --><!--Top Buttons--><!--
-                <Button Style="{StaticResource topButton}" Margin="0 0 20 0" Background="#dcdcdc">
-                    <Icon:PackIconMaterial Kind="Cog"/>
-                </Button>
-
-                <Button Style="{StaticResource topButton}" Margin="0 0 55 0">
-                    <Icon:PackIconMaterial Kind="Bell"/>
-                </Button>
-
-                --><!--Page Title--><!--
-                <TextBlock Text="Items" Grid.Row="1" FontSize="32" FontWeight="SemiBold" Margin="0 20 0 0" Foreground="#121518" HorizontalAlignment="Left"/>
-
-                --><!--Add Button--><!--
-                <Button Style="{StaticResource addButton}">
-                    <StackPanel Orientation="Horizontal">
-                        <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Margin="0 1 8 0" Width="11" Height="11"/>
-                        <TextBlock Text="Add New Item"/>
-                    </StackPanel>
-                </Button>
-
-                --><!--Seprator--><!--
-                <Separator Height="1" Grid.Row="3" Background="#DAE2EA" Margin="0 -1 0 10"/>
-
-                --><!--Tab buttons-->
-                <!--<StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0 10 0 0">
-                    <Button Style="{StaticResource tabButton}" Content="Club staff" BorderBrush="#784FF2"/>
-                    <Button Style="{StaticResource tabButton}" Content="Players"/>
-                    <Button Style="{StaticResource tabButton}" Content="Archived"/>
-                </StackPanel>-->
-
-                <!--Counter Title-->
-                <!--<TextBlock Text="68 Club Staff" Grid.Row="4" FontSize="18" FontWeight="SemiBold" Foreground="#121518" HorizontalAlignment="Left" VerticalAlignment="Center"/>--><!--
-
-                <TextBlock Text="Filter by" Grid.Row="4" FontSize="13" FontWeight="SemiBold" Margin="0 0 215 0" Foreground="#121518" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-
-                --><!--Filter Textbox--><!--
-                <Grid Width="200" HorizontalAlignment="Right" Grid.Row="4">
-                    <TextBlock Margin="15 0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False"
-                           Panel.ZIndex="1" Text="Search in Members ..."
-                           Visibility="{Binding ElementName=textBoxFilter, Converter={StaticResource BoolToVis}}" />
-
-                    <TextBox Name="textBoxFilter" Style="{StaticResource filterTextBox}"/>
-                </Grid>
-
-                --><!--Members Data Grid--><!--
-                <DataGrid RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" x:Name="productGrid" Style="{DynamicResource DataGridStyle1}">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="ID" IsReadOnly="True"  Width="*" Binding="{Binding Id}" MaxWidth="50"/>
-                        <DataGridTemplateColumn Header="Name" IsReadOnly="True" Width="*"  >
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        --><!--<Border Width="25" Height="25" CornerRadius="50" Margin="0 0 10 0" Background="{Binding BgColor}">
-                                            <TextBlock Text="{Binding Character}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Margin="0 0 0 1"/>
-                                        </Border>--><!--
-
-                                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        --><!--<DataGridTextColumn Header="Position" Binding="{Binding Position}" IsReadOnly="True" Width="*"/>--><!--
-                        <DataGridTemplateColumn  Header="Image" Width="*"  >
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Image Source="{Binding ImagePath}" Width="50" Height="50" HorizontalAlignment="Left" />
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-
-                        <DataGridTextColumn Header="Original Price" Binding="{Binding OriginalPrice}" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Price" Binding="{Binding Price}" IsReadOnly="True" Width="*" />
-                        <DataGridTextColumn Header="Type" Binding="{Binding Type}" IsReadOnly="True" Width="*" />
-                        <DataGridTextColumn Header="Posted Date" Binding="{Binding PostedDate}"  IsReadOnly="True" Width="*" />
-                        <DataGridTextColumn Header="Status" Binding="{Binding Status}"   IsReadOnly="True" Width="*"  />
-                        <DataGridTextColumn Header="Description" Binding="{Binding Description}" IsReadOnly="True" Width="*"  />
-                        <DataGridTemplateColumn Header="Actions" IsReadOnly="True" Width="auto" >
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Button Style="{StaticResource gridEditButton}">
-                                            <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
-                                        </Button>
-                                        <Button Margin="5 0 0 0" Style="{StaticResource gridRemoveButton}">
-                                            <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
-                                        </Button>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
-
-                --><!--Pagingation Section--><!--
-                <Border Grid.Row="6" HorizontalAlignment="Right" BorderBrush="#DEE4EC" BorderThickness="1" CornerRadius="5" Padding="5" Background="#ffffff" Margin="0 10 10 10">
-                    <StackPanel Orientation="Horizontal">
-                        <Button Style="{StaticResource pagingButton}">
-                            <Icon:PackIconMaterial Kind="ChevronLeft" Style="{StaticResource pagingButtonIcon}"/>
-                        </Button>
-                        <Rectangle Width="1" Fill="#DEE4EC" Margin="3 7"/>
-
-                        <Button Style="{StaticResource pagingButton}" Content="1"/>
-                        <Button Style="{StaticResource pagingButton}" Content="2" Background="#7950F2" Foreground="#ffffff"/>
-                        <Button Style="{StaticResource pagingButton}" Content="3"/>
-
-                        <TextBlock Text="..." Foreground="#6C7682" VerticalAlignment="Center" Margin="10 0" FontSize="15"/>
-
-                        <Button Style="{StaticResource pagingButton}" Content="7"/>
-                        <Button Style="{StaticResource pagingButton}" Content="8"/>
-                        <Button Style="{StaticResource pagingButton}" Content="9"/>
-
-                        <Rectangle Width="1" Fill="#DEE4EC" Margin="3 7"/>
-                        <Button Style="{StaticResource pagingButton}">
-                            <Icon:PackIconMaterial Kind="ChevronRight" Style="{StaticResource pagingButtonIcon}"/>
-                        </Button>
-                    </StackPanel>
-                </Border>
-
-            </Grid>-->
+        
 
         </Grid>
     </Border>

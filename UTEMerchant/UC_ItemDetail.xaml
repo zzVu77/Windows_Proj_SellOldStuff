@@ -24,7 +24,7 @@
             <!--Card Content section-->
             <Border CornerRadius="4,4,0,0" Height="198">
                 <!--<TextBlock   TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Text="test" Foreground="{x:Null}"/>-->
-                <Image Source="/Img/iPhone-14-Pro-Max-9907.jpg"/>
+                <Image x:Name="imgItemPic" Source="/Img/iPhone-14-Pro-Max-9907.jpg"/>
             </Border>
             <!--Card Footer part-->
             <hc:Card.Footer >
@@ -85,8 +85,8 @@
                         TextDecorations="Strikethrough"
                         BorderThickness="0"
                         FontSize="15"
-                        x:Name="txbQuantityValue"
-                         Text="1000$"
+                        x:Name="txbOriginalPrice"
+                         Text=""
                          Grid.Row="1"
                          HorizontalAlignment="Left"
                         RenderTransformOrigin="0.799,0.479"
@@ -113,7 +113,7 @@
                     <TextBox
                         BorderThickness="0"
                         FontSize="15"
-                        x:Name="txblSoldValue"
+                        x:Name="txblContactValue"
                         Text="0327521953"
                         Grid.Row="2"
                          HorizontalAlignment="Left"
@@ -129,7 +129,7 @@
                     <Label
                         FontSize="15"
                         x:Name="lblType"   
-                        Content="Condition: "
+                        Content="Type: "
                         HorizontalAlignment="Left"
                         FontWeight="SemiBold"
                         VerticalContentAlignment="Top"
@@ -172,7 +172,7 @@
                         FontSize="15"
                         BorderThickness="0"
                         VerticalAlignment="Center"
-                         x:Name="txblShipFrom"
+                         x:Name="txblBoughtDate"
                          Text="20/11/2023"
                          Grid.Row="4" RenderTransformOrigin="0.799,0.479"
                          FontWeight="SemiBold" 
@@ -192,7 +192,7 @@
                         <Label
                             FontSize="15"
                             x:Name="lblDescription"
-                            Content="Detail:" 
+                            Content="Description:" 
                             HorizontalAlignment="Left" 
                             BorderThickness="0,0,0,0"
                             Width="71" 
@@ -216,7 +216,7 @@
                          VerticalContentAlignment="Top"
                         HorizontalContentAlignment="Left"
                         x:Name="lblDetail"   
-                        Content="Package: "
+                        Content="Status: "
                         HorizontalAlignment="Left"
                         FontWeight="SemiBold"                       
                         Padding="0,0,0,0"
@@ -229,7 +229,7 @@
                        
                         FontSize="15"
                         BorderThickness="0"
-                         x:Name="txblDetail"
+                         x:Name="txblStatus"
                          Text="Light scratches"
                          Grid.Row="5" 
                         HorizontalAlignment="Right" 

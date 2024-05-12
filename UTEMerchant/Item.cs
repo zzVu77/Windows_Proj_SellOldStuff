@@ -8,41 +8,74 @@ using System.Windows.Media;
 
 namespace UTEMerchant
 {
-    internal class Item
+    public class Item
     {
-        public int Id { get; set; }
+        public int Item_Id { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
-        public decimal OriginalPrice { get; set; }
-        public decimal Price { get; set; }
-        public string ImagePath { get; set; }
-        public DateTime PostedDate { get; set; }
-        public string Status { get; set; }
+        public string Condition_Description { get; set; }
+        public int Condition { get; set; }
+        public string Detail_description { get; set; }
+        public float Original_Price { get; set; }
+        public float Price { get; set; }
+        public string Image_Path { get; set; }
+        public DateTime Bought_date { get; set; }
+        public bool Sale_Status { get; set; }
         public string Type { get; set; }
 
-        public Item(int id, string name, string description, decimal originalPrice, decimal price, string imagePath, DateTime postedDate, string status,string type)
+        public int SellerID { get; set; }
+        public DateTime PostedDate { get; set; }
+
+        public Item()
         {
-            Id = id;
+
+        }
+        public Item(int id, string name, float price, float originalPrice, string type, DateTime bought_date, 
+            string condition_description, int condition, string imagePath, bool sale_status ,
+            string detail_description, int sellerId,DateTime postedID)
+        {
+            Item_Id = id;
             Name = name;
-            Description = description;
-            OriginalPrice = originalPrice;
+            Condition_Description = condition_description;
+            Original_Price = originalPrice;
             Price = price;
-            ImagePath = imagePath;
-            PostedDate = postedDate;
-            Status = status;
+            Image_Path = imagePath;
+            Bought_date = bought_date;
+            Sale_Status = sale_status;
             Type = type;
+            Detail_description = detail_description;
+            SellerID = sellerId;
+            Condition = condition;
+            PostedDate = postedID;
         }
 
+        public Item(int itemID, string name, float price, string imagePath)
+        {
+            Item_Id = itemID;
+            Name = name;
+            Price = price;
+            Image_Path = imagePath;
+        }
+       
+        public Item(int itemID, string name, float price, float originalPrice,DateTime bought_date, string condition_description, int condition, string imagePath, string detail_description )
+        {
+            this.Item_Id = itemID;
+            this.Name = name;
+            this.Price = price;
+            this.Original_Price = originalPrice;
+            this.Bought_date = bought_date;
+            this.Condition_Description = condition_description;
+            this.Condition = condition;
+            this.Image_Path = imagePath;
+            this.Detail_description = detail_description;
+        }
         public ImageSource Image
         {
             get
             {
-                
                 // Chuyển đổi đường dẫn thành ImageSource (BitmapImage)
-                return new BitmapImage(new Uri(this.ImagePath));
+                return new BitmapImage(new Uri(this.Image_Path));
             }
-            
-            
+
         }
     }
 }

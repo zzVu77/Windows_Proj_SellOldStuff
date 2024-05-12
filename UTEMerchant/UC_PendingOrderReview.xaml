@@ -1,0 +1,106 @@
+﻿<UserControl x:Class="UTEMerchant.UC_PendingOrderReview"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UTEMerchant"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="1300" Loaded="UserControl_Loaded" IsVisibleChanged="UserControl_IsVisibleChanged" SizeChanged="UserControl_SizeChanged">
+    <Grid x:Name="grd" >
+        <DataGrid x:Name="productGrid"
+                  HorizontalScrollBarVisibility="Visible"
+                  HorizontalAlignment="Left"
+                  Height="{Binding ElementName=grd, Path=ActualHeight}"
+                  VerticalAlignment="Top"
+                  RowStyle="{DynamicResource DataGridRowStyle}" 
+                  ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" 
+                  CellStyle="{DynamicResource DataGridCellStyle}"
+                  Style="{DynamicResource DataGridStyle}"
+                  Width="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=ActualWidth}" 
+                  SelectionChanged="ProductGrid_OnSelectionChanged" 
+                  Loaded="productGrid_Loaded">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Order ID"
+                                    IsReadOnly="True" 
+                                    Width="*"
+                                    Visibility="Hidden"
+                                    Binding="{Binding PurchaseID}"/>
+                <DataGridTextColumn Header="ID"
+                                    IsReadOnly="True" 
+                                    Width="*"
+                                    Binding="{Binding Item_Id}"/>
+                <DataGridTextColumn Header="Name"
+                                    IsReadOnly="True" 
+                                    Width="1.5*"
+                                    Binding="{Binding Name}"/>
+                <DataGridTemplateColumn Header="Image" 
+                                        Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image x:Name="imgItem" Source="{Binding Image_Path}" 
+                                   Height="30"
+                                   Stretch="Uniform"
+                                   HorizontalAlignment="Left"
+                                   MouseLeftButtonDown="imgItem_MouseLeftButtonDown"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTextColumn Header="Price" 
+                                    Binding="{Binding Price}"
+                                    IsReadOnly="True"
+                                    Width="0.5*"/>
+                <DataGridTextColumn Header="Posted"
+                                    Binding="{Binding PostedDate, StringFormat={}{0:dd/MM/yyyy HH:mm:ss}}"
+                                    IsReadOnly="True" 
+                                    Width="1.5*"/>
+                <DataGridTextColumn Header="Buyer"
+                                    Binding="{Binding User_name}" 
+                                    IsReadOnly="True"
+                                    Width="Auto"/>
+                <DataGridTextColumn Header="Phone"
+                                    Binding="{Binding Phone}" 
+                                    IsReadOnly="True"
+                                    Width="*"/>
+                <DataGridTextColumn Header="Delivery Address"
+                                    Binding="{Binding DeliveryAddress}"
+                                    IsReadOnly="True"
+                                    Width="2*">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <EventSetter Event="MouseLeftButtonDown"
+                                         Handler="DeliveryAddress_OnHandler"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Requested Date"
+                                    Binding="{Binding PurchaseDate, StringFormat={}{0:dd/MM/yyyy}}" 
+                                    IsReadOnly="True" 
+                                    Width="1.5*"/>
+
+                <DataGridTemplateColumn Header="Confirmation"
+                                        IsReadOnly="True"
+                                        Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button x:Name="btnApprove"
+                                        Click="BtnApprove_OnClick">
+                                    <iconPacks:PackIconMaterial Kind="CheckOutline" 
+                                                                Style="{StaticResource gridButtonIcon}" />
+                                </Button>
+                                <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                                <Button x:Name="btnDecline"
+                                        Click="BtnDecline_OnClick">
+                                    <iconPacks:PackIconMaterial Kind="DeleteOffOutline" 
+                                                                Style="{StaticResource gridButtonIcon}" />
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

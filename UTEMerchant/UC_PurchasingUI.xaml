@@ -5,10 +5,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:local="clr-namespace:UTEMerchant"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d"
-             d:DesignHeight="800" d:DesignWidth="1400">
+             d:DesignHeight="800" d:DesignWidth="1400"
+             Loaded="UserControl_Loaded"
+             IsVisibleChanged="UserControl_IsVisibleChanged"
+             >
+
     <UserControl.Resources>
 
+        <!--Blur effect-->
+
+        <BlurEffect x:Key="BlurEffect" Radius="5"/>
+        <BlurEffect x:Key="NoBlurEffect" Radius="0"/>
+        
         <!--Button template-->
 
         <ControlTemplate x:Key="RoundedButtonTemplate" TargetType="Button">
@@ -75,9 +85,9 @@
             </ControlTemplate.Triggers>
         </ControlTemplate>
     </UserControl.Resources>
-    
+
     <Grid>
-        
+
         <!--Contain everything-->
 
         <Grid x:Name="grdPurchasingInterface">
@@ -86,7 +96,7 @@
                 <ColumnDefinition x:Name="cMainInteraction" Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            
+
             <!--The main interface-->
 
             <Grid x:Name="grdMainInterface"
@@ -107,17 +117,18 @@
                     </Grid.ColumnDefinitions>
 
                     <DockPanel x:Name="grdSearch"
-                          Grid.Column="0">                        
-                        
+                          Grid.Column="0">
+
                         <!--Search bar section-->
 
                         <DockPanel x:Name="dpSeachBar" 
                                    DockPanel.Dock="Top"
                                    Height="Auto"
                                    Margin="50,20,0,20">
-                            <Border BorderBrush="Transparent"
-                                    Background="#FFD2D2D2"
-                                    BorderThickness="1"
+                            <Border BorderBrush="LightGray"
+                                    Height="50"
+                                    Background="White"
+                                    BorderThickness="3"
                                     CornerRadius="20">
                                 <Grid x:Name="grdSearchBarSections">
                                     <Grid.ColumnDefinitions>
@@ -125,22 +136,31 @@
                                         <ColumnDefinition x:Name="cTextBox" Width="*"/>
                                         <ColumnDefinition x:Name="cXIcon" Width="Auto"/>
                                     </Grid.ColumnDefinitions>
-                                    <Image x:Name="imgSearchIcon" Margin="50,15,0,15"
-                                           Source="{StaticResource SearchIcon}" 
-                                           Height="20"/>
+                                    <Image Grid.Column="0"
+                                           x:Name="imgSearchIcon"  
+                                           Margin="30,0,18,0"
+                                           Height="24"                                          
+                                           Source="{Icon:FeatherIconsImage Kind=Search, Brush=Black}" 
+                                           Stretch="UniformToFill"
+                                           VerticalAlignment="Center"/>
                                     <TextBox x:Name="txtSearchBox"
                                              Grid.Column="1"
                                              Margin="20,0,20,0"
                                              Background="Transparent"
                                              BorderBrush="Transparent"
-                                             VerticalContentAlignment="Center"
-                                             FontSize="{Binding ElementName=imgSearchIcon, Path=ActualHeight}"
+                                             Tag="Search all orders"
+                                             FontSize="15"
                                              FocusVisualStyle="{x:Null}"
-                                             Template="{StaticResource NoGlowingBorder}"/>
-                                    <Image Source="{StaticResource XIcon}"
+                                             Style="{StaticResource DefaultTextBoxStyle}"
+                                             KeyDown="txtSearchBox_KeyDown"
+                                             />
+                                    <Image x:Name="XIcon"
+                                           Source="{Icon:FeatherIconsImage Kind=X, Brush=Black}"
+                                           Stretch="UniformToFill"
+                                           VerticalAlignment="Center"
                                            Grid.Column="2"
-                                           Margin="0,15,50,15"
-                                           Height="{Binding ElementName=imgSearchIcon, Path=ActualHeight}"
+                                           Margin="0,15,30,15"
+                                           Height="{Binding ElementName=txtSearchBox, Path=FontSize}"
                                            Visibility="{Binding Text, ElementName=txtSearchBox, Converter={StaticResource TextToVisibilityConverter}}"
                                            MouseDown="XIcon_MouseDown"/>
                                 </Grid>
@@ -159,7 +179,7 @@
                                 <ColumnDefinition x:Name="cPopularSort" Width="*"/>
                                 <ColumnDefinition x:Name="cPriceSort" Width="*"/>
                                 <ColumnDefinition x:Name="cEmptyRight" Width="*"/>
-                            </Grid.ColumnDefinitions>                            
+                            </Grid.ColumnDefinitions>
 
                             <!--Sort Label-->
 
@@ -168,7 +188,7 @@
                                    HorizontalAlignment="Left"
                                    VerticalContentAlignment="Center"
                                    HorizontalContentAlignment="Center"
-                                   FontFamily="Calibri"
+                                   FontFamily="Segoe UI"
                                    FontSize="22"
                                    Grid.Column="0"
                                    Margin="50,0,20,0">
@@ -184,9 +204,8 @@
                                     BorderThickness="1"
                                     Background="Transparent"
                                     Content="Relevance"
-                                    FontFamily="Calibri"
-                                    FontSize="{Binding ElementName=lblSort, Path=FontSize}"
-                                    FontWeight="Medium"                                
+                                    FontFamily="Segoe UI"
+                                    FontSize="{Binding ElementName=lblSort, Path=FontSize}"                                                                    
                                     Template="{StaticResource RoundedButtonTemplate}" Click="btnRelevance_Click">
                             </Button>
 
@@ -200,7 +219,7 @@
                                     BorderThickness="1"
                                     Background="Transparent"
                                     Content="Popular"
-                                    FontFamily="Calibri"
+                                    FontFamily="Segoe UI"
                                     FontSize="{Binding ElementName=lblSort, Path=FontSize}"
                                     Template="{StaticResource RoundedButtonTemplate}"
                                     Click="btnPopular_Click">
@@ -217,10 +236,14 @@
                                     Background="Transparent"
                                     Content="Price"
                                     FontSize="{Binding ElementName=lblSort, Path=FontSize}"
-                                    FontFamily="Calibri"
+                                    FontFamily="Segoe UI"
                                     Template="{StaticResource RoundedButtonTemplate}"
                                     Click="btnPrice_Click">
                             </Button>
+                            <Button x:Name="btnRefresh"
+                                    Content="Refresh"
+                                    Click="btnRefresh_Click" Grid.Column="4" Margin="269,3,-102,-3"/>
+
                         </Grid>
 
                     </DockPanel>
@@ -238,11 +261,33 @@
                         <Image x:Name="imgShoppingCart"
                                Margin="10,10,10,30"
                                Grid.Column="2"
-                               Source="{Icon:FeatherIconsImage Brush=Black, Kind=ShoppingCart}"/>
-                        <Image x:Name="imgFilter"                               
+                               Source="{Icon:FeatherIconsImage Brush=Black, Kind=ShoppingCart}"
+                               MouseDown="imgShoppingCart_MouseDown">
+                            <Image.Triggers>
+                                <EventTrigger SourceName="imgShoppingCart"
+                                              RoutedEvent="MouseDown">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="grdShoppingCart"
+                                                             Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                                                             From="0" To="-400" Duration="0:0:0.3"/>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="grdPurchasingInterface"
+                                                                           Storyboard.TargetProperty="Effect">
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.0" Value="{StaticResource BlurEffect}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Image.Triggers>
+                        </Image>
+
+                        <Image Grid.Column="0"
+                               x:Name="imgFilter"                               
                                Margin="10,10,10,30"
                                Source="{Icon:FeatherIconsImage Brush=Black, Kind=Filter}" 
-                               Stretch="Uniform" MouseDown="imgFilter_MouseDown"/>
+                               Stretch="Uniform" MouseDown="imgFilter_MouseDown">
+                            
+                        </Image>
                     </Grid>
 
 
@@ -257,29 +302,26 @@
 
                     <!--Selected item's detailed information section-->
 
-                    <DockPanel x:Name="dpSelectedItemDetailedInformation"
-                               DockPanel.Dock="Right">
-                    </DockPanel>
-
                     <!--Items list section-->
 
                     <DockPanel x:Name="dpItemsList"
                                Margin="50,0,50,50"
                                DockPanel.Dock="Top">
                         <ScrollViewer x:Name="svItemsList" 
-                                      VerticalScrollBarVisibility="Hidden">
+                                      VerticalScrollBarVisibility="Hidden" Width="1350">
                             <!--PreviewMouseDown="svItemsList_PreviewMouseDown"-->
                             <WrapPanel x:Name="wpItemsList"
                                        Width="{Binding ElementName=dpItemsList,Path=ActualWidth}"
+                                       MouseLeftButtonDown="wpItemsList_MouseLeftButtonDown"
                                        Margin="0,0,20,0">
                                 <WrapPanel.Resources>
                                     <Style TargetType="local:UC_ItemView">
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate TargetType="local:UC_ItemView">
-
-                                                    <Border Margin="0,5,0,25" BorderBrush="Transparent" Height="{Binding Height, RelativeSource={RelativeSource AncestorType={x:Type local:UC_ItemView}}}">
-
+                                                    <Border Margin="0,5,0,25" 
+                                                            BorderBrush="Transparent" 
+                                                            Height="{Binding Height, RelativeSource={RelativeSource AncestorType={x:Type local:UC_ItemView}}}">
                                                         <ContentPresenter/>
                                                     </Border>
                                                 </ControlTemplate>
@@ -287,17 +329,6 @@
                                         </Setter>
                                     </Style>
                                 </WrapPanel.Resources>
-                                <local:UC_ItemView ItemClicked="UC_ItemView_ItemClicked" />
-                                <local:UC_ItemView ItemClicked="UC_ItemView_ItemClicked" />
-                                <local:UC_ItemView ItemClicked="UC_ItemView_ItemClicked" />
-                                <local:UC_ItemView ItemClicked="UC_ItemView_ItemClicked" />
-                                <local:UC_ItemView ItemClicked="UC_ItemView_ItemClicked" />
-                                <local:UC_ItemView ItemClicked="UC_ItemView_ItemClicked" />
-                                <local:UC_ItemView ItemClicked="UC_ItemView_ItemClicked" />
-                                <local:UC_ItemView ItemClicked="UC_ItemView_ItemClicked" />
-                                <local:UC_ItemView ItemClicked="UC_ItemView_ItemClicked" />
-                                <local:UC_ItemView ItemClicked="UC_ItemView_ItemClicked" />
-
                             </WrapPanel>
                         </ScrollViewer>
                     </DockPanel>
@@ -310,14 +341,14 @@
 
             </Grid>
 
-            <!--Right side bar-->
+            <!--Right sidebar-->
 
             <DockPanel x:Name="dpRightSideBar"
-                       Grid.Column="1"
-                       LastChildFill="True" 
+                       Grid.Column="1"                 
                        Background="#E56B6F"
-                       Visibility="Collapsed">
-
+                       LastChildFill="True" 
+                       Visibility="Collapsed"
+                       >             
                 <Grid x:Name="grdFilterOptions">
                     <Grid.RowDefinitions>
                         <RowDefinition Name="rCategory" Height="Auto"/>
@@ -338,7 +369,7 @@
                                FontSize="20" 
                                FontWeight="Bold" 
                                FontStretch="UltraExpanded" 
-                               FontFamily="{StaticResource SpaceGroteskBold}"/>
+                               FontFamily="Segoe UI"/>
                         <ScrollViewer x:Name="svCategoryOptions" 
                                       VerticalAlignment="Stretch"
                                       VerticalScrollBarVisibility="Hidden">
@@ -353,8 +384,8 @@
                                         <Setter Property="FontFamily" Value="Calibri"/>
                                     </Style>
                                 </StackPanel.Resources>
-                                <RadioButton Content="DDDDDD"/>
-                                <RadioButton Content="Option 2" />
+                                <RadioButton Content="DDDDDD" FontFamily="Segoe UI"/>
+                                <RadioButton Content="Option 2" FontFamily="Segoe UI" />
                                 <!--<Button x:Name="btnCategoriesLoadMore"
 Template="{DynamicResource LinkLabelTemplate}"
 Height="26" 
@@ -400,7 +431,7 @@ HorizontalAlignment="Left">
                                FontSize="20"
                                FontWeight="Bold"
                                FontStretch="UltraExpanded"
-                               FontFamily="{StaticResource SpaceGroteskBold}"/>
+                              FontFamily="Segoe UI"/>
                         <ScrollViewer x:Name="svLocationsOptions"
                                       VerticalAlignment="Stretch"
                                       VerticalScrollBarVisibility="Hidden">
@@ -415,8 +446,8 @@ HorizontalAlignment="Left">
                                         <Setter Property="FontFamily" Value="Calibri"/>
                                     </Style>
                                 </StackPanel.Resources>
-                                <RadioButton Content="DDDDDD"/>
-                                <RadioButton Content="Option 2"/>
+                                <RadioButton Content="DDDDDD" FontFamily="Segoe UI"/>
+                                <RadioButton Content="Option 2" FontFamily="Segoe UI"/>
                                 <!--<Button x:Name="btnLocationsLoadMore"
 Template="{DynamicResource LinkLabelTemplate}"
 Height="26" Width="Auto" Content="Load more   >" 
@@ -459,7 +490,7 @@ HorizontalAlignment="Left">
                                HorizontalAlignment="Left"
                                FontSize="20" FontWeight="Bold"
                                FontStretch="UltraExpanded"
-                               FontFamily="{StaticResource SpaceGroteskBold}"/>
+                               FontFamily="Segoe UI"/>
                         <ScrollViewer x:Name="svPriceOptions"
                                       VerticalAlignment="Stretch"
                                       VerticalScrollBarVisibility="Hidden" 
@@ -475,8 +506,8 @@ HorizontalAlignment="Left">
                                         <Setter Property="FontFamily" Value="Calibri"/>
                                     </Style>
                                 </StackPanel.Resources>
-                                <RadioButton Content="DDDDDD"/>
-                                <RadioButton Content="Option 2" />
+                                <RadioButton Content="DDDDDD" FontFamily="Segoe UI"/>
+                                <RadioButton Content="Option 2" FontFamily="Segoe UI"/>
                             </StackPanel>
                         </ScrollViewer>
                         <Grid x:Name="grdRangeMinMax"
@@ -500,7 +531,7 @@ HorizontalAlignment="Left">
                                        HorizontalContentAlignment="Center"
                                        Margin="10" 
                                        FontSize="17"
-                                       FontFamily="Calibri"
+                                    FontFamily="Segoe UI"
                                        Width="42"/>
                                 <TextBox x:Name="txtMin"
                                          Grid.Column="0" 
@@ -523,11 +554,10 @@ HorizontalAlignment="Left">
                                        HorizontalAlignment="Center"
                                        HorizontalContentAlignment="Center"
                                        Margin="10"
-                                       FontFamily="Calibri"
+                                       FontFamily="Segoe UI"
                                        FontSize="17" 
                                        Width="42"/>
                                 <TextBox x:Name="txtMax" 
-                                         Grid.Column="0" 
                                          Height="{Binding ElementName=txtMin, Path=ActualHeight}"
                                          Background="Transparent" 
                                          BorderBrush="Black"></TextBox>
@@ -538,6 +568,135 @@ HorizontalAlignment="Left">
             </DockPanel>
         </Grid>
 
+        <!--Shopping cart-->
 
+        <Grid x:Name="grdShoppingCart"
+              Width="400"
+              HorizontalAlignment="Right"
+              Margin="0,0,-400,0">
+            <Border x:Name="brdShoppingCart"
+                    Background="White"
+                    BorderThickness="1.8"
+                    BorderBrush="#E56B6F"
+                    CornerRadius="20,0,0,20">
+                <Grid x:Name="grdInnerShoppingCart">
+                    <Grid.RowDefinitions>
+                        <RowDefinition x:Name="rBackButton" Height="60"/>
+                        <RowDefinition x:Name="rUCShoppingCart" Height="*"/>
+                        <RowDefinition x:Name="rTotalPriceCheckOut" Height="80"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0"
+                            x:Name="btnBack"
+                            HorizontalAlignment="Left"
+                            Margin="20,10" Click="btnBack_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Grid x:Name="grdCircleButton">
+                                    <Ellipse x:Name="ellCircle" 
+                                             StrokeThickness="5"
+                                             Stroke="#E56B6F"
+                                             Fill="Transparent"
+                                             Height="40"
+                                             Width="{Binding ElementName=ellCircle,Path=ActualHeight}">
+                                    </Ellipse>
+                                    <Image x:Name="imgArrowLeftIcon"
+                                           Source="{Icon:FeatherIconsImage Brush=#E56B6F, Kind=ArrowLeft}"
+                                           Height="20"
+                                           Stretch="Uniform"/>
+                                </Grid>
+                            </ControlTemplate>
+                        </Button.Template>
+                        <Button.Triggers>
+                            <EventTrigger SourceName="btnBack" RoutedEvent="Button.Click">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="grdShoppingCart"
+                                                         Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                                                         From="-400" To="0" Duration="0:0:0.3"/>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="grdPurchasingInterface"
+                                                                       Storyboard.TargetProperty="Effect">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.0" Value="{StaticResource NoBlurEffect}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <local:UC_ShoppingCart x:Name="uc_ShoppingCart"
+                                           Grid.Row="1"
+                                           Loaded="uc_ShoppingCart_Loaded">
+                    </local:UC_ShoppingCart>
+                    <Grid x:Name="grdTotalPriceCheckOut"
+                          Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition x:Name="cTotalPrice" Width="2*"/>
+                            <ColumnDefinition x:Name="cCheckout" Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Grid.ColumnSpan="2" Grid.Column="0"
+                                BorderThickness="0,2,0,0"
+                                BorderBrush="#E56B6F"/>
+                        <StackPanel Grid.Column="0"
+                                    x:Name="spTotalPrice"
+                                    Orientation="Horizontal"
+                                    Margin="20,0">
+                            <TextBlock x:Name="tbTotalPrice"
+                                       Text="Total Price: "
+                                       VerticalAlignment="Center"
+                                       FontFamily="Segoe UI"
+                                       FontWeight="SemiBold"
+                                       HorizontalAlignment="Left"
+                                       FontSize="20"/>
+                            <TextBlock x:Name="tbTotalPriceValue"
+                                       Text="0"
+                                       FontFamily="Segoe UI Black"
+                                       Foreground="Red"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       FontSize="20"/>
+                            <TextBlock x:Name="tbDollarSign"
+                                       FontFamily="Segoe UI Black"
+                                       Foreground="Red"
+                                       Text="$"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       FontSize="20"/>
+                        </StackPanel>
+                        <Button x:Name="btnCheckout"
+                                Grid.Column="1"
+                                Margin="0 0 8 0"
+                                Content="Checkout"
+                                FontFamily="Segoe UI"
+                                FontWeight="Bold"
+                                Height="60"
+                                FontSize="20" Click="btnCheckout_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border x:Name="Border"
+                                            Background="#E56B6F"
+                                            CornerRadius="14"
+                                            BorderThickness="0">
+                                        <ContentPresenter HorizontalAlignment="Center" 
+                                                          VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="Border" Property="Background" Value="#E88C7B"/>
+                                            <Setter Property="Foreground" Value="White"/>
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="True">
+                                            <Setter TargetName="Border" Property="Background" Value="#E88C7B"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </Grid>
+                </Grid>
+            </Border>
+            <Grid.RenderTransform>
+                <TranslateTransform X="0"/>
+            </Grid.RenderTransform>
+        </Grid>
     </Grid>
 </UserControl>

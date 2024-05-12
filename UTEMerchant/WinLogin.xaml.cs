@@ -19,16 +19,22 @@ namespace UTEMerchant
     /// </summary>
     public partial class WinLogin : Window
     {
+        List<User> users = new List<User>();
+        user_DAO dao = new user_DAO();
+        Seller_DAO Seller_DAO = new Seller_DAO();
         public WinLogin()
         {
             InitializeComponent();
+           
+
+            users= dao.Load();
         }
 
-        private void txtUserName_TextChanged(object sender, TextChangedEventArgs e)
+        private void txtUserName_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
-            if (string.IsNullOrEmpty(txtUserName.Text) && txtUserName.Text.Length > 0) 
+            if (!string.IsNullOrEmpty(txtUserName.Text) && txtUserName.Text.Length > 0)
             {
-                textUserName.Visibility = Visibility.Collapsed;
+                textUserName.Visibility = Visibility.Collapsed;                
             }
             else
             {
@@ -38,38 +44,62 @@ namespace UTEMerchant
 
         private void textUserName_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            textUserName.Text=string.Empty;
             txtUserName.Focus();
         }
 
         private void textPassword_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            textPassword.Text = string.Empty;
+            
             txtPassword.Focus();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtPassword.Password) && !string.IsNullOrEmpty(txtUserName.Text))
+            foreach (User user in users)
             {
-                MessageBox.Show("successfully signed up!!!!!");
+                if (user.Password == txtPassword.Password && user.User_name == txtUserName.Text)
+                {
+                    StaticValue.USER = user;
+                    Seller seller = Seller_DAO.GetSellerByUserID(StaticValue.USER.Id_user);
+                    StaticValue.SELLER = seller;
+                    this.Hide();
+                    var purchasing = new WinSellerInterface();
+                    purchasing.ShowDialog();
+                    this.Show();
+                }
             }
+            //MessageBox.Show("user name or password is incorrect !!!!!");
 
         }
 
         private void textForgot_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            
+            this.Hide();
+            var forgot = new WinForgotPassword();
+            forgot.ShowDialog();
+            users = dao.Load();
+            this.Show();
         }
 
         private void textRegister_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            this.Hide();
+            var signup = new WinSignUp();
+            signup.ShowDialog();
+            users = dao.Load();
+            this.Show();
         }
 
-        private void txtPassword_MouseDown(object sender, MouseButtonEventArgs e)
+
+        private void Image_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            if (string.IsNullOrEmpty(txtPassword.Password) && txtPassword.Password.Length > 0)
+            Application.Current.Shutdown();
+        }
+
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtPassword.Password) && txtPassword.Password.Length > 0)
             {
                 textPassword.Visibility = Visibility.Collapsed;
             }
@@ -79,9 +109,6 @@ namespace UTEMerchant
             }
         }
 
-        private void Image_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
+      
     }
 }

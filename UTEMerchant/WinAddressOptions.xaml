@@ -1,0 +1,72 @@
+﻿<Window x:Class="UTEMerchant.WinAddressOptions"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UTEMerchant"
+        mc:Ignorable="d"
+        Title="WinAddressOptions" Height="500" Width="800" Loaded="Window_Loaded">
+    <Window.Resources>
+        <GroupItem x:Key="AddressOption" x:Shared="False" MouseLeftButtonDown="GroupItem_MouseLeftButtonDown">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="40"/>
+                </Grid.ColumnDefinitions>
+                <RadioButton Grid.Column="0"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Center"
+                             BorderThickness="2" Checked="RadioButton_Checked"/>
+                <local:UC_AddressBox Grid.Column="1"/>
+                <Button x:Name="btnEdit"
+                        Grid.Column="2"
+                        Content="Edit"
+                        FontSize="14"
+                        FontWeight="DemiBold"
+                        Foreground="Red"
+                        Focusable="False"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Background="Transparent"
+                        BorderBrush="Transparent" Click="btnEdit_Click"/>
+            </Grid>
+        </GroupItem>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0"
+               x:Name="lblChooseAnAddress"
+               Content="Choose an address"
+               FontSize="20"
+               FontWeight="DemiBold"
+               Margin="10"/>
+        <Border Grid.Row="1" x:Name="brdAddressOptions"
+                BorderBrush="LightGray"
+                BorderThickness="0,2">
+            <ScrollViewer x:Name="svAddresses"
+                          VerticalScrollBarVisibility="Hidden"
+                          HorizontalScrollBarVisibility="Disabled">
+                <StackPanel x:Name="spAddressOptions"
+                            Orientation="Vertical">
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+        <Button Grid.Row="2"
+                x:Name="btnAddAddress"
+                Content="+ Add new address"
+                VerticalAlignment="Center"
+                FontSize="16"
+                FontWeight="DemiBold"
+                Foreground="Red"
+                Background="Transparent"
+                BorderBrush="Transparent"
+                Focusable="False"
+                Padding="10"
+                Click="btnAddAddress_Click"/>
+    </Grid>
+</Window>

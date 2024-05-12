@@ -3,10 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+               xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
               xmlns:hc="https://handyorg.github.io/handycontrol"
              xmlns:local="clr-namespace:UTEMerchant"
              mc:Ignorable="d" 
-            d:DesignHeight="307" d:DesignWidth="240">
+            d:DesignHeight="330" d:DesignWidth="240">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -16,58 +17,163 @@
     </UserControl.Resources>
 
     <Grid x:Name="grdUC" >
-        <hc:Card  MaxWidth="240" BorderThickness="0,0,0,0" Effect="{DynamicResource EffectShadow2}" Margin="8,0,8,0"  Height="307" VerticalAlignment="Center" Background="White" BorderBrush="#FF736161">
+        <hc:Card  Width="200" 
+                  BorderThickness="0,0,0,0"
+                  Effect="{DynamicResource EffectShadow2}" 
+                  Margin="8,0,8,0"  Height="330" 
+                  VerticalAlignment="Center" 
+                  Background="White" 
+                  BorderBrush="#FF736161">
 
             <!--Card Content section-->
             <Border CornerRadius="4,4,0,0" Width="160" Height="160">
                 <!--<TextBlock   TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Text="test" Foreground="{x:Null}"/>-->
-                <Image Source="/Img/iPhone-14-Pro-Max-9907.jpg"/>
+                <Image x:Name="imgItemPic"
+                       Stretch="Uniform"
+                       />
             </Border>
             <!--Card Footer part-->
             <hc:Card.Footer >
-                <StackPanel Margin="5,0,0,0" Height="114">
+                <Grid Margin="5,0,0,0" Height="125">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
                     <!--Card First-level content-->
-                    <TextBlock x:Name="txblItemName" TextWrapping="WrapWithOverflow" 
-                                   Style="{DynamicResource TextBlockLargeBold}"
-                                   TextTrimming="CharacterEllipsis" 
-                                   Text="Iphone 14 Pro Max"
-                                   HorizontalAlignment="Left" FontFamily="Segoe UI Black"   
-                                    
+                    <TextBlock x:Name="txblItemName" TextWrapping="NoWrap" 
+                               Style="{DynamicResource TextBlockLargeBold}"
+                               FontSize="18"
+                               TextTrimming="CharacterEllipsis" 
+                               Text="Iphone 13 Pro Max"
+                               FontWeight="ExtraBold"
+                               HorizontalAlignment="Left"
+                               FontFamily="Segoe UI Black"   
+                               VerticalAlignment="Top" 
+                               Grid.Row="0"
+                                                                       
                                     />
                     <!--Card Secondary content-->
                     <TextBlock TextWrapping="WrapWithOverflow" 
-                                   Style="{DynamicResource TextBlockDefault}" 
-                                   TextTrimming="CharacterEllipsis" 
-                                   Text=" $10000"
-                                   HorizontalAlignment="Left" FontSize="20" FontFamily="Rockwell" FontWeight="Bold"  Foreground="#FFEA4444" Height="26" Width="81" Margin="0,20,0,0"                                 
+                               Style="{DynamicResource TextBlockDefault}" 
+                               TextTrimming="CharacterEllipsis" 
+                               Text=" $10000"
+                               HorizontalAlignment="Right" 
+                               VerticalAlignment="Top"
+                               TextAlignment="Right"
+                               FontSize="20" 
+                               FontFamily="Rockwell" 
+                               FontWeight="Bold"  
+                               Foreground="#FF3131" 
+                               Height="26" 
+                               Width="84"                               
+                               x:Name="txblPrice"
+                               Grid.Row="1" Margin="0,31,4,0" Grid.RowSpan="2"
                                    
                         />
-                    <Button 
-                        HorizontalAlignment="Right"
-                        Margin="0,-28,7,50" 
-                        RenderTransformOrigin="1.525,0.952" 
-                        Height="26" VerticalAlignment="Center" 
-                        VerticalContentAlignment="Center" 
-                        Padding="5,5,5,5" BorderThickness="1,1,1,1" 
-                        FontFamily="Rockwell" FontWeight="Bold"
-                        Content="  Add to cart"
-                        
-                     >
+                    <TextBlock TextWrapping="WrapWithOverflow" 
+                               Style="{DynamicResource TextBlockDefault}" 
+                               TextTrimming="CharacterEllipsis" 
+                               Text=" $2000"
+                               HorizontalAlignment="Left"
+                               TextAlignment="Left"
+                               VerticalAlignment="Top"
+                               FontSize="18" 
+                               FontFamily="Rockwell" 
+                               FontWeight="Bold"  
+                               Foreground="DarkGray"   
+                               TextDecorations="Strikethrough"
+                               Height="21" 
+                               Width="71"
+                               x:Name="txblOldPrice"
+                               Grid.Row="2" Margin="0,0.5,0,0"                                    
+                        />
+                    <TextBox TextWrapping="WrapWithOverflow"                              
+                             BorderThickness="0"
+                             HorizontalContentAlignment="Right"
+                             Text="90%"
+                             HorizontalAlignment="Right"
+                             TextAlignment="Right"
+                             VerticalAlignment="Top"
+                             FontSize="20" 
+                             IsReadOnly="True"
+                             FontFamily="Rockwell" 
+                             FontWeight="Bold"  
+                             Foreground="#ffac00"   
+                             Height="21" 
+                             Width="84"
+                             x:Name="txblCondition" Margin="0,31,0,0" Grid.RowSpan="2"                                    
+                        />
+                    <Label                                                
+                        FontSize="15"             
+                        x:Name="lblCondition"
+                        Content="Condition: "
+                        HorizontalAlignment="Left"
+                        FontWeight="Bold"
+                        VerticalAlignment="Top"
+                        VerticalContentAlignment="Top"
+                        HorizontalContentAlignment="Left"
+                        Padding="0,0,0,0"
+                        Grid.Row="1" 
+                        Width="106" 
+                        BorderThickness="0,0,0,0"                          
+                        IsHitTestVisible="False" Height="20" Margin="0,2,0,0"/>
 
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border CornerRadius="7" Background="Red" Width="75">
-                                    <ContentPresenter VerticalAlignment="Center" />
+                    <DockPanel Grid.Row="3">
+                        <Button x:Name="btnAddToCart"    
+                                Width="96" 
+                                VerticalContentAlignment="Center" 
+                                BorderThickness="1,1,1,1" 
+                                Foreground="White"
+                                FontFamily="Rockwell" FontWeight="Bold"                        
+                                Click="btnAddToCart_Click" Margin="0,3,0,2">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border  CornerRadius="7" Background="#FF3131" >
+                                        <ContentPresenter VerticalAlignment="Center" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
 
-                                </Border>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="9*"/>
+                                    <ColumnDefinition Width="26*"/>
+                                </Grid.ColumnDefinitions>
+                                <Icon:PackIconMaterial  Kind="CartPlus"  Foreground="White" Margin="2,0,0,0" Grid.ColumnSpan="2" VerticalAlignment="Center" />
+                                <TextBlock Text="Add To Cart"
+                                           FontSize="12"
+                                           HorizontalAlignment="Left" Margin="21,0,0,0" Grid.ColumnSpan="2" Width="73"/>
+                            </Grid>
+                        </Button>
+                        <Image x:Name="imgSoldStamp" Visibility="Collapsed" Source="Img/sold-stamp-3.png" Height="29" Width="63" HorizontalAlignment="Right" Margin="61,0,0,0"  />
+                        <StackPanel>
+                            <TextBlock Text="USA" 
+                                   x:Name="txblLocation"
+                                   HorizontalAlignment="Right" 
+                                   VerticalAlignment="Center" 
+                                   FontFamily="Segoe UI" 
+                                   FontWeight="Bold"
+                                   Visibility="Visible"                                   
+                                   />
+                            <TextBlock Text="4 days ago" 
+                                   x:Name="txblPostedDate"
+                                   HorizontalAlignment="Right" 
+                                   VerticalAlignment="Center" 
+                                   FontFamily="Segoe UI" 
+                                   FontWeight="SemiBold"
+                                   Visibility="Visible"
+                                   />
+                            
+                            
+                        </StackPanel>
 
-                            </ControlTemplate>
-                        </Button.Template>
-
-                    </Button>
+                    </DockPanel>
 
 
-                </StackPanel>
+
+                </Grid>
             </hc:Card.Footer>
         </hc:Card>
     </Grid>

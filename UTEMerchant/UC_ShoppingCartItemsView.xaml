@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="UTEMerchant.UC_ShoppingCartItemsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UTEMerchant"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             mc:Ignorable="d" d:DesignWidth="800" Loaded="UserControl_Loaded">
+    <Grid Background="Transparent">
+        <DockPanel x:Name="dpShoppingCart">
+            <DockPanel x:Name="dpShopNameAndEdit"
+                       DockPanel.Dock="Top"
+                       Margin="20,0">
+                <StackPanel x:Name="spShopName"
+                            Orientation="Horizontal"
+                            Margin="0,10"
+                            DockPanel.Dock="Left">
+                    <ToggleButton x:Name="togAll"
+                                  Height="20"
+                                  Style="{StaticResource RoundedToggleButton}"
+                                  Margin="0,0,20,0"
+                                  Checked="togAll_Checked"
+                                  Unchecked="togAll_Unchecked"/>
+                    <Image x:Name="imgShopIcon"
+                           Source="{iconPacks:MaterialImage Brush=Black, Kind=Store}"
+                           Stretch="Uniform"
+                           Height="20"
+                           Margin="0,0,20,0"/>
+                    <TextBlock x:Name="tbShopName"
+                               FontSize="20"
+                               Text="Shop"
+                               FontFamily="Segoe UI Black"                          
+                               VerticalAlignment="Center"
+                               MouseDown="tbShopName_MouseDown"/>
+                </StackPanel>
+                <TextBlock x:Name="lblEdit" 
+                           Text="Edit"
+                           FontSize="20"
+                           FontFamily="Segoe UI Black"
+                           FontWeight="SemiBold"
+                           HorizontalAlignment="Right"
+                           TextAlignment="Center"
+                           VerticalAlignment="Center"
+                           DockPanel.Dock="Right"
+                           Margin="0,10" MouseLeftButtonDown="lblEdit_MouseLeftButtonDown">
+                </TextBlock>
+            </DockPanel>
+
+            <StackPanel x:Name="spItems"
+                        Orientation="Vertical"
+                        DockPanel.Dock="Top">
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</UserControl>
