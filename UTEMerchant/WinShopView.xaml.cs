@@ -196,6 +196,8 @@ namespace UTEMerchant
 
         private void LoadCategories(List<Item> items)
         {
+            txtPercentagePosotiveFeedback.Text = feedbackDAO.CalculateAverage(this.seller.SellerID).ToString()+" ";
+            txtPostsNumber.Text = itemDAO.CalculateTotalProducts(this.seller.SellerID).ToString() + " ";
             // All category
             RadioButton radioButtonAll = new RadioButton
             {
@@ -229,6 +231,7 @@ namespace UTEMerchant
 
         private void LoadFeedBack()
         {
+            
             feedbacks = feedbackDAO.GetFeedBack(this.seller.SellerID);
             foreach (CustomerReview feedback in feedbacks)
             {

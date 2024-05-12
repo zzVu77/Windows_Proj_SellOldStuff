@@ -65,15 +65,16 @@
                         <StackPanel x:Name="spPositiveFeedback"
                                     Grid.Column="0"
                                     Orientation="Horizontal">
+                            
+                            <Image x:Name="imgFirstStar"
+                                   Height="15"
+                                   Source="{icon:BoxIconsImage Kind=RegularStar, Brush=Yellow}" />
+
                             <TextBlock x:Name="txtPercentagePosotiveFeedback"
+                                       Margin="5 0 0 0"
                                        Text="100% "
                                        FontSize="15"
                                        FontWeight="Bold"
-                                       Foreground="White"
-                                       VerticalAlignment="Center"/>
-                            <TextBlock x:Name="txtPositiveFeedback"
-                                       Text="positive feedback"
-                                       FontSize="15"
                                        Foreground="White"
                                        VerticalAlignment="Center"/>
                         </StackPanel>
