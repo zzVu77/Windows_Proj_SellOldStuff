@@ -25,6 +25,11 @@ namespace UTEMerchant
         private int Id_user;
         private ImgPath_DAO ImgPath_DAO = new ImgPath_DAO();
         private WishList_DAO wishListDAO = new WishList_DAO();
+        private const string ImgRelativePath = "../../Img/";
+
+        private static readonly string ExecutablePath = AppDomain.CurrentDomain.BaseDirectory;
+
+        private static readonly string ImgFilePath = System.IO.Path.GetFullPath(System.IO.Path.Combine(ExecutablePath, ImgRelativePath));
         public WinDeltailItem()
         {
             InitializeComponent();
@@ -99,6 +104,12 @@ namespace UTEMerchant
             // Gán FlowDocument cho RichTextBox
             rtbConditonDescription.Document = flowDoc1;
 
+            User user = new User_DAO().GetUserByID(seller.Id_user);
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri(System.IO.Path.Combine(ImgFilePath, user.Image_path), UriKind.RelativeOrAbsolute);
+            bitmap.EndInit();
+            imgSellerAvartar.ImageSource = bitmap;
 
         }
 
