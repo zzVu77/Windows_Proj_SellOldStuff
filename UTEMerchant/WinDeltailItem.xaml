@@ -19,13 +19,9 @@
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
     </Window.Resources>
     <Grid Background="#f4f6f8">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="40"/>
-        </Grid.ColumnDefinitions>
         <ScrollViewer Grid.Column="0"
-                      
-                      VerticalScrollBarVisibility="Hidden">
+                      VerticalScrollBarVisibility="Hidden"
+                      Margin="45,0">
             <StackPanel>
                 <Grid Height="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=ActualHeight}">
                     <Grid.ColumnDefinitions>
@@ -61,7 +57,7 @@
                             </DockPanel>
                         </ScrollViewer>
 
-                        <StackPanel  Grid.Row="2"  VerticalAlignment="Bottom" HorizontalAlignment="Left" Orientation="Vertical" Margin="15,0,0,0" Height="133" Width="257">
+                        <StackPanel  Grid.Row="2"  VerticalAlignment="Bottom" HorizontalAlignment="Left" Orientation="Vertical" Height="133" Width="257">
                             <!--Seller Avartar-->
                             <DockPanel>
 
@@ -71,7 +67,7 @@
                                         Background="Black" 
                                         CornerRadius="100" 
                                         HorizontalAlignment="Left"
-                                        VerticalAlignment="Top" Margin="1,0,5,0">
+                                        VerticalAlignment="Top" Margin="0,0,5,0">
                                     <Ellipse MouseLeftButtonDown="Ellipse_MouseLeftButtonDown" Cursor="Hand">
                                         <Ellipse.Fill>
                                             <ImageBrush x:Name="imgSellerAvartar" ImageSource="/Img/kimetsu.jpg"/>
@@ -249,7 +245,7 @@
                                    Height="35" 
                                    Margin="0,15,0,0" />
 
-                        
+
 
                         <StackPanel Grid.Row="2">
                             <!-- Label for Condition Description  -->
@@ -381,10 +377,9 @@
         </ScrollViewer>
         <Image Source="Img/icons8-close-50.png" 
                x:Name="iconClose" 
-               Grid.Column="1" 
                HorizontalAlignment="Right" 
                VerticalAlignment="Top"
                Stretch="Uniform"
-               MouseUp="iconClose_MouseUp_1"/>
+               MouseUp="iconClose_MouseUp_1" Height="40"/>
     </Grid>
 </Window>
