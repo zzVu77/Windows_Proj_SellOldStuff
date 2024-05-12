@@ -109,7 +109,6 @@ namespace UTEMerchant
                 {
                     productGrid.Items.Clear();
 
-                    int len = _pendingOrders.Count();
                     // Create a new row for each pending order
                     foreach (var item in _pendingOrders)
                     {
