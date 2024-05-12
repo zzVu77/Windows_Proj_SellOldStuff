@@ -87,19 +87,6 @@ namespace UTEMerchant
 
         }
 
-        private void Image_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
-        //private void btnBuyNow_Click(object sender, RoutedEventArgs e)
-        //{
-        //    WinBuyingInterface winBuyingInterface = new WinBuyingInterface(this.info, Id_user);
-        //    this.Hide();
-        //    winBuyingInterface.ShowDialog();
-        //    this.ShowDialog();
-        //}
-
         private void Ellipse_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Item_DAO item_DAO = new Item_DAO();
@@ -176,6 +163,12 @@ namespace UTEMerchant
                     new Seller_DAO().GetSeller(uc_Item.info.SellerID), Id_user);
                 winDeltailItem.ShowDialog();
             }
+        }
+
+        private void imgItem_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            WinImageZoom winImageZoom = new WinImageZoom((Image)sender);
+            winImageZoom.ShowDialog();
         }
     }
 }

@@ -41,7 +41,14 @@
                                 BorderBrush="Black"
                                 VerticalAlignment="Center"
                                 CornerRadius="7">
-                            <Image x:Name="imgItem" Source="/Img/iPhone-14-Pro-Max-9907.jpg" Height="450"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Uniform" Margin="7,0,7,0"/>
+                            <Image x:Name="imgItem"
+                                   Source="/Img/iPhone-14-Pro-Max-9907.jpg"
+                                   Height="450"
+                                   HorizontalAlignment="Stretch" 
+                                   VerticalAlignment="Stretch" 
+                                   Stretch="Uniform"
+                                   Margin="7,0" MouseLeftButtonDown="imgItem_MouseLeftButtonDown"
+                                   />
                         </Border>
 
                         <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" HorizontalAlignment="Center" VerticalAlignment="Center" Height="118" Width="445">
