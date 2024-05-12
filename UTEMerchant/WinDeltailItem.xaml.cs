@@ -106,13 +106,13 @@ namespace UTEMerchant
             Application.Current.Shutdown();
         }
 
-        private void btnBuyNow_Click(object sender, RoutedEventArgs e)
-        {
-            WinBuyingInterface winBuyingInterface = new WinBuyingInterface(this.info, Id_user);
-            this.Hide();
-            winBuyingInterface.ShowDialog();
-            this.ShowDialog();
-        }
+        //private void btnBuyNow_Click(object sender, RoutedEventArgs e)
+        //{
+        //    WinBuyingInterface winBuyingInterface = new WinBuyingInterface(this.info, Id_user);
+        //    this.Hide();
+        //    winBuyingInterface.ShowDialog();
+        //    this.ShowDialog();
+        //}
 
         private void Ellipse_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {

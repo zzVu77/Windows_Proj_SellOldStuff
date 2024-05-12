@@ -355,17 +355,18 @@
                         <DockPanel Grid.Row="2" Margin="0,10,0,-95" Height="91" >
 
 
-                            <Button x:Name="btnBuyNow"
-                        Grid.Column="0"
-                        Height="40"
-                        Width="150"
-                        Style="{StaticResource addButton}" 
-                        VerticalAlignment="Center" 
-                        HorizontalAlignment="Left"                                         
-                        HorizontalContentAlignment="Center"  Click="btnBuyNow_Click" Grid.ColumnSpan="2" >
+                            <Button x:Name="btnAddToCart"
+                                    Grid.Column="0"
+                                    Height="40"
+                                    Width="150"
+                                    Style="{StaticResource addButton}" 
+                                    VerticalAlignment="Center" 
+                                    HorizontalAlignment="Left"                                         
+                                    HorizontalContentAlignment="Center"  
+                                    Grid.ColumnSpan="2" >
                                 <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial Kind="TruckDelivery" VerticalAlignment="Center" Margin="0 1 8 0" Width="17" Height="21"/>
-                                    <TextBlock Text="Buy Now" FontWeight="Bold" FontFamily="Segoe UI" FontSize="15"/>
+                                    <Icon:PackIconMaterial Kind="CartPlus" VerticalAlignment="Center" Margin="0 1 8 0" Width="17" Height="21"/>
+                                    <TextBlock Text="Add To Cart" FontWeight="Bold" FontFamily="Segoe UI" FontSize="15"/>
                                 </StackPanel>
                             </Button>
 
