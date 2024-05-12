@@ -96,7 +96,8 @@
           x:Name="grdSelectedStatusChecking">
 
             <!--Show Pending Status-->
-            <Grid x:Name="grdPendingStatus">
+            <Grid x:Name="grdPendingStatus"
+                  IsVisibleChanged="grdPendingStatus_IsVisibleChanged">
                 <ScrollViewer x:Name="svPendingStatus"
                               VerticalScrollBarVisibility="Auto"
                               HorizontalScrollBarVisibility="Hidden"
@@ -109,7 +110,7 @@
             </Grid>
 
             <!--Show Delivering Status-->
-            <Grid x:Name="grdDeliveringStatus">
+            <Grid x:Name="grdDeliveringStatus" IsVisibleChanged="grdDeliveringStatus_IsVisibleChanged">
 
                 <ScrollViewer x:Name="svDeliveringStatus"
                               VerticalScrollBarVisibility="Auto"
@@ -123,7 +124,7 @@
             </Grid>
 
             <!--Show Delivered Status-->
-            <Grid x:Name="grdDeliveredStatus">
+            <Grid x:Name="grdDeliveredStatus" IsVisibleChanged="grdDeliveredStatus_IsVisibleChanged">
                 <ScrollViewer x:Name="svDeliveredStatus"
                               VerticalScrollBarVisibility="Auto"
                               HorizontalScrollBarVisibility="Hidden"
@@ -136,7 +137,8 @@
             </Grid>
 
                         <!--Show Cancelled Status-->
-            <Grid x:Name="grdCancelledStatus">
+            <Grid x:Name="grdCancelledStatus"
+                  IsVisibleChanged="grdCancelledStatus_IsVisibleChanged">
                 <ScrollViewer x:Name="svCancelledStatus"
                               VerticalScrollBarVisibility="Auto"
                               HorizontalScrollBarVisibility="Hidden"

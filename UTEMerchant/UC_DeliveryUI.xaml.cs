@@ -357,5 +357,25 @@ namespace UTEMerchant
         {
             PendingStatus_Load(this, new RoutedEventArgs());
         }
+
+        private void grdPendingStatus_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            PendingStatus_Load(sender, new RoutedEventArgs());
+        }
+
+        private void grdDeliveringStatus_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            DeliveringStatus_Load(sender, new RoutedEventArgs());
+        }
+
+        private void grdDeliveredStatus_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            DeliveredStatus_Load(sender, new RoutedEventArgs());
+        }
+
+        private void grdCancelledStatus_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            CancelledStatus_Load(sender, new RoutedEventArgs());
+        }
     }
 }

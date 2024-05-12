@@ -51,9 +51,7 @@ namespace UTEMerchant
                 List<Item> sortedItems = _items.OrderByDescending(item => item.Item_Id).ToList();
                 foreach (Item item in sortedItems)
                 {
-                    UC_ItemView uc_item = new UC_ItemView(item);
-                    uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
-                    wpItemsList.Children.Add(uc_item);
+                    AddItem(item);
                 }
                 btnRelevance.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#EAAC8B");
             }
@@ -63,9 +61,7 @@ namespace UTEMerchant
                 wpItemsList.Children.Clear();
                 foreach (Item item in _items)
                 {
-                    UC_ItemView uc_item = new UC_ItemView(item);
-                    uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
-                    wpItemsList.Children.Add(uc_item);
+                    AddItem(item);
                 }
             }
         }
@@ -89,9 +85,7 @@ namespace UTEMerchant
                 wpItemsList.Children.Clear();
                 foreach (Item item in _itemDao.SortPrice())
                 {
-                    UC_ItemView uc_item = new UC_ItemView(item);
-                    uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
-                    wpItemsList.Children.Add(uc_item);
+                    AddItem(item);
                 }
 
             }
@@ -230,15 +224,19 @@ namespace UTEMerchant
             _items.Sort((item1, item2) => item1.Sale_Status.CompareTo(item2.Sale_Status));
             foreach (Item item in _items)
             {
-                UC_ItemView uc_item = new UC_ItemView(item);
-                uc_item.ItemClicked += OnItemButtonAddToCartClicked;
-                uc_ShoppingCart.CheckCart();
-                uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
-                wpItemsList.Children.Add(uc_item);
+                AddItem(item);
             }
         }
 
-       
+        private void AddItem(Item item)
+        {
+            UC_ItemView uc_item = new UC_ItemView(item);
+            uc_item.ItemClicked += OnItemButtonAddToCartClicked;
+            uc_ShoppingCart.CheckCart();
+            uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
+            wpItemsList.Children.Add(uc_item);
+        }
+
 
         private void txtSearchBox_KeyDown(object sender, KeyEventArgs e)
         {
@@ -252,11 +250,7 @@ namespace UTEMerchant
                         wpItemsList.Children.Clear();
                         foreach (Item item in items)
                         {
-                            UC_ItemView uc_item = new UC_ItemView(item);
-                            uc_item.ItemClicked += OnItemButtonAddToCartClicked;
-                            uc_ShoppingCart.CheckCart();
-                            uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
-                            wpItemsList.Children.Add(uc_item);
+                            AddItem(item);
                         }
                     }
                 }
@@ -265,11 +259,7 @@ namespace UTEMerchant
                     wpItemsList.Children.Clear();
                     foreach (Item item in _items)
                     {
-                        UC_ItemView uc_item = new UC_ItemView(item);
-                        uc_item.ItemClicked += OnItemButtonAddToCartClicked;
-                        uc_ShoppingCart.CheckCart();
-                        uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
-                        wpItemsList.Children.Add(uc_item);
+                        AddItem(item);
                     }
                 }
             }
