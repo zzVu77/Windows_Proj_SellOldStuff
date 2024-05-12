@@ -219,9 +219,6 @@ namespace UTEMerchant
 
         public User GetUser(int purchaseId)
         {
-            List<purchasedItem> item = db.LoadData<purchasedItem>(@" SELECT * FROM [dbo].[PurchasedProducts] WHERE PurchaseID = @purchaseId",
-                new SqlParameter("@purchaseId", purchaseId)
-            );
             List<User> users = db.LoadData<User>(@"
             SELECT DISTINCT u.*
             FROM [dbo].[User] u

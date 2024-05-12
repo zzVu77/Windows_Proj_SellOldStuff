@@ -113,7 +113,7 @@ namespace UTEMerchant
                     foreach (var item in _pendingOrders)
                     {
                         string DeliveryAddress = item.Delivery_address;
-                        User user = new PurchasedItem_DAO().GetUser(item.Id_user);
+                        User user = new PurchasedItem_DAO().GetUser(item.PurchaseID);
                         productGrid.Items.Add
                         (new
                             {
