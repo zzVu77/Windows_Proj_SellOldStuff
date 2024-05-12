@@ -45,17 +45,17 @@ namespace UTEMerchant
             txblFeedback_ItemPrice.Text = this.item.Price.ToString() + " $";
             ucFeedbackStar.SetRating(customerReview.Rating);
 
-            //BitmapImage bitmap = new BitmapImage();
-            //bitmap.BeginInit();
-            //bitmap.UriSource = new Uri(this.client.Image_Path, UriKind.RelativeOrAbsolute); ;
-            //bitmap.EndInit();
-            //imgFeedback_ClientAvatar.ImageSource = bitmap;
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri(this.client.Image_Path, UriKind.RelativeOrAbsolute); ;
+            bitmap.EndInit();
+            imgFeedback_ClientAvatar.ImageSource = bitmap;
 
-            //BitmapImage bitmap1 = new BitmapImage();
-            //bitmap1.BeginInit();
-            //bitmap1.UriSource = new Uri(this.item.Image_Path, UriKind.RelativeOrAbsolute);
-            //bitmap1.EndInit();
-            //imgFeedback_Item.Source = bitmap1;
+            BitmapImage bitmap1 = new BitmapImage();
+            bitmap1.BeginInit();
+            bitmap1.UriSource = new Uri(this.item.Image_Path, UriKind.RelativeOrAbsolute);
+            bitmap1.EndInit();
+            imgFeedback_Item.Source = bitmap1;
 
         }
     }
