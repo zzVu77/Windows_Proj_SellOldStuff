@@ -30,6 +30,11 @@ namespace UTEMerchant
         Address_DAO address_dao = new Address_DAO();
         List<Address> distinctCities;
         public string image_path;
+        private const string ImgRelativePath = "../../Img/";
+
+        private static readonly string ExecutablePath = AppDomain.CurrentDomain.BaseDirectory;
+
+        private static readonly string ImgFilePath = System.IO.Path.GetFullPath(System.IO.Path.Combine(ExecutablePath, ImgRelativePath));
         public UC_SellerProfile()
         {
             InitializeComponent();
@@ -51,7 +56,7 @@ namespace UTEMerchant
             txtSellerCity.Text = StaticValue.SELLER.City;
             txtSellerDistrict.Text = StaticValue.SELLER.District;
             txtSellerWard.Text = StaticValue.SELLER.Ward;
-            image_path = StaticValue.USER.Image_path;
+            image_path = System.IO.Path.Combine(ImgFilePath, StaticValue.USER.Image_path);
             var resourceUri = new Uri(image_path, UriKind.RelativeOrAbsolute);
             imgSellerPhoto.Source = new BitmapImage(resourceUri);
 

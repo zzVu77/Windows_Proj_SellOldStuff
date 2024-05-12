@@ -28,7 +28,11 @@ namespace UTEMerchant
         //UC_RegistrationComplete uc_RegistrationComplete;
         //UC_SellerRegistration uc_SellerRegistration;
         //UC_DeliveryUI uc_Delivery;
+        private const string ImgRelativePath = "../../Img/";
 
+        private static readonly string ExecutablePath = AppDomain.CurrentDomain.BaseDirectory;
+
+        private static readonly string ImgFilePath = System.IO.Path.GetFullPath(System.IO.Path.Combine(ExecutablePath, ImgRelativePath));
         public WinSellerInterface()
         {
             InitializeComponent();
@@ -50,6 +54,14 @@ namespace UTEMerchant
             uc_RegistrationComplete.btnRefresh.Click += OnRefreshButtonClicked;
             uc_BuyerProfile.SavedButtonClicked += UCUserProfile_SavedButtonClicked;
             uc_SellerProfile.SavedButtonClicked += UCSellerProfile_SavedButtonClicked;
+
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri(System.IO.Path.Combine(ImgFilePath, StaticValue.USER.Image_path), UriKind.RelativeOrAbsolute);
+            bitmap.EndInit();
+            imgUserAvatar.ImageSource = bitmap;
+
+            
         }
 
         private bool IsMaximize = false;
@@ -107,6 +119,7 @@ namespace UTEMerchant
                 uc_PurchasingUI.Visibility = Visibility.Visible;
                 uc_Delivery.SetUser();
                 uc_PendingOrderReview.SetSeller();
+                
             }
 
         }
@@ -242,7 +255,7 @@ namespace UTEMerchant
                 // Tạo một BitmapImage từ đường dẫn ảnh
                 BitmapImage bitmap = new BitmapImage();
                 bitmap.BeginInit();
-                bitmap.UriSource = new Uri(uc_BuyerProfile.image_path.ToString(), UriKind.RelativeOrAbsolute);
+                bitmap.UriSource = new Uri(System.IO.Path.Combine(ImgFilePath, uc_BuyerProfile.image_path.ToString()), UriKind.RelativeOrAbsolute);
                 bitmap.EndInit();
                 imgUserAvatar.ImageSource = bitmap;
                 txbName.Text = uc_BuyerProfile.txtUserFullName.Text;
@@ -256,7 +269,7 @@ namespace UTEMerchant
             {
                 BitmapImage bitmap = new BitmapImage();
                 bitmap.BeginInit();
-                bitmap.UriSource = new Uri(uc_SellerProfile.image_path.ToString(), UriKind.RelativeOrAbsolute);
+                bitmap.UriSource = new Uri(System.IO.Path.Combine(ImgFilePath, uc_SellerProfile.image_path.ToString()), UriKind.RelativeOrAbsolute);
                 bitmap.EndInit();
                 imgUserAvatar.ImageSource = bitmap;
             }

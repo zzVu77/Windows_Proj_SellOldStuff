@@ -94,8 +94,8 @@ namespace UTEMerchant
         public double CalculateTotalPrice(int sellerID)
         {
             double totalPrice = db.purchasedProducts
-                          .Where(pi => pi.Item.SellerID == sellerID && pi.Delivery_Status != "declined")
-                          .Sum(pi => (double)(pi.Item.price));
+        .Where(pi => pi.Item.SellerID == sellerID && pi.Delivery_Status != "declined")
+        .Sum(pi => (double?)pi.Item.price) ?? 0.0; // Use null-coalescing operator to handle null values
             return totalPrice;
         }
 

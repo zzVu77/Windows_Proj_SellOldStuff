@@ -68,7 +68,7 @@ namespace UTEMerchant
                         Ward = UCSignUpStep1.ucWard.textbox.Text,
                         phone = UCSignUpStep1.ucPhone.textbox.Text,
                         email = UCSignUpStep1.ucEmail.textbox.Text,
-                        Image_path = @"\Img\icons8-account-50.png"
+                        Image_path = @"icons8-account-50.png"
                     };
 
 
