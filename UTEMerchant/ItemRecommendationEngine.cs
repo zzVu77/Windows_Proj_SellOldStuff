@@ -8,19 +8,19 @@ namespace UTEMerchant
 {
     public class ItemRecommendationEngine
     {
-        private static readonly List<Item> _items = new Item_DAO().Load();
+        private static readonly List<Item> Items = new Item_DAO().Load();
 
         public static List<Item> GetRecommendations(Item targetItem, int sellerID, int recommendationCount = 10)
         {
             if (targetItem == null)
             {
-                throw new ArgumentNullException("targetItem");
+                throw new ArgumentNullException(nameof(targetItem));
             }
 
             List<Item> recommendations = new List<Item>();
 
             // 1. Type Matching: Find items of the same type (lower case for case-insensitive comparison)
-            var typeMatches = _items.Where(i => i.Item_Id != targetItem.Item_Id && i.Type.ToLower() == targetItem.Type.ToLower());
+            var typeMatches = Items.Where(i => i.Item_Id != targetItem.Item_Id && i.Type.ToLower() == targetItem.Type.ToLower());
 
             // 2. Condition Similarity: Prioritize items in similar condition.
             var conditionMatches = typeMatches
