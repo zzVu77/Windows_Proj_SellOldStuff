@@ -10,7 +10,7 @@ namespace UTEMerchant
     {
         private static readonly List<Item> _items = new Item_DAO().Load();
 
-        public static List<Item> GetRecommendations(Item targetItem, int recommendationCount = 10)
+        public static List<Item> GetRecommendations(Item targetItem, int sellerID, int recommendationCount = 10)
         {
             if (targetItem == null)
             {
@@ -67,7 +67,8 @@ namespace UTEMerchant
                 .Take(recommendationCount)
                 .ToList();
 
-            return recommendations;
+            // Exclude items from the current seller
+            return recommendations.Where(i => i.SellerID != sellerID).ToList();
         }
 
         // Helper functions for content-based filtering and time decay

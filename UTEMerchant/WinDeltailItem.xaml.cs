@@ -157,7 +157,7 @@ namespace UTEMerchant
                 imgs.ImageClicked += OnImageSlideClicked;
                 dplImageSlide.Children.Add(imgs);
             }
-            List<Item> recommendations = ItemRecommendationEngine.GetRecommendations(info, 30);
+            List<Item> recommendations = ItemRecommendationEngine.GetRecommendations(info, StaticValue.SELLER.SellerID, 30);
             uni.Children.Clear();
             foreach (var item in recommendations)
             {
