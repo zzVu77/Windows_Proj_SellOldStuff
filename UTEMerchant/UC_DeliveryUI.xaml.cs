@@ -134,7 +134,7 @@ namespace UTEMerchant
                 AddOrdersInPending(group);
             }
 
-            rbPending.Content = $"Pending ({matchedItems.Count()})";
+            rbPending.Content = $"Pending ({groups.Count()})";
         }
 
         private void DeliveringStatus_Load(object sender, RoutedEventArgs e)
