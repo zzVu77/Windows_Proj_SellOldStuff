@@ -48,10 +48,31 @@ namespace UTEMerchant
                 if (_order.Delivery_Status == "declined")
                 {
                     imgDeclined.Visibility = Visibility.Visible;
+                    MessageBox.Show($"Your order: {item.Name} has been declined", "Order Declined", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
 
         public purchasedItem Order => _order;
+
+        private void UserControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (_order != null)
+            {
+                if (_order.Delivery_Status == "declined")
+                {
+                    var result = MessageBox.Show("Do you want to cancel this order?", "Cancel Order", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        new PurchasedItem_DAO().CancelOrder(_order.PurchaseID);
+                        MessageBox.Show("Order has been cancelled", "Order Cancelled", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+
+                    // Find the parent UserControl and refresh it
+                    var parent = (StackPanel)Parent;
+                    parent.Children.Remove(this);
+                }
+            }
+        }
     }
 }
