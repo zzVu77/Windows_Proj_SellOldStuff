@@ -1,0 +1,104 @@
+﻿<UserControl x:Class="UTEMerchant.UC_ItemInShoppingCartItemsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:local="clr-namespace:UTEMerchant"
+             mc:Ignorable="d" 
+             d:DesignHeight="90" d:DesignWidth="800" Loaded="UserControl_Loaded">
+    <Grid x:Name="grd" Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <ToggleButton Grid.Column="0"
+                      x:Name="togItem"
+                      Height="20"
+                      HorizontalAlignment="Right"
+                      VerticalAlignment="Center"
+                      Style="{StaticResource RoundedToggleButton}"
+                      Checked="togItem_Checked"
+                      Unchecked="togItem_Unchecked"/>
+        <Border Grid.Column="2" x:Name="brdImage"
+                BorderBrush="Gray"
+                BorderThickness="2"
+                Width="80"
+                Height="80"
+                CornerRadius="10"
+                Margin="0,10">
+            <Image x:Name="imgItem"
+                   Width="70"
+                   Height="70"
+                   Stretch="Uniform">
+            </Image>
+        </Border>
+        
+        <DockPanel x:Name="spItemInfo"
+                    Grid.Column="4"
+                    LastChildFill="False">
+            <Label x:Name="LblItemName" 
+                       FontSize="20"
+                       FontWeight="Bold"
+                        Foreground="Black"
+                       HorizontalAlignment="Left"
+                       DockPanel.Dock="Top"/>
+            <StackPanel x:Name="spItemPrice"
+                        Orientation="Vertical"
+                        VerticalAlignment="Top">
+                <TextBlock x:Name="txtItemOriginalPrice"
+                           FontSize="18"
+                           Foreground="Gray"
+                           VerticalAlignment="Top"
+                           FontWeight="SemiBold"
+                           TextDecorations="Strikethrough"/>
+                
+                <TextBlock x:Name="txtItemDiscountPrice" 
+                           FontSize="21"
+                           FontFamily="Segoe UI Black"
+                           FontWeight="SemiBold"
+                           Foreground="Red"
+                           />
+            </StackPanel>
+        </DockPanel>
+        <Button Grid.Column="5" 
+                x:Name="btnRemove"                
+                FontFamily="Segoe UI"
+                FontWeight="SemiBold"
+                Height="40"
+                Width="70"
+                FontSize="12"
+                HorizontalAlignment="Center"
+                Margin="0 0 10 0"
+                Visibility="Collapsed" Click="btnRemove_Click">
+            
+            <Icon:PackIconMaterial Kind="Delete" HorizontalAlignment="Center" VerticalAlignment="Center" Width="23" Height="22" Foreground="Black"/>
+
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="Border"
+                            Background="Red"
+                            CornerRadius="15"
+                            BorderThickness="0">
+                        <ContentPresenter HorizontalAlignment="Center" 
+                                          VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="IndianRed"/>
+                            <Setter Property="Foreground" Value="White"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="IndianRed"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+    </Grid>
+</UserControl>

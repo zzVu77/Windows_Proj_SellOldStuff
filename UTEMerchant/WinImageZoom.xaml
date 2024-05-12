@@ -1,0 +1,42 @@
+﻿<Window x:Class="UTEMerchant.WinImageZoom"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UTEMerchant"
+        mc:Ignorable="d"
+        Title="WinImageZoom" Height="450" Width="800" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Slider Grid.Column="0"
+                Orientation="Vertical" 
+                HorizontalAlignment="Left"
+                Minimum="1"
+                x:Name="sliImage" ValueChanged="sliImage_ValueChanged"
+        />
+        <ScrollViewer Name="svImage"
+                      Grid.Column="1" 
+                      VerticalScrollBarVisibility="Visible" 
+                      HorizontalScrollBarVisibility="Visible" MouseMove="svImage_MouseMove" PreviewMouseLeftButtonDown="svImage_PreviewMouseLeftButtonDown" PreviewMouseWheel="svImage_PreviewMouseWheel" MouseLeftButtonUp="svImage_MouseLeftButtonUp" PreviewMouseLeftButtonUp="svImage_PreviewMouseLeftButtonUp" ScrollChanged="svImage_ScrollChanged"
+        >
+
+            <Grid Name="grdImage"
+                  Width="400" 
+                  Height="400"
+                  RenderTransformOrigin="0.5,0.5">
+                <Grid.LayoutTransform>
+                    <TransformGroup>
+                        <ScaleTransform x:Name="ScaleTransform"/>
+                    </TransformGroup>
+                </Grid.LayoutTransform>
+                <Viewbox Grid.Column="0" Grid.Row="0">
+                    <Image x:Name="img" Source="Img/GucciBag.jpg"></Image>
+                </Viewbox>
+            </Grid>
+
+        </ScrollViewer>
+    </Grid>
+</Window>

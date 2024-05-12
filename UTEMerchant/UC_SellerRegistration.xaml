@@ -1,0 +1,196 @@
+﻿<UserControl x:Class="UTEMerchant.UC_SellerRegistration"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UTEMerchant"
+             xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="1400">
+    <UserControl.Resources>
+
+    </UserControl.Resources>
+    <Grid>
+        <Grid x:Name="grdRegistration"
+             
+              Background="Transparent">
+            <Grid.RowDefinitions>
+                <RowDefinition x:Name="rLogoImage" Height="4*"/>
+                <RowDefinition x:Name="rLogoName" Height="Auto"/>
+                <RowDefinition x:Name="rRegistrationTitle" Height="1.5*"/>
+                <RowDefinition x:Name="rMain" Height="15*"/>
+            </Grid.RowDefinitions>
+
+            <!--Logo-->
+            <Image Grid.Row="0"
+                   x:Name="imgLogo"
+                   Source="Img/TradexcellentLogo.png"
+                   Stretch="Uniform"/>
+
+            <!--Trusted seller band-->
+            <Image x:Name="imgTrustedSeller"
+                   Grid.Row="0"
+                   HorizontalAlignment="Right"
+                   Source="Img/TrustedSeller.png"/>
+
+            <!--Registration title-->
+            <Label x:Name="tbRegistrationTitle"
+                   Content="Registration"
+                   FontFamily="Space Grotesk Medium"
+                   FontWeight="DemiBold"
+                   FontSize="30"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   HorizontalContentAlignment="Center"
+                   VerticalContentAlignment="Center"
+                   Grid.Row="2"/>
+            <Grid x:Name="grdMain"
+                  Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition x:Name="cImage1" Width="111*"/>
+                    <ColumnDefinition x:Name="cDetails" Width="128*"/>
+                    <ColumnDefinition x:Name="cImage2" Width="111*"/>
+                </Grid.ColumnDefinitions>
+                <Image x:Name="img1"
+                       Grid.Column="0"
+                       Source="Img/Registration 1.png" Margin="0,1,0,0"/>
+                <Image x:Name="img2"
+                       Grid.Column="2"
+                       Source="Img/Registration 2.png" Margin="0,1,0,0"/>
+                <StackPanel x:Name="grdDetails"
+                            VerticalAlignment="Top"
+                      Grid.Column="1" Height="361">
+
+                    <!--Shop Address-->
+                    <Label x:Name="lblShopName"
+                           Grid.Row="0"
+                           Content="Shop Name"
+                           HorizontalContentAlignment="Left"
+                           HorizontalAlignment="Left"
+                           VerticalContentAlignment="Center"/>
+
+                    <Grid x:Name="unigrdShopAddress" 
+                          HorizontalAlignment="Left"
+                                >
+                        <TextBox x:Name="txtShopName"
+                                 Style="{StaticResource DefaultTextBoxStyle}"
+                                 Tag="Shop Name"
+                                 BorderBrush="Gray"
+                                 BorderThickness="3"
+                                 Height="40"
+                                 Width="490"/>
+                    </Grid>
+
+                    <!--Pickup Address-->
+                    <Label x:Name="lblShopAddress"
+                           Grid.Row="2"
+                           Content="Shop Address"
+                           HorizontalAlignment="Left"
+                           VerticalContentAlignment="Center"/>
+
+                    <DockPanel x:Name="unigrdPickupAddress"
+                               Width="490"
+                               HorizontalAlignment="Left"
+                               
+                                 >
+                        <ComboBox x:Name="cbPickupCity"
+                                  Style="{StaticResource DefaultComboBoxStyle}"
+                                  Background="White"
+                                  BorderBrush="Gray"
+                                  BorderThickness="3"
+                                  Height="40"
+                                  Width="235"
+                                  Tag="City"
+                                  HorizontalAlignment="Left">
+                            <ComboBoxItem Content="HCM"/>
+                            <ComboBoxItem Content="Ha Noi"/>
+                            <ComboBoxItem Content="Nha Trang"/>
+                            <ComboBoxItem Content="Vung Tau"/>
+                            <ComboBoxItem Content="Binh Dinh"/>
+                        </ComboBox>
+                        <ComboBox x:Name="cbPickupDistrict"
+                                  Style="{StaticResource DefaultComboBoxStyle}"
+                                  Background="White"
+                                  BorderBrush="Gray"
+                                  BorderThickness="3"
+                                  Tag="District"
+                                  Height="40"
+                                  Width="235"
+                                  HorizontalAlignment="Right"
+                                  >
+                            <ComboBoxItem Content="Quan 10"/>
+                            <ComboBoxItem Content="Quan 11"/>
+                            <ComboBoxItem Content="Quan 12"/>
+                            <ComboBoxItem Content="Thu Duc"/>
+                            <ComboBoxItem Content="Quan 1"/>
+                        </ComboBox>
+
+                    </DockPanel>
+                    <Label x:Name="lblShopWard"
+                           Grid.Row="2"
+                           Content="Ward"
+                           HorizontalAlignment="Left"
+                           VerticalContentAlignment="Center"/>
+
+                    <TextBox x:Name="txtWard"                             
+                                 Style="{StaticResource DefaultTextBoxStyle}"
+                                 Tag="Ward"
+                                 BorderBrush="Gray"
+                                 BorderThickness="3"
+                                 HorizontalAlignment="Left"
+                                 Height="40"
+                                 Width="488"/>
+                    <Label x:Name="lblShopPhone"
+                           Grid.Row="2"
+                           Content="Phone"
+                           HorizontalAlignment="Left"
+                           VerticalContentAlignment="Center"/>
+                    <DockPanel x:Name="unigrdContact"
+                               
+                               >
+                        <!--Contact Number-->
+                        <TextBox x:Name="txtContactNumber"
+                                 Style="{StaticResource DefaultTextBoxStyle}"
+                                 Tag="Contact number"
+                                 BorderBrush="Gray"
+                                 BorderThickness="3"
+                                 Height="40"
+                                  Width="490"
+                                 HorizontalAlignment="Left"
+                                 />                   
+                    </DockPanel>
+
+                    <Button x:Name="btnDone"
+                            Margin="0 15 0 0"
+                            Height="40"
+                            Width="150" 
+                            HorizontalAlignment="Center"
+                            FontSize="12"
+                            Content="Done">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="Border" CornerRadius="20" 
+                                        Background="LightGreen" 
+                                        BorderThickness="0">
+                                    <ContentPresenter HorizontalAlignment="Center" 
+                                                      VerticalAlignment="Center"
+                                                      Margin="50,0"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="Border" Property="Background" Value="LimeGreen"/>
+                                        <Setter Property="Foreground" Value="White"/>
+                                    </Trigger>
+                                    <Trigger Property="IsPressed" Value="True">
+                                        <Setter TargetName="Border" Property="Background" Value="DarkGreen"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="UTEMerchant.UC_ShoppingCart"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:local="clr-namespace:UTEMerchant"
+             mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="600">
+    <Grid>
+        <Grid x:Name="grdEmptyShoppingCart"
+              Visibility="Visible"
+              VerticalAlignment="Top">
+
+            <Grid.RowDefinitions>
+                <RowDefinition x:Name="rShoppingIcon" Height="*"/>
+                <RowDefinition x:Name="rText" Height="*"/>
+            </Grid.RowDefinitions>
+            <Image x:Name="imgShoppingCart"
+                   Grid.Row="0"
+                   Source="{Icon:FeatherIconsImage Brush=LightGray, Kind=ShoppingCart}"
+                   Stretch="Uniform"
+                   Margin="80,0"/>
+            <TextBlock x:Name="tbNoticeEmpty"
+                       Text="You don't have any orders in your shopping cart. Let's go shopping!"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Center"
+                       Foreground="LightGray"
+                       FontSize="20" Grid.Row="1"
+                       TextWrapping="Wrap"
+                       TextAlignment="Center"
+                       Margin="0,30"/>
+        </Grid>
+        <ScrollViewer Grid.Row="0"
+                      x:Name="svItems"
+                      VerticalScrollBarVisibility="Hidden">
+            <StackPanel x:Name="spItems">
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

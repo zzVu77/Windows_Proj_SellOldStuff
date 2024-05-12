@@ -1,0 +1,502 @@
+<Window x:Class="UTEMerchant.WinSellerInterface"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:local="clr-namespace:UTEMerchant"
+        mc:Ignorable="d"
+        Height="720" Width="1386" WindowStartupLocation="CenterScreen" AllowsTransparency="True"
+        Background="Transparent" WindowStyle="None"
+        WindowState="Maximized"
+        Loaded ="Window_Loaded">
+
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+
+        <!--SubMenu MenuItem Style-->
+
+        <Style x:Key="SubMenu_MenuItem" TargetType="{x:Type MenuItem}">
+            <Setter Property="Background" Value="{Binding Background, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"/>
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Height" Value="50" />
+            <Setter Property="Width" Value="Auto" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type MenuItem}">
+                        <Border x:Name="border"
+                        Background="{Binding Background, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
+                        BorderBrush="Transparent"
+                        BorderThickness="0"
+                        Height="Auto"
+                        Width="Auto">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="4*" />
+                                </Grid.ColumnDefinitions>
+
+                                <!--Icon-->
+
+                                <ContentPresenter x:Name="Icon"
+                                          ContentSource="Icon"
+                                          HorizontalAlignment="Left"
+                                          Height="Auto"
+                                          Width="Auto"
+                                          Margin="30,15,0,15"
+                                          VerticalAlignment="Center"/>
+
+                                <!--Menu Text-->
+
+                                <ContentPresenter ContentSource="Header"
+                                                  Grid.Column="2"
+                                                  TextBlock.Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
+                                                  TextBlock.FontWeight="{Binding FontWeight, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
+                                                  TextBlock.FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
+                                                  HorizontalAlignment="Left"
+                                                  RecognizesAccessKey="True"
+                                                  Margin="3,0,0,0"
+                                                  VerticalAlignment="Center"/>
+
+                                <!--Popup-->
+
+                                <Popup x:Name="PART_Popup"
+                                       AllowsTransparency="true"
+                                       Focusable="false"
+                                       HorizontalOffset="-2"
+                                       IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}"
+                                       Placement="Right"
+                                       PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}"
+                                       VerticalOffset="0">
+                                    <Border x:Name="SubMenuBorder"
+                                            Background="Transparent"
+                                            BorderBrush="Transparent">
+                                        <ScrollViewer x:Name="SubMenuScrollViewer"
+                                                      Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
+                                            <Grid RenderOptions.ClearTypeHint="Enabled">
+                                                <Canvas HorizontalAlignment="Left"
+                                                        VerticalAlignment="Top"/>
+                                                <ItemsPresenter x:Name="ItemsPresenter"
+                                                                KeyboardNavigation.DirectionalNavigation="Cycle"
+                                                                Grid.IsSharedSizeScope="true"
+                                                                KeyboardNavigation.TabNavigation="Cycle"/>
+                                            </Grid>
+                                        </ScrollViewer>
+                                    </Border>
+                                </Popup>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsHighlighted" Value="True">
+                                <Setter Property="Background" TargetName="border">
+                                    <Setter.Value>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FF964F4F" Offset="0"/>
+                                            <GradientStop Color="#7FB93D3D" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" TargetName="border">
+                                    <Setter.Value>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FF964F4F" Offset="0"/>
+                                            <GradientStop Color="#7FB93D3D" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--Menu Style-->
+
+        <Style x:Key="Menu_Style" TargetType="{x:Type MenuItem}">
+            <Setter Property="Background" Value="{Binding Background, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"/>
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Height" Value="50" />
+            <Setter Property="Width" Value="Auto" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type MenuItem}">
+                        <Border x:Name="border"
+                                Background="{Binding Background, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
+                                BorderBrush="Transparent"
+                                BorderThickness="0"
+                                Height="Auto"
+                                Width="Auto">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="4*" />
+
+                                </Grid.ColumnDefinitions>
+
+                                <!--Icon-->
+
+                                <ContentPresenter x:Name="Icon"
+                                                  ContentSource="Icon"
+                                                  HorizontalAlignment="Left"
+                                                  Height="Auto"
+                                                  Width="Auto"
+                                                  Margin="30,15,0,15"
+                                                  VerticalAlignment="Center" />
+
+                                <!--Menu Text-->
+
+                                <ContentPresenter ContentSource="Header"
+                                                  Grid.Column="1"
+                                                  TextBlock.Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
+                                                  TextBlock.FontWeight="{Binding FontWeight, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
+                                                  TextBlock.FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
+                                                  HorizontalAlignment="Left"
+                                                  RecognizesAccessKey="True"
+                                                  Margin="3,0,0,0"
+                                                  VerticalAlignment="Center" />
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsHighlighted" Value="True">
+                                <Setter Property="Background" TargetName="border" Value="#404D5B" />
+                                <Setter Property="BorderBrush" TargetName="border" Value="#404D5B" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" TargetName="border">
+                                    <Setter.Value>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FF964F4F" Offset="0"/>
+                                            <GradientStop Color="#7FB93D3D" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--Menu Item Style-->
+
+        <Style x:Key="Menu_Item" TargetType="{x:Type MenuItem}">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Height" Value="50" />
+            <Setter Property="Width" Value="Auto" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type MenuItem}">
+                        <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="Transparent"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Height="Auto"
+                                Width="Auto">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="4*" />
+                                </Grid.ColumnDefinitions>
+
+                                <!--Icon-->
+                                <ContentPresenter x:Name="Icon"
+                                                  ContentSource="Icon"
+                                                  HorizontalAlignment="Left"
+                                                  Height="Auto"
+                                                  Width="Auto"
+                                                  Margin="30,15,0,15"
+                                                  VerticalAlignment="Center" />
+
+                                <!--Menu Text-->
+                                <ContentPresenter ContentSource="Header"
+                                                  Grid.Column="1"
+                                                  TextBlock.Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
+                                                  TextBlock.FontWeight="{Binding FontWeight, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
+                                                  TextBlock.FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
+                                                  HorizontalAlignment="Left"
+                                                  RecognizesAccessKey="True"
+                                                  Margin="3,0,0,0"
+                                                  VerticalAlignment="Center" />
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Icon" Value="{x:Null}">
+                                <Setter Property="Visibility" TargetName="Icon" Value="Visible" />
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Visibility" TargetName="Icon" Value="Visible" />
+                            </Trigger>
+                            <Trigger Property="IsHighlighted" Value="True">
+                                <Setter Property="Background" TargetName="border" Value="#404D5B" />
+                                <Setter Property="BorderBrush" TargetName="border" Value="#404D5B" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" TargetName="border">
+                                    <Setter.Value>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FF964F4F" Offset="0"/>
+                                            <GradientStop Color="#7FB93D3D" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>  
+    
+    <Border CornerRadius="30" Background="#EFF2F7" MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--Left Menu-->
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!--Menu Icon-->
+                <Button Style="{StaticResource topButton}" HorizontalAlignment="Left" Margin="20 28 0 35">
+                    <Icon:PackIconMaterial Kind="Menu" Width="15" Height="15" />
+                </Button>
+
+                <Border x:Name="brdMenu" Grid.Row="1" Background="#E56B6F" CornerRadius="0 50 0 30" Margin="0,62,0,0">
+                    <DockPanel>
+                        <!--Menu Logo-->
+                        <Border Width="80" Height="80" Padding="3" Background="White" CornerRadius="100" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="20 -30 0 0">
+                            <Ellipse>
+                                <Ellipse.Fill>
+                                    <ImageBrush x:Name="imgUserAvatar" ImageSource="/Img/kimetsu.jpg"/>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                        </Border>
+
+                        <!--Menu Titles-->
+                        <TextBlock x:Name="txbName" Text="Nguyen Vu" Foreground="White" FontSize="22" FontWeight="SemiBold" DockPanel.Dock="Top" Margin="5 25 0 10" TextAlignment="Center"/>
+                        <!--<TextBlock Text="Members, France" Foreground="#D0BFFF" FontSize="14" FontWeight="SemiBold" DockPanel.Dock="Top" TextAlignment="Center"/>-->
+
+                        <!--Menu Seprator-->
+                        <Separator  Margin="25" Background="black" DockPanel.Dock="Top" Height="1" />
+
+                        <!--Menu Buttons-->
+                        <Menu x:Name="mnu" 
+                              DockPanel.Dock="Top"
+                              Background="Transparent">
+                            <Menu.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <VirtualizingStackPanel Orientation="Vertical"/>
+                                </ItemsPanelTemplate>
+                            </Menu.ItemsPanel>
+                            <!--<MenuItem x:Name="mnuitProfile"
+                                      Header="Profile"
+                                      FontWeight="SemiBold"
+                                      Style="{StaticResource SubMenu_MenuItem}"
+                                      Background="{Binding ElementName=brdMenu, Path=Background}" Click="mnuitProfile_Click">
+                                <MenuItem.Icon>
+                                    <Image Source="{Icon:ModernImage Brush=Black, Kind=PeopleProfile}" 
+                                           Stretch="Uniform"/>
+                                </MenuItem.Icon>                               
+                            </MenuItem>-->
+                            <MenuItem x:Name="mnuitBuyerProfile"
+                                      Header="Buyer Profile"
+                                      FontWeight="SemiBold"
+                                      Visibility="Visible"
+                                      Style="{StaticResource Menu_Item}"
+                                      Background="{Binding ElementName=mnuitProfile, Path=Background}"
+                                      Width="{Binding ElementName=mnuitProfile,Path=ActualWidth}"
+                                      Click="mnuitBuyerProfile_Click">
+                                <MenuItem.Icon>
+                                    <Image Source="{Icon:MaterialImage Kind=Account, Brush=Black}"
+                                               Stretch="Uniform"/>
+                                </MenuItem.Icon>
+                            </MenuItem>                         
+
+                            <MenuItem x:Name="mnuitPurchase"
+                                      Header="Purchase"     
+                                      FontWeight="SemiBold"
+                                      Style="{StaticResource Menu_Style}"
+                                      Click="mnuitPurchase_Click">
+                                <MenuItem.Icon>
+                                    <Image Source="{Icon:ModernImage Brush=Black, Kind=Shopping}"
+                                           Stretch="Uniform" Width="24"/>
+                                </MenuItem.Icon>
+
+                            </MenuItem>
+                            <MenuItem x:Name="mnuitStock"
+                                      Header="Seller"    
+                                      FontWeight="SemiBold"
+                                      Style="{StaticResource SubMenu_MenuItem}"
+                                      Background="{Binding ElementName=brdMenu, Path=Background}"
+                                      Click="mnuitStock_Click">
+                                <MenuItem.Icon>
+                                    <Image Source="{Icon:ModernImage Brush=Black, Kind=Store}" 
+                                           Stretch="Uniform"/>
+                                </MenuItem.Icon>                                
+                            </MenuItem>
+
+                            <MenuItem x:Name="mnuitDashBoard"
+                                      Header="Dashboard"  
+                                      Visibility="Collapsed"
+                                      Margin="30 0 0 0"
+                                      FontWeight="SemiBold"
+                                      Style="{StaticResource SubMenu_MenuItem}"
+                                      Background="{Binding ElementName=brdMenu, Path=Background}" Click="mnuitDashBoard_Click" >
+                                <MenuItem.Icon>
+                                    <Image Source="/Img/icons8-bar-chart-in-down-trend-after-market-crash-48.png" 
+                                           Stretch="Uniform"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+
+                            <MenuItem x:Name="mnuitSellerProfile"
+                                      Header="Seller Profile"
+                                      Visibility="Collapsed"
+                                      Margin="30 0 0 0"
+                                      FontWeight="SemiBold"
+                                      Style="{StaticResource Menu_Item}"
+                                      Background="{Binding ElementName=mnuitProfile, Path=Background}"
+                                      Width="{Binding ElementName=mnuitProfile,Path=ActualWidth}"
+                                      Click="mnuitSellerProfile_Click">
+                                <MenuItem.Icon>
+                                    <Image Source="{Icon:MaterialImage Kind=CardAccountDetails, Brush=Black}"
+                                               Stretch="Uniform"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem x:Name="mnuitInventory"
+                                      Header="Inventory"
+                                      Margin="30 0 0 0"
+                                      Visibility="Collapsed"
+                                      FontWeight="SemiBold"
+                                      Style="{StaticResource Menu_Item}"
+                                      Background="{Binding ElementName=mnuitStock, Path=Background}"
+                                      Width="{Binding ElementName=mnuitStock,Path=ActualWidth}"
+                                      Click="mnuitInventory_Click">
+                                <MenuItem.Icon>
+                                    <Image Source="{Icon:MaterialImage Brush=Black, Kind=Warehouse }" 
+                                               Stretch="Uniform"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+
+                            <MenuItem x:Name="mnuitPendingOrder"
+                                      Header="Pending Order"
+                                      FontWeight="SemiBold"
+                                      Margin="30 0 0 0"
+                                      Visibility="Collapsed"
+                                      Style="{StaticResource Menu_Item}"
+                                      Background="{Binding ElementName=mnuitStock, Path=Background}"
+                                      Width="{Binding ElementName=mnuitStock,Path=ActualWidth}" 
+                                      Click="mnuitPendingOrder_Click">
+                                <MenuItem.Icon>
+                                    <Image Source="{Icon:MaterialDesignImage Brush=Black, Kind=CheckCircle}" 
+                                               Stretch="Uniform"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+
+                            <MenuItem x:Name="mnuitOrder"
+                                      Header="Order"    
+                                      FontWeight="SemiBold"
+                                      Style="{StaticResource Menu_Style}" Click="mnuitOrder_Click" >
+                                <MenuItem.Icon>
+                                    <Image Source="{Icon:MaterialDesignImage Brush=Black, Kind=LocalShipping}" 
+                                           Stretch="Uniform"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem x:Name="mnuitWishList"
+                                      Header="WishList"  
+                                      FontWeight="SemiBold"
+                                      Style="{StaticResource SubMenu_MenuItem}"
+                                      Background="{Binding ElementName=brdMenu, Path=Background}" Click="mnuitWishList_Click">
+                                <MenuItem.Icon>
+                                    <Image Source="{Icon:MaterialImage Brush=Black, Kind=Heart}" 
+                                           Stretch="Uniform"/>
+                                </MenuItem.Icon>                                          
+                            </MenuItem>
+
+                        </Menu>
+
+                        <Button Style="{StaticResource menuButton}" VerticalAlignment="Bottom" DockPanel.Dock="Bottom" Margin="15 0 15 20" Click="Button_Click">
+                            <StackPanel Orientation="Horizontal" MouseUp="TextBlock_MouseDown">
+                                <Icon:PackIconMaterial Kind="Logout" Style="{StaticResource menuButtonIcon}"/>
+                                <TextBlock Text="Logout" MouseDown="TextBlock_MouseDown"/>
+                            </StackPanel>
+                        </Button>
+
+                    </DockPanel>
+                </Border>
+
+            </Grid>
+
+            <Grid x:Name="grdSelectedMenuItem" Grid.Column="1">
+                <local:UC_PurchasingUI x:Name="uc_PurchasingUI"
+                                       Visibility="Collapsed"
+                                       Background="Transparent"/>
+
+                <Grid x:Name="grdSellerUI" 
+                      Visibility="Visible">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="200"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <local:UC_PendingOrderReview Grid.Row="1"
+                                                 x:Name="uc_PendingOrderReview"
+                                                 Visibility="Collapsed"/>
+                    <local:UC_SellerUI Grid.Row="0"
+                                       Grid.RowSpan="2"
+                                       x:Name="uc_SellerUI"
+                                       Visibility="Collapsed"/>
+                    <local:UC_StartSelling Grid.RowSpan="2"
+                                           x:Name="uc_StartSelling"
+                                           Visibility="Collapsed"
+                                           />
+                    <local:UC_SellerRegistration Grid.Row="1"                                                 
+                                                 x:Name="uc_SellerRegistration"
+                                                 Visibility="Collapsed"/>
+                    <local:UC_RegistrationComplete Grid.RowSpan="2"
+                                                   x:Name="uc_RegistrationComplete"
+                                                   Visibility="Collapsed"/>
+
+                </Grid>
+
+                <local:UC_DeliveryUI x:Name="uc_Delivery"
+                                     Height="735" Visibility="Collapsed"
+                                     VerticalAlignment="Bottom" 
+                                     Margin="0 20 0 15"
+                                     IsVisibleChanged="uc_Delivery_IsVisibleChanged"/>
+                <local:UC_BuyerProfile x:Name="uc_BuyerProfile"
+                                  Visibility="Collapsed"
+                                  Background="Transparent"/>
+
+                <local:UC_SellerProfile x:Name="uc_SellerProfile"
+                                        Visibility="Collapsed"/>
+
+                <local:UC_WishListUI x:Name="uc_WishList"
+                                     Visibility="Collapsed"/>
+                <local:UC_DashBoard x:Name="uc_DashBoard"
+                                 Visibility="Collapsed"/>
+
+
+            </Grid>
+
+        
+
+        </Grid>
+    </Border>
+
+
+
+</Window>

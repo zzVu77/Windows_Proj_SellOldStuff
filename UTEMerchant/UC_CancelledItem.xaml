@@ -1,0 +1,162 @@
+﻿<UserControl x:Class="UTEMerchant.UC_CancelledItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UTEMerchant"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             mc:Ignorable="d" d:DesignWidth="800" Loaded="UserControl_Loaded">
+    <Border CornerRadius="10"
+            BorderBrush="Black"
+            BorderThickness="2">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0"
+                    BorderBrush="LightGray"
+                    BorderThickness="0 0 0 1.5">
+                <DockPanel Margin="10,0">
+                    <Image x:Name="imgShopLogo"
+                           Source="{iconPacks:MaterialDesignImage Kind=Store, Brush=Black}"
+                           VerticalAlignment="Center"
+                           Margin="10"
+                           Stretch="Uniform"
+                           Height="30"/>
+                    <TextBlock x:Name="txblShopName"
+                               Text="UTE Merchant"
+                               FontWeight="Bold"
+                               FontSize="20"
+                               FontFamily="Segoe UI Black"
+                               VerticalAlignment="Center"/>
+                </DockPanel>
+            </Border>
+
+            <Border Grid.Row="1"
+                    BorderBrush="LightGray"
+                    BorderThickness="0 0 0 1.5">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0"
+                           x:Name="imgItem"
+                           Source="/Img/iPhone-14-Pro-Max-9907.jpg" 
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Stretch="Uniform" Width="105" Height="105"/>
+                    <StackPanel Grid.Column="1"
+                                Margin="0,20">
+                        <!--Item Name-->
+                        <TextBlock VerticalAlignment="Center"
+                                   x:Name="tbName"
+                                   TextWrapping="Wrap"             
+                                   TextTrimming="None"
+                                   Text="Iphone 14 Pro Max 512GB"
+                                   FontFamily="Segoe UI Black"
+                                   MaxHeight="95" 
+                                   FontSize="25"
+                                   Margin="0,10"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0"
+                                       Grid.Column="0" 
+                                       FontSize="18"             
+                                       x:Name="tbCondition"
+                                       Text="Condition: "
+                                       HorizontalAlignment="Left"
+                                       FontWeight="SemiBold"
+                                       VerticalAlignment="Top"
+                                       IsHitTestVisible="False"/>
+                            <TextBlock Grid.Row="0"
+                                       Grid.Column="1"
+                                       VerticalAlignment="Top"                     
+                                       Foreground="Black"                         
+                                       FontSize="18"
+                                       x:Name="tbConditonValue"                    
+                                       Text="95%"
+                                       HorizontalAlignment="Left"
+                                       FontWeight="Black"/>
+                            <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" 
+                                       HorizontalAlignment="Left"
+                                       Foreground="DarkGray"
+                                       TextDecorations="Strikethrough"                
+                                       FontSize="20"
+                                       x:Name="tbOriginalPrice"
+                                       Text="50 $"                
+                                       FontWeight="SemiBold"/>
+                            <TextBlock Grid.Row="1" Grid.Column="1" 
+                                       VerticalAlignment="Top"                     
+                                       Foreground="Red"                               
+                                       FontSize="20"
+                                       FontWeight="Normal"
+                                       FontFamily="Segoe UI Black"
+                                       x:Name="tbPrice"
+                                       Text="100$"
+                                       HorizontalAlignment="Left"/>
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+
+            </Border>
+
+            <Grid Grid.Row="2" >
+                <Button x:Name="btnReorder"
+                        HorizontalAlignment="Right"
+                        Foreground="White"
+                        FontWeight="DemiBold"
+                        Margin="10"
+                        FontSize="25" 
+                        Click="btnReorder_Click">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border x:Name="brdButton"
+                                                Background="#E56B6F"
+                                                CornerRadius="10">
+                                            <ContentPresenter HorizontalAlignment="Center"
+                                                              VerticalAlignment="Center"
+                                                              Margin="50,5"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
+                    <!--Add an icon next to the text-->
+                    <Button.Content>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="10"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <iconPacks:PackIconMaterial Grid.Column="0" 
+                                                        Kind="Cart"
+                                                        Foreground="White"
+                                                        Width="30"
+                                                        Height="30"
+                                                        HorizontalAlignment="Center"/>
+                            <TextBlock Grid.Column="2"
+                                       Text="Reorder"
+                                       HorizontalAlignment="Right"/>
+                        </Grid>
+                    </Button.Content>
+                </Button>
+
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>
