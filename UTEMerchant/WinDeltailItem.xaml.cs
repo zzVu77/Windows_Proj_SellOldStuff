@@ -174,10 +174,7 @@ namespace UTEMerchant
             {
                 WinDeltailItem winDeltailItem = new WinDeltailItem(uc_Item.info,
                     new Seller_DAO().GetSeller(uc_Item.info.SellerID), Id_user);
-                this.Hide();
                 winDeltailItem.ShowDialog();
-                this.Show();
-                this.BringIntoView();
             }
         }
     }
