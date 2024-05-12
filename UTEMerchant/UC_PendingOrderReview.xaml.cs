@@ -105,7 +105,7 @@ namespace UTEMerchant
         {
             if (StaticValue.SELLER != null)
             {
-                if (_pendingOrders != null)
+                if (_pendingOrders != null && _pendingOrders.Count == 0)
                 {
                     productGrid.Items.Clear();
 
