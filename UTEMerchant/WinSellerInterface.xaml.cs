@@ -103,7 +103,7 @@ namespace UTEMerchant
                 {                    
                     uc_SellerUI.SetSeller();
                 }
-                txbName.Text = StaticValue.USER.Name;
+                txbName.Text = StaticValue.USER.name;
                 uc_PurchasingUI.Visibility = Visibility.Visible;
                 uc_Delivery.SetUser();
                 uc_PendingOrderReview.SetSeller();
@@ -183,7 +183,15 @@ namespace UTEMerchant
                 ComboBoxItem districtValue = uc_SellerRegistration.cbPickupDistrict.SelectedItem as ComboBoxItem;
 
 
-                Seller seller = new Seller(StaticValue.USER.Id_user, uc_SellerRegistration.txtShopName.Text, cityValue.Content.ToString(), districtValue.Content.ToString(), uc_SellerRegistration.txtWard.Text, uc_SellerRegistration.txtContactNumber.Text);
+                var seller = new Seller
+                {
+                    Id_user = StaticValue.USER.Id_user,
+                    ShopName = uc_SellerRegistration.txtShopName.Text,
+                    City = cityValue.Content.ToString(),
+                    District = districtValue.Content.ToString(),
+                    Ward = uc_SellerRegistration.txtWard.Text,
+                    phone = uc_SellerRegistration.txtContactNumber.Text
+                };
                 Seller_DAO.Add(seller);
 
                 StaticValue.SELLER = Seller_DAO.GetSellerByUserID(StaticValue.USER.Id_user);

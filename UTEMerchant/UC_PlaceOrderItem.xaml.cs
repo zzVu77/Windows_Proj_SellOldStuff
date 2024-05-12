@@ -39,10 +39,10 @@ namespace UTEMerchant
         {
             if (_item != null)
             {
-                imgItem.Source = new BitmapImage(new Uri(_item.Image_Path, UriKind.RelativeOrAbsolute));
-                tbItemName.Text = _item.Name;
-                tbItemOriginalPrice.Text = "$" + _item.Original_Price.ToString(CultureInfo.InvariantCulture);
-                tbItemDiscountPrice.Text = "$" + _item.Price.ToString(CultureInfo.InvariantCulture);
+                imgItem.Source = new BitmapImage(new Uri(_item.image_path, UriKind.RelativeOrAbsolute));
+                tbItemName.Text = _item.name;
+                tbItemOriginalPrice.Text = $"${_item.original_price}";
+                tbItemDiscountPrice.Text = $"${ _item.price}";
             }
         }
     }

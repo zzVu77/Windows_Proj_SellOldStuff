@@ -8,64 +8,37 @@ using System.Threading.Tasks;
 
 namespace UTEMerchant
 {
-    internal class WishList_DAO : DAO<WishList>
+    internal class WishList_DAO : DAO<Wishlist>
     {
-        public override List<WishList> Load() // More descriptive method name
+        public override List<Wishlist> Load()
         {
-            return db.LoadData<WishList>("SELECT * FROM [dbo].[WishList]");
+            return db.Wishlists.ToList();
         }
 
-        public List<WishList> GetItemsByUserID(int userID)
+        public List<Wishlist> GetItemsByUserID(int userID)
         {
-            return db.LoadData<WishList>($"SELECT * FROM [dbo].[WishList] WHERE Id_user = '{userID}'");
+            return db.Wishlists.Where(wl => wl.Id_user == userID).ToList();
         }
 
-        public override void Add(WishList item) // Using PascalCase for method name
+        public override void Add(Wishlist item)
         {
-            string sqlStr = "INSERT INTO [dbo].[Wishlist] (Id_user, Item_Id, AddedDate) " +
-                            "VALUES (@Id_user, @Item_Id, @AddedDate)";
-
-            db.ExecuteNonQuery(sqlStr,
-
-                new SqlParameter("@Id_user", item.Id_user),
-                new SqlParameter("@Item_Id", item.Item_Id),
-                new SqlParameter("@AddedDate", item.AddedDate));
+            db.Wishlists.Add(item);
+            db.SaveChanges();
         }
 
         public bool CheckAddedItemInWishList(int itemID, int userID)
         {
-            string sqlStr = "SELECT * FROM [dbo].[WishList] WHERE Id_user = @userID AND Item_Id = @itemID";
-            using (SqlConnection conn = new SqlConnection(db.connectionString))
-            {
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
-                {
-                    cmd.Parameters.AddWithValue("@userID", userID);
-                    cmd.Parameters.AddWithValue("@itemID", itemID);
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    if (reader.Read())
-                    {                      
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-                
-            }
+            return db.Wishlists.Any(wl => wl.Id_user == userID && wl.Item_Id == itemID);
         }
 
         public void RemoveItem(int itemID, int userID)
         {
-            string sqlStr = "DELETE FROM [dbo].[WishList] WHERE Id_user = @userID AND Item_Id = @itemID";
-            db.ExecuteNonQuery(sqlStr, new SqlParameter("@userID", userID),
-                                       new SqlParameter("@itemID", itemID));
+            var wishListItem = db.Wishlists.FirstOrDefault(wl => wl.Id_user == userID && wl.Item_Id == itemID);
+            if (wishListItem != null)
+            {
+                db.Wishlists.Remove(wishListItem);
+                db.SaveChanges();
+            }
         }
-
-
-
-
-
     }
 }

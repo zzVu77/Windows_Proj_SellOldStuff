@@ -30,7 +30,7 @@
                     VerticalAlignment="Center" Margin="1,0,5,0">
                     <Ellipse  Cursor="Hand">
                         <Ellipse.Fill>
-                            <ImageBrush x:Name="imgFeedback_ClientAvatar" ImageSource="C:\Users\FPTSHOP\Desktop\Window_Proj_UTEMerchant\UTEMerchant\Img\gamingmouse.jpg"/>
+                                <ImageBrush x:Name="imgFeedback_ClientAvatar" ImageSource="D:\code\winPrograming\Git\Window_Proj_UTEMerchant\UTEMerchant\Img\gamingmouse.jpg"/>
                         </Ellipse.Fill>
                     </Ellipse>
                 </Border>

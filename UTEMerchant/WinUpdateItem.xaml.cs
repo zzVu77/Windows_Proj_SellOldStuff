@@ -36,37 +36,38 @@ namespace UTEMerchant
         }
         public void SetDefault()
         {
-            txtName.Text = item.Name;
-            txtOriginalPrice.Text = item.Original_Price.ToString();
-            txtPrice.Text=item.Price.ToString();
-            cbType.SelectedItem=item.Type;
+            txtName.Text = item.name;
+            txtOriginalPrice.Text = item.original_price.ToString();
+            txtPrice.Text=item.price.ToString();
+            cbType.SelectedItem=item.type;
             
             for(int i=0;i<cbType.Items.Count;i++)
             {
                 ComboBoxItem comboBoxItem = cbType.Items[i] as ComboBoxItem;
                 string st = comboBoxItem.Content.ToString();
-                if (comboBoxItem != null && st == item.Type)
+                if (comboBoxItem != null && st == item.type)
                 {
                     cbType.SelectedIndex = i;
                     break;
                 }
             }    
-            txtCondition.Text = item.Condition.ToString();
-            txtBoughtDate.Text=item.Bought_date.ToShortDateString();
+            txtCondition.Text = item.condition.ToString();
+            
+            txtBoughtDate.Text=item.bought_date.Value.ToShortDateString();
 
-            var resourceUri = new Uri(item.Image_Path, UriKind.RelativeOrAbsolute);
+            var resourceUri = new Uri(item.image_path, UriKind.RelativeOrAbsolute);
             imgItem.Source = new BitmapImage(resourceUri);
             // Tạo một FlowDocument
             FlowDocument flowDoc = new FlowDocument();
             // Thêm một Paragraph chứa văn bản mặc định vào FlowDocument
-            Paragraph paragraph = new Paragraph(new Run(item.Detail_description));
+            Paragraph paragraph = new Paragraph(new Run(item.detail_description));
             flowDoc.Blocks.Add(paragraph);
             // Gán FlowDocument cho RichTextBox
             rtbDetailDescription.Document = flowDoc;
             // Tạo một FlowDocument
             FlowDocument flowDoc1 = new FlowDocument();
             // Thêm một Paragraph chứa văn bản mặc định vào FlowDocument
-            Paragraph paragraph1 = new Paragraph(new Run(item.Condition_Description));
+            Paragraph paragraph1 = new Paragraph(new Run(item.condition_description));
             flowDoc1.Blocks.Add(paragraph1);
             // Gán FlowDocument cho RichTextBox
             rtbConditonDescription.Document = flowDoc1;
@@ -122,15 +123,15 @@ namespace UTEMerchant
 
                 Item product = new Item();
                 product.Item_Id = this.item.Item_Id;
-                product.Name = txtName.Text;
-                product.Price = float.Parse(txtPrice.Text.ToString());
-                product.Original_Price = float.Parse(txtOriginalPrice.Text.ToString());
-                product.Bought_date = DateTime.Parse(txtBoughtDate.Text.ToString());
-                product.Condition = Int32.Parse(txtCondition.Text.ToString());
-                product.Condition_Description = text_Condition;
-                product.Detail_description = text_detail;
-                product.Image_Path = mainImgPath;
-                product.Type = typeItem.Content.ToString();
+                product.name = txtName.Text;
+                product.price = float.Parse(txtPrice.Text.ToString());
+                product.original_price = float.Parse(txtOriginalPrice.Text.ToString());
+                product.bought_date = DateTime.Parse(txtBoughtDate.Text.ToString());
+                product.condition = Int32.Parse(txtCondition.Text.ToString());
+                product.condition_description = text_Condition;
+                product.detail_description = text_detail;
+                product.image_path = mainImgPath;
+                product.type = typeItem.Content.ToString();
                 
                 dao.UpdateItem(product);
                 if (selectedFilePath != null)
@@ -138,7 +139,11 @@ namespace UTEMerchant
                     ImgPath_DAO.DeleteImgPaths(this.item.Item_Id);
                     foreach (var x in selectedFilePath)
                     {
-                        ImgPath imgPath = new ImgPath(this.item.Item_Id, x);
+                        ImgPath imgPath = new ImgPath
+                        {
+                            Item_Id = this.item.Item_Id,
+                            Path = x
+                        };
                         ImgPath_DAO.Add(imgPath);
                     }
                 }

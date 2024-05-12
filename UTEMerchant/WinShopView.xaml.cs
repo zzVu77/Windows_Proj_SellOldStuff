@@ -33,7 +33,7 @@ namespace UTEMerchant
         private List<Item> items;
         private CustomerReviewDAO feedbackDAO = new CustomerReviewDAO();
         private Item_DAO itemDAO = new Item_DAO();
-        private user_DAO userDAO = new user_DAO();
+        private User_DAO userDAO = new User_DAO();
         private List<CustomerReview> feedbacks = new List<CustomerReview>();
 
         public WinShopView()
@@ -188,7 +188,7 @@ namespace UTEMerchant
                 }
                 else
                 {
-                    List<Item> itemsByCategory = items.Where(i => i.Type == Category).ToList();
+                    List<Item> itemsByCategory = items.Where(i => i.type == Category).ToList();
                     FillShopItems(itemsByCategory);
                 }
             }
@@ -210,7 +210,7 @@ namespace UTEMerchant
 
             // Other categories
             // Make sure the category is not duplicated
-            List<string> categories = items.Select(i => i.Type).Distinct().ToList();
+            List<string> categories = items.Select(i => i.type).Distinct().ToList();
 
             foreach (var itemCategory in categories)
             {
@@ -232,11 +232,11 @@ namespace UTEMerchant
         private void LoadFeedBack()
         {
             
-            feedbacks = feedbackDAO.GetFeedBack(this.seller.SellerID);
+            feedbacks = feedbackDAO.GetFeedback(this.seller.SellerID);
             foreach (CustomerReview feedback in feedbacks)
             {
-                Item item = itemDAO.GetItemByItemID(feedback.Item_ID);
-                User user =userDAO.GetUserByItemID(feedback.ID_User);
+                Item item = itemDAO.GetItemByItemID(feedback.Item_Id);
+                User user =userDAO.GetUserByItemID(feedback.Id_user);
                 UC_FeedBackUI uC_FeedBackUI = new UC_FeedBackUI(item, user, feedback);
                 uC_FeedBackUI.Width = 1440;
                 spDeliveredStatus.Children.Add(uC_FeedBackUI);

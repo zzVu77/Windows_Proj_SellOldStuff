@@ -20,7 +20,7 @@ namespace UTEMerchant
     /// </summary>
     public partial class UC_PendingItemsBox : UserControl
     {
-        private readonly List<purchasedItem> _orders;
+        private readonly List<PurchasedProduct> _orders;
         private readonly Seller _seller;
         private readonly int _userId;
 
@@ -29,7 +29,7 @@ namespace UTEMerchant
             InitializeComponent();
         }
 
-        public UC_PendingItemsBox(List<purchasedItem> orders, Seller seller, int userId) : this()
+        public UC_PendingItemsBox(List<PurchasedProduct> orders, Seller seller, int userId) : this()
         {
             this._orders = orders;
             this._userId = userId;
@@ -38,7 +38,7 @@ namespace UTEMerchant
             LoadOrders();
         }
 
-        private void AddItem(purchasedItem order)
+        private void AddItem(PurchasedProduct order)
         {
             foreach (UC_PendingItem ucPendingItem in spItems.Children)
             {

@@ -14,243 +14,114 @@ using System.Xml;
 
 namespace UTEMerchant
 {
-    public class Item_DAO: DAO<Item>
+    public class Item_DAO : DAO<Item>
     {
-    
-
-        public override List<Item> Load() // More descriptive method name
+        public override List<Item> Load()
         {
-            return db.LoadData<Item>("SELECT * FROM [dbo].[Item]");
+            return db.Items.ToList();
         }
 
-        public override void Add(Item item) // Using PascalCase for method name
+        public override void Add(Item item)
         {
-            string sqlStr = "INSERT INTO [dbo].[Item] (name, price, original_price, type, bought_date, condition_description, condition, image_path, sale_status, detail_description, SellerID, PostedDate) " +
-                            "VALUES (@name, @Price, @OriginalPrice, @Type, @BoughtDate, @Condition_description, @Condition, @ImagePath, @Sale_status, @Detail_description, @SellerID, @PostedDate)";
-
-            db.ExecuteNonQuery(sqlStr,
-               
-                new SqlParameter("@name", item.Name),
-                new SqlParameter("@Price", item.Price),
-                new SqlParameter("@OriginalPrice", item.Original_Price),
-                new SqlParameter("@Type", item.Type),
-                new SqlParameter("@BoughtDate", item.Bought_date),
-                new SqlParameter("@Condition_description", item.Condition_Description),
-                new SqlParameter("@Condition", item.Condition),
-                new SqlParameter("@ImagePath", item.Image_Path),
-                new SqlParameter("@Sale_status", item.Sale_Status),
-                new SqlParameter("@Detail_description", item.Detail_description),
-                new SqlParameter("@SellerID", item.SellerID),
-                new SqlParameter("@PostedDate", item.PostedDate));
+            db.Items.Add(item);
+            db.SaveChanges();
         }
 
         public void RemoveItem(Item item)
         {
-            string sqlStr = "DELETE FROM [dbo].[Item] WHERE Item_Id = @ItemId";
-            db.ExecuteNonQuery(sqlStr, new SqlParameter("@ItemId", item.Item_Id));
-        }
-        public void UpdateStatus(int Item_Id)
-        {
-            bool status = true;
-            string sqlStr = "UPDATE[dbo].[Item] SET sale_status = @NewSaleStatus WHERE Item_Id = @ItemId";
-            db.ExecuteNonQuery(sqlStr, new SqlParameter("@ItemId", Item_Id), new SqlParameter("@NewSaleStatus", status));
+            db.Items.Remove(item);
+            db.SaveChanges();
         }
 
-        public List<Item> GetItemsBySellerID(int SellerID)
+        public void UpdateStatus(int itemId)
         {
-            return db.LoadData<Item>($"SELECT * FROM [dbo].[Item] WHERE SellerID = '{SellerID}'");
+            var item = db.Items.Find(itemId);
+            if (item != null)
+            {
+                item.sale_status = true;
+                db.SaveChanges();
+            }
+        }
+
+        public List<Item> GetItemsBySellerID(int sellerID)
+        {
+            return db.Items.Where(i => i.SellerID == sellerID).ToList();
         }
 
         public Item GetItemByItemID(int id)
         {
-            Item item = null;
-            string sqlStr = "Select  Item_Id, name, price, image_path From  [dbo].[Item] Where @itemID = [dbo].[Item].Item_Id ";
-            SqlConnection conn = new SqlConnection(db.connectionString);
-            conn.Open();
-            SqlCommand command = new SqlCommand(sqlStr, conn);
-            command.Parameters.AddWithValue("@itemID", id);
-            SqlDataReader reader = command.ExecuteReader();
-            if (reader.Read())
-            {
-                int itemID = reader.GetInt32(0);
-                string name = reader.GetString(1);
-                double price = reader.GetDouble(2);             
-                string imgPath = reader.GetString(3);                
-                return item = new Item(itemID,name,(float)price,imgPath);    
-                
-            }
-            conn.Close();
-            return item;
+            return db.Items.FirstOrDefault(i => i.Item_Id == id);
         }
 
         public Item GetAllInfoItemByItemID(int id)
         {
-            Item item = null;
-            string sqlStr = "Select  * From  [dbo].[Item] Where @itemID = [dbo].[Item].Item_Id ";
-            SqlConnection conn = new SqlConnection(db.connectionString);
-            conn.Open();
-            SqlCommand command = new SqlCommand(sqlStr, conn);
-            command.Parameters.AddWithValue("@itemID", id);
-            SqlDataReader reader = command.ExecuteReader();
-            if (reader.Read())
-            {
-                int itemID = reader.GetInt32(0);
-                string name = reader.GetString(1);
-                double price = reader.GetDouble(2);
-                double originalPrice = reader.GetDouble(3);
-                string type = reader.GetString(4);
-                DateTime boughtDate=reader.GetDateTime(5);
-                string conditionScription = reader.GetString(6);
-                int condition = reader.GetInt32(7);
-                string imgPath=reader.GetString(8);
-                bool saleStatus=reader.GetBoolean(9);
-                string detail_Description=reader.GetString(10);
-                int sellerID = reader.GetInt32(11);
-                DateTime PostedDate = reader.GetDateTime(12);
-                return item = new Item(itemID, name, (float)price, (float)originalPrice, type, boughtDate, conditionScription, condition, imgPath, saleStatus, detail_Description, sellerID,PostedDate);
-
-            }
-            conn.Close();
-            return item;
+            return db.Items.FirstOrDefault(i => i.Item_Id == id);
         }
+
         public List<Item> Search(string text, int sellerID)
         {
             string formattedText = text.ToUpper(); // Format the text to uppercase
-            string query = @"
-        SELECT *
-        FROM [dbo].[Item]
-        WHERE 
-           SellerID != @sellerID AND 
-            (
-            (UPPER(type) LIKE '%' + @Text + '%' OR 
-              UPPER(name) LIKE '%' + @Text + '%' OR 
-              UPPER(detail_description) LIKE '%' + @Text + '%' OR 
-              UPPER(condition_description) LIKE '%' + @Text + '%')
-            )";   // AND [sale_status] = 0
-            return db.LoadData<Item>(query, new SqlParameter("@sellerID", sellerID), new SqlParameter("@Text", formattedText));
+            return db.Items.Where(i => i.SellerID != sellerID &&
+                                        (i.type.ToUpper().Contains(formattedText) ||
+                                         i.name.ToUpper().Contains(formattedText) ||
+                                         i.detail_description.ToUpper().Contains(formattedText) ||
+                                         i.condition_description.ToUpper().Contains(formattedText))).ToList();
         }
 
         public List<Item> SearchForWishList(string text, int userID)
         {
             string formattedText = text.ToUpper(); // Format the text to uppercase
-            string query = @"
-        SELECT  [dbo].[Item].*
-        FROM [dbo].[Item], [dbo].[WishList]
-        WHERE [dbo].[Item].Item_Id=[dbo].[WishList].Item_Id AND [dbo].[WishList].Id_user=@userID  AND 
-              (
-              (UPPER(type) LIKE '%' + @Text + '%' OR 
-              UPPER(name) LIKE '%' + @Text + '%' OR 
-              UPPER(detail_description) LIKE '%' + @Text + '%' OR 
-              UPPER(condition_description) LIKE '%' + @Text + '%') 
-              )";   // AND [sale_status] = 0
-            return db.LoadData<Item>(query, new SqlParameter("@userID", userID),new SqlParameter("@Text", formattedText));
+            return (from i in db.Items
+                    join w in db.Wishlists on i.Item_Id equals w.Item_Id
+                    where w.Id_user == userID &&
+                          (i.type.ToUpper().Contains(formattedText) ||
+                           i.name.ToUpper().Contains(formattedText) ||
+                           i.detail_description.ToUpper().Contains(formattedText) ||
+                           i.condition_description.ToUpper().Contains(formattedText))
+                    select i).ToList();
         }
+
         public List<Item> SortPrice()
         {
-            return db.LoadData<Item>(@"
-            SELECT *
-            FROM [dbo].[Item]
-            ORDER BY [price] DESC");
+            return db.Items.OrderByDescending(i => i.price).ToList();
         }
-        public List<Item> SortRevelance(int userID)
+
+        public List<Item> SortRelevance(int userID)
         {
-            return db.LoadData<Item>(@"SELECT i.* FROM [dbo].[Item] i 
-            WHERE i.[type] IN (
-                SELECT DISTINCT [type]
-                FROM [dbo].[Item] it
-                INNER JOIN [dbo].[PurchasedProducts] pp ON it.Item_Id = pp.Item_Id
-                WHERE pp.[Id_user] = @UserId
-            )", new SqlParameter("@UserId", userID));
+            return (from i in db.Items
+                    where (from it in db.Items
+                           join pp in db.purchasedProducts on it.Item_Id equals pp.Item_Id
+                           where pp.Id_user == userID
+                           select it.type).Distinct().Contains(i.type)
+                    select i).ToList();
         }
 
         public int GetTheMaximumItem_ID()
         {
-            int maxValue = 0;
-            using (SqlConnection connection = new SqlConnection(db.connectionString))
-            {
-                // Mở kết nối
-                connection.Open();
-
-                // Tạo câu lệnh SQL               
-                string sqlString = $"SELECT MAX(Item_Id) FROM [dbo].[Item]";
-
-                // Tạo đối tượng SqlCommand
-                using (SqlCommand command = new SqlCommand(sqlString, connection))
-                {
-                    // Thực thi câu truy vấn và lấy giá trị trả về
-                    object result = command.ExecuteScalar();
-
-                    // Kiểm tra và ép kiểu kết quả về kiểu int
-                    if (result != DBNull.Value)
-                    {
-                        maxValue = Convert.ToInt32(result);
-                    }
-                }
-            }
-            return maxValue;
+            return db.Items.Max(i => i.Item_Id);
         }
 
         public void UpdateItem(Item item)
         {
-            string updateSql = @"
-            UPDATE [dbo].[Item]
-            SET 
-                name = @Name,
-                price = @price,
-                original_price = @original_price,
-                type = @type,
-                bought_date = @bought_date,
-                condition_description = @condition_description,
-                condition = @condition,
-                image_path = @mainImgPath,
-                detail_description = @detail_description
-            WHERE Item_Id = @Item_Id";
-            db.ExecuteNonQuery(updateSql,
-
-               new SqlParameter("@Name" , item.Name),
-               new SqlParameter("@price", item.Price),
-               new SqlParameter("@original_price", item.Original_Price),
-               new SqlParameter("@type", item.Type),
-               new SqlParameter("@bought_date", item.Bought_date),
-               new SqlParameter("@condition_description", item.Condition_Description),
-               new SqlParameter("@condition", item.Condition),
-               new SqlParameter("@mainImgPath", item.Image_Path),
-               new SqlParameter("@Item_Id", item.Item_Id),
-               new SqlParameter("@detail_description", item.Detail_description));
+            var existingItem = db.Items.Find(item.Item_Id);
+            if (existingItem != null)
+            {
+                existingItem.name = item.name;
+                existingItem.price = item.price;
+                existingItem.original_price = item.original_price;
+                existingItem.type = item.type;
+                existingItem.bought_date = item.bought_date;
+                existingItem.condition_description = item.condition_description;
+                existingItem.condition = item.condition;
+                existingItem.ImgPaths = item.ImgPaths;
+                existingItem.detail_description = item.detail_description;
+                db.SaveChanges();
+            }
         }
 
         public int CalculateTotalProducts(int sellerID)
         {
-            int total = 0;
-            string query = @"
-                SELECT                     
-                    COUNT(i.Item_Id) AS Total
-                FROM 
-                    Item i
-                WHERE
-                    i.SellerID = @sellerID";
-            using (SqlConnection conn = new SqlConnection(db.connectionString))
-            {
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@sellerID", sellerID);
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    if (reader.Read())
-                    {
-                        total = reader.GetInt32(0);
-                    }
-                    else
-                    {
-                        return 0;
-                    }
-                }
-                return total;
-            }
-
+            return db.Items.Count(i => i.SellerID == sellerID);
         }
-
-
-
     }
 }

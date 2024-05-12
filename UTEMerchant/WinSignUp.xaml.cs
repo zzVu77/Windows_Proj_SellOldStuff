@@ -51,20 +51,27 @@ namespace UTEMerchant
         {
             if (sender is UC_SignUpStep1 clickedItemView )
             {
-                User check = new user_DAO().GetUserByUserName( UCSignUpStep1.ucUserName.textbox.Text.ToString());
+                User check = new User_DAO().GetUserByUserName( UCSignUpStep1.ucUserName.textbox.Text.ToString());
 
                 if (!string.IsNullOrWhiteSpace(UCSignUpStep1.ucEmail.textbox.Text.ToString()) && CheckValid.IsValidEmail(UCSignUpStep1.ucEmail.textbox.Text.ToString())
                     && check == null)
                 {
                     UCSignUpStep1.Visibility = Visibility.Collapsed;
                     UCSignUpStep2.Visibility = Visibility.Visible;
-                    User = new User(UCSignUpStep1.ucUserName.textbox.Text.ToString(), UCSignUpStep1.ucPassword.textbox.Text.ToString(),
-                    UCSignUpStep1.ucName.textbox.Text.ToString(), UCSignUpStep1.selectedCity, UCSignUpStep1.selectedDistrict,
-                    UCSignUpStep1.ucWard.textbox.Text.ToString(), UCSignUpStep1.ucPhone.textbox.Text.ToString(), 
-                    UCSignUpStep1.ucEmail.textbox.Text.ToString(),
-                    @"C:\Users\FPTSHOP\Desktop\Window_Proj_UTEMerchant\UTEMerchant\Img\icons8-account-50.png");
+                    User = new User
+                    {
+                        User_name = UCSignUpStep1.ucUserName.textbox.Text,
+                        Password = UCSignUpStep1.ucPassword.textbox.Text,
+                        name = UCSignUpStep1.ucName.textbox.Text,
+                        City = UCSignUpStep1.selectedCity,
+                        District = UCSignUpStep1.selectedDistrict,
+                        Ward = UCSignUpStep1.ucWard.textbox.Text,
+                        phone = UCSignUpStep1.ucPhone.textbox.Text,
+                        email = UCSignUpStep1.ucEmail.textbox.Text,
+                        Image_path = @"\Img\icons8-account-50.png"
+                    };
 
-  
+
                     Random random = new Random();
                     // Any random integer
                     verifycode = random.Next().ToString();
@@ -100,7 +107,7 @@ namespace UTEMerchant
                 
                 if (UCSignUpStep2.ucVerifyCode.textbox.Text.ToString() == verifycode)
                 {
-                    new user_DAO().Add(User);
+                    new User_DAO().Add(User);
                 }
             }
 

@@ -7,34 +7,29 @@ using System.Threading.Tasks;
 
 namespace UTEMerchant
 {
-    public class ImgPath_DAO : DAO<ImgPath>
+    internal class ImgPath_DAO : DAO<ImgPath>
     {
-        public override List<ImgPath> Load() // More descriptive method name
+        public override List<ImgPath> Load()
         {
-            return db.LoadData<ImgPath>("SELECT * FROM [dbo].[ImgPath]");
+            return db.ImgPaths.ToList();
         }
 
-        public List<ImgPath> GetListImagePathByItemID(int id)
+        public List<ImgPath> GetListImagePathByItemID(int itemId)
         {
-            return db.LoadData<ImgPath>($"SELECT * FROM [dbo].[ImgPath] WHERE Item_Id = '{id}'");
+            return db.ImgPaths.Where(i => i.Item_Id == itemId).ToList();
         }
 
-        public override void Add(ImgPath imgPath) // Using PascalCase for method name
+        public override void Add(ImgPath imgPath)
         {
-            string sqlStr = "INSERT INTO [dbo].[ImgPath] (Item_Id, Path) " +
-                            "VALUES (@Item_Id, @Path)";
-
-            db.ExecuteNonQuery(sqlStr,
-
-                new SqlParameter("@Item_Id" , imgPath.Item_Id),
-                new SqlParameter("@Path", imgPath.Path));
+            db.ImgPaths.Add(imgPath);
+            db.SaveChanges();
         }
 
-        public void DeleteImgPaths(int itemID)
+        public void DeleteImgPaths(int itemId)
         {
-            string sqlStr = "DELETE FROM [dbo].[ImgPath] WHERE Item_Id = @itemID";
-            db.ExecuteNonQuery(sqlStr, new SqlParameter("@ItemId", itemID));
+            var imgPaths = db.ImgPaths.Where(i => i.Item_Id == itemId);
+            db.ImgPaths.RemoveRange(imgPaths);
+            db.SaveChanges();
         }
-
     }
 }

@@ -21,7 +21,7 @@ namespace UTEMerchant
     /// </summary>
     public partial class UC_CancelledItem : UserControl
     {
-        private readonly purchasedItem _order;
+        private readonly PurchasedProduct _order;
         private readonly User _user;
 
         public UC_CancelledItem()
@@ -29,7 +29,7 @@ namespace UTEMerchant
             InitializeComponent();
         }
 
-        public UC_CancelledItem(purchasedItem order, User user) : this()
+        public UC_CancelledItem(PurchasedProduct order, User user) : this()
         {
             this._order = order;
             this._user = user;
@@ -51,10 +51,10 @@ namespace UTEMerchant
             if (_order != null)
             {
                 Item item = new PurchasedItem_DAO().GetItem(_order.PurchaseID);
-                tbName.Text = item.Name;
-                tbPrice.Text = item.Price.ToString("C", CultureInfo.CurrentCulture);
-                tbOriginalPrice.Text = item.Original_Price.ToString("C", CultureInfo.CurrentCulture);
-                var resourceUri = new Uri(item.Image_Path, UriKind.RelativeOrAbsolute);
+                tbName.Text = item.name;
+                tbPrice.Text = $"{item.price:C}";
+                tbOriginalPrice.Text = $"{item.original_price:C}";
+                var resourceUri = new Uri(item.image_path, UriKind.RelativeOrAbsolute);
                 imgItem.Source = new BitmapImage(resourceUri);
             }
         }

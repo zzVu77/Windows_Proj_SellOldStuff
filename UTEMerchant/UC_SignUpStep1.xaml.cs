@@ -41,7 +41,7 @@ namespace UTEMerchant
                 selectedCity = cbPickupCity.SelectedItem.ToString();
 
                 // Filter districts based on selected city
-                var filteredDistricts = address_dao.getdistrict(selectedCity);
+                var filteredDistricts = address_dao.GetDistricts(selectedCity);
 
                 // Update district ComboBox
                 if (cbPickupCity.Items != null)

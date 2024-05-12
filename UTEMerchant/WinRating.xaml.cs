@@ -40,8 +40,16 @@ namespace UTEMerchant
         {
             string text_detail = new TextRange(rtbCommentFeedback.Document.ContentStart, rtbCommentFeedback.Document.ContentEnd).Text;
             DateTime currentDate = DateTime.Now;
-            CustomerReview customerReview = new CustomerReview(this.Id_User, this.Seller_ID,this.Item_ID, text_detail, (DateTime)currentDate, float.Parse(ucStarRating.GetRating().ToString()));
-            customerReviewDAO.AddReview(customerReview);
+            CustomerReview newCustomerReview = new CustomerReview
+            {
+                Id_user = this.Id_User,
+                SellerID = this.Seller_ID,
+                Item_Id = this.Item_ID,
+                ReviewText = text_detail,
+                ReviewDate = currentDate,
+                Rating = float.Parse(ucStarRating.GetRating().ToString())
+            };
+            customerReviewDAO.AddReview(newCustomerReview);
             this.Close();
 
         }

@@ -50,9 +50,9 @@ namespace UTEMerchant
             if (StaticValue.USER != null)
             {
                 tbDeliveryAddress.Text = $" {StaticValue.USER.Ward}, {StaticValue.USER.District}, {StaticValue.USER.City}";
-                tbDeliveryEmail.Text = StaticValue.USER.Email;
-                tbDeliveryName.Text = StaticValue.USER.Name;
-                tbDeliveryPhone.Text = StaticValue.USER.Phone;
+                tbDeliveryEmail.Text = StaticValue.USER.email;
+                tbDeliveryName.Text = StaticValue.USER.name;
+                tbDeliveryPhone.Text = StaticValue.USER.phone;
 
             } 
                 

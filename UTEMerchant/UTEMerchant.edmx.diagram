@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a9469d1153c146c487fd893e35aff895" Name="Diagram1" ZoomLevel="55">
+        <EntityTypeShape EntityType="db_ute_merchantModel.Address" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_ute_merchantModel.CustomerReview" Width="1.5" PointX="7.5" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_ute_merchantModel.ImgPath" Width="1.5" PointX="7.5" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_ute_merchantModel.Item" Width="1.5" PointX="5.25" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_ute_merchantModel.PurchasedProduct" Width="1.5" PointX="10.5" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_ute_merchantModel.Seller" Width="1.5" PointX="3" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_ute_merchantModel.User" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_ute_merchantModel.Wishlist" Width="1.5" PointX="9.625" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_ute_merchantModel.ItemClick" Width="1.5" PointX="7.5" PointY="20.25" IsExpanded="true" />
+        <AssociationConnector Association="db_ute_merchantModel.FK__CustomerR__Id_us__1F63A897" ManuallyRouted="false" />
+        <AssociationConnector Association="db_ute_merchantModel.FK__CustomerR__Item___318258D2" ManuallyRouted="false" />
+        <AssociationConnector Association="db_ute_merchantModel.FK__CustomerR__Selle__57A801BA" ManuallyRouted="false" />
+        <AssociationConnector Association="db_ute_merchantModel.FK__ImgPath__Item_Id__41B8C09B" ManuallyRouted="false" />
+        <AssociationConnector Association="db_ute_merchantModel.FK__Item__SellerID__56B3DD81" ManuallyRouted="false" />
+        <AssociationConnector Association="db_ute_merchantModel.FK__ItemClick__Item___7BE56230" ManuallyRouted="false" />
+        <AssociationConnector Association="db_ute_merchantModel.FK__Purchased__Item___2F9A1060" ManuallyRouted="false" />
+        <AssociationConnector Association="db_ute_merchantModel.FK__Wishlist__Item_I__68D28DBC" ManuallyRouted="false" />
+        <AssociationConnector Association="db_ute_merchantModel.FK__Purchased__Id_us__1D7B6025" ManuallyRouted="false" />
+        <AssociationConnector Association="db_ute_merchantModel.FK__Seller__Id_user__54CB950F" ManuallyRouted="false" />
+        <AssociationConnector Association="db_ute_merchantModel.FK_Id_user" ManuallyRouted="false" />
+        <AssociationConnector Association="db_ute_merchantModel.FK__Wishlist__Id_use__67DE6983" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

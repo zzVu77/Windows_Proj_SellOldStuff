@@ -22,7 +22,7 @@ namespace UTEMerchant
     {
         Item info;
         List<User> users = new List<User>();
-        user_DAO user_dao = new user_DAO();
+        User_DAO user_dao = new User_DAO();
         public UC_ItemDetail()
         {
             InitializeComponent();
@@ -31,34 +31,34 @@ namespace UTEMerchant
         public UC_ItemDetail(Item item)
         {
             info = item;
-            var user_dao= new user_DAO();
+            var user_dao= new User_DAO();
             users = user_dao.Load();
             InitializeComponent();
             SetDefaultText();
         }
         private void SetDefaultText()
         {
-            txblItemName.Text= info.Name;
-            txbOriginalPrice.Text = info.Original_Price.ToString()+" $";
-            txblBoughtDate.Text = info.Bought_date.ToString();
+            txblItemName.Text= info.name;
+            txbOriginalPrice.Text = info.original_price.ToString()+" $";
+            txblBoughtDate.Text = info.bought_date.ToString();
 
             foreach (User user in users) 
             {
                 if (user.Id_user == info.SellerID)
                 {
-                    txblContactValue.Text = user.Phone;
+                    txblContactValue.Text = user.phone;
                     break;
                 }
             }
-            txblItemPrice.Text = info.Price.ToString()+" $";
-            txblTypeValue.Text = info.Type.ToString();
-            txblStatus.Text = info.Condition.ToString();
-            var resourceUri = new Uri(info.Image_Path, UriKind.RelativeOrAbsolute);
+            txblItemPrice.Text = info.price.ToString()+" $";
+            txblTypeValue.Text = info.type.ToString();
+            txblStatus.Text = info.condition.ToString();
+            var resourceUri = new Uri(info.image_path, UriKind.RelativeOrAbsolute);
             imgItemPic.Source = new BitmapImage(resourceUri);
             // Tạo một FlowDocument
             FlowDocument flowDoc = new FlowDocument();
             // Thêm một Paragraph chứa văn bản mặc định vào FlowDocument
-            Paragraph paragraph = new Paragraph(new Run(info.Condition_Description));
+            Paragraph paragraph = new Paragraph(new Run(info.condition_description));
             flowDoc.Blocks.Add(paragraph);
             // Gán FlowDocument cho RichTextBox
             rtbDescription.Document = flowDoc;

@@ -20,7 +20,7 @@ namespace UTEMerchant
     /// </summary>
     public partial class WinForgotPassword : Window
     {
-        new user_DAO dao = new user_DAO();
+        new User_DAO dao = new User_DAO();
         private string verifycode;
         private string gmail;
         public WinForgotPassword()
@@ -45,10 +45,10 @@ namespace UTEMerchant
                 User user = dao.GetUserByItemEmail(UC_Step1.ucEmail.textbox.Text.ToString());
                 if (user != null)
                 {
-                    gmail = user.Email;
+                    gmail = user.email;
                     Random random = new Random();
                     verifycode = random.Next().ToString();
-                    SendMail.Send(verifycode, user.Email);
+                    SendMail.Send(verifycode, user.email);
                     Step2.Visibility = Visibility.Visible;
                     Step1.Visibility = Visibility.Collapsed;
                     Step3.Visibility = Visibility.Collapsed;

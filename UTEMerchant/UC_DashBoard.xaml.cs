@@ -26,14 +26,14 @@ namespace UTEMerchant
     /// </summary>
     public partial class UC_DashBoard : UserControl
     {
-        DB_Connection db = new DB_Connection();
+        UTEMerchantContext db = new UTEMerchantContext();
         public ChartValues<ObservableValue> DataValues { get; set; }
         public List<string> Labels { get; set; }
         PurchasedItem_DAO purchasedItemDAO = new PurchasedItem_DAO();
         Item_DAO itemDAO = new Item_DAO();
         private CustomerReviewDAO feedbackDAO = new CustomerReviewDAO();
         private List<CustomerReview> feedbacks = new List<CustomerReview>();
-        private user_DAO userDAO = new user_DAO();
+        private User_DAO userDAO = new User_DAO();
         public UC_DashBoard()
         {
             InitializeComponent();
@@ -41,52 +41,33 @@ namespace UTEMerchant
         }
         public void LoadRevenueChart(int sellerID)
         {
-            // Khởi tạo DataValues và Labels
+            // Initialize DataValues and Labels
             DataValues = new ChartValues<ObservableValue>();
             Labels = new List<string>();
 
-            // Kết nối cơ sở dữ liệu và truy vấn dữ liệu
-            string connectionString = db.connectionString;
-            string query = @"
-        SELECT 
-            MONTH(pp.PurchaseDate) AS Month,
-            YEAR(pp.PurchaseDate) AS Year,
-            SUM(i.price) AS TotalRevenue
-        FROM 
-            PurchasedProducts pp
-        INNER JOIN 
-            Item i ON pp.Item_Id = i.Item_Id
-        WHERE
-            i.SellerID = @sellerID
-        GROUP BY 
-            YEAR(pp.PurchaseDate), MONTH(pp.PurchaseDate)
-        ORDER BY 
-            Year, Month";
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (var context = new UTEMerchantContext()) // Instantiate your DbContext
             {
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@sellerID", sellerID); // Thêm tham số sellerID
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
+                var query = from pp in context.purchasedProducts
+                            join i in context.Items on pp.Item_Id equals i.Item_Id
+                            where i.SellerID == sellerID
+                            group new { pp, i } by new { pp.PurchaseDate.Value.Year, pp.PurchaseDate.Value.Month } into g
+                            orderby g.Key.Year, g.Key.Month
+                            select new
+                            {
+                                Year = g.Key.Year,
+                                Month = g.Key.Month,
+                                TotalRevenue = g.Sum(x => x.i.price)
+                            };
 
-                while (reader.Read())
+                foreach (var result in query)
                 {
-                    int month = Convert.ToInt32(reader["Month"]);
-                    int year = Convert.ToInt32(reader["Year"]);
-                    double revenue = Convert.ToDouble(reader["TotalRevenue"]);
-
-                    string monthYear = $"{month}/{year}";
+                    string monthYear = $"{result.Month}/{result.Year}";
                     Labels.Add(monthYear);
-
-                    // Thêm dữ liệu vào DataValues
-                    DataValues.Add(new ObservableValue(revenue));
+                    DataValues.Add(new ObservableValue(result.TotalRevenue.Value));
                 }
-
-                reader.Close();
             }
 
-            // Binding dữ liệu vào LiveChart
+            // Bind data to LiveChart
             DataContext = this;
         }
 
@@ -100,15 +81,15 @@ namespace UTEMerchant
                 txbProductsValue.Text = itemDAO.CalculateTotalProducts(StaticValue.SELLER.SellerID).ToString();
                 txbAverageRatingnValue.Text = feedbackDAO.CalculateAverage(StaticValue.SELLER.SellerID).ToString();
 
-                feedbacks = feedbackDAO.GetFeedBack(StaticValue.SELLER.SellerID);
+                feedbacks = feedbackDAO.GetFeedback(StaticValue.SELLER.SellerID);
                 if (feedbacks.Count() >0)
                 {
 
                     spListFeedBacks.Children.Clear();
                     foreach (CustomerReview feedback in feedbacks)
                     {
-                        Item item = itemDAO.GetItemByItemID(feedback.Item_ID);
-                        User user = userDAO.GetUserByItemID(feedback.ID_User);
+                        Item item = itemDAO.GetItemByItemID(feedback.Item_Id);
+                        User user = userDAO.GetUserByItemID(feedback.Id_user);
                         UC_FeedbackForDashBoard uC_FeedBackUI = new UC_FeedbackForDashBoard(item, user, feedback);
                         spListFeedBacks.Children.Add(uC_FeedBackUI);
                     }

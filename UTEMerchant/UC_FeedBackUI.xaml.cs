@@ -38,22 +38,22 @@ namespace UTEMerchant
         }
         private void SetValue()
         {
-            txblFeedback_ClientName.Text = this.client.Name;
+            txblFeedback_ClientName.Text = this.client.name;
             txblFeedBack_Content.Text= this.customerReview.ReviewText;
-            txblFeedback_ItemName.Text = this.item.Name.ToString();
+            txblFeedback_ItemName.Text = this.item.name.ToString();
             txblFeedback_RateDate.Text = this.customerReview.ReviewDate.ToShortDateString();
-            txblFeedback_ItemPrice.Text = this.item.Price.ToString()+" $";
+            txblFeedback_ItemPrice.Text = this.item.price.ToString()+" $";
             ucFeedbackStar.SetRating(customerReview.Rating);
             
             BitmapImage bitmap = new BitmapImage();
             bitmap.BeginInit();
-            bitmap.UriSource = new Uri(this.client.Image_Path, UriKind.RelativeOrAbsolute);;
+            bitmap.UriSource = new Uri(this.client.Image_path, UriKind.RelativeOrAbsolute);;
             bitmap.EndInit();
             imgFeedback_ClientAvatar.ImageSource = bitmap;
 
             BitmapImage bitmap1 = new BitmapImage();
             bitmap1.BeginInit();
-            bitmap1.UriSource = new Uri(this.item.Image_Path, UriKind.RelativeOrAbsolute);
+            bitmap1.UriSource = new Uri(this.item.image_path, UriKind.RelativeOrAbsolute);
             bitmap1.EndInit();
             imgFeedback_Item.Source = bitmap1;
 

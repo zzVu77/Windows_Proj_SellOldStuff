@@ -21,7 +21,7 @@ namespace UTEMerchant
     public partial class UC_DeliveryUI : UserControl
     {
 
-        List<purchasedItem> purchasedItems = new List<purchasedItem>();
+        List<PurchasedProduct> purchasedItems = new List<PurchasedProduct>();
         List<Seller> sellers = new List<Seller>();
         List<Item> items = new List<Item>();
         PurchasedItem_DAO dao = new PurchasedItem_DAO();
@@ -121,8 +121,8 @@ namespace UTEMerchant
             }
 
             // Group orders by purchase date and filter out the groups that have all items with status other than "delivering"
-            IEnumerable<IGrouping<DateTime, purchasedItem>> groups = matchedItems
-                .GroupBy(item => item.PurchaseDate)
+            IEnumerable<IGrouping<DateTime, PurchasedProduct>> groups = matchedItems
+                .GroupBy(item =>(DateTime) item.PurchaseDate)
                 .Where(group => !group.All(item => item.Delivery_Status == "delivering"));
 
             // Clear the list of orders that are being delivered
@@ -157,7 +157,7 @@ namespace UTEMerchant
             }
 
             // Sort orders that has the same seller and remove groups where any item has a Delivery_Status other than "delivering"
-            IEnumerable<IGrouping<int, purchasedItem>> groupBySeller = matchedItems
+            IEnumerable<IGrouping<int, PurchasedProduct>> groupBySeller = matchedItems
                 .GroupBy(item => dao.GetItem(item.PurchaseID).SellerID)
                 .Where(group => group.All(item => item.Delivery_Status == "delivering"));
 
@@ -181,7 +181,7 @@ namespace UTEMerchant
             // Sort the matchedItems list. Items that have been reviewed by the current user are placed at the beginning of the list.
             List<CustomerReview> ListCompare = new CustomerReviewDAO().Load();
             matchedItems = matchedItems.OrderBy(item =>
-                ListCompare.Any(review => review.ID_User == StaticValue.USER.Id_user && review.Item_ID == item.Item_Id)).ToList();
+                ListCompare.Any(review => review.Id_user == StaticValue.USER.Id_user && review.Item_Id == item.Item_Id)).ToList();
 
             // Clear the list of orders that are delivered
             spDeliveredStatus.Children.Clear();
@@ -224,7 +224,7 @@ namespace UTEMerchant
             UserControl_Loaded(this, new RoutedEventArgs());
         }
 
-        private void AddOrdersInPending(IGrouping<DateTime, purchasedItem> orders)
+        private void AddOrdersInPending(IGrouping<DateTime, PurchasedProduct> orders)
         {
 
             UC_PendingOrderBox ucOrderBox = new UC_PendingOrderBox(orders, StaticValue.USER);
@@ -257,7 +257,7 @@ namespace UTEMerchant
             spPendingStatus.Children.Add(ucOrderBox);
         }
 
-        private void AddOrdersInDelivering(IGrouping<int, purchasedItem> group)
+        private void AddOrdersInDelivering(IGrouping<int, PurchasedProduct> group)
         {
             UC_DeliveringItemsBox ucItemBox =
                 new UC_DeliveringItemsBox(group.ToList(), SellerDao.GetSeller(group.Key), StaticValue.USER.Id_user);
@@ -290,7 +290,7 @@ namespace UTEMerchant
             spDeliveringStatus.Children.Add(ucItemBox);
         }
 
-        private void AddOrdersInDelivered(purchasedItem item)
+        private void AddOrdersInDelivered(PurchasedProduct item)
         {
             UC_CompletedItem ucOrderBox = new UC_CompletedItem(item, SellerDao.GetSeller(dao.GetItem(item.PurchaseID).SellerID), StaticValue.USER.Id_user);
             ucOrderBox.RateButtonClicked += UCCompletedItem_RateButtonClicked;
@@ -322,7 +322,7 @@ namespace UTEMerchant
             spDeliveredStatus.Children.Add(ucOrderBox);
         }
 
-        private void AddOrdersInCancelled(purchasedItem item)
+        private void AddOrdersInCancelled(PurchasedProduct item)
         {
             UC_CancelledItem ucOrderBox = new UC_CancelledItem(item, StaticValue.USER);
 

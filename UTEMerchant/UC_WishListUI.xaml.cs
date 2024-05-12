@@ -28,7 +28,7 @@ namespace UTEMerchant
         private readonly Item_DAO _itemDao = new Item_DAO();
         private readonly Seller_DAO _sellerDao = new Seller_DAO();
         private readonly WishList_DAO _wishListDAO = new WishList_DAO();
-        List<WishList> _wishItem = new List<WishList>();
+        List<Wishlist> _wishList;
         List<Item> _listItem = new List<Item>();
         public int IdUser { get; set; }
 
@@ -185,11 +185,11 @@ namespace UTEMerchant
 
                 if (item.togItem.IsChecked == true)
                 {
-                    total += item.GetItem().Price;
+                    total += (double) item.GetItem().price;
                 }
                 else
                 {
-                    total -= item.GetItem().Price;
+                    total -= (double)item.GetItem().price;
                 }
 
                 tbTotalPriceValue.Text = total.ToString(CultureInfo.CurrentCulture);
@@ -230,10 +230,10 @@ namespace UTEMerchant
         {
             wpItemsList.Children.Clear();
             _listItem.Clear();
-            _wishItem = _wishListDAO.GetItemsByUserID(StaticValue.USER.Id_user);
+            _wishList = _wishListDAO.GetItemsByUserID(StaticValue.USER.Id_user);
             //if (StaticValue.SELLER != null) _wishItem = _itemDao.Load().Where(i => i.SellerID != StaticValue.SELLER.SellerID).ToList(); else _wishItem = _itemDao.Load();
             //_wishItem.Sort((item1, item2) => item1.Sale_Status.CompareTo(item2.Sale_Status));
-            foreach (WishList item in _wishItem)
+            foreach (Wishlist item in _wishList)
             {
                 _listItem.Add(_itemDao.GetAllInfoItemByItemID(item.Item_Id));
                 UC_ItemView uc_item = new UC_ItemView(_itemDao.GetAllInfoItemByItemID(item.Item_Id));

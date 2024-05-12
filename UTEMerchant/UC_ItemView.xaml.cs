@@ -49,20 +49,20 @@ namespace UTEMerchant
 
         public void SetDefaultValue()
         {
-            if(info.Sale_Status)
+            if((bool)info.sale_status)
             {
                 imgSoldStamp.Visibility=Visibility.Visible;
                 txblPostedDate.Visibility=Visibility.Hidden;
                 txblLocation.Visibility=Visibility.Hidden;
             }   
-            txblItemName.Text = info.Name;
-            txblPrice.Text = "$"+info.Price.ToString();
-            txblOldPrice.Text= "$"+info.Original_Price.ToString();
-            txblCondition.Text = info.Condition.ToString() + "%";
-            var resourceUri = new Uri(info.Image_Path, UriKind.RelativeOrAbsolute);
+            txblItemName.Text = info.name;
+            txblPrice.Text = "$"+info.price.ToString();
+            txblOldPrice.Text= "$"+info.original_price.ToString();
+            txblCondition.Text = info.condition.ToString() + "%";
+            var resourceUri = new Uri(info.image_path, UriKind.RelativeOrAbsolute);
             imgItemPic.Source = new BitmapImage(resourceUri);
             DateTime today = DateTime.Now;
-            TimeSpan duration = today - info.PostedDate;
+            TimeSpan duration = today - (DateTime)info.PostedDate;
             txblPostedDate.Text = duration.Days.ToString() + " days ago";
             txblLocation.Text = seller_DAO.GetSeller(this.info.SellerID).City.ToString();
 

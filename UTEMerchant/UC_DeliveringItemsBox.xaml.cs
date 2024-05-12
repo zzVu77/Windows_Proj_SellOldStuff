@@ -22,7 +22,7 @@ namespace UTEMerchant
     public partial class UC_DeliveringItemsBox : UserControl
     {
         public event EventHandler ReceivedButtonClicked;
-        private readonly List<purchasedItem> _orders;
+        private readonly List<PurchasedProduct> _orders;
         private readonly Seller _seller;
         private readonly int _userId;        
         public UC_DeliveringItemsBox()
@@ -31,7 +31,7 @@ namespace UTEMerchant
             this.Width = 1300;
         }
 
-        public UC_DeliveringItemsBox(List<purchasedItem> orders, Seller seller, int userId) : this()
+        public UC_DeliveringItemsBox(List<PurchasedProduct> orders, Seller seller, int userId) : this()
         {
             this._orders = orders;
             this._userId = userId; 
@@ -64,7 +64,7 @@ namespace UTEMerchant
             }
         }
 
-        private void AddItem(purchasedItem item)
+        private void AddItem(PurchasedProduct item)
         {
             foreach (UC_DeliveringItem ucDeliveringItem in spItems.Children)
             {
@@ -82,7 +82,7 @@ namespace UTEMerchant
             double totalValue = 0;
             foreach (var item in _orders)
             {
-                totalValue += new PurchasedItem_DAO().GetItem(item.PurchaseID).Price;
+                totalValue += (double)new PurchasedItem_DAO().GetItem(item.PurchaseID).price;
             }
             tbTotalValue.Text = $"${totalValue.ToString("F", CultureInfo.CurrentCulture)}";
         }

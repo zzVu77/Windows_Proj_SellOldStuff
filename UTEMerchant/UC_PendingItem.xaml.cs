@@ -22,14 +22,14 @@ namespace UTEMerchant
     /// </summary>
     public partial class UC_PendingItem : UserControl
     {
-        private readonly purchasedItem _order;
+        private readonly PurchasedProduct _order;
 
         public UC_PendingItem()
         {
             InitializeComponent();
         }
 
-        public UC_PendingItem(purchasedItem order) : this()
+        public UC_PendingItem(PurchasedProduct order) : this()
         {
             this._order = order;
         }
@@ -40,10 +40,10 @@ namespace UTEMerchant
             if (_order != null)
             {
                 Item item = new PurchasedItem_DAO().GetItem(_order.PurchaseID);
-                tbName.Text = item.Name;
-                tbDiscountedPrice.Text = item.Price.ToString("C", CultureInfo.CurrentCulture);
-                tbOriginalPrice.Text = item.Original_Price.ToString("C", CultureInfo.CurrentCulture);
-                var resourceUri = new Uri(item.Image_Path, UriKind.RelativeOrAbsolute);
+                tbName.Text = item.name;
+                tbDiscountedPrice.Text = $"{item.price}C";
+                tbOriginalPrice.Text = $"{item.original_price}C";
+                var resourceUri = new Uri(item.image_path, UriKind.RelativeOrAbsolute);
                 imgItem.Source = new BitmapImage(resourceUri);
                 if (_order.Delivery_Status == "declined")
                 {
@@ -52,6 +52,6 @@ namespace UTEMerchant
             }
         }
 
-        public purchasedItem Order => _order;
+        public PurchasedProduct Order => _order;
     }
 }

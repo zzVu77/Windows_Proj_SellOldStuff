@@ -25,7 +25,7 @@ namespace UTEMerchant
     /// </summary>
     public partial class UC_PendingOrderBox : UserControl
     {
-        private readonly IGrouping<DateTime, purchasedItem> _orders;
+        private readonly IGrouping<DateTime, PurchasedProduct> _orders;
         private readonly User _user;
         public EventHandler CancelButtonClicked;
 
@@ -34,7 +34,7 @@ namespace UTEMerchant
             InitializeComponent();
         }
 
-        public UC_PendingOrderBox(IGrouping<DateTime, purchasedItem> orders, User user) : this()
+        public UC_PendingOrderBox(IGrouping<DateTime, PurchasedProduct> orders, User user) : this()
         {
             _orders = orders;
             _user = user;
@@ -45,7 +45,7 @@ namespace UTEMerchant
             if (_orders != null && _user != null)
             {
                 spItems.Children.Clear();
-                IOrderedEnumerable<purchasedItem> order = _orders.OrderBy(x => new PurchasedItem_DAO().GetItem(x.PurchaseID).SellerID);
+                IOrderedEnumerable<PurchasedProduct> order = _orders.OrderBy(x => new PurchasedItem_DAO().GetItem(x.PurchaseID).SellerID);
                 int k = 0;
                 for (int i = 0; i < order.Count(); i++)
                 {
@@ -65,7 +65,7 @@ namespace UTEMerchant
             {
                 foreach (UC_PendingItem ucPendingItem in ucPendingItemsBox.spItems.Children)
                 {
-                    totalPrice += new PurchasedItem_DAO().GetItem(ucPendingItem.Order.PurchaseID).Price;
+                    totalPrice += (double) new PurchasedItem_DAO().GetItem(ucPendingItem.Order.PurchaseID).price;
                 }
             }
             return totalPrice;

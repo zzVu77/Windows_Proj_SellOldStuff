@@ -22,7 +22,7 @@ namespace UTEMerchant
     public partial class UC_PendingOrderReview : UserControl
     {
         private Seller _seller;
-        private List<purchasedItem> _pendingOrders;
+        private List<PurchasedProduct> _pendingOrders;
 
         public UC_PendingOrderReview()
         {
@@ -47,7 +47,7 @@ namespace UTEMerchant
             var index = productGrid.ItemContainerGenerator.IndexFromContainer(row);
             // Update the status of the clicked row in the database
             var purchaseId = ((dynamic)productGrid.Items[index]).PurchaseID;
-            User user = new user_DAO().GetUserByUserName((string)((dynamic)productGrid.Items[index]).User_name);
+            User user = new User_DAO().GetUserByUserName((string)((dynamic)productGrid.Items[index]).User_name);
             new PurchasedItem_DAO().UpdateDeliveryStatus(purchaseId, "delivering");
             // Remove the clicked row from the data grid
             productGrid.Items.RemoveAt(index);
@@ -62,7 +62,7 @@ namespace UTEMerchant
             var index = productGrid.ItemContainerGenerator.IndexFromContainer(row);
             // Update the status of the clicked row in the database
             var id = ((dynamic)productGrid.Items[index]).PurchaseID;
-            User user = new user_DAO().GetUserByUserName((string)((dynamic)productGrid.Items[index]).User_name);
+            User user = new User_DAO().GetUserByUserName((string)((dynamic)productGrid.Items[index]).User_name);
             new PurchasedItem_DAO().UpdateDeliveryStatus(id, "declined");
             // Remove the clicked row from the data grid
             productGrid.Items.RemoveAt(index);
@@ -106,23 +106,23 @@ namespace UTEMerchant
             if (StaticValue.SELLER != null && _pendingOrders != null)
             {
                 productGrid.Items.Clear();
-                List<User> users = new user_DAO().Load();
+                List<User> users = new User_DAO().Load();
 
                 int len = _pendingOrders.Count();
                 // Create a new row for each pending order
                 foreach (var item in _pendingOrders)
                 {
-                    string DeliveryAddress = item.Delivery_address;
+                    string DeliveryAddress = item.Delivery_Address;
                     productGrid.Items.Add
                     (new
                     {
                         item.PurchaseID,
                         item.Item_Id,
-                        new PurchasedItem_DAO().GetItem(item.PurchaseID).Name,
+                        new PurchasedItem_DAO().GetItem(item.PurchaseID).name,
                         item.PurchaseDate,
-                        item.name,
-                        new PurchasedItem_DAO().GetItem(item.PurchaseID).Price,
-                        new PurchasedItem_DAO().GetItem(item.PurchaseID).Image_Path,
+                        item.Name,
+                        new PurchasedItem_DAO().GetItem(item.PurchaseID).price,
+                        new PurchasedItem_DAO().GetItem(item.PurchaseID).image_path,
                         new PurchasedItem_DAO().GetItem(item.PurchaseID).PostedDate,
                         users.FirstOrDefault(user => user.Id_user == item.Id_user)?.User_name,
                         item.Phone,

@@ -65,7 +65,7 @@ namespace UTEMerchant
             items= dao.GetItemsBySellerID(StaticValue.SELLER.SellerID);
             DataGridRow clickedRow = (DataGridRow)productGrid.ItemContainerGenerator.ContainerFromItem(productGrid.SelectedItem);
             int rowIndex = productGrid.ItemContainerGenerator.IndexFromContainer(clickedRow);
-            if (items[rowIndex].Sale_Status == false)
+            if (items[rowIndex].sale_status == false)
             {
                 dao.RemoveItem(items[rowIndex]);
 

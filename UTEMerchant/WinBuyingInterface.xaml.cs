@@ -24,7 +24,7 @@ namespace UTEMerchant
         public event EventHandler ItemClicked;
         public Item info;
         List<User> users = new List<User>();
-        user_DAO user_dao = new user_DAO();
+        User_DAO user_dao = new User_DAO();
         Address_DAO address_dao = new Address_DAO();
         private int Id_User;
         public WinBuyingInterface()
@@ -35,19 +35,19 @@ namespace UTEMerchant
         {
             info = item;
             Id_User = id_user;
-            var user_dao = new user_DAO();
+            var user_dao = new User_DAO();
             users = user_dao.Load();
             InitializeComponent();
             SetDefault();
         }
         private void SetDefault()
         {
-            txblOrderItemName.Text = info.Name;
-            txblOrderOriginalPrice.Text = info.Original_Price.ToString()+"$";
-            txblOrderPrice.Text = info.Price.ToString() + "$";
-            txblConditon.Text = info.Condition.ToString()+"%";
-            txblTotalValue.Text = info.Price.ToString() + "$";
-            var resourceUri = new Uri(info.Image_Path, UriKind.RelativeOrAbsolute);
+            txblOrderItemName.Text = info.name;
+            txblOrderOriginalPrice.Text = info.original_price.ToString()+"$";
+            txblOrderPrice.Text = info.price.ToString() + "$";
+            txblConditon.Text = info.condition.ToString()+"%";
+            txblTotalValue.Text = info.price.ToString() + "$";
+            var resourceUri = new Uri(info.image_path, UriKind.RelativeOrAbsolute);
             imgOrderItem.Source = new BitmapImage(resourceUri);
             List<Address> distinctCities = address_dao.Load();
             cbPickupCity.Items.Clear();
@@ -71,7 +71,7 @@ namespace UTEMerchant
                 string selectedCity = cbPickupCity.SelectedItem.ToString();
 
                 // Filter districts based on selected city
-                var filteredDistricts = address_dao.getdistrict(selectedCity);
+                var filteredDistricts = address_dao.GetDistricts(selectedCity);
 
                 // Update district ComboBox
                 if (cbPickupCity.Items != null)

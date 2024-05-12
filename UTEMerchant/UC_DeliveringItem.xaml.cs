@@ -21,14 +21,14 @@ namespace UTEMerchant
     /// </summary>
     public partial class UC_DeliveringItem : UserControl
     {
-        private readonly purchasedItem _orders;
+        private readonly PurchasedProduct _orders;
 
         public UC_DeliveringItem()
         {
             InitializeComponent();
         }
 
-        public UC_DeliveringItem(purchasedItem order) : this()
+        public UC_DeliveringItem(PurchasedProduct order) : this()
         {
             this._orders = order;
         }
@@ -38,14 +38,14 @@ namespace UTEMerchant
             if (_orders != null)
             {
                 Item item = new PurchasedItem_DAO().GetItem(_orders.PurchaseID);
-                tbName.Text = item.Name;
-                tbDiscountedPrice.Text = item.Price.ToString("C", CultureInfo.CurrentCulture);
-                tbOriginalPrice.Text = item.Original_Price.ToString("C", CultureInfo.CurrentCulture);
-                var resourceUri = new Uri(item.Image_Path, UriKind.RelativeOrAbsolute);
+                tbName.Text = item.name;
+                tbDiscountedPrice.Text = $"{item.price:C}";
+                tbOriginalPrice.Text = $"{item.original_price:C}";
+                var resourceUri = new Uri(item.image_path, UriKind.RelativeOrAbsolute);
                 imgItem.Source = new BitmapImage(resourceUri);
             }
         }
 
-        public purchasedItem Item => _orders;
+        public PurchasedProduct Item => _orders;
     }
 }

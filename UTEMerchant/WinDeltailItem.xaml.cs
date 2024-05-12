@@ -69,23 +69,24 @@ namespace UTEMerchant
                 btnAddToWishList.Background = Brushes.Black;
                 checkWishList = true;
             }
-            txblItemName.Text = info.Name;
-            txbOriginalPrice.Text = info.Original_Price.ToString()+" $";
-            txbBughtDate.Text=info.Bought_date.ToShortDateString();
-            txbType.Text = info.Type.ToString();
-            txbConditon.Text = info.Condition.ToString()+" %";
-            txtItemPrice.Text = info.Price.ToString() + " $";
+            txblItemName.Text = info.name;
+            txbOriginalPrice.Text = info.original_price.ToString()+" $";
+            DateTime dateinfo = (DateTime)info.bought_date;
+            txbBughtDate.Text= dateinfo.ToShortDateString();
+            txbType.Text = info.type.ToString();
+            txbConditon.Text = info.condition.ToString()+" %";
+            txtItemPrice.Text = info.price.ToString() + " $";
             txbSellerName.Text = seller.ShopName;
-            txbSellerContact.Text = seller.Phone;
+            txbSellerContact.Text = seller.phone;
             txbSellerAddress.Text = seller.Ward +", "+ seller.District + ", " + seller.City;
 
             
-            var resourceUri = new Uri(info.Image_Path, UriKind.RelativeOrAbsolute);
+            var resourceUri = new Uri(info.image_path, UriKind.RelativeOrAbsolute);
             imgItem.Source = new BitmapImage(resourceUri);
             // Tạo một FlowDocument
             FlowDocument flowDoc = new FlowDocument();
             // Thêm một Paragraph chứa văn bản mặc định vào FlowDocument
-            Paragraph paragraph = new Paragraph(new Run(info.Detail_description));
+            Paragraph paragraph = new Paragraph(new Run(info.detail_description));
             flowDoc.Blocks.Add(paragraph);
             // Gán FlowDocument cho RichTextBox
             rtbDetailDescription.Document = flowDoc;
@@ -93,7 +94,7 @@ namespace UTEMerchant
             // Tạo một FlowDocument
             FlowDocument flowDoc1 = new FlowDocument();
             // Thêm một Paragraph chứa văn bản mặc định vào FlowDocument
-            Paragraph paragraph1 = new Paragraph(new Run(info.Condition_Description));
+            Paragraph paragraph1 = new Paragraph(new Run(info.condition_description));
             flowDoc1.Blocks.Add(paragraph1);
             // Gán FlowDocument cho RichTextBox
             rtbConditonDescription.Document = flowDoc1;
@@ -142,7 +143,13 @@ namespace UTEMerchant
             if(checkWishList==false)
             {
                 DateTime now = DateTime.Now;
-                wishListDAO.Add(new WishList(this.Id_user, info.Item_Id, now));
+                Wishlist wishlistItem = new Wishlist
+                {
+                    Id_user = this.Id_user,
+                    Item_Id = info.Item_Id,
+                    AddedDate = now
+                };
+                wishListDAO.Add(wishlistItem);
                 checkWishList = true;
                 spAddToWishList.Visibility = Visibility.Collapsed;
                 spRemoveFromWishList.Visibility = Visibility.Visible;

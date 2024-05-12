@@ -20,7 +20,7 @@ namespace UTEMerchant
     public partial class WinLogin : Window
     {
         List<User> users = new List<User>();
-        user_DAO dao = new user_DAO();
+        User_DAO dao = new User_DAO();
         Seller_DAO Seller_DAO = new Seller_DAO();
         public WinLogin()
         {

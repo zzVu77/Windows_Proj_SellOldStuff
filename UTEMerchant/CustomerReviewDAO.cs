@@ -11,67 +11,32 @@ namespace UTEMerchant
 {
     internal class CustomerReviewDAO
     {
-        private DB_Connection db = new DB_Connection();
-        List<CustomerReview> Users = new List<CustomerReview>();
+        private UTEMerchantContext db = new UTEMerchantContext();
+
         public List<CustomerReview> Load()
         {
-            return db.LoadData<CustomerReview>("SELECT * FROM [dbo].[CustomerReviews]");
+            return db.CustomerReviews.ToList();
         }
 
-        public void AddReview(CustomerReview feedBack) // Using PascalCase for method name
+        public void AddReview(CustomerReview feedback)
         {
-            string sqlQuery = @"
-            INSERT INTO [dbo].[CustomerReviews] 
-                (Id_user, Item_Id, SellerID,ReviewText,ReviewDate,Rating)
-            VALUES
-                (@userId, @itemId, @sellerID, @ReviewText, @ReviewDate, @rating)";
-            new DB_Connection().ExecuteNonQuery(sqlQuery,
-                new SqlParameter("@userId", feedBack.ID_User),
-                new SqlParameter("@itemId", feedBack.Item_ID),
-                new SqlParameter("@sellerID", feedBack.SellerID),
-                new SqlParameter("@ReviewText", feedBack.ReviewText),
-                new SqlParameter("@ReviewDate", feedBack.ReviewDate),
-                new SqlParameter("@rating", feedBack.Rating)
-                );
-            
+            db.CustomerReviews.Add(feedback);
+            db.SaveChanges();
         }
 
-        public List<CustomerReview> GetFeedBack( int sellerID)
+        public List<CustomerReview> GetFeedback(int sellerID)
         {
-             List < CustomerReview >  list=db.LoadData<CustomerReview>($"SELECT * FROM [dbo].[CustomerReviews] WHERE SellerID={sellerID}");
-            return list;
+            return db.CustomerReviews.Where(r => r.SellerID == sellerID).ToList();
         }
-        public List<CustomerReview>  filterReview(int Id_user, int Item_Id)
+
+        public List<CustomerReview> FilterReview(int userId, int itemId)
         {
-            return db.LoadData<CustomerReview>($"SELECT * FROM [dbo].[CustomerReviews] WHERE Id_user = {Id_user} AND Item_Id = {Item_Id}");
+            return db.CustomerReviews.Where(r => r.Id_user == userId && r.Item_Id == itemId).ToList();
         }
 
         public double CalculateAverage(int sellerID)
         {
-            double average = 0;
-            string query = @"
-                        SELECT                            
-                            AVG(Rating) AS AverageRating
-                        FROM
-                            CustomerReviews
-                        WHERE
-                            SellerID = @sellerID
-                        GROUP BY
-                            SellerID;";
-
-            using (SqlConnection conn = new SqlConnection(db.connectionString))
-            {
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@sellerID", sellerID);
-                    object result = cmd.ExecuteScalar(); // Thực hiện ExecuteScalar
-                    if (result != null && result != DBNull.Value)
-                    {
-                        average = Convert.ToDouble(result); // Chuyển đổi giá trị từ object sang double
-                    }
-                }
-            }
+            var average = db.CustomerReviews.Where(r => r.SellerID == sellerID).Average(r => (double?)r.Rating) ?? 0;
             return average;
         }
     }

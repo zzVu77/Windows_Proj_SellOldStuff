@@ -93,16 +93,30 @@ namespace UTEMerchant
 
                 Item_DAO dao = new Item_DAO();
                 DateTime today = DateTime.Now;
-                dao.Add(new Item(0, txtName.Text.ToString(),
-                    float.Parse(txtPrice.Text.ToString()),
-                    float.Parse(txtOriginalPrice.Text.ToString()), typeItem.Content.ToString(),
-                    DateTime.Parse(txtBoughtDate.Text.ToString()),
-                    text_Condition, Int32.Parse(txtCondition.Text.ToString())
-                    , selectedFilePath[0], false, text_detail, IdSeller, today));
+                Item newItem = new Item
+                {
+                    name = txtName.Text.ToString(),
+                    price = float.Parse(txtPrice.Text.ToString()),
+                    original_price = float.Parse(txtOriginalPrice.Text.ToString()),
+                    type = typeItem.Content.ToString(),
+                    bought_date = DateTime.Parse(txtBoughtDate.Text.ToString()),
+                    condition_description = text_Condition,
+                    condition = Int32.Parse(txtCondition.Text.ToString()),
+                    image_path = selectedFilePath[0],
+                    sale_status = false,
+                    detail_description = text_detail,
+                    SellerID = IdSeller,
+                    PostedDate = today
+                };
+                dao.Add(newItem);
                 int itemID = dao.GetTheMaximumItem_ID();
                 foreach (var x in selectedFilePath)
                 {
-                    ImgPath imgPath = new ImgPath(itemID, x);
+                    ImgPath imgPath = new ImgPath
+                    {
+                        Item_Id = itemID,
+                        Path = x
+                    };
                     ImgPath_DAO.Add(imgPath);
                 }
                 this.Close();

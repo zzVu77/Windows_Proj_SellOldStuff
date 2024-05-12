@@ -26,7 +26,7 @@ namespace UTEMerchant
         //User user =new User();
         string selectedCity;
         string selectedDistrict;
-        user_DAO user_dao = new user_DAO();
+        User_DAO user_dao = new User_DAO();
         Address_DAO address_dao = new Address_DAO();
         List<Address> distinctCities;
         public string image_path;
@@ -44,14 +44,14 @@ namespace UTEMerchant
             {
                 cbPickupCity.Items.Add(address.City);
             }
-            txtUserFullName.Text = StaticValue.USER.Name;      
+            txtUserFullName.Text = StaticValue.USER.name;      
             txtUserID.Text = StaticValue.USER.Id_user.ToString();
-            txtUserEmail.Text = StaticValue.USER.Email;
-            txtUserPhoneNumber.Text = StaticValue.USER.Phone.ToString();
+            txtUserEmail.Text = StaticValue.USER.email;
+            txtUserPhoneNumber.Text = StaticValue.USER.phone.ToString();
             txtUserCity.Text = StaticValue.USER.City;
             txtUserDistrict.Text = StaticValue.USER.District;
             txtUserWard.Text = StaticValue.USER.Ward;
-            image_path = StaticValue.USER.Image_Path;
+            image_path = StaticValue.USER.Image_path;
             var resourceUri = new Uri(image_path, UriKind.RelativeOrAbsolute);
             imgUserPhoto.Source = new BitmapImage(resourceUri);
 
@@ -93,7 +93,7 @@ namespace UTEMerchant
                 selectedCity = cbPickupCity.SelectedItem.ToString();
                 txtUserCity.Text = selectedCity;
                 // Filter districts based on selected city
-                var filteredDistricts = address_dao.getdistrict(selectedCity);
+                var filteredDistricts = address_dao.GetDistricts(selectedCity);
 
                 // Update district ComboBox
                 if (cbPickupCity.Items != null)
@@ -176,15 +176,15 @@ namespace UTEMerchant
                 )
             {
                 MessageBox.Show("Please complete all information");
-                txtUserFullName.Text = StaticValue.USER.Name;
-                txtUserEmail.Text = StaticValue.USER.Email;
+                txtUserFullName.Text = StaticValue.USER.name;
+                txtUserEmail.Text = StaticValue.USER.email;
                 txtUserWard.Text = StaticValue.USER.Ward;
-                txtUserPhoneNumber.Text = StaticValue.USER.Phone;
+                txtUserPhoneNumber.Text = StaticValue.USER.phone;
             }
             else
             {
-                StaticValue.USER.Name = txtUserFullName.Text;
-                StaticValue.USER.Email = txtUserEmail.Text;
+                StaticValue.USER.name = txtUserFullName.Text;
+                StaticValue.USER.email = txtUserEmail.Text;
                 if (!string.IsNullOrEmpty(selectedCity))
                     StaticValue.USER.City = selectedCity;
                 else StaticValue.USER.City = txtUserCity.Text;
@@ -192,9 +192,9 @@ namespace UTEMerchant
                     StaticValue.USER.District = selectedDistrict;
                 else StaticValue.USER.District = txtUserDistrict.Text;
                 StaticValue.USER.Ward = txtUserWard.Text;
-                StaticValue.USER.Phone = txtUserPhoneNumber.Text;
+                StaticValue.USER.phone = txtUserPhoneNumber.Text;
 
-                StaticValue.USER.Image_Path = image_path;
+                StaticValue.USER.Image_path = image_path;
 
                 user_dao.UpdateUser(StaticValue.USER);
                 SavedButtonClicked?.Invoke(this, EventArgs.Empty);
