@@ -232,7 +232,6 @@ namespace UTEMerchant
         {
             UC_ItemView uc_item = new UC_ItemView(item);
             uc_item.ItemClicked += OnItemButtonAddToCartClicked;
-            uc_ShoppingCart.CheckCart();
             uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
             wpItemsList.Children.Add(uc_item);
         }
