@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -19,18 +21,46 @@ namespace UTEMerchant
             var item = db.ItemClicks.FirstOrDefault(i => i.Item_Id == itemId);
             if (item != null)
             {
-                item.Click_Count++;
-                db.SaveChanges();
+                // Increment the Click_Count
+                item.Click_Count += 1;
+
+                // Mark the entity as modified
+                db.Entry(item).State = EntityState.Modified;
+
+                try
+                {
+                    // Save changes to the database
+                    db.SaveChanges();
+                }
+                catch (DbUpdateException ex)
+                {
+                    // Handle any exceptions
+                    Console.WriteLine($"Error updating item: {ex.Message}");
+                }
             }
         }
 
         public void UpdateSearch(int itemId)
         {
-            var item = db.ItemClicks.Find(itemId);
+            var item = db.ItemClicks.FirstOrDefault(i => i.Item_Id == itemId);
             if (item != null)
             {
-                item.Search_Count++;
-                db.SaveChanges();
+                // Increment the Click_Count
+                item.Search_Count += 1;
+
+                // Mark the entity as modified
+                db.Entry(item).State = EntityState.Modified;
+
+                try
+                {
+                    // Save changes to the database
+                    db.SaveChanges();
+                }
+                catch (DbUpdateException ex)
+                {
+                    // Handle any exceptions
+                    Console.WriteLine($"Error updating item: {ex.Message}");
+                }
             }
         }
     }

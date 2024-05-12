@@ -19,6 +19,7 @@ namespace UTEMerchant
         {
             this.CustomerReviews = new HashSet<CustomerReview>();
             this.ImgPaths = new HashSet<ImgPath>();
+            this.ItemClicks = new HashSet<ItemClick>();
             this.PurchasedProducts = new HashSet<PurchasedProduct>();
             this.Wishlists = new HashSet<Wishlist>();
         }
@@ -42,7 +43,8 @@ namespace UTEMerchant
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ImgPath> ImgPaths { get; set; }
         public virtual Seller Seller { get; set; }
-        public virtual ItemClick ItemClick { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ItemClick> ItemClicks { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PurchasedProduct> PurchasedProducts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

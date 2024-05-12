@@ -363,7 +363,8 @@
                                     VerticalAlignment="Center" 
                                     HorizontalAlignment="Left"                                         
                                     HorizontalContentAlignment="Center"  
-                                    Grid.ColumnSpan="2" >
+                                    Grid.ColumnSpan="2"
+                                    Click="btnAddToCart_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="CartPlus" VerticalAlignment="Center" Margin="0 1 8 0" Width="17" Height="21"/>
                                     <TextBlock Text="Add To Cart" FontWeight="Bold" FontFamily="Segoe UI" FontSize="15"/>

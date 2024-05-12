@@ -248,10 +248,10 @@
       <DependentUpon>UTEMerchant.tt</DependentUpon>
     </Compile>
     <Compile Include="SaleStatusConverter.cs" />
-    <Compile Include="SendMail.cs" />
     <Compile Include="Seller.cs">
       <DependentUpon>UTEMerchant.tt</DependentUpon>
     </Compile>
+    <Compile Include="SendMail.cs" />
     <Compile Include="Seller_DAO.cs" />
     <Compile Include="PercentageConverter.cs" />
     <Compile Include="StaticValue.cs" />

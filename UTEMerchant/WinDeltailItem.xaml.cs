@@ -165,5 +165,10 @@ namespace UTEMerchant
             }    
 
         }
+
+        private void btnAddToCart_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

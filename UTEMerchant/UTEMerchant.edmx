@@ -51,15 +51,14 @@
           <Property Name="SellerID" Type="int" Nullable="false" />
           <Property Name="PostedDate" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'D:\CODE\WINPROGRAMING\GIT\WINDOW_PROJ_UTEMERCHANT\UTEMERCHANT\DB_UTE_MERCHANT.MDF.dbo.ItemClicks' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ItemClicks">
           <Key>
-            <PropertyRef Name="Item_Id" />
+            <PropertyRef Name="ItemClickId" />
           </Key>
           <Property Name="Item_Id" Type="int" Nullable="false" />
           <Property Name="Click_Count" Type="int" />
           <Property Name="Search_Count" Type="int" />
+          <Property Name="ItemClickId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="PurchasedProducts">
           <Key>
@@ -178,7 +177,7 @@ warning 6002: The table/view 'D:\CODE\WINPROGRAMING\GIT\WINDOW_PROJ_UTEMERCHANT\
         </Association>
         <Association Name="FK__ItemClick__Item___7BE56230">
           <End Role="Item" Type="Self.Item" Multiplicity="1" />
-          <End Role="ItemClicks" Type="Self.ItemClicks" Multiplicity="0..1" />
+          <End Role="ItemClicks" Type="Self.ItemClicks" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Item">
               <PropertyRef Name="Item_Id" />
@@ -265,17 +264,11 @@ warning 6002: The table/view 'D:\CODE\WINPROGRAMING\GIT\WINDOW_PROJ_UTEMERCHANT\
           <EntitySet Name="CustomerReviews" EntityType="Self.CustomerReviews" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ImgPath" EntityType="Self.ImgPath" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemClicks" EntityType="Self.ItemClicks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PurchasedProducts" EntityType="Self.PurchasedProducts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Seller" EntityType="Self.Seller" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Wishlist" EntityType="Self.Wishlist" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ItemClicks" EntityType="Self.ItemClicks" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [ItemClicks].[Item_Id] AS [Item_Id], 
-    [ItemClicks].[Click_Count] AS [Click_Count], 
-    [ItemClicks].[Search_Count] AS [Search_Count]
-    FROM [dbo].[ItemClicks] AS [ItemClicks]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK__CustomerR__Id_us__1F63A897" Association="Self.FK__CustomerR__Id_us__1F63A897">
             <End Role="User" EntitySet="User" />
             <End Role="CustomerReviews" EntitySet="CustomerReviews" />
@@ -382,9 +375,19 @@ warning 6002: The table/view 'D:\CODE\WINPROGRAMING\GIT\WINDOW_PROJ_UTEMERCHANT\
           <NavigationProperty Name="CustomerReviews" Relationship="Self.FK__CustomerR__Item___318258D2" FromRole="Item" ToRole="CustomerReviews" />
           <NavigationProperty Name="ImgPaths" Relationship="Self.FK__ImgPath__Item_Id__41B8C09B" FromRole="Item" ToRole="ImgPath" />
           <NavigationProperty Name="Seller" Relationship="Self.FK__Item__SellerID__56B3DD81" FromRole="Item" ToRole="Seller" />
-          <NavigationProperty Name="ItemClick" Relationship="Self.FK__ItemClick__Item___7BE56230" FromRole="Item" ToRole="ItemClicks" />
+          <NavigationProperty Name="ItemClicks" Relationship="Self.FK__ItemClick__Item___7BE56230" FromRole="Item" ToRole="ItemClicks" />
           <NavigationProperty Name="PurchasedProducts" Relationship="Self.FK__Purchased__Item___2F9A1060" FromRole="Item" ToRole="PurchasedProducts" />
           <NavigationProperty Name="Wishlists" Relationship="Self.FK__Wishlist__Item_I__68D28DBC" FromRole="Item" ToRole="Wishlist" />
+        </EntityType>
+        <EntityType Name="ItemClick">
+          <Key>
+            <PropertyRef Name="ItemClickId" />
+          </Key>
+          <Property Name="Item_Id" Type="Int32" Nullable="false" />
+          <Property Name="Click_Count" Type="Int32" />
+          <Property Name="Search_Count" Type="Int32" />
+          <Property Name="ItemClickId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Item" Relationship="Self.FK__ItemClick__Item___7BE56230" FromRole="ItemClicks" ToRole="Item" />
         </EntityType>
         <EntityType Name="PurchasedProduct">
           <Key>
@@ -452,15 +455,6 @@ warning 6002: The table/view 'D:\CODE\WINPROGRAMING\GIT\WINDOW_PROJ_UTEMERCHANT\
           <NavigationProperty Name="Item" Relationship="Self.FK__Wishlist__Item_I__68D28DBC" FromRole="Wishlist" ToRole="Item" />
           <NavigationProperty Name="User" Relationship="Self.FK__Wishlist__Id_use__67DE6983" FromRole="Wishlist" ToRole="User" />
         </EntityType>
-        <EntityType Name="ItemClick">
-          <Key>
-            <PropertyRef Name="Item_Id" />
-          </Key>
-          <Property Name="Item_Id" Type="Int32" Nullable="false" />
-          <Property Name="Click_Count" Type="Int32" />
-          <Property Name="Search_Count" Type="Int32" />
-          <NavigationProperty Name="Item" Relationship="Self.FK__ItemClick__Item___7BE56230" FromRole="ItemClicks" ToRole="Item" />
-        </EntityType>
         <Association Name="FK__CustomerR__Id_us__1F63A897">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="CustomerReviews" Type="Self.CustomerReview" Multiplicity="*" />
@@ -525,7 +519,7 @@ warning 6002: The table/view 'D:\CODE\WINPROGRAMING\GIT\WINDOW_PROJ_UTEMERCHANT\
         </Association>
         <Association Name="FK__ItemClick__Item___7BE56230">
           <End Role="Item" Type="Self.Item" Multiplicity="1" />
-          <End Role="ItemClicks" Type="Self.ItemClick" Multiplicity="0..1" />
+          <End Role="ItemClicks" Type="Self.ItemClick" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Item">
               <PropertyRef Name="Item_Id" />
@@ -607,16 +601,16 @@ warning 6002: The table/view 'D:\CODE\WINPROGRAMING\GIT\WINDOW_PROJ_UTEMERCHANT\
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="db_ute_merchantEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="db_ute_merchantEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Addresses" EntityType="Self.Address" />
           <EntitySet Name="CustomerReviews" EntityType="Self.CustomerReview" />
           <EntitySet Name="ImgPaths" EntityType="Self.ImgPath" />
           <EntitySet Name="Items" EntityType="Self.Item" />
+          <EntitySet Name="ItemClicks" EntityType="Self.ItemClick" />
           <EntitySet Name="PurchasedProducts" EntityType="Self.PurchasedProduct" />
           <EntitySet Name="Sellers" EntityType="Self.Seller" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="Wishlists" EntityType="Self.Wishlist" />
-          <EntitySet Name="ItemClicks" EntityType="Self.ItemClick" />
           <AssociationSet Name="FK__CustomerR__Id_us__1F63A897" Association="Self.FK__CustomerR__Id_us__1F63A897">
             <End Role="User" EntitySet="Users" />
             <End Role="CustomerReviews" EntitySet="CustomerReviews" />
@@ -671,7 +665,7 @@ warning 6002: The table/view 'D:\CODE\WINPROGRAMING\GIT\WINDOW_PROJ_UTEMERCHANT\
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="db_ute_merchantModelStoreContainer" CdmEntityContainer="db_ute_merchantEntities">
+        <EntityContainerMapping StorageEntityContainer="db_ute_merchantModelStoreContainer" CdmEntityContainer="db_ute_merchantEntities1">
           <EntitySetMapping Name="Addresses">
             <EntityTypeMapping TypeName="db_ute_merchantModel.Address">
               <MappingFragment StoreEntitySet="Address">
@@ -718,6 +712,16 @@ warning 6002: The table/view 'D:\CODE\WINPROGRAMING\GIT\WINDOW_PROJ_UTEMERCHANT\
                 <ScalarProperty Name="detail_description" ColumnName="detail_description" />
                 <ScalarProperty Name="SellerID" ColumnName="SellerID" />
                 <ScalarProperty Name="PostedDate" ColumnName="PostedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemClicks">
+            <EntityTypeMapping TypeName="db_ute_merchantModel.ItemClick">
+              <MappingFragment StoreEntitySet="ItemClicks">
+                <ScalarProperty Name="Item_Id" ColumnName="Item_Id" />
+                <ScalarProperty Name="Click_Count" ColumnName="Click_Count" />
+                <ScalarProperty Name="Search_Count" ColumnName="Search_Count" />
+                <ScalarProperty Name="ItemClickId" ColumnName="ItemClickId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -775,15 +779,6 @@ warning 6002: The table/view 'D:\CODE\WINPROGRAMING\GIT\WINDOW_PROJ_UTEMERCHANT\
                 <ScalarProperty Name="Id_user" ColumnName="Id_user" />
                 <ScalarProperty Name="Item_Id" ColumnName="Item_Id" />
                 <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ItemClicks">
-            <EntityTypeMapping TypeName="db_ute_merchantModel.ItemClick">
-              <MappingFragment StoreEntitySet="ItemClicks">
-                <ScalarProperty Name="Item_Id" ColumnName="Item_Id" />
-                <ScalarProperty Name="Click_Count" ColumnName="Click_Count" />
-                <ScalarProperty Name="Search_Count" ColumnName="Search_Count" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

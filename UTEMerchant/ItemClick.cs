@@ -17,6 +17,7 @@ namespace UTEMerchant
         public int Item_Id { get; set; }
         public Nullable<int> Click_Count { get; set; }
         public Nullable<int> Search_Count { get; set; }
+        public int ItemClickId { get; set; }
     
         public virtual Item Item { get; set; }
     }

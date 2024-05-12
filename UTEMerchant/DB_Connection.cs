@@ -18,12 +18,13 @@ namespace UTEMerchant
         public DbSet<CustomerReview> CustomerReviews { get; set; }
         public DbSet<ImgPath> ImgPaths { get; set; }
         public DbSet<Item> Items { get; set; }
-        public DbSet<ItemClick> ItemClicks { get; set; }
+        
         public DbSet<PurchasedProduct> purchasedProducts { get; set; }
         public DbSet<Seller> Sellers { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Wishlist> Wishlists { get; set; }
-        
-        
+
+        public DbSet<ItemClick> ItemClicks { get; set; }
+
     }
 }

@@ -4,16 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a9469d1153c146c487fd893e35aff895" Name="Diagram1" ZoomLevel="55">
+      <Diagram DiagramId="a7ad6d15a0f14e1b8dd9897e3060b00d" Name="Diagram1">
         <EntityTypeShape EntityType="db_ute_merchantModel.Address" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_ute_merchantModel.CustomerReview" Width="1.5" PointX="7.5" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_ute_merchantModel.CustomerReview" Width="1.5" PointX="7.5" PointY="10.875" IsExpanded="true" />
         <EntityTypeShape EntityType="db_ute_merchantModel.ImgPath" Width="1.5" PointX="7.5" PointY="15" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_ute_merchantModel.Item" Width="1.5" PointX="5.25" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_ute_merchantModel.PurchasedProduct" Width="1.5" PointX="10.5" PointY="11.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_ute_merchantModel.Seller" Width="1.5" PointX="3" PointY="15.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_ute_merchantModel.User" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_ute_merchantModel.Wishlist" Width="1.5" PointX="9.625" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_ute_merchantModel.ItemClick" Width="1.5" PointX="7.5" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_ute_merchantModel.Item" Width="1.5" PointX="5.25" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_ute_merchantModel.ItemClick" Width="1.5" PointX="7.5" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_ute_merchantModel.PurchasedProduct" Width="1.5" PointX="10.5" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_ute_merchantModel.Seller" Width="1.5" PointX="3" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_ute_merchantModel.User" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_ute_merchantModel.Wishlist" Width="1.5" PointX="10.5" PointY="8.25" IsExpanded="true" />
         <AssociationConnector Association="db_ute_merchantModel.FK__CustomerR__Id_us__1F63A897" ManuallyRouted="false" />
         <AssociationConnector Association="db_ute_merchantModel.FK__CustomerR__Item___318258D2" ManuallyRouted="false" />
         <AssociationConnector Association="db_ute_merchantModel.FK__CustomerR__Selle__57A801BA" ManuallyRouted="false" />
