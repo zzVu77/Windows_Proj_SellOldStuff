@@ -220,7 +220,11 @@
     <Compile Include="ImgPath_DAO.cs" />
     <Compile Include="InverseBooleanConverter.cs" />
     <Compile Include="Item.cs" />
+    <Compile Include="ItemClicks.cs" />
+    <Compile Include="ItemClicks_DAO.cs" />
     <Compile Include="ItemRecommendationEngine.cs" />
+    <Compile Include="ItemSearch.cs" />
+    <Compile Include="ItemSearch_DAO.cs" />
     <Compile Include="Item_DAO.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="purchasedItem.cs" />
