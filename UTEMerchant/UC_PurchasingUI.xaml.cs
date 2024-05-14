@@ -188,6 +188,11 @@ namespace UTEMerchant
                 _itemClick.UpdateClick(clickedItem.info.Item_Id);
                 WinDeltailItem winDeltailItem = new WinDeltailItem(clickedItem.info, seller, IdUser);
                 winDeltailItem.ShowDialog();
+                //add to cart
+                if(winDeltailItem.check)
+                {
+                    OnItemButtonAddToCartClicked(sender, e);
+                }  
             }
         }
 

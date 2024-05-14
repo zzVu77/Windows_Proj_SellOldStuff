@@ -25,6 +25,7 @@ namespace UTEMerchant
         private int Id_user;
         private ImgPath_DAO ImgPath_DAO = new ImgPath_DAO();
         private WishList_DAO wishListDAO = new WishList_DAO();
+        public bool check=false;
         private const string ImgRelativePath = "../../Img/";
 
         private static readonly string ExecutablePath = AppDomain.CurrentDomain.BaseDirectory;
@@ -190,6 +191,11 @@ namespace UTEMerchant
         {
             WinImageZoom winImageZoom = new WinImageZoom((Image)sender);
             winImageZoom.ShowDialog();
+        }
+
+        private void btnAddToCart_Click(object sender, RoutedEventArgs e)
+        {
+            check =true;
         }
     }
 }
