@@ -247,7 +247,7 @@
                                  BorderBrush="#FFC5BBBB"
                                  BorderThickness="1"
                                  Background="Transparent"
-                                 Content="Trend"
+                                 Content="Recently"
                                  FontSize="{Binding ElementName=lblSort, Path=FontSize}"
                                  FontFamily="Segoe UI"
                                  Template="{StaticResource RoundedButtonTemplate}"

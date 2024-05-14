@@ -47,6 +47,9 @@ namespace UTEMerchant
         {
             if (btnRelevance.Background == Brushes.Transparent)
             {
+                btnPopular.Background = Brushes.Transparent;
+                btnPrice.Background = Brushes.Transparent;
+                btnTrend.Background = Brushes.Transparent;
                 wpItemsList.Children.Clear();
                 List<Item> items = _itemDao.SortRevelance(IdUser);
 
@@ -73,6 +76,11 @@ namespace UTEMerchant
             List<Item> items = _items;
             if (btnPopular.Background == Brushes.Transparent)
             {
+
+                btnRelevance.Background = Brushes.Transparent;
+                btnPrice.Background = Brushes.Transparent;
+                btnTrend.Background = Brushes.Transparent;
+
                 wpItemsList.Children.Clear();
                 List<ItemClicks> itemClicks = _itemClick.Load();
                 List<Item> sortedItems = items.OrderByDescending(item =>
@@ -104,13 +112,17 @@ namespace UTEMerchant
 
         private void btnPrice_Click(object sender, RoutedEventArgs e)
         {
+            List<Item> items = _items;
             if (btnPrice.Background == Brushes.Transparent)
             {
+                btnRelevance.Background = Brushes.Transparent;
+                btnPopular.Background = Brushes.Transparent;
+                btnTrend.Background = Brushes.Transparent;
 
-      
                 btnPrice.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#EAAC8B");
                 wpItemsList.Children.Clear();
-                foreach (Item item in _itemDao.SortPrice())
+                List<Item> Sorteditems = items.OrderByDescending(item => item.Price).ToList();
+                foreach (Item item in Sorteditems)
                 {
                     AddItem(item);
                 }
@@ -118,7 +130,11 @@ namespace UTEMerchant
             }
             else
             {
-                
+                wpItemsList.Children.Clear();
+                foreach (Item item in _items)
+                {
+                    AddItem(item);
+                }
                 btnPrice.Background = Brushes.Transparent;
                 
             }
@@ -333,6 +349,9 @@ namespace UTEMerchant
             if (btnTrend.Background == Brushes.Transparent)
             {
                 wpItemsList.Children.Clear();
+                btnRelevance.Background = Brushes.Transparent;
+                btnPrice.Background = Brushes.Transparent;
+                btnPopular.Background = Brushes.Transparent;
                 List<ItemSearch> itemSearchs = _itemSearch.LoadbyUser(IdUser);
                 List<Item> sortedItems = items.OrderByDescending(item =>
                 {

@@ -145,11 +145,12 @@ namespace UTEMerchant
               )";   // AND [sale_status] = 0
             return db.LoadData<Item>(query, new SqlParameter("@userID", userID),new SqlParameter("@Text", formattedText));
         }
-        public List<Item> SortPrice()
+        public List<Item> SortPrice( int Id_user)
         {
             return db.LoadData<Item>(@"
             SELECT *
             FROM [dbo].[Item]
+            Where Id_
             ORDER BY [price] DESC");
         }
         public List<Item> SortRevelance(int userID)
