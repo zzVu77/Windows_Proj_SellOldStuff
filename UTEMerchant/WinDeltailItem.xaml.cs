@@ -25,15 +25,29 @@ namespace UTEMerchant
         private int Id_user;
         private ImgPath_DAO ImgPath_DAO = new ImgPath_DAO();
         private WishList_DAO wishListDAO = new WishList_DAO();
+        private const string ImgRelativePath = "../../Img/";
+
+        private static readonly string ExecutablePath = AppDomain.CurrentDomain.BaseDirectory;
+
+        private static readonly string ImgFilePath = System.IO.Path.GetFullPath(System.IO.Path.Combine(ExecutablePath, ImgRelativePath));
         public WinDeltailItem()
         {
             InitializeComponent();
+
+
         }
         public WinDeltailItem(Item item, Seller seller,int id_user) : this()
         {
             this.info = item;
             this.seller = seller;
             Id_user = id_user;
+
+            User user = new user_DAO().GetUserByID(seller.Id_user);
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri(System.IO.Path.Combine(ImgFilePath, user.Image_Path), UriKind.RelativeOrAbsolute);
+            bitmap.EndInit();
+            imgSellerAvartar.ImageSource = bitmap;
         }
 
         private void OnImageSlideClicked(object sender, RoutedEventArgs e)
