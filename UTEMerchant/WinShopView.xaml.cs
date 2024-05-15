@@ -35,7 +35,11 @@ namespace UTEMerchant
         private Item_DAO itemDAO = new Item_DAO();
         private user_DAO userDAO = new user_DAO();
         private List<CustomerReview> feedbacks = new List<CustomerReview>();
+        private const string ImgRelativePath = "../../Img/";
 
+        private static readonly string ExecutablePath = AppDomain.CurrentDomain.BaseDirectory;
+
+        private static readonly string ImgFilePath = System.IO.Path.GetFullPath(System.IO.Path.Combine(ExecutablePath, ImgRelativePath));
         public WinShopView()
         {
             InitializeComponent();
@@ -57,11 +61,11 @@ namespace UTEMerchant
             txtShopName.Text = this.seller.ShopName;
             User user = userDAO.GetUserByItemID(this.seller.Id_user);
 
-            //BitmapImage bitmap = new BitmapImage();
-            //bitmap.BeginInit();
-            //bitmap.UriSource = new Uri(user.Image_Path, UriKind.RelativeOrAbsolute); ;
-            //bitmap.EndInit();
-            //imgbrAvatar.ImageSource = bitmap;
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri(System.IO.Path.Combine(ImgFilePath, user.Image_Path), UriKind.RelativeOrAbsolute); ;
+            bitmap.EndInit();
+            imgbrAvatar.ImageSource = bitmap;
 
         }
         private void wpShopItems_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
