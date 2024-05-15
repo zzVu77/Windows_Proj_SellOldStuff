@@ -28,6 +28,8 @@ namespace UTEMerchant
         private readonly Item_DAO _itemDao = new Item_DAO();
         private readonly Seller_DAO _sellerDao = new Seller_DAO();
         List<Item> _items = new List<Item>();
+        private readonly ItemClicks_DAO _itemClick = new ItemClicks_DAO();
+        private readonly ItemSearch_DAO _itemSearch =  new ItemSearch_DAO();
         public int IdUser { get; set; }
 
 
@@ -45,6 +47,9 @@ namespace UTEMerchant
         {
             if (btnRelevance.Background == Brushes.Transparent)
             {
+                btnPopular.Background = Brushes.Transparent;
+                btnPrice.Background = Brushes.Transparent;
+                btnTrend.Background = Brushes.Transparent;
                 wpItemsList.Children.Clear();
                 List<Item> items = _itemDao.SortRevelance(IdUser);
 
@@ -68,22 +73,56 @@ namespace UTEMerchant
 
         private void btnPopular_Click(object sender, RoutedEventArgs e)
         {
+            List<Item> items = _items;
             if (btnPopular.Background == Brushes.Transparent)
             {
+
+                btnRelevance.Background = Brushes.Transparent;
+                btnPrice.Background = Brushes.Transparent;
+                btnTrend.Background = Brushes.Transparent;
+
+                wpItemsList.Children.Clear();
+                List<ItemClicks> itemClicks = _itemClick.Load();
+                List<Item> sortedItems = items.OrderByDescending(item =>
+                {
+                    var itemClick = itemClicks.FirstOrDefault(click => click.Item_Id == item.Item_Id);
+                    return itemClick != null ? itemClick.Click_Count : 0;
+                }).ToList();
+                foreach (Item item in sortedItems)
+                {
+                    UC_ItemView uc_item = new UC_ItemView(item);
+                    uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
+                    wpItemsList.Children.Add(uc_item);
+                }
                 btnPopular.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#EAAC8B");
             }
-            else btnPopular.Background = Brushes.Transparent;
+            else
+            {
+                btnRelevance.Background = Brushes.Transparent;
+                wpItemsList.Children.Clear();
+                foreach (Item item in _items)
+                {
+                    UC_ItemView uc_item = new UC_ItemView(item);
+                    uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
+                    wpItemsList.Children.Add(uc_item);
+                }
+                btnPopular.Background = Brushes.Transparent;
+            }
         }
 
         private void btnPrice_Click(object sender, RoutedEventArgs e)
         {
+            List<Item> items = _items;
             if (btnPrice.Background == Brushes.Transparent)
             {
+                btnRelevance.Background = Brushes.Transparent;
+                btnPopular.Background = Brushes.Transparent;
+                btnTrend.Background = Brushes.Transparent;
 
-      
                 btnPrice.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#EAAC8B");
                 wpItemsList.Children.Clear();
-                foreach (Item item in _itemDao.SortPrice())
+                List<Item> Sorteditems = items.OrderByDescending(item => item.Price).ToList();
+                foreach (Item item in Sorteditems)
                 {
                     AddItem(item);
                 }
@@ -91,7 +130,11 @@ namespace UTEMerchant
             }
             else
             {
-                
+                wpItemsList.Children.Clear();
+                foreach (Item item in _items)
+                {
+                    AddItem(item);
+                }
                 btnPrice.Background = Brushes.Transparent;
                 
             }
@@ -142,8 +185,14 @@ namespace UTEMerchant
             if (sender is UC_ItemView clickedItem)
             {
                 Seller seller = _sellerDao.GetSeller(clickedItem.info.SellerID);
+                _itemClick.UpdateClick(clickedItem.info.Item_Id);
                 WinDeltailItem winDeltailItem = new WinDeltailItem(clickedItem.info, seller, IdUser);
                 winDeltailItem.ShowDialog();
+                //add to cart
+                if(winDeltailItem.check)
+                {
+                    OnItemButtonAddToCartClicked(sender, e);
+                }  
             }
         }
 
@@ -249,6 +298,8 @@ namespace UTEMerchant
                         wpItemsList.Children.Clear();
                         foreach (Item item in items)
                         {
+                         
+                            _itemSearch.UpdateSearch(item.Item_Id, IdUser);
                             AddItem(item);
                         }
                     }
@@ -274,6 +325,7 @@ namespace UTEMerchant
                     wpItemsList.Children.Clear();
                     foreach (Item item in items)
                     {
+                        _itemSearch.UpdateSearch(item.Item_Id, IdUser);
                         UC_ItemView uc_item = new UC_ItemView(item);
                         uc_item.ItemClicked += OnItemButtonAddToCartClicked;
                         uc_ShoppingCart.CheckCart();
@@ -293,6 +345,43 @@ namespace UTEMerchant
                     uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
                     wpItemsList.Children.Add(uc_item);
                 }
+            }
+        }
+
+        private void btnTrend_Click(object sender, RoutedEventArgs e)
+        {
+            List<Item> items = _items;
+            if (btnTrend.Background == Brushes.Transparent)
+            {
+                wpItemsList.Children.Clear();
+                btnRelevance.Background = Brushes.Transparent;
+                btnPrice.Background = Brushes.Transparent;
+                btnPopular.Background = Brushes.Transparent;
+                List<ItemSearch> itemSearchs = _itemSearch.LoadbyUser(IdUser);
+                List<Item> sortedItems = items.OrderByDescending(item =>
+                {
+                    var itemClick = itemSearchs.FirstOrDefault(click => click.Item_Id == item.Item_Id);
+                    return itemClick != null ? itemClick.Search_Count : 0;
+                }).ToList();
+                foreach (Item item in sortedItems)
+                {
+                    UC_ItemView uc_item = new UC_ItemView(item);
+                    uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
+                    wpItemsList.Children.Add(uc_item);
+                }
+                btnTrend.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#EAAC8B");
+            }
+            else
+            {
+
+                wpItemsList.Children.Clear();
+                foreach (Item item in _items)
+                {
+                    UC_ItemView uc_item = new UC_ItemView(item);
+                    uc_item.MouseLeftButtonDown += wpItemsList_MouseLeftButtonDown;
+                    wpItemsList.Children.Add(uc_item);
+                }
+                btnTrend.Background = Brushes.Transparent;
             }
         }
     }

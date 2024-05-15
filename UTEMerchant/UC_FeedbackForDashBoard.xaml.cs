@@ -23,6 +23,11 @@ namespace UTEMerchant
         private User client;
         private Item item;
         private CustomerReview customerReview;
+        private const string ImgRelativePath = "../../Img/";
+
+        private static readonly string ExecutablePath = AppDomain.CurrentDomain.BaseDirectory;
+
+        private static readonly string ImgFilePath = System.IO.Path.GetFullPath(System.IO.Path.Combine(ExecutablePath, ImgRelativePath));
         public UC_FeedbackForDashBoard()
         {
             InitializeComponent();
@@ -47,7 +52,7 @@ namespace UTEMerchant
 
             BitmapImage bitmap = new BitmapImage();
             bitmap.BeginInit();
-            bitmap.UriSource = new Uri(this.client.Image_Path, UriKind.RelativeOrAbsolute); ;
+            bitmap.UriSource = new Uri(System.IO.Path.Combine(ImgFilePath, this.client.Image_Path), UriKind.RelativeOrAbsolute);
             bitmap.EndInit();
             imgFeedback_ClientAvatar.ImageSource = bitmap;
 

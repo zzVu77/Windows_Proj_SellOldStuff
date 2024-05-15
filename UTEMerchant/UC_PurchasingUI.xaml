@@ -240,9 +240,20 @@
                                     Template="{StaticResource RoundedButtonTemplate}"
                                     Click="btnPrice_Click">
                             </Button>
-                            <Button x:Name="btnRefresh"
-                                    Content="Refresh"
-                                    Click="btnRefresh_Click" Grid.Column="4" Margin="269,3,-102,-3"/>
+                            <Button x:Name="btnTrend"
+                                 Grid.Column="4"
+                                 Height="30"
+                                 Margin="{Binding ElementName=btnRelevance, Path=Margin}"
+                                 BorderBrush="#FFC5BBBB"
+                                 BorderThickness="1"
+                                 Background="Transparent"
+                                 Content="Recently"
+                                 FontSize="{Binding ElementName=lblSort, Path=FontSize}"
+                                 FontFamily="Segoe UI"
+                                 Template="{StaticResource RoundedButtonTemplate}"
+                                 Click="btnTrend_Click">
+                            </Button>
+
 
                         </Grid>
 

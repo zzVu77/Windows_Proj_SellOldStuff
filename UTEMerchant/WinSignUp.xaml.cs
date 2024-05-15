@@ -62,7 +62,7 @@ namespace UTEMerchant
                     UCSignUpStep1.ucName.textbox.Text.ToString(), UCSignUpStep1.selectedCity, UCSignUpStep1.selectedDistrict,
                     UCSignUpStep1.ucWard.textbox.Text.ToString(), UCSignUpStep1.ucPhone.textbox.Text.ToString(), 
                     UCSignUpStep1.ucEmail.textbox.Text.ToString(),
-                    @"C:\Users\FPTSHOP\Desktop\Window_Proj_UTEMerchant\UTEMerchant\Img\icons8-account-50.png");
+                    @"icons8-account-50.png");
 
   
                     Random random = new Random();
