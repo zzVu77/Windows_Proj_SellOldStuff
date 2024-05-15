@@ -1,9 +1,9 @@
 # Sell Old Stuff Application
 This is a Windows app for selling old things and also our final term project of the Windows Programming course in HCMUTE
 ## ✍️Authors
-- SAPAAAA
-- zzVu77
-- kiyotaka1102
+- [zzVu77](https://github.com/zzVu77)
+- [SAPAAAA](https://github.com/SAPAAAA)
+- [kiyotaka1102](https://github.com/kiyotaka1102)
 ## 📌Features
 - There are two roles: Buyer and Seller
 - Buyer can: Buy items, View item details, Write feedback for Seller, Add to wish list, and Register to become a Seller,...
