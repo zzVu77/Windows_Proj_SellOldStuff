@@ -1,5 +1,5 @@
 # Sell Old Stuff Application
-This is a Windows app for selling old things and also our final term project of the Windows Programming course in HCMUTE
+This is a Windows app for selling old things and also our final term project of the Windows Programming course
 ## ✍️Authors
 - [zzVu77](https://github.com/zzVu77)
 - [SAPAAAA](https://github.com/SAPAAAA)
@@ -23,5 +23,5 @@ This is a Windows app for selling old things and also our final term project of 
 ![image](https://github.com/zzVu77/Window_Proj_UTEMerchant/assets/129610868/d65d0186-dcf7-46ef-aa2b-71f435a35585)
 
 ## 🚀 About Us
-- We are IT students in HCMUTE
+- We are IT students at HCMUTE
 - Contact us via: nguyenvanvu24062004@gmail.com
